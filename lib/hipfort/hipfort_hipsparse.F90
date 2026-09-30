@@ -1,9 +1,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! ==============================================================================
-! hipfort: FORTRAN Interfaces for GPU kernels
-! ==============================================================================
-! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
-! [MITx11 License]
+! Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+!
+! SPDX-License-Identifier: MIT
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
@@ -17,11 +15,12 @@
 !
 ! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 ! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 ! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ! THE SOFTWARE.
+!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_hipsparse
@@ -1040,13 +1039,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSaxpyi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSaxpyi_rank_0,&
       hipsparseSaxpyi_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSaxpyi_assumed_rank
 #endif
 #endif
   end interface
@@ -1068,13 +1067,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDaxpyi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDaxpyi_rank_0,&
       hipsparseDaxpyi_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDaxpyi_assumed_rank
 #endif
 #endif
   end interface
@@ -1096,13 +1095,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCaxpyi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCaxpyi_rank_0,&
       hipsparseCaxpyi_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCaxpyi_assumed_rank
 #endif
 #endif
   end interface
@@ -1124,13 +1123,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZaxpyi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZaxpyi_rank_0,&
       hipsparseZaxpyi_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZaxpyi_assumed_rank
 #endif
 #endif
   end interface
@@ -1202,13 +1201,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCdotci_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCdotci_rank_0,&
       hipsparseCdotci_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCdotci_assumed_rank
 #endif
 #endif
   end interface
@@ -1231,13 +1230,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZdotci_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZdotci_rank_0,&
       hipsparseZdotci_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZdotci_assumed_rank
 #endif
 #endif
   end interface
@@ -1307,13 +1306,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSdoti_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSdoti_rank_0,&
       hipsparseSdoti_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSdoti_assumed_rank
 #endif
 #endif
   end interface
@@ -1335,13 +1334,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDdoti_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDdoti_rank_0,&
       hipsparseDdoti_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDdoti_assumed_rank
 #endif
 #endif
   end interface
@@ -1363,13 +1362,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCdoti_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCdoti_rank_0,&
       hipsparseCdoti_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCdoti_assumed_rank
 #endif
 #endif
   end interface
@@ -1391,13 +1390,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZdoti_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZdoti_rank_0,&
       hipsparseZdoti_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZdoti_assumed_rank
 #endif
 #endif
   end interface
@@ -1458,13 +1457,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgthr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgthr_rank_0,&
       hipsparseSgthr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgthr_assumed_rank
 #endif
 #endif
   end interface
@@ -1485,13 +1484,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgthr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgthr_rank_0,&
       hipsparseDgthr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgthr_assumed_rank
 #endif
 #endif
   end interface
@@ -1512,13 +1511,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgthr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgthr_rank_0,&
       hipsparseCgthr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgthr_assumed_rank
 #endif
 #endif
   end interface
@@ -1539,13 +1538,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgthr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgthr_rank_0,&
       hipsparseZgthr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgthr_assumed_rank
 #endif
 #endif
   end interface
@@ -1610,13 +1609,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgthrz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgthrz_rank_0,&
       hipsparseSgthrz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgthrz_assumed_rank
 #endif
 #endif
   end interface
@@ -1637,13 +1636,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgthrz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgthrz_rank_0,&
       hipsparseDgthrz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgthrz_assumed_rank
 #endif
 #endif
   end interface
@@ -1664,13 +1663,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgthrz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgthrz_rank_0,&
       hipsparseCgthrz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgthrz_assumed_rank
 #endif
 #endif
   end interface
@@ -1691,13 +1690,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgthrz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgthrz_rank_0,&
       hipsparseZgthrz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgthrz_assumed_rank
 #endif
 #endif
   end interface
@@ -1770,13 +1769,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSroti_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSroti_rank_0,&
       hipsparseSroti_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSroti_assumed_rank
 #endif
 #endif
   end interface
@@ -1799,13 +1798,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDroti_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDroti_rank_0,&
       hipsparseDroti_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDroti_assumed_rank
 #endif
 #endif
   end interface
@@ -1868,13 +1867,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSsctr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSsctr_rank_0,&
       hipsparseSsctr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSsctr_assumed_rank
 #endif
 #endif
   end interface
@@ -1895,13 +1894,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDsctr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDsctr_rank_0,&
       hipsparseDsctr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDsctr_assumed_rank
 #endif
 #endif
   end interface
@@ -1922,13 +1921,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCsctr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCsctr_rank_0,&
       hipsparseCsctr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCsctr_assumed_rank
 #endif
 #endif
   end interface
@@ -1949,13 +1948,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZsctr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZsctr_rank_0,&
       hipsparseZsctr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZsctr_assumed_rank
 #endif
 #endif
   end interface
@@ -2051,13 +2050,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrmv_rank_0,&
       hipsparseSbsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -2093,13 +2092,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrmv_rank_0,&
       hipsparseDbsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -2135,13 +2134,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrmv_rank_0,&
       hipsparseCbsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -2177,13 +2176,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrmv_rank_0,&
       hipsparseZbsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -2295,13 +2294,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrsv2_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrsv2_bufferSize_rank_0,&
       hipsparseSbsrsv2_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrsv2_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -2334,13 +2333,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrsv2_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrsv2_bufferSize_rank_0,&
       hipsparseDbsrsv2_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrsv2_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -2373,13 +2372,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrsv2_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrsv2_bufferSize_rank_0,&
       hipsparseCbsrsv2_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrsv2_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -2412,13 +2411,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrsv2_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrsv2_bufferSize_rank_0,&
       hipsparseZbsrsv2_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrsv2_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -2480,13 +2479,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrsv2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrsv2_bufferSizeExt_rank_0,&
       hipsparseSbsrsv2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrsv2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -2515,13 +2514,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrsv2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrsv2_bufferSizeExt_rank_0,&
       hipsparseDbsrsv2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrsv2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -2550,13 +2549,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrsv2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrsv2_bufferSizeExt_rank_0,&
       hipsparseCbsrsv2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrsv2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -2585,13 +2584,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrsv2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrsv2_bufferSizeExt_rank_0,&
       hipsparseZbsrsv2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrsv2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -2667,13 +2666,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrsv2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrsv2_analysis_rank_0,&
       hipsparseSbsrsv2_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrsv2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -2707,13 +2706,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrsv2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrsv2_analysis_rank_0,&
       hipsparseDbsrsv2_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrsv2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -2747,13 +2746,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrsv2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrsv2_analysis_rank_0,&
       hipsparseCbsrsv2_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrsv2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -2787,13 +2786,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrsv2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrsv2_analysis_rank_0,&
       hipsparseZbsrsv2_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrsv2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -2934,13 +2933,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrsv2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrsv2_solve_rank_0,&
       hipsparseSbsrsv2_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrsv2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -2977,13 +2976,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrsv2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrsv2_solve_rank_0,&
       hipsparseDbsrsv2_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrsv2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -3020,13 +3019,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrsv2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrsv2_solve_rank_0,&
       hipsparseCbsrsv2_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrsv2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -3063,13 +3062,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrsv2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrsv2_solve_rank_0,&
       hipsparseZbsrsv2_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrsv2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -3188,13 +3187,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrxmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrxmv_rank_0,&
       hipsparseSbsrxmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrxmv_assumed_rank
 #endif
 #endif
   end interface
@@ -3233,13 +3232,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrxmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrxmv_rank_0,&
       hipsparseDbsrxmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrxmv_assumed_rank
 #endif
 #endif
   end interface
@@ -3278,13 +3277,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrxmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrxmv_rank_0,&
       hipsparseCbsrxmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrxmv_assumed_rank
 #endif
 #endif
   end interface
@@ -3323,13 +3322,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrxmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrxmv_rank_0,&
       hipsparseZbsrxmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrxmv_assumed_rank
 #endif
 #endif
   end interface
@@ -3431,13 +3430,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrmv_rank_0,&
       hipsparseScsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -3467,13 +3466,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrmv_rank_0,&
       hipsparseDcsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -3503,13 +3502,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrmv_rank_0,&
       hipsparseCcsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -3539,13 +3538,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrmv_rank_0,&
       hipsparseZcsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -3647,13 +3646,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrsv2_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrsv2_bufferSize_rank_0,&
       hipsparseScsrsv2_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrsv2_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3680,13 +3679,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrsv2_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrsv2_bufferSize_rank_0,&
       hipsparseDcsrsv2_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrsv2_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3713,13 +3712,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrsv2_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrsv2_bufferSize_rank_0,&
       hipsparseCcsrsv2_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrsv2_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3746,13 +3745,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrsv2_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrsv2_bufferSize_rank_0,&
       hipsparseZcsrsv2_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrsv2_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3811,13 +3810,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrsv2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrsv2_bufferSizeExt_rank_0,&
       hipsparseScsrsv2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrsv2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -3844,13 +3843,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrsv2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrsv2_bufferSizeExt_rank_0,&
       hipsparseDcsrsv2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrsv2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -3877,13 +3876,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrsv2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrsv2_bufferSizeExt_rank_0,&
       hipsparseCcsrsv2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrsv2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -3910,13 +3909,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrsv2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrsv2_bufferSizeExt_rank_0,&
       hipsparseZcsrsv2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrsv2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -3981,13 +3980,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrsv2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrsv2_analysis_rank_0,&
       hipsparseScsrsv2_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrsv2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -4015,13 +4014,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrsv2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrsv2_analysis_rank_0,&
       hipsparseDcsrsv2_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrsv2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -4049,13 +4048,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrsv2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrsv2_analysis_rank_0,&
       hipsparseCcsrsv2_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrsv2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -4083,13 +4082,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrsv2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrsv2_analysis_rank_0,&
       hipsparseZcsrsv2_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrsv2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -4223,13 +4222,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrsv2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrsv2_solve_rank_0,&
       hipsparseScsrsv2_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrsv2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -4260,13 +4259,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrsv2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrsv2_solve_rank_0,&
       hipsparseDcsrsv2_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrsv2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -4297,13 +4296,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrsv2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrsv2_solve_rank_0,&
       hipsparseCcsrsv2_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrsv2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -4334,13 +4333,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrsv2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrsv2_solve_rank_0,&
       hipsparseZcsrsv2_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrsv2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -4532,14 +4531,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgemvi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgemvi_rank_0,&
       hipsparseSgemvi_rank_1,&
       hipsparseSgemvi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgemvi_assumed_rank
 #endif
 #endif
   end interface
@@ -4572,14 +4571,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgemvi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgemvi_rank_0,&
       hipsparseDgemvi_rank_1,&
       hipsparseDgemvi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgemvi_assumed_rank
 #endif
 #endif
   end interface
@@ -4612,14 +4611,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgemvi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgemvi_rank_0,&
       hipsparseCgemvi_rank_1,&
       hipsparseCgemvi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgemvi_assumed_rank
 #endif
 #endif
   end interface
@@ -4652,14 +4651,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgemvi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgemvi_rank_0,&
       hipsparseZgemvi_rank_1,&
       hipsparseZgemvi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgemvi_assumed_rank
 #endif
 #endif
   end interface
@@ -4735,13 +4734,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseShybmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseShybmv_rank_0,&
       hipsparseShybmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseShybmv_assumed_rank
 #endif
 #endif
   end interface
@@ -4765,13 +4764,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDhybmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDhybmv_rank_0,&
       hipsparseDhybmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDhybmv_assumed_rank
 #endif
 #endif
   end interface
@@ -4795,13 +4794,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseChybmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseChybmv_rank_0,&
       hipsparseChybmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseChybmv_assumed_rank
 #endif
 #endif
   end interface
@@ -4825,13 +4824,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZhybmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZhybmv_rank_0,&
       hipsparseZhybmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZhybmv_assumed_rank
 #endif
 #endif
   end interface
@@ -4959,14 +4958,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrmm_rank_0,&
       hipsparseSbsrmm_rank_1,&
       hipsparseSbsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -5006,14 +5005,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrmm_rank_0,&
       hipsparseDbsrmm_rank_1,&
       hipsparseDbsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -5053,14 +5052,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrmm_rank_0,&
       hipsparseCbsrmm_rank_1,&
       hipsparseCbsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -5100,14 +5099,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrmm_rank_0,&
       hipsparseZbsrmm_rank_1,&
       hipsparseZbsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -5227,13 +5226,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrsm2_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrsm2_bufferSize_rank_0,&
       hipsparseSbsrsm2_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrsm2_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -5268,13 +5267,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrsm2_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrsm2_bufferSize_rank_0,&
       hipsparseDbsrsm2_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrsm2_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -5309,13 +5308,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrsm2_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrsm2_bufferSize_rank_0,&
       hipsparseCbsrsm2_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrsm2_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -5350,13 +5349,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrsm2_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrsm2_bufferSize_rank_0,&
       hipsparseZbsrsm2_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrsm2_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -5437,13 +5436,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrsm2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrsm2_analysis_rank_0,&
       hipsparseSbsrsm2_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrsm2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -5479,13 +5478,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrsm2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrsm2_analysis_rank_0,&
       hipsparseDbsrsm2_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrsm2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -5521,13 +5520,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrsm2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrsm2_analysis_rank_0,&
       hipsparseCbsrsm2_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrsm2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -5563,13 +5562,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrsm2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrsm2_analysis_rank_0,&
       hipsparseZbsrsm2_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrsm2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -5863,14 +5862,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrsm2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrsm2_solve_rank_0,&
       hipsparseSbsrsm2_solve_rank_1,&
       hipsparseSbsrsm2_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrsm2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -5913,14 +5912,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrsm2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrsm2_solve_rank_0,&
       hipsparseDbsrsm2_solve_rank_1,&
       hipsparseDbsrsm2_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrsm2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -5963,14 +5962,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrsm2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrsm2_solve_rank_0,&
       hipsparseCbsrsm2_solve_rank_1,&
       hipsparseCbsrsm2_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrsm2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -6013,14 +6012,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrsm2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrsm2_solve_rank_0,&
       hipsparseZbsrsm2_solve_rank_1,&
       hipsparseZbsrsm2_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrsm2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -6133,14 +6132,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrmm_rank_0,&
       hipsparseScsrmm_rank_1,&
       hipsparseScsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -6173,14 +6172,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrmm_rank_0,&
       hipsparseDcsrmm_rank_1,&
       hipsparseDcsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -6213,14 +6212,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrmm_rank_0,&
       hipsparseCcsrmm_rank_1,&
       hipsparseCcsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -6253,14 +6252,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrmm_rank_0,&
       hipsparseZcsrmm_rank_1,&
       hipsparseZcsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -6379,14 +6378,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrmm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrmm2_rank_0,&
       hipsparseScsrmm2_rank_1,&
       hipsparseScsrmm2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrmm2_assumed_rank
 #endif
 #endif
   end interface
@@ -6420,14 +6419,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrmm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrmm2_rank_0,&
       hipsparseDcsrmm2_rank_1,&
       hipsparseDcsrmm2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrmm2_assumed_rank
 #endif
 #endif
   end interface
@@ -6461,14 +6460,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrmm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrmm2_rank_0,&
       hipsparseCcsrmm2_rank_1,&
       hipsparseCcsrmm2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrmm2_assumed_rank
 #endif
 #endif
   end interface
@@ -6502,14 +6501,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrmm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrmm2_rank_0,&
       hipsparseZcsrmm2_rank_1,&
       hipsparseZcsrmm2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrmm2_assumed_rank
 #endif
 #endif
   end interface
@@ -6627,14 +6626,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrsm2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrsm2_bufferSizeExt_rank_0,&
       hipsparseScsrsm2_bufferSizeExt_rank_1,&
       hipsparseScsrsm2_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrsm2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -6668,14 +6667,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrsm2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrsm2_bufferSizeExt_rank_0,&
       hipsparseDcsrsm2_bufferSizeExt_rank_1,&
       hipsparseDcsrsm2_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrsm2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -6709,14 +6708,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrsm2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrsm2_bufferSizeExt_rank_0,&
       hipsparseCcsrsm2_bufferSizeExt_rank_1,&
       hipsparseCcsrsm2_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrsm2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -6750,14 +6749,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrsm2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrsm2_bufferSizeExt_rank_0,&
       hipsparseZcsrsm2_bufferSizeExt_rank_1,&
       hipsparseZcsrsm2_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrsm2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -6836,14 +6835,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrsm2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrsm2_analysis_rank_0,&
       hipsparseScsrsm2_analysis_rank_1,&
       hipsparseScsrsm2_analysis_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrsm2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -6877,14 +6876,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrsm2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrsm2_analysis_rank_0,&
       hipsparseDcsrsm2_analysis_rank_1,&
       hipsparseDcsrsm2_analysis_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrsm2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -6918,14 +6917,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrsm2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrsm2_analysis_rank_0,&
       hipsparseCcsrsm2_analysis_rank_1,&
       hipsparseCcsrsm2_analysis_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrsm2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -6959,14 +6958,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrsm2_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrsm2_analysis_rank_0,&
       hipsparseZcsrsm2_analysis_rank_1,&
       hipsparseZcsrsm2_analysis_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrsm2_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -7193,14 +7192,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrsm2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrsm2_solve_rank_0,&
       hipsparseScsrsm2_solve_rank_1,&
       hipsparseScsrsm2_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrsm2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -7234,14 +7233,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrsm2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrsm2_solve_rank_0,&
       hipsparseDcsrsm2_solve_rank_1,&
       hipsparseDcsrsm2_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrsm2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -7275,14 +7274,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrsm2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrsm2_solve_rank_0,&
       hipsparseCcsrsm2_solve_rank_1,&
       hipsparseCcsrsm2_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrsm2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -7316,14 +7315,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrsm2_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrsm2_solve_rank_0,&
       hipsparseZcsrsm2_solve_rank_1,&
       hipsparseZcsrsm2_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrsm2_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -7405,14 +7404,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgemmi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgemmi_rank_0,&
       hipsparseSgemmi_rank_1,&
       hipsparseSgemmi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgemmi_assumed_rank
 #endif
 #endif
   end interface
@@ -7443,14 +7442,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgemmi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgemmi_rank_0,&
       hipsparseDgemmi_rank_1,&
       hipsparseDgemmi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgemmi_assumed_rank
 #endif
 #endif
   end interface
@@ -7481,14 +7480,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgemmi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgemmi_rank_0,&
       hipsparseCgemmi_rank_1,&
       hipsparseCgemmi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgemmi_assumed_rank
 #endif
 #endif
   end interface
@@ -7519,14 +7518,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgemmi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgemmi_rank_0,&
       hipsparseZgemmi_rank_1,&
       hipsparseZgemmi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgemmi_assumed_rank
 #endif
 #endif
   end interface
@@ -7619,13 +7618,13 @@ module hipfort_hipsparse
       integer(c_int) :: nnzTotalDevHostPtr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcsrgeamNnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsrgeamNnz_rank_0,&
       hipsparseXcsrgeamNnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcsrgeamNnz_assumed_rank
 #endif
 #endif
   end interface
@@ -7728,13 +7727,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrgeam_rank_0,&
       hipsparseScsrgeam_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -7770,13 +7769,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrgeam_rank_0,&
       hipsparseDcsrgeam_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -7812,13 +7811,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrgeam_rank_0,&
       hipsparseCcsrgeam_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -7854,13 +7853,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrgeam_rank_0,&
       hipsparseZcsrgeam_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -7957,13 +7956,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrgeam2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrgeam2_bufferSizeExt_rank_0,&
       hipsparseScsrgeam2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrgeam2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -8008,13 +8007,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrgeam2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrgeam2_bufferSizeExt_rank_0,&
       hipsparseDcsrgeam2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrgeam2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -8059,13 +8058,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrgeam2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrgeam2_bufferSizeExt_rank_0,&
       hipsparseCcsrgeam2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrgeam2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -8110,13 +8109,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrgeam2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrgeam2_bufferSizeExt_rank_0,&
       hipsparseZcsrgeam2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrgeam2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -8209,13 +8208,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: workspace
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcsrgeam2Nnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsrgeam2Nnz_rank_0,&
       hipsparseXcsrgeam2Nnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcsrgeam2Nnz_assumed_rank
 #endif
 #endif
   end interface
@@ -8333,13 +8332,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrgeam2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrgeam2_rank_0,&
       hipsparseScsrgeam2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrgeam2_assumed_rank
 #endif
 #endif
   end interface
@@ -8382,13 +8381,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrgeam2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrgeam2_rank_0,&
       hipsparseDcsrgeam2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrgeam2_assumed_rank
 #endif
 #endif
   end interface
@@ -8431,13 +8430,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrgeam2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrgeam2_rank_0,&
       hipsparseCcsrgeam2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrgeam2_assumed_rank
 #endif
 #endif
   end interface
@@ -8480,13 +8479,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrgeam2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrgeam2_rank_0,&
       hipsparseZcsrgeam2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrgeam2_assumed_rank
 #endif
 #endif
   end interface
@@ -8594,13 +8593,13 @@ module hipfort_hipsparse
       integer(c_int) :: nnzTotalDevHostPtr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcsrgemmNnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsrgemmNnz_rank_0,&
       hipsparseXcsrgemmNnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcsrgemmNnz_assumed_rank
 #endif
 #endif
   end interface
@@ -8731,13 +8730,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrgemm_rank_0,&
       hipsparseScsrgemm_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -8774,13 +8773,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrgemm_rank_0,&
       hipsparseDcsrgemm_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -8817,13 +8816,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrgemm_rank_0,&
       hipsparseCcsrgemm_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -8860,13 +8859,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrgemm_rank_0,&
       hipsparseZcsrgemm_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -8966,13 +8965,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrgemm2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrgemm2_bufferSizeExt_rank_0,&
       hipsparseScsrgemm2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrgemm2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -9010,13 +9009,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrgemm2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrgemm2_bufferSizeExt_rank_0,&
       hipsparseDcsrgemm2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrgemm2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -9054,13 +9053,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrgemm2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrgemm2_bufferSizeExt_rank_0,&
       hipsparseCcsrgemm2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrgemm2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -9098,13 +9097,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrgemm2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrgemm2_bufferSizeExt_rank_0,&
       hipsparseZcsrgemm2_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrgemm2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -9220,13 +9219,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcsrgemm2Nnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsrgemm2Nnz_rank_0,&
       hipsparseXcsrgemm2Nnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcsrgemm2Nnz_assumed_rank
 #endif
 #endif
   end interface
@@ -9362,13 +9361,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrgemm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrgemm2_rank_0,&
       hipsparseScsrgemm2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrgemm2_assumed_rank
 #endif
 #endif
   end interface
@@ -9413,13 +9412,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrgemm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrgemm2_rank_0,&
       hipsparseDcsrgemm2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrgemm2_assumed_rank
 #endif
 #endif
   end interface
@@ -9464,13 +9463,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrgemm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrgemm2_rank_0,&
       hipsparseCcsrgemm2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrgemm2_assumed_rank
 #endif
 #endif
   end interface
@@ -9515,13 +9514,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrgemm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrgemm2_rank_0,&
       hipsparseZcsrgemm2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrgemm2_assumed_rank
 #endif
 #endif
   end interface
@@ -9645,13 +9644,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsric02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsric02_bufferSize_rank_0,&
       hipsparseSbsric02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsric02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -9683,13 +9682,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsric02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsric02_bufferSize_rank_0,&
       hipsparseDbsric02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsric02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -9721,13 +9720,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsric02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsric02_bufferSize_rank_0,&
       hipsparseCbsric02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsric02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -9759,13 +9758,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsric02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsric02_bufferSize_rank_0,&
       hipsparseZbsric02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsric02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -9838,13 +9837,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsric02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsric02_analysis_rank_0,&
       hipsparseSbsric02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsric02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -9877,13 +9876,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsric02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsric02_analysis_rank_0,&
       hipsparseDbsric02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsric02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -9916,13 +9915,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsric02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsric02_analysis_rank_0,&
       hipsparseCbsric02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsric02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -9955,13 +9954,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsric02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsric02_analysis_rank_0,&
       hipsparseZbsric02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsric02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -10063,13 +10062,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsric02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsric02_rank_0,&
       hipsparseSbsric02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsric02_assumed_rank
 #endif
 #endif
   end interface
@@ -10102,13 +10101,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsric02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsric02_rank_0,&
       hipsparseDbsric02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsric02_assumed_rank
 #endif
 #endif
   end interface
@@ -10141,13 +10140,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsric02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsric02_rank_0,&
       hipsparseCbsric02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsric02_assumed_rank
 #endif
 #endif
   end interface
@@ -10180,13 +10179,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsric02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsric02_rank_0,&
       hipsparseZbsric02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsric02_assumed_rank
 #endif
 #endif
   end interface
@@ -10413,13 +10412,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrilu02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrilu02_bufferSize_rank_0,&
       hipsparseSbsrilu02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrilu02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -10451,13 +10450,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrilu02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrilu02_bufferSize_rank_0,&
       hipsparseDbsrilu02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrilu02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -10489,13 +10488,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrilu02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrilu02_bufferSize_rank_0,&
       hipsparseCbsrilu02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrilu02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -10527,13 +10526,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrilu02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrilu02_bufferSize_rank_0,&
       hipsparseZbsrilu02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrilu02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -10606,13 +10605,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrilu02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrilu02_analysis_rank_0,&
       hipsparseSbsrilu02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrilu02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -10645,13 +10644,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrilu02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrilu02_analysis_rank_0,&
       hipsparseDbsrilu02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrilu02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -10684,13 +10683,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrilu02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrilu02_analysis_rank_0,&
       hipsparseCbsrilu02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrilu02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -10723,13 +10722,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrilu02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrilu02_analysis_rank_0,&
       hipsparseZbsrilu02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrilu02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -10821,13 +10820,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsrilu02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrilu02_rank_0,&
       hipsparseSbsrilu02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsrilu02_assumed_rank
 #endif
 #endif
   end interface
@@ -10860,13 +10859,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsrilu02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrilu02_rank_0,&
       hipsparseDbsrilu02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsrilu02_assumed_rank
 #endif
 #endif
   end interface
@@ -10899,13 +10898,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsrilu02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrilu02_rank_0,&
       hipsparseCbsrilu02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsrilu02_assumed_rank
 #endif
 #endif
   end interface
@@ -10938,13 +10937,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsrilu02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrilu02_rank_0,&
       hipsparseZbsrilu02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsrilu02_assumed_rank
 #endif
 #endif
   end interface
@@ -11051,13 +11050,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsric02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsric02_bufferSize_rank_0,&
       hipsparseScsric02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsric02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -11087,13 +11086,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsric02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsric02_bufferSize_rank_0,&
       hipsparseDcsric02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsric02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -11123,13 +11122,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsric02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsric02_bufferSize_rank_0,&
       hipsparseCcsric02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsric02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -11159,13 +11158,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsric02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsric02_bufferSize_rank_0,&
       hipsparseZcsric02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsric02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -11221,13 +11220,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsric02_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsric02_bufferSizeExt_rank_0,&
       hipsparseScsric02_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsric02_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -11253,13 +11252,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsric02_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsric02_bufferSizeExt_rank_0,&
       hipsparseDcsric02_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsric02_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -11285,13 +11284,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsric02_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsric02_bufferSizeExt_rank_0,&
       hipsparseCcsric02_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsric02_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -11317,13 +11316,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsric02_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsric02_bufferSizeExt_rank_0,&
       hipsparseZcsric02_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsric02_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -11390,13 +11389,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsric02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsric02_analysis_rank_0,&
       hipsparseScsric02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsric02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -11427,13 +11426,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsric02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsric02_analysis_rank_0,&
       hipsparseDcsric02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsric02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -11464,13 +11463,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsric02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsric02_analysis_rank_0,&
       hipsparseCcsric02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsric02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -11501,13 +11500,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsric02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsric02_analysis_rank_0,&
       hipsparseZcsric02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsric02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -11697,13 +11696,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsric02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsric02_rank_0,&
       hipsparseScsric02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsric02_assumed_rank
 #endif
 #endif
   end interface
@@ -11734,13 +11733,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsric02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsric02_rank_0,&
       hipsparseDcsric02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsric02_assumed_rank
 #endif
 #endif
   end interface
@@ -11771,13 +11770,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsric02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsric02_rank_0,&
       hipsparseCcsric02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsric02_assumed_rank
 #endif
 #endif
   end interface
@@ -11808,13 +11807,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsric02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsric02_rank_0,&
       hipsparseZcsric02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsric02_assumed_rank
 #endif
 #endif
   end interface
@@ -12027,13 +12026,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrilu02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrilu02_bufferSize_rank_0,&
       hipsparseScsrilu02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrilu02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -12063,13 +12062,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrilu02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrilu02_bufferSize_rank_0,&
       hipsparseDcsrilu02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrilu02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -12099,13 +12098,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrilu02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrilu02_bufferSize_rank_0,&
       hipsparseCcsrilu02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrilu02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -12135,13 +12134,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrilu02_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrilu02_bufferSize_rank_0,&
       hipsparseZcsrilu02_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrilu02_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -12195,13 +12194,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrilu02_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrilu02_bufferSizeExt_rank_0,&
       hipsparseScsrilu02_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrilu02_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -12227,13 +12226,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrilu02_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrilu02_bufferSizeExt_rank_0,&
       hipsparseDcsrilu02_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrilu02_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -12259,13 +12258,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrilu02_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrilu02_bufferSizeExt_rank_0,&
       hipsparseCcsrilu02_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrilu02_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -12291,13 +12290,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrilu02_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrilu02_bufferSizeExt_rank_0,&
       hipsparseZcsrilu02_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrilu02_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -12363,13 +12362,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrilu02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrilu02_analysis_rank_0,&
       hipsparseScsrilu02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrilu02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -12400,13 +12399,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrilu02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrilu02_analysis_rank_0,&
       hipsparseDcsrilu02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrilu02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -12437,13 +12436,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrilu02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrilu02_analysis_rank_0,&
       hipsparseCcsrilu02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrilu02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -12474,13 +12473,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrilu02_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrilu02_analysis_rank_0,&
       hipsparseZcsrilu02_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrilu02_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -12653,13 +12652,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrilu02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrilu02_rank_0,&
       hipsparseScsrilu02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrilu02_assumed_rank
 #endif
 #endif
   end interface
@@ -12690,13 +12689,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrilu02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrilu02_rank_0,&
       hipsparseDcsrilu02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrilu02_assumed_rank
 #endif
 #endif
   end interface
@@ -12727,13 +12726,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrilu02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrilu02_rank_0,&
       hipsparseCcsrilu02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrilu02_assumed_rank
 #endif
 #endif
   end interface
@@ -12764,13 +12763,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrilu02_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrilu02_rank_0,&
       hipsparseZcsrilu02_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrilu02_assumed_rank
 #endif
 #endif
   end interface
@@ -12828,13 +12827,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgpsvInterleavedBatch_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_0,&
       hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgpsvInterleavedBatch_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -12866,13 +12865,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgpsvInterleavedBatch_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_0,&
       hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgpsvInterleavedBatch_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -12904,13 +12903,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgpsvInterleavedBatch_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_0,&
       hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgpsvInterleavedBatch_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -12942,13 +12941,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgpsvInterleavedBatch_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_0,&
       hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgpsvInterleavedBatch_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -13077,13 +13076,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgpsvInterleavedBatch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgpsvInterleavedBatch_rank_0,&
       hipsparseSgpsvInterleavedBatch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgpsvInterleavedBatch_assumed_rank
 #endif
 #endif
   end interface
@@ -13113,13 +13112,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgpsvInterleavedBatch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgpsvInterleavedBatch_rank_0,&
       hipsparseDgpsvInterleavedBatch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgpsvInterleavedBatch_assumed_rank
 #endif
 #endif
   end interface
@@ -13149,13 +13148,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgpsvInterleavedBatch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgpsvInterleavedBatch_rank_0,&
       hipsparseCgpsvInterleavedBatch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgpsvInterleavedBatch_assumed_rank
 #endif
 #endif
   end interface
@@ -13185,13 +13184,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgpsvInterleavedBatch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgpsvInterleavedBatch_rank_0,&
       hipsparseZgpsvInterleavedBatch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgpsvInterleavedBatch_assumed_rank
 #endif
 #endif
   end interface
@@ -13249,14 +13248,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgtsv2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgtsv2_bufferSizeExt_rank_0,&
       hipsparseSgtsv2_bufferSizeExt_rank_1,&
       hipsparseSgtsv2_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgtsv2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -13284,14 +13283,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgtsv2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgtsv2_bufferSizeExt_rank_0,&
       hipsparseDgtsv2_bufferSizeExt_rank_1,&
       hipsparseDgtsv2_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgtsv2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -13319,14 +13318,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgtsv2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgtsv2_bufferSizeExt_rank_0,&
       hipsparseCgtsv2_bufferSizeExt_rank_1,&
       hipsparseCgtsv2_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgtsv2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -13354,14 +13353,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgtsv2_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgtsv2_bufferSizeExt_rank_0,&
       hipsparseZgtsv2_bufferSizeExt_rank_1,&
       hipsparseZgtsv2_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgtsv2_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -13433,14 +13432,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgtsv2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgtsv2_rank_0,&
       hipsparseSgtsv2_rank_1,&
       hipsparseSgtsv2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgtsv2_assumed_rank
 #endif
 #endif
   end interface
@@ -13466,14 +13465,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgtsv2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgtsv2_rank_0,&
       hipsparseDgtsv2_rank_1,&
       hipsparseDgtsv2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgtsv2_assumed_rank
 #endif
 #endif
   end interface
@@ -13499,14 +13498,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgtsv2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgtsv2_rank_0,&
       hipsparseCgtsv2_rank_1,&
       hipsparseCgtsv2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgtsv2_assumed_rank
 #endif
 #endif
   end interface
@@ -13532,14 +13531,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgtsv2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgtsv2_rank_0,&
       hipsparseZgtsv2_rank_1,&
       hipsparseZgtsv2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgtsv2_assumed_rank
 #endif
 #endif
   end interface
@@ -13914,14 +13913,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgtsv2_nopivot_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgtsv2_nopivot_bufferSizeExt_rank_0,&
       hipsparseSgtsv2_nopivot_bufferSizeExt_rank_1,&
       hipsparseSgtsv2_nopivot_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgtsv2_nopivot_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -13949,14 +13948,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgtsv2_nopivot_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgtsv2_nopivot_bufferSizeExt_rank_0,&
       hipsparseDgtsv2_nopivot_bufferSizeExt_rank_1,&
       hipsparseDgtsv2_nopivot_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgtsv2_nopivot_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -13984,14 +13983,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgtsv2_nopivot_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgtsv2_nopivot_bufferSizeExt_rank_0,&
       hipsparseCgtsv2_nopivot_bufferSizeExt_rank_1,&
       hipsparseCgtsv2_nopivot_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgtsv2_nopivot_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -14019,14 +14018,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgtsv2_nopivot_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgtsv2_nopivot_bufferSizeExt_rank_0,&
       hipsparseZgtsv2_nopivot_bufferSizeExt_rank_1,&
       hipsparseZgtsv2_nopivot_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgtsv2_nopivot_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -14100,14 +14099,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgtsv2_nopivot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgtsv2_nopivot_rank_0,&
       hipsparseSgtsv2_nopivot_rank_1,&
       hipsparseSgtsv2_nopivot_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgtsv2_nopivot_assumed_rank
 #endif
 #endif
   end interface
@@ -14135,14 +14134,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgtsv2_nopivot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgtsv2_nopivot_rank_0,&
       hipsparseDgtsv2_nopivot_rank_1,&
       hipsparseDgtsv2_nopivot_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgtsv2_nopivot_assumed_rank
 #endif
 #endif
   end interface
@@ -14170,14 +14169,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgtsv2_nopivot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgtsv2_nopivot_rank_0,&
       hipsparseCgtsv2_nopivot_rank_1,&
       hipsparseCgtsv2_nopivot_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgtsv2_nopivot_assumed_rank
 #endif
 #endif
   end interface
@@ -14205,14 +14204,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgtsv2_nopivot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgtsv2_nopivot_rank_0,&
       hipsparseZgtsv2_nopivot_rank_1,&
       hipsparseZgtsv2_nopivot_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgtsv2_nopivot_assumed_rank
 #endif
 #endif
   end interface
@@ -14272,13 +14271,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgtsv2StridedBatch_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_0,&
       hipsparseSgtsv2StridedBatch_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgtsv2StridedBatch_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -14308,13 +14307,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgtsv2StridedBatch_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_0,&
       hipsparseDgtsv2StridedBatch_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgtsv2StridedBatch_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -14344,13 +14343,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgtsv2StridedBatch_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_0,&
       hipsparseCgtsv2StridedBatch_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgtsv2StridedBatch_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -14380,13 +14379,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgtsv2StridedBatch_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_0,&
       hipsparseZgtsv2StridedBatch_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgtsv2StridedBatch_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -14499,13 +14498,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgtsv2StridedBatch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgtsv2StridedBatch_rank_0,&
       hipsparseSgtsv2StridedBatch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgtsv2StridedBatch_assumed_rank
 #endif
 #endif
   end interface
@@ -14533,13 +14532,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgtsv2StridedBatch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgtsv2StridedBatch_rank_0,&
       hipsparseDgtsv2StridedBatch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgtsv2StridedBatch_assumed_rank
 #endif
 #endif
   end interface
@@ -14567,13 +14566,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgtsv2StridedBatch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgtsv2StridedBatch_rank_0,&
       hipsparseCgtsv2StridedBatch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgtsv2StridedBatch_assumed_rank
 #endif
 #endif
   end interface
@@ -14601,13 +14600,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgtsv2StridedBatch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgtsv2StridedBatch_rank_0,&
       hipsparseZgtsv2StridedBatch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgtsv2StridedBatch_assumed_rank
 #endif
 #endif
   end interface
@@ -14721,13 +14720,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSbsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsr2csr_rank_0,&
       hipsparseSbsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSbsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -14761,13 +14760,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDbsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsr2csr_rank_0,&
       hipsparseDbsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDbsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -14801,13 +14800,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCbsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsr2csr_rank_0,&
       hipsparseCbsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCbsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -14841,13 +14840,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZbsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsr2csr_rank_0,&
       hipsparseZbsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZbsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -14919,13 +14918,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcoo2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcoo2csr_rank_0,&
       hipsparseXcoo2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcoo2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -14974,13 +14973,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcoosort_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcoosort_bufferSizeExt_rank_0,&
       hipsparseXcoosort_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcoosort_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -15045,13 +15044,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcoosortByRow_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcoosortByRow_rank_0,&
       hipsparseXcoosortByRow_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcoosortByRow_assumed_rank
 #endif
 #endif
   end interface
@@ -15116,13 +15115,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcoosortByColumn_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcoosortByColumn_rank_0,&
       hipsparseXcoosortByColumn_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcoosortByColumn_assumed_rank
 #endif
 #endif
   end interface
@@ -15168,13 +15167,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: p
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCreateIdentityPermutation_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCreateIdentityPermutation_rank_0,&
       hipsparseCreateIdentityPermutation_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCreateIdentityPermutation_assumed_rank
 #endif
 #endif
   end interface
@@ -15264,14 +15263,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsc2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsc2dense_rank_0,&
       hipsparseScsc2dense_rank_1,&
       hipsparseScsc2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsc2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -15296,14 +15295,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsc2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsc2dense_rank_0,&
       hipsparseDcsc2dense_rank_1,&
       hipsparseDcsc2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsc2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -15328,14 +15327,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsc2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsc2dense_rank_0,&
       hipsparseCcsc2dense_rank_1,&
       hipsparseCcsc2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsc2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -15360,14 +15359,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsc2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsc2dense_rank_0,&
       hipsparseZcsc2dense_rank_1,&
       hipsparseZcsc2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsc2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -15419,13 +15418,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcscsort_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcscsort_bufferSizeExt_rank_0,&
       hipsparseXcscsort_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcscsort_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -15495,13 +15494,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcscsort_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcscsort_rank_0,&
       hipsparseXcscsort_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcscsort_assumed_rank
 #endif
 #endif
   end interface
@@ -15667,13 +15666,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrNnzb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcsr2bsrNnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsr2bsrNnz_rank_0,&
       hipsparseXcsr2bsrNnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcsr2bsrNnz_assumed_rank
 #endif
 #endif
   end interface
@@ -15822,13 +15821,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsr2bsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsr2bsr_rank_0,&
       hipsparseScsr2bsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsr2bsr_assumed_rank
 #endif
 #endif
   end interface
@@ -15862,13 +15861,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsr2bsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsr2bsr_rank_0,&
       hipsparseDcsr2bsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsr2bsr_assumed_rank
 #endif
 #endif
   end interface
@@ -15902,13 +15901,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsr2bsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsr2bsr_rank_0,&
       hipsparseCcsr2bsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsr2bsr_assumed_rank
 #endif
 #endif
   end interface
@@ -15942,13 +15941,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsr2bsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsr2bsr_rank_0,&
       hipsparseZcsr2bsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsr2bsr_assumed_rank
 #endif
 #endif
   end interface
@@ -16020,13 +16019,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcsr2coo_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsr2coo_rank_0,&
       hipsparseXcsr2coo_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcsr2coo_assumed_rank
 #endif
 #endif
   end interface
@@ -16140,13 +16139,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsr2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsr2csc_rank_0,&
       hipsparseScsr2csc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsr2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -16175,13 +16174,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsr2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsr2csc_rank_0,&
       hipsparseDcsr2csc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsr2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -16210,13 +16209,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsr2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsr2csc_rank_0,&
       hipsparseCcsr2csc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsr2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -16245,13 +16244,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsr2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsr2csc_rank_0,&
       hipsparseZcsr2csc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsr2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -16504,13 +16503,13 @@ module hipfort_hipsparse
       real(c_float),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsr2csr_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsr2csr_compress_rank_0,&
       hipsparseScsr2csr_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsr2csr_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -16544,13 +16543,13 @@ module hipfort_hipsparse
       real(c_double),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsr2csr_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsr2csr_compress_rank_0,&
       hipsparseDcsr2csr_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsr2csr_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -16584,13 +16583,13 @@ module hipfort_hipsparse
       complex(c_float_complex),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsr2csr_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsr2csr_compress_rank_0,&
       hipsparseCcsr2csr_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsr2csr_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -16624,13 +16623,13 @@ module hipfort_hipsparse
       complex(c_double_complex),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsr2csr_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsr2csr_compress_rank_0,&
       hipsparseZcsr2csr_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsr2csr_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -16663,13 +16662,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsr2csru_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsr2csru_rank_0,&
       hipsparseScsr2csru_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsr2csru_assumed_rank
 #endif
 #endif
   end interface
@@ -16698,13 +16697,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsr2csru_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsr2csru_rank_0,&
       hipsparseDcsr2csru_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsr2csru_assumed_rank
 #endif
 #endif
   end interface
@@ -16733,13 +16732,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsr2csru_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsr2csru_rank_0,&
       hipsparseCcsr2csru_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsr2csru_assumed_rank
 #endif
 #endif
   end interface
@@ -16768,13 +16767,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsr2csru_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsr2csru_rank_0,&
       hipsparseZcsr2csru_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsr2csru_assumed_rank
 #endif
 #endif
   end interface
@@ -16864,14 +16863,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsr2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsr2dense_rank_0,&
       hipsparseScsr2dense_rank_1,&
       hipsparseScsr2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsr2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -16896,14 +16895,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsr2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsr2dense_rank_0,&
       hipsparseDcsr2dense_rank_1,&
       hipsparseDcsr2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsr2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -16928,14 +16927,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsr2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsr2dense_rank_0,&
       hipsparseCcsr2dense_rank_1,&
       hipsparseCcsr2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsr2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -16960,14 +16959,14 @@ module hipfort_hipsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsr2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsr2dense_rank_0,&
       hipsparseZcsr2dense_rank_1,&
       hipsparseZcsr2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsr2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -17039,13 +17038,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsr2gebsr_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsr2gebsr_bufferSize_rank_0,&
       hipsparseScsr2gebsr_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsr2gebsr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -17077,13 +17076,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsr2gebsr_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsr2gebsr_bufferSize_rank_0,&
       hipsparseDcsr2gebsr_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsr2gebsr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -17115,13 +17114,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsr2gebsr_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsr2gebsr_bufferSize_rank_0,&
       hipsparseCcsr2gebsr_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsr2gebsr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -17153,13 +17152,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsr2gebsr_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsr2gebsr_bufferSize_rank_0,&
       hipsparseZcsr2gebsr_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsr2gebsr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -17321,13 +17320,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pbuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcsr2gebsrNnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsr2gebsrNnz_rank_0,&
       hipsparseXcsr2gebsrNnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcsr2gebsrNnz_assumed_rank
 #endif
 #endif
   end interface
@@ -17530,13 +17529,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pbuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsr2gebsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsr2gebsr_rank_0,&
       hipsparseScsr2gebsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsr2gebsr_assumed_rank
 #endif
 #endif
   end interface
@@ -17572,13 +17571,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pbuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsr2gebsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsr2gebsr_rank_0,&
       hipsparseDcsr2gebsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsr2gebsr_assumed_rank
 #endif
 #endif
   end interface
@@ -17614,13 +17613,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pbuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsr2gebsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsr2gebsr_rank_0,&
       hipsparseCcsr2gebsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsr2gebsr_assumed_rank
 #endif
 #endif
   end interface
@@ -17656,13 +17655,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pbuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsr2gebsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsr2gebsr_rank_0,&
       hipsparseZcsr2gebsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsr2gebsr_assumed_rank
 #endif
 #endif
   end interface
@@ -17733,13 +17732,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsr2hyb_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsr2hyb_rank_0,&
       hipsparseScsr2hyb_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsr2hyb_assumed_rank
 #endif
 #endif
   end interface
@@ -17766,13 +17765,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsr2hyb_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsr2hyb_rank_0,&
       hipsparseDcsr2hyb_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsr2hyb_assumed_rank
 #endif
 #endif
   end interface
@@ -17799,13 +17798,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsr2hyb_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsr2hyb_rank_0,&
       hipsparseCcsr2hyb_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsr2hyb_assumed_rank
 #endif
 #endif
   end interface
@@ -17832,13 +17831,13 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsr2hyb_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsr2hyb_rank_0,&
       hipsparseZcsr2hyb_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsr2hyb_assumed_rank
 #endif
 #endif
   end interface
@@ -17890,13 +17889,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcsrsort_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsrsort_bufferSizeExt_rank_0,&
       hipsparseXcsrsort_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcsrsort_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -17967,13 +17966,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXcsrsort_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsrsort_rank_0,&
       hipsparseXcsrsort_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXcsrsort_assumed_rank
 #endif
 #endif
   end interface
@@ -18007,13 +18006,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsru2csr_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsru2csr_bufferSizeExt_rank_0,&
       hipsparseScsru2csr_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsru2csr_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -18043,13 +18042,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsru2csr_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsru2csr_bufferSizeExt_rank_0,&
       hipsparseDcsru2csr_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsru2csr_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -18079,13 +18078,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsru2csr_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsru2csr_bufferSizeExt_rank_0,&
       hipsparseCcsru2csr_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsru2csr_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -18115,13 +18114,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsru2csr_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsru2csr_bufferSizeExt_rank_0,&
       hipsparseZcsru2csr_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsru2csr_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -18154,13 +18153,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsru2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsru2csr_rank_0,&
       hipsparseScsru2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsru2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -18189,13 +18188,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsru2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsru2csr_rank_0,&
       hipsparseDcsru2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsru2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -18224,13 +18223,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsru2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsru2csr_rank_0,&
       hipsparseCcsru2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsru2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -18259,13 +18258,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBuffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsru2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsru2csr_rank_0,&
       hipsparseZcsru2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsru2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -18363,14 +18362,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: cscColPtr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSdense2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSdense2csc_rank_0,&
       hipsparseSdense2csc_rank_1,&
       hipsparseSdense2csc_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSdense2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -18396,14 +18395,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: cscColPtr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDdense2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDdense2csc_rank_0,&
       hipsparseDdense2csc_rank_1,&
       hipsparseDdense2csc_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDdense2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -18429,14 +18428,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: cscColPtr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCdense2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCdense2csc_rank_0,&
       hipsparseCdense2csc_rank_1,&
       hipsparseCdense2csc_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCdense2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -18462,14 +18461,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: cscColPtr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZdense2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZdense2csc_rank_0,&
       hipsparseZdense2csc_rank_1,&
       hipsparseZdense2csc_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZdense2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -18556,14 +18555,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColInd
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSdense2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSdense2csr_rank_0,&
       hipsparseSdense2csr_rank_1,&
       hipsparseSdense2csr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSdense2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -18589,14 +18588,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColInd
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDdense2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDdense2csr_rank_0,&
       hipsparseDdense2csr_rank_1,&
       hipsparseDdense2csr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDdense2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -18622,14 +18621,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColInd
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCdense2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCdense2csr_rank_0,&
       hipsparseCdense2csr_rank_1,&
       hipsparseCdense2csr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCdense2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -18655,14 +18654,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColInd
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZdense2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZdense2csr_rank_0,&
       hipsparseZdense2csr_rank_1,&
       hipsparseZdense2csr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZdense2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -18792,13 +18791,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgebsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgebsr2csr_rank_0,&
       hipsparseSgebsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgebsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -18833,13 +18832,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgebsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgebsr2csr_rank_0,&
       hipsparseDgebsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgebsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -18874,13 +18873,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgebsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgebsr2csr_rank_0,&
       hipsparseCgebsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgebsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -18915,13 +18914,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrColIndC
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgebsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgebsr2csr_rank_0,&
       hipsparseZgebsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgebsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -19379,13 +19378,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgebsr2gebsr_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgebsr2gebsr_bufferSize_rank_0,&
       hipsparseSgebsr2gebsr_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgebsr2gebsr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -19420,13 +19419,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgebsr2gebsr_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgebsr2gebsr_bufferSize_rank_0,&
       hipsparseDgebsr2gebsr_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgebsr2gebsr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -19461,13 +19460,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgebsr2gebsr_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgebsr2gebsr_bufferSize_rank_0,&
       hipsparseCgebsr2gebsr_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgebsr2gebsr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -19502,13 +19501,13 @@ module hipfort_hipsparse
       integer(c_int) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgebsr2gebsr_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgebsr2gebsr_bufferSize_rank_0,&
       hipsparseZgebsr2gebsr_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgebsr2gebsr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -19595,13 +19594,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseXgebsr2gebsrNnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXgebsr2gebsrNnz_rank_0,&
       hipsparseXgebsr2gebsrNnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseXgebsr2gebsrNnz_assumed_rank
 #endif
 #endif
   end interface
@@ -19782,13 +19781,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSgebsr2gebsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgebsr2gebsr_rank_0,&
       hipsparseSgebsr2gebsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgebsr2gebsr_assumed_rank
 #endif
 #endif
   end interface
@@ -19829,13 +19828,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDgebsr2gebsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgebsr2gebsr_rank_0,&
       hipsparseDgebsr2gebsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgebsr2gebsr_assumed_rank
 #endif
 #endif
   end interface
@@ -19876,13 +19875,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCgebsr2gebsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgebsr2gebsr_rank_0,&
       hipsparseCgebsr2gebsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgebsr2gebsr_assumed_rank
 #endif
 #endif
   end interface
@@ -19923,13 +19922,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZgebsr2gebsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgebsr2gebsr_rank_0,&
       hipsparseZgebsr2gebsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgebsr2gebsr_assumed_rank
 #endif
 #endif
   end interface
@@ -19982,13 +19981,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseShyb2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseShyb2csr_rank_0,&
       hipsparseShyb2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseShyb2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -20011,13 +20010,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDhyb2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDhyb2csr_rank_0,&
       hipsparseDhyb2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDhyb2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -20040,13 +20039,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseChyb2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseChyb2csr_rank_0,&
       hipsparseChyb2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseChyb2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -20069,13 +20068,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZhyb2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZhyb2csr_rank_0,&
       hipsparseZhyb2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZhyb2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -20168,14 +20167,14 @@ module hipfort_hipsparse
       integer(c_int) :: nnzTotalDevHostPtr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSnnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSnnz_rank_0,&
       hipsparseSnnz_rank_1,&
       hipsparseSnnz_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSnnz_assumed_rank
 #endif
 #endif
   end interface
@@ -20203,14 +20202,14 @@ module hipfort_hipsparse
       integer(c_int) :: nnzTotalDevHostPtr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDnnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDnnz_rank_0,&
       hipsparseDnnz_rank_1,&
       hipsparseDnnz_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDnnz_assumed_rank
 #endif
 #endif
   end interface
@@ -20238,14 +20237,14 @@ module hipfort_hipsparse
       integer(c_int) :: nnzTotalDevHostPtr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCnnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCnnz_rank_0,&
       hipsparseCnnz_rank_1,&
       hipsparseCnnz_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCnnz_assumed_rank
 #endif
 #endif
   end interface
@@ -20273,14 +20272,14 @@ module hipfort_hipsparse
       integer(c_int) :: nnzTotalDevHostPtr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZnnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZnnz_rank_0,&
       hipsparseZnnz_rank_1,&
       hipsparseZnnz_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZnnz_assumed_rank
 #endif
 #endif
   end interface
@@ -20357,13 +20356,13 @@ module hipfort_hipsparse
       real(c_float),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSnnz_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSnnz_compress_rank_0,&
       hipsparseSnnz_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSnnz_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -20390,13 +20389,13 @@ module hipfort_hipsparse
       real(c_double),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDnnz_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDnnz_compress_rank_0,&
       hipsparseDnnz_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDnnz_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -20423,13 +20422,13 @@ module hipfort_hipsparse
       complex(c_float_complex),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCnnz_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCnnz_compress_rank_0,&
       hipsparseCnnz_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCnnz_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -20456,13 +20455,13 @@ module hipfort_hipsparse
       complex(c_double_complex),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZnnz_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZnnz_compress_rank_0,&
       hipsparseZnnz_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZnnz_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -20530,13 +20529,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneCsr2csr_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csr_bufferSize_rank_0,&
       hipsparseSpruneCsr2csr_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneCsr2csr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -20567,13 +20566,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneCsr2csr_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csr_bufferSize_rank_0,&
       hipsparseDpruneCsr2csr_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneCsr2csr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -20648,13 +20647,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csr_bufferSizeExt_rank_0,&
       hipsparseSpruneCsr2csr_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -20689,13 +20688,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csr_bufferSizeExt_rank_0,&
       hipsparseDpruneCsr2csr_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -20768,13 +20767,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneCsr2csrNnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csrNnz_rank_0,&
       hipsparseSpruneCsr2csrNnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneCsr2csrNnz_assumed_rank
 #endif
 #endif
   end interface
@@ -20808,13 +20807,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneCsr2csrNnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csrNnz_rank_0,&
       hipsparseDpruneCsr2csrNnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneCsr2csrNnz_assumed_rank
 #endif
 #endif
   end interface
@@ -20903,13 +20902,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneCsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csr_rank_0,&
       hipsparseSpruneCsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneCsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -20944,13 +20943,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneCsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csr_rank_0,&
       hipsparseDpruneCsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneCsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -21023,13 +21022,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneCsr2csrByPercentage_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_0,&
       hipsparseSpruneCsr2csrByPercentage_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneCsr2csrByPercentage_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -21062,13 +21061,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneCsr2csrByPercentage_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_0,&
       hipsparseDpruneCsr2csrByPercentage_bufferSize_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneCsr2csrByPercentage_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -21148,13 +21147,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_0,&
       hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -21192,13 +21191,13 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_0,&
       hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -21273,13 +21272,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csrNnzByPercentage_rank_0,&
       hipsparseSpruneCsr2csrNnzByPercentage_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank
 #endif
 #endif
   end interface
@@ -21314,13 +21313,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csrNnzByPercentage_rank_0,&
       hipsparseDpruneCsr2csrNnzByPercentage_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank
 #endif
 #endif
   end interface
@@ -21412,13 +21411,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneCsr2csrByPercentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csrByPercentage_rank_0,&
       hipsparseSpruneCsr2csrByPercentage_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneCsr2csrByPercentage_assumed_rank
 #endif
 #endif
   end interface
@@ -21454,13 +21453,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneCsr2csrByPercentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csrByPercentage_rank_0,&
       hipsparseDpruneCsr2csrByPercentage_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneCsr2csrByPercentage_assumed_rank
 #endif
 #endif
   end interface
@@ -21543,14 +21542,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneDense2csr_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csr_bufferSize_rank_0,&
       hipsparseSpruneDense2csr_bufferSize_rank_1,&
       hipsparseSpruneDense2csr_bufferSize_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneDense2csr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -21578,14 +21577,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneDense2csr_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csr_bufferSize_rank_0,&
       hipsparseDpruneDense2csr_bufferSize_rank_1,&
       hipsparseDpruneDense2csr_bufferSize_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneDense2csr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -21618,14 +21617,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csr_bufferSizeExt_rank_0,&
       hipsparseSpruneDense2csr_bufferSizeExt_rank_1,&
       hipsparseSpruneDense2csr_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -21657,14 +21656,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csr_bufferSizeExt_rank_0,&
       hipsparseDpruneDense2csr_bufferSizeExt_rank_1,&
       hipsparseDpruneDense2csr_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -21781,14 +21780,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneDense2csrNnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csrNnz_rank_0,&
       hipsparseSpruneDense2csrNnz_rank_1,&
       hipsparseSpruneDense2csrNnz_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneDense2csrNnz_assumed_rank
 #endif
 #endif
   end interface
@@ -21819,14 +21818,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneDense2csrNnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csrNnz_rank_0,&
       hipsparseDpruneDense2csrNnz_rank_1,&
       hipsparseDpruneDense2csrNnz_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneDense2csrNnz_assumed_rank
 #endif
 #endif
   end interface
@@ -21947,14 +21946,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneDense2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csr_rank_0,&
       hipsparseSpruneDense2csr_rank_1,&
       hipsparseSpruneDense2csr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneDense2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -21986,14 +21985,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneDense2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csr_rank_0,&
       hipsparseDpruneDense2csr_rank_1,&
       hipsparseDpruneDense2csr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneDense2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -22082,14 +22081,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneDense2csrByPercentage_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0,&
       hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1,&
       hipsparseSpruneDense2csrByPercentage_bufferSize_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneDense2csrByPercentage_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -22118,14 +22117,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneDense2csrByPercentage_bufferSize_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0,&
       hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1,&
       hipsparseDpruneDense2csrByPercentage_bufferSize_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneDense2csrByPercentage_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -22217,14 +22216,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneDense2csrByPercentage_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0,&
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1,&
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneDense2csrByPercentage_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -22257,14 +22256,14 @@ module hipfort_hipsparse
       integer(c_size_t) :: pBufferSizeInBytes
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneDense2csrByPercentage_bufferSizeExt_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0,&
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1,&
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneDense2csrByPercentage_bufferSizeExt_assumed_rank
 #endif
 #endif
   end interface
@@ -22353,14 +22352,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneDense2csrNnzByPercentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csrNnzByPercentage_rank_0,&
       hipsparseSpruneDense2csrNnzByPercentage_rank_1,&
       hipsparseSpruneDense2csrNnzByPercentage_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneDense2csrNnzByPercentage_assumed_rank
 #endif
 #endif
   end interface
@@ -22392,14 +22391,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneDense2csrNnzByPercentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csrNnzByPercentage_rank_0,&
       hipsparseDpruneDense2csrNnzByPercentage_rank_1,&
       hipsparseDpruneDense2csrNnzByPercentage_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneDense2csrNnzByPercentage_assumed_rank
 #endif
 #endif
   end interface
@@ -22494,14 +22493,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseSpruneDense2csrByPercentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csrByPercentage_rank_0,&
       hipsparseSpruneDense2csrByPercentage_rank_1,&
       hipsparseSpruneDense2csrByPercentage_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSpruneDense2csrByPercentage_assumed_rank
 #endif
 #endif
   end interface
@@ -22534,14 +22533,14 @@ module hipfort_hipsparse
       type(c_ptr),value :: buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDpruneDense2csrByPercentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csrByPercentage_rank_0,&
       hipsparseDpruneDense2csrByPercentage_rank_1,&
       hipsparseDpruneDense2csrByPercentage_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDpruneDense2csrByPercentage_assumed_rank
 #endif
 #endif
   end interface
@@ -22621,13 +22620,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseScsrcolor_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrcolor_rank_0,&
       hipsparseScsrcolor_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseScsrcolor_assumed_rank
 #endif
 #endif
   end interface
@@ -22660,13 +22659,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseDcsrcolor_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrcolor_rank_0,&
       hipsparseDcsrcolor_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDcsrcolor_assumed_rank
 #endif
 #endif
   end interface
@@ -22699,13 +22698,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseCcsrcolor_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrcolor_rank_0,&
       hipsparseCcsrcolor_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCcsrcolor_assumed_rank
 #endif
 #endif
   end interface
@@ -22738,13 +22737,13 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hipsparseZcsrcolor_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrcolor_rank_0,&
       hipsparseZcsrcolor_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZcsrcolor_assumed_rank
 #endif
 #endif
   end interface
@@ -25233,11 +25232,11 @@ module hipfort_hipsparse
   end interface
 
 
-#ifdef USE_FPOINTER_INTERFACES
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
 
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSaxpyi_assumed_rank(handle,nnz,alpha,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25293,7 +25292,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDaxpyi_assumed_rank(handle,nnz,alpha,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25349,7 +25348,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCaxpyi_assumed_rank(handle,nnz,alpha,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25405,7 +25404,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZaxpyi_assumed_rank(handle,nnz,alpha,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25461,7 +25460,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCdotci_assumed_rank(handle,nnz,xVal,xInd,y,myResult,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25517,7 +25516,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZdotci_assumed_rank(handle,nnz,xVal,xInd,y,myResult,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25573,7 +25572,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSdoti_assumed_rank(handle,nnz,xVal,xInd,y,myResult,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25629,7 +25628,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDdoti_assumed_rank(handle,nnz,xVal,xInd,y,myResult,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25685,7 +25684,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCdoti_assumed_rank(handle,nnz,xVal,xInd,y,myResult,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25741,7 +25740,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZdoti_assumed_rank(handle,nnz,xVal,xInd,y,myResult,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25797,7 +25796,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgthr_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25848,7 +25847,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgthr_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25899,7 +25898,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgthr_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -25950,7 +25949,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgthr_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26001,7 +26000,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgthrz_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26052,7 +26051,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgthrz_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26103,7 +26102,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgthrz_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26154,7 +26153,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgthrz_assumed_rank(handle,nnz,y,xVal,xInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26205,7 +26204,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSroti_assumed_rank(handle,nnz,xVal,xInd,y,c,s,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26264,7 +26263,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDroti_assumed_rank(handle,nnz,xVal,xInd,y,c,s,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26323,7 +26322,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSsctr_assumed_rank(handle,nnz,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26374,7 +26373,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDsctr_assumed_rank(handle,nnz,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26425,7 +26424,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCsctr_assumed_rank(handle,nnz,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26476,7 +26475,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZsctr_assumed_rank(handle,nnz,xVal,xInd,y,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -26526,7 +26525,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrmv_assumed_rank(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
       use iso_c_binding
@@ -26610,7 +26609,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrmv_assumed_rank(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
       use iso_c_binding
@@ -26694,7 +26693,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrmv_assumed_rank(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
       use iso_c_binding
@@ -26778,7 +26777,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrmv_assumed_rank(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
       use iso_c_binding
@@ -26862,7 +26861,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrsv2_bufferSize_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -26937,7 +26936,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrsv2_bufferSize_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -27012,7 +27011,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrsv2_bufferSize_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -27087,7 +27086,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrsv2_bufferSize_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -27163,7 +27162,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrsv2_bufferSizeExt_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -27240,7 +27239,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrsv2_bufferSizeExt_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -27317,7 +27316,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrsv2_bufferSizeExt_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -27394,7 +27393,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrsv2_bufferSizeExt_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -27470,7 +27469,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrsv2_analysis_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -27548,7 +27547,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrsv2_analysis_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -27626,7 +27625,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrsv2_analysis_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -27704,7 +27703,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrsv2_analysis_assumed_rank(handle,dirA,transA,mb,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -27782,7 +27781,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrsv2_solve_assumed_rank(handle,dirA,transA,mb,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
       use iso_c_binding
@@ -27869,7 +27868,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrsv2_solve_assumed_rank(handle,dirA,transA,mb,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
       use iso_c_binding
@@ -27956,7 +27955,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrsv2_solve_assumed_rank(handle,dirA,transA,mb,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
       use iso_c_binding
@@ -28043,7 +28042,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrsv2_solve_assumed_rank(handle,dirA,transA,mb,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
       use iso_c_binding
@@ -28130,7 +28129,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrxmv_assumed_rank(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr, &
         bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
       use iso_c_binding
@@ -28223,7 +28222,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrxmv_assumed_rank(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr, &
         bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
       use iso_c_binding
@@ -28316,7 +28315,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrxmv_assumed_rank(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr, &
         bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
       use iso_c_binding
@@ -28409,7 +28408,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrxmv_assumed_rank(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr, &
         bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
       use iso_c_binding
@@ -28503,7 +28502,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrmv_assumed_rank(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
       use iso_c_binding
@@ -28580,7 +28579,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrmv_assumed_rank(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
       use iso_c_binding
@@ -28657,7 +28656,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrmv_assumed_rank(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
       use iso_c_binding
@@ -28734,7 +28733,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrmv_assumed_rank(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
       use iso_c_binding
@@ -28811,7 +28810,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrsv2_bufferSize_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -28882,7 +28881,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrsv2_bufferSize_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -28953,7 +28952,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrsv2_bufferSize_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -29024,7 +29023,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrsv2_bufferSize_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -29095,7 +29094,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrsv2_bufferSizeExt_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -29166,7 +29165,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrsv2_bufferSizeExt_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -29237,7 +29236,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrsv2_bufferSizeExt_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -29308,7 +29307,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrsv2_bufferSizeExt_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -29379,7 +29378,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrsv2_analysis_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -29451,7 +29450,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrsv2_analysis_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -29523,7 +29522,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrsv2_analysis_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -29595,7 +29594,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrsv2_analysis_assumed_rank(handle,transA,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -29667,7 +29666,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrsv2_solve_assumed_rank(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
       use iso_c_binding
@@ -29750,7 +29749,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrsv2_solve_assumed_rank(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
       use iso_c_binding
@@ -29833,7 +29832,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrsv2_solve_assumed_rank(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
       use iso_c_binding
@@ -29916,7 +29915,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrsv2_solve_assumed_rank(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
       use iso_c_binding
@@ -29998,7 +29997,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgemvi_assumed_rank(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase, &
         pBuffer)
       use iso_c_binding
@@ -30099,7 +30098,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgemvi_assumed_rank(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase, &
         pBuffer)
       use iso_c_binding
@@ -30200,7 +30199,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgemvi_assumed_rank(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase, &
         pBuffer)
       use iso_c_binding
@@ -30301,7 +30300,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgemvi_assumed_rank(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase, &
         pBuffer)
       use iso_c_binding
@@ -30403,7 +30402,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseShybmv_assumed_rank(handle,transA,alpha,descrA,hybA,x,beta,y)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -30462,7 +30461,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDhybmv_assumed_rank(handle,transA,alpha,descrA,hybA,x,beta,y)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -30521,7 +30520,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseChybmv_assumed_rank(handle,transA,alpha,descrA,hybA,x,beta,y)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -30580,7 +30579,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZhybmv_assumed_rank(handle,transA,alpha,descrA,hybA,x,beta,y)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -30638,7 +30637,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrmm_assumed_rank(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
         bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -30765,7 +30764,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrmm_assumed_rank(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
         bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -30892,7 +30891,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrmm_assumed_rank(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
         bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -31019,7 +31018,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrmm_assumed_rank(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
         bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -31146,7 +31145,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrsm2_bufferSize_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb, &
         descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -31227,7 +31226,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrsm2_bufferSize_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb, &
         descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -31308,7 +31307,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrsm2_bufferSize_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb, &
         descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -31389,7 +31388,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrsm2_bufferSize_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb, &
         descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -31470,7 +31469,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrsm2_analysis_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -31554,7 +31553,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrsm2_analysis_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -31638,7 +31637,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrsm2_analysis_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -31722,7 +31721,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrsm2_analysis_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -31806,7 +31805,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrsm2_solve_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
         descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
         pBuffer)
@@ -31938,7 +31937,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrsm2_solve_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
         descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
         pBuffer)
@@ -32070,7 +32069,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrsm2_solve_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
         descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
         pBuffer)
@@ -32202,7 +32201,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrsm2_solve_assumed_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
         descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
         pBuffer)
@@ -32335,7 +32334,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrmm_assumed_rank(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -32452,7 +32451,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrmm_assumed_rank(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -32569,7 +32568,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrmm_assumed_rank(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -32686,7 +32685,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrmm_assumed_rank(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -32803,7 +32802,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrmm2_assumed_rank(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -32924,7 +32923,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrmm2_assumed_rank(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -33045,7 +33044,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrmm2_assumed_rank(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -33166,7 +33165,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrmm2_assumed_rank(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -33287,7 +33286,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrsm2_bufferSizeExt_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz, &
         alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -33412,7 +33411,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrsm2_bufferSizeExt_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz, &
         alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -33537,7 +33536,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrsm2_bufferSizeExt_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz, &
         alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -33662,7 +33661,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrsm2_bufferSizeExt_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz, &
         alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -33787,7 +33786,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrsm2_analysis_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -33908,7 +33907,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrsm2_analysis_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -34029,7 +34028,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrsm2_analysis_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -34150,7 +34149,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrsm2_analysis_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -34271,7 +34270,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrsm2_solve_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -34392,7 +34391,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrsm2_solve_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -34513,7 +34512,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrsm2_solve_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -34634,7 +34633,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrsm2_solve_assumed_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -34755,7 +34754,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgemmi_assumed_rank(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
         cscRowIndB,beta,C,ldc)
       use iso_c_binding
@@ -34860,7 +34859,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgemmi_assumed_rank(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
         cscRowIndB,beta,C,ldc)
       use iso_c_binding
@@ -34965,7 +34964,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgemmi_assumed_rank(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
         cscRowIndB,beta,C,ldc)
       use iso_c_binding
@@ -35070,7 +35069,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgemmi_assumed_rank(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
         cscRowIndB,beta,C,ldc)
       use iso_c_binding
@@ -35175,7 +35174,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcsrgeamNnz_assumed_rank(handle,m,n,descrA,nnzA,csrRowPtrA,csrColIndA, &
         descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
       use iso_c_binding
@@ -35258,7 +35257,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrgeam_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
         csrColIndC)
@@ -35358,7 +35357,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrgeam_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
         csrColIndC)
@@ -35458,7 +35457,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrgeam_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
         csrColIndC)
@@ -35558,7 +35557,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrgeam_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
         csrColIndC)
@@ -35657,7 +35656,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrgeam2_bufferSizeExt_assumed_rank(handle,m,n,alpha,descrA,nnzA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
         csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
@@ -35766,7 +35765,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrgeam2_bufferSizeExt_assumed_rank(handle,m,n,alpha,descrA,nnzA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
         csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
@@ -35875,7 +35874,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrgeam2_bufferSizeExt_assumed_rank(handle,m,n,alpha,descrA,nnzA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
         csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
@@ -35984,7 +35983,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrgeam2_bufferSizeExt_assumed_rank(handle,m,n,alpha,descrA,nnzA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
         csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
@@ -36093,7 +36092,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcsrgeam2Nnz_assumed_rank(handle,m,n,descrA,nnzA,csrSortedRowPtrA, &
         csrSortedColIndA,descrB,nnzB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedRowPtrC, &
         nnzTotalDevHostPtr,workspace)
@@ -36180,7 +36179,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrgeam2_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
         csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
@@ -36285,7 +36284,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrgeam2_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
         csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
@@ -36390,7 +36389,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrgeam2_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
         csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
@@ -36495,7 +36494,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrgeam2_assumed_rank(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
         csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
@@ -36601,7 +36600,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcsrgemmNnz_assumed_rank(handle,transA,transB,m,n,k,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
       use iso_c_binding
@@ -36693,7 +36692,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrgemm_assumed_rank(handle,transA,transB,m,n,k,descrA,nnzA,csrValA, &
         csrRowPtrA,csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
         csrColIndC)
@@ -36798,7 +36797,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrgemm_assumed_rank(handle,transA,transB,m,n,k,descrA,nnzA,csrValA, &
         csrRowPtrA,csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
         csrColIndC)
@@ -36903,7 +36902,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrgemm_assumed_rank(handle,transA,transB,m,n,k,descrA,nnzA,csrValA, &
         csrRowPtrA,csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
         csrColIndC)
@@ -37008,7 +37007,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrgemm_assumed_rank(handle,transA,transB,m,n,k,descrA,nnzA,csrValA, &
         csrRowPtrA,csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
         csrColIndC)
@@ -37113,7 +37112,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrgemm2_bufferSizeExt_assumed_rank(handle,m,n,k,alpha,descrA,nnzA, &
         csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
         csrColIndD,myInfo,pBufferSizeInBytes)
@@ -37220,7 +37219,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrgemm2_bufferSizeExt_assumed_rank(handle,m,n,k,alpha,descrA,nnzA, &
         csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
         csrColIndD,myInfo,pBufferSizeInBytes)
@@ -37327,7 +37326,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrgemm2_bufferSizeExt_assumed_rank(handle,m,n,k,alpha,descrA,nnzA, &
         csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
         csrColIndD,myInfo,pBufferSizeInBytes)
@@ -37434,7 +37433,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrgemm2_bufferSizeExt_assumed_rank(handle,m,n,k,alpha,descrA,nnzA, &
         csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
         csrColIndD,myInfo,pBufferSizeInBytes)
@@ -37541,7 +37540,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcsrgemm2Nnz_assumed_rank(handle,m,n,k,descrA,nnzA,csrRowPtrA,csrColIndA, &
         descrB,nnzB,csrRowPtrB,csrColIndB,descrD,nnzD,csrRowPtrD,csrColIndD,descrC,csrRowPtrC, &
         nnzTotalDevHostPtr,myInfo,pBuffer)
@@ -37651,7 +37650,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrgemm2_assumed_rank(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
         csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
@@ -37779,7 +37778,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrgemm2_assumed_rank(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
         csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
@@ -37907,7 +37906,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrgemm2_assumed_rank(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
         csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
@@ -38035,7 +38034,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrgemm2_assumed_rank(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
         csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
@@ -38162,7 +38161,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsric02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -38234,7 +38233,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsric02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -38306,7 +38305,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsric02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -38378,7 +38377,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsric02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -38450,7 +38449,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsric02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -38522,7 +38521,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsric02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -38594,7 +38593,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsric02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -38666,7 +38665,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsric02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -38738,7 +38737,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsric02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -38810,7 +38809,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsric02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -38882,7 +38881,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsric02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -38954,7 +38953,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsric02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -39026,7 +39025,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrilu02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -39098,7 +39097,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrilu02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -39170,7 +39169,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrilu02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -39242,7 +39241,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrilu02_bufferSize_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -39314,7 +39313,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrilu02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -39389,7 +39388,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrilu02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -39464,7 +39463,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrilu02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -39539,7 +39538,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrilu02_analysis_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -39614,7 +39613,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsrilu02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA_valM, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -39689,7 +39688,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsrilu02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA_valM, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -39764,7 +39763,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsrilu02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA_valM, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -39839,7 +39838,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsrilu02_assumed_rank(handle,dirA,mb,nnzb,descrA,bsrSortedValA_valM, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -39914,7 +39913,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsric02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -39980,7 +39979,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsric02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -40046,7 +40045,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsric02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -40112,7 +40111,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsric02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -40179,7 +40178,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsric02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -40247,7 +40246,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsric02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -40315,7 +40314,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsric02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -40383,7 +40382,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsric02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -40450,7 +40449,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsric02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -40516,7 +40515,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsric02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -40582,7 +40581,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsric02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -40648,7 +40647,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsric02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -40714,7 +40713,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsric02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -40781,7 +40780,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsric02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -40848,7 +40847,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsric02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -40915,7 +40914,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsric02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -40982,7 +40981,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrilu02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -41048,7 +41047,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrilu02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -41114,7 +41113,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrilu02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -41180,7 +41179,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrilu02_bufferSize_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -41247,7 +41246,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrilu02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -41315,7 +41314,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrilu02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -41383,7 +41382,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrilu02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -41451,7 +41450,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrilu02_bufferSizeExt_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -41518,7 +41517,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrilu02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -41584,7 +41583,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrilu02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -41650,7 +41649,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrilu02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -41716,7 +41715,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrilu02_analysis_assumed_rank(handle,m,nnz,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -41782,7 +41781,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrilu02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -41851,7 +41850,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrilu02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -41920,7 +41919,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrilu02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -41989,7 +41988,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrilu02_assumed_rank(handle,m,nnz,descrA,csrSortedValA_valM, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,policy,pBuffer)
       use iso_c_binding
@@ -42058,7 +42057,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgpsvInterleavedBatch_bufferSizeExt_assumed_rank(handle,algo,m,ds,dl,d,du, &
         dw,x,batchCount,pBufferSizeInBytes)
       use iso_c_binding
@@ -42130,7 +42129,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgpsvInterleavedBatch_bufferSizeExt_assumed_rank(handle,algo,m,ds,dl,d,du, &
         dw,x,batchCount,pBufferSizeInBytes)
       use iso_c_binding
@@ -42202,7 +42201,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgpsvInterleavedBatch_bufferSizeExt_assumed_rank(handle,algo,m,ds,dl,d,du, &
         dw,x,batchCount,pBufferSizeInBytes)
       use iso_c_binding
@@ -42274,7 +42273,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgpsvInterleavedBatch_bufferSizeExt_assumed_rank(handle,algo,m,ds,dl,d,du, &
         dw,x,batchCount,pBufferSizeInBytes)
       use iso_c_binding
@@ -42346,7 +42345,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgpsvInterleavedBatch_assumed_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount, &
         pBuffer)
       use iso_c_binding
@@ -42413,7 +42412,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgpsvInterleavedBatch_assumed_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount, &
         pBuffer)
       use iso_c_binding
@@ -42480,7 +42479,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgpsvInterleavedBatch_assumed_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount, &
         pBuffer)
       use iso_c_binding
@@ -42547,7 +42546,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgpsvInterleavedBatch_assumed_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount, &
         pBuffer)
       use iso_c_binding
@@ -42614,7 +42613,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgtsv2_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -42693,7 +42692,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgtsv2_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -42772,7 +42771,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgtsv2_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -42851,7 +42850,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgtsv2_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -42930,7 +42929,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgtsv2_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -43009,7 +43008,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgtsv2_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -43088,7 +43087,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgtsv2_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -43167,7 +43166,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgtsv2_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -43246,7 +43245,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgtsv2_nopivot_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb, &
         pBufferSizeInBytes)
       use iso_c_binding
@@ -43329,7 +43328,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgtsv2_nopivot_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb, &
         pBufferSizeInBytes)
       use iso_c_binding
@@ -43412,7 +43411,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgtsv2_nopivot_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb, &
         pBufferSizeInBytes)
       use iso_c_binding
@@ -43495,7 +43494,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgtsv2_nopivot_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb, &
         pBufferSizeInBytes)
       use iso_c_binding
@@ -43578,7 +43577,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgtsv2_nopivot_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -43657,7 +43656,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgtsv2_nopivot_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -43736,7 +43735,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgtsv2_nopivot_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -43815,7 +43814,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgtsv2_nopivot_assumed_rank(handle,m,n,dl,d,du,B,ldb,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -43894,7 +43893,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgtsv2StridedBatch_bufferSizeExt_assumed_rank(handle,m,dl,d,du,x,batchCount, &
         batchStride,pBufferSizeInBytes)
       use iso_c_binding
@@ -43960,7 +43959,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgtsv2StridedBatch_bufferSizeExt_assumed_rank(handle,m,dl,d,du,x,batchCount, &
         batchStride,pBufferSizeInBytes)
       use iso_c_binding
@@ -44026,7 +44025,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgtsv2StridedBatch_bufferSizeExt_assumed_rank(handle,m,dl,d,du,x,batchCount, &
         batchStride,pBufferSizeInBytes)
       use iso_c_binding
@@ -44092,7 +44091,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgtsv2StridedBatch_bufferSizeExt_assumed_rank(handle,m,dl,d,du,x,batchCount, &
         batchStride,pBufferSizeInBytes)
       use iso_c_binding
@@ -44158,7 +44157,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgtsv2StridedBatch_assumed_rank(handle,m,dl,d,du,x,batchCount,batchStride, &
         pBuffer)
       use iso_c_binding
@@ -44219,7 +44218,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgtsv2StridedBatch_assumed_rank(handle,m,dl,d,du,x,batchCount,batchStride, &
         pBuffer)
       use iso_c_binding
@@ -44280,7 +44279,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgtsv2StridedBatch_assumed_rank(handle,m,dl,d,du,x,batchCount,batchStride, &
         pBuffer)
       use iso_c_binding
@@ -44341,7 +44340,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgtsv2StridedBatch_assumed_rank(handle,m,dl,d,du,x,batchCount,batchStride, &
         pBuffer)
       use iso_c_binding
@@ -44402,7 +44401,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSbsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,blockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -44480,7 +44479,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDbsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,blockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -44558,7 +44557,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCbsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,blockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -44636,7 +44635,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZbsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,blockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -44714,7 +44713,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcoo2csr_assumed_rank(handle,cooRowInd,nnz,m,csrRowPtr,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -44765,7 +44764,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcoosort_bufferSizeExt_assumed_rank(handle,m,n,nnz,cooRows,cooCols, &
         pBufferSizeInBytes)
       use iso_c_binding
@@ -44822,7 +44821,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcoosortByRow_assumed_rank(handle,m,n,nnz,cooRows,cooCols,P,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -44879,7 +44878,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcoosortByColumn_assumed_rank(handle,m,n,nnz,cooRows,cooCols,P,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -44936,7 +44935,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCreateIdentityPermutation_assumed_rank(handle,n,p)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -44979,7 +44978,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsc2dense_assumed_rank(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -45060,7 +45059,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsc2dense_assumed_rank(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -45141,7 +45140,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsc2dense_assumed_rank(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -45222,7 +45221,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsc2dense_assumed_rank(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -45302,7 +45301,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcscsort_bufferSizeExt_assumed_rank(handle,m,n,nnz,cscColPtr,cscRowInd, &
         pBufferSizeInBytes)
       use iso_c_binding
@@ -45359,7 +45358,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcscsort_assumed_rank(handle,m,n,nnz,descrA,cscColPtr,cscRowInd,P,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -45419,7 +45418,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcsr2bsrNnz_assumed_rank(handle,dirA,m,n,descrA,csrRowPtrA,csrColIndA, &
         blockDim,descrC,bsrRowPtrC,bsrNnzb)
       use iso_c_binding
@@ -45488,7 +45487,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsr2bsr_assumed_rank(handle,dirA,m,n,descrA,csrValA,csrRowPtrA,csrColIndA, &
         blockDim,descrC,bsrValC,bsrRowPtrC,bsrColIndC)
       use iso_c_binding
@@ -45566,7 +45565,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsr2bsr_assumed_rank(handle,dirA,m,n,descrA,csrValA,csrRowPtrA,csrColIndA, &
         blockDim,descrC,bsrValC,bsrRowPtrC,bsrColIndC)
       use iso_c_binding
@@ -45644,7 +45643,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsr2bsr_assumed_rank(handle,dirA,m,n,descrA,csrValA,csrRowPtrA,csrColIndA, &
         blockDim,descrC,bsrValC,bsrRowPtrC,bsrColIndC)
       use iso_c_binding
@@ -45722,7 +45721,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsr2bsr_assumed_rank(handle,dirA,m,n,descrA,csrValA,csrRowPtrA,csrColIndA, &
         blockDim,descrC,bsrValC,bsrRowPtrC,bsrColIndC)
       use iso_c_binding
@@ -45800,7 +45799,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcsr2coo_assumed_rank(handle,csrRowPtr,nnz,m,cooRowInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -45852,7 +45851,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsr2csc_assumed_rank(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr, &
         csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
@@ -45929,7 +45928,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsr2csc_assumed_rank(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr, &
         csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
@@ -46006,7 +46005,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsr2csc_assumed_rank(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr, &
         csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
@@ -46083,7 +46082,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsr2csc_assumed_rank(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr, &
         csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
@@ -46159,7 +46158,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsr2csr_compress_assumed_rank(handle,m,n,descrA,csrValA,csrColIndA, &
         csrRowPtrA,nnzA,nnzPerRow,csrValC,csrColIndC,csrRowPtrC,tol)
       use iso_c_binding
@@ -46237,7 +46236,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsr2csr_compress_assumed_rank(handle,m,n,descrA,csrValA,csrColIndA, &
         csrRowPtrA,nnzA,nnzPerRow,csrValC,csrColIndC,csrRowPtrC,tol)
       use iso_c_binding
@@ -46315,7 +46314,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsr2csr_compress_assumed_rank(handle,m,n,descrA,csrValA,csrColIndA, &
         csrRowPtrA,nnzA,nnzPerRow,csrValC,csrColIndC,csrRowPtrC,tol)
       use iso_c_binding
@@ -46393,7 +46392,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsr2csr_compress_assumed_rank(handle,m,n,descrA,csrValA,csrColIndA, &
         csrRowPtrA,nnzA,nnzPerRow,csrValC,csrColIndC,csrRowPtrC,tol)
       use iso_c_binding
@@ -46471,7 +46470,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsr2csru_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd, &
         myInfo,pBuffer)
       use iso_c_binding
@@ -46537,7 +46536,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsr2csru_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd, &
         myInfo,pBuffer)
       use iso_c_binding
@@ -46603,7 +46602,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsr2csru_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd, &
         myInfo,pBuffer)
       use iso_c_binding
@@ -46669,7 +46668,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsr2csru_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd, &
         myInfo,pBuffer)
       use iso_c_binding
@@ -46736,7 +46735,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsr2dense_assumed_rank(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -46817,7 +46816,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsr2dense_assumed_rank(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -46898,7 +46897,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsr2dense_assumed_rank(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -46979,7 +46978,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsr2dense_assumed_rank(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -47059,7 +47058,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsr2gebsr_bufferSize_assumed_rank(handle,dir,m,n,csr_descr,csrVal, &
         csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -47131,7 +47130,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsr2gebsr_bufferSize_assumed_rank(handle,dir,m,n,csr_descr,csrVal, &
         csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -47203,7 +47202,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsr2gebsr_bufferSize_assumed_rank(handle,dir,m,n,csr_descr,csrVal, &
         csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -47275,7 +47274,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsr2gebsr_bufferSize_assumed_rank(handle,dir,m,n,csr_descr,csrVal, &
         csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -47347,7 +47346,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcsr2gebsrNnz_assumed_rank(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd, &
         bsr_descr,bsrRowPtr,rowBlockDim,colBlockDim,bsrNnzDevhost,pbuffer)
       use iso_c_binding
@@ -47425,7 +47424,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsr2gebsr_assumed_rank(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
         bsr_descr,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pbuffer)
       use iso_c_binding
@@ -47509,7 +47508,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsr2gebsr_assumed_rank(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
         bsr_descr,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pbuffer)
       use iso_c_binding
@@ -47593,7 +47592,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsr2gebsr_assumed_rank(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
         bsr_descr,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pbuffer)
       use iso_c_binding
@@ -47677,7 +47676,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsr2gebsr_assumed_rank(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
         bsr_descr,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pbuffer)
       use iso_c_binding
@@ -47762,7 +47761,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsr2hyb_assumed_rank(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
@@ -47830,7 +47829,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsr2hyb_assumed_rank(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
@@ -47898,7 +47897,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsr2hyb_assumed_rank(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
@@ -47966,7 +47965,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsr2hyb_assumed_rank(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
@@ -48033,7 +48032,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcsrsort_bufferSizeExt_assumed_rank(handle,m,n,nnz,csrRowPtr,csrColInd, &
         pBufferSizeInBytes)
       use iso_c_binding
@@ -48090,7 +48089,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXcsrsort_assumed_rank(handle,m,n,nnz,descrA,csrRowPtr,csrColInd,P,pBuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
@@ -48150,7 +48149,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsru2csr_bufferSizeExt_assumed_rank(handle,m,n,nnz,csrVal,csrRowPtr, &
         csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -48213,7 +48212,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsru2csr_bufferSizeExt_assumed_rank(handle,m,n,nnz,csrVal,csrRowPtr, &
         csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -48276,7 +48275,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsru2csr_bufferSizeExt_assumed_rank(handle,m,n,nnz,csrVal,csrRowPtr, &
         csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -48339,7 +48338,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsru2csr_bufferSizeExt_assumed_rank(handle,m,n,nnz,csrVal,csrRowPtr, &
         csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -48402,7 +48401,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsru2csr_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd, &
         myInfo,pBuffer)
       use iso_c_binding
@@ -48468,7 +48467,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsru2csr_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd, &
         myInfo,pBuffer)
       use iso_c_binding
@@ -48534,7 +48533,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsru2csr_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd, &
         myInfo,pBuffer)
       use iso_c_binding
@@ -48600,7 +48599,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsru2csr_assumed_rank(handle,m,n,nnz,descrA,csrVal,csrRowPtr,csrColInd, &
         myInfo,pBuffer)
       use iso_c_binding
@@ -48667,7 +48666,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSdense2csc_assumed_rank(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd, &
         cscColPtr)
       use iso_c_binding
@@ -48756,7 +48755,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDdense2csc_assumed_rank(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd, &
         cscColPtr)
       use iso_c_binding
@@ -48845,7 +48844,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCdense2csc_assumed_rank(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd, &
         cscColPtr)
       use iso_c_binding
@@ -48934,7 +48933,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZdense2csc_assumed_rank(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd, &
         cscColPtr)
       use iso_c_binding
@@ -49023,7 +49022,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSdense2csr_assumed_rank(handle,m,n,descr,A,ld,nnzPerRow,csrVal,csrRowPtr, &
         csrColInd)
       use iso_c_binding
@@ -49110,7 +49109,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDdense2csr_assumed_rank(handle,m,n,descr,A,ld,nnzPerRow,csrVal,csrRowPtr, &
         csrColInd)
       use iso_c_binding
@@ -49197,7 +49196,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCdense2csr_assumed_rank(handle,m,n,descr,A,ld,nnzPerRow,csrVal,csrRowPtr, &
         csrColInd)
       use iso_c_binding
@@ -49284,7 +49283,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZdense2csr_assumed_rank(handle,m,n,descr,A,ld,nnzPerRow,csrVal,csrRowPtr, &
         csrColInd)
       use iso_c_binding
@@ -49370,7 +49369,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgebsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,rowBlockDim,colBlockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -49451,7 +49450,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgebsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,rowBlockDim,colBlockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -49532,7 +49531,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgebsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,rowBlockDim,colBlockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -49613,7 +49612,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgebsr2csr_assumed_rank(handle,dirA,mb,nb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,rowBlockDim,colBlockDim,descrC,csrValC,csrRowPtrC,csrColIndC)
       use iso_c_binding
@@ -49694,7 +49693,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgebsr2gebsr_bufferSize_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC, &
         pBufferSizeInBytes)
@@ -49778,7 +49777,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgebsr2gebsr_bufferSize_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC, &
         pBufferSizeInBytes)
@@ -49862,7 +49861,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgebsr2gebsr_bufferSize_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC, &
         pBufferSizeInBytes)
@@ -49946,7 +49945,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgebsr2gebsr_bufferSize_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC, &
         pBufferSizeInBytes)
@@ -50030,7 +50029,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseXgebsr2gebsrNnz_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrRowPtrA, &
         bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrRowPtrC,rowBlockDimC,colBlockDimC, &
         nnzTotalDevHostPtr,buffer)
@@ -50120,7 +50119,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgebsr2gebsr_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrValC,bsrRowPtrC,bsrColIndC,rowBlockDimC, &
         colBlockDimC,buffer)
@@ -50216,7 +50215,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDgebsr2gebsr_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrValC,bsrRowPtrC,bsrColIndC,rowBlockDimC, &
         colBlockDimC,buffer)
@@ -50312,7 +50311,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCgebsr2gebsr_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrValC,bsrRowPtrC,bsrColIndC,rowBlockDimC, &
         colBlockDimC,buffer)
@@ -50408,7 +50407,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZgebsr2gebsr_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA,bsrRowPtrA, &
         bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrValC,bsrRowPtrC,bsrColIndC,rowBlockDimC, &
         colBlockDimC,buffer)
@@ -50505,7 +50504,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseShyb2csr_assumed_rank(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA)
       use iso_c_binding
@@ -50561,7 +50560,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDhyb2csr_assumed_rank(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA)
       use iso_c_binding
@@ -50617,7 +50616,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseChyb2csr_assumed_rank(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA)
       use iso_c_binding
@@ -50673,7 +50672,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZhyb2csr_assumed_rank(handle,descrA,hybA,csrSortedValA,csrSortedRowPtrA, &
         csrSortedColIndA)
       use iso_c_binding
@@ -50728,7 +50727,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSnnz_assumed_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
         nnzTotalDevHostPtr)
       use iso_c_binding
@@ -50809,7 +50808,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDnnz_assumed_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
         nnzTotalDevHostPtr)
       use iso_c_binding
@@ -50890,7 +50889,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCnnz_assumed_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
         nnzTotalDevHostPtr)
       use iso_c_binding
@@ -50971,7 +50970,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZnnz_assumed_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
         nnzTotalDevHostPtr)
       use iso_c_binding
@@ -51052,7 +51051,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSnnz_compress_assumed_rank(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow, &
         nnzC,tol)
       use iso_c_binding
@@ -51110,7 +51109,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDnnz_compress_assumed_rank(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow, &
         nnzC,tol)
       use iso_c_binding
@@ -51168,7 +51167,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCnnz_compress_assumed_rank(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow, &
         nnzC,tol)
       use iso_c_binding
@@ -51226,7 +51225,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZnnz_compress_assumed_rank(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow, &
         nnzC,tol)
       use iso_c_binding
@@ -51285,7 +51284,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneCsr2csr_bufferSize_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
       use iso_c_binding
@@ -51368,7 +51367,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneCsr2csr_bufferSize_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
       use iso_c_binding
@@ -51450,7 +51449,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
       use iso_c_binding
@@ -51532,7 +51531,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
       use iso_c_binding
@@ -51614,7 +51613,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneCsr2csrNnz_assumed_rank(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
       use iso_c_binding
@@ -51692,7 +51691,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneCsr2csrNnz_assumed_rank(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
       use iso_c_binding
@@ -51770,7 +51769,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneCsr2csr_assumed_rank(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
       use iso_c_binding
@@ -51851,7 +51850,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneCsr2csr_assumed_rank(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
       use iso_c_binding
@@ -51933,7 +51932,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneCsr2csrByPercentage_bufferSize_assumed_rank(handle,m,n,nnzA,descrA, &
         csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
         pBufferSizeInBytes)
@@ -52025,7 +52024,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneCsr2csrByPercentage_bufferSize_assumed_rank(handle,m,n,nnzA,descrA, &
         csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
         pBufferSizeInBytes)
@@ -52116,7 +52115,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank(handle,m,n,nnzA,descrA, &
         csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
         pBufferSizeInBytes)
@@ -52206,7 +52205,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank(handle,m,n,nnzA,descrA, &
         csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
         pBufferSizeInBytes)
@@ -52296,7 +52295,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
       use iso_c_binding
@@ -52377,7 +52376,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
       use iso_c_binding
@@ -52458,7 +52457,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneCsr2csrByPercentage_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,buffer)
       use iso_c_binding
@@ -52542,7 +52541,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneCsr2csrByPercentage_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,buffer)
       use iso_c_binding
@@ -52627,7 +52626,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneDense2csr_bufferSize_assumed_rank(handle,m,n,A,lda,threshold,descr, &
         csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
       use iso_c_binding
@@ -52724,7 +52723,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneDense2csr_bufferSize_assumed_rank(handle,m,n,A,lda,threshold,descr, &
         csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
       use iso_c_binding
@@ -52820,7 +52819,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank(handle,m,n,A,lda,threshold,descr, &
         csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
       use iso_c_binding
@@ -52915,7 +52914,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank(handle,m,n,A,lda,threshold,descr, &
         csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
       use iso_c_binding
@@ -53010,7 +53009,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneDense2csrNnz_assumed_rank(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
         nnzTotalDevHostPtr,buffer)
       use iso_c_binding
@@ -53097,7 +53096,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneDense2csrNnz_assumed_rank(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
         nnzTotalDevHostPtr,buffer)
       use iso_c_binding
@@ -53184,7 +53183,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneDense2csr_assumed_rank(handle,m,n,A,lda,threshold,descr,csrVal, &
         csrRowPtr,csrColInd,buffer)
       use iso_c_binding
@@ -53275,7 +53274,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneDense2csr_assumed_rank(handle,m,n,A,lda,threshold,descr,csrVal, &
         csrRowPtr,csrColInd,buffer)
       use iso_c_binding
@@ -53367,7 +53366,7 @@ module hipfort_hipsparse
 
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneDense2csrByPercentage_bufferSize_assumed_rank(handle,m,n,A,lda, &
         percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -53468,7 +53467,7 @@ module hipfort_hipsparse
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneDense2csrByPercentage_bufferSize_assumed_rank(handle,m,n,A,lda, &
         percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -53568,7 +53567,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_assumed_rank(handle,m,n,A,lda, &
         percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -53667,7 +53666,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_assumed_rank(handle,m,n,A,lda, &
         percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -53766,7 +53765,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneDense2csrNnzByPercentage_assumed_rank(handle,m,n,A,lda,percentage, &
         descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
       use iso_c_binding
@@ -53859,7 +53858,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneDense2csrNnzByPercentage_assumed_rank(handle,m,n,A,lda,percentage, &
         descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
       use iso_c_binding
@@ -53952,7 +53951,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseSpruneDense2csrByPercentage_assumed_rank(handle,m,n,A,lda,percentage,descr, &
         csrVal,csrRowPtr,csrColInd,myInfo,buffer)
       use iso_c_binding
@@ -54051,7 +54050,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDpruneDense2csrByPercentage_assumed_rank(handle,m,n,A,lda,percentage,descr, &
         csrVal,csrRowPtr,csrColInd,myInfo,buffer)
       use iso_c_binding
@@ -54150,7 +54149,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseScsrcolor_assumed_rank(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       use iso_c_binding
@@ -54222,7 +54221,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseDcsrcolor_assumed_rank(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       use iso_c_binding
@@ -54294,7 +54293,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseCcsrcolor_assumed_rank(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       use iso_c_binding
@@ -54366,7 +54365,7 @@ module hipfort_hipsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hipsparseZcsrcolor_assumed_rank(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       use iso_c_binding

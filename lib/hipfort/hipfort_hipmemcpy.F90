@@ -1,9 +1,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! ==============================================================================
-! hipfort: FORTRAN Interfaces for GPU kernels
-! ==============================================================================
-! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
-! [MITx11 License]
+! Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+!
+! SPDX-License-Identifier: MIT
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
@@ -17,11 +15,12 @@
 !
 ! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 ! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 ! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ! THE SOFTWARE.
+!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_hipmemcpy
@@ -71,7 +70,7 @@ module hipfort_hipmemcpy
       integer(c_size_t), value :: sizeBytes
       integer(c_int), value :: myKind
     end function hipMemcpy_
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     module procedure hipMemcpy_i4_assumed_rank
     module procedure hipMemcpy_i4_assumed_rank_c_size_t
     module procedure hipMemcpy_i4_assumed_rank_c_int
@@ -308,7 +307,7 @@ module hipfort_hipmemcpy
       integer(c_int), value :: myKind
       type(c_ptr), value :: stream
     end function hipMemcpyAsync_
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     module procedure hipMemcpyAsync_i4_assumed_rank
     module procedure hipMemcpyAsync_i4_assumed_rank_c_size_t
     module procedure hipMemcpyAsync_i4_assumed_rank_c_int
@@ -557,7 +556,7 @@ module hipfort_hipmemcpy
       integer(c_size_t), value :: height
       integer(c_int), value :: myKind
     end function hipMemcpy2D_
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     module procedure hipMemcpy2D_i4_assumed_rank_c_size_t
     module procedure hipMemcpy2D_i4_assumed_rank_c_int
     module procedure hipMemcpy2D_i8_assumed_rank_c_size_t
@@ -750,7 +749,7 @@ module hipfort_hipmemcpy
       integer(c_int), value :: myKind
       type(c_ptr), value :: stream
     end function hipMemcpy2DAsync_
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     module procedure hipMemcpy2DAsync_i4_assumed_rank_c_size_t
     module procedure hipMemcpy2DAsync_i4_assumed_rank_c_int
     module procedure hipMemcpy2DAsync_i8_assumed_rank_c_size_t
@@ -883,7 +882,7 @@ module hipfort_hipmemcpy
 
 contains
 
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
   function hipMemcpy_i4_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none

@@ -1,9 +1,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! ==============================================================================
-! hipfort: FORTRAN Interfaces for GPU kernels
-! ==============================================================================
-! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
-! [MITx11 License]
+! Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+!
+! SPDX-License-Identifier: MIT
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
@@ -17,11 +15,12 @@
 !
 ! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 ! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 ! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ! THE SOFTWARE.
+!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_rocfft
@@ -100,13 +99,13 @@ module hipfort_rocfft
       type(c_ptr),value :: description
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocfft_plan_create_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocfft_plan_create_rank_0,&
       rocfft_plan_create_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocfft_plan_create_assumed_rank
 #endif
 #endif
   end interface
@@ -256,13 +255,13 @@ module hipfort_rocfft
       integer(c_size_t),value :: out_distance
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocfft_plan_description_set_data_layout_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocfft_plan_description_set_data_layout_rank_0,&
       rocfft_plan_description_set_data_layout_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocfft_plan_description_set_data_layout_assumed_rank
 #endif
 #endif
   end interface
@@ -991,10 +990,10 @@ module hipfort_rocfft
   end interface
 
 
-#ifdef USE_FPOINTER_INTERFACES
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
 
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocfft_plan_create_assumed_rank(plan,placement,transform_type,myPrecision,dimensions, &
         lengths,number_of_transforms,description)
       use iso_c_binding
@@ -1054,7 +1053,7 @@ module hipfort_rocfft
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocfft_plan_description_set_data_layout_assumed_rank(description,in_array_type, &
         out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance, &
         out_strides_size,out_strides,out_distance)

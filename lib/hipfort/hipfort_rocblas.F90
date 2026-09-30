@@ -1,9 +1,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! ==============================================================================
-! hipfort: FORTRAN Interfaces for GPU kernels
-! ==============================================================================
-! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
-! [MITx11 License]
+! Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+!
+! SPDX-License-Identifier: MIT
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
@@ -17,11 +15,12 @@
 !
 ! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 ! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 ! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ! THE SOFTWARE.
+!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_rocblas
@@ -465,13 +464,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sscal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sscal_rank_0,&
       rocblas_sscal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sscal_assumed_rank
 #endif
 #endif
   end interface
@@ -489,13 +488,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dscal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dscal_rank_0,&
       rocblas_dscal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dscal_assumed_rank
 #endif
 #endif
   end interface
@@ -513,13 +512,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cscal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cscal_rank_0,&
       rocblas_cscal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cscal_assumed_rank
 #endif
 #endif
   end interface
@@ -537,13 +536,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zscal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zscal_rank_0,&
       rocblas_zscal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zscal_assumed_rank
 #endif
 #endif
   end interface
@@ -561,13 +560,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csscal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csscal_rank_0,&
       rocblas_csscal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csscal_assumed_rank
 #endif
 #endif
   end interface
@@ -585,13 +584,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zdscal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdscal_rank_0,&
       rocblas_zdscal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zdscal_assumed_rank
 #endif
 #endif
   end interface
@@ -933,13 +932,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sscal_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sscal_strided_batched_rank_0,&
       rocblas_sscal_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sscal_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -960,13 +959,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dscal_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dscal_strided_batched_rank_0,&
       rocblas_dscal_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dscal_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -987,13 +986,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cscal_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cscal_strided_batched_rank_0,&
       rocblas_cscal_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cscal_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -1014,13 +1013,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zscal_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zscal_strided_batched_rank_0,&
       rocblas_zscal_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zscal_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -1041,13 +1040,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csscal_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csscal_strided_batched_rank_0,&
       rocblas_csscal_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csscal_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -1068,13 +1067,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zdscal_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdscal_strided_batched_rank_0,&
       rocblas_zdscal_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zdscal_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -1212,13 +1211,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_scopy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_scopy_rank_0,&
       rocblas_scopy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_scopy_assumed_rank
 #endif
 #endif
   end interface
@@ -1237,13 +1236,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dcopy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dcopy_rank_0,&
       rocblas_dcopy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dcopy_assumed_rank
 #endif
 #endif
   end interface
@@ -1262,13 +1261,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ccopy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ccopy_rank_0,&
       rocblas_ccopy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ccopy_assumed_rank
 #endif
 #endif
   end interface
@@ -1287,13 +1286,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zcopy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zcopy_rank_0,&
       rocblas_zcopy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zcopy_assumed_rank
 #endif
 #endif
   end interface
@@ -1568,13 +1567,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_scopy_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_scopy_strided_batched_rank_0,&
       rocblas_scopy_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_scopy_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -1597,13 +1596,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dcopy_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dcopy_strided_batched_rank_0,&
       rocblas_dcopy_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dcopy_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -1626,13 +1625,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ccopy_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ccopy_strided_batched_rank_0,&
       rocblas_ccopy_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ccopy_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -1655,13 +1654,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zcopy_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zcopy_strided_batched_rank_0,&
       rocblas_zcopy_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zcopy_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -1782,13 +1781,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sdot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sdot_rank_0,&
       rocblas_sdot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sdot_assumed_rank
 #endif
 #endif
   end interface
@@ -1808,13 +1807,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ddot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ddot_rank_0,&
       rocblas_ddot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ddot_assumed_rank
 #endif
 #endif
   end interface
@@ -1866,13 +1865,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cdotu_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cdotu_rank_0,&
       rocblas_cdotu_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cdotu_assumed_rank
 #endif
 #endif
   end interface
@@ -1892,13 +1891,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zdotu_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdotu_rank_0,&
       rocblas_zdotu_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zdotu_assumed_rank
 #endif
 #endif
   end interface
@@ -1918,13 +1917,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cdotc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cdotc_rank_0,&
       rocblas_cdotc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cdotc_assumed_rank
 #endif
 #endif
   end interface
@@ -1944,13 +1943,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zdotc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdotc_rank_0,&
       rocblas_zdotc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zdotc_assumed_rank
 #endif
 #endif
   end interface
@@ -2458,13 +2457,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sdot_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sdot_strided_batched_rank_0,&
       rocblas_sdot_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sdot_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -2489,13 +2488,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ddot_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ddot_strided_batched_rank_0,&
       rocblas_ddot_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ddot_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -2562,13 +2561,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cdotu_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cdotu_strided_batched_rank_0,&
       rocblas_cdotu_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cdotu_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -2593,13 +2592,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zdotu_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdotu_strided_batched_rank_0,&
       rocblas_zdotu_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zdotu_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -2624,13 +2623,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cdotc_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cdotc_strided_batched_rank_0,&
       rocblas_cdotc_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cdotc_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -2655,13 +2654,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zdotc_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdotc_strided_batched_rank_0,&
       rocblas_zdotc_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zdotc_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -2896,13 +2895,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cswap_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cswap_rank_0,&
       rocblas_cswap_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cswap_assumed_rank
 #endif
 #endif
   end interface
@@ -2921,13 +2920,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zswap_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zswap_rank_0,&
       rocblas_zswap_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zswap_assumed_rank
 #endif
 #endif
   end interface
@@ -3198,13 +3197,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sswap_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sswap_strided_batched_rank_0,&
       rocblas_sswap_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sswap_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -3227,13 +3226,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dswap_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dswap_strided_batched_rank_0,&
       rocblas_dswap_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dswap_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -3256,13 +3255,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cswap_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cswap_strided_batched_rank_0,&
       rocblas_cswap_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cswap_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -3285,13 +3284,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zswap_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zswap_strided_batched_rank_0,&
       rocblas_zswap_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zswap_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -3422,13 +3421,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_saxpy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_saxpy_rank_0,&
       rocblas_saxpy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_saxpy_assumed_rank
 #endif
 #endif
   end interface
@@ -3448,13 +3447,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_daxpy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_daxpy_rank_0,&
       rocblas_daxpy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_daxpy_assumed_rank
 #endif
 #endif
   end interface
@@ -3474,13 +3473,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_caxpy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_caxpy_rank_0,&
       rocblas_caxpy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_caxpy_assumed_rank
 #endif
 #endif
   end interface
@@ -3500,13 +3499,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zaxpy_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zaxpy_rank_0,&
       rocblas_zaxpy_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zaxpy_assumed_rank
 #endif
 #endif
   end interface
@@ -3853,13 +3852,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_saxpy_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_saxpy_strided_batched_rank_0,&
       rocblas_saxpy_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_saxpy_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -3884,13 +3883,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_daxpy_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_daxpy_strided_batched_rank_0,&
       rocblas_daxpy_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_daxpy_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -3915,13 +3914,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_caxpy_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_caxpy_strided_batched_rank_0,&
       rocblas_caxpy_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_caxpy_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -3946,13 +3945,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zaxpy_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zaxpy_strided_batched_rank_0,&
       rocblas_zaxpy_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zaxpy_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -4120,13 +4119,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_scasum_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_scasum_rank_0,&
       rocblas_scasum_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_scasum_assumed_rank
 #endif
 #endif
   end interface
@@ -4144,13 +4143,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dzasum_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dzasum_rank_0,&
       rocblas_dzasum_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dzasum_assumed_rank
 #endif
 #endif
   end interface
@@ -4403,13 +4402,13 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sasum_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sasum_strided_batched_rank_0,&
       rocblas_sasum_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sasum_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -4430,13 +4429,13 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dasum_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dasum_strided_batched_rank_0,&
       rocblas_dasum_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dasum_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -4457,13 +4456,13 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_scasum_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_scasum_strided_batched_rank_0,&
       rocblas_scasum_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_scasum_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -4484,13 +4483,13 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dzasum_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dzasum_strided_batched_rank_0,&
       rocblas_dzasum_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dzasum_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -4622,13 +4621,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_scnrm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_scnrm2_rank_0,&
       rocblas_scnrm2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_scnrm2_assumed_rank
 #endif
 #endif
   end interface
@@ -4646,13 +4645,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dznrm2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dznrm2_rank_0,&
       rocblas_dznrm2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dznrm2_assumed_rank
 #endif
 #endif
   end interface
@@ -4905,13 +4904,13 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_snrm2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_snrm2_strided_batched_rank_0,&
       rocblas_snrm2_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_snrm2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -4932,13 +4931,13 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dnrm2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dnrm2_strided_batched_rank_0,&
       rocblas_dnrm2_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dnrm2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -4959,13 +4958,13 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_scnrm2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_scnrm2_strided_batched_rank_0,&
       rocblas_scnrm2_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_scnrm2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -4986,13 +4985,13 @@ module hipfort_rocblas
       type(c_ptr),value :: results
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dznrm2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dznrm2_strided_batched_rank_0,&
       rocblas_dznrm2_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dznrm2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -5122,13 +5121,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_icamax_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_icamax_rank_0,&
       rocblas_icamax_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_icamax_assumed_rank
 #endif
 #endif
   end interface
@@ -5146,13 +5145,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_izamax_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_izamax_rank_0,&
       rocblas_izamax_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_izamax_assumed_rank
 #endif
 #endif
   end interface
@@ -5395,13 +5394,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_isamax_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_isamax_strided_batched_rank_0,&
       rocblas_isamax_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_isamax_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -5422,13 +5421,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_idamax_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_idamax_strided_batched_rank_0,&
       rocblas_idamax_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_idamax_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -5449,13 +5448,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_icamax_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_icamax_strided_batched_rank_0,&
       rocblas_icamax_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_icamax_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -5476,13 +5475,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_izamax_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_izamax_strided_batched_rank_0,&
       rocblas_izamax_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_izamax_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -5612,13 +5611,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_icamin_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_icamin_rank_0,&
       rocblas_icamin_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_icamin_assumed_rank
 #endif
 #endif
   end interface
@@ -5636,13 +5635,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_izamin_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_izamin_rank_0,&
       rocblas_izamin_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_izamin_assumed_rank
 #endif
 #endif
   end interface
@@ -5885,13 +5884,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_isamin_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_isamin_strided_batched_rank_0,&
       rocblas_isamin_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_isamin_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -5912,13 +5911,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_idamin_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_idamin_strided_batched_rank_0,&
       rocblas_idamin_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_idamin_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -5939,13 +5938,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_icamin_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_icamin_strided_batched_rank_0,&
       rocblas_icamin_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_icamin_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -5966,13 +5965,13 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_izamin_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_izamin_strided_batched_rank_0,&
       rocblas_izamin_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_izamin_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -6083,13 +6082,13 @@ module hipfort_rocblas
       real(c_float) :: s
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_srot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_srot_rank_0,&
       rocblas_srot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_srot_assumed_rank
 #endif
 #endif
   end interface
@@ -6110,13 +6109,13 @@ module hipfort_rocblas
       real(c_double) :: s
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_drot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_drot_rank_0,&
       rocblas_drot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_drot_assumed_rank
 #endif
 #endif
   end interface
@@ -6137,13 +6136,13 @@ module hipfort_rocblas
       complex(c_float_complex) :: s
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_crot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_crot_rank_0,&
       rocblas_crot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_crot_assumed_rank
 #endif
 #endif
   end interface
@@ -6164,13 +6163,13 @@ module hipfort_rocblas
       real(c_float) :: s
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csrot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csrot_rank_0,&
       rocblas_csrot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csrot_assumed_rank
 #endif
 #endif
   end interface
@@ -6191,13 +6190,13 @@ module hipfort_rocblas
       complex(c_double_complex) :: s
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zrot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zrot_rank_0,&
       rocblas_zrot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zrot_assumed_rank
 #endif
 #endif
   end interface
@@ -6218,13 +6217,13 @@ module hipfort_rocblas
       real(c_double) :: s
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zdrot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdrot_rank_0,&
       rocblas_zdrot_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zdrot_assumed_rank
 #endif
 #endif
   end interface
@@ -6634,13 +6633,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_srot_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_srot_strided_batched_rank_0,&
       rocblas_srot_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_srot_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -6666,13 +6665,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_drot_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_drot_strided_batched_rank_0,&
       rocblas_drot_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_drot_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -6698,13 +6697,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_crot_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_crot_strided_batched_rank_0,&
       rocblas_crot_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_crot_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -6730,13 +6729,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csrot_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csrot_strided_batched_rank_0,&
       rocblas_csrot_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csrot_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -6762,13 +6761,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zrot_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zrot_strided_batched_rank_0,&
       rocblas_zrot_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zrot_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -6794,13 +6793,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zdrot_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdrot_strided_batched_rank_0,&
       rocblas_zdrot_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zdrot_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -7470,13 +7469,13 @@ module hipfort_rocblas
       type(c_ptr),value :: param
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_srotm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_srotm_rank_0,&
       rocblas_srotm_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_srotm_assumed_rank
 #endif
 #endif
   end interface
@@ -7496,13 +7495,13 @@ module hipfort_rocblas
       type(c_ptr),value :: param
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_drotm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_drotm_rank_0,&
       rocblas_drotm_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_drotm_assumed_rank
 #endif
 #endif
   end interface
@@ -7711,13 +7710,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_srotm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_srotm_strided_batched_rank_0,&
       rocblas_srotm_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_srotm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -7743,13 +7742,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_drotm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_drotm_strided_batched_rank_0,&
       rocblas_drotm_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_drotm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -8222,14 +8221,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sgbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgbmv_rank_0,&
       rocblas_sgbmv_rank_1,&
       rocblas_sgbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sgbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -8257,14 +8256,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dgbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgbmv_rank_0,&
       rocblas_dgbmv_rank_1,&
       rocblas_dgbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dgbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -8292,14 +8291,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cgbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgbmv_rank_0,&
       rocblas_cgbmv_rank_1,&
       rocblas_cgbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cgbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -8327,14 +8326,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zgbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgbmv_rank_0,&
       rocblas_zgbmv_rank_1,&
       rocblas_zgbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zgbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -8789,14 +8788,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sgbmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgbmv_strided_batched_rank_0,&
       rocblas_sgbmv_strided_batched_rank_1,&
       rocblas_sgbmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sgbmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -8829,14 +8828,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dgbmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgbmv_strided_batched_rank_0,&
       rocblas_dgbmv_strided_batched_rank_1,&
       rocblas_dgbmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dgbmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -8869,14 +8868,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cgbmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgbmv_strided_batched_rank_0,&
       rocblas_cgbmv_strided_batched_rank_1,&
       rocblas_cgbmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cgbmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -8909,14 +8908,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zgbmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgbmv_strided_batched_rank_0,&
       rocblas_zgbmv_strided_batched_rank_1,&
       rocblas_zgbmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zgbmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -9089,14 +9088,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sgemv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgemv_rank_0,&
       rocblas_sgemv_rank_1,&
       rocblas_sgemv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sgemv_assumed_rank
 #endif
 #endif
   end interface
@@ -9122,14 +9121,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dgemv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgemv_rank_0,&
       rocblas_dgemv_rank_1,&
       rocblas_dgemv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dgemv_assumed_rank
 #endif
 #endif
   end interface
@@ -9155,14 +9154,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cgemv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgemv_rank_0,&
       rocblas_cgemv_rank_1,&
       rocblas_cgemv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cgemv_assumed_rank
 #endif
 #endif
   end interface
@@ -9188,14 +9187,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zgemv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgemv_rank_0,&
       rocblas_zgemv_rank_1,&
       rocblas_zgemv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zgemv_assumed_rank
 #endif
 #endif
   end interface
@@ -9771,14 +9770,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sgemv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgemv_strided_batched_rank_0,&
       rocblas_sgemv_strided_batched_rank_1,&
       rocblas_sgemv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sgemv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -9809,14 +9808,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dgemv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgemv_strided_batched_rank_0,&
       rocblas_dgemv_strided_batched_rank_1,&
       rocblas_dgemv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dgemv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -9847,14 +9846,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cgemv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgemv_strided_batched_rank_0,&
       rocblas_cgemv_strided_batched_rank_1,&
       rocblas_cgemv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cgemv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -9885,14 +9884,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zgemv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgemv_strided_batched_rank_0,&
       rocblas_zgemv_strided_batched_rank_1,&
       rocblas_zgemv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zgemv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -10302,14 +10301,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_chbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chbmv_rank_0,&
       rocblas_chbmv_rank_1,&
       rocblas_chbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_chbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -10335,14 +10334,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zhbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhbmv_rank_0,&
       rocblas_zhbmv_rank_1,&
       rocblas_zhbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zhbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -10643,14 +10642,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_chbmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chbmv_strided_batched_rank_0,&
       rocblas_chbmv_strided_batched_rank_1,&
       rocblas_chbmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_chbmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -10681,14 +10680,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zhbmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhbmv_strided_batched_rank_0,&
       rocblas_zhbmv_strided_batched_rank_1,&
       rocblas_zhbmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zhbmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -10810,14 +10809,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_chemv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chemv_rank_0,&
       rocblas_chemv_rank_1,&
       rocblas_chemv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_chemv_assumed_rank
 #endif
 #endif
   end interface
@@ -10842,14 +10841,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zhemv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhemv_rank_0,&
       rocblas_zhemv_rank_1,&
       rocblas_zhemv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zhemv_assumed_rank
 #endif
 #endif
   end interface
@@ -11107,14 +11106,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_chemv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chemv_strided_batched_rank_0,&
       rocblas_chemv_strided_batched_rank_1,&
       rocblas_chemv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_chemv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -11144,14 +11143,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zhemv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhemv_strided_batched_rank_0,&
       rocblas_zhemv_strided_batched_rank_1,&
       rocblas_zhemv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zhemv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -11263,14 +11262,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cher_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cher_rank_0,&
       rocblas_cher_rank_1,&
       rocblas_cher_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cher_assumed_rank
 #endif
 #endif
   end interface
@@ -11291,14 +11290,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zher_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zher_rank_0,&
       rocblas_zher_rank_1,&
       rocblas_zher_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zher_assumed_rank
 #endif
 #endif
   end interface
@@ -11520,14 +11519,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cher_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cher_strided_batched_rank_0,&
       rocblas_cher_strided_batched_rank_1,&
       rocblas_cher_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cher_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -11553,14 +11552,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zher_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zher_strided_batched_rank_0,&
       rocblas_zher_strided_batched_rank_1,&
       rocblas_zher_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zher_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -11667,14 +11666,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cher2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cher2_rank_0,&
       rocblas_cher2_rank_1,&
       rocblas_cher2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cher2_assumed_rank
 #endif
 #endif
   end interface
@@ -11697,14 +11696,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zher2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zher2_rank_0,&
       rocblas_zher2_rank_1,&
       rocblas_zher2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zher2_assumed_rank
 #endif
 #endif
   end interface
@@ -11952,14 +11951,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cher2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cher2_strided_batched_rank_0,&
       rocblas_cher2_strided_batched_rank_1,&
       rocblas_cher2_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cher2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -11988,14 +11987,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zher2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zher2_strided_batched_rank_0,&
       rocblas_zher2_strided_batched_rank_1,&
       rocblas_zher2_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zher2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -12127,13 +12126,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_chpmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chpmv_rank_0,&
       rocblas_chpmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_chpmv_assumed_rank
 #endif
 #endif
   end interface
@@ -12156,13 +12155,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zhpmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhpmv_rank_0,&
       rocblas_zhpmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zhpmv_assumed_rank
 #endif
 #endif
   end interface
@@ -12451,13 +12450,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_chpmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chpmv_strided_batched_rank_0,&
       rocblas_chpmv_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_chpmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -12486,13 +12485,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zhpmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhpmv_strided_batched_rank_0,&
       rocblas_zhpmv_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zhpmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -12616,13 +12615,13 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_chpr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chpr_rank_0,&
       rocblas_chpr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_chpr_assumed_rank
 #endif
 #endif
   end interface
@@ -12642,13 +12641,13 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zhpr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhpr_rank_0,&
       rocblas_zhpr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zhpr_assumed_rank
 #endif
 #endif
   end interface
@@ -12896,13 +12895,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_chpr_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chpr_strided_batched_rank_0,&
       rocblas_chpr_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_chpr_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -12927,13 +12926,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zhpr_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhpr_strided_batched_rank_0,&
       rocblas_zhpr_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zhpr_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -13054,13 +13053,13 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_chpr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chpr2_rank_0,&
       rocblas_chpr2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_chpr2_assumed_rank
 #endif
 #endif
   end interface
@@ -13082,13 +13081,13 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zhpr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhpr2_rank_0,&
       rocblas_zhpr2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zhpr2_assumed_rank
 #endif
 #endif
   end interface
@@ -13362,13 +13361,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_chpr2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chpr2_strided_batched_rank_0,&
       rocblas_chpr2_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_chpr2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -13396,13 +13395,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zhpr2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhpr2_strided_batched_rank_0,&
       rocblas_zhpr2_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zhpr2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -13517,14 +13516,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_strmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strmv_rank_0,&
       rocblas_strmv_rank_1,&
       rocblas_strmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_strmv_assumed_rank
 #endif
 #endif
   end interface
@@ -13546,14 +13545,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrmv_rank_0,&
       rocblas_dtrmv_rank_1,&
       rocblas_dtrmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -13575,14 +13574,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrmv_rank_0,&
       rocblas_ctrmv_rank_1,&
       rocblas_ctrmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -13604,14 +13603,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrmv_rank_0,&
       rocblas_ztrmv_rank_1,&
       rocblas_ztrmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -13979,14 +13978,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_strmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strmv_strided_batched_rank_0,&
       rocblas_strmv_strided_batched_rank_1,&
       rocblas_strmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_strmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -14013,14 +14012,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtrmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrmv_strided_batched_rank_0,&
       rocblas_dtrmv_strided_batched_rank_1,&
       rocblas_dtrmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtrmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -14047,14 +14046,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctrmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrmv_strided_batched_rank_0,&
       rocblas_ctrmv_strided_batched_rank_1,&
       rocblas_ctrmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctrmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -14081,14 +14080,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztrmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrmv_strided_batched_rank_0,&
       rocblas_ztrmv_strided_batched_rank_1,&
       rocblas_ztrmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztrmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -14255,13 +14254,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_stpmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_stpmv_rank_0,&
       rocblas_stpmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_stpmv_assumed_rank
 #endif
 #endif
   end interface
@@ -14282,13 +14281,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtpmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtpmv_rank_0,&
       rocblas_dtpmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtpmv_assumed_rank
 #endif
 #endif
   end interface
@@ -14309,13 +14308,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctpmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctpmv_rank_0,&
       rocblas_ctpmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctpmv_assumed_rank
 #endif
 #endif
   end interface
@@ -14336,13 +14335,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztpmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztpmv_rank_0,&
       rocblas_ztpmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztpmv_assumed_rank
 #endif
 #endif
   end interface
@@ -14686,13 +14685,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_stpmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_stpmv_strided_batched_rank_0,&
       rocblas_stpmv_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_stpmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -14718,13 +14717,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtpmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtpmv_strided_batched_rank_0,&
       rocblas_dtpmv_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtpmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -14750,13 +14749,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctpmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctpmv_strided_batched_rank_0,&
       rocblas_ctpmv_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctpmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -14782,13 +14781,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztpmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztpmv_strided_batched_rank_0,&
       rocblas_ztpmv_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztpmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -14965,14 +14964,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_stbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_stbmv_rank_0,&
       rocblas_stbmv_rank_1,&
       rocblas_stbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_stbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -14995,14 +14994,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtbmv_rank_0,&
       rocblas_dtbmv_rank_1,&
       rocblas_dtbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -15025,14 +15024,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctbmv_rank_0,&
       rocblas_ctbmv_rank_1,&
       rocblas_ctbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -15055,14 +15054,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztbmv_rank_0,&
       rocblas_ztbmv_rank_1,&
       rocblas_ztbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -15487,14 +15486,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_stbmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_stbmv_strided_batched_rank_0,&
       rocblas_stbmv_strided_batched_rank_1,&
       rocblas_stbmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_stbmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -15522,14 +15521,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtbmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtbmv_strided_batched_rank_0,&
       rocblas_dtbmv_strided_batched_rank_1,&
       rocblas_dtbmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtbmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -15557,14 +15556,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctbmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctbmv_strided_batched_rank_0,&
       rocblas_ctbmv_strided_batched_rank_1,&
       rocblas_ctbmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctbmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -15592,14 +15591,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztbmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztbmv_strided_batched_rank_0,&
       rocblas_ztbmv_strided_batched_rank_1,&
       rocblas_ztbmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztbmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -15767,14 +15766,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_stbsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_stbsv_rank_0,&
       rocblas_stbsv_rank_1,&
       rocblas_stbsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_stbsv_assumed_rank
 #endif
 #endif
   end interface
@@ -15797,14 +15796,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtbsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtbsv_rank_0,&
       rocblas_dtbsv_rank_1,&
       rocblas_dtbsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtbsv_assumed_rank
 #endif
 #endif
   end interface
@@ -15827,14 +15826,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctbsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctbsv_rank_0,&
       rocblas_ctbsv_rank_1,&
       rocblas_ctbsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctbsv_assumed_rank
 #endif
 #endif
   end interface
@@ -15857,14 +15856,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztbsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztbsv_rank_0,&
       rocblas_ztbsv_rank_1,&
       rocblas_ztbsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztbsv_assumed_rank
 #endif
 #endif
   end interface
@@ -16255,14 +16254,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_stbsv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_stbsv_strided_batched_rank_0,&
       rocblas_stbsv_strided_batched_rank_1,&
       rocblas_stbsv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_stbsv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -16290,14 +16289,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtbsv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtbsv_strided_batched_rank_0,&
       rocblas_dtbsv_strided_batched_rank_1,&
       rocblas_dtbsv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtbsv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -16325,14 +16324,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctbsv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctbsv_strided_batched_rank_0,&
       rocblas_ctbsv_strided_batched_rank_1,&
       rocblas_ctbsv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctbsv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -16360,14 +16359,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztbsv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztbsv_strided_batched_rank_0,&
       rocblas_ztbsv_strided_batched_rank_1,&
       rocblas_ztbsv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztbsv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -16532,14 +16531,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_strsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strsv_rank_0,&
       rocblas_strsv_rank_1,&
       rocblas_strsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_strsv_assumed_rank
 #endif
 #endif
   end interface
@@ -16561,14 +16560,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtrsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrsv_rank_0,&
       rocblas_dtrsv_rank_1,&
       rocblas_dtrsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtrsv_assumed_rank
 #endif
 #endif
   end interface
@@ -16590,14 +16589,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctrsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrsv_rank_0,&
       rocblas_ctrsv_rank_1,&
       rocblas_ctrsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctrsv_assumed_rank
 #endif
 #endif
   end interface
@@ -16619,14 +16618,14 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztrsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrsv_rank_0,&
       rocblas_ztrsv_rank_1,&
       rocblas_ztrsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztrsv_assumed_rank
 #endif
 #endif
   end interface
@@ -16995,14 +16994,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_strsv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strsv_strided_batched_rank_0,&
       rocblas_strsv_strided_batched_rank_1,&
       rocblas_strsv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_strsv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -17029,14 +17028,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtrsv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrsv_strided_batched_rank_0,&
       rocblas_dtrsv_strided_batched_rank_1,&
       rocblas_dtrsv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtrsv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -17063,14 +17062,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctrsv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrsv_strided_batched_rank_0,&
       rocblas_ctrsv_strided_batched_rank_1,&
       rocblas_ctrsv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctrsv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -17097,14 +17096,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztrsv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrsv_strided_batched_rank_0,&
       rocblas_ztrsv_strided_batched_rank_1,&
       rocblas_ztrsv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztrsv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -17258,13 +17257,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_stpsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_stpsv_rank_0,&
       rocblas_stpsv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_stpsv_assumed_rank
 #endif
 #endif
   end interface
@@ -17285,13 +17284,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtpsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtpsv_rank_0,&
       rocblas_dtpsv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtpsv_assumed_rank
 #endif
 #endif
   end interface
@@ -17312,13 +17311,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctpsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctpsv_rank_0,&
       rocblas_ctpsv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctpsv_assumed_rank
 #endif
 #endif
   end interface
@@ -17339,13 +17338,13 @@ module hipfort_rocblas
       integer(c_int),value :: incx
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztpsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztpsv_rank_0,&
       rocblas_ztpsv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztpsv_assumed_rank
 #endif
 #endif
   end interface
@@ -17689,13 +17688,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_stpsv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_stpsv_strided_batched_rank_0,&
       rocblas_stpsv_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_stpsv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -17721,13 +17720,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtpsv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtpsv_strided_batched_rank_0,&
       rocblas_dtpsv_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtpsv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -17753,13 +17752,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctpsv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctpsv_strided_batched_rank_0,&
       rocblas_ctpsv_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctpsv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -17785,13 +17784,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztpsv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztpsv_strided_batched_rank_0,&
       rocblas_ztpsv_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztpsv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -17936,14 +17935,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssymv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssymv_rank_0,&
       rocblas_ssymv_rank_1,&
       rocblas_ssymv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssymv_assumed_rank
 #endif
 #endif
   end interface
@@ -17968,14 +17967,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsymv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsymv_rank_0,&
       rocblas_dsymv_rank_1,&
       rocblas_dsymv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsymv_assumed_rank
 #endif
 #endif
   end interface
@@ -18000,14 +17999,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csymv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csymv_rank_0,&
       rocblas_csymv_rank_1,&
       rocblas_csymv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csymv_assumed_rank
 #endif
 #endif
   end interface
@@ -18032,14 +18031,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsymv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsymv_rank_0,&
       rocblas_zsymv_rank_1,&
       rocblas_zsymv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsymv_assumed_rank
 #endif
 #endif
   end interface
@@ -18411,14 +18410,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssymv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssymv_strided_batched_rank_0,&
       rocblas_ssymv_strided_batched_rank_1,&
       rocblas_ssymv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssymv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -18448,14 +18447,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsymv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsymv_strided_batched_rank_0,&
       rocblas_dsymv_strided_batched_rank_1,&
       rocblas_dsymv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsymv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -18485,14 +18484,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csymv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csymv_strided_batched_rank_0,&
       rocblas_csymv_strided_batched_rank_1,&
       rocblas_csymv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csymv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -18522,14 +18521,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsymv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsymv_strided_batched_rank_0,&
       rocblas_zsymv_strided_batched_rank_1,&
       rocblas_zsymv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsymv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -18683,13 +18682,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sspmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sspmv_rank_0,&
       rocblas_sspmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sspmv_assumed_rank
 #endif
 #endif
   end interface
@@ -18712,13 +18711,13 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dspmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dspmv_rank_0,&
       rocblas_dspmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dspmv_assumed_rank
 #endif
 #endif
   end interface
@@ -18947,13 +18946,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sspmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sspmv_strided_batched_rank_0,&
       rocblas_sspmv_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sspmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -18982,13 +18981,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dspmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dspmv_strided_batched_rank_0,&
       rocblas_dspmv_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dspmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -19095,14 +19094,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssbmv_rank_0,&
       rocblas_ssbmv_rank_1,&
       rocblas_ssbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -19128,14 +19127,14 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsbmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsbmv_rank_0,&
       rocblas_dsbmv_rank_1,&
       rocblas_dsbmv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsbmv_assumed_rank
 #endif
 #endif
   end interface
@@ -19386,14 +19385,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssbmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssbmv_strided_batched_rank_0,&
       rocblas_ssbmv_strided_batched_rank_1,&
       rocblas_ssbmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssbmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -19424,14 +19423,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsbmv_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsbmv_strided_batched_rank_0,&
       rocblas_dsbmv_strided_batched_rank_1,&
       rocblas_dsbmv_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsbmv_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -19536,14 +19535,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sger_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sger_rank_0,&
       rocblas_sger_rank_1,&
       rocblas_sger_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sger_assumed_rank
 #endif
 #endif
   end interface
@@ -19566,14 +19565,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dger_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dger_rank_0,&
       rocblas_dger_rank_1,&
       rocblas_dger_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dger_assumed_rank
 #endif
 #endif
   end interface
@@ -19596,14 +19595,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cgeru_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgeru_rank_0,&
       rocblas_cgeru_rank_1,&
       rocblas_cgeru_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cgeru_assumed_rank
 #endif
 #endif
   end interface
@@ -19626,14 +19625,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zgeru_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgeru_rank_0,&
       rocblas_zgeru_rank_1,&
       rocblas_zgeru_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zgeru_assumed_rank
 #endif
 #endif
   end interface
@@ -19656,14 +19655,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cgerc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgerc_rank_0,&
       rocblas_cgerc_rank_1,&
       rocblas_cgerc_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cgerc_assumed_rank
 #endif
 #endif
   end interface
@@ -19686,14 +19685,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zgerc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgerc_rank_0,&
       rocblas_zgerc_rank_1,&
       rocblas_zgerc_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zgerc_assumed_rank
 #endif
 #endif
   end interface
@@ -20168,14 +20167,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sger_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sger_strided_batched_rank_0,&
       rocblas_sger_strided_batched_rank_1,&
       rocblas_sger_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sger_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -20204,14 +20203,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dger_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dger_strided_batched_rank_0,&
       rocblas_dger_strided_batched_rank_1,&
       rocblas_dger_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dger_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -20240,14 +20239,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cgeru_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgeru_strided_batched_rank_0,&
       rocblas_cgeru_strided_batched_rank_1,&
       rocblas_cgeru_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cgeru_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -20276,14 +20275,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zgeru_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgeru_strided_batched_rank_0,&
       rocblas_zgeru_strided_batched_rank_1,&
       rocblas_zgeru_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zgeru_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -20312,14 +20311,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cgerc_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgerc_strided_batched_rank_0,&
       rocblas_cgerc_strided_batched_rank_1,&
       rocblas_cgerc_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cgerc_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -20348,14 +20347,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zgerc_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgerc_strided_batched_rank_0,&
       rocblas_zgerc_strided_batched_rank_1,&
       rocblas_zgerc_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zgerc_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -20579,13 +20578,13 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sspr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sspr_rank_0,&
       rocblas_sspr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sspr_assumed_rank
 #endif
 #endif
   end interface
@@ -20605,13 +20604,13 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dspr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dspr_rank_0,&
       rocblas_dspr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dspr_assumed_rank
 #endif
 #endif
   end interface
@@ -20631,13 +20630,13 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cspr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cspr_rank_0,&
       rocblas_cspr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cspr_assumed_rank
 #endif
 #endif
   end interface
@@ -20657,13 +20656,13 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zspr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zspr_rank_0,&
       rocblas_zspr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zspr_assumed_rank
 #endif
 #endif
   end interface
@@ -21015,13 +21014,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sspr_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sspr_strided_batched_rank_0,&
       rocblas_sspr_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sspr_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -21046,13 +21045,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dspr_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dspr_strided_batched_rank_0,&
       rocblas_dspr_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dspr_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -21077,13 +21076,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cspr_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cspr_strided_batched_rank_0,&
       rocblas_cspr_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cspr_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -21108,13 +21107,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zspr_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zspr_strided_batched_rank_0,&
       rocblas_zspr_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zspr_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -21277,13 +21276,13 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sspr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sspr2_rank_0,&
       rocblas_sspr2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sspr2_assumed_rank
 #endif
 #endif
   end interface
@@ -21305,13 +21304,13 @@ module hipfort_rocblas
       type(c_ptr),value :: AP
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dspr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dspr2_rank_0,&
       rocblas_dspr2_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dspr2_assumed_rank
 #endif
 #endif
   end interface
@@ -21584,13 +21583,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sspr2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sspr2_strided_batched_rank_0,&
       rocblas_sspr2_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sspr2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -21618,13 +21617,13 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dspr2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dspr2_strided_batched_rank_0,&
       rocblas_dspr2_strided_batched_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dspr2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -21720,14 +21719,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssyr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyr_rank_0,&
       rocblas_ssyr_rank_1,&
       rocblas_ssyr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssyr_assumed_rank
 #endif
 #endif
   end interface
@@ -21748,14 +21747,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsyr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyr_rank_0,&
       rocblas_dsyr_rank_1,&
       rocblas_dsyr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsyr_assumed_rank
 #endif
 #endif
   end interface
@@ -21776,14 +21775,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csyr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyr_rank_0,&
       rocblas_csyr_rank_1,&
       rocblas_csyr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csyr_assumed_rank
 #endif
 #endif
   end interface
@@ -21804,14 +21803,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsyr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyr_rank_0,&
       rocblas_zsyr_rank_1,&
       rocblas_zsyr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsyr_assumed_rank
 #endif
 #endif
   end interface
@@ -22117,14 +22116,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssyr_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyr_strided_batched_rank_0,&
       rocblas_ssyr_strided_batched_rank_1,&
       rocblas_ssyr_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssyr_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -22150,14 +22149,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsyr_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyr_strided_batched_rank_0,&
       rocblas_dsyr_strided_batched_rank_1,&
       rocblas_dsyr_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsyr_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -22183,14 +22182,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csyr_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyr_strided_batched_rank_0,&
       rocblas_csyr_strided_batched_rank_1,&
       rocblas_csyr_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csyr_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -22216,14 +22215,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsyr_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyr_strided_batched_rank_0,&
       rocblas_zsyr_strided_batched_rank_1,&
       rocblas_zsyr_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsyr_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -22364,14 +22363,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssyr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyr2_rank_0,&
       rocblas_ssyr2_rank_1,&
       rocblas_ssyr2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssyr2_assumed_rank
 #endif
 #endif
   end interface
@@ -22394,14 +22393,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsyr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyr2_rank_0,&
       rocblas_dsyr2_rank_1,&
       rocblas_dsyr2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsyr2_assumed_rank
 #endif
 #endif
   end interface
@@ -22424,14 +22423,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csyr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyr2_rank_0,&
       rocblas_csyr2_rank_1,&
       rocblas_csyr2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csyr2_assumed_rank
 #endif
 #endif
   end interface
@@ -22454,14 +22453,14 @@ module hipfort_rocblas
       integer(c_int),value :: lda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsyr2_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyr2_rank_0,&
       rocblas_zsyr2_rank_1,&
       rocblas_zsyr2_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsyr2_assumed_rank
 #endif
 #endif
   end interface
@@ -22806,14 +22805,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssyr2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyr2_strided_batched_rank_0,&
       rocblas_ssyr2_strided_batched_rank_1,&
       rocblas_ssyr2_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssyr2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -22842,14 +22841,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsyr2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyr2_strided_batched_rank_0,&
       rocblas_dsyr2_strided_batched_rank_1,&
       rocblas_dsyr2_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsyr2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -22878,14 +22877,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csyr2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyr2_strided_batched_rank_0,&
       rocblas_csyr2_strided_batched_rank_1,&
       rocblas_csyr2_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csyr2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -22914,14 +22913,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsyr2_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyr2_strided_batched_rank_0,&
       rocblas_zsyr2_strided_batched_rank_1,&
       rocblas_zsyr2_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsyr2_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -23106,14 +23105,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_chemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chemm_rank_0,&
       rocblas_chemm_rank_1,&
       rocblas_chemm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_chemm_assumed_rank
 #endif
 #endif
   end interface
@@ -23140,14 +23139,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zhemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhemm_rank_0,&
       rocblas_zhemm_rank_1,&
       rocblas_zhemm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zhemm_assumed_rank
 #endif
 #endif
   end interface
@@ -23456,14 +23455,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_chemm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chemm_strided_batched_rank_0,&
       rocblas_chemm_strided_batched_rank_1,&
       rocblas_chemm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_chemm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -23495,14 +23494,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zhemm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhemm_strided_batched_rank_0,&
       rocblas_zhemm_strided_batched_rank_1,&
       rocblas_zhemm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zhemm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -23639,14 +23638,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cherk_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cherk_rank_0,&
       rocblas_cherk_rank_1,&
       rocblas_cherk_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cherk_assumed_rank
 #endif
 #endif
   end interface
@@ -23671,14 +23670,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zherk_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zherk_rank_0,&
       rocblas_zherk_rank_1,&
       rocblas_zherk_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zherk_assumed_rank
 #endif
 #endif
   end interface
@@ -23960,14 +23959,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cherk_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cherk_strided_batched_rank_0,&
       rocblas_cherk_strided_batched_rank_1,&
       rocblas_cherk_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cherk_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -23996,14 +23995,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zherk_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zherk_strided_batched_rank_0,&
       rocblas_zherk_strided_batched_rank_1,&
       rocblas_zherk_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zherk_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -24147,14 +24146,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cher2k_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cher2k_rank_0,&
       rocblas_cher2k_rank_1,&
       rocblas_cher2k_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cher2k_assumed_rank
 #endif
 #endif
   end interface
@@ -24181,14 +24180,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zher2k_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zher2k_rank_0,&
       rocblas_zher2k_rank_1,&
       rocblas_zher2k_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zher2k_assumed_rank
 #endif
 #endif
   end interface
@@ -24512,14 +24511,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cher2k_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cher2k_strided_batched_rank_0,&
       rocblas_cher2k_strided_batched_rank_1,&
       rocblas_cher2k_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cher2k_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -24551,14 +24550,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zher2k_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zher2k_strided_batched_rank_0,&
       rocblas_zher2k_strided_batched_rank_1,&
       rocblas_zher2k_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zher2k_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -24710,14 +24709,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cherkx_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cherkx_rank_0,&
       rocblas_cherkx_rank_1,&
       rocblas_cherkx_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cherkx_assumed_rank
 #endif
 #endif
   end interface
@@ -24744,14 +24743,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zherkx_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zherkx_rank_0,&
       rocblas_zherkx_rank_1,&
       rocblas_zherkx_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zherkx_assumed_rank
 #endif
 #endif
   end interface
@@ -25084,14 +25083,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cherkx_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cherkx_strided_batched_rank_0,&
       rocblas_cherkx_strided_batched_rank_1,&
       rocblas_cherkx_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cherkx_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -25123,14 +25122,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zherkx_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zherkx_strided_batched_rank_0,&
       rocblas_zherkx_strided_batched_rank_1,&
       rocblas_zherkx_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zherkx_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -25270,14 +25269,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssymm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssymm_rank_0,&
       rocblas_ssymm_rank_1,&
       rocblas_ssymm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssymm_assumed_rank
 #endif
 #endif
   end interface
@@ -25304,14 +25303,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsymm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsymm_rank_0,&
       rocblas_dsymm_rank_1,&
       rocblas_dsymm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsymm_assumed_rank
 #endif
 #endif
   end interface
@@ -25338,14 +25337,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csymm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csymm_rank_0,&
       rocblas_csymm_rank_1,&
       rocblas_csymm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csymm_assumed_rank
 #endif
 #endif
   end interface
@@ -25372,14 +25371,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsymm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsymm_rank_0,&
       rocblas_zsymm_rank_1,&
       rocblas_zsymm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsymm_assumed_rank
 #endif
 #endif
   end interface
@@ -25827,14 +25826,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssymm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssymm_strided_batched_rank_0,&
       rocblas_ssymm_strided_batched_rank_1,&
       rocblas_ssymm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssymm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -25866,14 +25865,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsymm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsymm_strided_batched_rank_0,&
       rocblas_dsymm_strided_batched_rank_1,&
       rocblas_dsymm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsymm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -25905,14 +25904,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csymm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csymm_strided_batched_rank_0,&
       rocblas_csymm_strided_batched_rank_1,&
       rocblas_csymm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csymm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -25944,14 +25943,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsymm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsymm_strided_batched_rank_0,&
       rocblas_zsymm_strided_batched_rank_1,&
       rocblas_zsymm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsymm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -26146,14 +26145,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssyrk_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyrk_rank_0,&
       rocblas_ssyrk_rank_1,&
       rocblas_ssyrk_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssyrk_assumed_rank
 #endif
 #endif
   end interface
@@ -26178,14 +26177,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsyrk_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyrk_rank_0,&
       rocblas_dsyrk_rank_1,&
       rocblas_dsyrk_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsyrk_assumed_rank
 #endif
 #endif
   end interface
@@ -26210,14 +26209,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csyrk_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyrk_rank_0,&
       rocblas_csyrk_rank_1,&
       rocblas_csyrk_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csyrk_assumed_rank
 #endif
 #endif
   end interface
@@ -26242,14 +26241,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsyrk_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyrk_rank_0,&
       rocblas_zsyrk_rank_1,&
       rocblas_zsyrk_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsyrk_assumed_rank
 #endif
 #endif
   end interface
@@ -26664,14 +26663,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssyrk_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyrk_strided_batched_rank_0,&
       rocblas_ssyrk_strided_batched_rank_1,&
       rocblas_ssyrk_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssyrk_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -26700,14 +26699,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsyrk_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyrk_strided_batched_rank_0,&
       rocblas_dsyrk_strided_batched_rank_1,&
       rocblas_dsyrk_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsyrk_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -26736,14 +26735,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csyrk_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyrk_strided_batched_rank_0,&
       rocblas_csyrk_strided_batched_rank_1,&
       rocblas_csyrk_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csyrk_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -26772,14 +26771,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsyrk_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyrk_strided_batched_rank_0,&
       rocblas_zsyrk_strided_batched_rank_1,&
       rocblas_zsyrk_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsyrk_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -26975,14 +26974,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssyr2k_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyr2k_rank_0,&
       rocblas_ssyr2k_rank_1,&
       rocblas_ssyr2k_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssyr2k_assumed_rank
 #endif
 #endif
   end interface
@@ -27009,14 +27008,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsyr2k_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyr2k_rank_0,&
       rocblas_dsyr2k_rank_1,&
       rocblas_dsyr2k_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsyr2k_assumed_rank
 #endif
 #endif
   end interface
@@ -27043,14 +27042,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csyr2k_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyr2k_rank_0,&
       rocblas_csyr2k_rank_1,&
       rocblas_csyr2k_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csyr2k_assumed_rank
 #endif
 #endif
   end interface
@@ -27077,14 +27076,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsyr2k_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyr2k_rank_0,&
       rocblas_zsyr2k_rank_1,&
       rocblas_zsyr2k_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsyr2k_assumed_rank
 #endif
 #endif
   end interface
@@ -27557,14 +27556,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssyr2k_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyr2k_strided_batched_rank_0,&
       rocblas_ssyr2k_strided_batched_rank_1,&
       rocblas_ssyr2k_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssyr2k_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -27596,14 +27595,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsyr2k_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyr2k_strided_batched_rank_0,&
       rocblas_dsyr2k_strided_batched_rank_1,&
       rocblas_dsyr2k_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsyr2k_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -27635,14 +27634,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csyr2k_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyr2k_strided_batched_rank_0,&
       rocblas_csyr2k_strided_batched_rank_1,&
       rocblas_csyr2k_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csyr2k_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -27674,14 +27673,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsyr2k_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyr2k_strided_batched_rank_0,&
       rocblas_zsyr2k_strided_batched_rank_1,&
       rocblas_zsyr2k_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsyr2k_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -27892,14 +27891,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssyrkx_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyrkx_rank_0,&
       rocblas_ssyrkx_rank_1,&
       rocblas_ssyrkx_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssyrkx_assumed_rank
 #endif
 #endif
   end interface
@@ -27926,14 +27925,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsyrkx_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyrkx_rank_0,&
       rocblas_dsyrkx_rank_1,&
       rocblas_dsyrkx_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsyrkx_assumed_rank
 #endif
 #endif
   end interface
@@ -27960,14 +27959,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csyrkx_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyrkx_rank_0,&
       rocblas_csyrkx_rank_1,&
       rocblas_csyrkx_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csyrkx_assumed_rank
 #endif
 #endif
   end interface
@@ -27994,14 +27993,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsyrkx_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyrkx_rank_0,&
       rocblas_zsyrkx_rank_1,&
       rocblas_zsyrkx_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsyrkx_assumed_rank
 #endif
 #endif
   end interface
@@ -28486,14 +28485,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ssyrkx_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyrkx_strided_batched_rank_0,&
       rocblas_ssyrkx_strided_batched_rank_1,&
       rocblas_ssyrkx_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ssyrkx_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -28525,14 +28524,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dsyrkx_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyrkx_strided_batched_rank_0,&
       rocblas_dsyrkx_strided_batched_rank_1,&
       rocblas_dsyrkx_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dsyrkx_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -28564,14 +28563,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_csyrkx_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyrkx_strided_batched_rank_0,&
       rocblas_csyrkx_strided_batched_rank_1,&
       rocblas_csyrkx_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_csyrkx_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -28603,14 +28602,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zsyrkx_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyrkx_strided_batched_rank_0,&
       rocblas_zsyrkx_strided_batched_rank_1,&
       rocblas_zsyrkx_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zsyrkx_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -28854,14 +28853,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_strmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strmm_rank_0,&
       rocblas_strmm_rank_1,&
       rocblas_strmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_strmm_assumed_rank
 #endif
 #endif
   end interface
@@ -28889,14 +28888,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrmm_rank_0,&
       rocblas_dtrmm_rank_1,&
       rocblas_dtrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -28924,14 +28923,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrmm_rank_0,&
       rocblas_ctrmm_rank_1,&
       rocblas_ctrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -28959,14 +28958,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrmm_rank_0,&
       rocblas_ztrmm_rank_1,&
       rocblas_ztrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -29779,14 +29778,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldinvA
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_strtri_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strtri_rank_0,&
       rocblas_strtri_rank_1,&
       rocblas_strtri_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_strtri_assumed_rank
 #endif
 #endif
   end interface
@@ -29807,14 +29806,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldinvA
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtrtri_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrtri_rank_0,&
       rocblas_dtrtri_rank_1,&
       rocblas_dtrtri_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtrtri_assumed_rank
 #endif
 #endif
   end interface
@@ -29835,14 +29834,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldinvA
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctrtri_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrtri_rank_0,&
       rocblas_ctrtri_rank_1,&
       rocblas_ctrtri_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctrtri_assumed_rank
 #endif
 #endif
   end interface
@@ -29863,14 +29862,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldinvA
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztrtri_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrtri_rank_0,&
       rocblas_ztrtri_rank_1,&
       rocblas_ztrtri_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztrtri_assumed_rank
 #endif
 #endif
   end interface
@@ -30038,14 +30037,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_strtri_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strtri_strided_batched_rank_0,&
       rocblas_strtri_strided_batched_rank_1,&
       rocblas_strtri_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_strtri_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -30071,14 +30070,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtrtri_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrtri_strided_batched_rank_0,&
       rocblas_dtrtri_strided_batched_rank_1,&
       rocblas_dtrtri_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtrtri_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -30104,14 +30103,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctrtri_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrtri_strided_batched_rank_0,&
       rocblas_ctrtri_strided_batched_rank_1,&
       rocblas_ctrtri_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctrtri_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -30137,14 +30136,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztrtri_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrtri_strided_batched_rank_0,&
       rocblas_ztrtri_strided_batched_rank_1,&
       rocblas_ztrtri_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztrtri_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -30239,14 +30238,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_strsm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strsm_rank_0,&
       rocblas_strsm_rank_1,&
       rocblas_strsm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_strsm_assumed_rank
 #endif
 #endif
   end interface
@@ -30272,14 +30271,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtrsm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrsm_rank_0,&
       rocblas_dtrsm_rank_1,&
       rocblas_dtrsm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtrsm_assumed_rank
 #endif
 #endif
   end interface
@@ -30305,14 +30304,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctrsm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrsm_rank_0,&
       rocblas_ctrsm_rank_1,&
       rocblas_ctrsm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctrsm_assumed_rank
 #endif
 #endif
   end interface
@@ -30338,14 +30337,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztrsm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrsm_rank_0,&
       rocblas_ztrsm_rank_1,&
       rocblas_ztrsm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztrsm_assumed_rank
 #endif
 #endif
   end interface
@@ -30778,14 +30777,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_strsm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strsm_strided_batched_rank_0,&
       rocblas_strsm_strided_batched_rank_1,&
       rocblas_strsm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_strsm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -30815,14 +30814,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dtrsm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrsm_strided_batched_rank_0,&
       rocblas_dtrsm_strided_batched_rank_1,&
       rocblas_dtrsm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dtrsm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -30852,14 +30851,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ctrsm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrsm_strided_batched_rank_0,&
       rocblas_ctrsm_strided_batched_rank_1,&
       rocblas_ctrsm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ctrsm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -30889,14 +30888,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ztrsm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrsm_strided_batched_rank_0,&
       rocblas_ztrsm_strided_batched_rank_1,&
       rocblas_ztrsm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ztrsm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -31072,14 +31071,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgemm_rank_0,&
       rocblas_sgemm_rank_1,&
       rocblas_sgemm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -31107,14 +31106,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgemm_rank_0,&
       rocblas_dgemm_rank_1,&
       rocblas_dgemm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -31166,14 +31165,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgemm_rank_0,&
       rocblas_cgemm_rank_1,&
       rocblas_cgemm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -31201,14 +31200,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgemm_rank_0,&
       rocblas_zgemm_rank_1,&
       rocblas_zgemm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -31718,14 +31717,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sgemm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgemm_strided_batched_rank_0,&
       rocblas_sgemm_strided_batched_rank_1,&
       rocblas_sgemm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sgemm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -31758,14 +31757,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dgemm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgemm_strided_batched_rank_0,&
       rocblas_dgemm_strided_batched_rank_1,&
       rocblas_dgemm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dgemm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -31827,14 +31826,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cgemm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgemm_strided_batched_rank_0,&
       rocblas_cgemm_strided_batched_rank_1,&
       rocblas_cgemm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cgemm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -31867,14 +31866,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zgemm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgemm_strided_batched_rank_0,&
       rocblas_zgemm_strided_batched_rank_1,&
       rocblas_zgemm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zgemm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -32239,14 +32238,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sdgmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sdgmm_rank_0,&
       rocblas_sdgmm_rank_1,&
       rocblas_sdgmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sdgmm_assumed_rank
 #endif
 #endif
   end interface
@@ -32269,14 +32268,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ddgmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ddgmm_rank_0,&
       rocblas_ddgmm_rank_1,&
       rocblas_ddgmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ddgmm_assumed_rank
 #endif
 #endif
   end interface
@@ -32299,14 +32298,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cdgmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cdgmm_rank_0,&
       rocblas_cdgmm_rank_1,&
       rocblas_cdgmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cdgmm_assumed_rank
 #endif
 #endif
   end interface
@@ -32329,14 +32328,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zdgmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdgmm_rank_0,&
       rocblas_zdgmm_rank_1,&
       rocblas_zdgmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zdgmm_assumed_rank
 #endif
 #endif
   end interface
@@ -32689,14 +32688,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sdgmm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sdgmm_strided_batched_rank_0,&
       rocblas_sdgmm_strided_batched_rank_1,&
       rocblas_sdgmm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sdgmm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -32725,14 +32724,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_ddgmm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ddgmm_strided_batched_rank_0,&
       rocblas_ddgmm_strided_batched_rank_1,&
       rocblas_ddgmm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_ddgmm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -32761,14 +32760,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cdgmm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cdgmm_strided_batched_rank_0,&
       rocblas_cdgmm_strided_batched_rank_1,&
       rocblas_cdgmm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cdgmm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -32797,14 +32796,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zdgmm_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdgmm_strided_batched_rank_0,&
       rocblas_zdgmm_strided_batched_rank_1,&
       rocblas_zdgmm_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zdgmm_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -32969,14 +32968,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgeam_rank_0,&
       rocblas_sgeam_rank_1,&
       rocblas_sgeam_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -33003,14 +33002,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgeam_rank_0,&
       rocblas_dgeam_rank_1,&
       rocblas_dgeam_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -33037,14 +33036,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgeam_rank_0,&
       rocblas_cgeam_rank_1,&
       rocblas_cgeam_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -33071,14 +33070,14 @@ module hipfort_rocblas
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgeam_rank_0,&
       rocblas_zgeam_rank_1,&
       rocblas_zgeam_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -33513,14 +33512,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_sgeam_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgeam_strided_batched_rank_0,&
       rocblas_sgeam_strided_batched_rank_1,&
       rocblas_sgeam_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_sgeam_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -33552,14 +33551,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_dgeam_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgeam_strided_batched_rank_0,&
       rocblas_dgeam_strided_batched_rank_1,&
       rocblas_dgeam_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_dgeam_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -33591,14 +33590,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_cgeam_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgeam_strided_batched_rank_0,&
       rocblas_cgeam_strided_batched_rank_1,&
       rocblas_cgeam_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_cgeam_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -33630,14 +33629,14 @@ module hipfort_rocblas
       integer(c_int),value :: batch_count
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_zgeam_strided_batched_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgeam_strided_batched_rank_0,&
       rocblas_zgeam_strided_batched_rank_1,&
       rocblas_zgeam_strided_batched_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_zgeam_strided_batched_assumed_rank
 #endif
 #endif
   end interface
@@ -37720,31 +37719,6 @@ module hipfort_rocblas
     end function
   end interface
 
-  interface rocblas_set_optimal_device_memory_size_impl
-    function rocblas_set_optimal_device_memory_size_impl_(handle,count) &
-        bind(c, name="rocblas_set_optimal_device_memory_size_impl")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_set_optimal_device_memory_size_impl_
-      type(c_ptr),value :: handle
-      integer(c_size_t),value :: count
-    end function
-  end interface
-
-  interface rocblas_device_malloc_alloc
-    function rocblas_device_malloc_alloc_(handle,res,count) &
-        bind(c, name="rocblas_device_malloc_alloc")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_device_malloc_alloc_
-      type(c_ptr),value :: handle
-      type(c_ptr) :: res
-      integer(c_size_t),value :: count
-    end function
-  end interface
-
   interface rocblas_device_malloc_success
     function rocblas_device_malloc_success_(ptr) bind(c, name="rocblas_device_malloc_success")
       use iso_c_binding
@@ -37919,13 +37893,7 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_set_vector_l_assumed_rank,rocblas_set_vector_i4_assumed_rank,&
-      rocblas_set_vector_i8_assumed_rank,rocblas_set_vector_r4_assumed_rank,&
-      rocblas_set_vector_r8_assumed_rank,rocblas_set_vector_c4_assumed_rank,&
-      rocblas_set_vector_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure rocblas_set_vector_l_rank_0,rocblas_set_vector_l_full_rank,&
       rocblas_set_vector_i4_rank_0,rocblas_set_vector_i4_full_rank,&
       rocblas_set_vector_i8_rank_0,rocblas_set_vector_i8_full_rank,&
@@ -37933,6 +37901,12 @@ module hipfort_rocblas
       rocblas_set_vector_r8_rank_0,rocblas_set_vector_r8_full_rank,&
       rocblas_set_vector_c4_rank_0,rocblas_set_vector_c4_full_rank,&
       rocblas_set_vector_c8_rank_0,rocblas_set_vector_c8_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_set_vector_l_assumed_rank,rocblas_set_vector_i4_assumed_rank,&
+      rocblas_set_vector_i8_assumed_rank,rocblas_set_vector_r4_assumed_rank,&
+      rocblas_set_vector_r8_assumed_rank,rocblas_set_vector_c4_assumed_rank,&
+      rocblas_set_vector_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -37952,13 +37926,7 @@ module hipfort_rocblas
       integer(c_int),value :: incy
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_get_vector_l_assumed_rank,rocblas_get_vector_i4_assumed_rank,&
-      rocblas_get_vector_i8_assumed_rank,rocblas_get_vector_r4_assumed_rank,&
-      rocblas_get_vector_r8_assumed_rank,rocblas_get_vector_c4_assumed_rank,&
-      rocblas_get_vector_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure rocblas_get_vector_l_rank_0,rocblas_get_vector_l_full_rank,&
       rocblas_get_vector_i4_rank_0,rocblas_get_vector_i4_full_rank,&
       rocblas_get_vector_i8_rank_0,rocblas_get_vector_i8_full_rank,&
@@ -37966,6 +37934,12 @@ module hipfort_rocblas
       rocblas_get_vector_r8_rank_0,rocblas_get_vector_r8_full_rank,&
       rocblas_get_vector_c4_rank_0,rocblas_get_vector_c4_full_rank,&
       rocblas_get_vector_c8_rank_0,rocblas_get_vector_c8_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_get_vector_l_assumed_rank,rocblas_get_vector_i4_assumed_rank,&
+      rocblas_get_vector_i8_assumed_rank,rocblas_get_vector_r4_assumed_rank,&
+      rocblas_get_vector_r8_assumed_rank,rocblas_get_vector_c4_assumed_rank,&
+      rocblas_get_vector_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -37986,13 +37960,7 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_set_matrix_l_assumed_rank,rocblas_set_matrix_i4_assumed_rank,&
-      rocblas_set_matrix_i8_assumed_rank,rocblas_set_matrix_r4_assumed_rank,&
-      rocblas_set_matrix_r8_assumed_rank,rocblas_set_matrix_c4_assumed_rank,&
-      rocblas_set_matrix_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure rocblas_set_matrix_l_full_rank,rocblas_set_matrix_l_rank_0,rocblas_set_matrix_l_rank_1,&
       rocblas_set_matrix_i4_full_rank,rocblas_set_matrix_i4_rank_0,rocblas_set_matrix_i4_rank_1,&
       rocblas_set_matrix_i8_full_rank,rocblas_set_matrix_i8_rank_0,rocblas_set_matrix_i8_rank_1,&
@@ -38000,6 +37968,12 @@ module hipfort_rocblas
       rocblas_set_matrix_r8_full_rank,rocblas_set_matrix_r8_rank_0,rocblas_set_matrix_r8_rank_1,&
       rocblas_set_matrix_c4_full_rank,rocblas_set_matrix_c4_rank_0,rocblas_set_matrix_c4_rank_1,&
       rocblas_set_matrix_c8_full_rank,rocblas_set_matrix_c8_rank_0,rocblas_set_matrix_c8_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_set_matrix_l_assumed_rank,rocblas_set_matrix_i4_assumed_rank,&
+      rocblas_set_matrix_i8_assumed_rank,rocblas_set_matrix_r4_assumed_rank,&
+      rocblas_set_matrix_r8_assumed_rank,rocblas_set_matrix_c4_assumed_rank,&
+      rocblas_set_matrix_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -38020,13 +37994,7 @@ module hipfort_rocblas
       integer(c_int),value :: ldb
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_get_matrix_l_assumed_rank,rocblas_get_matrix_i4_assumed_rank,&
-      rocblas_get_matrix_i8_assumed_rank,rocblas_get_matrix_r4_assumed_rank,&
-      rocblas_get_matrix_r8_assumed_rank,rocblas_get_matrix_c4_assumed_rank,&
-      rocblas_get_matrix_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure rocblas_get_matrix_l_full_rank,rocblas_get_matrix_l_rank_0,rocblas_get_matrix_l_rank_1,&
       rocblas_get_matrix_i4_full_rank,rocblas_get_matrix_i4_rank_0,rocblas_get_matrix_i4_rank_1,&
       rocblas_get_matrix_i8_full_rank,rocblas_get_matrix_i8_rank_0,rocblas_get_matrix_i8_rank_1,&
@@ -38034,6 +38002,12 @@ module hipfort_rocblas
       rocblas_get_matrix_r8_full_rank,rocblas_get_matrix_r8_rank_0,rocblas_get_matrix_r8_rank_1,&
       rocblas_get_matrix_c4_full_rank,rocblas_get_matrix_c4_rank_0,rocblas_get_matrix_c4_rank_1,&
       rocblas_get_matrix_c8_full_rank,rocblas_get_matrix_c8_rank_0,rocblas_get_matrix_c8_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_get_matrix_l_assumed_rank,rocblas_get_matrix_i4_assumed_rank,&
+      rocblas_get_matrix_i8_assumed_rank,rocblas_get_matrix_r4_assumed_rank,&
+      rocblas_get_matrix_r8_assumed_rank,rocblas_get_matrix_c4_assumed_rank,&
+      rocblas_get_matrix_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -38054,13 +38028,7 @@ module hipfort_rocblas
       type(c_ptr),value :: stream
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_set_vector_async_l_assumed_rank,rocblas_set_vector_async_i4_assumed_rank,&
-      rocblas_set_vector_async_i8_assumed_rank,rocblas_set_vector_async_r4_assumed_rank,&
-      rocblas_set_vector_async_r8_assumed_rank,rocblas_set_vector_async_c4_assumed_rank,&
-      rocblas_set_vector_async_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure rocblas_set_vector_async_l_rank_0,rocblas_set_vector_async_l_full_rank,&
       rocblas_set_vector_async_i4_rank_0,rocblas_set_vector_async_i4_full_rank,&
       rocblas_set_vector_async_i8_rank_0,rocblas_set_vector_async_i8_full_rank,&
@@ -38068,6 +38036,12 @@ module hipfort_rocblas
       rocblas_set_vector_async_r8_rank_0,rocblas_set_vector_async_r8_full_rank,&
       rocblas_set_vector_async_c4_rank_0,rocblas_set_vector_async_c4_full_rank,&
       rocblas_set_vector_async_c8_rank_0,rocblas_set_vector_async_c8_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_set_vector_async_l_assumed_rank,rocblas_set_vector_async_i4_assumed_rank,&
+      rocblas_set_vector_async_i8_assumed_rank,rocblas_set_vector_async_r4_assumed_rank,&
+      rocblas_set_vector_async_r8_assumed_rank,rocblas_set_vector_async_c4_assumed_rank,&
+      rocblas_set_vector_async_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -38088,13 +38062,7 @@ module hipfort_rocblas
       type(c_ptr),value :: stream
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_get_vector_async_l_assumed_rank,rocblas_get_vector_async_i4_assumed_rank,&
-      rocblas_get_vector_async_i8_assumed_rank,rocblas_get_vector_async_r4_assumed_rank,&
-      rocblas_get_vector_async_r8_assumed_rank,rocblas_get_vector_async_c4_assumed_rank,&
-      rocblas_get_vector_async_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure rocblas_get_vector_async_l_rank_0,rocblas_get_vector_async_l_full_rank,&
       rocblas_get_vector_async_i4_rank_0,rocblas_get_vector_async_i4_full_rank,&
       rocblas_get_vector_async_i8_rank_0,rocblas_get_vector_async_i8_full_rank,&
@@ -38102,6 +38070,12 @@ module hipfort_rocblas
       rocblas_get_vector_async_r8_rank_0,rocblas_get_vector_async_r8_full_rank,&
       rocblas_get_vector_async_c4_rank_0,rocblas_get_vector_async_c4_full_rank,&
       rocblas_get_vector_async_c8_rank_0,rocblas_get_vector_async_c8_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_get_vector_async_l_assumed_rank,rocblas_get_vector_async_i4_assumed_rank,&
+      rocblas_get_vector_async_i8_assumed_rank,rocblas_get_vector_async_r4_assumed_rank,&
+      rocblas_get_vector_async_r8_assumed_rank,rocblas_get_vector_async_c4_assumed_rank,&
+      rocblas_get_vector_async_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -38123,13 +38097,7 @@ module hipfort_rocblas
       type(c_ptr),value :: stream
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_set_matrix_async_l_assumed_rank,rocblas_set_matrix_async_i4_assumed_rank,&
-      rocblas_set_matrix_async_i8_assumed_rank,rocblas_set_matrix_async_r4_assumed_rank,&
-      rocblas_set_matrix_async_r8_assumed_rank,rocblas_set_matrix_async_c4_assumed_rank,&
-      rocblas_set_matrix_async_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure rocblas_set_matrix_async_l_full_rank,rocblas_set_matrix_async_l_rank_0,rocblas_set_matrix_async_l_rank_1,&
       rocblas_set_matrix_async_i4_full_rank,rocblas_set_matrix_async_i4_rank_0,rocblas_set_matrix_async_i4_rank_1,&
       rocblas_set_matrix_async_i8_full_rank,rocblas_set_matrix_async_i8_rank_0,rocblas_set_matrix_async_i8_rank_1,&
@@ -38137,6 +38105,12 @@ module hipfort_rocblas
       rocblas_set_matrix_async_r8_full_rank,rocblas_set_matrix_async_r8_rank_0,rocblas_set_matrix_async_r8_rank_1,&
       rocblas_set_matrix_async_c4_full_rank,rocblas_set_matrix_async_c4_rank_0,rocblas_set_matrix_async_c4_rank_1,&
       rocblas_set_matrix_async_c8_full_rank,rocblas_set_matrix_async_c8_rank_0,rocblas_set_matrix_async_c8_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_set_matrix_async_l_assumed_rank,rocblas_set_matrix_async_i4_assumed_rank,&
+      rocblas_set_matrix_async_i8_assumed_rank,rocblas_set_matrix_async_r4_assumed_rank,&
+      rocblas_set_matrix_async_r8_assumed_rank,rocblas_set_matrix_async_c4_assumed_rank,&
+      rocblas_set_matrix_async_c8_assumed_rank
 #endif
 #endif
   end interface
@@ -38158,13 +38132,7 @@ module hipfort_rocblas
       type(c_ptr),value :: stream
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocblas_get_matrix_async_l_assumed_rank,rocblas_get_matrix_async_i4_assumed_rank,&
-      rocblas_get_matrix_async_i8_assumed_rank,rocblas_get_matrix_async_r4_assumed_rank,&
-      rocblas_get_matrix_async_r8_assumed_rank,rocblas_get_matrix_async_c4_assumed_rank,&
-      rocblas_get_matrix_async_c8_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure rocblas_get_matrix_async_l_full_rank,rocblas_get_matrix_async_l_rank_0,rocblas_get_matrix_async_l_rank_1,&
       rocblas_get_matrix_async_i4_full_rank,rocblas_get_matrix_async_i4_rank_0,rocblas_get_matrix_async_i4_rank_1,&
       rocblas_get_matrix_async_i8_full_rank,rocblas_get_matrix_async_i8_rank_0,rocblas_get_matrix_async_i8_rank_1,&
@@ -38172,15 +38140,21 @@ module hipfort_rocblas
       rocblas_get_matrix_async_r8_full_rank,rocblas_get_matrix_async_r8_rank_0,rocblas_get_matrix_async_r8_rank_1,&
       rocblas_get_matrix_async_c4_full_rank,rocblas_get_matrix_async_c4_rank_0,rocblas_get_matrix_async_c4_rank_1,&
       rocblas_get_matrix_async_c8_full_rank,rocblas_get_matrix_async_c8_rank_0,rocblas_get_matrix_async_c8_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocblas_get_matrix_async_l_assumed_rank,rocblas_get_matrix_async_i4_assumed_rank,&
+      rocblas_get_matrix_async_i8_assumed_rank,rocblas_get_matrix_async_r4_assumed_rank,&
+      rocblas_get_matrix_async_r8_assumed_rank,rocblas_get_matrix_async_c4_assumed_rank,&
+      rocblas_get_matrix_async_c8_assumed_rank
 #endif
 #endif
   end interface
 
 
-#ifdef USE_FPOINTER_INTERFACES
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
 
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38225,7 +38199,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38270,7 +38244,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38315,7 +38289,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38360,7 +38334,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38405,7 +38379,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zdscal_assumed_rank(handle,n,alpha,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38450,7 +38424,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sscal_strided_batched_assumed_rank(handle,n,alpha,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38504,7 +38478,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dscal_strided_batched_assumed_rank(handle,n,alpha,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38558,7 +38532,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cscal_strided_batched_assumed_rank(handle,n,alpha,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38612,7 +38586,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zscal_strided_batched_assumed_rank(handle,n,alpha,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38666,7 +38640,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csscal_strided_batched_assumed_rank(handle,n,alpha,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38720,7 +38694,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zdscal_strided_batched_assumed_rank(handle,n,alpha,x,incx,stride_x,batch_count)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38774,7 +38748,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_scopy_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38822,7 +38796,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dcopy_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38870,7 +38844,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ccopy_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38918,7 +38892,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zcopy_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -38966,7 +38940,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_scopy_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count)
       use iso_c_binding
@@ -39029,7 +39003,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dcopy_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count)
       use iso_c_binding
@@ -39092,7 +39066,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ccopy_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count)
       use iso_c_binding
@@ -39155,7 +39129,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zcopy_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count)
       use iso_c_binding
@@ -39218,7 +39192,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sdot_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -39269,7 +39243,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ddot_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -39320,7 +39294,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cdotu_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -39371,7 +39345,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zdotu_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -39422,7 +39396,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cdotc_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -39473,7 +39447,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zdotc_assumed_rank(handle,n,x,incx,y,incy,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -39524,7 +39498,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sdot_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count,myResult)
       use iso_c_binding
@@ -39590,7 +39564,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ddot_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count,myResult)
       use iso_c_binding
@@ -39656,7 +39630,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cdotu_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count,myResult)
       use iso_c_binding
@@ -39722,7 +39696,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zdotu_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count,myResult)
       use iso_c_binding
@@ -39788,7 +39762,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cdotc_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count,myResult)
       use iso_c_binding
@@ -39854,7 +39828,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zdotc_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count,myResult)
       use iso_c_binding
@@ -39920,7 +39894,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cswap_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -39968,7 +39942,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zswap_assumed_rank(handle,n,x,incx,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -40016,7 +39990,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sswap_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count)
       use iso_c_binding
@@ -40079,7 +40053,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dswap_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count)
       use iso_c_binding
@@ -40142,7 +40116,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cswap_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count)
       use iso_c_binding
@@ -40205,7 +40179,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zswap_strided_batched_assumed_rank(handle,n,x,incx,stridex,y,incy,stridey, &
         batch_count)
       use iso_c_binding
@@ -40268,7 +40242,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_saxpy_assumed_rank(handle,n,alpha,x,incx,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -40319,7 +40293,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_daxpy_assumed_rank(handle,n,alpha,x,incx,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -40370,7 +40344,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_caxpy_assumed_rank(handle,n,alpha,x,incx,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -40421,7 +40395,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zaxpy_assumed_rank(handle,n,alpha,x,incx,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -40472,7 +40446,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_saxpy_strided_batched_assumed_rank(handle,n,alpha,x,incx,stridex,y,incy, &
         stridey,batch_count)
       use iso_c_binding
@@ -40538,7 +40512,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_daxpy_strided_batched_assumed_rank(handle,n,alpha,x,incx,stridex,y,incy, &
         stridey,batch_count)
       use iso_c_binding
@@ -40604,7 +40578,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_caxpy_strided_batched_assumed_rank(handle,n,alpha,x,incx,stridex,y,incy, &
         stridey,batch_count)
       use iso_c_binding
@@ -40670,7 +40644,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zaxpy_strided_batched_assumed_rank(handle,n,alpha,x,incx,stridex,y,incy, &
         stridey,batch_count)
       use iso_c_binding
@@ -40736,7 +40710,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_scasum_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -40781,7 +40755,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dzasum_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -40826,7 +40800,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sasum_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count,results)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -40880,7 +40854,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dasum_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count,results)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -40934,7 +40908,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_scasum_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count, &
         results)
       use iso_c_binding
@@ -40989,7 +40963,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dzasum_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count, &
         results)
       use iso_c_binding
@@ -41044,7 +41018,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_scnrm2_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -41089,7 +41063,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dznrm2_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -41134,7 +41108,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_snrm2_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count,results)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -41188,7 +41162,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dnrm2_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count,results)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -41242,7 +41216,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_scnrm2_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count, &
         results)
       use iso_c_binding
@@ -41297,7 +41271,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dznrm2_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count, &
         results)
       use iso_c_binding
@@ -41352,7 +41326,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_icamax_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -41397,7 +41371,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_izamax_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -41442,7 +41416,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_isamax_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count, &
         myResult)
       use iso_c_binding
@@ -41497,7 +41471,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_idamax_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count, &
         myResult)
       use iso_c_binding
@@ -41552,7 +41526,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_icamax_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count, &
         myResult)
       use iso_c_binding
@@ -41607,7 +41581,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_izamax_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count, &
         myResult)
       use iso_c_binding
@@ -41662,7 +41636,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_icamin_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -41707,7 +41681,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_izamin_assumed_rank(handle,n,x,incx,myResult)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -41752,7 +41726,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_isamin_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count, &
         myResult)
       use iso_c_binding
@@ -41807,7 +41781,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_idamin_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count, &
         myResult)
       use iso_c_binding
@@ -41862,7 +41836,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_icamin_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count, &
         myResult)
       use iso_c_binding
@@ -41917,7 +41891,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_izamin_strided_batched_assumed_rank(handle,n,x,incx,stridex,batch_count, &
         myResult)
       use iso_c_binding
@@ -41972,7 +41946,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_srot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -42026,7 +42000,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_drot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -42080,7 +42054,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_crot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -42134,7 +42108,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csrot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -42188,7 +42162,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zrot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -42242,7 +42216,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zdrot_assumed_rank(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -42296,7 +42270,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_srot_strided_batched_assumed_rank(handle,n,x,incx,stride_x,y,incy,stride_y,c, &
         s,batch_count)
       use iso_c_binding
@@ -42365,7 +42339,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_drot_strided_batched_assumed_rank(handle,n,x,incx,stride_x,y,incy,stride_y,c, &
         s,batch_count)
       use iso_c_binding
@@ -42434,7 +42408,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_crot_strided_batched_assumed_rank(handle,n,x,incx,stride_x,y,incy,stride_y,c, &
         s,batch_count)
       use iso_c_binding
@@ -42503,7 +42477,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csrot_strided_batched_assumed_rank(handle,n,x,incx,stride_x,y,incy,stride_y, &
         c,s,batch_count)
       use iso_c_binding
@@ -42572,7 +42546,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zrot_strided_batched_assumed_rank(handle,n,x,incx,stride_x,y,incy,stride_y,c, &
         s,batch_count)
       use iso_c_binding
@@ -42641,7 +42615,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zdrot_strided_batched_assumed_rank(handle,n,x,incx,stride_x,y,incy,stride_y, &
         c,s,batch_count)
       use iso_c_binding
@@ -42710,7 +42684,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_srotm_assumed_rank(handle,n,x,incx,y,incy,param)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -42761,7 +42735,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_drotm_assumed_rank(handle,n,x,incx,y,incy,param)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -42812,7 +42786,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_srotm_strided_batched_assumed_rank(handle,n,x,incx,stride_x,y,incy,stride_y, &
         param,stride_param,batch_count)
       use iso_c_binding
@@ -42881,7 +42855,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_drotm_strided_batched_assumed_rank(handle,n,x,incx,stride_x,y,incy,stride_y, &
         param,stride_param,batch_count)
       use iso_c_binding
@@ -42950,7 +42924,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sgbmv_assumed_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -43049,7 +43023,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dgbmv_assumed_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -43148,7 +43122,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cgbmv_assumed_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -43247,7 +43221,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zgbmv_assumed_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -43346,7 +43320,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sgbmv_strided_batched_assumed_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
         stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
@@ -43469,7 +43443,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dgbmv_strided_batched_assumed_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
         stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
@@ -43592,7 +43566,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cgbmv_strided_batched_assumed_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
         stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
@@ -43715,7 +43689,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zgbmv_strided_batched_assumed_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
         stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
@@ -43838,7 +43812,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sgemv_assumed_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -43929,7 +43903,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dgemv_assumed_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -44020,7 +43994,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cgemv_assumed_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -44111,7 +44085,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zgemv_assumed_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -44202,7 +44176,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sgemv_strided_batched_assumed_rank(handle,transA,m,n,alpha,A,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
@@ -44313,7 +44287,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dgemv_strided_batched_assumed_rank(handle,transA,m,n,alpha,A,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
@@ -44424,7 +44398,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cgemv_strided_batched_assumed_rank(handle,transA,m,n,alpha,A,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
@@ -44535,7 +44509,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zgemv_strided_batched_assumed_rank(handle,transA,m,n,alpha,A,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
@@ -44646,7 +44620,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_chbmv_assumed_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -44737,7 +44711,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zhbmv_assumed_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -44828,7 +44802,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_chbmv_strided_batched_assumed_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x, &
         incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
@@ -44939,7 +44913,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zhbmv_strided_batched_assumed_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x, &
         incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
@@ -45050,7 +45024,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_chemv_assumed_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -45137,7 +45111,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zhemv_assumed_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -45224,7 +45198,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_chemv_strided_batched_assumed_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx, &
         stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
@@ -45331,7 +45305,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zhemv_strided_batched_assumed_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx, &
         stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
@@ -45438,7 +45412,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cher_assumed_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -45509,7 +45483,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zher_assumed_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -45580,7 +45554,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cher_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda, &
         stride_A,batch_count)
       use iso_c_binding
@@ -45671,7 +45645,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zher_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda, &
         stride_A,batch_count)
       use iso_c_binding
@@ -45762,7 +45736,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cher2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -45845,7 +45819,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zher2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -45928,7 +45902,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cher2_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,y, &
         incy,stride_y,A,lda,stride_A,batch_count)
       use iso_c_binding
@@ -46031,7 +46005,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zher2_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,y, &
         incy,stride_y,A,lda,stride_A,batch_count)
       use iso_c_binding
@@ -46134,7 +46108,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_chpmv_assumed_rank(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -46197,7 +46171,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zhpmv_assumed_rank(handle,uplo,n,alpha,AP,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -46260,7 +46234,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_chpmv_strided_batched_assumed_rank(handle,uplo,n,alpha,AP,stride_A,x,incx, &
         stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
@@ -46338,7 +46312,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zhpmv_strided_batched_assumed_rank(handle,uplo,n,alpha,AP,stride_A,x,incx, &
         stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
@@ -46416,7 +46390,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_chpr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -46467,7 +46441,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zhpr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -46518,7 +46492,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_chpr_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,AP, &
         stride_A,batch_count)
       use iso_c_binding
@@ -46584,7 +46558,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zhpr_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,AP, &
         stride_A,batch_count)
       use iso_c_binding
@@ -46650,7 +46624,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_chpr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -46710,7 +46684,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zhpr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -46770,7 +46744,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_chpr2_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,y, &
         incy,stride_y,AP,stride_A,batch_count)
       use iso_c_binding
@@ -46845,7 +46819,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zhpr2_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,y, &
         incy,stride_y,AP,stride_A,batch_count)
       use iso_c_binding
@@ -46920,7 +46894,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_strmv_assumed_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -46996,7 +46970,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtrmv_assumed_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -47072,7 +47046,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctrmv_assumed_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -47148,7 +47122,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztrmv_assumed_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -47224,7 +47198,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_strmv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -47319,7 +47293,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtrmv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -47414,7 +47388,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctrmv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -47509,7 +47483,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztrmv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -47604,7 +47578,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_stpmv_assumed_rank(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -47658,7 +47632,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtpmv_assumed_rank(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -47712,7 +47686,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctpmv_assumed_rank(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -47766,7 +47740,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztpmv_assumed_rank(handle,uplo,transA,diag,n,A,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -47820,7 +47794,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_stpmv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,A,stride_A,x, &
         incx,stride_x,batch_count)
       use iso_c_binding
@@ -47889,7 +47863,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtpmv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,A,stride_A,x, &
         incx,stride_x,batch_count)
       use iso_c_binding
@@ -47958,7 +47932,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctpmv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,A,stride_A,x, &
         incx,stride_x,batch_count)
       use iso_c_binding
@@ -48027,7 +48001,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztpmv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,A,stride_A,x, &
         incx,stride_x,batch_count)
       use iso_c_binding
@@ -48096,7 +48070,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_stbmv_assumed_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -48177,7 +48151,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtbmv_assumed_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -48258,7 +48232,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctbmv_assumed_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -48339,7 +48313,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztbmv_assumed_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -48420,7 +48394,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_stbmv_strided_batched_assumed_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -48519,7 +48493,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtbmv_strided_batched_assumed_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -48618,7 +48592,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctbmv_strided_batched_assumed_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -48717,7 +48691,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztbmv_strided_batched_assumed_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -48816,7 +48790,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_stbsv_assumed_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -48897,7 +48871,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtbsv_assumed_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -48978,7 +48952,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctbsv_assumed_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -49059,7 +49033,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztbsv_assumed_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -49140,7 +49114,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_stbsv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,k,A,lda, &
         stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -49239,7 +49213,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtbsv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,k,A,lda, &
         stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -49338,7 +49312,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctbsv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,k,A,lda, &
         stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -49437,7 +49411,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztbsv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,k,A,lda, &
         stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -49536,7 +49510,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_strsv_assumed_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -49612,7 +49586,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtrsv_assumed_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -49688,7 +49662,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctrsv_assumed_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -49764,7 +49738,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztrsv_assumed_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -49840,7 +49814,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_strsv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -49935,7 +49909,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtrsv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -50030,7 +50004,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctrsv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -50125,7 +50099,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztrsv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
@@ -50220,7 +50194,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_stpsv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -50274,7 +50248,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtpsv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -50328,7 +50302,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctpsv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -50382,7 +50356,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztpsv_assumed_rank(handle,uplo,transA,diag,n,AP,x,incx)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -50436,7 +50410,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_stpsv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,AP,stride_A,x, &
         incx,stride_x,batch_count)
       use iso_c_binding
@@ -50505,7 +50479,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtpsv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,AP,stride_A,x, &
         incx,stride_x,batch_count)
       use iso_c_binding
@@ -50574,7 +50548,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctpsv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,AP,stride_A,x, &
         incx,stride_x,batch_count)
       use iso_c_binding
@@ -50643,7 +50617,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztpsv_strided_batched_assumed_rank(handle,uplo,transA,diag,n,AP,stride_A,x, &
         incx,stride_x,batch_count)
       use iso_c_binding
@@ -50712,7 +50686,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssymv_assumed_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -50799,7 +50773,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsymv_assumed_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -50886,7 +50860,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csymv_assumed_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -50973,7 +50947,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsymv_assumed_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -51060,7 +51034,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssymv_strided_batched_assumed_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
@@ -51167,7 +51141,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsymv_strided_batched_assumed_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
@@ -51274,7 +51248,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csymv_strided_batched_assumed_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
@@ -51381,7 +51355,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsymv_strided_batched_assumed_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
@@ -51488,7 +51462,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sspmv_assumed_rank(handle,uplo,n,alpha,A,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -51551,7 +51525,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dspmv_assumed_rank(handle,uplo,n,alpha,A,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -51614,7 +51588,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sspmv_strided_batched_assumed_rank(handle,uplo,n,alpha,A,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
@@ -51692,7 +51666,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dspmv_strided_batched_assumed_rank(handle,uplo,n,alpha,A,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
@@ -51770,7 +51744,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssbmv_assumed_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -51861,7 +51835,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsbmv_assumed_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -51952,7 +51926,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssbmv_strided_batched_assumed_rank(handle,uplo,n,k,alpha,A,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
@@ -52063,7 +52037,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsbmv_strided_batched_assumed_rank(handle,uplo,n,k,alpha,A,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
@@ -52174,7 +52148,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sger_assumed_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -52255,7 +52229,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dger_assumed_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -52336,7 +52310,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cgeru_assumed_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -52419,7 +52393,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zgeru_assumed_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -52502,7 +52476,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cgerc_assumed_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -52585,7 +52559,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zgerc_assumed_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -52668,7 +52642,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sger_strided_batched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
@@ -52771,7 +52745,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dger_strided_batched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
@@ -52874,7 +52848,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cgeru_strided_batched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
@@ -52977,7 +52951,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zgeru_strided_batched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
@@ -53080,7 +53054,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cgerc_strided_batched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
@@ -53183,7 +53157,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zgerc_strided_batched_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
@@ -53286,7 +53260,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sspr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -53337,7 +53311,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dspr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -53388,7 +53362,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cspr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -53439,7 +53413,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zspr_assumed_rank(handle,uplo,n,alpha,x,incx,AP)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -53490,7 +53464,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sspr_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,AP, &
         stride_A,batch_count)
       use iso_c_binding
@@ -53556,7 +53530,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dspr_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,AP, &
         stride_A,batch_count)
       use iso_c_binding
@@ -53622,7 +53596,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cspr_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,AP, &
         stride_A,batch_count)
       use iso_c_binding
@@ -53688,7 +53662,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zspr_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,AP, &
         stride_A,batch_count)
       use iso_c_binding
@@ -53754,7 +53728,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sspr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -53814,7 +53788,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dspr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -53874,7 +53848,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sspr2_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,y, &
         incy,stride_y,AP,stride_A,batch_count)
       use iso_c_binding
@@ -53949,7 +53923,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dspr2_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,y, &
         incy,stride_y,AP,stride_A,batch_count)
       use iso_c_binding
@@ -54024,7 +53998,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssyr_assumed_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -54095,7 +54069,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsyr_assumed_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -54166,7 +54140,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csyr_assumed_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -54237,7 +54211,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsyr_assumed_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -54308,7 +54282,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssyr_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
         strideA,batch_count)
       use iso_c_binding
@@ -54399,7 +54373,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsyr_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
         strideA,batch_count)
       use iso_c_binding
@@ -54490,7 +54464,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csyr_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
         strideA,batch_count)
       use iso_c_binding
@@ -54581,7 +54555,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsyr_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
         strideA,batch_count)
       use iso_c_binding
@@ -54672,7 +54646,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssyr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -54755,7 +54729,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsyr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -54838,7 +54812,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csyr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -54921,7 +54895,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsyr2_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -55004,7 +54978,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssyr2_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
@@ -55107,7 +55081,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsyr2_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
@@ -55210,7 +55184,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csyr2_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
@@ -55313,7 +55287,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsyr2_strided_batched_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
@@ -55416,7 +55390,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_chemm_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -55511,7 +55485,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zhemm_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -55606,7 +55580,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_chemm_strided_batched_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
         B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -55722,7 +55696,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zhemm_strided_batched_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
         B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -55838,7 +55812,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cherk_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -55925,7 +55899,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zherk_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -56012,7 +55986,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cherk_strided_batched_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda, &
         stride_A,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -56115,7 +56089,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zherk_strided_batched_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda, &
         stride_A,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -56218,7 +56192,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cher2k_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -56313,7 +56287,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zher2k_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -56408,7 +56382,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cher2k_strided_batched_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -56525,7 +56499,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zher2k_strided_batched_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -56642,7 +56616,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cherkx_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -56737,7 +56711,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zherkx_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -56832,7 +56806,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cherkx_strided_batched_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -56949,7 +56923,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zherkx_strided_batched_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -57066,7 +57040,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssymm_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -57161,7 +57135,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsymm_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -57256,7 +57230,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csymm_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -57351,7 +57325,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsymm_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -57446,7 +57420,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssymm_strided_batched_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
         B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -57562,7 +57536,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsymm_strided_batched_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
         B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -57678,7 +57652,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csymm_strided_batched_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
         B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -57794,7 +57768,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsymm_strided_batched_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
         B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -57910,7 +57884,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssyrk_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -57997,7 +57971,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsyrk_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -58084,7 +58058,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csyrk_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -58171,7 +58145,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsyrk_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -58258,7 +58232,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssyrk_strided_batched_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda, &
         stride_A,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -58361,7 +58335,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsyrk_strided_batched_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda, &
         stride_A,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -58464,7 +58438,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csyrk_strided_batched_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda, &
         stride_A,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -58567,7 +58541,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsyrk_strided_batched_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda, &
         stride_A,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -58670,7 +58644,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssyr2k_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -58765,7 +58739,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsyr2k_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -58860,7 +58834,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csyr2k_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -58955,7 +58929,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsyr2k_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -59050,7 +59024,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssyr2k_strided_batched_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -59167,7 +59141,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsyr2k_strided_batched_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -59284,7 +59258,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csyr2k_strided_batched_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -59401,7 +59375,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsyr2k_strided_batched_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -59518,7 +59492,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssyrkx_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -59613,7 +59587,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsyrkx_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -59708,7 +59682,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csyrkx_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -59803,7 +59777,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsyrkx_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -59898,7 +59872,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ssyrkx_strided_batched_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -60015,7 +59989,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dsyrkx_strided_batched_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -60132,7 +60106,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_csyrkx_strided_batched_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -60249,7 +60223,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zsyrkx_strided_batched_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -60366,7 +60340,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_strmm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -60465,7 +60439,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtrmm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -60564,7 +60538,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctrmm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -60663,7 +60637,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztrmm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -60762,7 +60736,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_strtri_assumed_rank(handle,uplo,diag,n,A,lda,invA,ldinvA)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -60834,7 +60808,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtrtri_assumed_rank(handle,uplo,diag,n,A,lda,invA,ldinvA)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -60906,7 +60880,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctrtri_assumed_rank(handle,uplo,diag,n,A,lda,invA,ldinvA)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -60978,7 +60952,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztrtri_assumed_rank(handle,uplo,diag,n,A,lda,invA,ldinvA)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -61050,7 +61024,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_strtri_strided_batched_assumed_rank(handle,uplo,diag,n,A,lda,stride_a,invA, &
         ldinvA,stride_invA,batch_count)
       use iso_c_binding
@@ -61141,7 +61115,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtrtri_strided_batched_assumed_rank(handle,uplo,diag,n,A,lda,stride_a,invA, &
         ldinvA,stride_invA,batch_count)
       use iso_c_binding
@@ -61232,7 +61206,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctrtri_strided_batched_assumed_rank(handle,uplo,diag,n,A,lda,stride_a,invA, &
         ldinvA,stride_invA,batch_count)
       use iso_c_binding
@@ -61323,7 +61297,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztrtri_strided_batched_assumed_rank(handle,uplo,diag,n,A,lda,stride_a,invA, &
         ldinvA,stride_invA,batch_count)
       use iso_c_binding
@@ -61414,7 +61388,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_strsm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -61505,7 +61479,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtrsm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -61596,7 +61570,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctrsm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -61687,7 +61661,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztrsm_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -61778,7 +61752,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_strsm_strided_batched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A, &
         lda,stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
@@ -61885,7 +61859,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dtrsm_strided_batched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A, &
         lda,stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
@@ -61992,7 +61966,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ctrsm_strided_batched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A, &
         lda,stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
@@ -62099,7 +62073,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ztrsm_strided_batched_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A, &
         lda,stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
@@ -62206,7 +62180,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sgemm_assumed_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -62305,7 +62279,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dgemm_assumed_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -62404,7 +62378,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cgemm_assumed_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -62503,7 +62477,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zgemm_assumed_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -62602,7 +62576,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sgemm_strided_batched_assumed_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
         stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
@@ -62725,7 +62699,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dgemm_strided_batched_assumed_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
         stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
@@ -62848,7 +62822,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cgemm_strided_batched_assumed_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
         stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
@@ -62971,7 +62945,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zgemm_strided_batched_assumed_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
         stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
@@ -63094,7 +63068,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sdgmm_assumed_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -63175,7 +63149,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ddgmm_assumed_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -63256,7 +63230,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cdgmm_assumed_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -63337,7 +63311,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zdgmm_assumed_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -63418,7 +63392,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sdgmm_strided_batched_assumed_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
         stride_x,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -63521,7 +63495,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_ddgmm_strided_batched_assumed_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
         stride_x,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -63624,7 +63598,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cdgmm_strided_batched_assumed_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
         stride_x,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -63727,7 +63701,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zdgmm_strided_batched_assumed_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
         stride_x,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -63830,7 +63804,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sgeam_assumed_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -63925,7 +63899,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dgeam_assumed_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -64020,7 +63994,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cgeam_assumed_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -64115,7 +64089,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zgeam_assumed_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -64210,7 +64184,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_sgeam_strided_batched_assumed_rank(handle,transA,transB,m,n,alpha,A,lda, &
         stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -64329,7 +64303,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_dgeam_strided_batched_assumed_rank(handle,transA,transB,m,n,alpha,A,lda, &
         stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -64448,7 +64422,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_cgeam_strided_batched_assumed_rank(handle,transA,transB,m,n,alpha,A,lda, &
         stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -64567,7 +64541,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocblas_zgeam_strided_batched_assumed_rank(handle,transA,transB,m,n,alpha,A,lda, &
         stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
@@ -64686,848 +64660,7 @@ module hipfort_rocblas
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    function rocblas_set_vector_l_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_set_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_set_vector_i4_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_set_vector_i8_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      integer(c_long),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_long),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_set_vector_r4_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_set_vector_r8_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_set_vector_c4_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_set_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_set_vector_c8_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_set_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_get_vector_l_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_get_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_get_vector_i4_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_get_vector_i8_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      integer(c_long),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_long),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_get_vector_r4_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_get_vector_r8_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_get_vector_c4_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_get_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_get_vector_c8_assumed_rank(n,x,incx,y,incy) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      !
-      ret = rocblas_get_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
-    end function
-
-    function rocblas_set_matrix_l_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_set_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_set_matrix_i4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_set_matrix_i8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_long),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_long),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_set_matrix_r4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_set_matrix_r8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_set_matrix_c4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_set_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_set_matrix_c8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_set_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_get_matrix_l_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_get_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_get_matrix_i4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_get_matrix_i8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_long),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_long),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_get_matrix_r4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_get_matrix_r8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_get_matrix_c4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_get_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_get_matrix_c8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      !
-      ret = rocblas_get_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
-    end function
-
-    function rocblas_set_vector_async_l_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_vector_async_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_set_vector_async_i4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_set_vector_async_i8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      integer(c_long),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_long),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_set_vector_async_r4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_set_vector_async_r8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_set_vector_async_c4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_vector_async_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_set_vector_async_c8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_vector_async_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_get_vector_async_l_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_vector_async_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_get_vector_async_i4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_get_vector_async_i8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      integer(c_long),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      integer(c_long),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_get_vector_async_r4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_get_vector_async_r8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_get_vector_async_c4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_vector_async_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_get_vector_async_c8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
-      integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_vector_async_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
-    end function
-
-    function rocblas_set_matrix_async_l_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_matrix_async_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_set_matrix_async_i4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_set_matrix_async_i8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_long),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_long),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_set_matrix_async_r4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_set_matrix_async_r8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_set_matrix_async_c4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_matrix_async_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_set_matrix_async_c8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_set_matrix_async_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_get_matrix_async_l_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_matrix_async_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_get_matrix_async_i4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_get_matrix_async_i8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_long),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      integer(c_long),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_get_matrix_async_r4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_get_matrix_async_r8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_get_matrix_async_c4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_matrix_async_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-    function rocblas_get_matrix_async_c8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
-      integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-      !
-      ret = rocblas_get_matrix_async_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
-    end function
-
-#else
+#ifdef USE_ASSUMED_SHAPE
     function rocblas_set_vector_l_rank_0(n,x,incx,y,incy) result(ret)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -65590,9 +64723,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target :: x
+      integer(c_int64_t),target :: x
       integer(c_int),value :: incx
-      integer(c_long),target :: y
+      integer(c_int64_t),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -65604,9 +64737,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,dimension(:) :: x
+      integer(c_int64_t),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,dimension(:) :: y
+      integer(c_int64_t),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -65786,9 +64919,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target :: x
+      integer(c_int64_t),target :: x
       integer(c_int),value :: incx
-      integer(c_long),target :: y
+      integer(c_int64_t),target :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -65800,9 +64933,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,dimension(:) :: x
+      integer(c_int64_t),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,dimension(:) :: y
+      integer(c_int64_t),target,dimension(:) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -66013,8 +65146,8 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:,:) :: A
-      integer(c_long),target,dimension(:,:) :: B
+      integer(c_int64_t),target,dimension(:,:) :: A
+      integer(c_int64_t),target,dimension(:,:) :: B
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -66026,9 +65159,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target :: A
+      integer(c_int64_t),target :: A
       integer(c_int),value :: lda
-      integer(c_long),target :: B
+      integer(c_int64_t),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -66041,9 +65174,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:) :: A
+      integer(c_int64_t),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,dimension(:) :: B
+      integer(c_int64_t),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -66314,8 +65447,8 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:,:) :: A
-      integer(c_long),target,dimension(:,:) :: B
+      integer(c_int64_t),target,dimension(:,:) :: A
+      integer(c_int64_t),target,dimension(:,:) :: B
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1))
     end function
@@ -66327,9 +65460,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target :: A
+      integer(c_int64_t),target :: A
       integer(c_int),value :: lda
-      integer(c_long),target :: B
+      integer(c_int64_t),target :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -66342,9 +65475,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:) :: A
+      integer(c_int64_t),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,dimension(:) :: B
+      integer(c_int64_t),target,dimension(:) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -66588,9 +65721,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target :: x
+      integer(c_int64_t),target :: x
       integer(c_int),value :: incx
-      integer(c_long),target :: y
+      integer(c_int64_t),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -66603,9 +65736,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,dimension(:) :: x
+      integer(c_int64_t),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,dimension(:) :: y
+      integer(c_int64_t),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -66798,9 +65931,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target :: x
+      integer(c_int64_t),target :: x
       integer(c_int),value :: incx
-      integer(c_long),target :: y
+      integer(c_int64_t),target :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -66813,9 +65946,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_long),target,dimension(:) :: x
+      integer(c_int64_t),target,dimension(:) :: x
       integer(c_int),value :: incx
-      integer(c_long),target,dimension(:) :: y
+      integer(c_int64_t),target,dimension(:) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -67041,8 +66174,8 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:,:) :: A
-      integer(c_long),target,dimension(:,:) :: B
+      integer(c_int64_t),target,dimension(:,:) :: A
+      integer(c_int64_t),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -67055,9 +66188,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target :: A
+      integer(c_int64_t),target :: A
       integer(c_int),value :: lda
-      integer(c_long),target :: B
+      integer(c_int64_t),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -67071,9 +66204,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:) :: A
+      integer(c_int64_t),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,dimension(:) :: B
+      integer(c_int64_t),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -67363,8 +66496,8 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:,:) :: A
-      integer(c_long),target,dimension(:,:) :: B
+      integer(c_int64_t),target,dimension(:,:) :: A
+      integer(c_int64_t),target,dimension(:,:) :: B
       type(c_ptr),value :: stream
       !
       ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),size(A,1),c_loc(B),size(B,1),stream)
@@ -67377,9 +66510,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target :: A
+      integer(c_int64_t),target :: A
       integer(c_int),value :: lda
-      integer(c_long),target :: B
+      integer(c_int64_t),target :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -67393,9 +66526,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_long),target,dimension(:) :: A
+      integer(c_int64_t),target,dimension(:) :: A
       integer(c_int),value :: lda
-      integer(c_long),target,dimension(:) :: B
+      integer(c_int64_t),target,dimension(:) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -67586,6 +66719,849 @@ module hipfort_rocblas
       ret = rocblas_get_matrix_async_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
     end function
 
+#else
+#ifdef USE_ASSUMED_RANK
+    function rocblas_set_vector_l_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      logical(c_bool),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      logical(c_bool),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_set_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_set_vector_i4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_set_vector_i8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_set_vector_r4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_set_vector_r8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_set_vector_c4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_set_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_set_vector_c8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_set_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_get_vector_l_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      logical(c_bool),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      logical(c_bool),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_get_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_get_vector_i4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_get_vector_i8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_get_vector_r4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_get_vector_r8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_get_vector_c4_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_get_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_get_vector_c8_assumed_rank(n,x,incx,y,incy) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      !
+      ret = rocblas_get_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
+    end function
+
+    function rocblas_set_matrix_l_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical(c_bool),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      logical(c_bool),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_set_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_set_matrix_i4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_set_matrix_i8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_set_matrix_r4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_set_matrix_r8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_set_matrix_c4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_set_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_set_matrix_c8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_set_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_get_matrix_l_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical(c_bool),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      logical(c_bool),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_get_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_get_matrix_i4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_get_matrix_i8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_get_matrix_r4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_get_matrix_r8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_get_matrix_c4_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_get_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_get_matrix_c8_assumed_rank(rows,cols,A,lda,B,ldb) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      !
+      ret = rocblas_get_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_set_vector_async_l_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      logical(c_bool),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      logical(c_bool),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_vector_async_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_set_vector_async_i4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_set_vector_async_i8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_set_vector_async_r4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_set_vector_async_r8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_set_vector_async_c4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_vector_async_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_set_vector_async_c8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_vector_async_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_get_vector_async_l_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      logical(c_bool),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      logical(c_bool),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_vector_async_(n,1,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_get_vector_async_i4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_get_vector_async_i8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_get_vector_async_r4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_vector_async_(n,4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_get_vector_async_r8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_vector_async_(n,8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_get_vector_async_c4_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_vector_async_(n,2*4,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_get_vector_async_c8_assumed_rank(n,x,incx,y,incy,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int),value :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_vector_async_(n,2*8,c_loc(x),incx,c_loc(y),incy,stream)
+    end function
+
+    function rocblas_set_matrix_async_l_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical(c_bool),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      logical(c_bool),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_matrix_async_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_set_matrix_async_i4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_set_matrix_async_i8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_set_matrix_async_r4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_set_matrix_async_r8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_set_matrix_async_c4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_matrix_async_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_set_matrix_async_c8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_set_matrix_async_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_get_matrix_async_l_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      logical(c_bool),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      logical(c_bool),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_matrix_async_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_get_matrix_async_i4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_get_matrix_async_i8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_get_matrix_async_r4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_matrix_async_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_get_matrix_async_r8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_matrix_async_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_get_matrix_async_c4_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_matrix_async_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+    function rocblas_get_matrix_async_c8_assumed_rank(rows,cols,A,lda,B,ldb,stream) result(ret)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: ret
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int),value :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+      !
+      ret = rocblas_get_matrix_async_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb,stream)
+    end function
+
+#endif
 #endif
 #endif
 end module hipfort_rocblas

@@ -1,9 +1,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! ==============================================================================
-! hipfort: FORTRAN Interfaces for GPU kernels
-! ==============================================================================
-! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
-! [MITx11 License]
+! Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+!
+! SPDX-License-Identifier: MIT
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
@@ -17,11 +15,12 @@
 !
 ! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 ! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 ! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ! THE SOFTWARE.
+!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_rocsparse
@@ -4587,13 +4586,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsr2csr_rank_0,&
       rocsparse_sbsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -4621,13 +4620,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsr2csr_rank_0,&
       rocsparse_dbsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -4655,13 +4654,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsr2csr_rank_0,&
       rocsparse_cbsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -4689,13 +4688,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsr2csr_rank_0,&
       rocsparse_zbsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -4880,13 +4879,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_coo2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_coo2csr_rank_0,&
       rocsparse_coo2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_coo2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -4945,14 +4944,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scoo2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scoo2dense_rank_0,&
       rocsparse_scoo2dense_rank_1,&
       rocsparse_scoo2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scoo2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -4976,14 +4975,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcoo2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcoo2dense_rank_0,&
       rocsparse_dcoo2dense_rank_1,&
       rocsparse_dcoo2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcoo2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -5007,14 +5006,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccoo2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccoo2dense_rank_0,&
       rocsparse_ccoo2dense_rank_1,&
       rocsparse_ccoo2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccoo2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -5038,14 +5037,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcoo2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcoo2dense_rank_0,&
       rocsparse_zcoo2dense_rank_1,&
       rocsparse_zcoo2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcoo2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -5096,13 +5095,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_coosort_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_coosort_buffer_size_rank_0,&
       rocsparse_coosort_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_coosort_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -5172,13 +5171,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_coosort_by_row_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_coosort_by_row_rank_0,&
       rocsparse_coosort_by_row_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_coosort_by_row_assumed_rank
 #endif
 #endif
   end interface
@@ -5248,13 +5247,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_coosort_by_column_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_coosort_by_column_rank_0,&
       rocsparse_coosort_by_column_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_coosort_by_column_assumed_rank
 #endif
 #endif
   end interface
@@ -5313,14 +5312,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsc2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsc2dense_rank_0,&
       rocsparse_scsc2dense_rank_1,&
       rocsparse_scsc2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsc2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -5343,14 +5342,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsc2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsc2dense_rank_0,&
       rocsparse_dcsc2dense_rank_1,&
       rocsparse_dcsc2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsc2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -5373,14 +5372,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsc2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsc2dense_rank_0,&
       rocsparse_ccsc2dense_rank_1,&
       rocsparse_ccsc2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsc2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -5403,14 +5402,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsc2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsc2dense_rank_0,&
       rocsparse_zcsc2dense_rank_1,&
       rocsparse_zcsc2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsc2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -5460,13 +5459,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cscsort_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cscsort_buffer_size_rank_0,&
       rocsparse_cscsort_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cscsort_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -5539,13 +5538,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cscsort_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cscsort_rank_0,&
       rocsparse_cscsort_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cscsort_assumed_rank
 #endif
 #endif
   end interface
@@ -5620,13 +5619,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_nnz
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_csr2bsr_nnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_csr2bsr_nnz_rank_0,&
       rocsparse_csr2bsr_nnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_csr2bsr_nnz_assumed_rank
 #endif
 #endif
   end interface
@@ -5719,13 +5718,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsr2bsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsr2bsr_rank_0,&
       rocsparse_scsr2bsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsr2bsr_assumed_rank
 #endif
 #endif
   end interface
@@ -5753,13 +5752,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsr2bsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsr2bsr_rank_0,&
       rocsparse_dcsr2bsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsr2bsr_assumed_rank
 #endif
 #endif
   end interface
@@ -5787,13 +5786,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsr2bsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsr2bsr_rank_0,&
       rocsparse_ccsr2bsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsr2bsr_assumed_rank
 #endif
 #endif
   end interface
@@ -5821,13 +5820,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsr2bsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsr2bsr_rank_0,&
       rocsparse_zcsr2bsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsr2bsr_assumed_rank
 #endif
 #endif
   end interface
@@ -5883,13 +5882,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_csr2coo_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_csr2coo_rank_0,&
       rocsparse_csr2coo_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_csr2coo_assumed_rank
 #endif
 #endif
   end interface
@@ -5942,13 +5941,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_csr2csc_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_csr2csc_buffer_size_rank_0,&
       rocsparse_csr2csc_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_csr2csc_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -6098,13 +6097,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsr2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsr2csc_rank_0,&
       rocsparse_scsr2csc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsr2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -6132,13 +6131,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsr2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsr2csc_rank_0,&
       rocsparse_dcsr2csc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsr2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -6166,13 +6165,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsr2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsr2csc_rank_0,&
       rocsparse_ccsr2csc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsr2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -6200,13 +6199,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsr2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsr2csc_rank_0,&
       rocsparse_zcsr2csc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsr2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -6296,13 +6295,13 @@ module hipfort_rocsparse
       real(c_float),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsr2csr_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsr2csr_compress_rank_0,&
       rocsparse_scsr2csr_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsr2csr_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -6330,13 +6329,13 @@ module hipfort_rocsparse
       real(c_double),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsr2csr_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsr2csr_compress_rank_0,&
       rocsparse_dcsr2csr_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsr2csr_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -6364,13 +6363,13 @@ module hipfort_rocsparse
       complex(c_float_complex),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsr2csr_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsr2csr_compress_rank_0,&
       rocsparse_ccsr2csr_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsr2csr_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -6398,13 +6397,13 @@ module hipfort_rocsparse
       complex(c_double_complex),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsr2csr_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsr2csr_compress_rank_0,&
       rocsparse_zcsr2csr_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsr2csr_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -6463,14 +6462,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsr2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsr2dense_rank_0,&
       rocsparse_scsr2dense_rank_1,&
       rocsparse_scsr2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsr2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -6493,14 +6492,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsr2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsr2dense_rank_0,&
       rocsparse_dcsr2dense_rank_1,&
       rocsparse_dcsr2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsr2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -6523,14 +6522,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsr2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsr2dense_rank_0,&
       rocsparse_ccsr2dense_rank_1,&
       rocsparse_ccsr2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsr2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -6553,14 +6552,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ld
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsr2dense_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsr2dense_rank_0,&
       rocsparse_zcsr2dense_rank_1,&
       rocsparse_zcsr2dense_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsr2dense_assumed_rank
 #endif
 #endif
   end interface
@@ -6611,13 +6610,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_width
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_csr2ell_width_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_csr2ell_width_rank_0,&
       rocsparse_csr2ell_width_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_csr2ell_width_assumed_rank
 #endif
 #endif
   end interface
@@ -6686,13 +6685,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsr2ell_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsr2ell_rank_0,&
       rocsparse_scsr2ell_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsr2ell_assumed_rank
 #endif
 #endif
   end interface
@@ -6717,13 +6716,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsr2ell_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsr2ell_rank_0,&
       rocsparse_dcsr2ell_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsr2ell_assumed_rank
 #endif
 #endif
   end interface
@@ -6748,13 +6747,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsr2ell_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsr2ell_rank_0,&
       rocsparse_ccsr2ell_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsr2ell_assumed_rank
 #endif
 #endif
   end interface
@@ -6779,13 +6778,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsr2ell_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsr2ell_rank_0,&
       rocsparse_zcsr2ell_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsr2ell_assumed_rank
 #endif
 #endif
   end interface
@@ -6862,13 +6861,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsr2gebsr_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsr2gebsr_buffer_size_rank_0,&
       rocsparse_scsr2gebsr_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsr2gebsr_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -6894,13 +6893,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsr2gebsr_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsr2gebsr_buffer_size_rank_0,&
       rocsparse_dcsr2gebsr_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsr2gebsr_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -6926,13 +6925,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsr2gebsr_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsr2gebsr_buffer_size_rank_0,&
       rocsparse_ccsr2gebsr_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsr2gebsr_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -6958,13 +6957,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsr2gebsr_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsr2gebsr_buffer_size_rank_0,&
       rocsparse_zcsr2gebsr_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsr2gebsr_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -7047,13 +7046,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_csr2gebsr_nnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_csr2gebsr_nnz_rank_0,&
       rocsparse_csr2gebsr_nnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_csr2gebsr_nnz_assumed_rank
 #endif
 #endif
   end interface
@@ -7154,13 +7153,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsr2gebsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsr2gebsr_rank_0,&
       rocsparse_scsr2gebsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsr2gebsr_assumed_rank
 #endif
 #endif
   end interface
@@ -7190,13 +7189,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsr2gebsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsr2gebsr_rank_0,&
       rocsparse_dcsr2gebsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsr2gebsr_assumed_rank
 #endif
 #endif
   end interface
@@ -7226,13 +7225,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsr2gebsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsr2gebsr_rank_0,&
       rocsparse_ccsr2gebsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsr2gebsr_assumed_rank
 #endif
 #endif
   end interface
@@ -7262,13 +7261,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsr2gebsr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsr2gebsr_rank_0,&
       rocsparse_zcsr2gebsr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsr2gebsr_assumed_rank
 #endif
 #endif
   end interface
@@ -7340,13 +7339,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsr2hyb_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsr2hyb_rank_0,&
       rocsparse_scsr2hyb_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsr2hyb_assumed_rank
 #endif
 #endif
   end interface
@@ -7371,13 +7370,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsr2hyb_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsr2hyb_rank_0,&
       rocsparse_dcsr2hyb_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsr2hyb_assumed_rank
 #endif
 #endif
   end interface
@@ -7402,13 +7401,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsr2hyb_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsr2hyb_rank_0,&
       rocsparse_ccsr2hyb_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsr2hyb_assumed_rank
 #endif
 #endif
   end interface
@@ -7433,13 +7432,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsr2hyb_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsr2hyb_rank_0,&
       rocsparse_zcsr2hyb_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsr2hyb_assumed_rank
 #endif
 #endif
   end interface
@@ -7489,13 +7488,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_csrsort_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_csrsort_buffer_size_rank_0,&
       rocsparse_csrsort_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_csrsort_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -7569,13 +7568,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_csrsort_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_csrsort_rank_0,&
       rocsparse_csrsort_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_csrsort_assumed_rank
 #endif
 #endif
   end interface
@@ -7640,14 +7639,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sdense2coo_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sdense2coo_rank_0,&
       rocsparse_sdense2coo_rank_1,&
       rocsparse_sdense2coo_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sdense2coo_assumed_rank
 #endif
 #endif
   end interface
@@ -7672,14 +7671,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ddense2coo_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ddense2coo_rank_0,&
       rocsparse_ddense2coo_rank_1,&
       rocsparse_ddense2coo_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ddense2coo_assumed_rank
 #endif
 #endif
   end interface
@@ -7704,14 +7703,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cdense2coo_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cdense2coo_rank_0,&
       rocsparse_cdense2coo_rank_1,&
       rocsparse_cdense2coo_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cdense2coo_assumed_rank
 #endif
 #endif
   end interface
@@ -7736,14 +7735,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zdense2coo_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zdense2coo_rank_0,&
       rocsparse_zdense2coo_rank_1,&
       rocsparse_zdense2coo_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zdense2coo_assumed_rank
 #endif
 #endif
   end interface
@@ -7811,14 +7810,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_row_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sdense2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sdense2csc_rank_0,&
       rocsparse_sdense2csc_rank_1,&
       rocsparse_sdense2csc_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sdense2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -7843,14 +7842,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_row_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ddense2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ddense2csc_rank_0,&
       rocsparse_ddense2csc_rank_1,&
       rocsparse_ddense2csc_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ddense2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -7875,14 +7874,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_row_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cdense2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cdense2csc_rank_0,&
       rocsparse_cdense2csc_rank_1,&
       rocsparse_cdense2csc_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cdense2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -7907,14 +7906,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_row_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zdense2csc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zdense2csc_rank_0,&
       rocsparse_zdense2csc_rank_1,&
       rocsparse_zdense2csc_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zdense2csc_assumed_rank
 #endif
 #endif
   end interface
@@ -7979,14 +7978,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sdense2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sdense2csr_rank_0,&
       rocsparse_sdense2csr_rank_1,&
       rocsparse_sdense2csr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sdense2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -8011,14 +8010,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ddense2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ddense2csr_rank_0,&
       rocsparse_ddense2csr_rank_1,&
       rocsparse_ddense2csr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ddense2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -8043,14 +8042,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cdense2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cdense2csr_rank_0,&
       rocsparse_cdense2csr_rank_1,&
       rocsparse_cdense2csr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cdense2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -8075,14 +8074,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zdense2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zdense2csr_rank_0,&
       rocsparse_zdense2csr_rank_1,&
       rocsparse_zdense2csr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zdense2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -8148,13 +8147,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_nnz
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ell2csr_nnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ell2csr_nnz_rank_0,&
       rocsparse_ell2csr_nnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ell2csr_nnz_assumed_rank
 #endif
 #endif
   end interface
@@ -8225,13 +8224,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sell2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sell2csr_rank_0,&
       rocsparse_sell2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sell2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -8257,13 +8256,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dell2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dell2csr_rank_0,&
       rocsparse_dell2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dell2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -8289,13 +8288,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cell2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cell2csr_rank_0,&
       rocsparse_cell2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cell2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -8321,13 +8320,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zell2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zell2csr_rank_0,&
       rocsparse_zell2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zell2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -8415,13 +8414,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgebsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgebsr2csr_rank_0,&
       rocsparse_sgebsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgebsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -8450,13 +8449,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgebsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgebsr2csr_rank_0,&
       rocsparse_dgebsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgebsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -8485,13 +8484,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgebsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgebsr2csr_rank_0,&
       rocsparse_cgebsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgebsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -8520,13 +8519,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgebsr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgebsr2csr_rank_0,&
       rocsparse_zgebsr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgebsr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -8588,13 +8587,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: p_buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgebsr2gebsc_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgebsr2gebsc_buffer_size_rank_0,&
       rocsparse_sgebsr2gebsc_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgebsr2gebsc_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -8619,13 +8618,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: p_buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgebsr2gebsc_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgebsr2gebsc_buffer_size_rank_0,&
       rocsparse_dgebsr2gebsc_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgebsr2gebsc_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -8650,13 +8649,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: p_buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgebsr2gebsc_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgebsr2gebsc_buffer_size_rank_0,&
       rocsparse_cgebsr2gebsc_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgebsr2gebsc_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -8681,13 +8680,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: p_buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgebsr2gebsc_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgebsr2gebsc_buffer_size_rank_0,&
       rocsparse_zgebsr2gebsc_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgebsr2gebsc_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -8793,13 +8792,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgebsr2gebsc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgebsr2gebsc_rank_0,&
       rocsparse_sgebsr2gebsc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgebsr2gebsc_assumed_rank
 #endif
 #endif
   end interface
@@ -8830,13 +8829,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgebsr2gebsc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgebsr2gebsc_rank_0,&
       rocsparse_dgebsr2gebsc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgebsr2gebsc_assumed_rank
 #endif
 #endif
   end interface
@@ -8867,13 +8866,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgebsr2gebsc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgebsr2gebsc_rank_0,&
       rocsparse_cgebsr2gebsc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgebsr2gebsc_assumed_rank
 #endif
 #endif
   end interface
@@ -8904,13 +8903,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgebsr2gebsc_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgebsr2gebsc_rank_0,&
       rocsparse_zgebsr2gebsc_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgebsr2gebsc_assumed_rank
 #endif
 #endif
   end interface
@@ -9423,13 +9422,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_hyb2csr_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_hyb2csr_buffer_size_rank_0,&
       rocsparse_hyb2csr_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_hyb2csr_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -9496,13 +9495,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_shyb2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_shyb2csr_rank_0,&
       rocsparse_shyb2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_shyb2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -9523,13 +9522,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dhyb2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dhyb2csr_rank_0,&
       rocsparse_dhyb2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dhyb2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -9550,13 +9549,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_chyb2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_chyb2csr_rank_0,&
       rocsparse_chyb2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_chyb2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -9577,13 +9576,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zhyb2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zhyb2csr_rank_0,&
       rocsparse_zhyb2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zhyb2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -9632,13 +9631,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: p
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_create_identity_permutation_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_create_identity_permutation_rank_0,&
       rocsparse_create_identity_permutation_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_create_identity_permutation_assumed_rank
 #endif
 #endif
   end interface
@@ -9800,14 +9799,14 @@ module hipfort_rocsparse
       integer(c_int) :: nnz_total_dev_host_ptr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_snnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_snnz_rank_0,&
       rocsparse_snnz_rank_1,&
       rocsparse_snnz_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_snnz_assumed_rank
 #endif
 #endif
   end interface
@@ -9830,14 +9829,14 @@ module hipfort_rocsparse
       integer(c_int) :: nnz_total_dev_host_ptr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dnnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dnnz_rank_0,&
       rocsparse_dnnz_rank_1,&
       rocsparse_dnnz_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dnnz_assumed_rank
 #endif
 #endif
   end interface
@@ -9860,14 +9859,14 @@ module hipfort_rocsparse
       integer(c_int) :: nnz_total_dev_host_ptr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cnnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cnnz_rank_0,&
       rocsparse_cnnz_rank_1,&
       rocsparse_cnnz_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cnnz_assumed_rank
 #endif
 #endif
   end interface
@@ -9890,14 +9889,14 @@ module hipfort_rocsparse
       integer(c_int) :: nnz_total_dev_host_ptr
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_znnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_znnz_rank_0,&
       rocsparse_znnz_rank_1,&
       rocsparse_znnz_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_znnz_assumed_rank
 #endif
 #endif
   end interface
@@ -9964,13 +9963,13 @@ module hipfort_rocsparse
       real(c_float),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_snnz_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_snnz_compress_rank_0,&
       rocsparse_snnz_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_snnz_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -9993,13 +9992,13 @@ module hipfort_rocsparse
       real(c_double),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dnnz_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dnnz_compress_rank_0,&
       rocsparse_dnnz_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dnnz_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -10022,13 +10021,13 @@ module hipfort_rocsparse
       complex(c_float_complex),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cnnz_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cnnz_compress_rank_0,&
       rocsparse_cnnz_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cnnz_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -10051,13 +10050,13 @@ module hipfort_rocsparse
       complex(c_double_complex),value :: tol
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_znnz_compress_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_znnz_compress_rank_0,&
       rocsparse_znnz_compress_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_znnz_compress_assumed_rank
 #endif
 #endif
   end interface
@@ -10133,13 +10132,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sprune_csr2csr_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sprune_csr2csr_buffer_size_rank_0,&
       rocsparse_sprune_csr2csr_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sprune_csr2csr_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -10169,13 +10168,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dprune_csr2csr_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dprune_csr2csr_buffer_size_rank_0,&
       rocsparse_dprune_csr2csr_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dprune_csr2csr_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -10247,13 +10246,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sprune_csr2csr_nnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sprune_csr2csr_nnz_rank_0,&
       rocsparse_sprune_csr2csr_nnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sprune_csr2csr_nnz_assumed_rank
 #endif
 #endif
   end interface
@@ -10281,13 +10280,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dprune_csr2csr_nnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dprune_csr2csr_nnz_rank_0,&
       rocsparse_dprune_csr2csr_nnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dprune_csr2csr_nnz_assumed_rank
 #endif
 #endif
   end interface
@@ -10383,13 +10382,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sprune_csr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sprune_csr2csr_rank_0,&
       rocsparse_sprune_csr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sprune_csr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -10418,13 +10417,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dprune_csr2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dprune_csr2csr_rank_0,&
       rocsparse_dprune_csr2csr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dprune_csr2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -10506,13 +10505,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sprune_csr2csr_by_percentage_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sprune_csr2csr_by_percentage_buffer_size_rank_0,&
       rocsparse_sprune_csr2csr_by_percentage_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sprune_csr2csr_by_percentage_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -10543,13 +10542,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dprune_csr2csr_by_percentage_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dprune_csr2csr_by_percentage_buffer_size_rank_0,&
       rocsparse_dprune_csr2csr_by_percentage_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dprune_csr2csr_by_percentage_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -10628,13 +10627,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sprune_csr2csr_nnz_by_percentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sprune_csr2csr_nnz_by_percentage_rank_0,&
       rocsparse_sprune_csr2csr_nnz_by_percentage_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sprune_csr2csr_nnz_by_percentage_assumed_rank
 #endif
 #endif
   end interface
@@ -10664,13 +10663,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dprune_csr2csr_nnz_by_percentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dprune_csr2csr_nnz_by_percentage_rank_0,&
       rocsparse_dprune_csr2csr_nnz_by_percentage_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dprune_csr2csr_nnz_by_percentage_assumed_rank
 #endif
 #endif
   end interface
@@ -10789,13 +10788,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sprune_csr2csr_by_percentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sprune_csr2csr_by_percentage_rank_0,&
       rocsparse_sprune_csr2csr_by_percentage_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sprune_csr2csr_by_percentage_assumed_rank
 #endif
 #endif
   end interface
@@ -10826,13 +10825,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dprune_csr2csr_by_percentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dprune_csr2csr_by_percentage_rank_0,&
       rocsparse_dprune_csr2csr_by_percentage_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dprune_csr2csr_by_percentage_assumed_rank
 #endif
 #endif
   end interface
@@ -10896,14 +10895,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sprune_dense2csr_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sprune_dense2csr_buffer_size_rank_0,&
       rocsparse_sprune_dense2csr_buffer_size_rank_1,&
       rocsparse_sprune_dense2csr_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sprune_dense2csr_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -10929,14 +10928,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dprune_dense2csr_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dprune_dense2csr_buffer_size_rank_0,&
       rocsparse_dprune_dense2csr_buffer_size_rank_1,&
       rocsparse_dprune_dense2csr_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dprune_dense2csr_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -10995,14 +10994,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sprune_dense2csr_nnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sprune_dense2csr_nnz_rank_0,&
       rocsparse_sprune_dense2csr_nnz_rank_1,&
       rocsparse_sprune_dense2csr_nnz_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sprune_dense2csr_nnz_assumed_rank
 #endif
 #endif
   end interface
@@ -11027,14 +11026,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dprune_dense2csr_nnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dprune_dense2csr_nnz_rank_0,&
       rocsparse_dprune_dense2csr_nnz_rank_1,&
       rocsparse_dprune_dense2csr_nnz_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dprune_dense2csr_nnz_assumed_rank
 #endif
 #endif
   end interface
@@ -11117,14 +11116,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sprune_dense2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sprune_dense2csr_rank_0,&
       rocsparse_sprune_dense2csr_rank_1,&
       rocsparse_sprune_dense2csr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sprune_dense2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -11150,14 +11149,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dprune_dense2csr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dprune_dense2csr_rank_0,&
       rocsparse_dprune_dense2csr_rank_1,&
       rocsparse_dprune_dense2csr_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dprune_dense2csr_assumed_rank
 #endif
 #endif
   end interface
@@ -11227,14 +11226,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sprune_dense2csr_by_percentage_buffer_si_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sprune_dense2csr_by_percentage_buffer_size_rank_0,&
       rocsparse_sprune_dense2csr_by_percentage_buffer_size_rank_1,&
       rocsparse_sprune_dense2csr_by_percentage_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sprune_dense2csr_by_percentage_buffer_si_assumed_rank
 #endif
 #endif
   end interface
@@ -11261,14 +11260,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dprune_dense2csr_by_percentage_buffer_si_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dprune_dense2csr_by_percentage_buffer_size_rank_0,&
       rocsparse_dprune_dense2csr_by_percentage_buffer_size_rank_1,&
       rocsparse_dprune_dense2csr_by_percentage_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dprune_dense2csr_by_percentage_buffer_si_assumed_rank
 #endif
 #endif
   end interface
@@ -11332,14 +11331,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sprune_dense2csr_nnz_by_percentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sprune_dense2csr_nnz_by_percentage_rank_0,&
       rocsparse_sprune_dense2csr_nnz_by_percentage_rank_1,&
       rocsparse_sprune_dense2csr_nnz_by_percentage_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sprune_dense2csr_nnz_by_percentage_assumed_rank
 #endif
 #endif
   end interface
@@ -11365,14 +11364,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dprune_dense2csr_nnz_by_percentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dprune_dense2csr_nnz_by_percentage_rank_0,&
       rocsparse_dprune_dense2csr_nnz_by_percentage_rank_1,&
       rocsparse_dprune_dense2csr_nnz_by_percentage_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dprune_dense2csr_nnz_by_percentage_assumed_rank
 #endif
 #endif
   end interface
@@ -11479,14 +11478,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sprune_dense2csr_by_percentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sprune_dense2csr_by_percentage_rank_0,&
       rocsparse_sprune_dense2csr_by_percentage_rank_1,&
       rocsparse_sprune_dense2csr_by_percentage_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sprune_dense2csr_by_percentage_assumed_rank
 #endif
 #endif
   end interface
@@ -11513,14 +11512,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dprune_dense2csr_by_percentage_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dprune_dense2csr_by_percentage_rank_0,&
       rocsparse_dprune_dense2csr_by_percentage_rank_1,&
       rocsparse_dprune_dense2csr_by_percentage_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dprune_dense2csr_by_percentage_assumed_rank
 #endif
 #endif
   end interface
@@ -12566,13 +12565,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: nnz_C
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_csrgeam_nnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_csrgeam_nnz_rank_0,&
       rocsparse_csrgeam_nnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_csrgeam_nnz_assumed_rank
 #endif
 #endif
   end interface
@@ -12679,13 +12678,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind_C
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrgeam_rank_0,&
       rocsparse_scsrgeam_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -12720,13 +12719,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind_C
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrgeam_rank_0,&
       rocsparse_dcsrgeam_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -12761,13 +12760,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind_C
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrgeam_rank_0,&
       rocsparse_ccsrgeam_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -12802,13 +12801,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind_C
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrgeam_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrgeam_rank_0,&
       rocsparse_zcsrgeam_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrgeam_assumed_rank
 #endif
 #endif
   end interface
@@ -12919,13 +12918,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrgemm_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrgemm_buffer_size_rank_0,&
       rocsparse_scsrgemm_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrgemm_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -12963,13 +12962,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrgemm_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrgemm_buffer_size_rank_0,&
       rocsparse_dcsrgemm_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrgemm_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -13007,13 +13006,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrgemm_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrgemm_buffer_size_rank_0,&
       rocsparse_ccsrgemm_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrgemm_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -13051,13 +13050,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrgemm_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrgemm_buffer_size_rank_0,&
       rocsparse_zcsrgemm_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrgemm_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -13186,13 +13185,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_csrgemm_nnz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_csrgemm_nnz_rank_0,&
       rocsparse_csrgemm_nnz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_csrgemm_nnz_assumed_rank
 #endif
 #endif
   end interface
@@ -13488,13 +13487,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrgemm_rank_0,&
       rocsparse_scsrgemm_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -13540,13 +13539,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrgemm_rank_0,&
       rocsparse_dcsrgemm_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -13592,13 +13591,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrgemm_rank_0,&
       rocsparse_ccsrgemm_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -13644,13 +13643,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrgemm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrgemm_rank_0,&
       rocsparse_zcsrgemm_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrgemm_assumed_rank
 #endif
 #endif
   end interface
@@ -18355,13 +18354,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_saxpyi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_saxpyi_rank_0,&
       rocsparse_saxpyi_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_saxpyi_assumed_rank
 #endif
 #endif
   end interface
@@ -18382,13 +18381,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_daxpyi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_daxpyi_rank_0,&
       rocsparse_daxpyi_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_daxpyi_assumed_rank
 #endif
 #endif
   end interface
@@ -18409,13 +18408,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_caxpyi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_caxpyi_rank_0,&
       rocsparse_caxpyi_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_caxpyi_assumed_rank
 #endif
 #endif
   end interface
@@ -18436,13 +18435,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zaxpyi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zaxpyi_rank_0,&
       rocsparse_zaxpyi_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zaxpyi_assumed_rank
 #endif
 #endif
   end interface
@@ -18507,13 +18506,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cdotci_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cdotci_rank_0,&
       rocsparse_cdotci_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cdotci_assumed_rank
 #endif
 #endif
   end interface
@@ -18534,13 +18533,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zdotci_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zdotci_rank_0,&
       rocsparse_zdotci_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zdotci_assumed_rank
 #endif
 #endif
   end interface
@@ -18606,13 +18605,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sdoti_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sdoti_rank_0,&
       rocsparse_sdoti_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sdoti_assumed_rank
 #endif
 #endif
   end interface
@@ -18633,13 +18632,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ddoti_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ddoti_rank_0,&
       rocsparse_ddoti_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ddoti_assumed_rank
 #endif
 #endif
   end interface
@@ -18660,13 +18659,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cdoti_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cdoti_rank_0,&
       rocsparse_cdoti_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cdoti_assumed_rank
 #endif
 #endif
   end interface
@@ -18687,13 +18686,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zdoti_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zdoti_rank_0,&
       rocsparse_zdoti_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zdoti_assumed_rank
 #endif
 #endif
   end interface
@@ -18749,13 +18748,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgthr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgthr_rank_0,&
       rocsparse_sgthr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgthr_assumed_rank
 #endif
 #endif
   end interface
@@ -18774,13 +18773,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgthr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgthr_rank_0,&
       rocsparse_dgthr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgthr_assumed_rank
 #endif
 #endif
   end interface
@@ -18799,13 +18798,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgthr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgthr_rank_0,&
       rocsparse_cgthr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgthr_assumed_rank
 #endif
 #endif
   end interface
@@ -18824,13 +18823,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgthr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgthr_rank_0,&
       rocsparse_zgthr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgthr_assumed_rank
 #endif
 #endif
   end interface
@@ -18887,13 +18886,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgthrz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgthrz_rank_0,&
       rocsparse_sgthrz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgthrz_assumed_rank
 #endif
 #endif
   end interface
@@ -18912,13 +18911,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgthrz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgthrz_rank_0,&
       rocsparse_dgthrz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgthrz_assumed_rank
 #endif
 #endif
   end interface
@@ -18937,13 +18936,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgthrz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgthrz_rank_0,&
       rocsparse_cgthrz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgthrz_assumed_rank
 #endif
 #endif
   end interface
@@ -18962,13 +18961,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgthrz_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgthrz_rank_0,&
       rocsparse_zgthrz_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgthrz_assumed_rank
 #endif
 #endif
   end interface
@@ -19035,13 +19034,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sroti_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sroti_rank_0,&
       rocsparse_sroti_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sroti_assumed_rank
 #endif
 #endif
   end interface
@@ -19062,13 +19061,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_droti_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_droti_rank_0,&
       rocsparse_droti_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_droti_assumed_rank
 #endif
 #endif
   end interface
@@ -19125,13 +19124,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ssctr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ssctr_rank_0,&
       rocsparse_ssctr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ssctr_assumed_rank
 #endif
 #endif
   end interface
@@ -19150,13 +19149,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dsctr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dsctr_rank_0,&
       rocsparse_dsctr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dsctr_assumed_rank
 #endif
 #endif
   end interface
@@ -19175,13 +19174,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_csctr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_csctr_rank_0,&
       rocsparse_csctr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_csctr_assumed_rank
 #endif
 #endif
   end interface
@@ -19200,13 +19199,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zsctr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zsctr_rank_0,&
       rocsparse_zsctr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zsctr_assumed_rank
 #endif
 #endif
   end interface
@@ -19225,13 +19224,13 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_isctr_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_isctr_rank_0,&
       rocsparse_isctr_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_isctr_assumed_rank
 #endif
 #endif
   end interface
@@ -19509,13 +19508,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsrmv_rank_0,&
       rocsparse_sbsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -19546,13 +19545,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsrmv_rank_0,&
       rocsparse_dbsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -19583,13 +19582,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsrmv_rank_0,&
       rocsparse_cbsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -19620,13 +19619,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsrmv_rank_0,&
       rocsparse_zbsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -19771,13 +19770,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsrsv_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsrsv_buffer_size_rank_0,&
       rocsparse_sbsrsv_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsrsv_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -19804,13 +19803,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsrsv_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsrsv_buffer_size_rank_0,&
       rocsparse_dbsrsv_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsrsv_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -19837,13 +19836,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsrsv_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsrsv_buffer_size_rank_0,&
       rocsparse_cbsrsv_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsrsv_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -19870,13 +19869,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsrsv_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsrsv_buffer_size_rank_0,&
       rocsparse_zbsrsv_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsrsv_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -19960,13 +19959,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsrsv_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsrsv_analysis_rank_0,&
       rocsparse_sbsrsv_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsrsv_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -19995,13 +19994,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsrsv_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsrsv_analysis_rank_0,&
       rocsparse_dbsrsv_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsrsv_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -20030,13 +20029,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsrsv_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsrsv_analysis_rank_0,&
       rocsparse_cbsrsv_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsrsv_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -20065,13 +20064,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsrsv_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsrsv_analysis_rank_0,&
       rocsparse_zbsrsv_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsrsv_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -20246,13 +20245,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsrsv_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsrsv_solve_rank_0,&
       rocsparse_sbsrsv_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsrsv_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -20283,13 +20282,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsrsv_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsrsv_solve_rank_0,&
       rocsparse_dbsrsv_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsrsv_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -20320,13 +20319,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsrsv_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsrsv_solve_rank_0,&
       rocsparse_cbsrsv_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsrsv_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -20357,13 +20356,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsrsv_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsrsv_solve_rank_0,&
       rocsparse_zbsrsv_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsrsv_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -20476,13 +20475,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsrxmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsrxmv_rank_0,&
       rocsparse_sbsrxmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsrxmv_assumed_rank
 #endif
 #endif
   end interface
@@ -20515,13 +20514,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsrxmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsrxmv_rank_0,&
       rocsparse_dbsrxmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsrxmv_assumed_rank
 #endif
 #endif
   end interface
@@ -20554,13 +20553,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsrxmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsrxmv_rank_0,&
       rocsparse_cbsrxmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsrxmv_assumed_rank
 #endif
 #endif
   end interface
@@ -20593,13 +20592,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsrxmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsrxmv_rank_0,&
       rocsparse_zbsrxmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsrxmv_assumed_rank
 #endif
 #endif
   end interface
@@ -20705,13 +20704,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scoomv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scoomv_rank_0,&
       rocsparse_scoomv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scoomv_assumed_rank
 #endif
 #endif
   end interface
@@ -20739,13 +20738,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcoomv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcoomv_rank_0,&
       rocsparse_dcoomv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcoomv_assumed_rank
 #endif
 #endif
   end interface
@@ -20773,13 +20772,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccoomv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccoomv_rank_0,&
       rocsparse_ccoomv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccoomv_assumed_rank
 #endif
 #endif
   end interface
@@ -20807,13 +20806,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcoomv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcoomv_rank_0,&
       rocsparse_zcoomv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcoomv_assumed_rank
 #endif
 #endif
   end interface
@@ -21859,13 +21858,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrmv_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrmv_analysis_rank_0,&
       rocsparse_scsrmv_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrmv_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -21890,13 +21889,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrmv_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrmv_analysis_rank_0,&
       rocsparse_dcsrmv_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrmv_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -21921,13 +21920,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrmv_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrmv_analysis_rank_0,&
       rocsparse_ccsrmv_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrmv_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -21952,13 +21951,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrmv_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrmv_analysis_rank_0,&
       rocsparse_zcsrmv_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrmv_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -22133,13 +22132,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrmv_rank_0,&
       rocsparse_scsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -22168,13 +22167,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrmv_rank_0,&
       rocsparse_dcsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -22203,13 +22202,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrmv_rank_0,&
       rocsparse_ccsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -22238,13 +22237,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrmv_rank_0,&
       rocsparse_zcsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -22354,13 +22353,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrsv_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrsv_buffer_size_rank_0,&
       rocsparse_scsrsv_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrsv_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -22385,13 +22384,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrsv_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrsv_buffer_size_rank_0,&
       rocsparse_dcsrsv_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrsv_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -22416,13 +22415,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrsv_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrsv_buffer_size_rank_0,&
       rocsparse_ccsrsv_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrsv_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -22447,13 +22446,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrsv_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrsv_buffer_size_rank_0,&
       rocsparse_zcsrsv_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrsv_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -22537,13 +22536,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrsv_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrsv_analysis_rank_0,&
       rocsparse_scsrsv_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrsv_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -22570,13 +22569,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrsv_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrsv_analysis_rank_0,&
       rocsparse_dcsrsv_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrsv_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -22603,13 +22602,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrsv_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrsv_analysis_rank_0,&
       rocsparse_ccsrsv_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrsv_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -22636,13 +22635,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrsv_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrsv_analysis_rank_0,&
       rocsparse_zcsrsv_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrsv_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -22818,13 +22817,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrsv_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrsv_solve_rank_0,&
       rocsparse_scsrsv_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrsv_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -22853,13 +22852,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrsv_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrsv_solve_rank_0,&
       rocsparse_dcsrsv_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrsv_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -22888,13 +22887,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrsv_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrsv_solve_rank_0,&
       rocsparse_ccsrsv_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrsv_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -22923,13 +22922,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrsv_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrsv_solve_rank_0,&
       rocsparse_zcsrsv_solve_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrsv_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -23035,13 +23034,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sellmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sellmv_rank_0,&
       rocsparse_sellmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sellmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23068,13 +23067,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dellmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dellmv_rank_0,&
       rocsparse_dellmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dellmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23101,13 +23100,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cellmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cellmv_rank_0,&
       rocsparse_cellmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cellmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23134,13 +23133,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zellmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zellmv_rank_0,&
       rocsparse_zellmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zellmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23239,13 +23238,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgebsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgebsrmv_rank_0,&
       rocsparse_sgebsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgebsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23276,13 +23275,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgebsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgebsrmv_rank_0,&
       rocsparse_dgebsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgebsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23313,13 +23312,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgebsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgebsrmv_rank_0,&
       rocsparse_cgebsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgebsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23350,13 +23349,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgebsrmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgebsrmv_rank_0,&
       rocsparse_zgebsrmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgebsrmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23538,14 +23537,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgemvi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgemvi_rank_0,&
       rocsparse_sgemvi_rank_1,&
       rocsparse_sgemvi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgemvi_assumed_rank
 #endif
 #endif
   end interface
@@ -23574,14 +23573,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgemvi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgemvi_rank_0,&
       rocsparse_dgemvi_rank_1,&
       rocsparse_dgemvi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgemvi_assumed_rank
 #endif
 #endif
   end interface
@@ -23610,14 +23609,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgemvi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgemvi_rank_0,&
       rocsparse_cgemvi_rank_1,&
       rocsparse_cgemvi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgemvi_assumed_rank
 #endif
 #endif
   end interface
@@ -23646,14 +23645,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgemvi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgemvi_rank_0,&
       rocsparse_zgemvi_rank_1,&
       rocsparse_zgemvi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgemvi_assumed_rank
 #endif
 #endif
   end interface
@@ -23732,13 +23731,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_shybmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_shybmv_rank_0,&
       rocsparse_shybmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_shybmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23760,13 +23759,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dhybmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dhybmv_rank_0,&
       rocsparse_dhybmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dhybmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23788,13 +23787,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_chybmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_chybmv_rank_0,&
       rocsparse_chybmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_chybmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23816,13 +23815,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zhybmv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zhybmv_rank_0,&
       rocsparse_zhybmv_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zhybmv_assumed_rank
 #endif
 #endif
   end interface
@@ -23947,14 +23946,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsrmm_rank_0,&
       rocsparse_sbsrmm_rank_1,&
       rocsparse_sbsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -23988,14 +23987,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsrmm_rank_0,&
       rocsparse_dbsrmm_rank_1,&
       rocsparse_dbsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -24029,14 +24028,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsrmm_rank_0,&
       rocsparse_cbsrmm_rank_1,&
       rocsparse_cbsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -24070,14 +24069,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsrmm_rank_0,&
       rocsparse_zbsrmm_rank_1,&
       rocsparse_zbsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -24192,13 +24191,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsrsm_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsrsm_buffer_size_rank_0,&
       rocsparse_sbsrsm_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsrsm_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -24227,13 +24226,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsrsm_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsrsm_buffer_size_rank_0,&
       rocsparse_dbsrsm_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsrsm_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -24262,13 +24261,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsrsm_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsrsm_buffer_size_rank_0,&
       rocsparse_cbsrsm_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsrsm_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -24297,13 +24296,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsrsm_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsrsm_buffer_size_rank_0,&
       rocsparse_zbsrsm_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsrsm_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -24390,13 +24389,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsrsm_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsrsm_analysis_rank_0,&
       rocsparse_sbsrsm_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsrsm_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -24427,13 +24426,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsrsm_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsrsm_analysis_rank_0,&
       rocsparse_dbsrsm_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsrsm_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -24464,13 +24463,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsrsm_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsrsm_analysis_rank_0,&
       rocsparse_cbsrsm_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsrsm_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -24501,13 +24500,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsrsm_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsrsm_analysis_rank_0,&
       rocsparse_zbsrsm_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsrsm_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -24829,14 +24828,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsrsm_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsrsm_solve_rank_0,&
       rocsparse_sbsrsm_solve_rank_1,&
       rocsparse_sbsrsm_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsrsm_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -24871,14 +24870,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsrsm_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsrsm_solve_rank_0,&
       rocsparse_dbsrsm_solve_rank_1,&
       rocsparse_dbsrsm_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsrsm_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -24913,14 +24912,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsrsm_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsrsm_solve_rank_0,&
       rocsparse_cbsrsm_solve_rank_1,&
       rocsparse_cbsrsm_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsrsm_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -24955,14 +24954,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsrsm_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsrsm_solve_rank_0,&
       rocsparse_zbsrsm_solve_rank_1,&
       rocsparse_zbsrsm_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsrsm_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -25089,14 +25088,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrmm_rank_0,&
       rocsparse_scsrmm_rank_1,&
       rocsparse_scsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -25128,14 +25127,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrmm_rank_0,&
       rocsparse_dcsrmm_rank_1,&
       rocsparse_dcsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -25167,14 +25166,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrmm_rank_0,&
       rocsparse_ccsrmm_rank_1,&
       rocsparse_ccsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -25206,14 +25205,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrmm_rank_0,&
       rocsparse_zcsrmm_rank_1,&
       rocsparse_zcsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -25334,14 +25333,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrsm_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrsm_buffer_size_rank_0,&
       rocsparse_scsrsm_buffer_size_rank_1,&
       rocsparse_scsrsm_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrsm_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -25372,14 +25371,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrsm_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrsm_buffer_size_rank_0,&
       rocsparse_dcsrsm_buffer_size_rank_1,&
       rocsparse_dcsrsm_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrsm_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -25410,14 +25409,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrsm_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrsm_buffer_size_rank_0,&
       rocsparse_ccsrsm_buffer_size_rank_1,&
       rocsparse_ccsrsm_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrsm_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -25448,14 +25447,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrsm_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrsm_buffer_size_rank_0,&
       rocsparse_zcsrsm_buffer_size_rank_1,&
       rocsparse_zcsrsm_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrsm_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -25545,14 +25544,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrsm_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrsm_analysis_rank_0,&
       rocsparse_scsrsm_analysis_rank_1,&
       rocsparse_scsrsm_analysis_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrsm_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -25584,14 +25583,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrsm_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrsm_analysis_rank_0,&
       rocsparse_dcsrsm_analysis_rank_1,&
       rocsparse_dcsrsm_analysis_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrsm_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -25623,14 +25622,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrsm_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrsm_analysis_rank_0,&
       rocsparse_ccsrsm_analysis_rank_1,&
       rocsparse_ccsrsm_analysis_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrsm_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -25662,14 +25661,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrsm_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrsm_analysis_rank_0,&
       rocsparse_zcsrsm_analysis_rank_1,&
       rocsparse_zcsrsm_analysis_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrsm_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -25928,14 +25927,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrsm_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrsm_solve_rank_0,&
       rocsparse_scsrsm_solve_rank_1,&
       rocsparse_scsrsm_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrsm_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -25966,14 +25965,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrsm_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrsm_solve_rank_0,&
       rocsparse_dcsrsm_solve_rank_1,&
       rocsparse_dcsrsm_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrsm_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -26004,14 +26003,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrsm_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrsm_solve_rank_0,&
       rocsparse_ccsrsm_solve_rank_1,&
       rocsparse_ccsrsm_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrsm_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -26042,14 +26041,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrsm_solve_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrsm_solve_rank_0,&
       rocsparse_zcsrsm_solve_rank_1,&
       rocsparse_zcsrsm_solve_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrsm_solve_assumed_rank
 #endif
 #endif
   end interface
@@ -26179,14 +26178,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgebsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgebsrmm_rank_0,&
       rocsparse_sgebsrmm_rank_1,&
       rocsparse_sgebsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgebsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -26221,14 +26220,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgebsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgebsrmm_rank_0,&
       rocsparse_dgebsrmm_rank_1,&
       rocsparse_dgebsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgebsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -26263,14 +26262,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgebsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgebsrmm_rank_0,&
       rocsparse_cgebsrmm_rank_1,&
       rocsparse_cgebsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgebsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -26305,14 +26304,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgebsrmm_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgebsrmm_rank_0,&
       rocsparse_zgebsrmm_rank_1,&
       rocsparse_zgebsrmm_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgebsrmm_assumed_rank
 #endif
 #endif
   end interface
@@ -26426,14 +26425,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgemmi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgemmi_rank_0,&
       rocsparse_sgemmi_rank_1,&
       rocsparse_sgemmi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgemmi_assumed_rank
 #endif
 #endif
   end interface
@@ -26465,14 +26464,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgemmi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgemmi_rank_0,&
       rocsparse_dgemmi_rank_1,&
       rocsparse_dgemmi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgemmi_assumed_rank
 #endif
 #endif
   end interface
@@ -26504,14 +26503,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgemmi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgemmi_rank_0,&
       rocsparse_cgemmi_rank_1,&
       rocsparse_cgemmi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgemmi_assumed_rank
 #endif
 #endif
   end interface
@@ -26543,14 +26542,14 @@ module hipfort_rocsparse
       integer(c_int),value :: ldc
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgemmi_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgemmi_rank_0,&
       rocsparse_zgemmi_rank_1,&
       rocsparse_zgemmi_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgemmi_assumed_rank
 #endif
 #endif
   end interface
@@ -26671,13 +26670,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsric0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsric0_buffer_size_rank_0,&
       rocsparse_sbsric0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsric0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -26703,13 +26702,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsric0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsric0_buffer_size_rank_0,&
       rocsparse_dbsric0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsric0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -26735,13 +26734,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsric0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsric0_buffer_size_rank_0,&
       rocsparse_cbsric0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsric0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -26767,13 +26766,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsric0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsric0_buffer_size_rank_0,&
       rocsparse_zbsric0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsric0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -26857,13 +26856,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsric0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsric0_analysis_rank_0,&
       rocsparse_sbsric0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsric0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -26891,13 +26890,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsric0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsric0_analysis_rank_0,&
       rocsparse_dbsric0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsric0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -26925,13 +26924,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsric0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsric0_analysis_rank_0,&
       rocsparse_cbsric0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsric0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -26959,13 +26958,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsric0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsric0_analysis_rank_0,&
       rocsparse_zbsric0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsric0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -27107,13 +27106,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsric0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsric0_rank_0,&
       rocsparse_sbsric0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsric0_assumed_rank
 #endif
 #endif
   end interface
@@ -27140,13 +27139,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsric0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsric0_rank_0,&
       rocsparse_dbsric0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsric0_assumed_rank
 #endif
 #endif
   end interface
@@ -27173,13 +27172,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsric0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsric0_rank_0,&
       rocsparse_cbsric0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsric0_assumed_rank
 #endif
 #endif
   end interface
@@ -27206,13 +27205,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsric0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsric0_rank_0,&
       rocsparse_zbsric0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsric0_assumed_rank
 #endif
 #endif
   end interface
@@ -27454,13 +27453,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsrilu0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsrilu0_buffer_size_rank_0,&
       rocsparse_sbsrilu0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsrilu0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -27486,13 +27485,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsrilu0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsrilu0_buffer_size_rank_0,&
       rocsparse_dbsrilu0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsrilu0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -27518,13 +27517,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsrilu0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsrilu0_buffer_size_rank_0,&
       rocsparse_cbsrilu0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsrilu0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -27550,13 +27549,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsrilu0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsrilu0_buffer_size_rank_0,&
       rocsparse_zbsrilu0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsrilu0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -27639,13 +27638,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsrilu0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsrilu0_analysis_rank_0,&
       rocsparse_sbsrilu0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsrilu0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -27673,13 +27672,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsrilu0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsrilu0_analysis_rank_0,&
       rocsparse_dbsrilu0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsrilu0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -27707,13 +27706,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsrilu0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsrilu0_analysis_rank_0,&
       rocsparse_cbsrilu0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsrilu0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -27741,13 +27740,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsrilu0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsrilu0_analysis_rank_0,&
       rocsparse_zbsrilu0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsrilu0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -27882,13 +27881,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sbsrilu0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sbsrilu0_rank_0,&
       rocsparse_sbsrilu0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sbsrilu0_assumed_rank
 #endif
 #endif
   end interface
@@ -27915,13 +27914,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dbsrilu0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dbsrilu0_rank_0,&
       rocsparse_dbsrilu0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dbsrilu0_assumed_rank
 #endif
 #endif
   end interface
@@ -27948,13 +27947,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cbsrilu0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cbsrilu0_rank_0,&
       rocsparse_cbsrilu0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cbsrilu0_assumed_rank
 #endif
 #endif
   end interface
@@ -27981,13 +27980,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zbsrilu0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zbsrilu0_rank_0,&
       rocsparse_zbsrilu0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zbsrilu0_assumed_rank
 #endif
 #endif
   end interface
@@ -28202,13 +28201,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsric0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsric0_buffer_size_rank_0,&
       rocsparse_scsric0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsric0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -28232,13 +28231,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsric0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsric0_buffer_size_rank_0,&
       rocsparse_dcsric0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsric0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -28262,13 +28261,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsric0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsric0_buffer_size_rank_0,&
       rocsparse_ccsric0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsric0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -28292,13 +28291,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsric0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsric0_buffer_size_rank_0,&
       rocsparse_zcsric0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsric0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -28373,13 +28372,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsric0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsric0_analysis_rank_0,&
       rocsparse_scsric0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsric0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -28405,13 +28404,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsric0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsric0_analysis_rank_0,&
       rocsparse_dcsric0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsric0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -28437,13 +28436,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsric0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsric0_analysis_rank_0,&
       rocsparse_ccsric0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsric0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -28469,13 +28468,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsric0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsric0_analysis_rank_0,&
       rocsparse_zcsric0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsric0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -28713,13 +28712,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsric0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsric0_rank_0,&
       rocsparse_scsric0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsric0_assumed_rank
 #endif
 #endif
   end interface
@@ -28744,13 +28743,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsric0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsric0_rank_0,&
       rocsparse_dcsric0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsric0_assumed_rank
 #endif
 #endif
   end interface
@@ -28775,13 +28774,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsric0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsric0_rank_0,&
       rocsparse_ccsric0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsric0_assumed_rank
 #endif
 #endif
   end interface
@@ -28806,13 +28805,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsric0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsric0_rank_0,&
       rocsparse_zcsric0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsric0_assumed_rank
 #endif
 #endif
   end interface
@@ -29151,13 +29150,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrilu0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrilu0_buffer_size_rank_0,&
       rocsparse_scsrilu0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrilu0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -29181,13 +29180,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrilu0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrilu0_buffer_size_rank_0,&
       rocsparse_dcsrilu0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrilu0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -29211,13 +29210,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrilu0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrilu0_buffer_size_rank_0,&
       rocsparse_ccsrilu0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrilu0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -29241,13 +29240,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrilu0_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrilu0_buffer_size_rank_0,&
       rocsparse_zcsrilu0_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrilu0_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -29323,13 +29322,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrilu0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrilu0_analysis_rank_0,&
       rocsparse_scsrilu0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrilu0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -29355,13 +29354,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrilu0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrilu0_analysis_rank_0,&
       rocsparse_dcsrilu0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrilu0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -29387,13 +29386,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrilu0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrilu0_analysis_rank_0,&
       rocsparse_ccsrilu0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrilu0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -29419,13 +29418,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrilu0_analysis_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrilu0_analysis_rank_0,&
       rocsparse_zcsrilu0_analysis_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrilu0_analysis_assumed_rank
 #endif
 #endif
   end interface
@@ -29638,13 +29637,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrilu0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrilu0_rank_0,&
       rocsparse_scsrilu0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrilu0_assumed_rank
 #endif
 #endif
   end interface
@@ -29669,13 +29668,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrilu0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrilu0_rank_0,&
       rocsparse_dcsrilu0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrilu0_assumed_rank
 #endif
 #endif
   end interface
@@ -29700,13 +29699,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrilu0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrilu0_rank_0,&
       rocsparse_ccsrilu0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrilu0_assumed_rank
 #endif
 #endif
   end interface
@@ -29731,13 +29730,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrilu0_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrilu0_rank_0,&
       rocsparse_zcsrilu0_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrilu0_assumed_rank
 #endif
 #endif
   end interface
@@ -30453,13 +30452,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgpsv_interleaved_batch_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgpsv_interleaved_batch_buffer_size_rank_0,&
       rocsparse_sgpsv_interleaved_batch_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgpsv_interleaved_batch_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -30486,13 +30485,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgpsv_interleaved_batch_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgpsv_interleaved_batch_buffer_size_rank_0,&
       rocsparse_dgpsv_interleaved_batch_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgpsv_interleaved_batch_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -30519,13 +30518,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgpsv_interleaved_batch_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgpsv_interleaved_batch_buffer_size_rank_0,&
       rocsparse_cgpsv_interleaved_batch_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgpsv_interleaved_batch_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -30552,13 +30551,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgpsv_interleaved_batch_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgpsv_interleaved_batch_buffer_size_rank_0,&
       rocsparse_zgpsv_interleaved_batch_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgpsv_interleaved_batch_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -30699,13 +30698,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgpsv_interleaved_batch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgpsv_interleaved_batch_rank_0,&
       rocsparse_sgpsv_interleaved_batch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgpsv_interleaved_batch_assumed_rank
 #endif
 #endif
   end interface
@@ -30732,13 +30731,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgpsv_interleaved_batch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgpsv_interleaved_batch_rank_0,&
       rocsparse_dgpsv_interleaved_batch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgpsv_interleaved_batch_assumed_rank
 #endif
 #endif
   end interface
@@ -30765,13 +30764,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgpsv_interleaved_batch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgpsv_interleaved_batch_rank_0,&
       rocsparse_cgpsv_interleaved_batch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgpsv_interleaved_batch_assumed_rank
 #endif
 #endif
   end interface
@@ -30798,13 +30797,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgpsv_interleaved_batch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgpsv_interleaved_batch_rank_0,&
       rocsparse_zgpsv_interleaved_batch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgpsv_interleaved_batch_assumed_rank
 #endif
 #endif
   end interface
@@ -30858,14 +30857,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgtsv_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgtsv_buffer_size_rank_0,&
       rocsparse_sgtsv_buffer_size_rank_1,&
       rocsparse_sgtsv_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgtsv_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -30888,14 +30887,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgtsv_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgtsv_buffer_size_rank_0,&
       rocsparse_dgtsv_buffer_size_rank_1,&
       rocsparse_dgtsv_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgtsv_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -30918,14 +30917,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgtsv_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgtsv_buffer_size_rank_0,&
       rocsparse_cgtsv_buffer_size_rank_1,&
       rocsparse_cgtsv_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgtsv_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -30948,14 +30947,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgtsv_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgtsv_buffer_size_rank_0,&
       rocsparse_zgtsv_buffer_size_rank_1,&
       rocsparse_zgtsv_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgtsv_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -31026,14 +31025,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgtsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgtsv_rank_0,&
       rocsparse_sgtsv_rank_1,&
       rocsparse_sgtsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgtsv_assumed_rank
 #endif
 #endif
   end interface
@@ -31055,14 +31054,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgtsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgtsv_rank_0,&
       rocsparse_dgtsv_rank_1,&
       rocsparse_dgtsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgtsv_assumed_rank
 #endif
 #endif
   end interface
@@ -31084,14 +31083,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgtsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgtsv_rank_0,&
       rocsparse_cgtsv_rank_1,&
       rocsparse_cgtsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgtsv_assumed_rank
 #endif
 #endif
   end interface
@@ -31113,14 +31112,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgtsv_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgtsv_rank_0,&
       rocsparse_zgtsv_rank_1,&
       rocsparse_zgtsv_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgtsv_assumed_rank
 #endif
 #endif
   end interface
@@ -31175,14 +31174,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgtsv_no_pivot_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgtsv_no_pivot_buffer_size_rank_0,&
       rocsparse_sgtsv_no_pivot_buffer_size_rank_1,&
       rocsparse_sgtsv_no_pivot_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgtsv_no_pivot_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -31205,14 +31204,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgtsv_no_pivot_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgtsv_no_pivot_buffer_size_rank_0,&
       rocsparse_dgtsv_no_pivot_buffer_size_rank_1,&
       rocsparse_dgtsv_no_pivot_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgtsv_no_pivot_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -31235,14 +31234,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgtsv_no_pivot_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgtsv_no_pivot_buffer_size_rank_0,&
       rocsparse_cgtsv_no_pivot_buffer_size_rank_1,&
       rocsparse_cgtsv_no_pivot_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgtsv_no_pivot_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -31265,14 +31264,14 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgtsv_no_pivot_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgtsv_no_pivot_buffer_size_rank_0,&
       rocsparse_zgtsv_no_pivot_buffer_size_rank_1,&
       rocsparse_zgtsv_no_pivot_buffer_size_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgtsv_no_pivot_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -31347,14 +31346,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgtsv_no_pivot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgtsv_no_pivot_rank_0,&
       rocsparse_sgtsv_no_pivot_rank_1,&
       rocsparse_sgtsv_no_pivot_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgtsv_no_pivot_assumed_rank
 #endif
 #endif
   end interface
@@ -31377,14 +31376,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgtsv_no_pivot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgtsv_no_pivot_rank_0,&
       rocsparse_dgtsv_no_pivot_rank_1,&
       rocsparse_dgtsv_no_pivot_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgtsv_no_pivot_assumed_rank
 #endif
 #endif
   end interface
@@ -31407,14 +31406,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgtsv_no_pivot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgtsv_no_pivot_rank_0,&
       rocsparse_cgtsv_no_pivot_rank_1,&
       rocsparse_cgtsv_no_pivot_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgtsv_no_pivot_assumed_rank
 #endif
 #endif
   end interface
@@ -31437,14 +31436,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgtsv_no_pivot_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgtsv_no_pivot_rank_0,&
       rocsparse_zgtsv_no_pivot_rank_1,&
       rocsparse_zgtsv_no_pivot_full_rank
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgtsv_no_pivot_assumed_rank
 #endif
 #endif
   end interface
@@ -31506,13 +31505,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_rank_0,&
       rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -31536,13 +31535,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_rank_0,&
       rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -31566,13 +31565,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_rank_0,&
       rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -31596,13 +31595,13 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_rank_0,&
       rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_assumed_rank
 #endif
 #endif
   end interface
@@ -31720,13 +31719,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_sgtsv_no_pivot_strided_batch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgtsv_no_pivot_strided_batch_rank_0,&
       rocsparse_sgtsv_no_pivot_strided_batch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_sgtsv_no_pivot_strided_batch_assumed_rank
 #endif
 #endif
   end interface
@@ -31750,13 +31749,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dgtsv_no_pivot_strided_batch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgtsv_no_pivot_strided_batch_rank_0,&
       rocsparse_dgtsv_no_pivot_strided_batch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dgtsv_no_pivot_strided_batch_assumed_rank
 #endif
 #endif
   end interface
@@ -31780,13 +31779,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_cgtsv_no_pivot_strided_batch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgtsv_no_pivot_strided_batch_rank_0,&
       rocsparse_cgtsv_no_pivot_strided_batch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_cgtsv_no_pivot_strided_batch_assumed_rank
 #endif
 #endif
   end interface
@@ -31810,13 +31809,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zgtsv_no_pivot_strided_batch_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgtsv_no_pivot_strided_batch_rank_0,&
       rocsparse_zgtsv_no_pivot_strided_batch_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zgtsv_no_pivot_strided_batch_assumed_rank
 #endif
 #endif
   end interface
@@ -32208,13 +32207,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_scsrcolor_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrcolor_rank_0,&
       rocsparse_scsrcolor_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_scsrcolor_assumed_rank
 #endif
 #endif
   end interface
@@ -32241,13 +32240,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_dcsrcolor_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrcolor_rank_0,&
       rocsparse_dcsrcolor_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_dcsrcolor_assumed_rank
 #endif
 #endif
   end interface
@@ -32274,13 +32273,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_ccsrcolor_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrcolor_rank_0,&
       rocsparse_ccsrcolor_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_ccsrcolor_assumed_rank
 #endif
 #endif
   end interface
@@ -32307,13 +32306,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocsparse_zcsrcolor_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrcolor_rank_0,&
       rocsparse_zcsrcolor_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocsparse_zcsrcolor_assumed_rank
 #endif
 #endif
   end interface
@@ -34405,10 +34404,10 @@ module hipfort_rocsparse
   end interface
 
 
-#ifdef USE_FPOINTER_INTERFACES
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
 
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsr2csr_assumed_rank(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -34486,7 +34485,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsr2csr_assumed_rank(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -34564,7 +34563,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsr2csr_assumed_rank(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -34642,7 +34641,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsr2csr_assumed_rank(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -34720,7 +34719,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_coo2csr_assumed_rank(handle,coo_row_ind,nnz,m,csr_row_ptr,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -34771,7 +34770,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scoo2dense_assumed_rank(handle,m,n,nnz,descr,coo_val,coo_row_ind, &
         coo_col_ind,A,ld)
       use iso_c_binding
@@ -34856,7 +34855,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcoo2dense_assumed_rank(handle,m,n,nnz,descr,coo_val,coo_row_ind, &
         coo_col_ind,A,ld)
       use iso_c_binding
@@ -34941,7 +34940,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccoo2dense_assumed_rank(handle,m,n,nnz,descr,coo_val,coo_row_ind, &
         coo_col_ind,A,ld)
       use iso_c_binding
@@ -35026,7 +35025,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcoo2dense_assumed_rank(handle,m,n,nnz,descr,coo_val,coo_row_ind, &
         coo_col_ind,A,ld)
       use iso_c_binding
@@ -35111,7 +35110,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_coosort_buffer_size_assumed_rank(handle,m,n,nnz,coo_row_ind,coo_col_ind, &
         buffer_size)
       use iso_c_binding
@@ -35168,7 +35167,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_coosort_by_row_assumed_rank(handle,m,n,nnz,coo_row_ind,coo_col_ind,perm, &
         temp_buffer)
       use iso_c_binding
@@ -35228,7 +35227,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_coosort_by_column_assumed_rank(handle,m,n,nnz,coo_row_ind,coo_col_ind,perm, &
         temp_buffer)
       use iso_c_binding
@@ -35288,7 +35287,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsc2dense_assumed_rank(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A, &
         ld)
       use iso_c_binding
@@ -35368,7 +35367,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsc2dense_assumed_rank(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A, &
         ld)
       use iso_c_binding
@@ -35448,7 +35447,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsc2dense_assumed_rank(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A, &
         ld)
       use iso_c_binding
@@ -35528,7 +35527,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsc2dense_assumed_rank(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A, &
         ld)
       use iso_c_binding
@@ -35608,7 +35607,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cscsort_buffer_size_assumed_rank(handle,m,n,nnz,csc_col_ptr,csc_row_ind, &
         buffer_size)
       use iso_c_binding
@@ -35665,7 +35664,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cscsort_assumed_rank(handle,m,n,nnz,descr,csc_col_ptr,csc_row_ind,perm, &
         temp_buffer)
       use iso_c_binding
@@ -35726,7 +35725,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_csr2bsr_nnz_assumed_rank(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind, &
         block_dim,bsr_descr,bsr_row_ptr,bsr_nnz)
       use iso_c_binding
@@ -35795,7 +35794,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsr2bsr_assumed_rank(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr, &
         csr_col_ind,block_dim,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind)
       use iso_c_binding
@@ -35873,7 +35872,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsr2bsr_assumed_rank(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr, &
         csr_col_ind,block_dim,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind)
       use iso_c_binding
@@ -35951,7 +35950,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsr2bsr_assumed_rank(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr, &
         csr_col_ind,block_dim,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind)
       use iso_c_binding
@@ -36029,7 +36028,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsr2bsr_assumed_rank(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr, &
         csr_col_ind,block_dim,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind)
       use iso_c_binding
@@ -36107,7 +36106,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_csr2coo_assumed_rank(handle,csr_row_ptr,nnz,m,coo_row_ind,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -36158,7 +36157,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_csr2csc_buffer_size_assumed_rank(handle,m,n,nnz,csr_row_ptr,csr_col_ind, &
         copy_values,buffer_size)
       use iso_c_binding
@@ -36218,7 +36217,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsr2csc_assumed_rank(handle,m,n,nnz,csr_val,csr_row_ptr,csr_col_ind, &
         csc_val,csc_row_ind,csc_col_ptr,copy_values,idx_base,temp_buffer)
       use iso_c_binding
@@ -36296,7 +36295,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsr2csc_assumed_rank(handle,m,n,nnz,csr_val,csr_row_ptr,csr_col_ind, &
         csc_val,csc_row_ind,csc_col_ptr,copy_values,idx_base,temp_buffer)
       use iso_c_binding
@@ -36374,7 +36373,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsr2csc_assumed_rank(handle,m,n,nnz,csr_val,csr_row_ptr,csr_col_ind, &
         csc_val,csc_row_ind,csc_col_ptr,copy_values,idx_base,temp_buffer)
       use iso_c_binding
@@ -36452,7 +36451,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsr2csc_assumed_rank(handle,m,n,nnz,csr_val,csr_row_ptr,csr_col_ind, &
         csc_val,csc_row_ind,csc_col_ptr,copy_values,idx_base,temp_buffer)
       use iso_c_binding
@@ -36530,7 +36529,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsr2csr_compress_assumed_rank(handle,m,n,descr_A,csr_val_A,csr_row_ptr_A, &
         csr_col_ind_A,nnz_A,nnz_per_row,csr_val_C,csr_row_ptr_C,csr_col_ind_C,tol)
       use iso_c_binding
@@ -36608,7 +36607,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsr2csr_compress_assumed_rank(handle,m,n,descr_A,csr_val_A,csr_row_ptr_A, &
         csr_col_ind_A,nnz_A,nnz_per_row,csr_val_C,csr_row_ptr_C,csr_col_ind_C,tol)
       use iso_c_binding
@@ -36686,7 +36685,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsr2csr_compress_assumed_rank(handle,m,n,descr_A,csr_val_A,csr_row_ptr_A, &
         csr_col_ind_A,nnz_A,nnz_per_row,csr_val_C,csr_row_ptr_C,csr_col_ind_C,tol)
       use iso_c_binding
@@ -36764,7 +36763,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsr2csr_compress_assumed_rank(handle,m,n,descr_A,csr_val_A,csr_row_ptr_A, &
         csr_col_ind_A,nnz_A,nnz_per_row,csr_val_C,csr_row_ptr_C,csr_col_ind_C,tol)
       use iso_c_binding
@@ -36842,7 +36841,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsr2dense_assumed_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A, &
         ld)
       use iso_c_binding
@@ -36922,7 +36921,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsr2dense_assumed_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A, &
         ld)
       use iso_c_binding
@@ -37002,7 +37001,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsr2dense_assumed_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A, &
         ld)
       use iso_c_binding
@@ -37082,7 +37081,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsr2dense_assumed_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A, &
         ld)
       use iso_c_binding
@@ -37162,7 +37161,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_csr2ell_width_assumed_rank(handle,m,csr_descr,csr_row_ptr,ell_descr, &
         ell_width)
       use iso_c_binding
@@ -37214,7 +37213,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsr2ell_assumed_rank(handle,m,csr_descr,csr_val,csr_row_ptr,csr_col_ind, &
         ell_descr,ell_width,ell_val,ell_col_ind)
       use iso_c_binding
@@ -37280,7 +37279,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsr2ell_assumed_rank(handle,m,csr_descr,csr_val,csr_row_ptr,csr_col_ind, &
         ell_descr,ell_width,ell_val,ell_col_ind)
       use iso_c_binding
@@ -37346,7 +37345,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsr2ell_assumed_rank(handle,m,csr_descr,csr_val,csr_row_ptr,csr_col_ind, &
         ell_descr,ell_width,ell_val,ell_col_ind)
       use iso_c_binding
@@ -37412,7 +37411,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsr2ell_assumed_rank(handle,m,csr_descr,csr_val,csr_row_ptr,csr_col_ind, &
         ell_descr,ell_width,ell_val,ell_col_ind)
       use iso_c_binding
@@ -37478,7 +37477,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsr2gebsr_buffer_size_assumed_rank(handle,dir,m,n,csr_descr,csr_val, &
         csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size)
       use iso_c_binding
@@ -37550,7 +37549,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsr2gebsr_buffer_size_assumed_rank(handle,dir,m,n,csr_descr,csr_val, &
         csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size)
       use iso_c_binding
@@ -37622,7 +37621,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsr2gebsr_buffer_size_assumed_rank(handle,dir,m,n,csr_descr,csr_val, &
         csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size)
       use iso_c_binding
@@ -37694,7 +37693,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsr2gebsr_buffer_size_assumed_rank(handle,dir,m,n,csr_descr,csr_val, &
         csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size)
       use iso_c_binding
@@ -37766,7 +37765,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_csr2gebsr_nnz_assumed_rank(handle,dir,m,n,csr_descr,csr_row_ptr, &
         csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,temp_buffer)
       use iso_c_binding
@@ -37844,7 +37843,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsr2gebsr_assumed_rank(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr, &
         csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim, &
         temp_buffer)
@@ -37929,7 +37928,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsr2gebsr_assumed_rank(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr, &
         csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim, &
         temp_buffer)
@@ -38014,7 +38013,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsr2gebsr_assumed_rank(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr, &
         csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim, &
         temp_buffer)
@@ -38099,7 +38098,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsr2gebsr_assumed_rank(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr, &
         csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim, &
         temp_buffer)
@@ -38184,7 +38183,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsr2hyb_assumed_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,hyb, &
         user_ell_width,partition_type)
       use iso_c_binding
@@ -38250,7 +38249,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsr2hyb_assumed_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,hyb, &
         user_ell_width,partition_type)
       use iso_c_binding
@@ -38316,7 +38315,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsr2hyb_assumed_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,hyb, &
         user_ell_width,partition_type)
       use iso_c_binding
@@ -38382,7 +38381,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsr2hyb_assumed_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,hyb, &
         user_ell_width,partition_type)
       use iso_c_binding
@@ -38448,7 +38447,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_csrsort_buffer_size_assumed_rank(handle,m,n,nnz,csr_row_ptr,csr_col_ind, &
         buffer_size)
       use iso_c_binding
@@ -38505,7 +38504,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_csrsort_assumed_rank(handle,m,n,nnz,descr,csr_row_ptr,csr_col_ind,perm, &
         temp_buffer)
       use iso_c_binding
@@ -38566,7 +38565,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sdense2coo_assumed_rank(handle,m,n,descr,A,ld,nnz_per_rows,coo_val, &
         coo_row_ind,coo_col_ind)
       use iso_c_binding
@@ -38653,7 +38652,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ddense2coo_assumed_rank(handle,m,n,descr,A,ld,nnz_per_rows,coo_val, &
         coo_row_ind,coo_col_ind)
       use iso_c_binding
@@ -38740,7 +38739,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cdense2coo_assumed_rank(handle,m,n,descr,A,ld,nnz_per_rows,coo_val, &
         coo_row_ind,coo_col_ind)
       use iso_c_binding
@@ -38827,7 +38826,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zdense2coo_assumed_rank(handle,m,n,descr,A,ld,nnz_per_rows,coo_val, &
         coo_row_ind,coo_col_ind)
       use iso_c_binding
@@ -38914,7 +38913,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sdense2csc_assumed_rank(handle,m,n,descr,A,ld,nnz_per_columns,csc_val, &
         csc_col_ptr,csc_row_ind)
       use iso_c_binding
@@ -39001,7 +39000,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ddense2csc_assumed_rank(handle,m,n,descr,A,ld,nnz_per_columns,csc_val, &
         csc_col_ptr,csc_row_ind)
       use iso_c_binding
@@ -39088,7 +39087,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cdense2csc_assumed_rank(handle,m,n,descr,A,ld,nnz_per_columns,csc_val, &
         csc_col_ptr,csc_row_ind)
       use iso_c_binding
@@ -39175,7 +39174,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zdense2csc_assumed_rank(handle,m,n,descr,A,ld,nnz_per_columns,csc_val, &
         csc_col_ptr,csc_row_ind)
       use iso_c_binding
@@ -39262,7 +39261,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sdense2csr_assumed_rank(handle,m,n,descr,A,ld,nnz_per_rows,csr_val, &
         csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -39349,7 +39348,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ddense2csr_assumed_rank(handle,m,n,descr,A,ld,nnz_per_rows,csr_val, &
         csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -39436,7 +39435,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cdense2csr_assumed_rank(handle,m,n,descr,A,ld,nnz_per_rows,csr_val, &
         csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -39523,7 +39522,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zdense2csr_assumed_rank(handle,m,n,descr,A,ld,nnz_per_rows,csr_val, &
         csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -39610,7 +39609,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ell2csr_nnz_assumed_rank(handle,m,n,ell_descr,ell_width,ell_col_ind, &
         csr_descr,csr_row_ptr,csr_nnz)
       use iso_c_binding
@@ -39673,7 +39672,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sell2csr_assumed_rank(handle,m,n,ell_descr,ell_width,ell_val,ell_col_ind, &
         csr_descr,csr_val,csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -39745,7 +39744,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dell2csr_assumed_rank(handle,m,n,ell_descr,ell_width,ell_val,ell_col_ind, &
         csr_descr,csr_val,csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -39817,7 +39816,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cell2csr_assumed_rank(handle,m,n,ell_descr,ell_width,ell_val,ell_col_ind, &
         csr_descr,csr_val,csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -39889,7 +39888,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zell2csr_assumed_rank(handle,m,n,ell_descr,ell_width,ell_val,ell_col_ind, &
         csr_descr,csr_val,csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -39961,7 +39960,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgebsr2csr_assumed_rank(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -40042,7 +40041,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgebsr2csr_assumed_rank(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -40123,7 +40122,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgebsr2csr_assumed_rank(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -40204,7 +40203,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgebsr2csr_assumed_rank(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,csr_descr,csr_val,csr_row_ptr,csr_col_ind)
       use iso_c_binding
@@ -40285,7 +40284,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgebsr2gebsc_buffer_size_assumed_rank(handle,mb,nb,nnzb,bsr_val, &
         bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
       use iso_c_binding
@@ -40354,7 +40353,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgebsr2gebsc_buffer_size_assumed_rank(handle,mb,nb,nnzb,bsr_val, &
         bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
       use iso_c_binding
@@ -40423,7 +40422,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgebsr2gebsc_buffer_size_assumed_rank(handle,mb,nb,nnzb,bsr_val, &
         bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
       use iso_c_binding
@@ -40492,7 +40491,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgebsr2gebsc_buffer_size_assumed_rank(handle,mb,nb,nnzb,bsr_val, &
         bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
       use iso_c_binding
@@ -40561,7 +40560,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgebsr2gebsc_assumed_rank(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values, &
         idx_base,temp_buffer)
@@ -40648,7 +40647,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgebsr2gebsc_assumed_rank(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values, &
         idx_base,temp_buffer)
@@ -40735,7 +40734,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgebsr2gebsc_assumed_rank(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values, &
         idx_base,temp_buffer)
@@ -40822,7 +40821,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgebsr2gebsc_assumed_rank(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values, &
         idx_base,temp_buffer)
@@ -40909,7 +40908,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_hyb2csr_buffer_size_assumed_rank(handle,descr,hyb,csr_row_ptr,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -40957,7 +40956,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_shyb2csr_assumed_rank(handle,descr,hyb,csr_val,csr_row_ptr,csr_col_ind, &
         temp_buffer)
       use iso_c_binding
@@ -41012,7 +41011,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dhyb2csr_assumed_rank(handle,descr,hyb,csr_val,csr_row_ptr,csr_col_ind, &
         temp_buffer)
       use iso_c_binding
@@ -41067,7 +41066,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_chyb2csr_assumed_rank(handle,descr,hyb,csr_val,csr_row_ptr,csr_col_ind, &
         temp_buffer)
       use iso_c_binding
@@ -41122,7 +41121,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zhyb2csr_assumed_rank(handle,descr,hyb,csr_val,csr_row_ptr,csr_col_ind, &
         temp_buffer)
       use iso_c_binding
@@ -41177,7 +41176,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_create_identity_permutation_assumed_rank(handle,n,p)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -41219,7 +41218,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_snnz_assumed_rank(handle,dir,m,n,descr,A,ld,nnz_per_row_columns, &
         nnz_total_dev_host_ptr)
       use iso_c_binding
@@ -41302,7 +41301,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dnnz_assumed_rank(handle,dir,m,n,descr,A,ld,nnz_per_row_columns, &
         nnz_total_dev_host_ptr)
       use iso_c_binding
@@ -41385,7 +41384,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cnnz_assumed_rank(handle,dir,m,n,descr,A,ld,nnz_per_row_columns, &
         nnz_total_dev_host_ptr)
       use iso_c_binding
@@ -41468,7 +41467,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_znnz_assumed_rank(handle,dir,m,n,descr,A,ld,nnz_per_row_columns, &
         nnz_total_dev_host_ptr)
       use iso_c_binding
@@ -41551,7 +41550,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_snnz_compress_assumed_rank(handle,m,descr_A,csr_val_A,csr_row_ptr_A, &
         nnz_per_row,nnz_C,tol)
       use iso_c_binding
@@ -41611,7 +41610,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dnnz_compress_assumed_rank(handle,m,descr_A,csr_val_A,csr_row_ptr_A, &
         nnz_per_row,nnz_C,tol)
       use iso_c_binding
@@ -41671,7 +41670,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cnnz_compress_assumed_rank(handle,m,descr_A,csr_val_A,csr_row_ptr_A, &
         nnz_per_row,nnz_C,tol)
       use iso_c_binding
@@ -41731,7 +41730,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_znnz_compress_assumed_rank(handle,m,descr_A,csr_val_A,csr_row_ptr_A, &
         nnz_per_row,nnz_C,tol)
       use iso_c_binding
@@ -41791,7 +41790,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sprune_csr2csr_buffer_size_assumed_rank(handle,m,n,nnz_A,csr_descr_A, &
         csr_val_A,csr_row_ptr_A,csr_col_ind_A,threshold,csr_descr_C,csr_val_C,csr_row_ptr_C, &
         csr_col_ind_C,buffer_size)
@@ -41878,7 +41877,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dprune_csr2csr_buffer_size_assumed_rank(handle,m,n,nnz_A,csr_descr_A, &
         csr_val_A,csr_row_ptr_A,csr_col_ind_A,threshold,csr_descr_C,csr_val_C,csr_row_ptr_C, &
         csr_col_ind_C,buffer_size)
@@ -41965,7 +41964,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sprune_csr2csr_nnz_assumed_rank(handle,m,n,nnz_A,csr_descr_A,csr_val_A, &
         csr_row_ptr_A,csr_col_ind_A,threshold,csr_descr_C,csr_row_ptr_C,nnz_total_dev_host_ptr, &
         temp_buffer)
@@ -42046,7 +42045,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dprune_csr2csr_nnz_assumed_rank(handle,m,n,nnz_A,csr_descr_A,csr_val_A, &
         csr_row_ptr_A,csr_col_ind_A,threshold,csr_descr_C,csr_row_ptr_C,nnz_total_dev_host_ptr, &
         temp_buffer)
@@ -42127,7 +42126,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sprune_csr2csr_assumed_rank(handle,m,n,nnz_A,csr_descr_A,csr_val_A, &
         csr_row_ptr_A,csr_col_ind_A,threshold,csr_descr_C,csr_val_C,csr_row_ptr_C,csr_col_ind_C, &
         temp_buffer)
@@ -42209,7 +42208,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dprune_csr2csr_assumed_rank(handle,m,n,nnz_A,csr_descr_A,csr_val_A, &
         csr_row_ptr_A,csr_col_ind_A,threshold,csr_descr_C,csr_val_C,csr_row_ptr_C,csr_col_ind_C, &
         temp_buffer)
@@ -42291,7 +42290,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sprune_csr2csr_by_percentage_buffer_size_assumed_rank(handle,m,n,nnz_A, &
         csr_descr_A,csr_val_A,csr_row_ptr_A,csr_col_ind_A,percentage,csr_descr_C,csr_val_C, &
         csr_row_ptr_C,csr_col_ind_C,myInfo,buffer_size)
@@ -42381,7 +42380,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dprune_csr2csr_by_percentage_buffer_size_assumed_rank(handle,m,n,nnz_A, &
         csr_descr_A,csr_val_A,csr_row_ptr_A,csr_col_ind_A,percentage,csr_descr_C,csr_val_C, &
         csr_row_ptr_C,csr_col_ind_C,myInfo,buffer_size)
@@ -42471,7 +42470,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sprune_csr2csr_nnz_by_percentage_assumed_rank(handle,m,n,nnz_A,csr_descr_A, &
         csr_val_A,csr_row_ptr_A,csr_col_ind_A,percentage,csr_descr_C,csr_row_ptr_C, &
         nnz_total_dev_host_ptr,myInfo,temp_buffer)
@@ -42558,7 +42557,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dprune_csr2csr_nnz_by_percentage_assumed_rank(handle,m,n,nnz_A,csr_descr_A, &
         csr_val_A,csr_row_ptr_A,csr_col_ind_A,percentage,csr_descr_C,csr_row_ptr_C, &
         nnz_total_dev_host_ptr,myInfo,temp_buffer)
@@ -42645,7 +42644,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sprune_csr2csr_by_percentage_assumed_rank(handle,m,n,nnz_A,csr_descr_A, &
         csr_val_A,csr_row_ptr_A,csr_col_ind_A,percentage,csr_descr_C,csr_val_C,csr_row_ptr_C, &
         csr_col_ind_C,myInfo,temp_buffer)
@@ -42735,7 +42734,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dprune_csr2csr_by_percentage_assumed_rank(handle,m,n,nnz_A,csr_descr_A, &
         csr_val_A,csr_row_ptr_A,csr_col_ind_A,percentage,csr_descr_C,csr_val_C,csr_row_ptr_C, &
         csr_col_ind_C,myInfo,temp_buffer)
@@ -42825,7 +42824,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sprune_dense2csr_buffer_size_assumed_rank(handle,m,n,A,lda,threshold,descr, &
         csr_val,csr_row_ptr,csr_col_ind,buffer_size)
       use iso_c_binding
@@ -42920,7 +42919,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dprune_dense2csr_buffer_size_assumed_rank(handle,m,n,A,lda,threshold,descr, &
         csr_val,csr_row_ptr,csr_col_ind,buffer_size)
       use iso_c_binding
@@ -43015,7 +43014,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sprune_dense2csr_nnz_assumed_rank(handle,m,n,A,lda,threshold,descr, &
         csr_row_ptr,nnz_total_dev_host_ptr,temp_buffer)
       use iso_c_binding
@@ -43102,7 +43101,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dprune_dense2csr_nnz_assumed_rank(handle,m,n,A,lda,threshold,descr, &
         csr_row_ptr,nnz_total_dev_host_ptr,temp_buffer)
       use iso_c_binding
@@ -43189,7 +43188,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sprune_dense2csr_assumed_rank(handle,m,n,A,lda,threshold,descr,csr_val, &
         csr_row_ptr,csr_col_ind,temp_buffer)
       use iso_c_binding
@@ -43280,7 +43279,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dprune_dense2csr_assumed_rank(handle,m,n,A,lda,threshold,descr,csr_val, &
         csr_row_ptr,csr_col_ind,temp_buffer)
       use iso_c_binding
@@ -43371,7 +43370,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sprune_dense2csr_by_percentage_buffer_si_assumed_rank(handle,m,n,A,lda, &
         percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -43470,7 +43469,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dprune_dense2csr_by_percentage_buffer_si_assumed_rank(handle,m,n,A,lda, &
         percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -43569,7 +43568,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sprune_dense2csr_nnz_by_percentage_assumed_rank(handle,m,n,A,lda, &
         percentage,descr,csr_row_ptr,nnz_total_dev_host_ptr,myInfo,temp_buffer)
       use iso_c_binding
@@ -43664,7 +43663,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dprune_dense2csr_nnz_by_percentage_assumed_rank(handle,m,n,A,lda, &
         percentage,descr,csr_row_ptr,nnz_total_dev_host_ptr,myInfo,temp_buffer)
       use iso_c_binding
@@ -43759,7 +43758,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sprune_dense2csr_by_percentage_assumed_rank(handle,m,n,A,lda,percentage, &
         descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,temp_buffer)
       use iso_c_binding
@@ -43858,7 +43857,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dprune_dense2csr_by_percentage_assumed_rank(handle,m,n,A,lda,percentage, &
         descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,temp_buffer)
       use iso_c_binding
@@ -43957,7 +43956,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_csrgeam_nnz_assumed_rank(handle,m,n,descr_A,nnz_A,csr_row_ptr_A, &
         csr_col_ind_A,descr_B,nnz_B,csr_row_ptr_B,csr_col_ind_B,descr_C,csr_row_ptr_C,nnz_C)
       use iso_c_binding
@@ -44038,7 +44037,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrgeam_assumed_rank(handle,m,n,alpha,descr_A,nnz_A,csr_val_A, &
         csr_row_ptr_A,csr_col_ind_A,beta,descr_B,nnz_B,csr_val_B,csr_row_ptr_B,csr_col_ind_B, &
         descr_C,csr_val_C,csr_row_ptr_C,csr_col_ind_C)
@@ -44140,7 +44139,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrgeam_assumed_rank(handle,m,n,alpha,descr_A,nnz_A,csr_val_A, &
         csr_row_ptr_A,csr_col_ind_A,beta,descr_B,nnz_B,csr_val_B,csr_row_ptr_B,csr_col_ind_B, &
         descr_C,csr_val_C,csr_row_ptr_C,csr_col_ind_C)
@@ -44242,7 +44241,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrgeam_assumed_rank(handle,m,n,alpha,descr_A,nnz_A,csr_val_A, &
         csr_row_ptr_A,csr_col_ind_A,beta,descr_B,nnz_B,csr_val_B,csr_row_ptr_B,csr_col_ind_B, &
         descr_C,csr_val_C,csr_row_ptr_C,csr_col_ind_C)
@@ -44344,7 +44343,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrgeam_assumed_rank(handle,m,n,alpha,descr_A,nnz_A,csr_val_A, &
         csr_row_ptr_A,csr_col_ind_A,beta,descr_B,nnz_B,csr_val_B,csr_row_ptr_B,csr_col_ind_B, &
         descr_C,csr_val_C,csr_row_ptr_C,csr_col_ind_C)
@@ -44446,7 +44445,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrgemm_buffer_size_assumed_rank(handle,trans_A,trans_B,m,n,k,alpha, &
         descr_A,nnz_A,csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_row_ptr_B,csr_col_ind_B,beta, &
         descr_D,nnz_D,csr_row_ptr_D,csr_col_ind_D,info_C,buffer_size)
@@ -44557,7 +44556,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrgemm_buffer_size_assumed_rank(handle,trans_A,trans_B,m,n,k,alpha, &
         descr_A,nnz_A,csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_row_ptr_B,csr_col_ind_B,beta, &
         descr_D,nnz_D,csr_row_ptr_D,csr_col_ind_D,info_C,buffer_size)
@@ -44668,7 +44667,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrgemm_buffer_size_assumed_rank(handle,trans_A,trans_B,m,n,k,alpha, &
         descr_A,nnz_A,csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_row_ptr_B,csr_col_ind_B,beta, &
         descr_D,nnz_D,csr_row_ptr_D,csr_col_ind_D,info_C,buffer_size)
@@ -44779,7 +44778,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrgemm_buffer_size_assumed_rank(handle,trans_A,trans_B,m,n,k,alpha, &
         descr_A,nnz_A,csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_row_ptr_B,csr_col_ind_B,beta, &
         descr_D,nnz_D,csr_row_ptr_D,csr_col_ind_D,info_C,buffer_size)
@@ -44890,7 +44889,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_csrgemm_nnz_assumed_rank(handle,trans_A,trans_B,m,n,k,descr_A,nnz_A, &
         csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_row_ptr_B,csr_col_ind_B,descr_D,nnz_D, &
         csr_row_ptr_D,csr_col_ind_D,descr_C,csr_row_ptr_C,nnz_C,info_C,temp_buffer)
@@ -45004,7 +45003,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrgemm_assumed_rank(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A, &
         csr_val_A,csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_val_B,csr_row_ptr_B,csr_col_ind_B, &
         beta,descr_D,nnz_D,csr_val_D,csr_row_ptr_D,csr_col_ind_D,descr_C,csr_val_C,csr_row_ptr_C, &
@@ -45142,7 +45141,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrgemm_assumed_rank(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A, &
         csr_val_A,csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_val_B,csr_row_ptr_B,csr_col_ind_B, &
         beta,descr_D,nnz_D,csr_val_D,csr_row_ptr_D,csr_col_ind_D,descr_C,csr_val_C,csr_row_ptr_C, &
@@ -45280,7 +45279,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrgemm_assumed_rank(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A, &
         csr_val_A,csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_val_B,csr_row_ptr_B,csr_col_ind_B, &
         beta,descr_D,nnz_D,csr_val_D,csr_row_ptr_D,csr_col_ind_D,descr_C,csr_val_C,csr_row_ptr_C, &
@@ -45418,7 +45417,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrgemm_assumed_rank(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A, &
         csr_val_A,csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_val_B,csr_row_ptr_B,csr_col_ind_B, &
         beta,descr_D,nnz_D,csr_val_D,csr_row_ptr_D,csr_col_ind_D,descr_C,csr_val_C,csr_row_ptr_C, &
@@ -45556,7 +45555,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_saxpyi_assumed_rank(handle,nnz,alpha,x_val,x_ind,y,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -45610,7 +45609,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_daxpyi_assumed_rank(handle,nnz,alpha,x_val,x_ind,y,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -45664,7 +45663,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_caxpyi_assumed_rank(handle,nnz,alpha,x_val,x_ind,y,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -45718,7 +45717,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zaxpyi_assumed_rank(handle,nnz,alpha,x_val,x_ind,y,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -45772,7 +45771,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cdotci_assumed_rank(handle,nnz,x_val,x_ind,y,myResult,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -45826,7 +45825,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zdotci_assumed_rank(handle,nnz,x_val,x_ind,y,myResult,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -45880,7 +45879,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sdoti_assumed_rank(handle,nnz,x_val,x_ind,y,myResult,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -45934,7 +45933,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ddoti_assumed_rank(handle,nnz,x_val,x_ind,y,myResult,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -45988,7 +45987,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cdoti_assumed_rank(handle,nnz,x_val,x_ind,y,myResult,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46042,7 +46041,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zdoti_assumed_rank(handle,nnz,x_val,x_ind,y,myResult,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46096,7 +46095,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgthr_assumed_rank(handle,nnz,y,x_val,x_ind,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46147,7 +46146,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgthr_assumed_rank(handle,nnz,y,x_val,x_ind,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46198,7 +46197,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgthr_assumed_rank(handle,nnz,y,x_val,x_ind,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46249,7 +46248,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgthr_assumed_rank(handle,nnz,y,x_val,x_ind,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46300,7 +46299,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgthrz_assumed_rank(handle,nnz,y,x_val,x_ind,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46351,7 +46350,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgthrz_assumed_rank(handle,nnz,y,x_val,x_ind,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46402,7 +46401,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgthrz_assumed_rank(handle,nnz,y,x_val,x_ind,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46453,7 +46452,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgthrz_assumed_rank(handle,nnz,y,x_val,x_ind,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46504,7 +46503,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sroti_assumed_rank(handle,nnz,x_val,x_ind,y,c,s,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46561,7 +46560,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_droti_assumed_rank(handle,nnz,x_val,x_ind,y,c,s,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46618,7 +46617,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ssctr_assumed_rank(handle,nnz,x_val,x_ind,y,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46669,7 +46668,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dsctr_assumed_rank(handle,nnz,x_val,x_ind,y,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46720,7 +46719,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_csctr_assumed_rank(handle,nnz,x_val,x_ind,y,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46771,7 +46770,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zsctr_assumed_rank(handle,nnz,x_val,x_ind,y,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46822,7 +46821,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_isctr_assumed_rank(handle,nnz,x_val,x_ind,y,idx_base)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -46873,7 +46872,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsrmv_assumed_rank(handle,dir,trans,mb,nb,nnzb,alpha,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,x,beta,y)
       use iso_c_binding
@@ -46960,7 +46959,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsrmv_assumed_rank(handle,dir,trans,mb,nb,nnzb,alpha,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,x,beta,y)
       use iso_c_binding
@@ -47047,7 +47046,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsrmv_assumed_rank(handle,dir,trans,mb,nb,nnzb,alpha,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,x,beta,y)
       use iso_c_binding
@@ -47134,7 +47133,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsrmv_assumed_rank(handle,dir,trans,mb,nb,nnzb,alpha,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,x,beta,y)
       use iso_c_binding
@@ -47221,7 +47220,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsrsv_buffer_size_assumed_rank(handle,dir,trans,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -47296,7 +47295,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsrsv_buffer_size_assumed_rank(handle,dir,trans,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -47371,7 +47370,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsrsv_buffer_size_assumed_rank(handle,dir,trans,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -47446,7 +47445,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsrsv_buffer_size_assumed_rank(handle,dir,trans,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -47521,7 +47520,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsrsv_analysis_assumed_rank(handle,dir,trans,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -47602,7 +47601,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsrsv_analysis_assumed_rank(handle,dir,trans,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -47683,7 +47682,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsrsv_analysis_assumed_rank(handle,dir,trans,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -47764,7 +47763,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsrsv_analysis_assumed_rank(handle,dir,trans,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -47845,7 +47844,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsrsv_solve_assumed_rank(handle,dir,trans,mb,nnzb,alpha,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,x,y,policy,temp_buffer)
       use iso_c_binding
@@ -47932,7 +47931,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsrsv_solve_assumed_rank(handle,dir,trans,mb,nnzb,alpha,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,x,y,policy,temp_buffer)
       use iso_c_binding
@@ -48019,7 +48018,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsrsv_solve_assumed_rank(handle,dir,trans,mb,nnzb,alpha,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,x,y,policy,temp_buffer)
       use iso_c_binding
@@ -48106,7 +48105,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsrsv_solve_assumed_rank(handle,dir,trans,mb,nnzb,alpha,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,x,y,policy,temp_buffer)
       use iso_c_binding
@@ -48193,7 +48192,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsrxmv_assumed_rank(handle,dir,trans,size_of_mask,mb,nb,nnzb,alpha,descr, &
         bsr_val,bsr_mask_ptr,bsr_row_ptr,bsr_end_ptr,bsr_col_ind,block_dim,x,beta,y)
       use iso_c_binding
@@ -48286,7 +48285,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsrxmv_assumed_rank(handle,dir,trans,size_of_mask,mb,nb,nnzb,alpha,descr, &
         bsr_val,bsr_mask_ptr,bsr_row_ptr,bsr_end_ptr,bsr_col_ind,block_dim,x,beta,y)
       use iso_c_binding
@@ -48379,7 +48378,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsrxmv_assumed_rank(handle,dir,trans,size_of_mask,mb,nb,nnzb,alpha,descr, &
         bsr_val,bsr_mask_ptr,bsr_row_ptr,bsr_end_ptr,bsr_col_ind,block_dim,x,beta,y)
       use iso_c_binding
@@ -48472,7 +48471,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsrxmv_assumed_rank(handle,dir,trans,size_of_mask,mb,nb,nnzb,alpha,descr, &
         bsr_val,bsr_mask_ptr,bsr_row_ptr,bsr_end_ptr,bsr_col_ind,block_dim,x,beta,y)
       use iso_c_binding
@@ -48565,7 +48564,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scoomv_assumed_rank(handle,trans,m,n,nnz,alpha,descr,coo_val,coo_row_ind, &
         coo_col_ind,x,beta,y)
       use iso_c_binding
@@ -48640,7 +48639,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcoomv_assumed_rank(handle,trans,m,n,nnz,alpha,descr,coo_val,coo_row_ind, &
         coo_col_ind,x,beta,y)
       use iso_c_binding
@@ -48715,7 +48714,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccoomv_assumed_rank(handle,trans,m,n,nnz,alpha,descr,coo_val,coo_row_ind, &
         coo_col_ind,x,beta,y)
       use iso_c_binding
@@ -48790,7 +48789,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcoomv_assumed_rank(handle,trans,m,n,nnz,alpha,descr,coo_val,coo_row_ind, &
         coo_col_ind,x,beta,y)
       use iso_c_binding
@@ -48865,7 +48864,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrmv_analysis_assumed_rank(handle,trans,m,n,nnz,descr,csr_val, &
         csr_row_ptr,csr_col_ind,myInfo)
       use iso_c_binding
@@ -48931,7 +48930,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrmv_analysis_assumed_rank(handle,trans,m,n,nnz,descr,csr_val, &
         csr_row_ptr,csr_col_ind,myInfo)
       use iso_c_binding
@@ -48997,7 +48996,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrmv_analysis_assumed_rank(handle,trans,m,n,nnz,descr,csr_val, &
         csr_row_ptr,csr_col_ind,myInfo)
       use iso_c_binding
@@ -49063,7 +49062,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrmv_analysis_assumed_rank(handle,trans,m,n,nnz,descr,csr_val, &
         csr_row_ptr,csr_col_ind,myInfo)
       use iso_c_binding
@@ -49129,7 +49128,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrmv_assumed_rank(handle,trans,m,n,nnz,alpha,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,x,beta,y)
       use iso_c_binding
@@ -49207,7 +49206,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrmv_assumed_rank(handle,trans,m,n,nnz,alpha,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,x,beta,y)
       use iso_c_binding
@@ -49285,7 +49284,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrmv_assumed_rank(handle,trans,m,n,nnz,alpha,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,x,beta,y)
       use iso_c_binding
@@ -49363,7 +49362,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrmv_assumed_rank(handle,trans,m,n,nnz,alpha,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,x,beta,y)
       use iso_c_binding
@@ -49441,7 +49440,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrsv_buffer_size_assumed_rank(handle,trans,m,nnz,descr,csr_val, &
         csr_row_ptr,csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -49507,7 +49506,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrsv_buffer_size_assumed_rank(handle,trans,m,nnz,descr,csr_val, &
         csr_row_ptr,csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -49573,7 +49572,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrsv_buffer_size_assumed_rank(handle,trans,m,nnz,descr,csr_val, &
         csr_row_ptr,csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -49639,7 +49638,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrsv_buffer_size_assumed_rank(handle,trans,m,nnz,descr,csr_val, &
         csr_row_ptr,csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -49705,7 +49704,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrsv_analysis_assumed_rank(handle,trans,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -49778,7 +49777,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrsv_analysis_assumed_rank(handle,trans,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -49851,7 +49850,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrsv_analysis_assumed_rank(handle,trans,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -49924,7 +49923,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrsv_analysis_assumed_rank(handle,trans,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -49997,7 +49996,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrsv_solve_assumed_rank(handle,trans,m,nnz,alpha,descr,csr_val, &
         csr_row_ptr,csr_col_ind,myInfo,x,y,policy,temp_buffer)
       use iso_c_binding
@@ -50078,7 +50077,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrsv_solve_assumed_rank(handle,trans,m,nnz,alpha,descr,csr_val, &
         csr_row_ptr,csr_col_ind,myInfo,x,y,policy,temp_buffer)
       use iso_c_binding
@@ -50159,7 +50158,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrsv_solve_assumed_rank(handle,trans,m,nnz,alpha,descr,csr_val, &
         csr_row_ptr,csr_col_ind,myInfo,x,y,policy,temp_buffer)
       use iso_c_binding
@@ -50240,7 +50239,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrsv_solve_assumed_rank(handle,trans,m,nnz,alpha,descr,csr_val, &
         csr_row_ptr,csr_col_ind,myInfo,x,y,policy,temp_buffer)
       use iso_c_binding
@@ -50321,7 +50320,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sellmv_assumed_rank(handle,trans,m,n,alpha,descr,ell_val,ell_col_ind, &
         ell_width,x,beta,y)
       use iso_c_binding
@@ -50393,7 +50392,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dellmv_assumed_rank(handle,trans,m,n,alpha,descr,ell_val,ell_col_ind, &
         ell_width,x,beta,y)
       use iso_c_binding
@@ -50465,7 +50464,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cellmv_assumed_rank(handle,trans,m,n,alpha,descr,ell_val,ell_col_ind, &
         ell_width,x,beta,y)
       use iso_c_binding
@@ -50537,7 +50536,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zellmv_assumed_rank(handle,trans,m,n,alpha,descr,ell_val,ell_col_ind, &
         ell_width,x,beta,y)
       use iso_c_binding
@@ -50609,7 +50608,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgebsrmv_assumed_rank(handle,dir,trans,mb,nb,nnzb,alpha,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,x,beta,y)
       use iso_c_binding
@@ -50696,7 +50695,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgebsrmv_assumed_rank(handle,dir,trans,mb,nb,nnzb,alpha,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,x,beta,y)
       use iso_c_binding
@@ -50783,7 +50782,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgebsrmv_assumed_rank(handle,dir,trans,mb,nb,nnzb,alpha,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,x,beta,y)
       use iso_c_binding
@@ -50870,7 +50869,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgebsrmv_assumed_rank(handle,dir,trans,mb,nb,nnzb,alpha,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,x,beta,y)
       use iso_c_binding
@@ -50957,7 +50956,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgemvi_assumed_rank(handle,trans,m,n,alpha,A,lda,nnz,x_val,x_ind,beta,y, &
         idx_base,temp_buffer)
       use iso_c_binding
@@ -51060,7 +51059,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgemvi_assumed_rank(handle,trans,m,n,alpha,A,lda,nnz,x_val,x_ind,beta,y, &
         idx_base,temp_buffer)
       use iso_c_binding
@@ -51163,7 +51162,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgemvi_assumed_rank(handle,trans,m,n,alpha,A,lda,nnz,x_val,x_ind,beta,y, &
         idx_base,temp_buffer)
       use iso_c_binding
@@ -51266,7 +51265,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgemvi_assumed_rank(handle,trans,m,n,alpha,A,lda,nnz,x_val,x_ind,beta,y, &
         idx_base,temp_buffer)
       use iso_c_binding
@@ -51369,7 +51368,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_shybmv_assumed_rank(handle,trans,alpha,descr,hyb,x,beta,y)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -51426,7 +51425,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dhybmv_assumed_rank(handle,trans,alpha,descr,hyb,x,beta,y)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -51483,7 +51482,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_chybmv_assumed_rank(handle,trans,alpha,descr,hyb,x,beta,y)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -51540,7 +51539,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zhybmv_assumed_rank(handle,trans,alpha,descr,hyb,x,beta,y)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -51597,7 +51596,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsrmm_assumed_rank(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr, &
         bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -51724,7 +51723,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsrmm_assumed_rank(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr, &
         bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -51851,7 +51850,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsrmm_assumed_rank(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr, &
         bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -51978,7 +51977,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsrmm_assumed_rank(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr, &
         bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -52105,7 +52104,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsrsm_buffer_size_assumed_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb, &
         descr,bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -52186,7 +52185,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsrsm_buffer_size_assumed_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb, &
         descr,bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -52267,7 +52266,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsrsm_buffer_size_assumed_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb, &
         descr,bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -52348,7 +52347,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsrsm_buffer_size_assumed_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb, &
         descr,bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -52429,7 +52428,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsrsm_analysis_assumed_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr, &
         bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -52516,7 +52515,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsrsm_analysis_assumed_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr, &
         bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -52603,7 +52602,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsrsm_analysis_assumed_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr, &
         bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -52690,7 +52689,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsrsm_analysis_assumed_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,descr, &
         bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -52777,7 +52776,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsrsm_solve_assumed_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha, &
         descr,bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,B,ldb,X,ldx,policy,temp_buffer)
       use iso_c_binding
@@ -52908,7 +52907,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsrsm_solve_assumed_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha, &
         descr,bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,B,ldb,X,ldx,policy,temp_buffer)
       use iso_c_binding
@@ -53039,7 +53038,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsrsm_solve_assumed_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha, &
         descr,bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,B,ldb,X,ldx,policy,temp_buffer)
       use iso_c_binding
@@ -53170,7 +53169,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsrsm_solve_assumed_rank(handle,dir,trans_A,trans_X,mb,nrhs,nnzb,alpha, &
         descr,bsr_val,bsr_row_ptr,bsr_col_ind,block_dim,myInfo,B,ldb,X,ldx,policy,temp_buffer)
       use iso_c_binding
@@ -53301,7 +53300,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrmm_assumed_rank(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,csr_val, &
         csr_row_ptr,csr_col_ind,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -53416,7 +53415,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrmm_assumed_rank(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,csr_val, &
         csr_row_ptr,csr_col_ind,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -53531,7 +53530,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrmm_assumed_rank(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,csr_val, &
         csr_row_ptr,csr_col_ind,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -53646,7 +53645,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrmm_assumed_rank(handle,trans_A,trans_B,m,n,k,nnz,alpha,descr,csr_val, &
         csr_row_ptr,csr_col_ind,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -53761,7 +53760,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrsm_buffer_size_assumed_rank(handle,trans_A,trans_B,m,nrhs,nnz,alpha, &
         descr,csr_val,csr_row_ptr,csr_col_ind,B,ldb,myInfo,policy,buffer_size)
       use iso_c_binding
@@ -53876,7 +53875,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrsm_buffer_size_assumed_rank(handle,trans_A,trans_B,m,nrhs,nnz,alpha, &
         descr,csr_val,csr_row_ptr,csr_col_ind,B,ldb,myInfo,policy,buffer_size)
       use iso_c_binding
@@ -53991,7 +53990,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrsm_buffer_size_assumed_rank(handle,trans_A,trans_B,m,nrhs,nnz,alpha, &
         descr,csr_val,csr_row_ptr,csr_col_ind,B,ldb,myInfo,policy,buffer_size)
       use iso_c_binding
@@ -54106,7 +54105,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrsm_buffer_size_assumed_rank(handle,trans_A,trans_B,m,nrhs,nnz,alpha, &
         descr,csr_val,csr_row_ptr,csr_col_ind,B,ldb,myInfo,policy,buffer_size)
       use iso_c_binding
@@ -54221,7 +54220,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrsm_analysis_assumed_rank(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr, &
         csr_val,csr_row_ptr,csr_col_ind,B,ldb,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -54340,7 +54339,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrsm_analysis_assumed_rank(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr, &
         csr_val,csr_row_ptr,csr_col_ind,B,ldb,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -54459,7 +54458,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrsm_analysis_assumed_rank(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr, &
         csr_val,csr_row_ptr,csr_col_ind,B,ldb,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -54578,7 +54577,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrsm_analysis_assumed_rank(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr, &
         csr_val,csr_row_ptr,csr_col_ind,B,ldb,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -54697,7 +54696,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrsm_solve_assumed_rank(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr, &
         csr_val,csr_row_ptr,csr_col_ind,B,ldb,myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -54812,7 +54811,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrsm_solve_assumed_rank(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr, &
         csr_val,csr_row_ptr,csr_col_ind,B,ldb,myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -54927,7 +54926,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrsm_solve_assumed_rank(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr, &
         csr_val,csr_row_ptr,csr_col_ind,B,ldb,myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -55042,7 +55041,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrsm_solve_assumed_rank(handle,trans_A,trans_B,m,nrhs,nnz,alpha,descr, &
         csr_val,csr_row_ptr,csr_col_ind,B,ldb,myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -55157,7 +55156,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgebsrmm_assumed_rank(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr, &
         bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -55288,7 +55287,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgebsrmm_assumed_rank(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr, &
         bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -55419,7 +55418,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgebsrmm_assumed_rank(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr, &
         bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -55550,7 +55549,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgebsrmm_assumed_rank(handle,dir,trans_A,trans_B,mb,n,kb,nnzb,alpha,descr, &
         bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,B,ldb,beta,C,ldc)
       use iso_c_binding
@@ -55681,7 +55680,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgemmi_assumed_rank(handle,trans_A,trans_B,m,n,k,nnz,alpha,A,lda,descr, &
         csr_val,csr_row_ptr,csr_col_ind,beta,C,ldc)
       use iso_c_binding
@@ -55796,7 +55795,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgemmi_assumed_rank(handle,trans_A,trans_B,m,n,k,nnz,alpha,A,lda,descr, &
         csr_val,csr_row_ptr,csr_col_ind,beta,C,ldc)
       use iso_c_binding
@@ -55911,7 +55910,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgemmi_assumed_rank(handle,trans_A,trans_B,m,n,k,nnz,alpha,A,lda,descr, &
         csr_val,csr_row_ptr,csr_col_ind,beta,C,ldc)
       use iso_c_binding
@@ -56026,7 +56025,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgemmi_assumed_rank(handle,trans_A,trans_B,m,n,k,nnz,alpha,A,lda,descr, &
         csr_val,csr_row_ptr,csr_col_ind,beta,C,ldc)
       use iso_c_binding
@@ -56141,7 +56140,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsric0_buffer_size_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -56211,7 +56210,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsric0_buffer_size_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -56281,7 +56280,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsric0_buffer_size_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -56351,7 +56350,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsric0_buffer_size_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -56421,7 +56420,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsric0_analysis_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -56499,7 +56498,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsric0_analysis_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -56577,7 +56576,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsric0_analysis_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -56655,7 +56654,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsric0_analysis_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -56733,7 +56732,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsric0_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -56805,7 +56804,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsric0_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -56877,7 +56876,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsric0_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -56949,7 +56948,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsric0_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -57021,7 +57020,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsrilu0_buffer_size_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -57091,7 +57090,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsrilu0_buffer_size_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -57161,7 +57160,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsrilu0_buffer_size_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -57231,7 +57230,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsrilu0_buffer_size_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,buffer_size)
       use iso_c_binding
@@ -57301,7 +57300,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsrilu0_analysis_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -57379,7 +57378,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsrilu0_analysis_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -57457,7 +57456,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsrilu0_analysis_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -57535,7 +57534,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsrilu0_analysis_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val, &
         bsr_row_ptr,bsr_col_ind,block_dim,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -57613,7 +57612,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sbsrilu0_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -57685,7 +57684,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dbsrilu0_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -57757,7 +57756,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cbsrilu0_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -57829,7 +57828,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zbsrilu0_assumed_rank(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
         bsr_col_ind,block_dim,myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -57901,7 +57900,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsric0_buffer_size_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -57964,7 +57963,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsric0_buffer_size_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -58027,7 +58026,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsric0_buffer_size_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -58090,7 +58089,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsric0_buffer_size_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -58153,7 +58152,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsric0_analysis_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -58222,7 +58221,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsric0_analysis_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -58291,7 +58290,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsric0_analysis_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -58360,7 +58359,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsric0_analysis_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -58429,7 +58428,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsric0_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -58495,7 +58494,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsric0_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -58561,7 +58560,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsric0_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -58627,7 +58626,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsric0_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -58693,7 +58692,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrilu0_buffer_size_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -58756,7 +58755,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrilu0_buffer_size_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -58819,7 +58818,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrilu0_buffer_size_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -58882,7 +58881,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrilu0_buffer_size_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
@@ -58945,7 +58944,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrilu0_analysis_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -59014,7 +59013,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrilu0_analysis_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -59083,7 +59082,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrilu0_analysis_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -59152,7 +59151,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrilu0_analysis_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr, &
         csr_col_ind,myInfo,analysis,solve,temp_buffer)
       use iso_c_binding
@@ -59221,7 +59220,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrilu0_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -59287,7 +59286,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrilu0_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -59353,7 +59352,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrilu0_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -59419,7 +59418,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrilu0_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         myInfo,policy,temp_buffer)
       use iso_c_binding
@@ -59485,7 +59484,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgpsv_interleaved_batch_buffer_size_assumed_rank(handle,alg,m,ds,dl,d,du, &
         dw,x,batch_count,batch_stride,buffer_size)
       use iso_c_binding
@@ -59560,7 +59559,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgpsv_interleaved_batch_buffer_size_assumed_rank(handle,alg,m,ds,dl,d,du, &
         dw,x,batch_count,batch_stride,buffer_size)
       use iso_c_binding
@@ -59635,7 +59634,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgpsv_interleaved_batch_buffer_size_assumed_rank(handle,alg,m,ds,dl,d,du, &
         dw,x,batch_count,batch_stride,buffer_size)
       use iso_c_binding
@@ -59710,7 +59709,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgpsv_interleaved_batch_buffer_size_assumed_rank(handle,alg,m,ds,dl,d,du, &
         dw,x,batch_count,batch_stride,buffer_size)
       use iso_c_binding
@@ -59785,7 +59784,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgpsv_interleaved_batch_assumed_rank(handle,alg,m,ds,dl,d,du,dw,x, &
         batch_count,batch_stride,temp_buffer)
       use iso_c_binding
@@ -59860,7 +59859,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgpsv_interleaved_batch_assumed_rank(handle,alg,m,ds,dl,d,du,dw,x, &
         batch_count,batch_stride,temp_buffer)
       use iso_c_binding
@@ -59935,7 +59934,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgpsv_interleaved_batch_assumed_rank(handle,alg,m,ds,dl,d,du,dw,x, &
         batch_count,batch_stride,temp_buffer)
       use iso_c_binding
@@ -60010,7 +60009,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgpsv_interleaved_batch_assumed_rank(handle,alg,m,ds,dl,d,du,dw,x, &
         batch_count,batch_stride,temp_buffer)
       use iso_c_binding
@@ -60085,7 +60084,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgtsv_buffer_size_assumed_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -60164,7 +60163,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgtsv_buffer_size_assumed_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -60243,7 +60242,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgtsv_buffer_size_assumed_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -60322,7 +60321,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgtsv_buffer_size_assumed_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -60401,7 +60400,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgtsv_assumed_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -60480,7 +60479,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgtsv_assumed_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -60559,7 +60558,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgtsv_assumed_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -60638,7 +60637,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgtsv_assumed_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -60717,7 +60716,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgtsv_no_pivot_buffer_size_assumed_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -60796,7 +60795,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgtsv_no_pivot_buffer_size_assumed_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -60875,7 +60874,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgtsv_no_pivot_buffer_size_assumed_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -60954,7 +60953,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgtsv_no_pivot_buffer_size_assumed_rank(handle,m,n,dl,d,du,B,ldb,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -61033,7 +61032,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgtsv_no_pivot_assumed_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -61112,7 +61111,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgtsv_no_pivot_assumed_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -61191,7 +61190,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgtsv_no_pivot_assumed_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -61270,7 +61269,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgtsv_no_pivot_assumed_rank(handle,m,n,dl,d,du,B,ldb,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -61349,7 +61348,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_assumed_rank(handle,m,dl,d,du,x, &
         batch_count,batch_stride,buffer_size)
       use iso_c_binding
@@ -61415,7 +61414,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_assumed_rank(handle,m,dl,d,du,x, &
         batch_count,batch_stride,buffer_size)
       use iso_c_binding
@@ -61481,7 +61480,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_assumed_rank(handle,m,dl,d,du,x, &
         batch_count,batch_stride,buffer_size)
       use iso_c_binding
@@ -61547,7 +61546,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_assumed_rank(handle,m,dl,d,du,x, &
         batch_count,batch_stride,buffer_size)
       use iso_c_binding
@@ -61613,7 +61612,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_sgtsv_no_pivot_strided_batch_assumed_rank(handle,m,dl,d,du,x,batch_count, &
         batch_stride,temp_buffer)
       use iso_c_binding
@@ -61677,7 +61676,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dgtsv_no_pivot_strided_batch_assumed_rank(handle,m,dl,d,du,x,batch_count, &
         batch_stride,temp_buffer)
       use iso_c_binding
@@ -61741,7 +61740,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_cgtsv_no_pivot_strided_batch_assumed_rank(handle,m,dl,d,du,x,batch_count, &
         batch_stride,temp_buffer)
       use iso_c_binding
@@ -61805,7 +61804,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zgtsv_no_pivot_strided_batch_assumed_rank(handle,m,dl,d,du,x,batch_count, &
         batch_stride,temp_buffer)
       use iso_c_binding
@@ -61869,7 +61868,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_scsrcolor_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         fraction_to_color,ncolors,coloring,reordering,myInfo)
       use iso_c_binding
@@ -61941,7 +61940,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_dcsrcolor_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         fraction_to_color,ncolors,coloring,reordering,myInfo)
       use iso_c_binding
@@ -62013,7 +62012,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_ccsrcolor_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         fraction_to_color,ncolors,coloring,reordering,myInfo)
       use iso_c_binding
@@ -62085,7 +62084,7 @@ module hipfort_rocsparse
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocsparse_zcsrcolor_assumed_rank(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         fraction_to_color,ncolors,coloring,reordering,myInfo)
       use iso_c_binding

@@ -1,9 +1,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! ==============================================================================
-! hipfort: FORTRAN Interfaces for GPU kernels
-! ==============================================================================
-! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
-! [MITx11 License]
+! Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+!
+! SPDX-License-Identifier: MIT
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
@@ -17,11 +15,12 @@
 !
 ! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 ! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 ! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ! THE SOFTWARE.
+!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_rocrand
@@ -163,13 +162,13 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocrand_generate_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_rank_0,&
       rocrand_generate_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_assumed_rank
 #endif
 #endif
   end interface
@@ -205,13 +204,13 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocrand_generate_long_long_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_long_long_rank_0,&
       rocrand_generate_long_long_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_long_long_assumed_rank
 #endif
 #endif
   end interface
@@ -306,13 +305,13 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocrand_generate_uniform_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_uniform_rank_0,&
       rocrand_generate_uniform_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_uniform_assumed_rank
 #endif
 #endif
   end interface
@@ -347,13 +346,13 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocrand_generate_uniform_double_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_uniform_double_rank_0,&
       rocrand_generate_uniform_double_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_uniform_double_assumed_rank
 #endif
 #endif
   end interface
@@ -420,13 +419,13 @@ module hipfort_rocrand
       real(c_float),value :: stddev
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocrand_generate_normal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_normal_rank_0,&
       rocrand_generate_normal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_normal_assumed_rank
 #endif
 #endif
   end interface
@@ -462,13 +461,13 @@ module hipfort_rocrand
       real(c_double),value :: stddev
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocrand_generate_normal_double_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_normal_double_rank_0,&
       rocrand_generate_normal_double_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_normal_double_assumed_rank
 #endif
 #endif
   end interface
@@ -536,13 +535,13 @@ module hipfort_rocrand
       real(c_float),value :: stddev
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocrand_generate_log_normal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_log_normal_rank_0,&
       rocrand_generate_log_normal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_log_normal_assumed_rank
 #endif
 #endif
   end interface
@@ -578,13 +577,13 @@ module hipfort_rocrand
       real(c_double),value :: stddev
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocrand_generate_log_normal_double_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_log_normal_double_rank_0,&
       rocrand_generate_log_normal_double_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_log_normal_double_assumed_rank
 #endif
 #endif
   end interface
@@ -651,13 +650,13 @@ module hipfort_rocrand
       real(c_double),value :: lambda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocrand_generate_poisson_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_poisson_rank_0,&
       rocrand_generate_poisson_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_poisson_assumed_rank
 #endif
 #endif
   end interface
@@ -944,13 +943,13 @@ module hipfort_rocrand
       type(c_ptr) :: discrete_distribution
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure rocrand_create_discrete_distribution_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_create_discrete_distribution_rank_0,&
       rocrand_create_discrete_distribution_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_create_discrete_distribution_assumed_rank
 #endif
 #endif
   end interface
@@ -1053,10 +1052,10 @@ module hipfort_rocrand
   end interface
 
 
-#ifdef USE_FPOINTER_INTERFACES
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
 
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocrand_generate_assumed_rank(generator,output_data,n)
       use iso_c_binding
       use hipfort_rocrand_enums
@@ -1095,7 +1094,7 @@ module hipfort_rocrand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocrand_generate_long_long_assumed_rank(generator,output_data,n)
       use iso_c_binding
       use hipfort_rocrand_enums
@@ -1137,7 +1136,7 @@ module hipfort_rocrand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocrand_generate_uniform_assumed_rank(generator,output_data,n)
       use iso_c_binding
       use hipfort_rocrand_enums
@@ -1177,7 +1176,7 @@ module hipfort_rocrand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocrand_generate_uniform_double_assumed_rank(generator,output_data,n)
       use iso_c_binding
       use hipfort_rocrand_enums
@@ -1219,7 +1218,7 @@ module hipfort_rocrand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocrand_generate_normal_assumed_rank(generator,output_data,n,mean,stddev)
       use iso_c_binding
       use hipfort_rocrand_enums
@@ -1267,7 +1266,7 @@ module hipfort_rocrand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocrand_generate_normal_double_assumed_rank(generator,output_data,n,mean,stddev)
       use iso_c_binding
       use hipfort_rocrand_enums
@@ -1315,7 +1314,7 @@ module hipfort_rocrand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocrand_generate_log_normal_assumed_rank(generator,output_data,n,mean,stddev)
       use iso_c_binding
       use hipfort_rocrand_enums
@@ -1363,7 +1362,7 @@ module hipfort_rocrand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocrand_generate_log_normal_double_assumed_rank(generator,output_data,n,mean,stddev)
       use iso_c_binding
       use hipfort_rocrand_enums
@@ -1411,7 +1410,7 @@ module hipfort_rocrand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocrand_generate_poisson_assumed_rank(generator,output_data,n,lambda)
       use iso_c_binding
       use hipfort_rocrand_enums
@@ -1456,7 +1455,7 @@ module hipfort_rocrand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function rocrand_create_discrete_distribution_assumed_rank(probabilities,mySize,offset, &
         discrete_distribution)
       use iso_c_binding

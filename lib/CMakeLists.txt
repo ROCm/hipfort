@@ -1,22 +1,27 @@
-# Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
-# 
+###############################################################################
+# Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+#
+# SPDX-License-Identifier: MIT
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+#
+###############################################################################
 
 file(GLOB HIPFORT_SRC_HIP_F90 "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.f90")
 file(GLOB HIPFORT_SRC_HIP_F90_UPPER "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/*.F90")
@@ -51,7 +56,7 @@ list(REMOVE_ITEM HIPFORT_SRC_COMMON ${HIPFORT_SRC_ROC} ${HIPFORT_SRC_CUDA_ERRORS
 set(HIPFORT_SRC_AMDGCN ${HIPFORT_SRC_COMMON} ${HIPFORT_SRC_ROC})            # + AMD-only roc*
 set(HIPFORT_SRC_NVPTX  ${HIPFORT_SRC_COMMON} ${HIPFORT_SRC_CUDA_ERRORS})    # + CUDA-only cuda_errors
 
-# The Fortran 2008 array interfaces (USE_FPOINTER_INTERFACES) default ON whenever
+# The Fortran 2008 array interfaces default ON whenever
 # the compiler supports Fortran 2008. Exposed as a cache option so it can be forced
 # OFF for an old compiler, or one whose F2008 support is buggy (e.g. some Intel
 # releases) — the library then builds with plain C-binding interfaces only.
@@ -75,7 +80,7 @@ endif()
 # Experimental: replace the per-rank array interfaces (rank_0..rank_N + full_rank)
 # with a single Fortran 2018 assumed-rank (dimension(..)) specific per routine.
 # One overload then accepts an actual argument of any rank. Opt-in and nested in
-# USE_FPOINTER_INTERFACES (the two are mutually exclusive in each generic).
+# the per-rank set (the two are mutually exclusive in each generic).
 # Requires a Fortran 2018 compiler.
 option(HIPFORT_ASSUMED_RANK "Use the F2018 assumed-rank array interfaces" OFF)
 
@@ -110,12 +115,16 @@ set(HIPFORT_ARCH "amdgcn")
       PUBLIC
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/hipfort/amdgcn>
     )
-    IF(HIPFORT_USE_FPOINTER_INTERFACES)
-    	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
-    	IF(HIPFORT_ASSUMED_RANK)
-    		target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_ASSUMED_RANK_INTERFACES)
-    	ENDIF(HIPFORT_ASSUMED_RANK)
-    ENDIF(HIPFORT_USE_FPOINTER_INTERFACES)
+    # One macro per tier, and only one: the bindings select the per-rank set on
+    # USE_ASSUMED_SHAPE and the single dimension(..) form on USE_ASSUMED_RANK, and
+    # an assumed-rank dummy is not distinguishable by rank from the per-rank
+    # specifics, so the two cannot coexist in one generic. Assumed-rank wins when
+    # both options are on, which is what the nested options already meant.
+    IF(HIPFORT_ASSUMED_RANK)
+    	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_ASSUMED_RANK)
+    ELSEIF(HIPFORT_USE_FPOINTER_INTERFACES)
+    	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_ASSUMED_SHAPE)
+    ENDIF()
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
     # Install Target hipfort-amdgcn
     # CMAKE_INSTALL_LIBDIR/INCLUDEDIR already carry the toolchain-specific
@@ -142,12 +151,16 @@ set(HIPFORT_ARCH "nvptx")
     ADD_LIBRARY(${HIPFORT_LIB} STATIC
          ${HIPFORT_SRC_NVPTX}
          )
-    IF(HIPFORT_USE_FPOINTER_INTERFACES)
-    	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_FPOINTER_INTERFACES)
-    	IF(HIPFORT_ASSUMED_RANK)
-    		target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_ASSUMED_RANK_INTERFACES)
-    	ENDIF(HIPFORT_ASSUMED_RANK)
-    ENDIF(HIPFORT_USE_FPOINTER_INTERFACES)
+    # One macro per tier, and only one: the bindings select the per-rank set on
+    # USE_ASSUMED_SHAPE and the single dimension(..) form on USE_ASSUMED_RANK, and
+    # an assumed-rank dummy is not distinguishable by rank from the per-rank
+    # specifics, so the two cannot coexist in one generic. Assumed-rank wins when
+    # both options are on, which is what the nested options already meant.
+    IF(HIPFORT_ASSUMED_RANK)
+    	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_ASSUMED_RANK)
+    ELSEIF(HIPFORT_USE_FPOINTER_INTERFACES)
+    	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_ASSUMED_SHAPE)
+    ENDIF()
     target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_CUDA_NAMES)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
     # Install Target hipfort-nvptx

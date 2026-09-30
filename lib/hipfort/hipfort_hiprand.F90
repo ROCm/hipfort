@@ -1,9 +1,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! ==============================================================================
-! hipfort: FORTRAN Interfaces for GPU kernels
-! ==============================================================================
-! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
-! [MITx11 License]
+! Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+!
+! SPDX-License-Identifier: MIT
 !
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
@@ -17,11 +15,12 @@
 !
 ! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 ! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 ! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ! THE SOFTWARE.
+!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_hiprand
@@ -176,13 +175,13 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hiprandGenerate_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerate_rank_0,&
       hiprandGenerate_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerate_assumed_rank
 #endif
 #endif
   end interface
@@ -283,13 +282,13 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hiprandGenerateLongLong_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateLongLong_rank_0,&
       hiprandGenerateLongLong_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateLongLong_assumed_rank
 #endif
 #endif
   end interface
@@ -327,13 +326,13 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hiprandGenerateUniform_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateUniform_rank_0,&
       hiprandGenerateUniform_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateUniform_assumed_rank
 #endif
 #endif
   end interface
@@ -379,13 +378,13 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hiprandGenerateUniformDouble_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateUniformDouble_rank_0,&
       hiprandGenerateUniformDouble_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateUniformDouble_assumed_rank
 #endif
 #endif
   end interface
@@ -460,13 +459,13 @@ module hipfort_hiprand
       real(c_float),value :: stddev
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hiprandGenerateNormal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateNormal_rank_0,&
       hiprandGenerateNormal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateNormal_assumed_rank
 #endif
 #endif
   end interface
@@ -508,13 +507,13 @@ module hipfort_hiprand
       real(c_double),value :: stddev
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hiprandGenerateNormalDouble_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateNormalDouble_rank_0,&
       hiprandGenerateNormalDouble_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateNormalDouble_assumed_rank
 #endif
 #endif
   end interface
@@ -591,13 +590,13 @@ module hipfort_hiprand
       real(c_float),value :: stddev
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hiprandGenerateLogNormal_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateLogNormal_rank_0,&
       hiprandGenerateLogNormal_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateLogNormal_assumed_rank
 #endif
 #endif
   end interface
@@ -639,13 +638,13 @@ module hipfort_hiprand
       real(c_double),value :: stddev
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hiprandGenerateLogNormalDouble_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateLogNormalDouble_rank_0,&
       hiprandGenerateLogNormalDouble_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateLogNormalDouble_assumed_rank
 #endif
 #endif
   end interface
@@ -720,13 +719,13 @@ module hipfort_hiprand
       real(c_double),value :: lambda
     end function
 
-#ifdef USE_FPOINTER_INTERFACES
-#ifdef USE_ASSUMED_RANK_INTERFACES
-    module procedure hiprandGeneratePoisson_assumed_rank
-#else
+#ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGeneratePoisson_rank_0,&
       hiprandGeneratePoisson_rank_1
+#else
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGeneratePoisson_assumed_rank
 #endif
 #endif
   end interface
@@ -1090,10 +1089,10 @@ module hipfort_hiprand
   end interface
 
 
-#ifdef USE_FPOINTER_INTERFACES
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
 
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hiprandGenerate_assumed_rank(generator,output_data,n)
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -1132,7 +1131,7 @@ module hipfort_hiprand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hiprandGenerateLongLong_assumed_rank(generator,output_data,n)
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -1172,7 +1171,7 @@ module hipfort_hiprand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hiprandGenerateUniform_assumed_rank(generator,output_data,n)
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -1211,7 +1210,7 @@ module hipfort_hiprand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hiprandGenerateUniformDouble_assumed_rank(generator,output_data,n)
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -1253,7 +1252,7 @@ module hipfort_hiprand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hiprandGenerateNormal_assumed_rank(generator,output_data,n,mean,stddev)
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -1301,7 +1300,7 @@ module hipfort_hiprand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hiprandGenerateNormalDouble_assumed_rank(generator,output_data,n,mean,stddev)
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -1349,7 +1348,7 @@ module hipfort_hiprand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hiprandGenerateLogNormal_assumed_rank(generator,output_data,n,mean,stddev)
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -1397,7 +1396,7 @@ module hipfort_hiprand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hiprandGenerateLogNormalDouble_assumed_rank(generator,output_data,n,mean,stddev)
       use iso_c_binding
       use hipfort_hiprand_enums
@@ -1445,7 +1444,7 @@ module hipfort_hiprand
     end function
 
 #endif
-#ifdef USE_ASSUMED_RANK_INTERFACES
+#ifdef USE_ASSUMED_RANK
     function hiprandGeneratePoisson_assumed_rank(generator,output_data,n,lambda)
       use iso_c_binding
       use hipfort_hiprand_enums

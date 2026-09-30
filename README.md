@@ -59,9 +59,8 @@ These directly take Fortran (array) variables and the number of
 elements instead of `type(c_ptr)` variables and the number of bytes, respectively. 
 Therefore, they reduce the chance of introducing compile-time and runtime errors
 into your code and make it easier to read too.
-These additional interfaces are guarded by the `USE_FPOINTER_INTERFACES` preprocessor
-definition, which `hipfort` enables automatically once it detects Fortran 2008 support
-in your compiler. By convention, application and test sources that rely on them use the
+These additional interfaces are enabled automatically once `hipfort` detects
+Fortran 2008 support in your compiler. By convention, application and test sources that rely on them use the
 `.f08` file extension (see the `test/f2008` examples), while Fortran 2003 sources use `.f03`.
 
 You can override the automatic detection with the `HIPFORT_USE_FPOINTER_INTERFACES`
@@ -201,8 +200,9 @@ ctest --test-dir build -R hipfort_test_f2008_hipblas_dgemm
 
 <a id="Copyright"></a>
 
-Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
-[MITx11 License]
+Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+
+SPDX-License-Identifier: MIT
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -216,7 +216,7 @@ all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN

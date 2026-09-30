@@ -14,6 +14,25 @@
 
 ### Changed
 
+* **Breaking, for anyone compiling the `.F90` by hand.** The preprocessor macros
+  that select the array interfaces are renamed, and each now selects its own
+  tier: `USE_ASSUMED_SHAPE` for the per-rank overloads (Fortran 2008) and
+  `USE_ASSUMED_RANK` for the single `dimension(..)` form (Fortran 2018). They
+  replace `USE_FPOINTER_INTERFACES` and `USE_ASSUMED_RANK_INTERFACES`.
+
+  The old pair was a trap. `USE_FPOINTER_INTERFACES` was a master switch whose
+  name said nothing about arrays, and `USE_ASSUMED_RANK_INTERFACES` was read
+  only inside it, so asking for assumed-rank alone -- the macro whose name is
+  exactly what you want -- produced no overloads at all. The generic kept only
+  its `type(c_ptr)` specific and the caller got "no specific function for the
+  generic" with nothing to explain it. The two are still mutually exclusive,
+  because an assumed-rank dummy is not distinguishable by rank from the per-rank
+  specifics, but that is now expressed as `#ifdef`/`#else` rather than nesting.
+
+  The CMake options are unchanged: `HIPFORT_USE_FPOINTER_INTERFACES` and
+  `HIPFORT_ASSUMED_RANK` still mean what they meant, and a build that goes
+  through CMake needs no change.
+
 * **Breaking.** `hipfort_roctx` is generated rather than hand-written, and its
   `const char*` arguments are now `type(c_ptr)` like every other `char*` argument
   in hipfort, instead of `character(kind=c_char) :: message(*)`. Code that passed
@@ -43,12 +62,36 @@
   which also documents the experimental Fortran 2018 assumed-rank mode. The
   tutorial section now holds only pages of complete programs for a specific
   library.
+* **Breaking, two routines.** `hipFuncGetAttribute` and
+  `hipDeviceGetP2PAttribute` take their `value` output as `integer(c_int)` by
+  reference, matching the C `int*` and every sibling getter
+  (`hipGetDeviceFlags`, `hipGraphNodeGetEnabled`, …). They were the only two
+  declaring it `type(c_ptr), value`. A caller passing `c_loc(x)` must now pass
+  `x` itself.
+
+### Removed
+
+* **Breaking, two routines.** `hipfort_rocblas` no longer declares
+  `rocblas_set_optimal_device_memory_size_impl` and
+  `rocblas_device_malloc_alloc`. Both are variadic in C, Fortran cannot express
+  `...`, and the interfaces dropped it — so the variable arguments could never
+  be passed, and calling a variadic function through a fixed-arity prototype is
+  undefined on the x86-64 SysV ABI regardless. They are internal helpers backing
+  the C++ `rocblas_device_malloc` wrapper and have no Fortran use.
 
 ### Fixed
 
 * `roctx_range_id_t` is a `uint64_t`, but `hipfort_roctx` declared it
   `integer(c_size_t)`. Both are eight bytes on every platform ROCm supports, so
   this was harmless in practice; it is `integer(c_int64_t)` now.
+* The eight-byte integer overloads of the BLAS `SetVector`/`GetVector` and
+  `SetMatrix`/`GetMatrix` families, and their `Async` variants, declared their
+  array `integer(c_long)`, which is eight bytes only on LP64. They are
+  `integer(c_int64_t)` now, the width those overloads already promise by passing
+  an element size of `8` to the underlying C call. No change on Linux, where the
+  two kinds coincide; on an LLP64 target `c_long` is four bytes, so the overload
+  misstated its element size and also became indistinguishable from the
+  four-byte one, which makes a compiler reject the enclosing generic outright.
 * Fixed every failing test reporting success. 413 failure branches across 271 test
   programs ended in a bare `call exit`, which returns a zero exit status under
   gfortran, so a program could print `FAILED!` and still be recorded as passing by
@@ -101,6 +144,23 @@
 * Each per-backend archive now contains only the symbols its backend can resolve:
   `libhipfort-amdgcn.a` drops `hipfort_cuda_errors` and `libhipfort-nvptx.a`
   drops the AMD-only `roc*` API modules.
+
+### Removed
+
+* **Breaking.** `hipfort_rocsolver` no longer binds the eight rocSOLVER
+  compatibility aliases: `rocsolver_create_handle`, `rocsolver_destroy_handle`,
+  `rocsolver_set_stream`, `rocsolver_get_stream`, `rocsolver_set_vector`,
+  `rocsolver_get_vector`, `rocsolver_set_matrix` and `rocsolver_get_matrix`.
+  Each is a redirection to the rocBLAS routine of the same name, carries an
+  upstream deprecation attribute, and lives in `rocsolver-aliases.h`, whose
+  banner reads "THESE ALIASES ARE NOT MAINTAINED ANYMORE ... USE ROCBLAS TYPES
+  AND FUNCTIONS DIRECTLY". Replace `rocsolver_` with `rocblas_` in the call: all
+  eight targets are already bound in `hipfort_rocblas`, so nothing else changes.
+  Note the aliases are still exported by `librocsolver.so`, so this is a
+  source-level change only.
+
+  Recorded after the fact. The binding disappeared in this release as a
+  side effect of regenerating rocSOLVER, and went out with no entry here.
 
 ### Fixed
 

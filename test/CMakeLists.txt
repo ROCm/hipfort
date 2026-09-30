@@ -1,3 +1,28 @@
+###############################################################################
+# Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+#
+# SPDX-License-Identifier: MIT
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+###############################################################################
+
 #
 # File: test/CMakeLists.txt
 
@@ -23,7 +48,7 @@ if(BUILD_TESTING)
   endif()
 
   function(hipfort_add_test lib func dir)
-    # The f2008 tests exercise the array overloads (USE_FPOINTER_INTERFACES) and
+    # The f2008 tests exercise the per-rank array overloads and
     # the f2018 tests the assumed-rank overloads; skip each when its interface
     # level is disabled so a plain C-binding build still tests cleanly.
     if(dir STREQUAL "f2008" AND NOT HIPFORT_USE_FPOINTER_INTERFACES)
@@ -1254,7 +1279,7 @@ if(BUILD_TESTING)
     enable_language(HIP)
     foreach(std IN ITEMS f2003 f2008)
       # The f2008 interfaces are disabled on the Intel compilers, so skip the
-      # f2008 vecadd test there (see USE_FPOINTER_INTERFACES in lib/CMakeLists.txt).
+      # f2008 vecadd test there (see HIPFORT_USE_FPOINTER_INTERFACES in lib/CMakeLists.txt).
       if(std STREQUAL "f2008" AND CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
         continue()
       endif()

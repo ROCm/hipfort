@@ -1,3 +1,28 @@
+###############################################################################
+# Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+#
+# SPDX-License-Identifier: MIT
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+###############################################################################
+
 cmake_minimum_required(VERSION 3.18..4.0 FATAL_ERROR)
 
 if(DEFINED HIPFORT_COMPILER)
@@ -171,7 +196,7 @@ ENDIF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
 
 # Test for Fortran 2018 support using the assumed-rank construct the generated
 # bindings rely on: an assumed-rank (dimension(..)) dummy passed to c_loc(). This
-# is exactly what the USE_ASSUMED_RANK_INTERFACES wrappers do, so it is the right
+# is exactly what the assumed-rank wrappers do, so it is the right
 # discriminator for whether HIPFORT_ASSUMED_RANK can be enabled.
 IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F18)
   MESSAGE(CHECK_START "Checking whether ${CMAKE_Fortran_COMPILER} supports Fortran 2018")
