@@ -35,7 +35,7 @@ program hip_csyrk
   ! C := alpha*A*A**T + beta*C, upper triangle. A = [1 0; 2 3] gives
   ! A*A**T = [1 2; 2 13], so the referenced upper triangle is 1, 2, 13.
   integer, parameter :: ld = 2
-  complex(c_float_complex), parameter :: alpha = (1.0, 0.0), beta = (0.0, 0.0)
+  complex(c_float_complex), target :: alpha = (1.0, 0.0), beta = (0.0, 0.0)
 
   complex(c_float_complex) :: hA(ld,ld) = reshape([(1.0, 0.0), (2.0, 0.0), (0.0, 0.0), (3.0, 0.0)], [ld,ld])
   complex(c_float_complex) :: hC(ld,ld)
@@ -58,7 +58,7 @@ program hip_csyrk
   call hipCheck(hipMemcpy(dC, hC, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasCsyrk(handle, HIPBLAS_FILL_MODE_UPPER, HIPBLAS_OP_N, ld, ld, &
-       alpha, dA, size(dA,1), beta, dC, size(dA,1)))
+       alpha, dA, size(dA,1), c_loc(c_loc(beta)), dC, size(dA,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

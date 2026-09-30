@@ -31,7 +31,7 @@ program hipblas_dgemv_test
 
   implicit none
 
-  double precision, parameter :: alpha = 1.1d0, beta = 0.9d0
+  double precision, target :: alpha = 1.1d0, beta = 0.9d0
   integer, parameter :: m = 1024, n = 1024
   integer, parameter :: bytes_per_element = 8
   integer(c_size_t) :: NAbytes, Nxbytes, Nybytes
@@ -60,7 +60,7 @@ program hipblas_dgemv_test
   call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(hy(1)), Nybytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasDgemv(handle, HIPBLAS_OP_N, m, n, alpha, dA, m, dx, 1, beta, dy, 1))
+  call hipblasCheck(hipblasDgemv(handle, HIPBLAS_OP_N, m, n, c_loc(c_loc(alpha)), dA, m, dx, 1, c_loc(c_loc(beta)), dy, 1))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hy(1)), dy, Nybytes, hipMemcpyDeviceToHost))
 

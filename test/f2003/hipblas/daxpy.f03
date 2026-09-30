@@ -36,7 +36,7 @@ program hip_daxpy
   integer :: j
   double precision, allocatable, target, dimension(:) :: x, y, y_exact
 
-  double precision, parameter :: alpha = 2.0d0
+  double precision, target :: alpha = 2.0d0
   type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr
 
   integer, parameter :: bytes_per_element = 8
@@ -72,7 +72,7 @@ program hip_daxpy
   call hipCheck(hipMemcpy(dx, c_loc(x(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(y(1)), Nybytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasDaxpy(handle, n, alpha, dx, 1, dy, 1))
+  call hipblasCheck(hipblasDaxpy(handle, n, c_loc(c_loc(alpha)), dx, 1, dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

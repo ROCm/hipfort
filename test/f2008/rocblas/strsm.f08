@@ -40,7 +40,7 @@ program rocblas_strsm_test
   integer, parameter :: m = 1024, n = 1024
 
   real(c_float), allocatable, dimension(:,:) :: hA, hB
-  real(c_float), parameter :: alpha = 2.0
+  real(c_float), target :: alpha = 2.0
   real(c_float), parameter :: x_exact = 1.0
 
   real(c_float), pointer, dimension(:,:) :: dA, dB
@@ -77,7 +77,7 @@ program rocblas_strsm_test
   call hipCheck(hipMalloc(dB, source=hB))
 
   ! Solve A * X = alpha * B, in place: dB holds B on entry, X on exit
-  call rocblasCheck(rocblas_strsm(handle, side, uplo, transA, diag, m, n, alpha, dA, size(dA,1), dB, size(dB,1)))
+  call rocblasCheck(rocblas_strsm(handle, side, uplo, transA, diag, m, n, c_loc(c_loc(alpha)), dA, size(dA,1), dB, size(dB,1)))
 
   call hipCheck(hipDeviceSynchronize())
 

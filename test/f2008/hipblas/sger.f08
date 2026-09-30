@@ -35,7 +35,7 @@ program hip_sger
   
   integer :: m = 6 
   integer :: n = 5
-  real, parameter :: alpha = 2.0
+  real, target :: alpha = 2.0
   type(c_ptr) :: handle = c_null_ptr
   integer :: i, j
   
@@ -89,7 +89,7 @@ program hip_sger
   call hipCheck(hipMemcpy(dx, c_loc(x), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(y), Nybytes, hipMemcpyHostToDevice)) 
 
-  call hipCheck(hipblasSger(handle,m,n,alpha,dx,1,dy,1,da,m))
+  call hipCheck(hipblasSger(handle,m,n,c_loc(c_loc(alpha)),dx,1,dy,1,da,m))
   
   !call hipCheck(hipblasGetMatrix(m,n,bytes_per_element,da,m,a,m));
   call hipCheck(hipDeviceSynchronize())

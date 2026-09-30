@@ -33,7 +33,7 @@ program rocblas_sgemv_test
   implicit none
 
   integer(kind(rocblas_operation_none)), parameter :: trans = rocblas_operation_none
-  real(c_float), parameter :: alpha = 1.1, beta = 0.9
+  real(c_float), target :: alpha = 1.1, beta = 0.9
 
   integer, parameter :: m = 1024, n = 1024
 
@@ -71,7 +71,7 @@ program rocblas_sgemv_test
   call hipCheck(hipMalloc(dx,source=hx))
   call hipCheck(hipMalloc(dy,source=hy))
 
-  call rocblasCheck(rocblas_sgemv(handle, trans, m, n, alpha, dA, size(dA,1), dx, 1, beta, dy, 1))
+  call rocblasCheck(rocblas_sgemv(handle, trans, m, n, c_loc(c_loc(alpha)), dA, size(dA,1), dx, 1, c_loc(c_loc(beta)), dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

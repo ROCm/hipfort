@@ -35,7 +35,7 @@ program hip_ssymm
   ! C := alpha*A*B + beta*C with A symmetric (upper triangle referenced).
   ! A = [1 2; 2 3] and B = I, so C = A.
   integer, parameter :: ld = 2
-  real(c_float), parameter :: alpha = 1.0, beta = 0.0
+  real(c_float), target :: alpha = 1.0, beta = 0.0
 
   real(c_float) :: hA(ld,ld) = reshape([1.0, 2.0, 2.0, 3.0], [ld,ld])
   real(c_float) :: hB(ld,ld) = reshape([1.0, 0.0, 0.0, 1.0], [ld,ld])
@@ -61,7 +61,7 @@ program hip_ssymm
   call hipCheck(hipMemcpy(dC, hC, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasSsymm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, ld, ld, &
-       alpha, dA, size(dA,1), dB, size(dB,1), beta, dC, size(dC,1)))
+       alpha, dA, size(dA,1), dB, size(dB,1), c_loc(c_loc(beta)), dC, size(dC,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

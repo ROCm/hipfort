@@ -31,7 +31,7 @@ program hipblas_zgemv_test
 
   implicit none
 
-  complex(kind=8), parameter :: alpha = (1.1d0, 0.0d0), beta = (0.9d0, 0.0d0)
+  complex(kind=8), target :: alpha = (1.1d0, 0.0d0), beta = (0.9d0, 0.0d0)
   integer, parameter :: m = 512, n = 512
 
   complex(kind=8), allocatable, target, dimension(:) :: hA, hx, hy
@@ -56,7 +56,7 @@ program hipblas_zgemv_test
   call hipCheck(hipMalloc(dx, source=hx))
   call hipCheck(hipMalloc(dy, source=hy))
 
-  call hipblasCheck(hipblasZgemv(handle, HIPBLAS_OP_N, m, n, alpha, dA, size(dA,1), dx, 1, beta, dy, 1))
+  call hipblasCheck(hipblasZgemv(handle, HIPBLAS_OP_N, m, n, c_loc(c_loc(alpha)), dA, size(dA,1), dx, 1, c_loc(c_loc(beta)), dy, 1))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hy, dy, hipMemcpyDeviceToHost))
 

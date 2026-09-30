@@ -36,7 +36,7 @@ program hip_strmm
   ! A = [1 2; 0 3] and B = I, so C = A.
   integer, parameter :: ld = 2
   integer(c_size_t) :: Nbytes
-  real(c_float), parameter :: alpha = 1.0
+  real(c_float), target :: alpha = 1.0
 
   real(c_float), target :: hA(ld,ld) = reshape([1.0, 0.0, 2.0, 3.0], [ld,ld])
   real(c_float), target :: hB(ld,ld) = reshape([1.0, 0.0, 0.0, 1.0], [ld,ld])
@@ -63,7 +63,7 @@ program hip_strmm
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), Nbytes, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasStrmm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, HIPBLAS_OP_N, &
-       HIPBLAS_DIAG_NON_UNIT, ld, ld, alpha, dA, ld, dB, ld, dC, ld))
+       HIPBLAS_DIAG_NON_UNIT, ld, ld, c_loc(c_loc(alpha)), dA, ld, dB, ld, dC, ld))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, Nbytes, hipMemcpyDeviceToHost))
 

@@ -35,8 +35,8 @@ program hip_sgemv
   integer :: n = 5
   integer :: i, j
 
-  real, parameter :: alpha = 1.0
-  real, parameter :: beta = 0.0
+  real, target :: alpha = 1.0
+  real, target :: beta = 0.0
 
   type(c_ptr) :: handle = c_null_ptr
 
@@ -63,7 +63,7 @@ program hip_sgemv
   call hipCheck(hipMalloc(dy,source=y))
   call hipCheck(hipMalloc(da,source=a))
 
-  call hipCheck(hipblasSgemv(handle,HIPBLAS_OP_N,m,n,alpha,da,m,dx,1,beta,dy,1))
+  call hipCheck(hipblasSgemv(handle,HIPBLAS_OP_N,m,n,c_loc(c_loc(alpha)),da,m,dx,1,c_loc(c_loc(beta)),dy,1))
 
   call hipCheck(hipMemcpy(y, dy, hipMemcpyDeviceToHost))
 

@@ -40,7 +40,7 @@ program rocblas_ztrsm_test
   integer, parameter :: m = 512, n = 512
 
   complex(kind=8), allocatable, target, dimension(:) :: hA, hB
-  complex(c_double_complex), parameter :: alpha = (2.d0, 0.d0)
+  complex(c_double_complex), target :: alpha = (2.d0, 0.d0)
   complex(kind=8), parameter :: x_exact = (1.d0, 0.d0)
 
   type(c_ptr) :: dA = c_null_ptr, dB = c_null_ptr
@@ -87,7 +87,7 @@ program rocblas_ztrsm_test
   call hipCheck(hipMemcpy(dB, c_loc(hB(1)), NBbytes, hipMemcpyHostToDevice))
 
   ! Solve A * X = alpha * B, in place: dB holds B on entry, X on exit
-  call rocblasCheck(rocblas_ztrsm(handle, side, uplo, transA, diag, m, n, alpha, dA, m, dB, m))
+  call rocblasCheck(rocblas_ztrsm(handle, side, uplo, transA, diag, m, n, c_loc(c_loc(alpha)), dA, m, dB, m))
 
   call hipCheck(hipDeviceSynchronize())
 

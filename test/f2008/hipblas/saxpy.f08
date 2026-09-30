@@ -37,7 +37,7 @@ program hip_saxpy
   integer :: j
   real, allocatable, dimension(:) :: x, y, y_exact
 
-  real, parameter :: alpha = 2.0
+  real, target :: alpha = 2.0
   real, pointer, dimension(:) :: dx, dy
 
   real :: error
@@ -66,7 +66,7 @@ program hip_saxpy
   call hipCheck(hipMemcpy(dx, x, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, y, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasSaxpy(handle,n,alpha,dx,1,dy,1))
+  call hipblasCheck(hipblasSaxpy(handle,n,c_loc(c_loc(alpha)),dx,1,dy,1))
 
   call hipCheck(hipDeviceSynchronize())
 

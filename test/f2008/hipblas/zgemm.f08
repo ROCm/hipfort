@@ -32,7 +32,7 @@ program hip_zgemm
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N;
-  complex(kind=8), parameter ::  alpha = 1.1d0, beta = 0.9d0;
+  complex(kind=8), target :: alpha = 1.1d0, beta = 0.9d0;
 
   integer, parameter :: m = 512, n = 512, k = 512;
 
@@ -74,7 +74,7 @@ program hip_zgemm
   call hipCheck(hipMemcpy(db, hb, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dc, hc, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasZgemm(handle,transa,transb,m,n,k,alpha,da,size(da,1),db,size(db,1),beta,dc,size(dc,1)))
+  call hipblasCheck(hipblasZgemm(handle,transa,transb,m,n,k,c_loc(c_loc(alpha)),da,size(da,1),db,size(db,1),c_loc(c_loc(beta)),dc,size(dc,1)))
 
   call hipCheck(hipDeviceSynchronize())
 

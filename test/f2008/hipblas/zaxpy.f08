@@ -36,7 +36,7 @@ program hip_zaxpy
   integer :: j
   complex(kind=8), allocatable, dimension(:) :: x, y, y_exact
 
-  complex(kind=8), parameter :: alpha = (2.0d0, 0.d0)
+  complex(kind=8), target :: alpha = (2.0d0, 0.d0)
   complex(kind=8), pointer, dimension(:) :: dx, dy
 
   double precision :: error
@@ -65,7 +65,7 @@ program hip_zaxpy
   call hipCheck(hipMemcpy(dx, x, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, y, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasZaxpy(handle, n, alpha, dx, 1, dy, 1))
+  call hipblasCheck(hipblasZaxpy(handle, n, c_loc(c_loc(alpha)), dx, 1, dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

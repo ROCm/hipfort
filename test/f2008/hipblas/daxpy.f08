@@ -36,7 +36,7 @@ program hip_daxpy
   integer :: j
   double precision, allocatable, dimension(:) :: x, y, y_exact
 
-  double precision, parameter :: alpha = 2.0d0
+  double precision, target :: alpha = 2.0d0
   double precision, pointer, dimension(:) :: dx, dy
 
   double precision :: error
@@ -65,7 +65,7 @@ program hip_daxpy
   call hipCheck(hipMemcpy(dx, x, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, y, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasDaxpy(handle, n, alpha, dx, 1, dy, 1))
+  call hipblasCheck(hipblasDaxpy(handle, n, c_loc(c_loc(alpha)), dx, 1, dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

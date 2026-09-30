@@ -36,7 +36,7 @@ program hip_dsyrk
   ! A*A**T = [1 2; 2 13], so the referenced upper triangle is 1, 2, 13.
   integer, parameter :: ld = 2
   integer(c_size_t) :: Nbytes
-  real(c_double), parameter :: alpha = 1.0, beta = 0.0
+  real(c_double), target :: alpha = 1.0, beta = 0.0
 
   real(c_double), target :: hA(ld,ld) = reshape([1.0, 2.0, 0.0, 3.0], [ld,ld])
   real(c_double), target :: hC(ld,ld)
@@ -60,7 +60,7 @@ program hip_dsyrk
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), Nbytes, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasDsyrk(handle, HIPBLAS_FILL_MODE_UPPER, HIPBLAS_OP_N, ld, ld, &
-       alpha, dA, ld, beta, dC, ld))
+       alpha, dA, ld, c_loc(c_loc(beta)), dC, ld))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, Nbytes, hipMemcpyDeviceToHost))
 

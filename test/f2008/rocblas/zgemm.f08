@@ -34,7 +34,7 @@ program rocblas_zgemm_test
 
   integer(kind(rocblas_operation_none)), parameter :: transa = rocblas_operation_none, &
                                                        transb = rocblas_operation_none
-  complex(c_double_complex), parameter :: alpha = (1.1d0, 0.d0), beta = (0.9d0, 0.d0)
+  complex(c_double_complex), target :: alpha = (1.1d0, 0.d0), beta = (0.9d0, 0.d0)
 
   integer, parameter :: m = 512, n = 512, k = 512
 
@@ -71,7 +71,7 @@ program rocblas_zgemm_test
   call hipCheck(hipMalloc(db,source=hb))
   call hipCheck(hipMalloc(dc,source=hc))
 
-  call rocblasCheck(rocblas_zgemm(handle,transa,transb,m,n,k,alpha,da,size(da,1),db,size(db,1),beta,dc,size(dc,1)))
+  call rocblasCheck(rocblas_zgemm(handle,transa,transb,m,n,k,c_loc(c_loc(alpha)),da,size(da,1),db,size(db,1),c_loc(c_loc(beta)),dc,size(dc,1)))
 
   call hipCheck(hipDeviceSynchronize())
 

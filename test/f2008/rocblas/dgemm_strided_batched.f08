@@ -34,7 +34,7 @@ program rocblas_dgemm_strided_batched_test
 
   integer(kind(rocblas_operation_none)), parameter :: transa = rocblas_operation_none, &
                                                        transb = rocblas_operation_none
-  double precision, parameter :: alpha = 1.1d0, beta = 0.9d0
+  double precision, target :: alpha = 1.1d0, beta = 0.9d0
 
   integer, parameter :: m = 512, n = 512, k = 512, batch_count = 4
   integer :: lda, ldb, ldc, i, b
@@ -84,7 +84,7 @@ program rocblas_dgemm_strided_batched_test
   call hipCheck(hipMalloc(dc,source=hc))
 
   call rocblasCheck(rocblas_dgemm_strided_batched(handle,transa,transb,m,n,k, &
-       alpha,da,lda,stride_a,db,ldb,stride_b,beta,dc,ldc,stride_c,batch_count))
+       alpha,da,lda,stride_a,db,ldb,stride_b,c_loc(c_loc(beta)),dc,ldc,stride_c,batch_count))
 
   call hipCheck(hipDeviceSynchronize())
 

@@ -39,7 +39,7 @@ program rocblas_zherk_test
   ! C(1,1)=1, C(1,2)=2, C(2,2)=13. The data is real-valued, so the
   ! symmetric and Hermitian forms agree.
   integer, parameter :: n = 2, k = 2
-  real(c_double), parameter :: alpha = 1.0, beta = 0.0
+  real(c_double), target :: alpha = 1.0, beta = 0.0
 
   complex(c_double_complex) :: hA(n,k) = reshape([(1.0, 0.0), (2.0, 0.0), (0.0, 0.0), (3.0, 0.0)], [n,k])
   complex(c_double_complex) :: hC(n,n)
@@ -62,7 +62,7 @@ program rocblas_zherk_test
   call hipCheck(hipMalloc(dC, source=hC))
 
   call rocblasCheck(rocblas_zherk(handle, rocblas_fill_upper, rocblas_operation_none, &
-       n, k, alpha, dA, size(dA,1), beta, dC, size(dC,1)))
+       n, k, c_loc(c_loc(alpha)), dA, size(dA,1), c_loc(c_loc(beta)), dC, size(dC,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

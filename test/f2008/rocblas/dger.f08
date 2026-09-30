@@ -37,7 +37,7 @@ program rocblas_dger_test
   ! is simply A(i,j) = x(i)*y(j); the data is real-valued so the 'u' and 'c'
   ! (conjugated) forms agree.
   integer, parameter :: m = 3, n = 2
-  real(c_double), parameter :: alpha = 1.0
+  real(c_double), target :: alpha = 1.0
 
   real(c_double) :: hx(m) = [1.0, 2.0, 3.0]
   real(c_double) :: hy(n) = [10.0, 20.0]
@@ -67,7 +67,7 @@ program rocblas_dger_test
   call hipCheck(hipMalloc(dy, source=hy))
   call hipCheck(hipMalloc(dA, source=hA))
 
-  call rocblasCheck(rocblas_dger(handle, m, n, alpha, dx, 1, dy, 1, dA, size(dA,1)))
+  call rocblasCheck(rocblas_dger(handle, m, n, c_loc(c_loc(alpha)), dx, 1, dy, 1, dA, size(dA,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
 

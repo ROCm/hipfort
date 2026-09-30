@@ -36,7 +36,7 @@ program hip_ctrsm
   integer(kind(HIPBLAS_OP_N)),            parameter :: transA = HIPBLAS_OP_N
   integer(kind(HIPBLAS_DIAG_NON_UNIT)),   parameter :: diag   = HIPBLAS_DIAG_NON_UNIT
   integer, parameter :: m = 512, n = 512
-  complex(kind=4), parameter :: alpha = (2., 0.)
+  complex(kind=4), target :: alpha = (2., 0.)
   complex(kind=4), allocatable, target, dimension(:,:) :: hA, hB
   complex(kind=4), pointer, dimension(:,:) :: dA, dB
   type(c_ptr) :: handle = c_null_ptr
@@ -66,7 +66,7 @@ program hip_ctrsm
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dB, source=hB))
 
-  call hipblasCheck(hipblasCtrsm(handle, side, uplo, transA, diag, m, n, alpha, dA, size(dA,1), dB, size(dB,1)))
+  call hipblasCheck(hipblasCtrsm(handle, side, uplo, transA, diag, m, n, c_loc(c_loc(alpha)), dA, size(dA,1), dB, size(dB,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))
 

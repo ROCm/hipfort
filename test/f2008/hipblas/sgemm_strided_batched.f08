@@ -33,7 +33,7 @@ program hip_sgemm_strided_batched
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N
-  real(c_float), parameter :: alpha = 1.1, beta = 0.9
+  real(c_float), target :: alpha = 1.1, beta = 0.9
 
   integer, parameter :: m = 512, n = 512, k = 512, batch_count = 4
   integer :: lda, ldb, ldc, i, b
@@ -82,7 +82,7 @@ program hip_sgemm_strided_batched
   call hipCheck(hipMalloc(dc,source=hc))
 
   call hipblasCheck(hipblasSgemmStridedBatched(handle,transa,transb,m,n,k, &
-       alpha,da,lda,stride_a,db,ldb,stride_b,beta,dc,ldc,stride_c,batch_count))
+       alpha,da,lda,stride_a,db,ldb,stride_b,c_loc(c_loc(beta)),dc,ldc,stride_c,batch_count))
 
   call hipCheck(hipDeviceSynchronize())
 

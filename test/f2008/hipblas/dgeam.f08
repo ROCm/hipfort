@@ -35,7 +35,7 @@ program hip_dgeam
   ! C := alpha*op(A) + beta*op(B) with alpha = beta = 1 and no
   ! transposition, so C is the elementwise sum A + B.
   integer, parameter :: ld = 2
-  real(c_double), parameter :: alpha = 1.0, beta = 1.0
+  real(c_double), target :: alpha = 1.0, beta = 1.0
 
   real(c_double) :: hA(ld,ld) = reshape([1.0, 2.0, 3.0, 4.0], [ld,ld])
   real(c_double) :: hB(ld,ld) = reshape([10.0, 20.0, 30.0, 40.0], [ld,ld])
@@ -61,7 +61,7 @@ program hip_dgeam
   call hipCheck(hipMemcpy(dC, hC, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasDgeam(handle, HIPBLAS_OP_N, HIPBLAS_OP_N, ld, ld, &
-       alpha, dA, size(dA,1), beta, dB, size(dB,1), dC, size(dA,1)))
+       alpha, dA, size(dA,1), c_loc(c_loc(beta)), dB, size(dB,1), dC, size(dA,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

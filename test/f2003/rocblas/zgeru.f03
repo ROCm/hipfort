@@ -37,7 +37,7 @@ program rocblas_zgeru_test
   ! is simply A(i,j) = x(i)*y(j); the data is real-valued so the 'u' and 'c'
   ! (conjugated) forms agree.
   integer, parameter :: m = 3, n = 2
-  complex(c_double_complex), parameter :: alpha = (1.0, 0.0)
+  complex(c_double_complex), target :: alpha = (1.0, 0.0)
 
   complex(c_double_complex), target :: hx(m) = [(1.0, 0.0), (2.0, 0.0), (3.0, 0.0)]
   complex(c_double_complex), target :: hy(n) = [(10.0, 0.0), (20.0, 0.0)]
@@ -69,7 +69,7 @@ program rocblas_zgeru_test
   call hipCheck(hipMemcpy(dy, c_loc(hy(1)), int(n,c_size_t) * 16, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), int(m*n,c_size_t) * 16, hipMemcpyHostToDevice))
 
-  call rocblasCheck(rocblas_zgeru(handle, m, n, alpha, dx, 1, dy, 1, dA, m))
+  call rocblasCheck(rocblas_zgeru(handle, m, n, c_loc(c_loc(alpha)), dx, 1, dy, 1, dA, m))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, int(m*n,c_size_t) * 16, hipMemcpyDeviceToHost))
 

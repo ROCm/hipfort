@@ -33,7 +33,7 @@ program hip_dgemm
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N;
-  double precision, parameter ::  alpha = 1.1d0, beta = 0.9d0;
+  double precision, target :: alpha = 1.1d0, beta = 0.9d0;
 
   integer, parameter ::  m = 1024, n = 1024, k = 1024;
 
@@ -67,7 +67,7 @@ program hip_dgemm
   call hipCheck(hipMalloc(db,source=hb))
   call hipCheck(hipMalloc(dc,source=hc))
 
-  call hipblasCheck(hipblasDgemm(handle,transa,transb,m,n,k,alpha,da,size(da,1),db,size(db,1),beta,dc,size(dc,1)))
+  call hipblasCheck(hipblasDgemm(handle,transa,transb,m,n,k,c_loc(c_loc(alpha)),da,size(da,1),db,size(db,1),c_loc(c_loc(beta)),dc,size(dc,1)))
 
   call hipCheck(hipDeviceSynchronize())
 

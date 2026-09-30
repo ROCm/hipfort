@@ -36,7 +36,7 @@ program hip_zaxpy
   integer :: j
   complex(kind=8), allocatable, target, dimension(:) :: x, y, y_exact
 
-  complex(kind=8), parameter :: alpha = (2.0d0, 0.d0)
+  complex(kind=8), target :: alpha = (2.0d0, 0.d0)
   type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr
 
   integer, parameter :: bytes_per_element = 16
@@ -72,7 +72,7 @@ program hip_zaxpy
   call hipCheck(hipMemcpy(dx, c_loc(x(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(y(1)), Nybytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasZaxpy(handle, n, alpha, dx, 1, dy, 1))
+  call hipblasCheck(hipblasZaxpy(handle, n, c_loc(c_loc(alpha)), dx, 1, dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

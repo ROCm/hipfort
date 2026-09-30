@@ -35,7 +35,7 @@ program hip_ztrmm
   ! C := alpha*op(A)*B with A upper triangular (out-of-place trmm).
   ! A = [1 2; 0 3] and B = I, so C = A.
   integer, parameter :: ld = 2
-  complex(c_double_complex), parameter :: alpha = (1.0, 0.0)
+  complex(c_double_complex), target :: alpha = (1.0, 0.0)
 
   complex(c_double_complex) :: hA(ld,ld) = reshape([(1.0, 0.0), (0.0, 0.0), (2.0, 0.0), (3.0, 0.0)], [ld,ld])
   complex(c_double_complex) :: hB(ld,ld) = reshape([(1.0, 0.0), (0.0, 0.0), (0.0, 0.0), (1.0, 0.0)], [ld,ld])
@@ -61,7 +61,7 @@ program hip_ztrmm
   call hipCheck(hipMemcpy(dC, hC, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasZtrmm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, HIPBLAS_OP_N, &
-       HIPBLAS_DIAG_NON_UNIT, ld, ld, alpha, dA, size(dA,1), dB, size(dB,1), dC, size(dA,1)))
+       HIPBLAS_DIAG_NON_UNIT, ld, ld, c_loc(c_loc(alpha)), dA, size(dA,1), dB, size(dB,1), dC, size(dA,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

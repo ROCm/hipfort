@@ -33,7 +33,7 @@ program rocblas_dgemv_test
   implicit none
 
   integer(kind(rocblas_operation_none)), parameter :: trans = rocblas_operation_none
-  double precision, parameter :: alpha = 1.1d0, beta = 0.9d0
+  double precision, target :: alpha = 1.1d0, beta = 0.9d0
 
   integer, parameter :: m = 1024, n = 1024
 
@@ -79,7 +79,7 @@ program rocblas_dgemv_test
   call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(hy(1)), Nybytes, hipMemcpyHostToDevice))
 
-  call rocblasCheck(rocblas_dgemv(handle, trans, m, n, alpha, dA, m, dx, 1, beta, dy, 1))
+  call rocblasCheck(rocblas_dgemv(handle, trans, m, n, c_loc(c_loc(alpha)), dA, m, dx, 1, c_loc(c_loc(beta)), dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

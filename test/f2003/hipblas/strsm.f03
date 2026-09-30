@@ -37,7 +37,7 @@ program hip_strsm
   integer(kind(HIPBLAS_DIAG_NON_UNIT)),   parameter :: diag   = HIPBLAS_DIAG_NON_UNIT
   integer, parameter :: m = 1024, n = 1024
   integer, parameter :: bytes_per_element = 4
-  real(c_float), parameter :: alpha = 2.0
+  real(c_float), target :: alpha = 2.0
   integer(c_size_t) :: NAbytes, NBbytes
   real(c_float), allocatable, target, dimension(:) :: hA, hB
   real(c_float), parameter :: x_exact = 1.0
@@ -72,7 +72,7 @@ program hip_strsm
   call hipCheck(hipMemcpy(dA, c_loc(hA(1)), NAbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1)), NBbytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasStrsm(handle, side, uplo, transA, diag, m, n, alpha, dA, m, dB, m))
+  call hipblasCheck(hipblasStrsm(handle, side, uplo, transA, diag, m, n, c_loc(c_loc(alpha)), dA, m, dB, m))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hB(1)), dB, NBbytes, hipMemcpyDeviceToHost))
 

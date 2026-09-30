@@ -34,7 +34,7 @@ program rocblas_sgemm_test
 
   integer(kind(rocblas_operation_none)), parameter :: transa = rocblas_operation_none, &
                                                        transb = rocblas_operation_none
-  real(c_float), parameter :: alpha = 1.1, beta = 0.9
+  real(c_float), target :: alpha = 1.1, beta = 0.9
 
   integer, parameter :: m = 1024, n = 1024, k = 1024
   integer :: lda, ldb, ldc, size_a, size_b, size_c
@@ -84,7 +84,7 @@ program rocblas_sgemm_test
   call hipCheck(hipMemcpy(db, c_loc(hb(1)), Nbbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dc, c_loc(hc(1)), Ncbytes, hipMemcpyHostToDevice))
 
-  call rocblasCheck(rocblas_sgemm(handle,transa,transb,m,n,k,alpha,da,lda,db,ldb,beta,dc,ldc))
+  call rocblasCheck(rocblas_sgemm(handle,transa,transb,m,n,k,c_loc(c_loc(alpha)),da,lda,db,ldb,c_loc(c_loc(beta)),dc,ldc))
 
   call hipCheck(hipDeviceSynchronize())
 

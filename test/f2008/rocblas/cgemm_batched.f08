@@ -40,7 +40,7 @@ program rocblas_cgemm_batched_test
 
   integer(kind(rocblas_operation_none)), parameter :: transa = rocblas_operation_none, &
                                                        transb = rocblas_operation_none
-  complex(c_float_complex), parameter :: alpha = (1.1, 0.), beta = (0.9, 0.)
+  complex(c_float_complex), target :: alpha = (1.1, 0.), beta = (0.9, 0.)
 
   integer, parameter :: m = 256, n = 256, k = 256, batch_count = 4
   integer, parameter :: bytes_per_element = 8 ! 2x float
@@ -105,7 +105,7 @@ program rocblas_cgemm_batched_test
   call hipCheck(hipMemcpy(dc_p, c_loc(dc(1)), int(batch_count,c_size_t)*c_sizeof(dc(1)), hipMemcpyHostToDevice))
 
   call rocblasCheck(rocblas_cgemm_batched(handle,transa,transb,m,n,k, &
-       alpha,da_p,lda,db_p,ldb,beta,dc_p,ldc,batch_count))
+       alpha,da_p,lda,db_p,ldb,c_loc(c_loc(beta)),dc_p,ldc,batch_count))
 
   call hipCheck(hipDeviceSynchronize())
 

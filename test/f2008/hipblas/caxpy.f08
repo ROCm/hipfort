@@ -36,7 +36,7 @@ program hip_caxpy
   integer :: j
   complex(kind=4), allocatable, dimension(:) :: x, y, y_exact
 
-  complex(kind=4), parameter :: alpha = (2.0, 0.)
+  complex(kind=4), target :: alpha = (2.0, 0.)
   complex(kind=4), pointer, dimension(:) :: dx, dy
 
   real(kind=4) :: error
@@ -65,7 +65,7 @@ program hip_caxpy
   call hipCheck(hipMemcpy(dx, x, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, y, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasCaxpy(handle, n, alpha, dx, 1, dy, 1))
+  call hipblasCheck(hipblasCaxpy(handle, n, c_loc(c_loc(alpha)), dx, 1, dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
 
