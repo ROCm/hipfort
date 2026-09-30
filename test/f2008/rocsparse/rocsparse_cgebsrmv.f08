@@ -52,7 +52,7 @@ program cgebsrmv
   complex(c_float_complex) :: hX(4) = (/(1.0,0.0), (2.0,0.0), (3.0,0.0), (4.0,0.0)/)
   complex(c_float_complex) :: hY(4) = (/(0.0,0.0), (0.0,0.0), (0.0,0.0), (0.0,0.0)/)
   complex(c_float_complex) :: hRef(4)
-  complex(c_float_complex) :: alpha = (1.0,0.0), beta = (0.0,0.0)
+  complex(c_float_complex), target :: alpha = (1.0,0.0), beta = (0.0,0.0)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr
   complex(c_float_complex), pointer :: dVal(:), dX(:), dY(:)
@@ -73,7 +73,7 @@ program cgebsrmv
   call rocsparseCheck(rocsparse_create_handle(handle))
   call rocsparseCheck(rocsparse_create_mat_descr(descr))
   call rocsparseCheck(rocsparse_cgebsrmv(handle, rocsparse_direction_row, rocsparse_operation_none, &
-       mb, nb, nnzb, c_loc(alpha), descr, dVal, dRowPtr, dColInd, block_dim, block_dim, dX, c_loc(beta), dY))
+       mb, nb, nnzb, alpha, descr, dVal, dRowPtr, dColInd, block_dim, block_dim, dX, beta, dY))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hY, dY, hipMemcpyDeviceToHost))
 

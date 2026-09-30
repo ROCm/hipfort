@@ -59,11 +59,11 @@ program hipsolver_dgetrs
   ! LU factorization
   call hipsolverCheck(hipsolverDgetrf_bufferSize(handle, N, N, dA, lda, lwork1))
   call hipCheck(hipMalloc(dWork1, max(int(lwork1,c_size_t) * 8, 1_c_size_t)))
-  call hipsolverCheck(hipsolverDgetrf(handle, N, N, dA, lda, dWork1, lwork1, dIpiv, dInfo))
+  call hipsolverCheck(hipsolverDgetrf(handle, N, N, dA, lda, dWork1, lwork1, dIpiv, c_loc(dInfo)))
   ! Solve
   call hipsolverCheck(hipsolverDgetrs_bufferSize(handle, HIPSOLVER_OP_N, N, nrhs, dA, lda, dIpiv, dB, ldb, lwork2))
   call hipCheck(hipMalloc(dWork2, max(int(lwork2,c_size_t) * 8, 1_c_size_t)))
-  call hipsolverCheck(hipsolverDgetrs(handle, HIPSOLVER_OP_N, N, nrhs, dA, lda, dIpiv, dB, ldb, dWork2, lwork2, dInfo))
+  call hipsolverCheck(hipsolverDgetrs(handle, HIPSOLVER_OP_N, N, nrhs, dA, lda, dIpiv, dB, ldb, dWork2, lwork2, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))
   do i = 1, N
      error = abs(hB(i,1) - hX_ref(i)) / max(abs(hX_ref(i)), 1.0d0)

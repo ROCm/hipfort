@@ -81,8 +81,8 @@ program dpotrs
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 8))
 
   ! Factorize A = L*L**T, then solve A*X = B in place
-  call hipsolverCheck(hipsolverDpotrf(handle, HIPSOLVER_FILL_MODE_LOWER, N, dA, lda, dWork, lwork, dInfo(1)))
-  call hipsolverCheck(hipsolverDpotrs(handle, HIPSOLVER_FILL_MODE_LOWER, N, nrhs, dA, lda, dB, ldb, dWork, lwork, dInfo(1)))
+  call hipsolverCheck(hipsolverDpotrf(handle, HIPSOLVER_FILL_MODE_LOWER, N, dA, lda, dWork, lwork, c_loc(dInfo(1))))
+  call hipsolverCheck(hipsolverDpotrs(handle, HIPSOLVER_FILL_MODE_LOWER, N, nrhs, dA, lda, dB, ldb, dWork, lwork, c_loc(dInfo(1))))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))

@@ -79,7 +79,7 @@ program hipsolver_zheevdx
 
   call hipsolverCheck(hipsolverZheevdx(handle, HIPSOLVER_EIG_MODE_VECTOR, &
        HIPSOLVER_EIG_RANGE_ALL, HIPSOLVER_FILL_MODE_UPPER, N, c_loc(dA(1,1)), lda, &
-       0.0d0, 0.0d0, 1, N, dNev(1), c_loc(dW(1)), dWork, lwork, dInfo(1)))
+       0.0d0, 0.0d0, 1, N, c_loc(dNev(1)), c_loc(dW(1)), dWork, lwork, c_loc(dInfo(1))))
 
   call hipCheck(hipMemcpy(hNev, dNev(1), hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

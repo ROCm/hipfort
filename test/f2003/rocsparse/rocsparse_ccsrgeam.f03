@@ -60,7 +60,7 @@ program ccsrgeam
   integer(c_int) :: h_exp_col_ind(5) = (/0, 2, 1, 0, 2/)
   complex(c_float_complex) :: h_exp_val(5) = (/ (11.,2.),(2.,-1.),(23.,-2.),(4.,2.),(35.,2.) /)
 
-  complex(c_float_complex) :: alpha = (1.0,0.0), beta = (1.0,0.0)
+  complex(c_float_complex), target :: alpha = (1.0,0.0), beta = (1.0,0.0)
 
   integer(c_int), target :: h_row_ptr_C(4)
   integer(c_int), target :: nnz_C

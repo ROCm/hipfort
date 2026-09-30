@@ -83,13 +83,13 @@ program sorgqr
 
   ! Workspace big enough for both geqrf and orgqr
   call hipsolverCheck(hipsolverSgeqrf_bufferSize(handle, M, N, dA, lda, lwork_qr))
-  call hipsolverCheck(hipsolverSorgqr_bufferSize(handle, M, N, K, dA, lda, dTau_p(1), lwork_or))
+  call hipsolverCheck(hipsolverSorgqr_bufferSize(handle, M, N, K, dA, lda, c_loc(dTau_p(1)), lwork_or))
   lwork = max(lwork_qr, lwork_or)
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 4))
 
   ! Factorize A = Q*R, then form the explicit Q in place
-  call hipsolverCheck(hipsolverSgeqrf(handle, M, N, dA, lda, dTau_p(1), dWork, lwork, dInfo_p(1)))
-  call hipsolverCheck(hipsolverSorgqr(handle, M, N, K, dA, lda, dTau_p(1), dWork, lwork, dInfo_p(1)))
+  call hipsolverCheck(hipsolverSgeqrf(handle, M, N, dA, lda, c_loc(dTau_p(1)), dWork, lwork, c_loc(dInfo_p(1))))
+  call hipsolverCheck(hipsolverSorgqr(handle, M, N, K, dA, lda, c_loc(dTau_p(1)), dWork, lwork, c_loc(dInfo_p(1))))
 
   ! Copy Q back to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 4, hipMemcpyDeviceToHost))

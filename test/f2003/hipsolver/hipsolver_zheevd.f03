@@ -58,7 +58,7 @@ program hipsolver_zheevd
                                                  HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dD, lwork))
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 16, 1_c_size_t)))
   call hipsolverCheck(hipsolverZheevd(handle, HIPSOLVER_EIG_MODE_NOVECTOR, HIPSOLVER_FILL_MODE_UPPER, &
-                                      N, dA, lda, dD, dWork, lwork, dInfo(1)))
+                                      N, dA, lda, dD, dWork, lwork, c_loc(dInfo(1))))
   call hipCheck(hipMemcpy(c_loc(hD(1)), dD, szD * 8, hipMemcpyDeviceToHost))
   error = abs(sum(hD) - trace_A) / abs(trace_A)
   if (error > rtol) then

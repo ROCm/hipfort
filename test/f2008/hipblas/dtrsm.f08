@@ -66,7 +66,7 @@ program hip_dtrsm
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dB, source=hB))
 
-  call hipblasCheck(hipblasDtrsm(handle, side, uplo, transA, diag, m, n, c_loc(alpha), dA, size(dA,1), dB, size(dB,1)))
+  call hipblasCheck(hipblasDtrsm(handle, side, uplo, transA, diag, m, n, alpha, dA, size(dA,1), dB, size(dB,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))
 

@@ -76,7 +76,7 @@ program zpotrfbatched
        N, dPtrArray, lda, lwork, batch))
   call hipCheck(hipMalloc(dWork, int(max(lwork,1),c_size_t) * 16))
   call hipsolverCheck(hipsolverZpotrfBatched(handle, HIPSOLVER_FILL_MODE_UPPER, &
-       N, dPtrArray, lda, dWork, lwork, dInfo(1), batch))
+       N, dPtrArray, lda, dWork, lwork, c_loc(dInfo(1)), batch))
   call hipCheck(hipDeviceSynchronize())
 
   call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))

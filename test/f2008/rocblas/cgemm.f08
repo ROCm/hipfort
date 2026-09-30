@@ -71,7 +71,7 @@ program rocblas_cgemm_test
   call hipCheck(hipMalloc(db,source=hb))
   call hipCheck(hipMalloc(dc,source=hc))
 
-  call rocblasCheck(rocblas_cgemm(handle,transa,transb,m,n,k,c_loc(alpha),da,size(da,1),db,size(db,1),c_loc(beta),dc,size(dc,1)))
+  call rocblasCheck(rocblas_cgemm(handle,transa,transb,m,n,k,alpha,da,size(da,1),db,size(db,1),beta,dc,size(dc,1)))
 
   call hipCheck(hipDeviceSynchronize())
 

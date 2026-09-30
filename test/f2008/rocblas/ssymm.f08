@@ -62,7 +62,7 @@ program rocblas_ssymm_test
   call hipCheck(hipMalloc(dC, source=hC))
 
   call rocblasCheck(rocblas_ssymm(handle, rocblas_side_left, rocblas_fill_upper, m, n, &
-       c_loc(alpha), dA, size(dA,1), dB, size(dB,1), c_loc(beta), dC, size(dC,1)))
+       alpha, dA, size(dA,1), dB, size(dB,1), beta, dC, size(dC,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

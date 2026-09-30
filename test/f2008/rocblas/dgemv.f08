@@ -71,7 +71,7 @@ program rocblas_dgemv_test
   call hipCheck(hipMalloc(dx,source=hx))
   call hipCheck(hipMalloc(dy,source=hy))
 
-  call rocblasCheck(rocblas_dgemv(handle, trans, m, n, c_loc(alpha), dA, size(dA,1), dx, 1, c_loc(beta), dy, 1))
+  call rocblasCheck(rocblas_dgemv(handle, trans, m, n, alpha, dA, size(dA,1), dx, 1, beta, dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

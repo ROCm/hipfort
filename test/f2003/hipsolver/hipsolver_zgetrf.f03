@@ -89,7 +89,7 @@ program hipsolver_zgetrf
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 16, 1_c_size_t)))
 
   ! LU factorization
-  call hipsolverCheck(hipsolverZgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, dInfo_p(1)))
+  call hipsolverCheck(hipsolverZgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, c_loc(dInfo_p(1))))
 
   ! Copy back
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 16, hipMemcpyDeviceToHost))

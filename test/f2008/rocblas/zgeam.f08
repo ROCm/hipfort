@@ -61,7 +61,7 @@ program rocblas_zgeam_test
   call hipCheck(hipMalloc(dC, source=hC))
 
   call rocblasCheck(rocblas_zgeam(handle, rocblas_operation_none, rocblas_operation_none, m, n, &
-       c_loc(alpha), dA, size(dA,1), c_loc(beta), dB, size(dB,1), dC, size(dC,1)))
+       alpha, dA, size(dA,1), beta, dB, size(dB,1), dC, size(dC,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

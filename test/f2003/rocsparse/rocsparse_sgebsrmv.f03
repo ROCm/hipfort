@@ -54,7 +54,7 @@ program sgebsrmv
   real(c_float), target :: hX(4) = (/1.0, 2.0, 3.0, 4.0/)
   real(c_float), target :: hY(4) = (/0.0, 0.0, 0.0, 0.0/)
   real(c_float) :: hRef(4)
-  real(c_float) :: alpha = 1.0, beta = 0.0
+  real(c_float), target :: alpha = 1.0, beta = 0.0
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr
   type(c_ptr) :: dVal, dRowPtr, dColInd, dX, dY

@@ -84,7 +84,7 @@ program rocblas_zgemm_strided_batched_test
   call hipCheck(hipMalloc(dc,source=hc))
 
   call rocblasCheck(rocblas_zgemm_strided_batched(handle,transa,transb,m,n,k, &
-       c_loc(alpha),da,lda,stride_a,db,ldb,stride_b,c_loc(beta),dc,ldc,stride_c,batch_count))
+       alpha,da,lda,stride_a,db,ldb,stride_b,beta,dc,ldc,stride_c,batch_count))
 
   call hipCheck(hipDeviceSynchronize())
 

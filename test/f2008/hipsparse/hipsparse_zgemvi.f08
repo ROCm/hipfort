@@ -46,7 +46,7 @@ program hipsparse_zgemvi
   complex(c_double_complex) :: hXval(2) = (/(2.0d0,1.0d0), (3.0d0,-1.0d0)/)
   integer(c_int) :: hXind(2) = (/0, 2/)
   complex(c_double_complex) :: hY(3) = (/(1.0d0,0.0d0), (1.0d0,0.0d0), (1.0d0,0.0d0)/)
-  complex(c_double_complex) :: alpha = (2.0d0,1.0d0), beta = (3.0d0,0.0d0)
+  complex(c_double_complex), target :: alpha = (2.0d0,1.0d0), beta = (3.0d0,0.0d0)
   complex(c_double_complex) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   complex(c_double_complex), pointer :: dA(:,:), dXval(:), dY(:)
@@ -71,8 +71,8 @@ program hipsparse_zgemvi
   call hipsparseCheck(hipsparseZgemvi_bufferSize(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
        m, n, nnz, bufSize))
   call hipCheck(hipMalloc(dBuf, int(max(bufSize,1),c_size_t)))
-  call hipsparseCheck(hipsparseZgemvi(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, m, n, c_loc(alpha), &
-       dA, lda, nnz, dXval, dXind, c_loc(beta), dY, HIPSPARSE_INDEX_BASE_ZERO, dBuf))
+  call hipsparseCheck(hipsparseZgemvi(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, m, n, alpha, &
+       dA, lda, nnz, dXval, dXind, beta, dY, HIPSPARSE_INDEX_BASE_ZERO, dBuf))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hY, dY, hipMemcpyDeviceToHost))
 

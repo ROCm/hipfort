@@ -48,7 +48,7 @@ program dgemvi
   real(c_double), target :: hXval(2) = (/2.0d0, 3.0d0/)
   integer(c_int), target :: hXind(2) = (/0, 2/)
   real(c_double), target :: hY(3) = (/1.0d0, 1.0d0, 1.0d0/)
-  real(c_double) :: alpha = 2.0d0, beta = 3.0d0
+  real(c_double), target :: alpha = 2.0d0, beta = 3.0d0
   real(c_double) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dA, dXval, dXind, dY, dBuf

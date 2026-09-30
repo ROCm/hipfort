@@ -53,7 +53,7 @@ program hipsparse_ccsrsv2
   complex(c_float_complex), target :: hF(3)
   complex(c_float_complex), target :: hX(3)
   complex(c_float_complex) :: hExp(3) = (/(1.0,1.0), (2.0,-1.0), (3.0,0.0)/)
-  complex(c_float_complex) :: alpha = (1.0,0.0)
+  complex(c_float_complex), target :: alpha = (1.0,0.0)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descrA = c_null_ptr
   type(c_ptr) :: info = c_null_ptr

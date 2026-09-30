@@ -63,7 +63,7 @@ program hip_sgemv
   call hipCheck(hipMalloc(dy,source=y))
   call hipCheck(hipMalloc(da,source=a))
 
-  call hipCheck(hipblasSgemv(handle,HIPBLAS_OP_N,m,n,c_loc(alpha),da,m,dx,1,c_loc(beta),dy,1))
+  call hipCheck(hipblasSgemv(handle,HIPBLAS_OP_N,m,n,alpha,da,m,dx,1,beta,dy,1))
 
   call hipCheck(hipMemcpy(y, dy, hipMemcpyDeviceToHost))
 

@@ -67,7 +67,7 @@ program rocblas_dger_test
   call hipCheck(hipMalloc(dy, source=hy))
   call hipCheck(hipMalloc(dA, source=hA))
 
-  call rocblasCheck(rocblas_dger(handle, m, n, c_loc(alpha), dx, 1, dy, 1, dA, size(dA,1)))
+  call rocblasCheck(rocblas_dger(handle, m, n, alpha, dx, 1, dy, 1, dA, size(dA,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
 

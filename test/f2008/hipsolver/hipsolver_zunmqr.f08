@@ -83,13 +83,13 @@ program zunmqr
 
   call hipsolverCheck(hipsolverZgeqrf_bufferSize(handle, M, K, dA, lda, lwork_qr))
   call hipsolverCheck(hipsolverZunmqr_bufferSize(handle, HIPSOLVER_SIDE_LEFT, HIPSOLVER_OP_N, &
-       M, N, K, dA, lda, dTau(1), dC, ldc, lwork_mq))
+       M, N, K, dA, lda, dTau, dC, ldc, lwork_mq))
   lwork = max(lwork_qr, lwork_mq)
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 16))
 
-  call hipsolverCheck(hipsolverZgeqrf(handle, M, K, dA, lda, dTau(1), dWork, lwork, dInfo(1)))
+  call hipsolverCheck(hipsolverZgeqrf(handle, M, K, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
   call hipsolverCheck(hipsolverZunmqr(handle, HIPSOLVER_SIDE_LEFT, HIPSOLVER_OP_N, &
-       M, N, K, dA, lda, dTau(1), dC, ldc, dWork, lwork, dInfo(1)))
+       M, N, K, dA, lda, dTau, dC, ldc, dWork, lwork, c_loc(dInfo(1))))
 
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

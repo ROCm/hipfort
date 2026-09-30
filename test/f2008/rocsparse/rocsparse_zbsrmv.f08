@@ -52,7 +52,7 @@ program zbsrmv
   complex(c_double_complex) :: hX(4) = (/(1.0d0,0.0d0), (2.0d0,0.0d0), (3.0d0,0.0d0), (4.0d0,0.0d0)/)
   complex(c_double_complex) :: hY(4) = (/(0.0d0,0.0d0), (0.0d0,0.0d0), (0.0d0,0.0d0), (0.0d0,0.0d0)/)
   complex(c_double_complex) :: hRef(4)
-  complex(c_double_complex) :: alpha = (1.0d0,0.0d0), beta = (0.0d0,0.0d0)
+  complex(c_double_complex), target :: alpha = (1.0d0,0.0d0), beta = (0.0d0,0.0d0)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr, info = c_null_ptr
   complex(c_double_complex), pointer :: dVal(:), dX(:), dY(:)
@@ -74,7 +74,7 @@ program zbsrmv
   call rocsparseCheck(rocsparse_create_mat_descr(descr))
   call rocsparseCheck(rocsparse_create_mat_info(info))
   call rocsparseCheck(rocsparse_zbsrmv(handle, rocsparse_direction_row, rocsparse_operation_none, &
-       mb, nb, nnzb, c_loc(alpha), descr, dVal, dRowPtr, dColInd, block_dim, info, dX, c_loc(beta), dY))
+       mb, nb, nnzb, alpha, descr, dVal, dRowPtr, dColInd, block_dim, info, dX, beta, dY))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hY, dY, hipMemcpyDeviceToHost))
 

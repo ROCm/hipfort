@@ -49,7 +49,7 @@ program cgemvi
   complex(c_float_complex), target :: hXval(2) = (/(2.0,1.0), (3.0,-1.0)/)
   integer(c_int), target :: hXind(2) = (/0, 2/)
   complex(c_float_complex), target :: hY(3) = (/(1.0,0.0), (1.0,0.0), (1.0,0.0)/)
-  complex(c_float_complex) :: alpha = (2.0,1.0), beta = (3.0,0.0)
+  complex(c_float_complex), target :: alpha = (2.0,1.0), beta = (3.0,0.0)
   complex(c_float_complex) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dA, dXval, dXind, dY, dBuf

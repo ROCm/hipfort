@@ -74,7 +74,7 @@ program hip_zgemm
   call hipCheck(hipMemcpy(db, hb, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dc, hc, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasZgemm(handle,transa,transb,m,n,k,c_loc(alpha),da,size(da,1),db,size(db,1),c_loc(beta),dc,size(dc,1)))
+  call hipblasCheck(hipblasZgemm(handle,transa,transb,m,n,k,alpha,da,size(da,1),db,size(db,1),beta,dc,size(dc,1)))
 
   call hipCheck(hipDeviceSynchronize())
 

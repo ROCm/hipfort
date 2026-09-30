@@ -102,7 +102,7 @@ program cgesvdj
 
   ! Compute the singular value decomposition
   call hipsolverCheck(hipsolverCgesvdj(handle, HIPSOLVER_EIG_MODE_VECTOR, econ, &
-       M, N, dA, lda, dS, dU, ldu, dV, ldv, dWork, lwork, dInfo_p(1), params))
+       M, N, dA, lda, dS, dU, ldu, dV, ldv, dWork, lwork, c_loc(dInfo_p(1)), params))
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(c_loc(hS(1)), dS, szv * 4, hipMemcpyDeviceToHost))

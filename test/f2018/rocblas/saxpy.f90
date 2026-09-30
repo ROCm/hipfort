@@ -64,7 +64,7 @@ program rocblas_saxpy_rank3_test
 
   ! Rank-3 dx/dy passed directly to the generic; n counts all elements. Resolves
   ! to the assumed-rank specific (rank > 1 is impossible with the classic form).
-  call rocblasCheck(rocblas_saxpy(handle, n, c_loc(alpha), dx, 1, dy, 1))
+  call rocblasCheck(rocblas_saxpy(handle, n, alpha, dx, 1, dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hy, dy, hipMemcpyDeviceToHost))

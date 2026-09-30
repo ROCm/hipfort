@@ -41,7 +41,7 @@ program dgemv_batched
   implicit none
   integer :: b, i
   integer(c_int), parameter :: M = 2, N = 2, lda = 2, incx = 1, incy = 1, batch = 2
-  real(c_double) :: alpha = 1.0d0, beta = 0.0d0
+  real(c_double), target :: alpha = 1.0d0, beta = 0.0d0
   ! A = [[2,0],[0,3]] (column-major), x = [1,1] -> y = [2,3]
   real(c_double), target :: hA(2,2) = reshape((/2.0d0, 0.0d0, 0.0d0, 3.0d0/), (/2,2/))
   real(c_double), target :: hx(2)   = (/1.0d0, 1.0d0/)

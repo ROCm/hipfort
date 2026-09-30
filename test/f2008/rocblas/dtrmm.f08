@@ -86,7 +86,7 @@ program rocblas_dtrmm_test
 
     call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host))
     call rocblasCheck(rocblas_dtrmm(handle, rocblas_side_left, rocblas_fill_lower, &
-        rocblas_operation_none, rocblas_diagonal_non_unit, m, n, c_loc(alpha), &
+        rocblas_operation_none, rocblas_diagonal_non_unit, m, n, alpha, &
         dA, size(dA,1), dB, size(dB,1), dC, size(dC,1)))
 
     call hipCheck(hipDeviceSynchronize())

@@ -60,7 +60,7 @@ program scsrgeam
   integer(c_int) :: h_exp_col_ind(5) = (/0, 2, 1, 0, 2/)
   real(c_float) :: h_exp_val(5)     = (/11, 2, 23, 4, 35/)
 
-  real(c_float) :: alpha = 1.0, beta = 1.0
+  real(c_float), target :: alpha = 1.0, beta = 1.0
 
   integer(c_int), target :: h_row_ptr_C(4)
   integer(c_int), target :: nnz_C

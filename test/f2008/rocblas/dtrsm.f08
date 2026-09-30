@@ -77,7 +77,7 @@ program rocblas_dtrsm_test
   call hipCheck(hipMalloc(dB, source=hB))
 
   ! Solve A * X = alpha * B, in place: dB holds B on entry, X on exit
-  call rocblasCheck(rocblas_dtrsm(handle, side, uplo, transA, diag, m, n, c_loc(alpha), dA, size(dA,1), dB, size(dB,1)))
+  call rocblasCheck(rocblas_dtrsm(handle, side, uplo, transA, diag, m, n, alpha, dA, size(dA,1), dB, size(dB,1)))
 
   call hipCheck(hipDeviceSynchronize())
 

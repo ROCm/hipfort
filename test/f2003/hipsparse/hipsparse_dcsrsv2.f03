@@ -54,7 +54,7 @@ program hipsparse_dcsrsv2
   real(c_double), target :: hF(3) = (/2.0d0, 5.0d0, 11.0d0/)
   real(c_double), target :: hX(3)
   real(c_double) :: hExp(3) = (/1.0d0, 2.0d0, 3.0d0/)
-  real(c_double) :: alpha = 1.0d0
+  real(c_double), target :: alpha = 1.0d0
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descrA = c_null_ptr
   type(c_ptr) :: info = c_null_ptr

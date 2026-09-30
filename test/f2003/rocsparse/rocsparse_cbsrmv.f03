@@ -56,7 +56,7 @@ program cbsrmv
   complex(c_float_complex), target :: hX(4) = (/(1.0,0.0), (2.0,0.0), (3.0,0.0), (4.0,0.0)/)
   complex(c_float_complex), target :: hY(4) = (/(0.0,0.0), (0.0,0.0), (0.0,0.0), (0.0,0.0)/)
   complex(c_float_complex) :: hRef(4)
-  complex(c_float_complex) :: alpha = (1.0,0.0), beta = (0.0,0.0)
+  complex(c_float_complex), target :: alpha = (1.0,0.0), beta = (0.0,0.0)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr, info = c_null_ptr
   type(c_ptr) :: dVal, dRowPtr, dColInd, dX, dY

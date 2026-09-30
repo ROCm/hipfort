@@ -76,7 +76,7 @@ program hipsolver_dsygvd
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 8, 1_c_size_t)))
 
   call hipsolverCheck(hipsolverDsygvd(handle, HIPSOLVER_EIG_TYPE_1, HIPSOLVER_EIG_MODE_VECTOR, &
-       HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dB, ldb, dW, dWork, lwork, dInfo))
+       HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dB, ldb, dW, dWork, lwork, c_loc(dInfo)))
 
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hW, dW, hipMemcpyDeviceToHost))

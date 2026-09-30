@@ -61,7 +61,7 @@ program hipsolver_dsyevd
                                                  HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dD, lwork))
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 8, 1_c_size_t)))
   call hipsolverCheck(hipsolverDsyevd(handle, HIPSOLVER_EIG_MODE_NOVECTOR, HIPSOLVER_FILL_MODE_UPPER, &
-                                      N, dA, lda, dD, dWork, lwork, dInfo))
+                                      N, dA, lda, dD, dWork, lwork, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
   error = abs(sum(hD) - trace_A) / abs(trace_A)
   if (error > rtol) then

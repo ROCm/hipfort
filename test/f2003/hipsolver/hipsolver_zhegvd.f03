@@ -79,7 +79,7 @@ program hipsolver_zhegvd
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 16, 1_c_size_t)))
 
   call hipsolverCheck(hipsolverZhegvd(handle, HIPSOLVER_EIG_TYPE_1, HIPSOLVER_EIG_MODE_VECTOR, &
-       HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dB, ldb, dW, dWork, lwork, dInfo(1)))
+       HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dB, ldb, dW, dWork, lwork, c_loc(dInfo(1))))
 
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sizeA * 16, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 8, hipMemcpyDeviceToHost))

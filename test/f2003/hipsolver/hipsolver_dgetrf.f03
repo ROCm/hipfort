@@ -83,7 +83,7 @@ program hipsolver_dgetrf
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 8, 1_c_size_t)))
 
   ! Compute the LU factorization
-  call hipsolverCheck(hipsolverDgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, dInfo_p(1)))
+  call hipsolverCheck(hipsolverDgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, c_loc(dInfo_p(1))))
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))
