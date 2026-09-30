@@ -96,7 +96,7 @@ program hip_zgemm_batched
   call hipCheck(hipMemcpy(dc_p, c_loc(dc(1)), int(batch_count,c_size_t)*c_sizeof(dc(1)), hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasZgemmBatched(handle,transa,transb,m,n,k, &
-       alpha,da_p,lda,db_p,ldb,c_loc(c_loc(beta)),dc_p,ldc,batch_count))
+       c_loc(alpha),da_p,lda,db_p,ldb,c_loc(beta),dc_p,ldc,batch_count))
 
   call hipCheck(hipDeviceSynchronize())
 

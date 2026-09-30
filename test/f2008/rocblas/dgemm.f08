@@ -70,7 +70,7 @@ program rocblas_dgemm_test
   call hipCheck(hipMalloc(db,source=hb))
   call hipCheck(hipMalloc(dc,source=hc))
 
-  call rocblasCheck(rocblas_dgemm(handle,transa,transb,m,n,k,c_loc(c_loc(alpha)),da,size(da,1),db,size(db,1),c_loc(c_loc(beta)),dc,size(dc,1)))
+  call rocblasCheck(rocblas_dgemm(handle,transa,transb,m,n,k,c_loc(alpha),da,size(da,1),db,size(db,1),c_loc(beta),dc,size(dc,1)))
 
   call hipCheck(hipDeviceSynchronize())
 

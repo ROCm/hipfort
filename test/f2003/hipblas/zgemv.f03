@@ -61,7 +61,7 @@ program hipblas_zgemv_test
   call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(hy(1)), Nybytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasZgemv(handle, HIPBLAS_OP_N, m, n, c_loc(c_loc(alpha)), dA, m, dx, 1, c_loc(c_loc(beta)), dy, 1))
+  call hipblasCheck(hipblasZgemv(handle, HIPBLAS_OP_N, m, n, c_loc(alpha), dA, m, dx, 1, c_loc(beta), dy, 1))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hy(1)), dy, Nybytes, hipMemcpyDeviceToHost))
 

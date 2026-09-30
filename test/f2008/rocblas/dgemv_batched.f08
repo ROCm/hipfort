@@ -79,8 +79,8 @@ program dgemv_batched
   call hipCheck(hipMemcpy(dyp, c_loc(hyp(1)), int(batch,c_size_t)*psize, hipMemcpyHostToDevice))
 
   call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocblas_dgemv_batched(handle, rocblas_operation_none, M, N, alpha, dAp, lda, &
-                                      dxp, incx, beta, dyp, incy, batch))
+  call hipCheck(rocblas_dgemv_batched(handle, rocblas_operation_none, M, N, c_loc(alpha), dAp, lda, &
+                                      dxp, incx, c_loc(beta), dyp, incy, batch))
   call hipCheck(hipDeviceSynchronize())
 
   do b = 1, batch

@@ -73,7 +73,7 @@ program hip_saxpy
   call hipCheck(hipMemcpy(dx, c_loc(x(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(y(1)), Nybytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasSaxpy(handle,n,c_loc(c_loc(alpha)),dx,1,dy,1))
+  call hipblasCheck(hipblasSaxpy(handle,n,c_loc(alpha),dx,1,dy,1))
 
   call hipCheck(hipDeviceSynchronize())
 

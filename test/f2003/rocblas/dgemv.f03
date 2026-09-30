@@ -79,7 +79,7 @@ program rocblas_dgemv_test
   call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(hy(1)), Nybytes, hipMemcpyHostToDevice))
 
-  call rocblasCheck(rocblas_dgemv(handle, trans, m, n, c_loc(c_loc(alpha)), dA, m, dx, 1, c_loc(c_loc(beta)), dy, 1))
+  call rocblasCheck(rocblas_dgemv(handle, trans, m, n, c_loc(alpha), dA, m, dx, 1, c_loc(beta), dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

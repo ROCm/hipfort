@@ -116,9 +116,9 @@ program ccsrgeam
   call hipCheck(hipMalloc(d_val_C,     int(nnz_C,c_size_t) * 8))
 
   ! Phase 2: compute the values of C
-  call rocsparseCheck(rocsparse_ccsrgeam(handle, M, N, alpha, &
+  call rocsparseCheck(rocsparse_ccsrgeam(handle, M, N, c_loc(alpha), &
                           descr_A, nnz_A, d_val_A, d_row_ptr_A, d_col_ind_A, &
-                          beta, descr_B, nnz_B, d_val_B, d_row_ptr_B, d_col_ind_B, &
+                          c_loc(beta), descr_B, nnz_B, d_val_B, d_row_ptr_B, d_col_ind_B, &
                           descr_C, d_val_C, d_row_ptr_C, d_col_ind_C))
   call hipCheck(hipDeviceSynchronize())
 

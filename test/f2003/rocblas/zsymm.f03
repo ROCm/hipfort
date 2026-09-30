@@ -65,7 +65,7 @@ program rocblas_zsymm_test
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), int(m*n,c_size_t) * 16, hipMemcpyHostToDevice))
 
   call rocblasCheck(rocblas_zsymm(handle, rocblas_side_left, rocblas_fill_upper, m, n, &
-       alpha, dA, m, dB, m, c_loc(c_loc(beta)), dC, m))
+       c_loc(alpha), dA, m, dB, m, c_loc(beta), dC, m))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, int(m*n,c_size_t) * 16, hipMemcpyDeviceToHost))
 

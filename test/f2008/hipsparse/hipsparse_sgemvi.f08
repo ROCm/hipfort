@@ -70,8 +70,8 @@ program hipsparse_sgemvi
   call hipsparseCheck(hipsparseSgemvi_bufferSize(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
        m, n, nnz, bufSize))
   call hipCheck(hipMalloc(dBuf, int(max(bufSize,1),c_size_t)))
-  call hipsparseCheck(hipsparseSgemvi(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, m, n, alpha, &
-       dA, lda, nnz, dXval, dXind, beta, dY, HIPSPARSE_INDEX_BASE_ZERO, dBuf))
+  call hipsparseCheck(hipsparseSgemvi(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, m, n, c_loc(alpha), &
+       dA, lda, nnz, dXval, dXind, c_loc(beta), dY, HIPSPARSE_INDEX_BASE_ZERO, dBuf))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hY, dY, hipMemcpyDeviceToHost))
 

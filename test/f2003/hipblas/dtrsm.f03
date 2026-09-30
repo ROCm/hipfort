@@ -72,7 +72,7 @@ program hip_dtrsm
   call hipCheck(hipMemcpy(dA, c_loc(hA(1)), NAbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1)), NBbytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasDtrsm(handle, side, uplo, transA, diag, m, n, c_loc(c_loc(alpha)), dA, m, dB, m))
+  call hipblasCheck(hipblasDtrsm(handle, side, uplo, transA, diag, m, n, c_loc(alpha), dA, m, dB, m))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hB(1)), dB, NBbytes, hipMemcpyDeviceToHost))
 

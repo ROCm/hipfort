@@ -65,7 +65,7 @@ program hip_daxpy
   call hipCheck(hipMemcpy(dx, x, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, y, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasDaxpy(handle, n, c_loc(c_loc(alpha)), dx, 1, dy, 1))
+  call hipblasCheck(hipblasDaxpy(handle, n, c_loc(alpha), dx, 1, dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

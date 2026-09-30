@@ -64,7 +64,7 @@ program rocblas_zherk_test
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), int(n*n,c_size_t) * 16, hipMemcpyHostToDevice))
 
   call rocblasCheck(rocblas_zherk(handle, rocblas_fill_upper, rocblas_operation_none, &
-       n, k, c_loc(c_loc(alpha)), dA, n, c_loc(c_loc(beta)), dC, n))
+       n, k, c_loc(alpha), dA, n, c_loc(beta), dC, n))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, int(n*n,c_size_t) * 16, hipMemcpyDeviceToHost))
 

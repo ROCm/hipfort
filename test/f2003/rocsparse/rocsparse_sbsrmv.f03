@@ -80,7 +80,7 @@ program sbsrmv
   call rocsparseCheck(rocsparse_create_mat_descr(descr))
   call rocsparseCheck(rocsparse_create_mat_info(info))
   call rocsparseCheck(rocsparse_sbsrmv(handle, rocsparse_direction_row, rocsparse_operation_none, &
-       mb, nb, nnzb, alpha, descr, dVal, dRowPtr, dColInd, block_dim, info, dX, beta, dY))
+       mb, nb, nnzb, c_loc(alpha), descr, dVal, dRowPtr, dColInd, block_dim, info, dX, c_loc(beta), dY))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hY(1)), dY, int(mdim,c_size_t) * 4, hipMemcpyDeviceToHost))
 

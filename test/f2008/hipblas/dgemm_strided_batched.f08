@@ -82,7 +82,7 @@ program hip_dgemm_strided_batched
   call hipCheck(hipMalloc(dc,source=hc))
 
   call hipblasCheck(hipblasDgemmStridedBatched(handle,transa,transb,m,n,k, &
-       alpha,da,lda,stride_a,db,ldb,stride_b,c_loc(c_loc(beta)),dc,ldc,stride_c,batch_count))
+       c_loc(alpha),da,lda,stride_a,db,ldb,stride_b,c_loc(beta),dc,ldc,stride_c,batch_count))
 
   call hipCheck(hipDeviceSynchronize())
 

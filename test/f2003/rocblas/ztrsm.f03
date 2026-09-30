@@ -87,7 +87,7 @@ program rocblas_ztrsm_test
   call hipCheck(hipMemcpy(dB, c_loc(hB(1)), NBbytes, hipMemcpyHostToDevice))
 
   ! Solve A * X = alpha * B, in place: dB holds B on entry, X on exit
-  call rocblasCheck(rocblas_ztrsm(handle, side, uplo, transA, diag, m, n, c_loc(c_loc(alpha)), dA, m, dB, m))
+  call rocblasCheck(rocblas_ztrsm(handle, side, uplo, transA, diag, m, n, c_loc(alpha), dA, m, dB, m))
 
   call hipCheck(hipDeviceSynchronize())
 

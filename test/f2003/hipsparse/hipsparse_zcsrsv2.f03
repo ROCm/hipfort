@@ -90,7 +90,7 @@ program hipsparse_zcsrsv2
   call hipsparseCheck(hipsparseZcsrsv2_analysis(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
        m, nnz, descrA, dVal, dRowPtr, dColInd, info, HIPSPARSE_SOLVE_POLICY_NO_LEVEL, dBuf))
   call hipsparseCheck(hipsparseZcsrsv2_solve(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
-       m, nnz, alpha, descrA, dVal, dRowPtr, dColInd, info, dF, dX, &
+       m, nnz, c_loc(alpha), descrA, dVal, dRowPtr, dColInd, info, dF, dX, &
        HIPSPARSE_SOLVE_POLICY_NO_LEVEL, dBuf))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hX(1)), dX, int(m,c_size_t) * 16, hipMemcpyDeviceToHost))

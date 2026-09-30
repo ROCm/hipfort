@@ -75,7 +75,7 @@ program rocblas_zaxpy_test
 
     ! Call rocblas function
     call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, 0))
-    call rocblasCheck(rocblas_zaxpy(rocblas_handle, N, alpha, dx, 1, dy, 1))
+    call rocblasCheck(rocblas_zaxpy(rocblas_handle, N, c_loc(alpha), dx, 1, dy, 1))
     call hipCheck(hipDeviceSynchronize())
 
     ! Transfer data back to host memory

@@ -63,7 +63,7 @@ program hip_dscal
    ! Transfer data from host to device memory
   call hipCheck(hipMemcpy(dx, hx, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasDscal(hip_blas_handle, N, c_loc(c_loc(alpha)), dx, 1))
+  call hipblasCheck(hipblasDscal(hip_blas_handle, N, c_loc(alpha), dx, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

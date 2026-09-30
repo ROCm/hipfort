@@ -84,7 +84,7 @@ program rocblas_sgemm_test
   call hipCheck(hipMemcpy(db, c_loc(hb(1)), Nbbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dc, c_loc(hc(1)), Ncbytes, hipMemcpyHostToDevice))
 
-  call rocblasCheck(rocblas_sgemm(handle,transa,transb,m,n,k,c_loc(c_loc(alpha)),da,lda,db,ldb,c_loc(c_loc(beta)),dc,ldc))
+  call rocblasCheck(rocblas_sgemm(handle,transa,transb,m,n,k,c_loc(alpha),da,lda,db,ldb,c_loc(beta),dc,ldc))
 
   call hipCheck(hipDeviceSynchronize())
 

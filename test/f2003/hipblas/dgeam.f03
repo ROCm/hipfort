@@ -63,7 +63,7 @@ program hip_dgeam
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), Nbytes, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasDgeam(handle, HIPBLAS_OP_N, HIPBLAS_OP_N, ld, ld, &
-       alpha, dA, ld, c_loc(c_loc(beta)), dB, ld, dC, ld))
+       c_loc(alpha), dA, ld, c_loc(beta), dB, ld, dC, ld))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, Nbytes, hipMemcpyDeviceToHost))
 

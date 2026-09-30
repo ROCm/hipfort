@@ -67,7 +67,7 @@ program hip_dger
   call hipCheck(hipMemcpy(dy, c_loc(hy(1)), Nbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1)), Nbytes*n, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasDger(handle,m,n,c_loc(c_loc(alpha)),dx,1,dy,1,dA,m))
+  call hipblasCheck(hipblasDger(handle,m,n,c_loc(alpha),dx,1,dy,1,dA,m))
 
   call hipCheck(hipDeviceSynchronize())
 

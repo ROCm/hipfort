@@ -63,7 +63,7 @@ program hip_ztrmm
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), Nbytes, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasZtrmm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, HIPBLAS_OP_N, &
-       HIPBLAS_DIAG_NON_UNIT, ld, ld, c_loc(c_loc(alpha)), dA, ld, dB, ld, dC, ld))
+       HIPBLAS_DIAG_NON_UNIT, ld, ld, c_loc(alpha), dA, ld, dB, ld, dC, ld))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, Nbytes, hipMemcpyDeviceToHost))
 

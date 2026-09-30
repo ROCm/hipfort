@@ -62,7 +62,7 @@ program rocblas_dsyrk_test
   call hipCheck(hipMalloc(dC, source=hC))
 
   call rocblasCheck(rocblas_dsyrk(handle, rocblas_fill_upper, rocblas_operation_none, &
-       n, k, c_loc(c_loc(alpha)), dA, size(dA,1), c_loc(c_loc(beta)), dC, size(dC,1)))
+       n, k, c_loc(alpha), dA, size(dA,1), c_loc(beta), dC, size(dC,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

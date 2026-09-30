@@ -69,8 +69,8 @@ program zgemvi
   call rocsparseCheck(rocsparse_create_handle(handle))
   call rocsparseCheck(rocsparse_zgemvi_buffer_size(handle, rocsparse_operation_none, m, n, nnz, bufSize))
   call hipCheck(hipMalloc(dBuf, max(bufSize, 1_c_size_t)))
-  call rocsparseCheck(rocsparse_zgemvi(handle, rocsparse_operation_none, m, n, alpha, &
-       dA, lda, nnz, dXval, dXind, beta, dY, rocsparse_index_base_zero, dBuf))
+  call rocsparseCheck(rocsparse_zgemvi(handle, rocsparse_operation_none, m, n, c_loc(alpha), &
+       dA, lda, nnz, dXval, dXind, c_loc(beta), dY, rocsparse_index_base_zero, dBuf))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hY, dY, hipMemcpyDeviceToHost))
 
