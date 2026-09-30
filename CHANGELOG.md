@@ -11,6 +11,16 @@
   `iamax`, `syrk`/`symm`, `trmm`, `geam` and `GemmEx`.
 * rocRAND and hipRAND tests for the `mrg32k3a`, `mtgp32` and `sobol32`
   generators and for the Poisson and log-normal distributions.
+* CMake option `HIPFORT_BUILD_AMDGCN` (default `ON`), the mirror of
+  `HIPFORT_BUILD_NVPTX`, controlling whether the ROCm (`amdgcn`) backend archive
+  is built. `-DHIPFORT_BUILD_AMDGCN=OFF` gives a CUDA-only build; until now that
+  archive was produced unconditionally and there was no way to skip it. Setting
+  both options to `OFF` is a configure error.
+
+  The two remain independent switches rather than one backend selector.
+  `HIPFORT_BUILD_NVPTX` defaults to `ON`, so reading it as a selector would mean
+  every default build -- with no option passed at all -- stopped producing
+  `libhipfort-amdgcn.a`.
 
 ### Changed
 

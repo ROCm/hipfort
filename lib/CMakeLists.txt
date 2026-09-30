@@ -84,8 +84,21 @@ endif()
 # Requires a Fortran 2018 compiler.
 option(HIPFORT_ASSUMED_RANK "Use the F2018 assumed-rank array interfaces" OFF)
 
-# The CUDA backend is built even on ROCm-only builds; turn it off if unused.
+# Both backend archives are built by default, whatever stack the host has: the
+# archives are pure Fortran interface bindings, so each one can be produced
+# without its runtime being installed, and the ROCm package ships both. Turn off
+# the one you do not use. They are independent switches rather than a single
+# selector because "build nvptx" has never implied "skip amdgcn" -- NVPTX
+# defaults to ON, so reading it as a selector would drop amdgcn from every
+# default build.
+option(HIPFORT_BUILD_AMDGCN "Build the ROCm (amdgcn) backend archive" ON)
 option(HIPFORT_BUILD_NVPTX "Build the CUDA (nvptx) backend archive" ON)
+
+if(NOT HIPFORT_BUILD_AMDGCN AND NOT HIPFORT_BUILD_NVPTX)
+  message(FATAL_ERROR
+    "HIPFORT_BUILD_AMDGCN and HIPFORT_BUILD_NVPTX are both OFF: there is no "
+    "backend left to build. Enable at least one.")
+endif()
 
 # Guard the opt-in: assumed-rank is nested in the F2008 interfaces and additionally
 # needs a Fortran 2018 compiler (c_loc() of a dimension(..) argument; see the
@@ -104,6 +117,7 @@ if(HIPFORT_ASSUMED_RANK AND NOT (HIPFORT_USE_FPOINTER_INTERFACES AND CMAKE_Fortr
     "Use the F2018 assumed-rank array interfaces" FORCE)
 endif()
 
+if(HIPFORT_BUILD_AMDGCN)
 set(HIPFORT_ARCH "amdgcn")
     # amdgcn
     set(HIPFORT_LIB      "hipfort-${HIPFORT_ARCH}")
@@ -142,6 +156,14 @@ set(HIPFORT_ARCH "amdgcn")
         INCLUDE
            ${CMAKE_Fortran_MODULE_DIRECTORY}
     )
+
+    rocm_install(
+      EXPORT hipfort-amdgcn-targets
+      FILE hipfort-amdgcn-targets.cmake
+      NAMESPACE hipfort::
+      DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
+    )
+endif()
 
 if(HIPFORT_BUILD_NVPTX)
 set(HIPFORT_ARCH "nvptx")
@@ -188,14 +210,13 @@ endif()
                  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 		 COMPONENT devel)
 
-rocm_install(
-  EXPORT hipfort-amdgcn-targets
-  FILE hipfort-amdgcn-targets.cmake
-  NAMESPACE hipfort::
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hipfort
-)
-
-set(HIPFORT_BASE_LIB hipfort-amdgcn)
+# The archive every hipfort::<component> interface target links against. amdgcn
+# is the default; the CUDA branch below swaps in nvptx. Left unset when amdgcn
+# was not built, so the component blocks -- which both require their backend's
+# archive -- export nothing rather than referencing a target that does not exist.
+if(HIPFORT_BUILD_AMDGCN)
+  set(HIPFORT_BASE_LIB hipfort-amdgcn)
+endif()
 
 macro(hipfort_add_component name imported_target)
   add_library(hipfort-${name} INTERFACE)
@@ -235,7 +256,11 @@ list(APPEND CMAKE_PREFIX_PATH ${ROCM_PATH})
 
 find_package(hip PATHS ${ROCM_PATH})
 find_package(CUDAToolkit QUIET)
-if(HIP_PLATFORM STREQUAL "amd")
+# Each component branch needs its backend's archive to hang the interface targets
+# off, so it is gated on the archive as well as on the platform: with
+# HIPFORT_BUILD_AMDGCN=OFF on an AMD host neither branch runs and the build
+# produces the bare nvptx archive, which is exactly what was asked for.
+if(HIP_PLATFORM STREQUAL "amd" AND TARGET hipfort-amdgcn)
   if(hip_FOUND)
     hipfort_add_component(hip hip::host)
   else()
@@ -328,6 +353,11 @@ if(HIP_PLATFORM STREQUAL "amd")
   endif()
 
   include(CMakePackageConfigHelpers)
+
+  # hipfort-config.cmake has to pull in the backend archive's targets file before
+  # any component's. Derive which one from HIPFORT_BASE_LIB rather than hardcoding
+  # amdgcn, so the config can never name a targets file the build did not install.
+  string(REPLACE "hipfort-" "" HIPFORT_BASE_ARCH "${HIPFORT_BASE_LIB}")
 
   configure_package_config_file(
     hipfort-config.cmake.in
