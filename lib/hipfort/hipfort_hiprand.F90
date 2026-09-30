@@ -175,13 +175,13 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerate_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerate_rank_0,&
       hiprandGenerate_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hiprandGenerate_assumed_rank
 #endif
 #endif
   end interface
@@ -282,13 +282,13 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateLongLong_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateLongLong_rank_0,&
       hiprandGenerateLongLong_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hiprandGenerateLongLong_assumed_rank
 #endif
 #endif
   end interface
@@ -326,13 +326,13 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateUniform_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateUniform_rank_0,&
       hiprandGenerateUniform_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hiprandGenerateUniform_assumed_rank
 #endif
 #endif
   end interface
@@ -378,13 +378,13 @@ module hipfort_hiprand
       integer(c_size_t),value :: n
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateUniformDouble_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateUniformDouble_rank_0,&
       hiprandGenerateUniformDouble_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hiprandGenerateUniformDouble_assumed_rank
 #endif
 #endif
   end interface
@@ -459,13 +459,13 @@ module hipfort_hiprand
       real(c_float),value :: stddev
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateNormal_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateNormal_rank_0,&
       hiprandGenerateNormal_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hiprandGenerateNormal_assumed_rank
 #endif
 #endif
   end interface
@@ -507,13 +507,13 @@ module hipfort_hiprand
       real(c_double),value :: stddev
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateNormalDouble_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateNormalDouble_rank_0,&
       hiprandGenerateNormalDouble_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hiprandGenerateNormalDouble_assumed_rank
 #endif
 #endif
   end interface
@@ -590,13 +590,13 @@ module hipfort_hiprand
       real(c_float),value :: stddev
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateLogNormal_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateLogNormal_rank_0,&
       hiprandGenerateLogNormal_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hiprandGenerateLogNormal_assumed_rank
 #endif
 #endif
   end interface
@@ -638,13 +638,13 @@ module hipfort_hiprand
       real(c_double),value :: stddev
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGenerateLogNormalDouble_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGenerateLogNormalDouble_rank_0,&
       hiprandGenerateLogNormalDouble_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hiprandGenerateLogNormalDouble_assumed_rank
 #endif
 #endif
   end interface
@@ -719,13 +719,13 @@ module hipfort_hiprand
       real(c_double),value :: lambda
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hiprandGeneratePoisson_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hiprandGeneratePoisson_rank_0,&
       hiprandGeneratePoisson_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hiprandGeneratePoisson_assumed_rank
 #endif
 #endif
   end interface

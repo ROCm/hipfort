@@ -99,13 +99,13 @@ module hipfort_rocfft
       type(c_ptr),value :: description
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocfft_plan_create_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocfft_plan_create_rank_0,&
       rocfft_plan_create_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocfft_plan_create_assumed_rank
 #endif
 #endif
   end interface
@@ -255,13 +255,13 @@ module hipfort_rocfft
       integer(c_size_t),value :: out_distance
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocfft_plan_description_set_data_layout_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocfft_plan_description_set_data_layout_rank_0,&
       rocfft_plan_description_set_data_layout_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocfft_plan_description_set_data_layout_assumed_rank
 #endif
 #endif
   end interface

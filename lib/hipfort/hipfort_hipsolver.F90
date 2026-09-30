@@ -351,14 +351,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSorgbr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSorgbr_bufferSize_rank_0,&
       hipsolverSorgbr_bufferSize_rank_1,&
       hipsolverSorgbr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSorgbr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -383,14 +383,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDorgbr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDorgbr_bufferSize_rank_0,&
       hipsolverDorgbr_bufferSize_rank_1,&
       hipsolverDorgbr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDorgbr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -415,14 +415,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCungbr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCungbr_bufferSize_rank_0,&
       hipsolverCungbr_bufferSize_rank_1,&
       hipsolverCungbr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCungbr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -447,14 +447,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZungbr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZungbr_bufferSize_rank_0,&
       hipsolverZungbr_bufferSize_rank_1,&
       hipsolverZungbr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZungbr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -481,14 +481,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSorgbr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSorgbr_rank_0,&
       hipsolverSorgbr_rank_1,&
       hipsolverSorgbr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSorgbr_assumed_rank
 #endif
 #endif
   end interface
@@ -515,14 +515,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDorgbr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDorgbr_rank_0,&
       hipsolverDorgbr_rank_1,&
       hipsolverDorgbr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDorgbr_assumed_rank
 #endif
 #endif
   end interface
@@ -549,14 +549,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCungbr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCungbr_rank_0,&
       hipsolverCungbr_rank_1,&
       hipsolverCungbr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCungbr_assumed_rank
 #endif
 #endif
   end interface
@@ -583,14 +583,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZungbr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZungbr_rank_0,&
       hipsolverZungbr_rank_1,&
       hipsolverZungbr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZungbr_assumed_rank
 #endif
 #endif
   end interface
@@ -614,14 +614,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSorgqr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSorgqr_bufferSize_rank_0,&
       hipsolverSorgqr_bufferSize_rank_1,&
       hipsolverSorgqr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSorgqr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -645,14 +645,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDorgqr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDorgqr_bufferSize_rank_0,&
       hipsolverDorgqr_bufferSize_rank_1,&
       hipsolverDorgqr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDorgqr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -676,14 +676,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCungqr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCungqr_bufferSize_rank_0,&
       hipsolverCungqr_bufferSize_rank_1,&
       hipsolverCungqr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCungqr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -707,14 +707,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZungqr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZungqr_bufferSize_rank_0,&
       hipsolverZungqr_bufferSize_rank_1,&
       hipsolverZungqr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZungqr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -740,14 +740,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSorgqr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSorgqr_rank_0,&
       hipsolverSorgqr_rank_1,&
       hipsolverSorgqr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSorgqr_assumed_rank
 #endif
 #endif
   end interface
@@ -773,14 +773,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDorgqr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDorgqr_rank_0,&
       hipsolverDorgqr_rank_1,&
       hipsolverDorgqr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDorgqr_assumed_rank
 #endif
 #endif
   end interface
@@ -806,14 +806,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCungqr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCungqr_rank_0,&
       hipsolverCungqr_rank_1,&
       hipsolverCungqr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCungqr_assumed_rank
 #endif
 #endif
   end interface
@@ -839,14 +839,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZungqr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZungqr_rank_0,&
       hipsolverZungqr_rank_1,&
       hipsolverZungqr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZungqr_assumed_rank
 #endif
 #endif
   end interface
@@ -869,14 +869,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSorgtr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSorgtr_bufferSize_rank_0,&
       hipsolverSorgtr_bufferSize_rank_1,&
       hipsolverSorgtr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSorgtr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -899,14 +899,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDorgtr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDorgtr_bufferSize_rank_0,&
       hipsolverDorgtr_bufferSize_rank_1,&
       hipsolverDorgtr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDorgtr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -929,14 +929,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCungtr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCungtr_bufferSize_rank_0,&
       hipsolverCungtr_bufferSize_rank_1,&
       hipsolverCungtr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCungtr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -959,14 +959,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZungtr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZungtr_bufferSize_rank_0,&
       hipsolverZungtr_bufferSize_rank_1,&
       hipsolverZungtr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZungtr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -991,14 +991,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSorgtr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSorgtr_rank_0,&
       hipsolverSorgtr_rank_1,&
       hipsolverSorgtr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSorgtr_assumed_rank
 #endif
 #endif
   end interface
@@ -1023,14 +1023,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDorgtr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDorgtr_rank_0,&
       hipsolverDorgtr_rank_1,&
       hipsolverDorgtr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDorgtr_assumed_rank
 #endif
 #endif
   end interface
@@ -1055,14 +1055,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCungtr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCungtr_rank_0,&
       hipsolverCungtr_rank_1,&
       hipsolverCungtr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCungtr_assumed_rank
 #endif
 #endif
   end interface
@@ -1087,14 +1087,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZungtr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZungtr_rank_0,&
       hipsolverZungtr_rank_1,&
       hipsolverZungtr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZungtr_assumed_rank
 #endif
 #endif
   end interface
@@ -1122,14 +1122,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSormqr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSormqr_bufferSize_rank_0,&
       hipsolverSormqr_bufferSize_rank_1,&
       hipsolverSormqr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSormqr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -1157,14 +1157,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDormqr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDormqr_bufferSize_rank_0,&
       hipsolverDormqr_bufferSize_rank_1,&
       hipsolverDormqr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDormqr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -1192,14 +1192,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCunmqr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCunmqr_bufferSize_rank_0,&
       hipsolverCunmqr_bufferSize_rank_1,&
       hipsolverCunmqr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCunmqr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -1227,14 +1227,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZunmqr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZunmqr_bufferSize_rank_0,&
       hipsolverZunmqr_bufferSize_rank_1,&
       hipsolverZunmqr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZunmqr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -1264,14 +1264,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSormqr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSormqr_rank_0,&
       hipsolverSormqr_rank_1,&
       hipsolverSormqr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSormqr_assumed_rank
 #endif
 #endif
   end interface
@@ -1301,14 +1301,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDormqr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDormqr_rank_0,&
       hipsolverDormqr_rank_1,&
       hipsolverDormqr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDormqr_assumed_rank
 #endif
 #endif
   end interface
@@ -1338,14 +1338,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCunmqr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCunmqr_rank_0,&
       hipsolverCunmqr_rank_1,&
       hipsolverCunmqr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCunmqr_assumed_rank
 #endif
 #endif
   end interface
@@ -1375,14 +1375,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZunmqr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZunmqr_rank_0,&
       hipsolverZunmqr_rank_1,&
       hipsolverZunmqr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZunmqr_assumed_rank
 #endif
 #endif
   end interface
@@ -1410,14 +1410,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSormtr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSormtr_bufferSize_rank_0,&
       hipsolverSormtr_bufferSize_rank_1,&
       hipsolverSormtr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSormtr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -1445,14 +1445,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDormtr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDormtr_bufferSize_rank_0,&
       hipsolverDormtr_bufferSize_rank_1,&
       hipsolverDormtr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDormtr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -1480,14 +1480,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCunmtr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCunmtr_bufferSize_rank_0,&
       hipsolverCunmtr_bufferSize_rank_1,&
       hipsolverCunmtr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCunmtr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -1515,14 +1515,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZunmtr_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZunmtr_bufferSize_rank_0,&
       hipsolverZunmtr_bufferSize_rank_1,&
       hipsolverZunmtr_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZunmtr_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -1552,14 +1552,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSormtr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSormtr_rank_0,&
       hipsolverSormtr_rank_1,&
       hipsolverSormtr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSormtr_assumed_rank
 #endif
 #endif
   end interface
@@ -1589,14 +1589,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDormtr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDormtr_rank_0,&
       hipsolverDormtr_rank_1,&
       hipsolverDormtr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDormtr_assumed_rank
 #endif
 #endif
   end interface
@@ -1626,14 +1626,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCunmtr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCunmtr_rank_0,&
       hipsolverCunmtr_rank_1,&
       hipsolverCunmtr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCunmtr_assumed_rank
 #endif
 #endif
   end interface
@@ -1663,14 +1663,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZunmtr_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZunmtr_rank_0,&
       hipsolverZunmtr_rank_1,&
       hipsolverZunmtr_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZunmtr_assumed_rank
 #endif
 #endif
   end interface
@@ -1762,14 +1762,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSgebrd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSgebrd_rank_0,&
       hipsolverSgebrd_rank_1,&
       hipsolverSgebrd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSgebrd_assumed_rank
 #endif
 #endif
   end interface
@@ -1797,14 +1797,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDgebrd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDgebrd_rank_0,&
       hipsolverDgebrd_rank_1,&
       hipsolverDgebrd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDgebrd_assumed_rank
 #endif
 #endif
   end interface
@@ -1832,14 +1832,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCgebrd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCgebrd_rank_0,&
       hipsolverCgebrd_rank_1,&
       hipsolverCgebrd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCgebrd_assumed_rank
 #endif
 #endif
   end interface
@@ -1867,14 +1867,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZgebrd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZgebrd_rank_0,&
       hipsolverZgebrd_rank_1,&
       hipsolverZgebrd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZgebrd_assumed_rank
 #endif
 #endif
   end interface
@@ -2116,14 +2116,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSgeqrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSgeqrf_bufferSize_rank_0,&
       hipsolverSgeqrf_bufferSize_rank_1,&
       hipsolverSgeqrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSgeqrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -2145,14 +2145,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDgeqrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDgeqrf_bufferSize_rank_0,&
       hipsolverDgeqrf_bufferSize_rank_1,&
       hipsolverDgeqrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDgeqrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -2174,14 +2174,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCgeqrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCgeqrf_bufferSize_rank_0,&
       hipsolverCgeqrf_bufferSize_rank_1,&
       hipsolverCgeqrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCgeqrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -2203,14 +2203,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZgeqrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZgeqrf_bufferSize_rank_0,&
       hipsolverZgeqrf_bufferSize_rank_1,&
       hipsolverZgeqrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZgeqrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -2235,14 +2235,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSgeqrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSgeqrf_rank_0,&
       hipsolverSgeqrf_rank_1,&
       hipsolverSgeqrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSgeqrf_assumed_rank
 #endif
 #endif
   end interface
@@ -2267,14 +2267,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDgeqrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDgeqrf_rank_0,&
       hipsolverDgeqrf_rank_1,&
       hipsolverDgeqrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDgeqrf_assumed_rank
 #endif
 #endif
   end interface
@@ -2299,14 +2299,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCgeqrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCgeqrf_rank_0,&
       hipsolverCgeqrf_rank_1,&
       hipsolverCgeqrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCgeqrf_assumed_rank
 #endif
 #endif
   end interface
@@ -2331,14 +2331,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZgeqrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZgeqrf_rank_0,&
       hipsolverZgeqrf_rank_1,&
       hipsolverZgeqrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZgeqrf_assumed_rank
 #endif
 #endif
   end interface
@@ -2365,14 +2365,14 @@ module hipfort_hipsolver
       integer(c_size_t) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSSgesv_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSSgesv_bufferSize_rank_0,&
       hipsolverSSgesv_bufferSize_rank_1,&
       hipsolverSSgesv_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSSgesv_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -2399,14 +2399,14 @@ module hipfort_hipsolver
       integer(c_size_t) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDDgesv_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDDgesv_bufferSize_rank_0,&
       hipsolverDDgesv_bufferSize_rank_1,&
       hipsolverDDgesv_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDDgesv_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -2433,14 +2433,14 @@ module hipfort_hipsolver
       integer(c_size_t) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCCgesv_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCCgesv_bufferSize_rank_0,&
       hipsolverCCgesv_bufferSize_rank_1,&
       hipsolverCCgesv_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCCgesv_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -2467,14 +2467,14 @@ module hipfort_hipsolver
       integer(c_size_t) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZZgesv_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZZgesv_bufferSize_rank_0,&
       hipsolverZZgesv_bufferSize_rank_1,&
       hipsolverZZgesv_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZZgesv_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -2504,14 +2504,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSSgesv_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSSgesv_rank_0,&
       hipsolverSSgesv_rank_1,&
       hipsolverSSgesv_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSSgesv_assumed_rank
 #endif
 #endif
   end interface
@@ -2541,14 +2541,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDDgesv_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDDgesv_rank_0,&
       hipsolverDDgesv_rank_1,&
       hipsolverDDgesv_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDDgesv_assumed_rank
 #endif
 #endif
   end interface
@@ -2578,14 +2578,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCCgesv_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCCgesv_rank_0,&
       hipsolverCCgesv_rank_1,&
       hipsolverCCgesv_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCCgesv_assumed_rank
 #endif
 #endif
   end interface
@@ -2615,14 +2615,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZZgesv_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZZgesv_rank_0,&
       hipsolverZZgesv_rank_1,&
       hipsolverZZgesv_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZZgesv_assumed_rank
 #endif
 #endif
   end interface
@@ -3292,14 +3292,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSgetrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSgetrf_bufferSize_rank_0,&
       hipsolverSgetrf_bufferSize_rank_1,&
       hipsolverSgetrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSgetrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3321,14 +3321,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDgetrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDgetrf_bufferSize_rank_0,&
       hipsolverDgetrf_bufferSize_rank_1,&
       hipsolverDgetrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDgetrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3350,14 +3350,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCgetrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCgetrf_bufferSize_rank_0,&
       hipsolverCgetrf_bufferSize_rank_1,&
       hipsolverCgetrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCgetrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3379,14 +3379,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZgetrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZgetrf_bufferSize_rank_0,&
       hipsolverZgetrf_bufferSize_rank_1,&
       hipsolverZgetrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZgetrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3411,14 +3411,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSgetrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSgetrf_rank_0,&
       hipsolverSgetrf_rank_1,&
       hipsolverSgetrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSgetrf_assumed_rank
 #endif
 #endif
   end interface
@@ -3443,14 +3443,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDgetrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDgetrf_rank_0,&
       hipsolverDgetrf_rank_1,&
       hipsolverDgetrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDgetrf_assumed_rank
 #endif
 #endif
   end interface
@@ -3475,14 +3475,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCgetrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCgetrf_rank_0,&
       hipsolverCgetrf_rank_1,&
       hipsolverCgetrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCgetrf_assumed_rank
 #endif
 #endif
   end interface
@@ -3507,14 +3507,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZgetrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZgetrf_rank_0,&
       hipsolverZgetrf_rank_1,&
       hipsolverZgetrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZgetrf_assumed_rank
 #endif
 #endif
   end interface
@@ -3540,14 +3540,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSgetrs_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSgetrs_bufferSize_rank_0,&
       hipsolverSgetrs_bufferSize_rank_1,&
       hipsolverSgetrs_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSgetrs_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3573,14 +3573,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDgetrs_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDgetrs_bufferSize_rank_0,&
       hipsolverDgetrs_bufferSize_rank_1,&
       hipsolverDgetrs_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDgetrs_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3606,14 +3606,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCgetrs_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCgetrs_bufferSize_rank_0,&
       hipsolverCgetrs_bufferSize_rank_1,&
       hipsolverCgetrs_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCgetrs_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3639,14 +3639,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZgetrs_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZgetrs_bufferSize_rank_0,&
       hipsolverZgetrs_bufferSize_rank_1,&
       hipsolverZgetrs_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZgetrs_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3674,14 +3674,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSgetrs_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSgetrs_rank_0,&
       hipsolverSgetrs_rank_1,&
       hipsolverSgetrs_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSgetrs_assumed_rank
 #endif
 #endif
   end interface
@@ -3709,14 +3709,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDgetrs_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDgetrs_rank_0,&
       hipsolverDgetrs_rank_1,&
       hipsolverDgetrs_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDgetrs_assumed_rank
 #endif
 #endif
   end interface
@@ -3744,14 +3744,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCgetrs_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCgetrs_rank_0,&
       hipsolverCgetrs_rank_1,&
       hipsolverCgetrs_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCgetrs_assumed_rank
 #endif
 #endif
   end interface
@@ -3779,14 +3779,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZgetrs_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZgetrs_rank_0,&
       hipsolverZgetrs_rank_1,&
       hipsolverZgetrs_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZgetrs_assumed_rank
 #endif
 #endif
   end interface
@@ -3808,14 +3808,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSpotrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSpotrf_bufferSize_rank_0,&
       hipsolverSpotrf_bufferSize_rank_1,&
       hipsolverSpotrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSpotrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3837,14 +3837,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDpotrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDpotrf_bufferSize_rank_0,&
       hipsolverDpotrf_bufferSize_rank_1,&
       hipsolverDpotrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDpotrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3866,14 +3866,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCpotrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCpotrf_bufferSize_rank_0,&
       hipsolverCpotrf_bufferSize_rank_1,&
       hipsolverCpotrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCpotrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3895,14 +3895,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZpotrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZpotrf_bufferSize_rank_0,&
       hipsolverZpotrf_bufferSize_rank_1,&
       hipsolverZpotrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZpotrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -3926,14 +3926,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSpotrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSpotrf_rank_0,&
       hipsolverSpotrf_rank_1,&
       hipsolverSpotrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSpotrf_assumed_rank
 #endif
 #endif
   end interface
@@ -3957,14 +3957,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDpotrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDpotrf_rank_0,&
       hipsolverDpotrf_rank_1,&
       hipsolverDpotrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDpotrf_assumed_rank
 #endif
 #endif
   end interface
@@ -3988,14 +3988,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCpotrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCpotrf_rank_0,&
       hipsolverCpotrf_rank_1,&
       hipsolverCpotrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCpotrf_assumed_rank
 #endif
 #endif
   end interface
@@ -4019,14 +4019,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZpotrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZpotrf_rank_0,&
       hipsolverZpotrf_rank_1,&
       hipsolverZpotrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZpotrf_assumed_rank
 #endif
 #endif
   end interface
@@ -4208,14 +4208,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSpotri_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSpotri_bufferSize_rank_0,&
       hipsolverSpotri_bufferSize_rank_1,&
       hipsolverSpotri_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSpotri_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -4237,14 +4237,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDpotri_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDpotri_bufferSize_rank_0,&
       hipsolverDpotri_bufferSize_rank_1,&
       hipsolverDpotri_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDpotri_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -4266,14 +4266,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCpotri_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCpotri_bufferSize_rank_0,&
       hipsolverCpotri_bufferSize_rank_1,&
       hipsolverCpotri_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCpotri_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -4295,14 +4295,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZpotri_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZpotri_bufferSize_rank_0,&
       hipsolverZpotri_bufferSize_rank_1,&
       hipsolverZpotri_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZpotri_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -4326,14 +4326,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSpotri_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSpotri_rank_0,&
       hipsolverSpotri_rank_1,&
       hipsolverSpotri_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSpotri_assumed_rank
 #endif
 #endif
   end interface
@@ -4357,14 +4357,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDpotri_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDpotri_rank_0,&
       hipsolverDpotri_rank_1,&
       hipsolverDpotri_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDpotri_assumed_rank
 #endif
 #endif
   end interface
@@ -4388,14 +4388,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCpotri_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCpotri_rank_0,&
       hipsolverCpotri_rank_1,&
       hipsolverCpotri_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCpotri_assumed_rank
 #endif
 #endif
   end interface
@@ -4419,14 +4419,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZpotri_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZpotri_rank_0,&
       hipsolverZpotri_rank_1,&
       hipsolverZpotri_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZpotri_assumed_rank
 #endif
 #endif
   end interface
@@ -4451,14 +4451,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSpotrs_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSpotrs_bufferSize_rank_0,&
       hipsolverSpotrs_bufferSize_rank_1,&
       hipsolverSpotrs_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSpotrs_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -4483,14 +4483,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDpotrs_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDpotrs_bufferSize_rank_0,&
       hipsolverDpotrs_bufferSize_rank_1,&
       hipsolverDpotrs_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDpotrs_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -4515,14 +4515,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCpotrs_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCpotrs_bufferSize_rank_0,&
       hipsolverCpotrs_bufferSize_rank_1,&
       hipsolverCpotrs_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCpotrs_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -4547,14 +4547,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZpotrs_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZpotrs_bufferSize_rank_0,&
       hipsolverZpotrs_bufferSize_rank_1,&
       hipsolverZpotrs_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZpotrs_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -4581,14 +4581,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSpotrs_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSpotrs_rank_0,&
       hipsolverSpotrs_rank_1,&
       hipsolverSpotrs_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSpotrs_assumed_rank
 #endif
 #endif
   end interface
@@ -4615,14 +4615,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDpotrs_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDpotrs_rank_0,&
       hipsolverDpotrs_rank_1,&
       hipsolverDpotrs_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDpotrs_assumed_rank
 #endif
 #endif
   end interface
@@ -4649,14 +4649,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCpotrs_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCpotrs_rank_0,&
       hipsolverCpotrs_rank_1,&
       hipsolverCpotrs_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCpotrs_assumed_rank
 #endif
 #endif
   end interface
@@ -4683,14 +4683,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZpotrs_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZpotrs_rank_0,&
       hipsolverZpotrs_rank_1,&
       hipsolverZpotrs_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZpotrs_assumed_rank
 #endif
 #endif
   end interface
@@ -4902,14 +4902,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSsyevd_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSsyevd_bufferSize_rank_0,&
       hipsolverSsyevd_bufferSize_rank_1,&
       hipsolverSsyevd_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSsyevd_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -4933,14 +4933,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDsyevd_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDsyevd_bufferSize_rank_0,&
       hipsolverDsyevd_bufferSize_rank_1,&
       hipsolverDsyevd_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDsyevd_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -4964,14 +4964,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCheevd_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCheevd_bufferSize_rank_0,&
       hipsolverCheevd_bufferSize_rank_1,&
       hipsolverCheevd_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCheevd_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -4995,14 +4995,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZheevd_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZheevd_bufferSize_rank_0,&
       hipsolverZheevd_bufferSize_rank_1,&
       hipsolverZheevd_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZheevd_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -5028,14 +5028,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSsyevd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSsyevd_rank_0,&
       hipsolverSsyevd_rank_1,&
       hipsolverSsyevd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSsyevd_assumed_rank
 #endif
 #endif
   end interface
@@ -5061,14 +5061,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDsyevd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDsyevd_rank_0,&
       hipsolverDsyevd_rank_1,&
       hipsolverDsyevd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDsyevd_assumed_rank
 #endif
 #endif
   end interface
@@ -5094,14 +5094,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCheevd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCheevd_rank_0,&
       hipsolverCheevd_rank_1,&
       hipsolverCheevd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCheevd_assumed_rank
 #endif
 #endif
   end interface
@@ -5127,14 +5127,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZheevd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZheevd_rank_0,&
       hipsolverZheevd_rank_1,&
       hipsolverZheevd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZheevd_assumed_rank
 #endif
 #endif
   end interface
@@ -5189,7 +5189,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       integer(c_int) :: lwork
     end function
@@ -5329,7 +5329,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      integer(c_int) :: nev
+      type(c_ptr),value :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -5358,7 +5358,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      integer(c_int) :: nev
+      type(c_ptr),value :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -5760,14 +5760,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSsygvd_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSsygvd_bufferSize_rank_0,&
       hipsolverSsygvd_bufferSize_rank_1,&
       hipsolverSsygvd_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSsygvd_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -5794,14 +5794,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDsygvd_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDsygvd_bufferSize_rank_0,&
       hipsolverDsygvd_bufferSize_rank_1,&
       hipsolverDsygvd_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDsygvd_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -5828,14 +5828,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverChegvd_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverChegvd_bufferSize_rank_0,&
       hipsolverChegvd_bufferSize_rank_1,&
       hipsolverChegvd_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverChegvd_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -5862,14 +5862,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZhegvd_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZhegvd_bufferSize_rank_0,&
       hipsolverZhegvd_bufferSize_rank_1,&
       hipsolverZhegvd_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZhegvd_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -5898,14 +5898,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSsygvd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSsygvd_rank_0,&
       hipsolverSsygvd_rank_1,&
       hipsolverSsygvd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSsygvd_assumed_rank
 #endif
 #endif
   end interface
@@ -5934,14 +5934,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDsygvd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDsygvd_rank_0,&
       hipsolverDsygvd_rank_1,&
       hipsolverDsygvd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDsygvd_assumed_rank
 #endif
 #endif
   end interface
@@ -5970,14 +5970,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverChegvd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverChegvd_rank_0,&
       hipsolverChegvd_rank_1,&
       hipsolverChegvd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverChegvd_assumed_rank
 #endif
 #endif
   end interface
@@ -6006,14 +6006,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZhegvd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZhegvd_rank_0,&
       hipsolverZhegvd_rank_1,&
       hipsolverZhegvd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZhegvd_assumed_rank
 #endif
 #endif
   end interface
@@ -6162,7 +6162,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      integer(c_int) :: nev
+      type(c_ptr),value :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -6194,7 +6194,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      integer(c_int) :: nev
+      type(c_ptr),value :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -6226,7 +6226,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      integer(c_int) :: nev
+      type(c_ptr),value :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -6258,7 +6258,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      integer(c_int) :: nev
+      type(c_ptr),value :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -6486,14 +6486,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSsytrd_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSsytrd_bufferSize_rank_0,&
       hipsolverSsytrd_bufferSize_rank_1,&
       hipsolverSsytrd_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSsytrd_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -6518,14 +6518,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDsytrd_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDsytrd_bufferSize_rank_0,&
       hipsolverDsytrd_bufferSize_rank_1,&
       hipsolverDsytrd_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDsytrd_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -6550,14 +6550,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverChetrd_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverChetrd_bufferSize_rank_0,&
       hipsolverChetrd_bufferSize_rank_1,&
       hipsolverChetrd_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverChetrd_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -6582,14 +6582,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZhetrd_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZhetrd_bufferSize_rank_0,&
       hipsolverZhetrd_bufferSize_rank_1,&
       hipsolverZhetrd_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZhetrd_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -6616,14 +6616,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSsytrd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSsytrd_rank_0,&
       hipsolverSsytrd_rank_1,&
       hipsolverSsytrd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSsytrd_assumed_rank
 #endif
 #endif
   end interface
@@ -6650,14 +6650,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDsytrd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDsytrd_rank_0,&
       hipsolverDsytrd_rank_1,&
       hipsolverDsytrd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDsytrd_assumed_rank
 #endif
 #endif
   end interface
@@ -6684,14 +6684,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverChetrd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverChetrd_rank_0,&
       hipsolverChetrd_rank_1,&
       hipsolverChetrd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverChetrd_assumed_rank
 #endif
 #endif
   end interface
@@ -6718,14 +6718,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZhetrd_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZhetrd_rank_0,&
       hipsolverZhetrd_rank_1,&
       hipsolverZhetrd_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZhetrd_assumed_rank
 #endif
 #endif
   end interface
@@ -6746,14 +6746,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSsytrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSsytrf_bufferSize_rank_0,&
       hipsolverSsytrf_bufferSize_rank_1,&
       hipsolverSsytrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSsytrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -6774,14 +6774,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDsytrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDsytrf_bufferSize_rank_0,&
       hipsolverDsytrf_bufferSize_rank_1,&
       hipsolverDsytrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDsytrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -6802,14 +6802,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCsytrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCsytrf_bufferSize_rank_0,&
       hipsolverCsytrf_bufferSize_rank_1,&
       hipsolverCsytrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCsytrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -6830,14 +6830,14 @@ module hipfort_hipsolver
       integer(c_int) :: lwork
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZsytrf_bufferSize_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZsytrf_bufferSize_rank_0,&
       hipsolverZsytrf_bufferSize_rank_1,&
       hipsolverZsytrf_bufferSize_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZsytrf_bufferSize_assumed_rank
 #endif
 #endif
   end interface
@@ -6862,14 +6862,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSsytrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSsytrf_rank_0,&
       hipsolverSsytrf_rank_1,&
       hipsolverSsytrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverSsytrf_assumed_rank
 #endif
 #endif
   end interface
@@ -6894,14 +6894,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDsytrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDsytrf_rank_0,&
       hipsolverDsytrf_rank_1,&
       hipsolverDsytrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverDsytrf_assumed_rank
 #endif
 #endif
   end interface
@@ -6926,14 +6926,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCsytrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCsytrf_rank_0,&
       hipsolverCsytrf_rank_1,&
       hipsolverCsytrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverCsytrf_assumed_rank
 #endif
 #endif
   end interface
@@ -6958,14 +6958,14 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZsytrf_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZsytrf_rank_0,&
       hipsolverZsytrf_rank_1,&
       hipsolverZsytrf_full_rank
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipsolverZsytrf_assumed_rank
 #endif
 #endif
   end interface
@@ -14312,7 +14312,7 @@ module hipfort_hipsolver
       real(c_double),value :: tolerance
       integer(c_int),value :: reorder
       type(c_ptr),value :: x
-      type(c_ptr),value :: singularity
+      integer(c_int) :: singularity
     end function
   end interface
 

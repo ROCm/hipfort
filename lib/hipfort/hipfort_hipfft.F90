@@ -169,13 +169,13 @@ module hipfort_hipfft
       integer(c_int),value :: batch
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftPlanMany_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftPlanMany_rank_0,&
       hipfftPlanMany_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftPlanMany_assumed_rank
 #endif
 #endif
   end interface
@@ -385,13 +385,13 @@ module hipfort_hipfft
       integer(c_size_t) :: workSize
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftMakePlanMany_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftMakePlanMany_rank_0,&
       hipfftMakePlanMany_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftMakePlanMany_assumed_rank
 #endif
 #endif
   end interface
@@ -424,13 +424,13 @@ module hipfort_hipfft
       integer(c_size_t) :: workSize
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftMakePlanMany64_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftMakePlanMany64_rank_0,&
       hipfftMakePlanMany64_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftMakePlanMany64_assumed_rank
 #endif
 #endif
   end interface
@@ -546,13 +546,13 @@ module hipfort_hipfft
       integer(c_size_t) :: workSize
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftEstimateMany_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftEstimateMany_rank_0,&
       hipfftEstimateMany_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftEstimateMany_assumed_rank
 #endif
 #endif
   end interface
@@ -676,13 +676,13 @@ module hipfort_hipfft
       integer(c_size_t) :: workSize
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftGetSizeMany_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftGetSizeMany_rank_0,&
       hipfftGetSizeMany_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftGetSizeMany_assumed_rank
 #endif
 #endif
   end interface
@@ -715,13 +715,13 @@ module hipfort_hipfft
       integer(c_size_t) :: workSize
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftGetSizeMany64_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftGetSizeMany64_rank_0,&
       hipfftGetSizeMany64_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftGetSizeMany64_assumed_rank
 #endif
 #endif
   end interface
@@ -831,15 +831,15 @@ module hipfort_hipfft
       integer(c_int),value :: direction
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftExecC2C_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftExecC2C_rank_0,&
       hipfftExecC2C_rank_1,&
       hipfftExecC2C_rank_2,&
       hipfftExecC2C_rank_3
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftExecC2C_assumed_rank
 #endif
 #endif
   end interface
@@ -867,15 +867,15 @@ module hipfort_hipfft
       type(c_ptr),value :: odata
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftExecR2C_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftExecR2C_rank_0,&
       hipfftExecR2C_rank_1,&
       hipfftExecR2C_rank_2,&
       hipfftExecR2C_rank_3
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftExecR2C_assumed_rank
 #endif
 #endif
   end interface
@@ -903,15 +903,15 @@ module hipfort_hipfft
       type(c_ptr),value :: odata
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftExecC2R_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftExecC2R_rank_0,&
       hipfftExecC2R_rank_1,&
       hipfftExecC2R_rank_2,&
       hipfftExecC2R_rank_3
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftExecC2R_assumed_rank
 #endif
 #endif
   end interface
@@ -941,15 +941,15 @@ module hipfort_hipfft
       integer(c_int),value :: direction
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftExecZ2Z_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftExecZ2Z_rank_0,&
       hipfftExecZ2Z_rank_1,&
       hipfftExecZ2Z_rank_2,&
       hipfftExecZ2Z_rank_3
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftExecZ2Z_assumed_rank
 #endif
 #endif
   end interface
@@ -977,15 +977,15 @@ module hipfort_hipfft
       type(c_ptr),value :: odata
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftExecD2Z_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftExecD2Z_rank_0,&
       hipfftExecD2Z_rank_1,&
       hipfftExecD2Z_rank_2,&
       hipfftExecD2Z_rank_3
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftExecD2Z_assumed_rank
 #endif
 #endif
   end interface
@@ -1013,15 +1013,15 @@ module hipfort_hipfft
       type(c_ptr),value :: odata
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftExecZ2D_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftExecZ2D_rank_0,&
       hipfftExecZ2D_rank_1,&
       hipfftExecZ2D_rank_2,&
       hipfftExecZ2D_rank_3
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftExecZ2D_assumed_rank
 #endif
 #endif
   end interface
@@ -1100,13 +1100,13 @@ module hipfort_hipfft
       type(c_ptr),value :: myValue
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftGetProperty_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipfftGetProperty_rank_0,&
       hipfftGetProperty_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftGetProperty_assumed_rank
 #endif
 #endif
   end interface
