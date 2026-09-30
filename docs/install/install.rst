@@ -42,7 +42,9 @@ Building and testing hipFORT from source
 
       ``-DHIPFORT_BUILD_NVPTX=OFF`` restricts the build to the ROCm backend
       (``hipfort-amdgcn``). The CUDA backend archive (``hipfort-nvptx``) is built by
-      default, so omit the option if you also want it.
+      default, so omit the option if you also want it. ``HIPFORT_BUILD_AMDGCN`` is
+      the mirror switch: the two are independent, so ``-DHIPFORT_BUILD_AMDGCN=OFF``
+      gives a CUDA-only build. Turning both off is an error.
       When installing hipFORT from source, you do not need to specify the ``HIP_PLATFORM`` environment variable.
 
 Customizing the build
@@ -60,6 +62,7 @@ or by setting the CMake cache variables:
 *  ``CMAKE_RANLIB``: The ``ranlib`` used to create the static archive
 *  ``CMAKE_INSTALL_PREFIX``: The install directory
 *  ``ROCM_PATH``: The ROCm installation root, if it cannot be detected automatically
+*  ``HIPFORT_BUILD_AMDGCN``: Build the ROCm (``amdgcn``) backend archive (``ON`` by default)
 *  ``HIPFORT_BUILD_NVPTX``: Build the CUDA (``nvptx``) backend archive (``ON`` by default)
 *  ``HIPFORT_USE_FPOINTER_INTERFACES``: Enable the Fortran 2008 array interfaces (``ON`` by default when the compiler supports Fortran 2008)
 *  ``HIPFORT_ASSUMED_RANK``: Use the experimental Fortran 2018 assumed-rank array interfaces instead of the per-rank overloads (``OFF`` by default)
