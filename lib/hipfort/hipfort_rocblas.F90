@@ -93,7 +93,7 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_pointer_mode_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: pointer_mode
+      integer(kind(rocblas_pointer_mode_host)) :: pointer_mode
     end function
   end interface
 
@@ -125,7 +125,7 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_atomics_mode_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: atomics_mode
+      integer(kind(rocblas_atomics_not_allowed)) :: atomics_mode
     end function
   end interface
 
@@ -159,7 +159,7 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_batch_alpha_stride_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: alpha_stride
+      integer(c_int64_t) :: alpha_stride
     end function
   end interface
 
@@ -193,7 +193,7 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_batch_beta_stride_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: beta_stride
+      integer(c_int64_t) :: beta_stride
     end function
   end interface
 
@@ -217,7 +217,7 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_math_mode_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: math_mode
+      integer(kind(rocblas_default_math)) :: math_mode
     end function
   end interface
 

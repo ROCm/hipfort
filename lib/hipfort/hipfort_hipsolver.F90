@@ -100,7 +100,7 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverGetDeterministicMode_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: mode
+      integer(kind(HIPSOLVER_DETERMINISTIC_RESULTS)) :: mode
     end function
   end interface
 #endif
@@ -7065,7 +7065,7 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnGetDeterministicMode_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: mode
+      integer(kind(HIPSOLVER_DETERMINISTIC_RESULTS)) :: mode
     end function
   end interface
 
@@ -13087,8 +13087,8 @@ module hipfort_hipsolver
       type(c_ptr),value :: VR
       integer(c_int64_t),value :: ldvr
       integer(kind(HIP_R_32F)),value :: computeType
-      type(c_ptr),value :: lworkOnDevice
-      type(c_ptr),value :: lworkOnHost
+      integer(c_size_t) :: lworkOnDevice
+      integer(c_size_t) :: lworkOnHost
     end function
   end interface
 
@@ -13159,8 +13159,8 @@ module hipfort_hipsolver
       integer(kind(HIP_R_32F)),value :: dataTypeTau
       type(c_ptr),value :: tau
       integer(kind(HIP_R_32F)),value :: computeType
-      type(c_ptr),value :: lworkOnDevice
-      type(c_ptr),value :: lworkOnHost
+      integer(c_size_t) :: lworkOnDevice
+      integer(c_size_t) :: lworkOnHost
     end function
   end interface
 
@@ -13220,7 +13220,7 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(kind(HIP_R_32F)),value :: computeType
-      type(c_ptr),value :: lworkOnDevice
+      integer(c_size_t) :: lworkOnDevice
       integer(c_size_t) :: lworkOnHost
     end function
   end interface
@@ -13383,8 +13383,8 @@ module hipfort_hipsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(kind(HIP_R_32F)),value :: computeType
-      type(c_ptr),value :: lworkOnDevice
-      type(c_ptr),value :: lworkOnHost
+      integer(c_size_t) :: lworkOnDevice
+      integer(c_size_t) :: lworkOnHost
     end function
   end interface
 
@@ -13473,8 +13473,8 @@ module hipfort_hipsolver
       integer(kind(HIP_R_32F)),value :: dataTypeW
       type(c_ptr),value :: W
       integer(kind(HIP_R_32F)),value :: computeType
-      type(c_ptr),value :: lworkOnDevice
-      type(c_ptr),value :: lworkOnHost
+      integer(c_size_t) :: lworkOnDevice
+      integer(c_size_t) :: lworkOnHost
     end function
   end interface
 
@@ -13538,8 +13538,8 @@ module hipfort_hipsolver
       integer(kind(HIP_R_32F)),value :: dataTypeW
       type(c_ptr),value :: W
       integer(kind(HIP_R_32F)),value :: computeType
-      type(c_ptr),value :: lworkOnDevice
-      type(c_ptr),value :: lworkOnHost
+      integer(c_size_t) :: lworkOnDevice
+      integer(c_size_t) :: lworkOnHost
       integer(c_int64_t),value :: batchSize
     end function
   end interface
@@ -13605,8 +13605,8 @@ module hipfort_hipsolver
       integer(kind(HIP_R_32F)),value :: dataTypeB
       type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
-      type(c_ptr),value :: lworkOnDevice
-      type(c_ptr),value :: lworkOnHost
+      integer(c_size_t) :: lworkOnDevice
+      integer(c_size_t) :: lworkOnHost
     end function
   end interface
 
@@ -13751,7 +13751,7 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfAccessBundledFactorsDevice_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: nnzM
+      integer(c_int) :: nnzM
       type(c_ptr) :: Mp
       type(c_ptr) :: Mi
       type(c_ptr) :: Mx
@@ -13785,7 +13785,7 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfExtractBundledFactorsHost_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: h_nnzM
+      integer(c_int) :: h_nnzM
       type(c_ptr) :: h_Mp
       type(c_ptr) :: h_Mi
       type(c_ptr) :: h_Mx
@@ -13807,11 +13807,11 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfExtractSplitFactorsHost_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: h_nnzL
+      integer(c_int) :: h_nnzL
       type(c_ptr) :: h_Lp
       type(c_ptr) :: h_Li
       type(c_ptr) :: h_Lx
-      type(c_ptr),value :: h_nnzU
+      integer(c_int) :: h_nnzU
       type(c_ptr) :: h_Up
       type(c_ptr) :: h_Ui
       type(c_ptr) :: h_Ux
@@ -13826,8 +13826,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGet_Algs_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: fact_alg
-      type(c_ptr),value :: solve_alg
+      integer(kind(HIPSOLVERRF_FACTORIZATION_ALG0)) :: fact_alg
+      integer(kind(HIPSOLVERRF_TRIANGULAR_SOLVE_ALG1)) :: solve_alg
     end function
   end interface
 #endif
@@ -13845,8 +13845,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetMatrixFormat_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: myFormat
-      type(c_ptr),value :: diag
+      integer(kind(HIPSOLVERRF_MATRIX_FORMAT_CSR)) :: myFormat
+      integer(kind(HIPSOLVERRF_UNIT_DIAGONAL_STORED_L)) :: diag
     end function
   end interface
 
@@ -13863,7 +13863,7 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetNumericBoostReport_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: report
+      integer(kind(HIPSOLVERRF_NUMERIC_BOOST_NOT_USED)) :: report
     end function
   end interface
 
@@ -13880,8 +13880,8 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetNumericProperties_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: zero
-      type(c_ptr),value :: boost
+      real(c_double) :: zero
+      real(c_double) :: boost
     end function
   end interface
 
@@ -13898,7 +13898,7 @@ module hipfort_hipsolver
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetResetValuesFastMode_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: fastMode
+      integer(kind(HIPSOLVERRF_RESET_VALUES_FAST_MODE_OFF)) :: fastMode
     end function
   end interface
 

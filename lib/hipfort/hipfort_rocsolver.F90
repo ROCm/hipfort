@@ -212,7 +212,7 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_get_alg_mode_
       type(c_ptr),value :: handle
       integer(kind(rocsolver_function_bdsqr)),value :: func
-      type(c_ptr),value :: mode
+      integer(kind(rocsolver_alg_mode_gpu)) :: mode
     end function
   end interface
 
@@ -42089,7 +42089,7 @@ module hipfort_rocsolver
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_get_rfinfo_mode_
       type(c_ptr),value :: rfinfo
-      type(c_ptr),value :: mode
+      integer(kind(rocsolver_rfinfo_mode_lu)) :: mode
     end function
   end interface
 
