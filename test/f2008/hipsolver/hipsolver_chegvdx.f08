@@ -50,7 +50,7 @@ program hipsolver_chegvdx
        (2.,0.),(0.,0.),(0.,0.), (0.,0.),(2.,0.),(0.,0.), (0.,0.),(0.,0.),(2.,0.) /), (/3,3/))
   complex(c_float_complex) :: hA0(3,3), hB0(3,3)
   real(c_float) :: hW(3)
-  integer(c_int), target :: hNev, nevBuf
+  integer(c_int) :: hNev, nevBuf
   complex(c_float_complex) :: lhs(3), rhs(3)
 
   complex(c_float_complex), pointer :: dA(:,:), dB(:,:)
@@ -81,7 +81,7 @@ program hipsolver_chegvdx
 
   call hipsolverCheck(hipsolverChegvdx(handle, HIPSOLVER_EIG_TYPE_1, HIPSOLVER_EIG_MODE_VECTOR, &
        HIPSOLVER_EIG_RANGE_ALL, HIPSOLVER_FILL_MODE_UPPER, N, c_loc(dA(1,1)), lda, c_loc(dB(1,1)), ldb, &
-       0.0, 0.0, 1, N, c_loc(hNev), c_loc(dW(1)), dWork, lwork, c_loc(dInfo(1))))
+       0.0, 0.0, 1, N, hNev, c_loc(dW(1)), dWork, lwork, c_loc(dInfo(1))))
 
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hW, dW, hipMemcpyDeviceToHost))

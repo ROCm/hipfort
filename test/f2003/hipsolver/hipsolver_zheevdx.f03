@@ -28,8 +28,8 @@
 ! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! heevdx computes a selected subset of eigenvalues/eigenvectors (range=all -> full
-! spectrum). f2003 style: device buffers are type(c_ptr); nev is a device-backed
-! integer. Self-verifying: A0*v_k = lambda_k*v_k.
+! spectrum). f2003 style: device buffers are type(c_ptr); nev is a host integer.
+! Self-verifying: A0*v_k = lambda_k*v_k.
 !!!!!!!!!!!!!!
 !
 program hipsolver_zheevdx
@@ -47,14 +47,14 @@ program hipsolver_zheevdx
        (2.,0.),(-1.,0.),(0.,0.), (-1.,0.),(2.,0.),(-1.,0.), (0.,0.),(-1.,0.),(2.,0.) /), (/3,3/))
   complex(c_double_complex) :: hA0(3,3)
   real(c_double), target :: hW(3)
-  integer(c_int), target :: hNev
+  integer(c_int) :: hNev
   complex(c_double_complex) :: lhs(3), rhs(3)
 
   integer(c_size_t) :: sizeA = 9, sizeW = 3
   integer(c_int) :: nevBuf
 
   type(c_ptr) :: dA, dW
-  integer(c_int), pointer :: dNev(:), dInfo(:)
+  integer(c_int), pointer :: dInfo(:)
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
 
@@ -67,7 +67,6 @@ program hipsolver_zheevdx
 
   call hipCheck(hipMalloc(dA, sizeA * 16))
   call hipCheck(hipMalloc(dW, sizeW * 8))
-  call hipCheck(hipMalloc(dNev, 1))
   call hipCheck(hipMalloc(dInfo, 1))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sizeA * 16, hipMemcpyHostToDevice))
 
@@ -80,9 +79,8 @@ program hipsolver_zheevdx
 
   call hipsolverCheck(hipsolverZheevdx(handle, HIPSOLVER_EIG_MODE_VECTOR, &
        HIPSOLVER_EIG_RANGE_ALL, HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, &
-       0.0d0, 0.0d0, 1, N, c_loc(dNev(1)), dW, dWork, lwork, c_loc(dInfo(1))))
+       0.0d0, 0.0d0, 1, N, hNev, dW, dWork, lwork, c_loc(dInfo(1))))
 
-  call hipCheck(hipMemcpy(c_loc(hNev), c_loc(dNev(1)), 4_c_size_t, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sizeA * 16, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 8, hipMemcpyDeviceToHost))
 
@@ -102,7 +100,7 @@ program hipsolver_zheevdx
   end do
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dW))
-  call hipCheck(hipFree(dNev)); call hipCheck(hipFree(dInfo)); call hipCheck(hipFree(dWork))
+  call hipCheck(hipFree(dInfo)); call hipCheck(hipFree(dWork))
   call hipsolverCheck(hipsolverDestroy(handle))
   call hipCheck(hipDeviceReset())
 
