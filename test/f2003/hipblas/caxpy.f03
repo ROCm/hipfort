@@ -36,7 +36,7 @@ program hip_caxpy
   integer :: j
   complex(kind=4), allocatable, target, dimension(:) :: x, y, y_exact
 
-  complex(kind=4), parameter :: alpha = (2.0, 0.)
+  complex(kind=4), target :: alpha = (2.0, 0.)
   type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr
 
   integer, parameter :: bytes_per_element = 8
@@ -72,7 +72,7 @@ program hip_caxpy
   call hipCheck(hipMemcpy(dx, c_loc(x(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(y(1)), Nybytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasCaxpy(handle, n, alpha, dx, 1, dy, 1))
+  call hipblasCheck(hipblasCaxpy(handle, n, c_loc(alpha), dx, 1, dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

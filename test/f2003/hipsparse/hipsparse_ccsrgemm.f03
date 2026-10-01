@@ -64,7 +64,7 @@ program ccsrgemm
   integer(c_int), target :: h_row_ptr_C(4)
   integer(c_int), target :: h_col_ind_C(5)
   complex(c_float_complex), target :: h_val_C(5)
-  integer(c_int) :: nnz_C
+  integer(c_int), target :: nnz_C
 
   integer(c_size_t) :: size_rp = 4, size_nz = 5
 
@@ -110,7 +110,7 @@ program ccsrgemm
   call hipsparseCheck(hipsparseXcsrgemmNnz(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
                           M, N, K, descr_A, nnz_A, d_csr_row_ptr, d_csr_col_ind, &
                           descr_B, nnz_A, d_csr_row_ptr, d_csr_col_ind, &
-                          descr_C, d_row_ptr_C, nnz_C))
+                          descr_C, d_row_ptr_C, c_loc(nnz_C)))
 
   ! Allocate C column indices and values now that nnz_C is known
   call hipCheck(hipMalloc(d_col_ind_C, int(nnz_C,c_size_t) * 4))

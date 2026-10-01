@@ -37,7 +37,7 @@ program hip_saxpy
   integer :: j
   real, allocatable, dimension(:) :: x, y, y_exact
 
-  real, parameter :: alpha = 2.0
+  real, target :: alpha = 2.0
   real, pointer, dimension(:) :: dx, dy
 
   real :: error

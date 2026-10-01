@@ -162,13 +162,13 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_rank_0,&
       rocrand_generate_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_assumed_rank
 #endif
 #endif
   end interface
@@ -204,13 +204,13 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_long_long_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_long_long_rank_0,&
       rocrand_generate_long_long_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_long_long_assumed_rank
 #endif
 #endif
   end interface
@@ -305,13 +305,13 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_uniform_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_uniform_rank_0,&
       rocrand_generate_uniform_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_uniform_assumed_rank
 #endif
 #endif
   end interface
@@ -346,13 +346,13 @@ module hipfort_rocrand
       integer(c_size_t),value :: n
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_uniform_double_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_uniform_double_rank_0,&
       rocrand_generate_uniform_double_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_uniform_double_assumed_rank
 #endif
 #endif
   end interface
@@ -419,13 +419,13 @@ module hipfort_rocrand
       real(c_float),value :: stddev
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_normal_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_normal_rank_0,&
       rocrand_generate_normal_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_normal_assumed_rank
 #endif
 #endif
   end interface
@@ -461,13 +461,13 @@ module hipfort_rocrand
       real(c_double),value :: stddev
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_normal_double_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_normal_double_rank_0,&
       rocrand_generate_normal_double_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_normal_double_assumed_rank
 #endif
 #endif
   end interface
@@ -535,13 +535,13 @@ module hipfort_rocrand
       real(c_float),value :: stddev
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_log_normal_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_log_normal_rank_0,&
       rocrand_generate_log_normal_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_log_normal_assumed_rank
 #endif
 #endif
   end interface
@@ -577,13 +577,13 @@ module hipfort_rocrand
       real(c_double),value :: stddev
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_log_normal_double_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_log_normal_double_rank_0,&
       rocrand_generate_log_normal_double_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_log_normal_double_assumed_rank
 #endif
 #endif
   end interface
@@ -650,13 +650,13 @@ module hipfort_rocrand
       real(c_double),value :: lambda
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_poisson_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_poisson_rank_0,&
       rocrand_generate_poisson_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_poisson_assumed_rank
 #endif
 #endif
   end interface
@@ -943,13 +943,13 @@ module hipfort_rocrand
       type(c_ptr) :: discrete_distribution
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_create_discrete_distribution_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_create_discrete_distribution_rank_0,&
       rocrand_create_discrete_distribution_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_create_discrete_distribution_assumed_rank
 #endif
 #endif
   end interface

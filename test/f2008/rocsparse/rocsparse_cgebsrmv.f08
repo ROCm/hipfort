@@ -52,7 +52,7 @@ program cgebsrmv
   complex(c_float_complex) :: hX(4) = (/(1.0,0.0), (2.0,0.0), (3.0,0.0), (4.0,0.0)/)
   complex(c_float_complex) :: hY(4) = (/(0.0,0.0), (0.0,0.0), (0.0,0.0), (0.0,0.0)/)
   complex(c_float_complex) :: hRef(4)
-  complex(c_float_complex) :: alpha = (1.0,0.0), beta = (0.0,0.0)
+  complex(c_float_complex), target :: alpha = (1.0,0.0), beta = (0.0,0.0)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr
   complex(c_float_complex), pointer :: dVal(:), dX(:), dY(:)

@@ -39,7 +39,7 @@ program rocblas_zherk_test
   ! C(1,1)=1, C(1,2)=2, C(2,2)=13. The data is real-valued, so the
   ! symmetric and Hermitian forms agree.
   integer, parameter :: n = 2, k = 2
-  real(c_double), parameter :: alpha = 1.0, beta = 0.0
+  real(c_double), target :: alpha = 1.0, beta = 0.0
 
   complex(c_double_complex) :: hA(n,k) = reshape([(1.0, 0.0), (2.0, 0.0), (0.0, 0.0), (3.0, 0.0)], [n,k])
   complex(c_double_complex) :: hC(n,n)

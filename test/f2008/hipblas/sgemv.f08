@@ -35,8 +35,8 @@ program hip_sgemv
   integer :: n = 5
   integer :: i, j
 
-  real, parameter :: alpha = 1.0
-  real, parameter :: beta = 0.0
+  real, target :: alpha = 1.0
+  real, target :: beta = 0.0
 
   type(c_ptr) :: handle = c_null_ptr
 

@@ -50,7 +50,7 @@ program dgebsrmv
   real(c_double) :: hX(4) = (/1.0d0, 2.0d0, 3.0d0, 4.0d0/)
   real(c_double) :: hY(4) = (/0.0d0, 0.0d0, 0.0d0, 0.0d0/)
   real(c_double) :: hRef(4)
-  real(c_double) :: alpha = 1.0d0, beta = 0.0d0
+  real(c_double), target :: alpha = 1.0d0, beta = 0.0d0
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr
   real(c_double), pointer :: dVal(:), dX(:), dY(:)

@@ -78,7 +78,7 @@ program hipsolver_sgetrf
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 4, 1_c_size_t)))
 
   ! Compute the LU factorization (A/pivots as native arrays, devInfo by reference)
-  call hipsolverCheck(hipsolverSgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, dInfo))
+  call hipsolverCheck(hipsolverSgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, c_loc(dInfo)))
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))

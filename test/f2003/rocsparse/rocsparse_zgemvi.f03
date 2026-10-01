@@ -49,7 +49,7 @@ program zgemvi
   complex(c_double_complex), target :: hXval(2) = (/(2.0d0,1.0d0), (3.0d0,-1.0d0)/)
   integer(c_int), target :: hXind(2) = (/0, 2/)
   complex(c_double_complex), target :: hY(3) = (/(1.0d0,0.0d0), (1.0d0,0.0d0), (1.0d0,0.0d0)/)
-  complex(c_double_complex) :: alpha = (2.0d0,1.0d0), beta = (3.0d0,0.0d0)
+  complex(c_double_complex), target :: alpha = (2.0d0,1.0d0), beta = (3.0d0,0.0d0)
   complex(c_double_complex) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dA, dXval, dXind, dY, dBuf
@@ -74,8 +74,8 @@ program zgemvi
   call rocsparseCheck(rocsparse_create_handle(handle))
   call rocsparseCheck(rocsparse_zgemvi_buffer_size(handle, rocsparse_operation_none, m, n, nnz, bufSize))
   call hipCheck(hipMalloc(dBuf, max(bufSize, 1_c_size_t)))
-  call rocsparseCheck(rocsparse_zgemvi(handle, rocsparse_operation_none, m, n, alpha, &
-       dA, lda, nnz, dXval, dXind, beta, dY, rocsparse_index_base_zero, dBuf))
+  call rocsparseCheck(rocsparse_zgemvi(handle, rocsparse_operation_none, m, n, c_loc(alpha), &
+       dA, lda, nnz, dXval, dXind, c_loc(beta), dY, rocsparse_index_base_zero, dBuf))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hY(1)), dY, int(m,c_size_t) * 16, hipMemcpyDeviceToHost))
 

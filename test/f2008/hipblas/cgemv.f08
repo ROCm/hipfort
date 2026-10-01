@@ -31,7 +31,7 @@ program hipblas_cgemv_test
 
   implicit none
 
-  complex(kind=4), parameter :: alpha = (1.1, 0.0), beta = (0.9, 0.0)
+  complex(kind=4), target :: alpha = (1.1, 0.0), beta = (0.9, 0.0)
   integer, parameter :: m = 512, n = 512
 
   complex(kind=4), allocatable, target, dimension(:) :: hA, hx, hy

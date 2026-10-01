@@ -36,7 +36,7 @@ program hip_zgeam
   ! transposition, so C is the elementwise sum A + B.
   integer, parameter :: ld = 2
   integer(c_size_t) :: Nbytes
-  complex(c_double_complex), parameter :: alpha = (1.0, 0.0), beta = (1.0, 0.0)
+  complex(c_double_complex), target :: alpha = (1.0, 0.0), beta = (1.0, 0.0)
 
   complex(c_double_complex), target :: hA(ld,ld) = reshape([(1.0, 0.0), (2.0, 0.0), (3.0, 0.0), (4.0, 0.0)], [ld,ld])
   complex(c_double_complex), target :: hB(ld,ld) = reshape([(10.0, 0.0), (20.0, 0.0), (30.0, 0.0), (40.0, 0.0)], [ld,ld])
@@ -63,7 +63,7 @@ program hip_zgeam
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), Nbytes, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasZgeam(handle, HIPBLAS_OP_N, HIPBLAS_OP_N, ld, ld, &
-       alpha, dA, ld, beta, dB, ld, dC, ld))
+       c_loc(alpha), dA, ld, c_loc(beta), dB, ld, dC, ld))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, Nbytes, hipMemcpyDeviceToHost))
 

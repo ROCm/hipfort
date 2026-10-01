@@ -37,7 +37,7 @@ program rocblas_sger_test
   ! is simply A(i,j) = x(i)*y(j); the data is real-valued so the 'u' and 'c'
   ! (conjugated) forms agree.
   integer, parameter :: m = 3, n = 2
-  real(c_float), parameter :: alpha = 1.0
+  real(c_float), target :: alpha = 1.0
 
   real(c_float), target :: hx(m) = [1.0, 2.0, 3.0]
   real(c_float), target :: hy(n) = [10.0, 20.0]
@@ -69,7 +69,7 @@ program rocblas_sger_test
   call hipCheck(hipMemcpy(dy, c_loc(hy(1)), int(n,c_size_t) * 4, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), int(m*n,c_size_t) * 4, hipMemcpyHostToDevice))
 
-  call rocblasCheck(rocblas_sger(handle, m, n, alpha, dx, 1, dy, 1, dA, m))
+  call rocblasCheck(rocblas_sger(handle, m, n, c_loc(alpha), dx, 1, dy, 1, dA, m))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, int(m*n,c_size_t) * 4, hipMemcpyDeviceToHost))
 

@@ -35,7 +35,7 @@ program hip_sgeam
   ! C := alpha*op(A) + beta*op(B) with alpha = beta = 1 and no
   ! transposition, so C is the elementwise sum A + B.
   integer, parameter :: ld = 2
-  real(c_float), parameter :: alpha = 1.0, beta = 1.0
+  real(c_float), target :: alpha = 1.0, beta = 1.0
 
   real(c_float) :: hA(ld,ld) = reshape([1.0, 2.0, 3.0, 4.0], [ld,ld])
   real(c_float) :: hB(ld,ld) = reshape([10.0, 20.0, 30.0, 40.0], [ld,ld])

@@ -48,7 +48,7 @@ program sgemvi
   real(c_float), target :: hXval(2) = (/2.0, 3.0/)
   integer(c_int), target :: hXind(2) = (/0, 2/)
   real(c_float), target :: hY(3) = (/1.0, 1.0, 1.0/)
-  real(c_float) :: alpha = 2.0, beta = 3.0
+  real(c_float), target :: alpha = 2.0, beta = 3.0
   real(c_float) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dA, dXval, dXind, dY, dBuf
@@ -73,8 +73,8 @@ program sgemvi
   call rocsparseCheck(rocsparse_create_handle(handle))
   call rocsparseCheck(rocsparse_sgemvi_buffer_size(handle, rocsparse_operation_none, m, n, nnz, bufSize))
   call hipCheck(hipMalloc(dBuf, max(bufSize, 1_c_size_t)))
-  call rocsparseCheck(rocsparse_sgemvi(handle, rocsparse_operation_none, m, n, alpha, &
-       dA, lda, nnz, dXval, dXind, beta, dY, rocsparse_index_base_zero, dBuf))
+  call rocsparseCheck(rocsparse_sgemvi(handle, rocsparse_operation_none, m, n, c_loc(alpha), &
+       dA, lda, nnz, dXval, dXind, c_loc(beta), dY, rocsparse_index_base_zero, dBuf))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hY(1)), dY, int(m,c_size_t) * 4, hipMemcpyDeviceToHost))
 

@@ -33,7 +33,7 @@ program rocblas_zgemv_test
   implicit none
 
   integer(kind(rocblas_operation_none)), parameter :: trans = rocblas_operation_none
-  complex(c_double_complex), parameter :: alpha = (1.1d0, 0.d0), beta = (0.9d0, 0.d0)
+  complex(c_double_complex), target :: alpha = (1.1d0, 0.d0), beta = (0.9d0, 0.d0)
 
   integer, parameter :: m = 512, n = 512
 

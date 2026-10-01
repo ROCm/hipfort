@@ -52,7 +52,7 @@ program zgebsrmv
   complex(c_double_complex) :: hX(4) = (/(1.0d0,0.0d0), (2.0d0,0.0d0), (3.0d0,0.0d0), (4.0d0,0.0d0)/)
   complex(c_double_complex) :: hY(4) = (/(0.0d0,0.0d0), (0.0d0,0.0d0), (0.0d0,0.0d0), (0.0d0,0.0d0)/)
   complex(c_double_complex) :: hRef(4)
-  complex(c_double_complex) :: alpha = (1.0d0,0.0d0), beta = (0.0d0,0.0d0)
+  complex(c_double_complex), target :: alpha = (1.0d0,0.0d0), beta = (0.0d0,0.0d0)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr
   complex(c_double_complex), pointer :: dVal(:), dX(:), dY(:)

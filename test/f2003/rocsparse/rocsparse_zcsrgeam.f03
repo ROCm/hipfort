@@ -60,7 +60,7 @@ program zcsrgeam
   integer(c_int) :: h_exp_col_ind(5) = (/0, 2, 1, 0, 2/)
   complex(c_double_complex) :: h_exp_val(5) = (/ (11.,2.),(2.,-1.),(23.,-2.),(4.,2.),(35.,2.) /)
 
-  complex(c_double_complex) :: alpha = (1.0,0.0), beta = (1.0,0.0)
+  complex(c_double_complex), target :: alpha = (1.0,0.0), beta = (1.0,0.0)
 
   integer(c_int), target :: h_row_ptr_C(4)
   integer(c_int), target :: nnz_C
@@ -116,9 +116,9 @@ program zcsrgeam
   call hipCheck(hipMalloc(d_val_C,     int(nnz_C,c_size_t) * 16))
 
   ! Phase 2: compute the values of C
-  call rocsparseCheck(rocsparse_zcsrgeam(handle, M, N, alpha, &
+  call rocsparseCheck(rocsparse_zcsrgeam(handle, M, N, c_loc(alpha), &
                           descr_A, nnz_A, d_val_A, d_row_ptr_A, d_col_ind_A, &
-                          beta, descr_B, nnz_B, d_val_B, d_row_ptr_B, d_col_ind_B, &
+                          c_loc(beta), descr_B, nnz_B, d_val_B, d_row_ptr_B, d_col_ind_B, &
                           descr_C, d_val_C, d_row_ptr_C, d_col_ind_C))
   call hipCheck(hipDeviceSynchronize())
 

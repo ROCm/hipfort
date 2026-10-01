@@ -91,7 +91,7 @@ program dsyevj
 
   ! Compute eigenvalues and eigenvectors (A overwritten with eigenvectors)
   call hipsolverCheck(hipsolverDsyevj(handle, HIPSOLVER_EIG_MODE_VECTOR, &
-       HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dW, dWork, lwork, dInfo_p(1), params))
+       HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dW, dWork, lwork, c_loc(dInfo_p(1)), params))
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))

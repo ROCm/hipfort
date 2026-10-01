@@ -49,7 +49,7 @@ program hipsparse_cgemvi
   complex(c_float_complex), target :: hXval(2) = (/(2.0,1.0), (3.0,-1.0)/)
   integer(c_int), target :: hXind(2) = (/0, 2/)
   complex(c_float_complex), target :: hY(3) = (/(1.0,0.0), (1.0,0.0), (1.0,0.0)/)
-  complex(c_float_complex) :: alpha = (2.0,1.0), beta = (3.0,0.0)
+  complex(c_float_complex), target :: alpha = (2.0,1.0), beta = (3.0,0.0)
   complex(c_float_complex) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dA, dXval, dXind, dY, dBuf
@@ -76,8 +76,8 @@ program hipsparse_cgemvi
   call hipsparseCheck(hipsparseCgemvi_bufferSize(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
        m, n, nnz, bufSize))
   call hipCheck(hipMalloc(dBuf, int(max(bufSize,1),c_size_t)))
-  call hipsparseCheck(hipsparseCgemvi(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, m, n, alpha, &
-       dA, lda, nnz, dXval, dXind, beta, dY, HIPSPARSE_INDEX_BASE_ZERO, dBuf))
+  call hipsparseCheck(hipsparseCgemvi(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, m, n, c_loc(alpha), &
+       dA, lda, nnz, dXval, dXind, c_loc(beta), dY, HIPSPARSE_INDEX_BASE_ZERO, dBuf))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hY(1)), dY, int(m,c_size_t) * 8, hipMemcpyDeviceToHost))
 

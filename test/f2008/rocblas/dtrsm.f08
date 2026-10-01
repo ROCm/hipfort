@@ -40,7 +40,7 @@ program rocblas_dtrsm_test
   integer, parameter :: m = 1024, n = 1024
 
   double precision, allocatable, dimension(:,:) :: hA, hB
-  double precision, parameter :: alpha = 2.d0
+  double precision, target :: alpha = 2.d0
   double precision, parameter :: x_exact = 1.d0
 
   double precision, pointer, dimension(:,:) :: dA, dB

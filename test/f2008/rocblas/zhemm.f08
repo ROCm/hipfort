@@ -37,7 +37,7 @@ program rocblas_zhemm_test
   ! A = [1 2; 2 3], B = I, alpha = 1, beta = 0, so C = A. The data is
   ! real-valued, so the symmetric and Hermitian forms agree.
   integer, parameter :: m = 2, n = 2
-  complex(c_double_complex), parameter :: alpha = (1.0, 0.0), beta = (0.0, 0.0)
+  complex(c_double_complex), target :: alpha = (1.0, 0.0), beta = (0.0, 0.0)
 
   complex(c_double_complex) :: hA(m,m) = reshape([(1.0, 0.0), (2.0, 0.0), (2.0, 0.0), (3.0, 0.0)], [m,m])
   complex(c_double_complex) :: hB(m,n) = reshape([(1.0, 0.0), (0.0, 0.0), (0.0, 0.0), (1.0, 0.0)], [m,n])

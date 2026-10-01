@@ -51,7 +51,7 @@ program hipsparse_scsrsv2
   real(c_float) :: hF(3) = (/2.0, 5.0, 11.0/)
   real(c_float) :: hX(3)
   real(c_float) :: hExp(3) = (/1.0, 2.0, 3.0/)
-  real(c_float) :: alpha = 1.0
+  real(c_float), target :: alpha = 1.0
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descrA = c_null_ptr
   type(c_ptr) :: info = c_null_ptr

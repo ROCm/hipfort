@@ -93,13 +93,13 @@ program cunmqr
 
   call hipsolverCheck(hipsolverCgeqrf_bufferSize(handle, M, K, dA, lda, lwork_qr))
   call hipsolverCheck(hipsolverCunmqr_bufferSize(handle, HIPSOLVER_SIDE_LEFT, HIPSOLVER_OP_N, &
-       M, N, K, dA, lda, dTau_p(1), dC, ldc, lwork_mq))
+       M, N, K, dA, lda, c_loc(dTau_p(1)), dC, ldc, lwork_mq))
   lwork = max(lwork_qr, lwork_mq)
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 8))
 
-  call hipsolverCheck(hipsolverCgeqrf(handle, M, K, dA, lda, dTau_p(1), dWork, lwork, dInfo_p(1)))
+  call hipsolverCheck(hipsolverCgeqrf(handle, M, K, dA, lda, c_loc(dTau_p(1)), dWork, lwork, c_loc(dInfo_p(1))))
   call hipsolverCheck(hipsolverCunmqr(handle, HIPSOLVER_SIDE_LEFT, HIPSOLVER_OP_N, &
-       M, N, K, dA, lda, dTau_p(1), dC, ldc, dWork, lwork, dInfo_p(1)))
+       M, N, K, dA, lda, c_loc(dTau_p(1)), dC, ldc, dWork, lwork, c_loc(dInfo_p(1))))
 
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, size_C * 8, hipMemcpyDeviceToHost))
 

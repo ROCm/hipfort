@@ -36,7 +36,7 @@ program hip_daxpy
   integer :: j
   double precision, allocatable, dimension(:) :: x, y, y_exact
 
-  double precision, parameter :: alpha = 2.0d0
+  double precision, target :: alpha = 2.0d0
   double precision, pointer, dimension(:) :: dx, dy
 
   double precision :: error

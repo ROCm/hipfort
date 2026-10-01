@@ -33,7 +33,7 @@ program rocblas_sgemv_test
   implicit none
 
   integer(kind(rocblas_operation_none)), parameter :: trans = rocblas_operation_none
-  real(c_float), parameter :: alpha = 1.1, beta = 0.9
+  real(c_float), target :: alpha = 1.1, beta = 0.9
 
   integer, parameter :: m = 1024, n = 1024
 

@@ -36,7 +36,7 @@ program hip_ztrmm
   ! A = [1 2; 0 3] and B = I, so C = A.
   integer, parameter :: ld = 2
   integer(c_size_t) :: Nbytes
-  complex(c_double_complex), parameter :: alpha = (1.0, 0.0)
+  complex(c_double_complex), target :: alpha = (1.0, 0.0)
 
   complex(c_double_complex), target :: hA(ld,ld) = reshape([(1.0, 0.0), (0.0, 0.0), (2.0, 0.0), (3.0, 0.0)], [ld,ld])
   complex(c_double_complex), target :: hB(ld,ld) = reshape([(1.0, 0.0), (0.0, 0.0), (0.0, 0.0), (1.0, 0.0)], [ld,ld])
@@ -63,7 +63,7 @@ program hip_ztrmm
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), Nbytes, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasZtrmm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, HIPBLAS_OP_N, &
-       HIPBLAS_DIAG_NON_UNIT, ld, ld, alpha, dA, ld, dB, ld, dC, ld))
+       HIPBLAS_DIAG_NON_UNIT, ld, ld, c_loc(alpha), dA, ld, dB, ld, dC, ld))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, Nbytes, hipMemcpyDeviceToHost))
 

@@ -53,7 +53,7 @@ program hipsparse_zcsrsv2
   complex(c_double_complex), target :: hF(3)
   complex(c_double_complex), target :: hX(3)
   complex(c_double_complex) :: hExp(3) = (/(1.0d0,1.0d0), (2.0d0,-1.0d0), (3.0d0,0.0d0)/)
-  complex(c_double_complex) :: alpha = (1.0d0,0.0d0)
+  complex(c_double_complex), target :: alpha = (1.0d0,0.0d0)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descrA = c_null_ptr
   type(c_ptr) :: info = c_null_ptr
@@ -90,7 +90,7 @@ program hipsparse_zcsrsv2
   call hipsparseCheck(hipsparseZcsrsv2_analysis(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
        m, nnz, descrA, dVal, dRowPtr, dColInd, info, HIPSPARSE_SOLVE_POLICY_NO_LEVEL, dBuf))
   call hipsparseCheck(hipsparseZcsrsv2_solve(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
-       m, nnz, alpha, descrA, dVal, dRowPtr, dColInd, info, dF, dX, &
+       m, nnz, c_loc(alpha), descrA, dVal, dRowPtr, dColInd, info, dF, dX, &
        HIPSPARSE_SOLVE_POLICY_NO_LEVEL, dBuf))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hX(1)), dX, int(m,c_size_t) * 16, hipMemcpyDeviceToHost))

@@ -37,7 +37,7 @@ program rocblas_zgeru_test
   ! is simply A(i,j) = x(i)*y(j); the data is real-valued so the 'u' and 'c'
   ! (conjugated) forms agree.
   integer, parameter :: m = 3, n = 2
-  complex(c_double_complex), parameter :: alpha = (1.0, 0.0)
+  complex(c_double_complex), target :: alpha = (1.0, 0.0)
 
   complex(c_double_complex) :: hx(m) = [(1.0, 0.0), (2.0, 0.0), (3.0, 0.0)]
   complex(c_double_complex) :: hy(n) = [(10.0, 0.0), (20.0, 0.0)]

@@ -34,7 +34,7 @@ program rocblas_cgemm_test
 
   integer(kind(rocblas_operation_none)), parameter :: transa = rocblas_operation_none, &
                                                        transb = rocblas_operation_none
-  complex(c_float_complex), parameter :: alpha = (1.1, 0.), beta = (0.9, 0.)
+  complex(c_float_complex), target :: alpha = (1.1, 0.), beta = (0.9, 0.)
 
   integer, parameter :: m = 512, n = 512, k = 512
 

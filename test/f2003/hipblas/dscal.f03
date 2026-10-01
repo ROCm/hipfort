@@ -36,7 +36,7 @@ program hip_dscal
   integer, parameter :: bytes_per_element = 8 !double precision
   integer(c_size_t), parameter :: Nbytes = N*bytes_per_element
 
-  double precision, parameter :: alpha = 10.d0
+  double precision, target :: alpha = 10.d0
 
   type(c_ptr) :: dx = c_null_ptr
 
@@ -65,7 +65,7 @@ program hip_dscal
    ! Transfer data from host to device memory
   call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasDscal(hip_blas_handle, N, alpha, dx, 1))
+  call hipblasCheck(hipblasDscal(hip_blas_handle, N, c_loc(alpha), dx, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

@@ -36,7 +36,7 @@ program hip_ztrsm
   integer(kind(HIPBLAS_OP_N)),            parameter :: transA = HIPBLAS_OP_N
   integer(kind(HIPBLAS_DIAG_NON_UNIT)),   parameter :: diag   = HIPBLAS_DIAG_NON_UNIT
   integer, parameter :: m = 512, n = 512
-  complex(kind=8), parameter :: alpha = (2.d0, 0.d0)
+  complex(kind=8), target :: alpha = (2.d0, 0.d0)
   complex(kind=8), allocatable, target, dimension(:,:) :: hA, hB
   complex(kind=8), pointer, dimension(:,:) :: dA, dB
   type(c_ptr) :: handle = c_null_ptr

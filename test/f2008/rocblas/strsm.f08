@@ -40,7 +40,7 @@ program rocblas_strsm_test
   integer, parameter :: m = 1024, n = 1024
 
   real(c_float), allocatable, dimension(:,:) :: hA, hB
-  real(c_float), parameter :: alpha = 2.0
+  real(c_float), target :: alpha = 2.0
   real(c_float), parameter :: x_exact = 1.0
 
   real(c_float), pointer, dimension(:,:) :: dA, dB

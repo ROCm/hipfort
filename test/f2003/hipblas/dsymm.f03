@@ -36,7 +36,7 @@ program hip_dsymm
   ! A = [1 2; 2 3] and B = I, so C = A.
   integer, parameter :: ld = 2
   integer(c_size_t) :: Nbytes
-  real(c_double), parameter :: alpha = 1.0, beta = 0.0
+  real(c_double), target :: alpha = 1.0, beta = 0.0
 
   real(c_double), target :: hA(ld,ld) = reshape([1.0, 2.0, 2.0, 3.0], [ld,ld])
   real(c_double), target :: hB(ld,ld) = reshape([1.0, 0.0, 0.0, 1.0], [ld,ld])
@@ -63,7 +63,7 @@ program hip_dsymm
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), Nbytes, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasDsymm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, ld, ld, &
-       alpha, dA, ld, dB, ld, beta, dC, ld))
+       c_loc(alpha), dA, ld, dB, ld, c_loc(beta), dC, ld))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, Nbytes, hipMemcpyDeviceToHost))
 

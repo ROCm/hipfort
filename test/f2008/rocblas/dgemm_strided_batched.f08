@@ -34,7 +34,7 @@ program rocblas_dgemm_strided_batched_test
 
   integer(kind(rocblas_operation_none)), parameter :: transa = rocblas_operation_none, &
                                                        transb = rocblas_operation_none
-  double precision, parameter :: alpha = 1.1d0, beta = 0.9d0
+  double precision, target :: alpha = 1.1d0, beta = 0.9d0
 
   integer, parameter :: m = 512, n = 512, k = 512, batch_count = 4
   integer :: lda, ldb, ldc, i, b

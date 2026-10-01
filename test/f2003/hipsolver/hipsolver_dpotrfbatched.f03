@@ -80,7 +80,7 @@ program dpotrfbatched
        N, dPtrArray, lda, lwork, batch))
   call hipCheck(hipMalloc(dWork, int(max(lwork,1),c_size_t) * 8))
   call hipsolverCheck(hipsolverDpotrfBatched(handle, HIPSOLVER_FILL_MODE_UPPER, &
-       N, dPtrArray, lda, dWork, lwork, dInfo_p(1), batch))
+       N, dPtrArray, lda, dWork, lwork, c_loc(dInfo_p(1)), batch))
   call hipCheck(hipDeviceSynchronize())
 
   call hipCheck(hipMemcpy(c_loc(hInfo(1)), dInfo, int(batch,c_size_t) * 4, hipMemcpyDeviceToHost))

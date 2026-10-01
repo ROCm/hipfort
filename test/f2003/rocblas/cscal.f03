@@ -77,7 +77,7 @@ program rocblas_cscal_test
 
     ! Call rocblas function. scal is in-place: dx is both input and output.
     call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, 0))
-    call rocblasCheck(rocblas_cscal(rocblas_handle, N, alpha, dx, 1))
+    call rocblasCheck(rocblas_cscal(rocblas_handle, N, c_loc(alpha), dx, 1))
     call hipCheck(hipDeviceSynchronize())
 
     ! Transfer data back into a separate array so hx stays pristine for

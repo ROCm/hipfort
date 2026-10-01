@@ -36,7 +36,7 @@ program rocblas_dgeam_test
   ! C := alpha*op(A) + beta*op(B), both non-transposed, alpha = beta = 1,
   ! so C is the elementwise sum A + B.
   integer, parameter :: m = 2, n = 2
-  real(c_double), parameter :: alpha = 1.0, beta = 1.0
+  real(c_double), target :: alpha = 1.0, beta = 1.0
 
   real(c_double) :: hA(m,n) = reshape([1.0, 2.0, 3.0, 4.0], [m,n])
   real(c_double) :: hB(m,n) = reshape([10.0, 20.0, 30.0, 40.0], [m,n])

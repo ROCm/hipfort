@@ -33,7 +33,7 @@ program hip_cgemm_strided_batched
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N
-  complex(kind=4), parameter :: alpha = (1.1,0.0), beta = (0.9,0.0)
+  complex(kind=4), target :: alpha = (1.1,0.0), beta = (0.9,0.0)
 
   integer, parameter :: m = 256, n = 256, k = 256, batch_count = 4
   integer :: lda, ldb, ldc, i, b

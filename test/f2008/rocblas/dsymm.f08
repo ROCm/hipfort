@@ -37,7 +37,7 @@ program rocblas_dsymm_test
   ! A = [1 2; 2 3], B = I, alpha = 1, beta = 0, so C = A. The data is
   ! real-valued, so the symmetric and Hermitian forms agree.
   integer, parameter :: m = 2, n = 2
-  real(c_double), parameter :: alpha = 1.0, beta = 0.0
+  real(c_double), target :: alpha = 1.0, beta = 0.0
 
   real(c_double) :: hA(m,m) = reshape([1.0, 2.0, 2.0, 3.0], [m,m])
   real(c_double) :: hB(m,n) = reshape([1.0, 0.0, 0.0, 1.0], [m,n])

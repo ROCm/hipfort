@@ -37,7 +37,7 @@ program rocblas_ssymm_test
   ! A = [1 2; 2 3], B = I, alpha = 1, beta = 0, so C = A. The data is
   ! real-valued, so the symmetric and Hermitian forms agree.
   integer, parameter :: m = 2, n = 2
-  real(c_float), parameter :: alpha = 1.0, beta = 0.0
+  real(c_float), target :: alpha = 1.0, beta = 0.0
 
   real(c_float), target :: hA(m,m) = reshape([1.0, 2.0, 2.0, 3.0], [m,m])
   real(c_float), target :: hB(m,n) = reshape([1.0, 0.0, 0.0, 1.0], [m,n])
@@ -65,7 +65,7 @@ program rocblas_ssymm_test
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), int(m*n,c_size_t) * 4, hipMemcpyHostToDevice))
 
   call rocblasCheck(rocblas_ssymm(handle, rocblas_side_left, rocblas_fill_upper, m, n, &
-       alpha, dA, m, dB, m, beta, dC, m))
+       c_loc(alpha), dA, m, dB, m, c_loc(beta), dC, m))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, int(m*n,c_size_t) * 4, hipMemcpyDeviceToHost))
 

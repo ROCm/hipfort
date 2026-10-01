@@ -36,7 +36,7 @@ program hip_dgeam
   ! transposition, so C is the elementwise sum A + B.
   integer, parameter :: ld = 2
   integer(c_size_t) :: Nbytes
-  real(c_double), parameter :: alpha = 1.0, beta = 1.0
+  real(c_double), target :: alpha = 1.0, beta = 1.0
 
   real(c_double), target :: hA(ld,ld) = reshape([1.0, 2.0, 3.0, 4.0], [ld,ld])
   real(c_double), target :: hB(ld,ld) = reshape([10.0, 20.0, 30.0, 40.0], [ld,ld])
@@ -63,7 +63,7 @@ program hip_dgeam
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), Nbytes, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasDgeam(handle, HIPBLAS_OP_N, HIPBLAS_OP_N, ld, ld, &
-       alpha, dA, ld, beta, dB, ld, dC, ld))
+       c_loc(alpha), dA, ld, c_loc(beta), dB, ld, dC, ld))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, Nbytes, hipMemcpyDeviceToHost))
 

@@ -54,7 +54,7 @@ program dgebsrmv
   real(c_double), target :: hX(4) = (/1.0d0, 2.0d0, 3.0d0, 4.0d0/)
   real(c_double), target :: hY(4) = (/0.0d0, 0.0d0, 0.0d0, 0.0d0/)
   real(c_double) :: hRef(4)
-  real(c_double) :: alpha = 1.0d0, beta = 0.0d0
+  real(c_double), target :: alpha = 1.0d0, beta = 0.0d0
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr
   type(c_ptr) :: dVal, dRowPtr, dColInd, dX, dY
@@ -79,7 +79,7 @@ program dgebsrmv
   call rocsparseCheck(rocsparse_create_handle(handle))
   call rocsparseCheck(rocsparse_create_mat_descr(descr))
   call rocsparseCheck(rocsparse_dgebsrmv(handle, rocsparse_direction_row, rocsparse_operation_none, &
-       mb, nb, nnzb, alpha, descr, dVal, dRowPtr, dColInd, block_dim, block_dim, dX, beta, dY))
+       mb, nb, nnzb, c_loc(alpha), descr, dVal, dRowPtr, dColInd, block_dim, block_dim, dX, c_loc(beta), dY))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hY(1)), dY, int(mdim,c_size_t) * 8, hipMemcpyDeviceToHost))
 

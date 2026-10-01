@@ -34,7 +34,7 @@ program rocblas_sgemm_strided_batched_test
 
   integer(kind(rocblas_operation_none)), parameter :: transa = rocblas_operation_none, &
                                                        transb = rocblas_operation_none
-  real(c_float), parameter :: alpha = 1.1, beta = 0.9
+  real(c_float), target :: alpha = 1.1, beta = 0.9
 
   integer, parameter :: m = 512, n = 512, k = 512, batch_count = 4
   integer :: lda, ldb, ldc, i, b

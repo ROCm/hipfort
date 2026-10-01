@@ -35,7 +35,7 @@ program hip_dtrmm
   ! C := alpha*op(A)*B with A upper triangular (out-of-place trmm).
   ! A = [1 2; 0 3] and B = I, so C = A.
   integer, parameter :: ld = 2
-  real(c_double), parameter :: alpha = 1.0
+  real(c_double), target :: alpha = 1.0
 
   real(c_double) :: hA(ld,ld) = reshape([1.0, 0.0, 2.0, 3.0], [ld,ld])
   real(c_double) :: hB(ld,ld) = reshape([1.0, 0.0, 0.0, 1.0], [ld,ld])

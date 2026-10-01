@@ -33,7 +33,7 @@ program rocblas_dgemv_test
   implicit none
 
   integer(kind(rocblas_operation_none)), parameter :: trans = rocblas_operation_none
-  double precision, parameter :: alpha = 1.1d0, beta = 0.9d0
+  double precision, target :: alpha = 1.1d0, beta = 0.9d0
 
   integer, parameter :: m = 1024, n = 1024
 

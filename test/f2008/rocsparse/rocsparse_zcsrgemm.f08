@@ -105,9 +105,9 @@ program zcsrgemm
 
   ! Phase 0: workspace size
   call rocsparseCheck(rocsparse_zcsrgemm_buffer_size(handle, rocsparse_operation_none, rocsparse_operation_none, &
-                          M, N, K, alpha, descr_A, nnz_A, c_loc(d_csr_row_ptr), c_loc(d_csr_col_ind), &
+                          M, N, K, c_loc(alpha), descr_A, nnz_A, c_loc(d_csr_row_ptr), c_loc(d_csr_col_ind), &
                           descr_B, nnz_A, c_loc(d_csr_row_ptr), c_loc(d_csr_col_ind), &
-                          beta, c_null_ptr, 0, c_null_ptr, c_null_ptr, info_C, buffer_size))
+                          c_loc(beta), c_null_ptr, 0, c_null_ptr, c_null_ptr, info_C, buffer_size))
   call hipCheck(hipMalloc(d_buffer, max(buffer_size, 1_c_size_t)))
 
   ! Phase 1: compute the sparsity of C (row_ptr_C + total nnz_C)
@@ -123,10 +123,10 @@ program zcsrgemm
   call hipCheck(hipMalloc(d_val_C,     dims=(/nnz_C/)))
 
   ! Phase 2: compute the values of C
-  call rocsparseCheck(rocsparse_zcsrgemm(handle, rocsparse_operation_none, rocsparse_operation_none, M, N, K, alpha, &
+  call rocsparseCheck(rocsparse_zcsrgemm(handle, rocsparse_operation_none, rocsparse_operation_none, M, N, K, c_loc(alpha), &
                           descr_A, nnz_A, c_loc(d_csr_val), c_loc(d_csr_row_ptr), c_loc(d_csr_col_ind), &
                           descr_B, nnz_A, c_loc(d_csr_val), c_loc(d_csr_row_ptr), c_loc(d_csr_col_ind), &
-                          beta, c_null_ptr, 0, c_null_ptr, c_null_ptr, c_null_ptr, &
+                          c_loc(beta), c_null_ptr, 0, c_null_ptr, c_null_ptr, c_null_ptr, &
                           descr_C, c_loc(d_val_C), c_loc(d_row_ptr_C), c_loc(d_col_ind_C), info_C, d_buffer))
   call hipCheck(hipDeviceSynchronize())
 

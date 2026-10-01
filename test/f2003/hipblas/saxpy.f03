@@ -37,7 +37,7 @@ program hip_saxpy
   integer :: j
   real, allocatable, target, dimension(:) :: x, y, y_exact
 
-  real, parameter :: alpha = 2.0
+  real, target :: alpha = 2.0
   type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr
 
   integer, parameter :: bytes_per_element = 4 !float precision
@@ -73,7 +73,7 @@ program hip_saxpy
   call hipCheck(hipMemcpy(dx, c_loc(x(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(y(1)), Nybytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasSaxpy(handle,n,alpha,dx,1,dy,1))
+  call hipblasCheck(hipblasSaxpy(handle,n,c_loc(alpha),dx,1,dy,1))
 
   call hipCheck(hipDeviceSynchronize())
 

@@ -34,7 +34,7 @@ program rocblas_zgemm_strided_batched_test
 
   integer(kind(rocblas_operation_none)), parameter :: transa = rocblas_operation_none, &
                                                        transb = rocblas_operation_none
-  complex(c_double_complex), parameter :: alpha = (1.1d0, 0.d0), beta = (0.9d0, 0.d0)
+  complex(c_double_complex), target :: alpha = (1.1d0, 0.d0), beta = (0.9d0, 0.d0)
 
   integer, parameter :: m = 256, n = 256, k = 256, batch_count = 4
   integer, parameter :: bytes_per_element = 16 ! 2x double
@@ -91,7 +91,7 @@ program rocblas_zgemm_strided_batched_test
   call hipCheck(hipMemcpy(dc, c_loc(hc(1)), Ncbytes, hipMemcpyHostToDevice))
 
   call rocblasCheck(rocblas_zgemm_strided_batched(handle,transa,transb,m,n,k, &
-       alpha,da,lda,stride_a,db,ldb,stride_b,beta,dc,ldc,stride_c,batch_count))
+       c_loc(alpha),da,lda,stride_a,db,ldb,stride_b,c_loc(beta),dc,ldc,stride_c,batch_count))
 
   call hipCheck(hipDeviceSynchronize())
 

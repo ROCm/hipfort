@@ -33,7 +33,7 @@ program hip_dgemm_strided_batched
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N
-  double precision, parameter :: alpha = 1.1d0, beta = 0.9d0
+  double precision, target :: alpha = 1.1d0, beta = 0.9d0
 
   integer, parameter :: m = 512, n = 512, k = 512, batch_count = 4
   integer, parameter :: bytes_per_element = 8 ! double precision
@@ -89,7 +89,7 @@ program hip_dgemm_strided_batched
   call hipCheck(hipMemcpy(dc, c_loc(hc(1)), Ncbytes, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasDgemmStridedBatched(handle,transa,transb,m,n,k, &
-       alpha,da,lda,stride_a,db,ldb,stride_b,beta,dc,ldc,stride_c,batch_count))
+       c_loc(alpha),da,lda,stride_a,db,ldb,stride_b,c_loc(beta),dc,ldc,stride_c,batch_count))
 
   call hipCheck(hipDeviceSynchronize())
 

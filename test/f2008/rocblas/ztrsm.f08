@@ -40,7 +40,7 @@ program rocblas_ztrsm_test
   integer, parameter :: m = 512, n = 512
 
   complex(kind=8), allocatable, dimension(:,:) :: hA, hB
-  complex(c_double_complex), parameter :: alpha = (2.d0, 0.d0)
+  complex(c_double_complex), target :: alpha = (2.d0, 0.d0)
   complex(kind=8), parameter :: x_exact = (1.d0, 0.d0)
 
   complex(kind=8), pointer, dimension(:,:) :: dA, dB

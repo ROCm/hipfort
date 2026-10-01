@@ -45,7 +45,7 @@ program sgemvi
   real(c_float) :: hXval(2) = (/2.0, 3.0/)
   integer(c_int) :: hXind(2) = (/0, 2/)
   real(c_float) :: hY(3) = (/1.0, 1.0, 1.0/)
-  real(c_float) :: alpha = 2.0, beta = 3.0
+  real(c_float), target :: alpha = 2.0, beta = 3.0
   real(c_float) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   real(c_float), pointer :: dA(:,:), dXval(:), dY(:)

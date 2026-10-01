@@ -36,7 +36,7 @@ program rocblas_dgeam_test
   ! C := alpha*op(A) + beta*op(B), both non-transposed, alpha = beta = 1,
   ! so C is the elementwise sum A + B.
   integer, parameter :: m = 2, n = 2
-  real(c_double), parameter :: alpha = 1.0, beta = 1.0
+  real(c_double), target :: alpha = 1.0, beta = 1.0
 
   real(c_double), target :: hA(m,n) = reshape([1.0, 2.0, 3.0, 4.0], [m,n])
   real(c_double), target :: hB(m,n) = reshape([10.0, 20.0, 30.0, 40.0], [m,n])
@@ -64,7 +64,7 @@ program rocblas_dgeam_test
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), int(m*n,c_size_t) * 8, hipMemcpyHostToDevice))
 
   call rocblasCheck(rocblas_dgeam(handle, rocblas_operation_none, rocblas_operation_none, m, n, &
-       alpha, dA, m, beta, dB, m, dC, m))
+       c_loc(alpha), dA, m, c_loc(beta), dB, m, dC, m))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, int(m*n,c_size_t) * 8, hipMemcpyDeviceToHost))
 

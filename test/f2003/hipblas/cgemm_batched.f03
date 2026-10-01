@@ -33,7 +33,7 @@ program hip_cgemm_batched
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N
-  complex(kind=4), parameter :: alpha = (1.1,0.0), beta = (0.9,0.0)
+  complex(kind=4), target :: alpha = (1.1,0.0), beta = (0.9,0.0)
 
   integer, parameter :: m = 256, n = 256, k = 256, batch_count = 4
   integer, parameter :: bytes_per_element = 8 ! 2x float
@@ -97,7 +97,7 @@ program hip_cgemm_batched
   call hipCheck(hipMemcpy(dc_p, c_loc(dc(1)), int(batch_count,c_size_t)*c_sizeof(dc(1)), hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasCgemmBatched(handle,transa,transb,m,n,k, &
-       alpha,da_p,lda,db_p,ldb,beta,dc_p,ldc,batch_count))
+       c_loc(alpha),da_p,lda,db_p,ldb,c_loc(beta),dc_p,ldc,batch_count))
 
   call hipCheck(hipDeviceSynchronize())
 

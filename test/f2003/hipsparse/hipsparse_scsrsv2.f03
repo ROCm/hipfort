@@ -54,7 +54,7 @@ program hipsparse_scsrsv2
   real(c_float), target :: hF(3) = (/2.0, 5.0, 11.0/)
   real(c_float), target :: hX(3)
   real(c_float) :: hExp(3) = (/1.0, 2.0, 3.0/)
-  real(c_float) :: alpha = 1.0
+  real(c_float), target :: alpha = 1.0
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descrA = c_null_ptr
   type(c_ptr) :: info = c_null_ptr
@@ -86,7 +86,7 @@ program hipsparse_scsrsv2
   call hipsparseCheck(hipsparseScsrsv2_analysis(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
        m, nnz, descrA, dVal, dRowPtr, dColInd, info, HIPSPARSE_SOLVE_POLICY_NO_LEVEL, dBuf))
   call hipsparseCheck(hipsparseScsrsv2_solve(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
-       m, nnz, alpha, descrA, dVal, dRowPtr, dColInd, info, dF, dX, &
+       m, nnz, c_loc(alpha), descrA, dVal, dRowPtr, dColInd, info, dF, dX, &
        HIPSPARSE_SOLVE_POLICY_NO_LEVEL, dBuf))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hX(1)), dX, int(m,c_size_t) * 4, hipMemcpyDeviceToHost))

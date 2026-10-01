@@ -86,13 +86,13 @@ program zungqr
 
   ! Workspace big enough for both geqrf and ungqr
   call hipsolverCheck(hipsolverZgeqrf_bufferSize(handle, M, N, dA, lda, lwork_qr))
-  call hipsolverCheck(hipsolverZungqr_bufferSize(handle, M, N, K, dA, lda, dTau_p(1), lwork_un))
+  call hipsolverCheck(hipsolverZungqr_bufferSize(handle, M, N, K, dA, lda, c_loc(dTau_p(1)), lwork_un))
   lwork = max(lwork_qr, lwork_un)
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 16))
 
   ! Factorize A = Q*R, then form the explicit Q in place
-  call hipsolverCheck(hipsolverZgeqrf(handle, M, N, dA, lda, dTau_p(1), dWork, lwork, dInfo_p(1)))
-  call hipsolverCheck(hipsolverZungqr(handle, M, N, K, dA, lda, dTau_p(1), dWork, lwork, dInfo_p(1)))
+  call hipsolverCheck(hipsolverZgeqrf(handle, M, N, dA, lda, c_loc(dTau_p(1)), dWork, lwork, c_loc(dInfo_p(1))))
+  call hipsolverCheck(hipsolverZungqr(handle, M, N, K, dA, lda, c_loc(dTau_p(1)), dWork, lwork, c_loc(dInfo_p(1))))
 
   ! Copy Q back to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 16, hipMemcpyDeviceToHost))

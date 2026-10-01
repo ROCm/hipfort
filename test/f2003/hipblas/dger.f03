@@ -33,7 +33,7 @@ program hip_dger
   implicit none
 
   integer, parameter ::  m = 100, n = 100
-  double precision, parameter ::  alpha = 1.1d0
+  double precision, target :: alpha = 1.1d0
   integer, parameter :: bytes_per_element = 8 !double precision
 
   double precision, allocatable, target, dimension(:) :: hx, hy, hA
@@ -67,7 +67,7 @@ program hip_dger
   call hipCheck(hipMemcpy(dy, c_loc(hy(1)), Nbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1)), Nbytes*n, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasDger(handle,m,n,alpha,dx,1,dy,1,dA,m))
+  call hipblasCheck(hipblasDger(handle,m,n,c_loc(alpha),dx,1,dy,1,dA,m))
 
   call hipCheck(hipDeviceSynchronize())
 

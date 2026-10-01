@@ -60,7 +60,7 @@ program dcsrgeam
   integer(c_int) :: h_exp_col_ind(5) = (/0, 2, 1, 0, 2/)
   real(c_double) :: h_exp_val(5)     = (/11, 2, 23, 4, 35/)
 
-  real(c_double) :: alpha = 1.0_c_double, beta = 1.0_c_double
+  real(c_double), target :: alpha = 1.0_c_double, beta = 1.0_c_double
 
   integer(c_int), target :: h_row_ptr_C(4)
   integer(c_int), target :: nnz_C
@@ -116,9 +116,9 @@ program dcsrgeam
   call hipCheck(hipMalloc(d_val_C,     int(nnz_C,c_size_t) * 8))
 
   ! Phase 2: compute the values of C
-  call rocsparseCheck(rocsparse_dcsrgeam(handle, M, N, alpha, &
+  call rocsparseCheck(rocsparse_dcsrgeam(handle, M, N, c_loc(alpha), &
                           descr_A, nnz_A, d_val_A, d_row_ptr_A, d_col_ind_A, &
-                          beta, descr_B, nnz_B, d_val_B, d_row_ptr_B, d_col_ind_B, &
+                          c_loc(beta), descr_B, nnz_B, d_val_B, d_row_ptr_B, d_col_ind_B, &
                           descr_C, d_val_C, d_row_ptr_C, d_col_ind_C))
   call hipCheck(hipDeviceSynchronize())
 

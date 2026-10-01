@@ -83,7 +83,7 @@ program cgeqrf
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 8))
 
   ! Compute the QR factorization
-  call hipsolverCheck(hipsolverCgeqrf(handle, M, N, dA, lda, dTau(1), dWork, lwork, dInfo(1)))
+  call hipsolverCheck(hipsolverCgeqrf(handle, M, N, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
 
   ! Copy the factorized matrix back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

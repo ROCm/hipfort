@@ -36,7 +36,7 @@ program rocblas_zgeam_test
   ! C := alpha*op(A) + beta*op(B), both non-transposed, alpha = beta = 1,
   ! so C is the elementwise sum A + B.
   integer, parameter :: m = 2, n = 2
-  complex(c_double_complex), parameter :: alpha = (1.0, 0.0), beta = (1.0, 0.0)
+  complex(c_double_complex), target :: alpha = (1.0, 0.0), beta = (1.0, 0.0)
 
   complex(c_double_complex) :: hA(m,n) = reshape([(1.0, 0.0), (2.0, 0.0), (3.0, 0.0), (4.0, 0.0)], [m,n])
   complex(c_double_complex) :: hB(m,n) = reshape([(10.0, 0.0), (20.0, 0.0), (30.0, 0.0), (40.0, 0.0)], [m,n])

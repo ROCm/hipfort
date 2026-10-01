@@ -33,7 +33,7 @@ program hip_dger
   implicit none
 
   integer, parameter ::  m = 100, n = 100
-  double precision, parameter ::  alpha = 1.1d0
+  double precision, target :: alpha = 1.1d0
 
   double precision, allocatable, target, dimension(:)   :: hx, hy
   double precision, allocatable, target, dimension(:,:) :: hA

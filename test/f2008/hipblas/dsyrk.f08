@@ -35,7 +35,7 @@ program hip_dsyrk
   ! C := alpha*A*A**T + beta*C, upper triangle. A = [1 0; 2 3] gives
   ! A*A**T = [1 2; 2 13], so the referenced upper triangle is 1, 2, 13.
   integer, parameter :: ld = 2
-  real(c_double), parameter :: alpha = 1.0, beta = 0.0
+  real(c_double), target :: alpha = 1.0, beta = 0.0
 
   real(c_double) :: hA(ld,ld) = reshape([1.0, 2.0, 0.0, 3.0], [ld,ld])
   real(c_double) :: hC(ld,ld)
