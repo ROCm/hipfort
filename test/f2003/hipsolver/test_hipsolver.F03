@@ -53,6 +53,7 @@ program test_hipsolver
   integer(kind(HIPSOLVERRF_MATRIX_FORMAT_CSR)) :: v20
   integer(kind(HIPSOLVERRF_UNIT_DIAGONAL_STORED_L)) :: v21
   integer(kind(HIPSOLVERRF_RESET_VALUES_FAST_MODE_OFF)) :: v22
+  integer(kind(HIPSOLVERRF_NUMERIC_BOOST_NOT_USED)) :: v23
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
@@ -64,7 +65,7 @@ program test_hipsolver
     if (never) v1 = hipsolverSetStream_(v0, v0)
     if (never) v1 = hipsolverGetStream_(v0, v0)
     if (never) v1 = hipsolverSetDeterministicMode_(v0, v2)
-    if (never) v1 = hipsolverGetDeterministicMode_(v0, v0)
+    if (never) v1 = hipsolverGetDeterministicMode_(v0, v2)
 #endif
     if (never) v1 = hipsolverCreateGesvdjInfo_(v0)
     if (never) v1 = hipsolverDestroyGesvdjInfo_(v0)
@@ -323,7 +324,7 @@ program test_hipsolver
     if (never) v1 = hipsolverDnSetStream_(v0, v0)
     if (never) v1 = hipsolverDnGetStream_(v0, v0)
     if (never) v1 = hipsolverDnSetDeterministicMode_(v0, v2)
-    if (never) v1 = hipsolverDnGetDeterministicMode_(v0, v0)
+    if (never) v1 = hipsolverDnGetDeterministicMode_(v0, v2)
     if (never) v1 = hipsolverDnCreateGesvdjInfo_(v0)
     if (never) v1 = hipsolverDnDestroyGesvdjInfo_(v0)
     if (never) v1 = hipsolverDnXgesvdjSetMaxSweeps_(v0, v3)
@@ -570,38 +571,38 @@ program test_hipsolver
     if (never) v1 = hipsolverDnDestroyParams_(v0)
     if (never) v1 = hipsolverDnSetAdvOptions_(v0, v15, v16)
     if (never) v1 = hipsolverDnXgeev_bufferSize_(v0, v0, v10, v10, v14, v17, v0, v14, v17, v0, v17, v0, v14, v17, v0, &
-      v14, v17, v0, v0)
+      v14, v17, v8, v8)
     if (never) v1 = hipsolverDnXgeev_(v0, v0, v10, v10, v14, v17, v0, v14, v17, v0, v17, v0, v14, v17, v0, v14, v17, &
       v0, v8, v0, v8, v0)
-    if (never) v1 = hipsolverDnXgeqrf_bufferSize_(v0, v0, v14, v14, v17, v0, v14, v17, v0, v17, v0, v0)
+    if (never) v1 = hipsolverDnXgeqrf_bufferSize_(v0, v0, v14, v14, v17, v0, v14, v17, v0, v17, v8, v8)
     if (never) v1 = hipsolverDnXgeqrf_(v0, v0, v14, v14, v17, v0, v14, v17, v0, v17, v0, v8, v0, v8, v0)
-    if (never) v1 = hipsolverDnXgetrf_bufferSize_(v0, v0, v14, v14, v17, v0, v14, v17, v0, v8)
+    if (never) v1 = hipsolverDnXgetrf_bufferSize_(v0, v0, v14, v14, v17, v0, v14, v17, v8, v8)
     if (never) v1 = hipsolverDnXgetrf_(v0, v0, v14, v14, v17, v0, v14, v0, v17, v0, v8, v0, v8, v0)
     if (never) v1 = hipsolverDnXgetrs_(v0, v0, v7, v14, v14, v17, v0, v14, v0, v17, v0, v14, v0)
-    if (never) v1 = hipsolverDnXpotrf_bufferSize_(v0, v0, v6, v14, v17, v0, v14, v17, v0, v0)
+    if (never) v1 = hipsolverDnXpotrf_bufferSize_(v0, v0, v6, v14, v17, v0, v14, v17, v8, v8)
     if (never) v1 = hipsolverDnXpotrf_(v0, v0, v6, v14, v17, v0, v14, v17, v0, v8, v0, v8, v0)
     if (never) v1 = hipsolverDnXpotrs_(v0, v0, v6, v14, v14, v17, v0, v14, v17, v0, v14, v0)
-    if (never) v1 = hipsolverDnXsyevd_bufferSize_(v0, v0, v10, v6, v14, v17, v0, v14, v17, v0, v17, v0, v0)
+    if (never) v1 = hipsolverDnXsyevd_bufferSize_(v0, v0, v10, v6, v14, v17, v0, v14, v17, v0, v17, v8, v8)
     if (never) v1 = hipsolverDnXsyevd_(v0, v0, v10, v6, v14, v17, v0, v14, v17, v0, v17, v0, v8, v0, v8, v0)
-    if (never) v1 = hipsolverDnXsyevBatched_bufferSize_(v0, v0, v10, v6, v14, v17, v0, v14, v17, v0, v17, v0, v0, v14)
+    if (never) v1 = hipsolverDnXsyevBatched_bufferSize_(v0, v0, v10, v6, v14, v17, v0, v14, v17, v0, v17, v8, v8, v14)
     if (never) v1 = hipsolverDnXsyevBatched_(v0, v0, v10, v6, v14, v17, v0, v14, v17, v0, v17, v0, v8, v0, v8, v0, v14)
-    if (never) v1 = hipsolverDnXsytrs_bufferSize_(v0, v6, v14, v14, v17, v0, v14, v0, v17, v0, v14, v0, v0)
+    if (never) v1 = hipsolverDnXsytrs_bufferSize_(v0, v6, v14, v14, v17, v0, v14, v0, v17, v0, v14, v8, v8)
     if (never) v1 = hipsolverDnXsytrs_(v0, v6, v14, v14, v17, v0, v14, v0, v17, v0, v14, v0, v8, v0, v8, v0)
     if (never) v1 = hipsolverRfCreate_(v0)
     if (never) v1 = hipsolverRfDestroy_(v0)
     if (never) v1 = hipsolverRfSetupDevice_(v3, v3, v0, v0, v0, v3, v0, v0, v0, v3, v0, v0, v0, v0, v0, v0)
     if (never) v1 = hipsolverRfSetupHost_(v3, v3, v0, v0, v0, v3, v0, v0, v0, v3, v0, v0, v0, v0, v0, v0)
-    if (never) v1 = hipsolverRfAccessBundledFactorsDevice_(v0, v0, v0, v0, v0)
+    if (never) v1 = hipsolverRfAccessBundledFactorsDevice_(v0, v3, v0, v0, v0)
     if (never) v1 = hipsolverRfAnalyze_(v0)
-    if (never) v1 = hipsolverRfExtractBundledFactorsHost_(v0, v0, v0, v0, v0)
-    if (never) v1 = hipsolverRfExtractSplitFactorsHost_(v0, v0, v0, v0, v0, v0, v0, v0, v0)
+    if (never) v1 = hipsolverRfExtractBundledFactorsHost_(v0, v3, v0, v0, v0)
+    if (never) v1 = hipsolverRfExtractSplitFactorsHost_(v0, v3, v0, v0, v0, v3, v0, v0, v0)
 #ifndef USE_CUDA_NAMES
-    if (never) v1 = hipsolverRfGet_Algs_(v0, v0, v0)
+    if (never) v1 = hipsolverRfGet_Algs_(v0, v18, v19)
 #endif
-    if (never) v1 = hipsolverRfGetMatrixFormat_(v0, v0, v0)
-    if (never) v1 = hipsolverRfGetNumericBoostReport_(v0, v0)
-    if (never) v1 = hipsolverRfGetNumericProperties_(v0, v0, v0)
-    if (never) v1 = hipsolverRfGetResetValuesFastMode_(v0, v0)
+    if (never) v1 = hipsolverRfGetMatrixFormat_(v0, v20, v21)
+    if (never) v1 = hipsolverRfGetNumericBoostReport_(v0, v23)
+    if (never) v1 = hipsolverRfGetNumericProperties_(v0, v4, v4)
+    if (never) v1 = hipsolverRfGetResetValuesFastMode_(v0, v22)
     if (never) v1 = hipsolverRfRefactor_(v0)
     if (never) v1 = hipsolverRfResetValues_(v3, v3, v0, v0, v0, v0, v0, v0)
     if (never) v1 = hipsolverRfSetAlgs_(v0, v18, v19)
