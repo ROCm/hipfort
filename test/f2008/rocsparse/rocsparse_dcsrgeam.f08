@@ -65,7 +65,7 @@ program dcsrgeam
   real(c_double), target :: alpha = 1.0_c_double, beta = 1.0_c_double
 
   integer(c_int) :: h_row_ptr_C(4)
-  integer(c_int) :: nnz_C
+  integer(c_int), target :: nnz_C
 
   integer(c_int), pointer :: d_row_ptr_A(:), d_col_ind_A(:)
   real(c_double), pointer :: d_val_A(:)
@@ -73,7 +73,6 @@ program dcsrgeam
   real(c_double), pointer :: d_val_B(:)
   integer(c_int), pointer :: d_row_ptr_C(:), d_col_ind_C(:)
   real(c_double), pointer :: d_val_C(:)
-  integer(c_int), pointer :: d_nnz_C
 
   type(c_ptr) :: handle, descr_A, descr_B, descr_C
 
@@ -96,14 +95,12 @@ program dcsrgeam
   call hipCheck(hipMalloc(d_col_ind_B, source=h_col_ind_B))
   call hipCheck(hipMalloc(d_val_B,     source=h_val_B))
   call hipCheck(hipMalloc(d_row_ptr_C, mold=h_row_ptr_C))
-  call hipCheck(hipMalloc(d_nnz_C,     source=0))
 
   ! Phase 1: compute the sparsity of C (row_ptr_C + total nnz_C)
   call rocsparseCheck(rocsparse_csrgeam_nnz(handle, M, N, &
                           descr_A, nnz_A, c_loc(d_row_ptr_A), c_loc(d_col_ind_A), &
                           descr_B, nnz_B, c_loc(d_row_ptr_B), c_loc(d_col_ind_B), &
-                          descr_C, c_loc(d_row_ptr_C), c_loc(d_nnz_C)))
-  call hipCheck(hipMemcpy(nnz_C, d_nnz_C, hipMemcpyDeviceToHost))
+                          descr_C, c_loc(d_row_ptr_C), c_loc(nnz_C)))
 
   ! Allocate C column indices and values now that nnz_C is known
   call hipCheck(hipMalloc(d_col_ind_C, dims=(/nnz_C/)))
@@ -160,7 +157,6 @@ program dcsrgeam
   call hipCheck(hipFree(d_col_ind_B))
   call hipCheck(hipFree(d_val_B))
   call hipCheck(hipFree(d_row_ptr_C))
-  call hipCheck(hipFree(d_nnz_C))
   call rocsparseCheck(rocsparse_destroy_mat_descr(descr_A))
   call rocsparseCheck(rocsparse_destroy_mat_descr(descr_B))
   call rocsparseCheck(rocsparse_destroy_mat_descr(descr_C))
