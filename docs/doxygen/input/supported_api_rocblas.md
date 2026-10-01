@@ -1200,24 +1200,22 @@
 1196 | [rocblas_start_device_memory_size_query](interfacehipfort__rocblas_1_1rocblas__start__device__memory__size__query.html "Interface documentation") | C binding
 1197 | [rocblas_stop_device_memory_size_query](interfacehipfort__rocblas_1_1rocblas__stop__device__memory__size__query.html "Interface documentation") | C binding
 1198 | [rocblas_is_device_memory_size_query](interfacehipfort__rocblas_1_1rocblas__is__device__memory__size__query.html "Interface documentation") | C binding
-1199 | [rocblas_set_optimal_device_memory_size_impl](interfacehipfort__rocblas_1_1rocblas__set__optimal__device__memory__size__impl.html "Interface documentation") | C binding
-1200 | [rocblas_device_malloc_alloc](interfacehipfort__rocblas_1_1rocblas__device__malloc__alloc.html "Interface documentation") | C binding
-1201 | [rocblas_device_malloc_success](interfacehipfort__rocblas_1_1rocblas__device__malloc__success.html "Interface documentation") | C binding
-1202 | [rocblas_device_malloc_ptr](interfacehipfort__rocblas_1_1rocblas__device__malloc__ptr.html "Interface documentation") | C binding
-1203 | [rocblas_device_malloc_get](interfacehipfort__rocblas_1_1rocblas__device__malloc__get.html "Interface documentation") | C binding
-1204 | [rocblas_device_malloc_free](interfacehipfort__rocblas_1_1rocblas__device__malloc__free.html "Interface documentation") | C binding
-1205 | [rocblas_device_malloc_set_default_memory_size](interfacehipfort__rocblas_1_1rocblas__device__malloc__set__default__memory__size.html "Interface documentation") | C binding
-1206 | [rocblas_get_device_memory_size](interfacehipfort__rocblas_1_1rocblas__get__device__memory__size.html "Interface documentation") | C binding
-1207 | [rocblas_set_device_memory_size](interfacehipfort__rocblas_1_1rocblas__set__device__memory__size.html "Interface documentation") | C binding
-1208 | [rocblas_set_workspace](interfacehipfort__rocblas_1_1rocblas__set__workspace.html "Interface documentation") | C binding
-1209 | [rocblas_is_managing_device_memory](interfacehipfort__rocblas_1_1rocblas__is__managing__device__memory.html "Interface documentation") | C binding
-1210 | [rocblas_is_user_managing_device_memory](interfacehipfort__rocblas_1_1rocblas__is__user__managing__device__memory.html "Interface documentation") | C binding
-1211 | [rocblas_abort](interfacehipfort__rocblas_1_1rocblas__abort.html "Interface documentation") | C binding
-1212 | [rocblas_set_vector](interfacehipfort__rocblas_1_1rocblas__set__vector.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
-1213 | [rocblas_get_vector](interfacehipfort__rocblas_1_1rocblas__get__vector.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
-1214 | [rocblas_set_matrix](interfacehipfort__rocblas_1_1rocblas__set__matrix.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1215 | [rocblas_get_matrix](interfacehipfort__rocblas_1_1rocblas__get__matrix.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1216 | [rocblas_set_vector_async](interfacehipfort__rocblas_1_1rocblas__set__vector__async.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
-1217 | [rocblas_get_vector_async](interfacehipfort__rocblas_1_1rocblas__get__vector__async.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
-1218 | [rocblas_set_matrix_async](interfacehipfort__rocblas_1_1rocblas__set__matrix__async.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1219 | [rocblas_get_matrix_async](interfacehipfort__rocblas_1_1rocblas__get__matrix__async.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1199 | [rocblas_device_malloc_success](interfacehipfort__rocblas_1_1rocblas__device__malloc__success.html "Interface documentation") | C binding
+1200 | [rocblas_device_malloc_ptr](interfacehipfort__rocblas_1_1rocblas__device__malloc__ptr.html "Interface documentation") | C binding
+1201 | [rocblas_device_malloc_get](interfacehipfort__rocblas_1_1rocblas__device__malloc__get.html "Interface documentation") | C binding
+1202 | [rocblas_device_malloc_free](interfacehipfort__rocblas_1_1rocblas__device__malloc__free.html "Interface documentation") | C binding
+1203 | [rocblas_device_malloc_set_default_memory_size](interfacehipfort__rocblas_1_1rocblas__device__malloc__set__default__memory__size.html "Interface documentation") | C binding
+1204 | [rocblas_get_device_memory_size](interfacehipfort__rocblas_1_1rocblas__get__device__memory__size.html "Interface documentation") | C binding
+1205 | [rocblas_set_device_memory_size](interfacehipfort__rocblas_1_1rocblas__set__device__memory__size.html "Interface documentation") | C binding
+1206 | [rocblas_set_workspace](interfacehipfort__rocblas_1_1rocblas__set__workspace.html "Interface documentation") | C binding
+1207 | [rocblas_is_managing_device_memory](interfacehipfort__rocblas_1_1rocblas__is__managing__device__memory.html "Interface documentation") | C binding
+1208 | [rocblas_is_user_managing_device_memory](interfacehipfort__rocblas_1_1rocblas__is__user__managing__device__memory.html "Interface documentation") | C binding
+1209 | [rocblas_abort](interfacehipfort__rocblas_1_1rocblas__abort.html "Interface documentation") | C binding
+1210 | [rocblas_set_vector](interfacehipfort__rocblas_1_1rocblas__set__vector.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
+1211 | [rocblas_get_vector](interfacehipfort__rocblas_1_1rocblas__get__vector.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
+1212 | [rocblas_set_matrix](interfacehipfort__rocblas_1_1rocblas__set__matrix.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1213 | [rocblas_get_matrix](interfacehipfort__rocblas_1_1rocblas__get__matrix.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1214 | [rocblas_set_vector_async](interfacehipfort__rocblas_1_1rocblas__set__vector__async.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
+1215 | [rocblas_get_vector_async](interfacehipfort__rocblas_1_1rocblas__get__vector__async.html "Interface documentation") | C binding, full_rank, rank_0, assumed_rank
+1216 | [rocblas_set_matrix_async](interfacehipfort__rocblas_1_1rocblas__set__matrix__async.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1217 | [rocblas_get_matrix_async](interfacehipfort__rocblas_1_1rocblas__get__matrix__async.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
