@@ -1130,8 +1130,8 @@ program test_rocsolver
       v0, v3, v6, v0, v3)
     if (never) v2 = rocsolver_ssygvdx_(v0, v24, v18, v19, v17, v3, v0, v3, v0, v3, v8, v8, v3, v3, v0, v0, v0, v3, v0)
     if (never) v2 = rocsolver_dsygvdx_(v0, v24, v18, v19, v17, v3, v0, v3, v0, v3, v9, v9, v3, v3, v0, v0, v0, v3, v0)
-    if (never) v2 = rocsolver_chegvdx_(v0, v24, v18, v19, v17, v3, v0, v3, v0, v3, v8, v8, v3, v3, v3, v0, v0, v3, v0)
-    if (never) v2 = rocsolver_zhegvdx_(v0, v24, v18, v19, v17, v3, v0, v3, v0, v3, v9, v9, v3, v3, v3, v0, v0, v3, v0)
+    if (never) v2 = rocsolver_chegvdx_(v0, v24, v18, v19, v17, v3, v0, v3, v0, v3, v8, v8, v3, v3, v0, v0, v0, v3, v0)
+    if (never) v2 = rocsolver_zhegvdx_(v0, v24, v18, v19, v17, v3, v0, v3, v0, v3, v9, v9, v3, v3, v0, v0, v0, v3, v0)
     if (never) v2 = rocsolver_ssygvdx_batched_(v0, v24, v18, v19, v17, v3, v0, v3, v0, v3, v8, v8, v3, v3, v0, v0, &
       v6, v0, v3, v0, v3)
     if (never) v2 = rocsolver_dsygvdx_batched_(v0, v24, v18, v19, v17, v3, v0, v3, v0, v3, v9, v9, v3, v3, v0, v0, &

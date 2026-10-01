@@ -43917,7 +43917,7 @@ module hipfort_rocsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      integer(c_int) :: nev
+      type(c_ptr),value :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: Z
       integer(c_int),value :: ldz
@@ -43959,7 +43959,7 @@ module hipfort_rocsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      integer(c_int) :: nev
+      type(c_ptr),value :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: Z
       integer(c_int),value :: ldz
@@ -88041,14 +88041,14 @@ module hipfort_rocsolver
       real(c_float) :: vu
       integer(c_int) :: il
       integer(c_int) :: iu
-      integer(c_int) :: nev
+      integer(c_int),target,contiguous,dimension(..) :: nev
       real(c_float),target,contiguous,dimension(..) :: W
       complex(c_float_complex),target,contiguous,dimension(..) :: Z
       integer(c_int) :: ldz
       integer(c_int),target,contiguous,dimension(..) :: myInfo
       !
       rocsolver_chegvdx_assumed_rank = rocsolver_chegvdx_(handle,itype,evect,erange,uplo,n, &
-        c_loc(A),lda,c_loc(B),ldb,vl,vu,il,iu,nev,c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
+        c_loc(A),lda,c_loc(B),ldb,vl,vu,il,iu,c_loc(nev),c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
     end function
 
 #else
@@ -88073,14 +88073,14 @@ module hipfort_rocsolver
       real(c_float) :: vu
       integer(c_int) :: il
       integer(c_int) :: iu
-      integer(c_int) :: nev
+      integer(c_int),target :: nev
       real(c_float),target :: W
       complex(c_float_complex),target :: Z
       integer(c_int) :: ldz
       integer(c_int),target :: myInfo
       !
       rocsolver_chegvdx_rank_0 = rocsolver_chegvdx_(handle,itype,evect,erange,uplo,n,c_loc(A),lda, &
-        c_loc(B),ldb,vl,vu,il,iu,nev,c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
+        c_loc(B),ldb,vl,vu,il,iu,c_loc(nev),c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
     end function
 
     function rocsolver_chegvdx_rank_1(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu, &
@@ -88104,14 +88104,14 @@ module hipfort_rocsolver
       real(c_float) :: vu
       integer(c_int) :: il
       integer(c_int) :: iu
-      integer(c_int) :: nev
+      integer(c_int),target,dimension(:) :: nev
       real(c_float),target,dimension(:) :: W
       complex(c_float_complex),target,dimension(:) :: Z
       integer(c_int) :: ldz
       integer(c_int),target,dimension(:) :: myInfo
       !
       rocsolver_chegvdx_rank_1 = rocsolver_chegvdx_(handle,itype,evect,erange,uplo,n,c_loc(A),lda, &
-        c_loc(B),ldb,vl,vu,il,iu,nev,c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
+        c_loc(B),ldb,vl,vu,il,iu,c_loc(nev),c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
     end function
 
     function rocsolver_chegvdx_full_rank(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu, &
@@ -88135,14 +88135,14 @@ module hipfort_rocsolver
       real(c_float) :: vu
       integer(c_int) :: il
       integer(c_int) :: iu
-      integer(c_int) :: nev
+      integer(c_int),target,dimension(:) :: nev
       real(c_float),target,dimension(:) :: W
       complex(c_float_complex),target,dimension(:,:) :: Z
       integer(c_int) :: ldz
       integer(c_int),target,dimension(:) :: myInfo
       !
       rocsolver_chegvdx_full_rank = rocsolver_chegvdx_(handle,itype,evect,erange,uplo,n,c_loc(A), &
-        lda,c_loc(B),ldb,vl,vu,il,iu,nev,c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
+        lda,c_loc(B),ldb,vl,vu,il,iu,c_loc(nev),c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
     end function
 
 #endif
@@ -88168,14 +88168,14 @@ module hipfort_rocsolver
       real(c_double) :: vu
       integer(c_int) :: il
       integer(c_int) :: iu
-      integer(c_int) :: nev
+      integer(c_int),target,contiguous,dimension(..) :: nev
       real(c_double),target,contiguous,dimension(..) :: W
       complex(c_double_complex),target,contiguous,dimension(..) :: Z
       integer(c_int) :: ldz
       integer(c_int),target,contiguous,dimension(..) :: myInfo
       !
       rocsolver_zhegvdx_assumed_rank = rocsolver_zhegvdx_(handle,itype,evect,erange,uplo,n, &
-        c_loc(A),lda,c_loc(B),ldb,vl,vu,il,iu,nev,c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
+        c_loc(A),lda,c_loc(B),ldb,vl,vu,il,iu,c_loc(nev),c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
     end function
 
 #else
@@ -88200,14 +88200,14 @@ module hipfort_rocsolver
       real(c_double) :: vu
       integer(c_int) :: il
       integer(c_int) :: iu
-      integer(c_int) :: nev
+      integer(c_int),target :: nev
       real(c_double),target :: W
       complex(c_double_complex),target :: Z
       integer(c_int) :: ldz
       integer(c_int),target :: myInfo
       !
       rocsolver_zhegvdx_rank_0 = rocsolver_zhegvdx_(handle,itype,evect,erange,uplo,n,c_loc(A),lda, &
-        c_loc(B),ldb,vl,vu,il,iu,nev,c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
+        c_loc(B),ldb,vl,vu,il,iu,c_loc(nev),c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
     end function
 
     function rocsolver_zhegvdx_rank_1(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu, &
@@ -88231,14 +88231,14 @@ module hipfort_rocsolver
       real(c_double) :: vu
       integer(c_int) :: il
       integer(c_int) :: iu
-      integer(c_int) :: nev
+      integer(c_int),target,dimension(:) :: nev
       real(c_double),target,dimension(:) :: W
       complex(c_double_complex),target,dimension(:) :: Z
       integer(c_int) :: ldz
       integer(c_int),target,dimension(:) :: myInfo
       !
       rocsolver_zhegvdx_rank_1 = rocsolver_zhegvdx_(handle,itype,evect,erange,uplo,n,c_loc(A),lda, &
-        c_loc(B),ldb,vl,vu,il,iu,nev,c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
+        c_loc(B),ldb,vl,vu,il,iu,c_loc(nev),c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
     end function
 
     function rocsolver_zhegvdx_full_rank(handle,itype,evect,erange,uplo,n,A,lda,B,ldb,vl,vu,il,iu, &
@@ -88262,14 +88262,14 @@ module hipfort_rocsolver
       real(c_double) :: vu
       integer(c_int) :: il
       integer(c_int) :: iu
-      integer(c_int) :: nev
+      integer(c_int),target,dimension(:) :: nev
       real(c_double),target,dimension(:) :: W
       complex(c_double_complex),target,dimension(:,:) :: Z
       integer(c_int) :: ldz
       integer(c_int),target,dimension(:) :: myInfo
       !
       rocsolver_zhegvdx_full_rank = rocsolver_zhegvdx_(handle,itype,evect,erange,uplo,n,c_loc(A), &
-        lda,c_loc(B),ldb,vl,vu,il,iu,nev,c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
+        lda,c_loc(B),ldb,vl,vu,il,iu,c_loc(nev),c_loc(W),c_loc(Z),ldz,c_loc(myInfo))
     end function
 
 #endif

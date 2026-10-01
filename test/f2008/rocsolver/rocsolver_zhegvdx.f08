@@ -81,7 +81,7 @@ program zhegvdx
 
   call hipCheck(rocsolver_zhegvdx(handle, rocblas_eform_ax, rocblas_evect_original, &
        rocblas_erange_index, rocblas_fill_upper, N, c_loc(dA(1,1)), lda, c_loc(dB(1,1)), ldb, &
-       0.0d0, 0.0d0, 1, N, dNev(1), c_loc(dW(1)), c_loc(dZ(1,1)), ldz, c_loc(dInfo(1))))
+       0.0d0, 0.0d0, 1, N, c_loc(dNev(1)), c_loc(dW(1)), c_loc(dZ(1,1)), ldz, c_loc(dInfo(1))))
 
   call hipCheck(hipMemcpy(hNev, dNev(1), hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hW, dW, hipMemcpyDeviceToHost))
