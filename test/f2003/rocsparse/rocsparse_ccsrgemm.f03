@@ -66,7 +66,6 @@ program ccsrgemm
 
   type(c_ptr) :: d_csr_row_ptr, d_csr_col_ind, d_csr_val
   type(c_ptr) :: d_row_ptr_C, d_col_ind_C, d_val_C
-  type(c_ptr) :: d_nnz_C
 
   type(c_ptr) :: handle, descr_A, descr_B, descr_C, info_C, d_buffer
   integer(c_size_t) :: buffer_size
@@ -101,7 +100,6 @@ program ccsrgemm
   call hipCheck(hipMalloc(d_csr_col_ind, size_ci * 4))
   call hipCheck(hipMalloc(d_csr_val,     size_v * 8))
   call hipCheck(hipMalloc(d_row_ptr_C,   size_rp * 4))
-  call hipCheck(hipMalloc(d_nnz_C,       4_c_size_t))
 
   call hipCheck(hipMemcpy(d_csr_row_ptr, c_loc(h_csr_row_ptr(1)), size_rp * 4, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(d_csr_col_ind, c_loc(h_csr_col_ind(1)), size_ci * 4, hipMemcpyHostToDevice))
@@ -119,8 +117,7 @@ program ccsrgemm
                           descr_A, nnz_A, d_csr_row_ptr, d_csr_col_ind, &
                           descr_B, nnz_A, d_csr_row_ptr, d_csr_col_ind, &
                           c_null_ptr, 0, c_null_ptr, c_null_ptr, &
-                          descr_C, d_row_ptr_C, d_nnz_C, info_C, d_buffer))
-  call hipCheck(hipMemcpy(c_loc(nnz_C), d_nnz_C, 4_c_size_t, hipMemcpyDeviceToHost))
+                          descr_C, d_row_ptr_C, c_loc(nnz_C), info_C, d_buffer))
 
   ! Allocate C column indices and values now that nnz_C is known
   call hipCheck(hipMalloc(d_col_ind_C, int(nnz_C,c_size_t) * 4))
@@ -175,7 +172,6 @@ program ccsrgemm
   call hipCheck(hipFree(d_csr_col_ind))
   call hipCheck(hipFree(d_csr_val))
   call hipCheck(hipFree(d_row_ptr_C))
-  call hipCheck(hipFree(d_nnz_C))
   call hipCheck(hipFree(d_buffer))
   call rocsparseCheck(rocsparse_destroy_mat_info(info_C))
   call rocsparseCheck(rocsparse_destroy_mat_descr(descr_A))
