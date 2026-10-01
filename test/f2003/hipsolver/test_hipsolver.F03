@@ -253,12 +253,12 @@ program test_hipsolver
 #ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverCheevdx_bufferSize_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v3, v0, v3)
     if (never) v1 = hipsolverZheevdx_bufferSize_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v3, v0, v3)
-    if (never) v1 = hipsolverSsyevdx_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v0, v0, v0, v3, v0)
+    if (never) v1 = hipsolverSsyevdx_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v3, v0, v0, v3, v0)
 #endif
-    if (never) v1 = hipsolverDsyevdx_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v0, v0, v0, v3, v0)
+    if (never) v1 = hipsolverDsyevdx_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v3, v0, v0, v3, v0)
 #ifndef USE_CUDA_NAMES
-    if (never) v1 = hipsolverCheevdx_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v0, v0, v0, v3, v0)
-    if (never) v1 = hipsolverZheevdx_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v0, v0, v0, v3, v0)
+    if (never) v1 = hipsolverCheevdx_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v3, v0, v0, v3, v0)
+    if (never) v1 = hipsolverZheevdx_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v3, v0, v0, v3, v0)
     if (never) v1 = hipsolverSsyevj_bufferSize_(v0, v13, v9, v3, v0, v3, v0, v3, v0)
     if (never) v1 = hipsolverDsyevj_bufferSize_(v0, v13, v9, v3, v0, v3, v0, v3, v0)
     if (never) v1 = hipsolverCheevj_bufferSize_(v0, v13, v9, v3, v0, v3, v0, v3, v0)
@@ -289,10 +289,10 @@ program test_hipsolver
     if (never) v1 = hipsolverDsygvdx_bufferSize_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v3, v0, v3)
     if (never) v1 = hipsolverChegvdx_bufferSize_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v3, v0, v3)
     if (never) v1 = hipsolverZhegvdx_bufferSize_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v3, v0, v3)
-    if (never) v1 = hipsolverSsygvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v0, v0, v0, v3, v0)
-    if (never) v1 = hipsolverDsygvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v0, v0, v0, v3, v0)
-    if (never) v1 = hipsolverChegvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v0, v0, v0, v3, v0)
-    if (never) v1 = hipsolverZhegvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v0, v0, v0, v3, v0)
+    if (never) v1 = hipsolverSsygvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v3, v0, v0, v3, v0)
+    if (never) v1 = hipsolverDsygvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v3, v0, v0, v3, v0)
+    if (never) v1 = hipsolverChegvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v3, v0, v0, v3, v0)
+    if (never) v1 = hipsolverZhegvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v3, v0, v0, v3, v0)
     if (never) v1 = hipsolverSsygvj_bufferSize_(v0, v15, v13, v9, v3, v0, v3, v0, v3, v0, v3, v0)
     if (never) v1 = hipsolverDsygvj_bufferSize_(v0, v15, v13, v9, v3, v0, v3, v0, v3, v0, v3, v0)
     if (never) v1 = hipsolverChegvj_bufferSize_(v0, v15, v13, v9, v3, v0, v3, v0, v3, v0, v3, v0)
@@ -498,14 +498,14 @@ program test_hipsolver
     if (never) v1 = hipsolverDnDsyevd_(v0, v13, v9, v3, v0, v3, v0, v0, v3, v0)
     if (never) v1 = hipsolverDnCheevd_(v0, v13, v9, v3, v0, v3, v0, v0, v3, v0)
     if (never) v1 = hipsolverDnZheevd_(v0, v13, v9, v3, v0, v3, v0, v0, v3, v0)
-    if (never) v1 = hipsolverDnSsyevdx_bufferSize_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v0, v0, v3)
-    if (never) v1 = hipsolverDnDsyevdx_bufferSize_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v0, v0, v3)
-    if (never) v1 = hipsolverDnCheevdx_bufferSize_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v0, v0, v3)
-    if (never) v1 = hipsolverDnZheevdx_bufferSize_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v0, v0, v3)
-    if (never) v1 = hipsolverDnSsyevdx_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v0, v0, v0, v3, v0)
-    if (never) v1 = hipsolverDnDsyevdx_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v0, v0, v0, v3, v0)
-    if (never) v1 = hipsolverDnCheevdx_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v0, v0, v0, v3, v0)
-    if (never) v1 = hipsolverDnZheevdx_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v0, v0, v0, v3, v0)
+    if (never) v1 = hipsolverDnSsyevdx_bufferSize_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v3, v0, v3)
+    if (never) v1 = hipsolverDnDsyevdx_bufferSize_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v3, v0, v3)
+    if (never) v1 = hipsolverDnCheevdx_bufferSize_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v3, v0, v3)
+    if (never) v1 = hipsolverDnZheevdx_bufferSize_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v3, v0, v3)
+    if (never) v1 = hipsolverDnSsyevdx_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v3, v0, v0, v3, v0)
+    if (never) v1 = hipsolverDnDsyevdx_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v3, v0, v0, v3, v0)
+    if (never) v1 = hipsolverDnCheevdx_(v0, v13, v14, v9, v3, v0, v3, v6, v6, v3, v3, v3, v0, v0, v3, v0)
+    if (never) v1 = hipsolverDnZheevdx_(v0, v13, v14, v9, v3, v0, v3, v4, v4, v3, v3, v3, v0, v0, v3, v0)
     if (never) v1 = hipsolverDnSsyevj_bufferSize_(v0, v13, v9, v3, v0, v3, v0, v3, v0)
     if (never) v1 = hipsolverDnDsyevj_bufferSize_(v0, v13, v9, v3, v0, v3, v0, v3, v0)
     if (never) v1 = hipsolverDnCheevj_bufferSize_(v0, v13, v9, v3, v0, v3, v0, v3, v0)
@@ -530,18 +530,18 @@ program test_hipsolver
     if (never) v1 = hipsolverDnDsygvd_(v0, v15, v13, v9, v3, v0, v3, v0, v3, v0, v0, v3, v0)
     if (never) v1 = hipsolverDnChegvd_(v0, v15, v13, v9, v3, v0, v3, v0, v3, v0, v0, v3, v0)
     if (never) v1 = hipsolverDnZhegvd_(v0, v15, v13, v9, v3, v0, v3, v0, v3, v0, v0, v3, v0)
-    if (never) v1 = hipsolverDnSsygvdx_bufferSize_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v0, v0, &
+    if (never) v1 = hipsolverDnSsygvdx_bufferSize_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v3, v0, &
       v3)
-    if (never) v1 = hipsolverDnDsygvdx_bufferSize_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v0, v0, &
+    if (never) v1 = hipsolverDnDsygvdx_bufferSize_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v3, v0, &
       v3)
-    if (never) v1 = hipsolverDnChegvdx_bufferSize_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v0, v0, &
+    if (never) v1 = hipsolverDnChegvdx_bufferSize_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v3, v0, &
       v3)
-    if (never) v1 = hipsolverDnZhegvdx_bufferSize_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v0, v0, &
+    if (never) v1 = hipsolverDnZhegvdx_bufferSize_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v3, v0, &
       v3)
-    if (never) v1 = hipsolverDnSsygvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v0, v0, v0, v3, v0)
-    if (never) v1 = hipsolverDnDsygvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v0, v0, v0, v3, v0)
-    if (never) v1 = hipsolverDnChegvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v0, v0, v0, v3, v0)
-    if (never) v1 = hipsolverDnZhegvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v0, v0, v0, v3, v0)
+    if (never) v1 = hipsolverDnSsygvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v3, v0, v0, v3, v0)
+    if (never) v1 = hipsolverDnDsygvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v3, v0, v0, v3, v0)
+    if (never) v1 = hipsolverDnChegvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v6, v6, v3, v3, v3, v0, v0, v3, v0)
+    if (never) v1 = hipsolverDnZhegvdx_(v0, v15, v13, v14, v9, v3, v0, v3, v0, v3, v4, v4, v3, v3, v3, v0, v0, v3, v0)
     if (never) v1 = hipsolverDnSsygvj_bufferSize_(v0, v15, v13, v9, v3, v0, v3, v0, v3, v0, v3, v0)
     if (never) v1 = hipsolverDnDsygvj_bufferSize_(v0, v15, v13, v9, v3, v0, v3, v0, v3, v0, v3, v0)
     if (never) v1 = hipsolverDnChegvj_bufferSize_(v0, v15, v13, v9, v3, v0, v3, v0, v3, v0, v3, v0)
@@ -623,10 +623,10 @@ program test_hipsolver
     if (never) v1 = hipsolverSpDcsrlsvchol_(v0, v3, v3, v0, v0, v0, v0, v0, v4, v3, v0, v3)
     if (never) v1 = hipsolverSpScsrlsvcholHost_(v0, v3, v3, v0, v0, v0, v0, v0, v6, v3, v0, v3)
     if (never) v1 = hipsolverSpDcsrlsvcholHost_(v0, v3, v3, v0, v0, v0, v0, v0, v4, v3, v0, v3)
-    if (never) v1 = hipsolverSpScsrlsvqr_(v0, v3, v3, v0, v0, v0, v0, v0, v4, v3, v0, v0)
-    if (never) v1 = hipsolverSpDcsrlsvqr_(v0, v3, v3, v0, v0, v0, v0, v0, v4, v3, v0, v0)
-    if (never) v1 = hipsolverSpCcsrlsvqr_(v0, v3, v3, v0, v0, v0, v0, v0, v4, v3, v0, v0)
-    if (never) v1 = hipsolverSpZcsrlsvqr_(v0, v3, v3, v0, v0, v0, v0, v0, v4, v3, v0, v0)
+    if (never) v1 = hipsolverSpScsrlsvqr_(v0, v3, v3, v0, v0, v0, v0, v0, v4, v3, v0, v3)
+    if (never) v1 = hipsolverSpDcsrlsvqr_(v0, v3, v3, v0, v0, v0, v0, v0, v4, v3, v0, v3)
+    if (never) v1 = hipsolverSpCcsrlsvqr_(v0, v3, v3, v0, v0, v0, v0, v0, v4, v3, v0, v3)
+    if (never) v1 = hipsolverSpZcsrlsvqr_(v0, v3, v3, v0, v0, v0, v0, v0, v4, v3, v0, v3)
 
   write(*,"(a)") "-- test_hipsolver (bind(C) symbols): PASSED (compile+link only)!"
 end program test_hipsolver

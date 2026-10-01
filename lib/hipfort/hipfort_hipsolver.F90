@@ -5267,7 +5267,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -5301,7 +5301,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -5329,7 +5329,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -5358,7 +5358,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -6162,7 +6162,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -6194,7 +6194,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -6226,7 +6226,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -6258,7 +6258,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -11260,7 +11260,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       integer(c_int) :: lwork
     end function
@@ -11291,7 +11291,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       integer(c_int) :: lwork
     end function
@@ -11322,7 +11322,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       integer(c_int) :: lwork
     end function
@@ -11353,7 +11353,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       integer(c_int) :: lwork
     end function
@@ -11384,7 +11384,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -11417,7 +11417,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -11450,7 +11450,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -11483,7 +11483,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -12159,7 +12159,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       integer(c_int) :: lwork
     end function
@@ -12193,7 +12193,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       integer(c_int) :: lwork
     end function
@@ -12227,7 +12227,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       integer(c_int) :: lwork
     end function
@@ -12261,7 +12261,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       integer(c_int) :: lwork
     end function
@@ -12295,7 +12295,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -12331,7 +12331,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -12367,7 +12367,7 @@ module hipfort_hipsolver
       real(c_float),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -12403,7 +12403,7 @@ module hipfort_hipsolver
       real(c_double),value :: vu
       integer(c_int),value :: il
       integer(c_int),value :: iu
-      type(c_ptr),value :: nev
+      integer(c_int) :: nev
       type(c_ptr),value :: W
       type(c_ptr),value :: work
       integer(c_int),value :: lwork
@@ -14341,7 +14341,7 @@ module hipfort_hipsolver
       real(c_double),value :: tolerance
       integer(c_int),value :: reorder
       type(c_ptr),value :: x
-      type(c_ptr),value :: singularity
+      integer(c_int) :: singularity
     end function
   end interface
 
@@ -14370,7 +14370,7 @@ module hipfort_hipsolver
       real(c_double),value :: tolerance
       integer(c_int),value :: reorder
       type(c_ptr),value :: x
-      type(c_ptr),value :: singularity
+      integer(c_int) :: singularity
     end function
   end interface
 
@@ -14399,7 +14399,7 @@ module hipfort_hipsolver
       real(c_double),value :: tolerance
       integer(c_int),value :: reorder
       type(c_ptr),value :: x
-      type(c_ptr),value :: singularity
+      integer(c_int) :: singularity
     end function
   end interface
 
@@ -14428,7 +14428,7 @@ module hipfort_hipsolver
       real(c_double),value :: tolerance
       integer(c_int),value :: reorder
       type(c_ptr),value :: x
-      type(c_ptr),value :: singularity
+      integer(c_int) :: singularity
     end function
   end interface
 
