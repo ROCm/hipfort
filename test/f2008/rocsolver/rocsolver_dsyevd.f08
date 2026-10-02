@@ -77,7 +77,8 @@ program dsyevd
   call hipCheck(rocblas_create_handle(handle))
 
   ! Compute eigenvalues and eigenvectors (A overwritten with eigenvectors)
-  call hipCheck(rocsolver_dsyevd(handle, rocblas_evect_original, rocblas_fill_upper, N, dA, lda, dD, dE, c_loc(dInfo)))
+  call hipCheck(rocsolver_dsyevd(handle, rocblas_evect_original, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dD), c_loc(dE), &
+                c_loc(dInfo)))
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

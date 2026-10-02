@@ -79,11 +79,11 @@ program hipsolver_cgetrf
   call hipCheck(hipMalloc(dInfo))
 
   ! Query and allocate the workspace
-  call hipsolverCheck(hipsolverCgetrf_bufferSize(handle, M, N, dA, lda, lwork))
+  call hipsolverCheck(hipsolverCgetrf_bufferSize(handle, M, N, c_loc(dA), lda, lwork))
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 8, 1_c_size_t)))
 
   ! Compute the LU factorization (A/pivots as native arrays, devInfo by reference)
-  call hipsolverCheck(hipsolverCgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, c_loc(dInfo)))
+  call hipsolverCheck(hipsolverCgetrf(handle, M, N, c_loc(dA), lda, dWork, lwork, c_loc(dIpiv), c_loc(dInfo)))
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))

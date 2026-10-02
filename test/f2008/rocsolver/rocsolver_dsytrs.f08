@@ -68,7 +68,7 @@ program dsytrs
 
   call hipCheck(rocblas_create_handle(handle))
   ! sytrf: array overload (dA, dIpiv passed directly)
-  call hipCheck(rocsolver_dsytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, dInfo))
+  call hipCheck(rocsolver_dsytrf(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dIpiv), dInfo))
   ! sytrs: c_ptr-only, pass the same device arrays via c_loc
   call hipCheck(rocsolver_dsytrs(handle, rocblas_fill_upper, N, nrhs, &
        c_loc(dA), lda, c_loc(dIpiv), c_loc(dB), ldb))

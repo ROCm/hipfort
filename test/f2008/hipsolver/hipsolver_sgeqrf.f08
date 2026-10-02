@@ -75,11 +75,11 @@ program sgeqrf
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Query workspace size and allocate it
-  call hipsolverCheck(hipsolverSgeqrf_bufferSize(handle, M, N, dA, lda, lwork))
+  call hipsolverCheck(hipsolverSgeqrf_bufferSize(handle, M, N, c_loc(dA), lda, lwork))
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 4))
 
   ! Compute the QR factorization
-  call hipsolverCheck(hipsolverSgeqrf(handle, M, N, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
+  call hipsolverCheck(hipsolverSgeqrf(handle, M, N, c_loc(dA), lda, c_loc(dTau), dWork, lwork, c_loc(dInfo(1))))
 
   ! Copy the factorized matrix back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

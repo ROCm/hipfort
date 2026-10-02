@@ -74,14 +74,14 @@ program cungqr
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Workspace big enough for both geqrf and ungqr
-  call hipsolverCheck(hipsolverCgeqrf_bufferSize(handle, M, N, dA, lda, lwork_qr))
-  call hipsolverCheck(hipsolverCungqr_bufferSize(handle, M, N, K, dA, lda, dTau, lwork_un))
+  call hipsolverCheck(hipsolverCgeqrf_bufferSize(handle, M, N, c_loc(dA), lda, lwork_qr))
+  call hipsolverCheck(hipsolverCungqr_bufferSize(handle, M, N, K, c_loc(dA), lda, c_loc(dTau), lwork_un))
   lwork = max(lwork_qr, lwork_un)
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 8))
 
   ! Factorize A = Q*R, then form the explicit Q in place
-  call hipsolverCheck(hipsolverCgeqrf(handle, M, N, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
-  call hipsolverCheck(hipsolverCungqr(handle, M, N, K, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
+  call hipsolverCheck(hipsolverCgeqrf(handle, M, N, c_loc(dA), lda, c_loc(dTau), dWork, lwork, c_loc(dInfo(1))))
+  call hipsolverCheck(hipsolverCungqr(handle, M, N, K, c_loc(dA), lda, c_loc(dTau), dWork, lwork, c_loc(dInfo(1))))
 
   ! Copy Q back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

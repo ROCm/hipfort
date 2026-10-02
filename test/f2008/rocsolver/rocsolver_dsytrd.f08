@@ -75,7 +75,7 @@ program dsytrd
   call rocblasCheck(rocblas_create_handle(handle))
 
   ! A/D/E/tau passed as native Fortran device arrays (resolves to _full_rank).
-  call rocsolverCheck(rocsolver_dsytrd(handle, rocblas_fill_lower, n, dA, lda, dD, dE, dtau))
+  call rocsolverCheck(rocsolver_dsytrd(handle, rocblas_fill_lower, n, c_loc(dA), lda, c_loc(dD), c_loc(dE), c_loc(dtau)))
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))

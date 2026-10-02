@@ -70,8 +70,8 @@ program dgetri
   call hipCheck(rocblas_create_handle(handle))
 
   ! LU factorization, then invert in place
-  call hipCheck(rocsolver_dgetrf(handle, N, N, dA, lda, dIpiv, c_loc(dInfo)))
-  call hipCheck(rocsolver_dgetri(handle, N,    dA, lda, dIpiv, c_loc(dInfo)))
+  call hipCheck(rocsolver_dgetrf(handle, N, N, c_loc(dA), lda, c_loc(dIpiv), c_loc(dInfo)))
+  call hipCheck(rocsolver_dgetri(handle, N,    c_loc(dA), lda, c_loc(dIpiv), c_loc(dInfo)))
 
   ! Copy the inverse back to the host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

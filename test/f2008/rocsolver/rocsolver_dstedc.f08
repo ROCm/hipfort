@@ -50,7 +50,7 @@ program dstedc
   call hipCheck(hipMalloc(dC, int(N,c_size_t), int(N,c_size_t)))
   call hipCheck(hipMalloc(dInfo, 1))
   call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_dstedc(handle, rocblas_evect_none, N, dD, dE, dC, ldc, c_loc(dInfo)))
+  call hipCheck(rocsolver_dstedc(handle, rocblas_evect_none, N, c_loc(dD), c_loc(dE), c_loc(dC), ldc, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
   error = abs(sum(hD) - trace) / abs(trace)
   if (error > rtol) then

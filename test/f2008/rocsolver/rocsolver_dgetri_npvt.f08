@@ -48,8 +48,8 @@ program dgetri_npvt
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dInfo, 1))
   call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_dgetrf_npvt(handle, N, N, dA, lda, c_loc(dInfo)))
-  call hipCheck(rocsolver_dgetri_npvt(handle, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(rocsolver_dgetrf_npvt(handle, N, N, c_loc(dA), lda, c_loc(dInfo)))
+  call hipCheck(rocsolver_dgetri_npvt(handle, N, c_loc(dA), lda, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hAinv, dA, hipMemcpyDeviceToHost))
   do j = 1, N
      do i = 1, N

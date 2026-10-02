@@ -81,8 +81,8 @@ program sgetrs
   call hipCheck(rocblas_create_handle(handle))
 
   ! Factorize, then solve A*X = B in place (B is overwritten with the solution)
-  call hipCheck(rocsolver_sgetrf(handle, N, N, dA, lda, dIpiv, c_loc(dInfo)))
-  call hipCheck(rocsolver_sgetrs(handle, rocblas_operation_none, N, nrhs, dA, lda, dIpiv, dB, ldb))
+  call hipCheck(rocsolver_sgetrf(handle, N, N, c_loc(dA), lda, c_loc(dIpiv), c_loc(dInfo)))
+  call hipCheck(rocsolver_sgetrs(handle, rocblas_operation_none, N, nrhs, c_loc(dA), lda, c_loc(dIpiv), c_loc(dB), ldb))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))

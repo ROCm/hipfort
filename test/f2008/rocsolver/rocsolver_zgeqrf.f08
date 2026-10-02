@@ -75,7 +75,7 @@ program zgeqrf
   call hipCheck(rocblas_create_handle(handle))
 
   ! Compute the QR factorization on the device
-  call hipCheck(rocsolver_zgeqrf(handle, M, N, dA, lda, dIpiv))
+  call hipCheck(rocsolver_zgeqrf(handle, M, N, c_loc(dA), lda, c_loc(dIpiv)))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))

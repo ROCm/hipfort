@@ -72,8 +72,8 @@ program zungqr
   call hipCheck(rocblas_create_handle(handle))
 
   ! Factorize A = Q*R, then form the explicit Q in place
-  call hipCheck(rocsolver_zgeqrf(handle, M, N, dA, lda, dIpiv))
-  call hipCheck(rocsolver_zungqr(handle, M, N, K, dA, lda, dIpiv))
+  call hipCheck(rocsolver_zgeqrf(handle, M, N, c_loc(dA), lda, c_loc(dIpiv)))
+  call hipCheck(rocsolver_zungqr(handle, M, N, K, c_loc(dA), lda, c_loc(dIpiv)))
 
   ! Copy Q back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

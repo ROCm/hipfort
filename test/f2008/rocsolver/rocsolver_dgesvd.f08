@@ -87,8 +87,8 @@ program dgesvd
   call hipCheck(rocblas_create_handle(handle))
 
   ! Compute the full SVD on the device
-  call hipCheck(rocsolver_dgesvd(handle, rocblas_svect_all, rocblas_svect_all, M, N, dA, lda, &
-                                 dS, dU, ldu, dV, ldv, dE, rocblas_outofplace, c_loc(dInfo)))
+  call hipCheck(rocsolver_dgesvd(handle, rocblas_svect_all, rocblas_svect_all, M, N, c_loc(dA), lda, &
+                                 c_loc(dS), c_loc(dU), ldu, c_loc(dV), ldv, c_loc(dE), rocblas_outofplace, c_loc(dInfo)))
 
   ! Copy factors back to host
   call hipCheck(hipMemcpy(hS, dS, hipMemcpyDeviceToHost))

@@ -73,8 +73,8 @@ program dsyev
   call rocblasCheck(rocblas_create_handle(handle))
 
   ! Eigenvalues only (rocblas_evect_none); A/D/E as native arrays, info device.
-  call rocsolverCheck(rocsolver_dsyev(handle, rocblas_evect_none, rocblas_fill_lower, n, dA, lda, &
-                                      dD, dE, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dsyev(handle, rocblas_evect_none, rocblas_fill_lower, n, c_loc(dA), lda, &
+                                      c_loc(dD), c_loc(dE), c_loc(dInfo)))
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))

@@ -53,9 +53,9 @@ program hipsolver_dpotrf
   call hipsolverCheck(hipsolverCreate(handle))
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dInfo))
-  call hipsolverCheck(hipsolverDpotrf_bufferSize(handle, HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, lwork))
+  call hipsolverCheck(hipsolverDpotrf_bufferSize(handle, HIPSOLVER_FILL_MODE_UPPER, N, c_loc(dA), lda, lwork))
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 8, 1_c_size_t)))
-  call hipsolverCheck(hipsolverDpotrf(handle, HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dWork, lwork, c_loc(dInfo)))
+  call hipsolverCheck(hipsolverDpotrf(handle, HIPSOLVER_FILL_MODE_UPPER, N, c_loc(dA), lda, dWork, lwork, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
   do j = 1,3
     do i = 1,3

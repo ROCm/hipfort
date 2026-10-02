@@ -77,8 +77,8 @@ program zpotrs
   call hipCheck(rocblas_create_handle(handle))
 
   ! Factorize (Cholesky), then solve A*X = B in place (B overwritten with solution)
-  call hipCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
-  call hipCheck(rocsolver_zpotrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dB, ldb))
+  call hipCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dInfo)))
+  call hipCheck(rocsolver_zpotrs(handle, rocblas_fill_upper, N, nrhs, c_loc(dA), lda, c_loc(dB), ldb))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))

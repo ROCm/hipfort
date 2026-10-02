@@ -52,7 +52,7 @@ program ssytrf
   call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
   call hipCheck(hipMalloc(dInfo, 1))
   call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_ssytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call hipCheck(rocsolver_ssytrf(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dIpiv), c_loc(dInfo)))
   call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hIpiv, dIpiv, hipMemcpyDeviceToHost))
   if (hInfo(1) /= 0) then

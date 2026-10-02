@@ -84,7 +84,7 @@ program cgetrf
   call hipCheck(rocblas_create_handle(handle))
 
   ! Compute the LU factorization on the device
-  call hipCheck(rocsolver_cgetrf(handle, M, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call hipCheck(rocsolver_cgetrf(handle, M, N, c_loc(dA), lda, c_loc(dIpiv), c_loc(dInfo)))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))

@@ -55,7 +55,7 @@ program csytrf
   call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
   call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_csytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, dInfo))
+  call hipCheck(rocsolver_csytrf(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dIpiv), dInfo))
   call hipCheck(hipMemcpy(c_loc(hInfo(1)), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
   if (hInfo(1) /= 0) then
      write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)

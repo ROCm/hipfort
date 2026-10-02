@@ -84,8 +84,8 @@ program dgetrf_strided_batched
   ! Compute the batched LU factorization on the device.
   ! `dInfo` is passed as a device pointer to an array of `batch_count` ints,
   ! which is exactly what the myInfo -> c_ptr binding fix enables.
-  call hipCheck(rocsolver_dgetrf_strided_batched(handle, M, N, dA, lda, strideA, &
-                                                 dIpiv, strideP, c_loc(dInfo), batch_count))
+  call hipCheck(rocsolver_dgetrf_strided_batched(handle, M, N, c_loc(dA), lda, strideA, &
+                                                 c_loc(dIpiv), strideP, c_loc(dInfo), batch_count))
 
   ! Copy the info array back to the host
   call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))

@@ -70,11 +70,11 @@ program hipsolver_ssygvd
   call hipsolverCheck(hipsolverCreate(handle))
 
   call hipsolverCheck(hipsolverSsygvd_bufferSize(handle, HIPSOLVER_EIG_TYPE_1, &
-       HIPSOLVER_EIG_MODE_VECTOR, HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dB, ldb, dW, lwork))
+       HIPSOLVER_EIG_MODE_VECTOR, HIPSOLVER_FILL_MODE_UPPER, N, c_loc(dA), lda, c_loc(dB), ldb, c_loc(dW), lwork))
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 4, 1_c_size_t)))
 
   call hipsolverCheck(hipsolverSsygvd(handle, HIPSOLVER_EIG_TYPE_1, HIPSOLVER_EIG_MODE_VECTOR, &
-       HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dB, ldb, dW, dWork, lwork, c_loc(dInfo)))
+       HIPSOLVER_FILL_MODE_UPPER, N, c_loc(dA), lda, c_loc(dB), ldb, c_loc(dW), dWork, lwork, c_loc(dInfo)))
 
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hW, dW, hipMemcpyDeviceToHost))

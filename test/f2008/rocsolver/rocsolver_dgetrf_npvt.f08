@@ -49,7 +49,7 @@ program dgetrf_npvt
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dInfo, 1))
   call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_dgetrf_npvt(handle, M, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(rocsolver_dgetrf_npvt(handle, M, N, c_loc(dA), lda, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hLU, dA, hipMemcpyDeviceToHost))
   ! Reconstruct A = L*U (L unit-lower from strictly-below, U on/above diagonal).
   do j = 1, N

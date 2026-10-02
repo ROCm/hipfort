@@ -73,7 +73,7 @@ program dgesv
   call hipCheck(rocblas_create_handle(handle))
 
   ! Solve A*X = B on the device (X overwrites B)
-  call hipCheck(rocsolver_dgesv(handle, N, nrhs, dA, lda, dIpiv, dB, ldb, c_loc(dInfo)))
+  call hipCheck(rocsolver_dgesv(handle, N, nrhs, c_loc(dA), lda, c_loc(dIpiv), c_loc(dB), ldb, c_loc(dInfo)))
 
   ! Copy the solution back to the host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))
