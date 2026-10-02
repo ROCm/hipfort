@@ -37,9 +37,8 @@
 !
 program zgeqrf
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
 
   implicit none
   integer :: i, j, l ! indices for iterating over results
@@ -79,11 +78,11 @@ program zgeqrf
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Query workspace size and allocate it
-  call hipsolverCheck(hipsolverZgeqrf_bufferSize(handle, M, N, dA, lda, lwork))
+  call hipsolverCheck(hipsolverZgeqrf_bufferSize(handle, M, N, c_loc(dA), lda, lwork))
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 16))
 
   ! Compute the QR factorization
-  call hipsolverCheck(hipsolverZgeqrf(handle, M, N, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
+  call hipsolverCheck(hipsolverZgeqrf(handle, M, N, c_loc(dA), lda, c_loc(dTau), dWork, lwork, c_loc(dInfo(1))))
 
   ! Copy the factorized matrix back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

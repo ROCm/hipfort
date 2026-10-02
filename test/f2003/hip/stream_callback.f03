@@ -35,9 +35,7 @@
 !
 program stream_callback
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
+  use hip
 
   implicit none
 
@@ -45,7 +43,7 @@ program stream_callback
   interface
     subroutine stream_cb(stream, status, userData) bind(c)
       use iso_c_binding
-      use hipfort_enums
+      use hip
       implicit none
       type(c_ptr),                      value :: stream
       integer(kind(hipSuccess)),        value :: status
@@ -103,7 +101,7 @@ end program stream_callback
 ! hipStreamCallback_t: void (*)(hipStream_t stream, hipError_t status, void* userData)
 subroutine stream_cb(stream, status, userData) bind(c)
   use iso_c_binding
-  use hipfort_enums
+  use hip
   implicit none
   type(c_ptr),               value :: stream
   integer(kind(hipSuccess)), value :: status

@@ -34,10 +34,8 @@
 !
 program spotrs
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
-  use hipfort_hipsolver_enums
+  use hip
+  use hipsolver
 
   implicit none
   integer :: i ! index for iterating over results
@@ -75,14 +73,16 @@ program spotrs
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Workspace big enough for both potrf and potrs
-  call hipsolverCheck(hipsolverSpotrf_bufferSize(handle, HIPSOLVER_FILL_MODE_LOWER, N, dA, lda, lwork_f))
-  call hipsolverCheck(hipsolverSpotrs_bufferSize(handle, HIPSOLVER_FILL_MODE_LOWER, N, nrhs, dA, lda, dB, ldb, lwork_s))
+  call hipsolverCheck(hipsolverSpotrf_bufferSize(handle, HIPSOLVER_FILL_MODE_LOWER, N, c_loc(dA), lda, lwork_f))
+  call hipsolverCheck(hipsolverSpotrs_bufferSize(handle, HIPSOLVER_FILL_MODE_LOWER, N, nrhs, c_loc(dA), lda, c_loc(dB), ldb, &
+                      lwork_s))
   lwork = max(lwork_f, lwork_s)
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 4))
 
   ! Factorize A = L*L**T, then solve A*X = B in place
-  call hipsolverCheck(hipsolverSpotrf(handle, HIPSOLVER_FILL_MODE_LOWER, N, dA, lda, dWork, lwork, c_loc(dInfo(1))))
-  call hipsolverCheck(hipsolverSpotrs(handle, HIPSOLVER_FILL_MODE_LOWER, N, nrhs, dA, lda, dB, ldb, dWork, lwork, c_loc(dInfo(1))))
+  call hipsolverCheck(hipsolverSpotrf(handle, HIPSOLVER_FILL_MODE_LOWER, N, c_loc(dA), lda, dWork, lwork, c_loc(dInfo(1))))
+  call hipsolverCheck(hipsolverSpotrs(handle, HIPSOLVER_FILL_MODE_LOWER, N, nrhs, c_loc(dA), lda, c_loc(dB), ldb, dWork, lwork, &
+                      c_loc(dInfo(1))))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))

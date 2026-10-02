@@ -38,9 +38,8 @@
 !
 program hipsolver_zgetrf
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
 
   implicit none
   integer :: i, j
@@ -68,7 +67,7 @@ program hipsolver_zgetrf
   type(c_ptr) :: dA, dIpiv, dWork, dInfo
   integer(c_int), pointer :: dInfo_p(:)
   type(c_ptr) :: handle = c_null_ptr
-  integer(c_int) :: lwork
+  integer(c_int), target :: lwork
 
   real(c_double) :: error
   real(c_double), parameter :: error_max = 10 * epsilon(error_max)

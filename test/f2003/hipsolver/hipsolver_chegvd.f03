@@ -33,10 +33,8 @@
 !
 program hipsolver_chegvd
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
-  use hipfort_hipsolver_enums
+  use hip
+  use hipsolver
   implicit none
   integer :: i, k
 
@@ -55,7 +53,7 @@ program hipsolver_chegvd
   type(c_ptr) :: dA, dB, dW
   integer(c_int), pointer :: dInfo(:)
   type(c_ptr) :: dWork, handle = c_null_ptr
-  integer(c_int) :: lwork
+  integer(c_int), target :: lwork
 
   real(c_float) :: error
   real(c_float), parameter :: error_max = 1.0e-5

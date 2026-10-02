@@ -31,12 +31,9 @@
 !
 program dstedc
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
-  use hipfort_rocsolver_enums
+  use hip
+  use rocblas
+  use rocsolver
   implicit none
   integer(c_int), parameter :: N = 4, ldc = 4
   real(c_double) :: hD(N)   = (/2.0d0, 2.0d0, 2.0d0, 2.0d0/)   ! diagonal
@@ -53,7 +50,7 @@ program dstedc
   call hipCheck(hipMalloc(dC, int(N,c_size_t), int(N,c_size_t)))
   call hipCheck(hipMalloc(dInfo, 1))
   call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_dstedc(handle, rocblas_evect_none, N, dD, dE, dC, ldc, c_loc(dInfo)))
+  call hipCheck(rocsolver_dstedc(handle, rocblas_evect_none, N, c_loc(dD), c_loc(dE), c_loc(dC), ldc, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
   error = abs(sum(hD) - trace) / abs(trace)
   if (error > rtol) then

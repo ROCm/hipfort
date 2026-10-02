@@ -37,11 +37,9 @@
 !
 program csytrs
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
   implicit none
   integer :: i
   integer(c_int), parameter :: N = 4, nrhs = 1, lda = 4, ldb = 4
@@ -69,7 +67,7 @@ program csytrs
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
   call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_csytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, dInfo))
+  call hipCheck(rocsolver_csytrf(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dIpiv), dInfo))
   call hipCheck(rocsolver_csytrs(handle, rocblas_fill_upper, N, nrhs, &
        c_loc(dA), lda, c_loc(dIpiv), c_loc(dB), ldb))
   call hipCheck(hipMemcpy(c_loc(hInfo(1)), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))

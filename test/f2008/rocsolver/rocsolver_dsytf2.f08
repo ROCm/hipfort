@@ -32,11 +32,9 @@
 !
 program dsytf2
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
   implicit none
   integer(c_int), parameter :: N = 4, lda = 4
   real(c_double) :: hA(N,N) = reshape((/ &
@@ -54,7 +52,7 @@ program dsytf2
   call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
   call hipCheck(hipMalloc(dInfo, 1))
   call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_dsytf2(handle, rocblas_fill_upper, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call hipCheck(rocsolver_dsytf2(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dIpiv), c_loc(dInfo)))
   call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hIpiv, dIpiv, hipMemcpyDeviceToHost))
   if (hInfo(1) /= 0) then

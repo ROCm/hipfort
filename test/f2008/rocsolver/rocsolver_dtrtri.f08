@@ -34,11 +34,9 @@
 !
 program dtrtri
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
 
@@ -69,7 +67,7 @@ program dtrtri
   call rocblasCheck(rocblas_create_handle(handle))
 
   call rocsolverCheck(rocsolver_dtrtri(handle, rocblas_fill_upper, rocblas_diagonal_non_unit, &
-                                       n, dA, lda, c_loc(dInfo)))
+                                       n, c_loc(dA), lda, c_loc(dInfo)))
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hUinv, dA, hipMemcpyDeviceToHost))

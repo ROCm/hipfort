@@ -8,9 +8,9 @@ hipBLAS examples
 
 `hipBLAS <https://rocm.docs.amd.com/projects/hipBLAS/en/latest/>`_ is a thin
 layer over rocBLAS whose API follows cuBLAS. hipFORT exposes it through the
-``hipfort_hipblas`` module, which mirrors the hipBLAS C API one to one and
-re-exports the enumerations (``HIPBLAS_OP_N``, ``HIPBLAS_FILL_MODE_LOWER`` and
-so on) from ``hipfort_hipblas_enums``.
+``hipblas`` module, which mirrors the hipBLAS C API one to one and
+carries the enumerations (``HIPBLAS_OP_N``, ``HIPBLAS_FILL_MODE_LOWER`` and
+so on).
 
 Every program on this page is a complete, self-contained example that is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
@@ -21,7 +21,7 @@ packed triangular solve, ``stpsv``, is Fortran 2008 only.
 
 If you want direct access to rocBLAS rather than a cuBLAS-style interface, see
 the :doc:`rocBLAS examples <rocblas-examples>`, where the equivalent programs
-are written against the ``hipfort_rocblas`` module.
+are written against the ``rocblas`` module.
 
 The examples are grouped the way the BLAS routines themselves are: Level 1
 operates on vectors, Level 2 on a matrix and a vector, and Level 3 on two
@@ -60,10 +60,9 @@ Keep the following conventions in mind:
   dimension, ``size(dA,1)``.
 * Enumerations such as ``HIPBLAS_OP_N``, ``HIPBLAS_FILL_MODE_LOWER``,
   ``HIPBLAS_DIAG_NON_UNIT`` and ``HIPBLAS_SIDE_LEFT`` come from the
-  ``hipfort_hipblas_enums`` module, which ``hipfort_hipblas`` re-exports, so
-  ``use hipfort_hipblas`` on its own is enough.
+  ``hipblas`` module, so ``use hipblas`` on its own is enough.
 * Every hipBLAS call returns a status code. The examples wrap them in
-  ``hipblasCheck`` from the ``hipfort_check`` module, which aborts on failure.
+  ``hipblasCheck`` from the ``hipblas`` module, which aborts on failure.
   (``sgemv.f08`` and ``sger.f08`` route their hipBLAS calls through
   ``hipCheck`` instead; both abort on a non-zero status.)
 
@@ -74,10 +73,11 @@ The examples only need the ``hipblas`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip hipblas)
+   find_package(hip-fortran REQUIRED)
+   find_package(hipblas-fortran REQUIRED)
 
    add_executable(my_blas saxpy.f08)
-   target_link_libraries(my_blas PRIVATE hipfort::hipblas hipfort::hip)
+   target_link_libraries(my_blas PRIVATE roc::hipblas_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

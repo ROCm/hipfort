@@ -35,11 +35,9 @@
 !
 program dpotf2
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i, j
@@ -66,7 +64,7 @@ program dpotf2
 
   call hipCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_dpotf2(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(rocsolver_dpotf2(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dInfo)))
 
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
 

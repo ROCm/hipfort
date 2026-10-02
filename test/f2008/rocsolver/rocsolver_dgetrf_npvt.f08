@@ -32,10 +32,9 @@
 !
 program dgetrf_npvt
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
   implicit none
   integer(c_int), parameter :: M = 3, N = 3, lda = 3
   real(c_double) :: hA(3,3)  = reshape((/4, 1, 1,  1, 4, 1,  1, 1, 4/), (/3,3/))  ! SPD, no pivoting
@@ -50,7 +49,7 @@ program dgetrf_npvt
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dInfo, 1))
   call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_dgetrf_npvt(handle, M, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(rocsolver_dgetrf_npvt(handle, M, N, c_loc(dA), lda, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hLU, dA, hipMemcpyDeviceToHost))
   ! Reconstruct A = L*U (L unit-lower from strictly-below, U on/above diagonal).
   do j = 1, N

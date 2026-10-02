@@ -33,9 +33,8 @@
 !
 program hipsolver_ssyevd
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
   implicit none
   integer(c_int), parameter :: N = 4, lda = 4
   real(c_float) :: hA(N,N) = reshape((/ &
@@ -56,10 +55,10 @@ program hipsolver_ssyevd
   call hipCheck(hipMalloc(dD, source=hD))
   call hipCheck(hipMalloc(dInfo))
   call hipsolverCheck(hipsolverSsyevd_bufferSize(handle, HIPSOLVER_EIG_MODE_NOVECTOR, &
-                                                 HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dD, lwork))
+                                                 HIPSOLVER_FILL_MODE_UPPER, N, c_loc(dA), lda, c_loc(dD), lwork))
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 4, 1_c_size_t)))
   call hipsolverCheck(hipsolverSsyevd(handle, HIPSOLVER_EIG_MODE_NOVECTOR, HIPSOLVER_FILL_MODE_UPPER, &
-                                      N, dA, lda, dD, dWork, lwork, c_loc(dInfo)))
+                                      N, c_loc(dA), lda, c_loc(dD), dWork, lwork, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
   error = abs(sum(hD) - trace_A) / abs(trace_A)
   if (error > rtol) then

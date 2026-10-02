@@ -32,9 +32,8 @@
 !
 program hipsolver_cheevd
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
   implicit none
   integer(c_int), parameter :: N = 4, lda = 4
   complex(c_float_complex), target :: hA(N,N) = reshape((/ &
@@ -44,7 +43,7 @@ program hipsolver_cheevd
   integer(c_size_t) :: szA = 16, szD = 4
   type(c_ptr) :: dA, dD, dWork, handle = c_null_ptr
   integer(c_int), pointer :: dInfo(:)
-  integer(c_int) :: lwork
+  integer(c_int), target :: lwork
   real(c_float) :: trace_A, error
   real(c_float), parameter :: rtol = 1.0e-5
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_cheevd' (Fortran 2003 interfaces) - "

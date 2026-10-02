@@ -34,13 +34,12 @@
 !
 program event
   use iso_c_binding
-  use hipfort
-  use hipfort_check
+  use hip
 
   implicit none
 
   type(c_ptr) :: estart = c_null_ptr, estop = c_null_ptr, dptr = c_null_ptr
-  real(c_float) :: ms
+  real(c_float), target :: ms
   integer(c_size_t), parameter :: nbytes = 4 * 1024 * 1024
 
   write(*,"(a)",advance="no") "-- Running test 'hip event' (Fortran 2003 interfaces) - "

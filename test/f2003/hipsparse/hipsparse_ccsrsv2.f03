@@ -40,9 +40,8 @@
 !
 program hipsparse_ccsrsv2
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsparse
+  use hip
+  use hipsparse
   implicit none
   integer :: i
   integer(c_int), parameter :: m = 3, nnz = 6
@@ -58,7 +57,7 @@ program hipsparse_ccsrsv2
   type(c_ptr) :: descrA = c_null_ptr
   type(c_ptr) :: info = c_null_ptr
   type(c_ptr) :: dRowPtr, dColInd, dVal, dF, dX, dBuf
-  integer(c_int) :: bufSize
+  integer(c_int), target :: bufSize
   write(*,"(a)",advance="no") "-- Running test 'hipsparse_ccsrsv2' (Fortran 2003 interfaces) - "
 
   ! f = L*x (row by row from the CSR structure above).

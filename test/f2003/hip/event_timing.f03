@@ -34,9 +34,7 @@
 !
 program event_timing
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
+  use hip
 
   implicit none
 
@@ -50,7 +48,7 @@ program event_timing
   type(c_ptr) :: stream_a = c_null_ptr, stream_b = c_null_ptr
   type(c_ptr) :: dptr = c_null_ptr, dptr2 = c_null_ptr
   real(c_float), target :: hsrc(nsmall), hdst(nsmall)
-  real(c_float)         :: ms
+  real(c_float), target :: ms
   integer(kind(hipSuccess)) :: istat
   integer :: i
 

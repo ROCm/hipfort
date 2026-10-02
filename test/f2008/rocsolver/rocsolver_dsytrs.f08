@@ -37,11 +37,9 @@
 !
 program dsytrs
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
   implicit none
   integer :: i
   integer(c_int), parameter :: N = 4, nrhs = 1, lda = 4, ldb = 4
@@ -70,7 +68,7 @@ program dsytrs
 
   call hipCheck(rocblas_create_handle(handle))
   ! sytrf: array overload (dA, dIpiv passed directly)
-  call hipCheck(rocsolver_dsytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, dInfo))
+  call hipCheck(rocsolver_dsytrf(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dIpiv), dInfo))
   ! sytrs: c_ptr-only, pass the same device arrays via c_loc
   call hipCheck(rocsolver_dsytrs(handle, rocblas_fill_upper, N, nrhs, &
        c_loc(dA), lda, c_loc(dIpiv), c_loc(dB), ldb))

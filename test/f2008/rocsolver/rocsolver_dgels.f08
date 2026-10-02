@@ -37,11 +37,9 @@
 !
 program dgels
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i ! index for iterating over results
@@ -80,7 +78,7 @@ program dgels
   call hipCheck(rocblas_create_handle(handle))
 
   ! Solve min || A*X - B || in place (B is overwritten with the solution)
-  call hipCheck(rocsolver_dgels(handle, rocblas_operation_none, M, N, nrhs, dA, lda, dB, ldb, c_loc(dInfo)))
+  call hipCheck(rocsolver_dgels(handle, rocblas_operation_none, M, N, nrhs, c_loc(dA), lda, c_loc(dB), ldb, c_loc(dInfo)))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))

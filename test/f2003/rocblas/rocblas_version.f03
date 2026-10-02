@@ -39,9 +39,8 @@
 ! "FAILED! <why>" and stops with exit code 1.
 program rocblas_version
   use iso_c_binding
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
+  use hip
+  use rocblas
 
   implicit none
 

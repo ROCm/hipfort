@@ -36,10 +36,8 @@
 !
 program sormqr
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
-  use hipfort_hipsolver_enums
+  use hip
+  use hipsolver
 
   implicit none
   integer :: i, j
@@ -77,15 +75,15 @@ program sormqr
   call hipCheck(hipMalloc(dTau, mold=hTau))
   call hipCheck(hipMalloc(dInfo, 1))
 
-  call hipsolverCheck(hipsolverSgeqrf_bufferSize(handle, M, K, dA, lda, lwork_qr))
+  call hipsolverCheck(hipsolverSgeqrf_bufferSize(handle, M, K, c_loc(dA), lda, lwork_qr))
   call hipsolverCheck(hipsolverSormqr_bufferSize(handle, HIPSOLVER_SIDE_LEFT, HIPSOLVER_OP_N, &
-       M, N, K, dA, lda, dTau, dC, ldc, lwork_mq))
+       M, N, K, c_loc(dA), lda, c_loc(dTau), c_loc(dC), ldc, lwork_mq))
   lwork = max(lwork_qr, lwork_mq)
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 4))
 
-  call hipsolverCheck(hipsolverSgeqrf(handle, M, K, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
+  call hipsolverCheck(hipsolverSgeqrf(handle, M, K, c_loc(dA), lda, c_loc(dTau), dWork, lwork, c_loc(dInfo(1))))
   call hipsolverCheck(hipsolverSormqr(handle, HIPSOLVER_SIDE_LEFT, HIPSOLVER_OP_N, &
-       M, N, K, dA, lda, dTau, dC, ldc, dWork, lwork, c_loc(dInfo(1))))
+       M, N, K, c_loc(dA), lda, c_loc(dTau), c_loc(dC), ldc, dWork, lwork, c_loc(dInfo(1))))
 
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

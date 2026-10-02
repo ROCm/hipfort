@@ -35,11 +35,9 @@
 !
 program dlarft
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
 
@@ -73,7 +71,7 @@ program dlarft
 
   ! V/tau/T passed as native Fortran device arrays (resolves to _full_rank).
   call rocsolverCheck(rocsolver_dlarft(handle, rocblas_forward_direction, rocblas_column_wise, &
-                                       order, k, dV, ldv, dtau, dT, ldt))
+                                       order, k, c_loc(dV), ldv, c_loc(dtau), c_loc(dT), ldt))
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hT, dT, hipMemcpyDeviceToHost))

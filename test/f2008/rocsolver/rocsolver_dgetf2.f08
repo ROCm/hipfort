@@ -34,10 +34,9 @@
 !
 program dgetf2
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i, j
@@ -69,7 +68,7 @@ program dgetf2
 
   call hipCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_dgetf2(handle, M, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call hipCheck(rocsolver_dgetf2(handle, M, N, c_loc(dA), lda, c_loc(dIpiv), c_loc(dInfo)))
 
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hIpiv, dIpiv, hipMemcpyDeviceToHost))

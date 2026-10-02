@@ -34,10 +34,9 @@
 !
 program cungqr
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i, j ! indices for iterating over results
@@ -73,8 +72,8 @@ program cungqr
   call hipCheck(rocblas_create_handle(handle))
 
   ! Factorize A = Q*R, then form the explicit Q in place
-  call hipCheck(rocsolver_cgeqrf(handle, M, N, dA, lda, dIpiv))
-  call hipCheck(rocsolver_cungqr(handle, M, N, K, dA, lda, dIpiv))
+  call hipCheck(rocsolver_cgeqrf(handle, M, N, c_loc(dA), lda, c_loc(dIpiv)))
+  call hipCheck(rocsolver_cungqr(handle, M, N, K, c_loc(dA), lda, c_loc(dIpiv)))
 
   ! Copy Q back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

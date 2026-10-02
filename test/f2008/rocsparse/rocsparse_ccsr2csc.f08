@@ -34,9 +34,8 @@
 !
 program ccsr2csc
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
 
   implicit none
   integer :: i
@@ -83,13 +82,13 @@ program ccsr2csc
 
   ! Query and allocate the required workspace
   call rocsparseCheck(rocsparse_csr2csc_buffer_size(handle, M, N, nnz, &
-                          d_csr_row_ptr(1), d_csr_col_ind(1), rocsparse_action_numeric, buffer_size))
+                          c_loc(d_csr_row_ptr(1)), c_loc(d_csr_col_ind(1)), rocsparse_action_numeric, buffer_size))
   call hipCheck(hipMalloc(d_buffer, buffer_size))
 
   ! Convert CSR -> CSC (numeric: also permute values)
   call rocsparseCheck(rocsparse_ccsr2csc(handle, M, N, nnz, &
-                          d_csr_val(1), d_csr_row_ptr(1), d_csr_col_ind(1), &
-                          d_csc_val(1), d_csc_row_ind(1), d_csc_col_ptr(1), &
+                          c_loc(d_csr_val(1)), c_loc(d_csr_row_ptr(1)), c_loc(d_csr_col_ind(1)), &
+                          c_loc(d_csc_val(1)), c_loc(d_csc_row_ind(1)), c_loc(d_csc_col_ptr(1)), &
                           rocsparse_action_numeric, rocsparse_index_base_zero, d_buffer))
 
   ! Copy the result back to host

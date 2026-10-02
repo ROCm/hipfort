@@ -37,9 +37,8 @@
 !
 program ccsr2csc
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
 
   implicit none
   integer :: i
@@ -67,7 +66,7 @@ program ccsr2csc
   type(c_ptr) :: d_csc_col_ptr, d_csc_row_ind, d_csc_val
 
   type(c_ptr) :: handle, d_buffer
-  integer(c_size_t) :: buffer_size
+  integer(c_size_t), target :: buffer_size
 
   real :: error
   real, parameter :: error_max = 1.0e-4

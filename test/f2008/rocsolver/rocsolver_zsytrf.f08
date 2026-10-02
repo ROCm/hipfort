@@ -34,11 +34,9 @@
 !
 program zsytrf
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
   implicit none
   integer(c_int), parameter :: N = 4, lda = 4
   complex(c_double_complex) :: hA(N,N) = reshape((/ &
@@ -57,7 +55,7 @@ program zsytrf
   call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
   call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_zsytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, dInfo))
+  call hipCheck(rocsolver_zsytrf(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dIpiv), dInfo))
   call hipCheck(hipMemcpy(c_loc(hInfo(1)), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
   if (hInfo(1) /= 0) then
      write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)

@@ -38,11 +38,9 @@
 !
 program spotrf
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i, j ! indices for iterating over results
@@ -76,7 +74,7 @@ program spotrf
   call hipCheck(rocblas_create_handle(handle))
 
   ! Compute the Cholesky factorization on the device (upper triangle)
-  call hipCheck(rocsolver_spotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(rocsolver_spotrf(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dInfo)))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

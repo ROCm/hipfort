@@ -36,11 +36,9 @@
 !
 program zgetrs
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i ! index for iterating over results
@@ -83,8 +81,8 @@ program zgetrs
   call hipCheck(rocblas_create_handle(handle))
 
   ! Factorize, then solve A*X = B in place (B is overwritten with the solution)
-  call hipCheck(rocsolver_zgetrf(handle, N, N, dA, lda, dIpiv, c_loc(dInfo)))
-  call hipCheck(rocsolver_zgetrs(handle, rocblas_operation_none, N, nrhs, dA, lda, dIpiv, dB, ldb))
+  call hipCheck(rocsolver_zgetrf(handle, N, N, c_loc(dA), lda, c_loc(dIpiv), c_loc(dInfo)))
+  call hipCheck(rocsolver_zgetrs(handle, rocblas_operation_none, N, nrhs, c_loc(dA), lda, c_loc(dIpiv), c_loc(dB), ldb))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))

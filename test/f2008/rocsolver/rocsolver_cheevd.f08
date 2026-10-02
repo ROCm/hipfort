@@ -38,12 +38,9 @@
 !
 program cheevd
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
-  use hipfort_rocsolver_enums
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i, k ! indices for iterating over results
@@ -84,7 +81,8 @@ program cheevd
   call hipCheck(rocblas_create_handle(handle))
 
   ! Compute eigenvalues and eigenvectors (A overwritten with eigenvectors)
-  call hipCheck(rocsolver_cheevd(handle, rocblas_evect_original, rocblas_fill_upper, N, dA, lda, dD, dE, c_loc(dInfo)))
+  call hipCheck(rocsolver_cheevd(handle, rocblas_evect_original, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dD), c_loc(dE), &
+                c_loc(dInfo)))
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

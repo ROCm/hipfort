@@ -34,12 +34,9 @@
 !
 program dsyev
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
-  use hipfort_rocsolver_enums
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
 
@@ -76,8 +73,8 @@ program dsyev
   call rocblasCheck(rocblas_create_handle(handle))
 
   ! Eigenvalues only (rocblas_evect_none); A/D/E as native arrays, info device.
-  call rocsolverCheck(rocsolver_dsyev(handle, rocblas_evect_none, rocblas_fill_lower, n, dA, lda, &
-                                      dD, dE, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dsyev(handle, rocblas_evect_none, rocblas_fill_lower, n, c_loc(dA), lda, &
+                                      c_loc(dD), c_loc(dE), c_loc(dInfo)))
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))

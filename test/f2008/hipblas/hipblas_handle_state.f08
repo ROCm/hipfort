@@ -45,10 +45,8 @@
 ! HIPBLAS_DEFAULT_MATH back does round-trip exactly.
 program hipblas_handle_state
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipblas
-  use hipfort_hipblas_enums
+  use hip
+  use hipblas
 
   implicit none
 

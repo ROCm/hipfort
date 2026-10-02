@@ -33,9 +33,8 @@
 !
 program hipsolver_dgetrs
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
   implicit none
   integer :: i
   integer(c_int), parameter :: N = 3, nrhs = 1, lda = 3, ldb = 3
@@ -57,13 +56,15 @@ program hipsolver_dgetrs
   call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
   call hipCheck(hipMalloc(dInfo))
   ! LU factorization
-  call hipsolverCheck(hipsolverDgetrf_bufferSize(handle, N, N, dA, lda, lwork1))
+  call hipsolverCheck(hipsolverDgetrf_bufferSize(handle, N, N, c_loc(dA), lda, lwork1))
   call hipCheck(hipMalloc(dWork1, max(int(lwork1,c_size_t) * 8, 1_c_size_t)))
-  call hipsolverCheck(hipsolverDgetrf(handle, N, N, dA, lda, dWork1, lwork1, dIpiv, c_loc(dInfo)))
+  call hipsolverCheck(hipsolverDgetrf(handle, N, N, c_loc(dA), lda, dWork1, lwork1, c_loc(dIpiv), c_loc(dInfo)))
   ! Solve
-  call hipsolverCheck(hipsolverDgetrs_bufferSize(handle, HIPSOLVER_OP_N, N, nrhs, dA, lda, dIpiv, dB, ldb, lwork2))
+  call hipsolverCheck(hipsolverDgetrs_bufferSize(handle, HIPSOLVER_OP_N, N, nrhs, c_loc(dA), lda, c_loc(dIpiv), c_loc(dB), ldb, &
+                      lwork2))
   call hipCheck(hipMalloc(dWork2, max(int(lwork2,c_size_t) * 8, 1_c_size_t)))
-  call hipsolverCheck(hipsolverDgetrs(handle, HIPSOLVER_OP_N, N, nrhs, dA, lda, dIpiv, dB, ldb, dWork2, lwork2, c_loc(dInfo)))
+  call hipsolverCheck(hipsolverDgetrs(handle, HIPSOLVER_OP_N, N, nrhs, c_loc(dA), lda, c_loc(dIpiv), c_loc(dB), ldb, dWork2, &
+                      lwork2, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))
   do i = 1, N
      error = abs(hB(i,1) - hX_ref(i)) / max(abs(hX_ref(i)), 1.0d0)

@@ -36,9 +36,8 @@
 program rocsparse_sgtsv_test
 
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
 
   implicit none
 

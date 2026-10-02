@@ -32,9 +32,8 @@
 !
 program hipsolver_ssyevd
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
   implicit none
   integer(c_int), parameter :: N = 4, lda = 4
   real(c_float), target :: hA(N,N) = reshape((/ &
@@ -44,7 +43,7 @@ program hipsolver_ssyevd
   integer(c_size_t) :: szA = 16, szD = 4
   type(c_ptr) :: dA, dD, dWork, handle = c_null_ptr
   integer(c_int), pointer :: dInfo(:)
-  integer(c_int) :: lwork
+  integer(c_int), target :: lwork
   real(c_float) :: trace_A, error
   real(c_float), parameter :: rtol = 1.0e-5
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_ssyevd' (Fortran 2003 interfaces) - "

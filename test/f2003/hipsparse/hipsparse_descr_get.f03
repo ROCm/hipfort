@@ -55,10 +55,8 @@
 !
 program hipsparse_descr_get
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsparse
-  use hipfort_enums
+  use hip
+  use hipsparse
   implicit none
 
   ! A (3x4), nnz = 5:  A = [[1,0,2,0],[0,3,0,0],[4,0,0,5]]

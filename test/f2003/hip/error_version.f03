@@ -35,14 +35,12 @@
 !
 program error_version
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
+  use hip
 
   implicit none
 
   integer(kind(hipSuccess)) :: stat, stat2
-  integer(c_int)            :: ndev, rver, dver
+  integer(c_int), target :: ndev, rver, dver
   real(c_float), target     :: hval
   type(c_ptr)               :: dptr = c_null_ptr
   integer(c_size_t)         :: nbytes

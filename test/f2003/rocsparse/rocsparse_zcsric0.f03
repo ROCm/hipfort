@@ -44,9 +44,8 @@
 !
 program zcsric0
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
   implicit none
   integer :: i
   integer(c_int), parameter :: m = 3, nnz = 7
@@ -61,7 +60,7 @@ program zcsric0
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr, info = c_null_ptr
   type(c_ptr) :: dRowPtr, dColInd, dVal, dBuf
-  integer(c_size_t) :: bufSize
+  integer(c_size_t), target :: bufSize
   write(*,"(a)",advance="no") "-- Running test 'rocsparse_zcsric0' (Fortran 2003 interfaces) - "
 
   ! Exact Cholesky of the SPD tridiagonal (lower factor L).

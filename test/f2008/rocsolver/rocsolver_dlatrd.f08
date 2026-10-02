@@ -36,11 +36,9 @@
 !
 program dlatrd
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
 
@@ -79,7 +77,7 @@ program dlatrd
 
   ! Reduce the first k columns to tridiagonal form. A/E/tau/W are all passed as
   ! native Fortran device arrays (resolves to the _full_rank generic wrapper).
-  call rocsolverCheck(rocsolver_dlatrd(handle, rocblas_fill_lower, n, k, dA, lda, dE, dtau, dW, ldw))
+  call rocsolverCheck(rocsolver_dlatrd(handle, rocblas_fill_lower, n, k, c_loc(dA), lda, c_loc(dE), c_loc(dtau), c_loc(dW), ldw))
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hE, dE, hipMemcpyDeviceToHost))

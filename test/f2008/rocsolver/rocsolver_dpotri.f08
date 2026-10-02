@@ -35,11 +35,9 @@
 !
 program dpotri
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
 
@@ -66,8 +64,8 @@ program dpotri
   call hipCheck(rocblas_create_handle(handle))
 
   ! Cholesky factorization, then inverse (both on the upper triangle).
-  call hipCheck(rocsolver_dpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
-  call hipCheck(rocsolver_dpotri(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(rocsolver_dpotrf(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dInfo)))
+  call hipCheck(rocsolver_dpotri(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dInfo)))
 
   call hipCheck(hipMemcpy(hAinv, dA, hipMemcpyDeviceToHost))
 

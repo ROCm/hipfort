@@ -36,11 +36,9 @@
 !
 program spotrs
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i ! index for iterating over results
@@ -79,8 +77,8 @@ program spotrs
   call hipCheck(rocblas_create_handle(handle))
 
   ! Factorize (Cholesky), then solve A*X = B in place (B overwritten with solution)
-  call hipCheck(rocsolver_spotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
-  call hipCheck(rocsolver_spotrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dB, ldb))
+  call hipCheck(rocsolver_spotrf(handle, rocblas_fill_upper, N, c_loc(dA), lda, c_loc(dInfo)))
+  call hipCheck(rocsolver_spotrs(handle, rocblas_fill_upper, N, nrhs, c_loc(dA), lda, c_loc(dB), ldb))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))

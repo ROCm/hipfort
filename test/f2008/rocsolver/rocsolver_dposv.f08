@@ -34,11 +34,9 @@
 !
 program dposv
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
 
@@ -71,7 +69,7 @@ program dposv
   call rocblasCheck(rocblas_create_handle(handle))
 
   ! A/B passed as native Fortran device arrays; info as a device pointer.
-  call rocsolverCheck(rocsolver_dposv(handle, rocblas_fill_upper, n, nrhs, dA, lda, dB, ldb, &
+  call rocsolverCheck(rocsolver_dposv(handle, rocblas_fill_upper, n, nrhs, c_loc(dA), lda, c_loc(dB), ldb, &
                                       c_loc(dInfo)))
 
   call hipCheck(hipDeviceSynchronize())

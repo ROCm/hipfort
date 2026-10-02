@@ -34,9 +34,8 @@
 !
 program hipsolver_sgetrf
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
 
   implicit none
   integer :: i, j
@@ -74,11 +73,12 @@ program hipsolver_sgetrf
   call hipCheck(hipMalloc(dInfo))
 
   ! Query and allocate the workspace
-  call hipsolverCheck(hipsolverSgetrf_bufferSize(handle, M, N, dA, lda, lwork))
+  call hipsolverCheck(hipsolverSgetrf_bufferSize(handle, M, N, c_loc(dA), lda, lwork))
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 4, 1_c_size_t)))
 
   ! Compute the LU factorization (A/pivots as native arrays, devInfo by reference)
-  call hipsolverCheck(hipsolverSgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, c_loc(dInfo)))
+  call hipsolverCheck(hipsolverSgetrf(handle, M, N, c_loc(dA), lda, dWork, lwork, c_loc(dIpiv), &
+                                      c_loc(dInfo)))
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))

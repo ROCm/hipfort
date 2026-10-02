@@ -34,9 +34,7 @@
 !
 program stream_flags
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
+  use hip
 
   implicit none
 
@@ -44,7 +42,7 @@ program stream_flags
   integer(c_int), target    :: hsrc(n), hdst(n)
   type(c_ptr)    :: dptr = c_null_ptr
   type(c_ptr)    :: strm_nb = c_null_ptr, strm_pri = c_null_ptr
-  integer(c_int) :: least, greatest, got_flags, got_pri
+  integer(c_int), target :: least, greatest, got_flags, got_pri
   integer(c_size_t) :: nbytes
   integer :: i
   integer(kind(hipSuccess)) :: qret

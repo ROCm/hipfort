@@ -34,11 +34,9 @@
 !
 program dormqr
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i, j ! indices for iterating over results
@@ -77,11 +75,11 @@ program dormqr
   call hipCheck(rocblas_create_handle(handle))
 
   ! Factorize to get Q, then apply C <- Q*C followed by C <- Q**T*C
-  call hipCheck(rocsolver_dgeqrf(handle, M, K, dA, lda, dIpiv))
+  call hipCheck(rocsolver_dgeqrf(handle, M, K, c_loc(dA), lda, c_loc(dIpiv)))
   call hipCheck(rocsolver_dormqr(handle, rocblas_side_left, rocblas_operation_none, &
-       M, N, K, dA, lda, dIpiv, dC, ldc))
+       M, N, K, c_loc(dA), lda, c_loc(dIpiv), c_loc(dC), ldc))
   call hipCheck(rocsolver_dormqr(handle, rocblas_side_left, rocblas_operation_transpose, &
-       M, N, K, dA, lda, dIpiv, dC, ldc))
+       M, N, K, c_loc(dA), lda, c_loc(dIpiv), c_loc(dC), ldc))
 
   ! Copy result back to host
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))

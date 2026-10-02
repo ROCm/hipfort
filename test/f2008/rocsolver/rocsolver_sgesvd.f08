@@ -37,12 +37,9 @@
 !
 program sgesvd
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
-  use hipfort_rocsolver
-  use hipfort_rocsolver_enums
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i, j ! indices for iterating over results
@@ -91,8 +88,8 @@ program sgesvd
   call hipCheck(rocblas_create_handle(handle))
 
   ! Compute the full SVD on the device
-  call hipCheck(rocsolver_sgesvd(handle, rocblas_svect_all, rocblas_svect_all, M, N, dA, lda, &
-                                 dS, dU, ldu, dV, ldv, dE, rocblas_outofplace, c_loc(dInfo)))
+  call hipCheck(rocsolver_sgesvd(handle, rocblas_svect_all, rocblas_svect_all, M, N, c_loc(dA), lda, &
+                                 c_loc(dS), c_loc(dU), ldu, c_loc(dV), ldv, c_loc(dE), rocblas_outofplace, c_loc(dInfo)))
 
   ! Copy factors back to host
   call hipCheck(hipMemcpy(hS, dS, hipMemcpyDeviceToHost))

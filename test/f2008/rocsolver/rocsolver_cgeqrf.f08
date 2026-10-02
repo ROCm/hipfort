@@ -30,10 +30,9 @@
 !
 program cgeqrf
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i, j ! indices for iterating over results
@@ -77,7 +76,7 @@ program cgeqrf
   call hipCheck(rocblas_create_handle(handle))
 
   ! Compute the QR factorization on the device
-  call hipCheck(rocsolver_cgeqrf(handle, M, N, dA, lda, dIpiv))
+  call hipCheck(rocsolver_cgeqrf(handle, M, N, c_loc(dA), lda, c_loc(dIpiv)))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))

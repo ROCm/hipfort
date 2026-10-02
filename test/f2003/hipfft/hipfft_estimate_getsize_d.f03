@@ -25,9 +25,8 @@
 
 program hipfft_estimate_getsize_d
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipfft
+  use hip
+  use hipfft
 
   implicit none
 
@@ -40,10 +39,10 @@ program hipfft_estimate_getsize_d
   integer(c_size_t), parameter :: Nbytes_r = int(N1d, c_size_t) * 8
   integer(c_size_t), parameter :: Nbytes_c = int(Nout, c_size_t) * 16
 
-  integer(c_size_t) :: workEst1d, workGS1d
-  integer(c_size_t) :: workEst2d, workGS2d
-  integer(c_size_t) :: workEst3d, workGS3d
-  integer(c_size_t) :: workTmp
+  integer(c_size_t), target :: workEst1d, workGS1d
+  integer(c_size_t), target :: workEst2d, workGS2d
+  integer(c_size_t), target :: workEst3d, workGS3d
+  integer(c_size_t), target :: workTmp
 
   type(c_ptr) :: plan1d = c_null_ptr
   type(c_ptr) :: plan2d = c_null_ptr

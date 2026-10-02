@@ -41,9 +41,8 @@
 !
 program sgeqrf
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
 
   implicit none
   integer :: i, j, l ! indices for iterating over results
@@ -64,7 +63,7 @@ program sgeqrf
   type(c_ptr) :: dA, dTau, dInfo, dWork
   real(c_float), pointer :: dTau_p(:)
   integer(c_int), pointer :: dInfo_p(:)
-  integer(c_int) :: lwork
+  integer(c_int), target :: lwork
 
   real(c_float) :: error
   real(c_float), parameter :: error_max = 1.0e-4

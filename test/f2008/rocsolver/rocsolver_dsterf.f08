@@ -29,10 +29,9 @@
 !
 program dsterf
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i ! index for iterating over results
@@ -67,7 +66,7 @@ program dsterf
   ! Compute eigenvalues.
   ! `dInfo` is passed as a device pointer (c_loc), which is what the
   ! myInfo -> c_ptr binding fix enables.
-  call hipCheck(rocsolver_dsterf(handle, n, dD, dE, c_loc(dInfo)))
+  call hipCheck(rocsolver_dsterf(handle, n, c_loc(dD), c_loc(dE), c_loc(dInfo)))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hD,    dD,    hipMemcpyDeviceToHost))

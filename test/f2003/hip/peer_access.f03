@@ -34,12 +34,11 @@
 !
 program peer_access
   use iso_c_binding
-  use hipfort
-  use hipfort_check
+  use hip
 
   implicit none
 
-  integer(c_int) :: ndev, canAccess
+  integer(c_int), target :: ndev, canAccess
 
   write(*,"(a)",advance="no") "-- Running test 'hip peer_access' (Fortran 2003 interfaces) - "
 

@@ -35,10 +35,9 @@
 !
 program cgebrd
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocsolver
+  use hip
+  use rocblas
+  use rocsolver
 
   implicit none
   integer :: i ! index for iterating over results
@@ -88,7 +87,7 @@ program cgebrd
   call hipCheck(rocblas_create_handle(handle))
 
   ! Reduce A to bidiagonal form
-  call hipCheck(rocsolver_cgebrd(handle, M, N, dA, lda, dD, dE, dTauq, dTaup))
+  call hipCheck(rocsolver_cgebrd(handle, M, N, c_loc(dA), lda, c_loc(dD), c_loc(dE), c_loc(dTauq), c_loc(dTaup)))
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))

@@ -39,10 +39,8 @@
 !
 program dpotrs
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
-  use hipfort_hipsolver_enums
+  use hip
+  use hipsolver
 
   implicit none
   integer :: i ! index for iterating over results
@@ -63,7 +61,7 @@ program dpotrs
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dA, dB, dInfo, dWork
   integer(c_int), pointer :: dInfo_p(:)
-  integer(c_int) :: lwork_f, lwork_s, lwork
+  integer(c_int), target :: lwork_f, lwork_s, lwork
 
   real(c_double) :: error
   real(c_double), parameter :: error_max = 100 * epsilon(error_max)
