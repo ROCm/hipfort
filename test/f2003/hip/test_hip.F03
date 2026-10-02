@@ -121,6 +121,9 @@ program test_hip
   type(hipMemAllocationProp) :: v81
   integer(kind(hipMemAllocationGranularityMinimum)) :: v82
   type(hipArrayMapInfo) :: v83
+  integer(kind(hipMemAccessFlagsProtNone)) :: v84
+  integer(kind(hipStreamCaptureStatusNone)) :: v85
+  integer(kind(hipGraphNodeTypeKernel)) :: v86
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
@@ -156,10 +159,10 @@ program test_hip
     if (never) v3 = hipDeviceGetMemPool_(v4, v0)
     if (never) v3 = hipDeviceGetTexture1DLinearMaxWidth_(v4, v2, v0)
     if (never) v3 = hipDeviceSetCacheConfig_(v9)
-    if (never) v3 = hipDeviceGetCacheConfig_(v4)
+    if (never) v3 = hipDeviceGetCacheConfig_(v9)
     if (never) v3 = hipDeviceGetLimit_(v7, v10)
     if (never) v3 = hipDeviceSetLimit_(v10, v7)
-    if (never) v3 = hipDeviceGetSharedMemConfig_(v4)
+    if (never) v3 = hipDeviceGetSharedMemConfig_(v11)
     if (never) v3 = hipGetDeviceFlags_(v0)
     if (never) v3 = hipDeviceSetSharedMemConfig_(v11)
     if (never) v3 = hipSetDeviceFlags_(v0)
@@ -260,7 +263,7 @@ program test_hip
     if (never) v3 = hipMemPoolSetAttribute_(v4, v32, v4)
     if (never) v3 = hipMemPoolGetAttribute_(v4, v32, v4)
     if (never) v3 = hipMemPoolSetAccess_(v4, v33, v7)
-    if (never) v3 = hipMemPoolGetAccess_(v4, v4, v29)
+    if (never) v3 = hipMemPoolGetAccess_(v84, v4, v29)
     if (never) v3 = hipMemPoolCreate_(v4, v34)
     if (never) v3 = hipMemPoolDestroy_(v4)
     if (never) v3 = hipMallocFromPoolAsync_(v4, v7, v4, v4)
@@ -378,10 +381,10 @@ program test_hip
     if (never) v3 = hipCtxGetCurrent_(v4)
     if (never) v3 = hipCtxGetDevice_(v0)
     if (never) v3 = hipCtxGetApiVersion_(v4, v0)
-    if (never) v3 = hipCtxGetCacheConfig_(v4)
+    if (never) v3 = hipCtxGetCacheConfig_(v9)
     if (never) v3 = hipCtxSetCacheConfig_(v9)
     if (never) v3 = hipCtxSetSharedMemConfig_(v11)
-    if (never) v3 = hipCtxGetSharedMemConfig_(v4)
+    if (never) v3 = hipCtxGetSharedMemConfig_(v11)
     if (never) v3 = hipCtxSynchronize_()
     if (never) v3 = hipCtxGetFlags_(v0)
     if (never) v3 = hipCtxEnablePeerAccess_(v4, v0)
@@ -502,12 +505,12 @@ program test_hip
     if (never) v3 = hipGetTextureAlignmentOffset_(v7, v65)
     if (never) v3 = hipUnbindTexture_(v65)
     if (never) v3 = hipTexRefGetAddress_(v4, v65)
-    if (never) v3 = hipTexRefGetAddressMode_(v4, v65, v0)
-    if (never) v3 = hipTexRefGetFilterMode_(v4, v65)
+    if (never) v3 = hipTexRefGetAddressMode_(v66, v65, v0)
+    if (never) v3 = hipTexRefGetFilterMode_(v67, v65)
     if (never) v3 = hipTexRefGetFlags_(v4, v65)
-    if (never) v3 = hipTexRefGetFormat_(v4, v4, v65)
+    if (never) v3 = hipTexRefGetFormat_(v68, v4, v65)
     if (never) v3 = hipTexRefGetMaxAnisotropy_(v4, v65)
-    if (never) v3 = hipTexRefGetMipmapFilterMode_(v4, v65)
+    if (never) v3 = hipTexRefGetMipmapFilterMode_(v67, v65)
     if (never) v3 = hipTexRefGetMipmapLevelBias_(v4, v65)
     if (never) v3 = hipTexRefGetMipmapLevelClamp_(v4, v4, v65)
     if (never) v3 = hipTexRefGetMipMappedArray_(v4, v65)
@@ -528,10 +531,10 @@ program test_hip
     if (never) v3 = hipStreamBeginCaptureToGraph_(v4, v4, v4, v71, v7, v70)
     if (never) v3 = hipStreamEndCapture_(v4, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipStreamGetCaptureInfo_(v4, v4, v4)
-    if (never) v3 = hipStreamGetCaptureInfo_v2_(v4, v4, v4, v4, v4, v4)
+    if (never) v3 = hipStreamGetCaptureInfo_(v4, v85, v4)
+    if (never) v3 = hipStreamGetCaptureInfo_v2_(v4, v85, v4, v4, v4, v4)
 #endif
-    if (never) v3 = hipStreamIsCapturing_(v4, v4)
+    if (never) v3 = hipStreamIsCapturing_(v4, v85)
     if (never) v3 = hipStreamUpdateCaptureDependencies_(v4, v4, v7, v0)
     if (never) v3 = hipThreadExchangeStreamCaptureMode_(v4)
     if (never) v3 = hipGraphCreate_(v4, v0)
@@ -547,7 +550,7 @@ program test_hip
     if (never) v3 = hipGraphNodeGetDependencies_(v4, v4, v4)
     if (never) v3 = hipGraphNodeGetDependentNodes_(v4, v4, v4)
 #endif
-    if (never) v3 = hipGraphNodeGetType_(v4, v4)
+    if (never) v3 = hipGraphNodeGetType_(v4, v86)
     if (never) v3 = hipGraphDestroyNode_(v4)
     if (never) v3 = hipGraphClone_(v4, v4)
     if (never) v3 = hipGraphNodeFindInClone_(v4, v4, v4)

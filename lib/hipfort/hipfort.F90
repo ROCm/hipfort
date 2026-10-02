@@ -703,7 +703,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetCacheConfig_
-      type(c_ptr),value :: cacheConfig
+      integer(kind(hipFuncCachePreferNone)) :: cacheConfig
     end function
   end interface
 
@@ -783,7 +783,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetSharedMemConfig_
-      type(c_ptr),value :: pConfig
+      integer(kind(hipSharedMemBankSizeDefault)) :: pConfig
     end function
   end interface
 
@@ -3689,7 +3689,7 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipMemPoolGetAccess_
-      type(c_ptr),value :: flags
+      integer(kind(hipMemAccessFlagsProtNone)) :: flags
       type(c_ptr),value :: mem_pool
       type(hipMemLocation) :: location
     end function
@@ -6967,7 +6967,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetCacheConfig_
-      type(c_ptr),value :: cacheConfig
+      integer(kind(hipFuncCachePreferNone)) :: cacheConfig
     end function
   end interface
 #endif
@@ -7048,7 +7048,7 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetSharedMemConfig_
-      type(c_ptr),value :: pConfig
+      integer(kind(hipSharedMemBankSizeDefault)) :: pConfig
     end function
   end interface
 #endif
@@ -9693,7 +9693,7 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetAddressMode_
-      type(c_ptr),value :: pam
+      integer(kind(hipAddressModeWrap)) :: pam
       type(textureReference) :: texRef
       integer(c_int),value :: dim
     end function
@@ -9716,7 +9716,7 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetFilterMode_
-      type(c_ptr),value :: pfm
+      integer(kind(hipFilterModePoint)) :: pfm
       type(textureReference) :: texRef
     end function
   end interface
@@ -9761,7 +9761,7 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetFormat_
-      type(c_ptr),value :: pFormat
+      integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)) :: pFormat
       type(c_ptr),value :: pNumChannels
       type(textureReference) :: texRef
     end function
@@ -9806,7 +9806,7 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetMipmapFilterMode_
-      type(c_ptr),value :: pfm
+      integer(kind(hipFilterModePoint)) :: pfm
       type(textureReference) :: texRef
     end function
   end interface
@@ -10247,7 +10247,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_
       type(c_ptr),value :: stream
-      type(c_ptr),value :: pCaptureStatus
+      integer(kind(hipStreamCaptureStatusNone)) :: pCaptureStatus
       type(c_ptr),value :: pId
     end function
   end interface
@@ -10274,7 +10274,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_v2_
       type(c_ptr),value :: stream
-      type(c_ptr),value :: captureStatus_out
+      integer(kind(hipStreamCaptureStatusNone)) :: captureStatus_out
       type(c_ptr),value :: id_out
       type(c_ptr) :: graph_out
       type(c_ptr) :: dependencies_out
@@ -10300,7 +10300,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamIsCapturing_
       type(c_ptr),value :: stream
-      type(c_ptr),value :: pCaptureStatus
+      integer(kind(hipStreamCaptureStatusNone)) :: pCaptureStatus
     end function
   end interface
 
@@ -10594,7 +10594,7 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipGraphNodeGetType_
       type(c_ptr),value :: node
-      type(c_ptr),value :: pType
+      integer(kind(hipGraphNodeTypeKernel)) :: pType
     end function
   end interface
 
