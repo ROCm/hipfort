@@ -35,8 +35,8 @@
 !!!!!!!!!!!!!!
 !
 program check_message
-  use hipfort_check
-  use hipfort_hipblas_enums
+  use hip
+  use hipblas
 
   implicit none
 

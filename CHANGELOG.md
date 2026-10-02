@@ -4,6 +4,35 @@
 
 ### Changed
 
+* **Breaking: one module per library, with no `hipfort_` prefix.** The flat
+  `lib/hipfort/` directory is replaced by one directory per library, grouped by
+  the upstream repository the bindings will be co-located with
+  (`lib/rocm-systems/`, `lib/rocm-libraries/`), and each library ships a single
+  self-contained module named after itself. The enums, derived types, opaque
+  handles and the `<lib>Check` helper are folded into it, so thirteen modules
+  replace thirty-three files.
+
+  Every `use` statement changes. `hipfort_rocblas` and its `_enums` companion
+  become `rocblas`; the HIP runtime modules (`hipfort`, `hipfort_check`,
+  `hipfort_enums`, `hipfort_types`, `hipfort_auxiliary`, `hipfort_hipmalloc`,
+  `hipfort_hipmemcpy`, `hipfort_hiphostregister`) all become `hip`:
+
+  ```fortran
+  ! before                 ! after
+  use hipfort              use hip
+  use hipfort_check        use rocblas
+  use hipfort_rocblas
+  ```
+
+  The `<lib>Check` helpers travel with their library: `rocblasCheck` now comes
+  from `rocblas`, and only `hipCheck` is in `hip`. The exported CMake targets
+  are unchanged, so `find_package(hipfort REQUIRED COMPONENTS ...)` and the
+  matching `hipfort::*` link lines still work as they are.
+* **Breaking: the CUDA (nvptx) backend is dropped.** These bindings are
+  generated for ROCm only and carry no `USE_CUDA_NAMES` branch, so an nvptx
+  build would compile cleanly while binding `hip*`/`roc*` symbols.
+  `HIPFORT_BUILD_NVPTX` now defaults to `OFF` and raises a fatal error if
+  enabled, rather than producing a silently wrong archive.
 * **Breaking.** The array overloads of `hipMalloc`, `hipMallocManaged`,
   `hipHostMalloc`, `hipFree`, `hipHostFree`, the `hipMemcpy` families and the
   `hipHostRegister` family are now part of the Fortran 2008 array overloads, like

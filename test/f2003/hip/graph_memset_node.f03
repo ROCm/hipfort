@@ -35,9 +35,7 @@
 !
 program graph_memset_node
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_types
+  use hip
 
   implicit none
 

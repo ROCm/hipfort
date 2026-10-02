@@ -32,9 +32,8 @@ program hipblas_zgemv_trans_test
   ! between the strided ones must come back untouched.
 
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipblas
+  use hip
+  use hipblas
 
   implicit none
 
