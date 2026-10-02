@@ -39,9 +39,8 @@
 !
 program dpotrfbatched
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
   implicit none
   integer :: b
   integer(c_int), parameter :: N = 3, lda = 3, batch = 2
@@ -56,7 +55,7 @@ program dpotrfbatched
   type(c_ptr) :: dA1, dA2, dPtrArray, dWork, dInfo
   type(c_ptr) :: handle
   integer(c_int), pointer :: dInfo_p(:)
-  integer(c_int) :: lwork
+  integer(c_int), target :: lwork
   integer(c_size_t) :: ptrbytes
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_dpotrfbatched' (Fortran 2003 interfaces) - "
 

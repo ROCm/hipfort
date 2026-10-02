@@ -43,9 +43,8 @@
 !
 program hipsparse_dcsrilu02
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsparse
+  use hip
+  use hipsparse
   implicit none
   integer :: i
   integer(c_int), parameter :: m = 3, nnz = 7
@@ -58,7 +57,7 @@ program hipsparse_dcsrilu02
   type(c_ptr) :: descrA = c_null_ptr
   type(c_ptr) :: info = c_null_ptr
   type(c_ptr) :: dRowPtr, dColInd, dVal, dBuf
-  integer(c_int) :: bufSize, pivot
+  integer(c_int), target :: bufSize, pivot
   write(*,"(a)",advance="no") "-- Running test 'hipsparse_dcsrilu02' (Fortran 2003 interfaces) - "
 
   ! Hand-computed LU (no fill-in for tridiagonal): stored in CSR order matching

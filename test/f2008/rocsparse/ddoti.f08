@@ -26,9 +26,8 @@
 program rocsparse_ddoti_test
 
     use iso_c_binding
-    use hipfort
-    use hipfort_check
-    use hipfort_rocsparse
+    use hip
+    use rocsparse
 
     implicit none
 
@@ -73,10 +72,10 @@ program rocsparse_ddoti_test
 !   Call ddoti
     call rocsparseCheck(rocsparse_ddoti(handle, &
                                         nnz, &
-                                        d_xval(1), &
-                                        d_xind(1), &
-                                        d_y(1), &
-                                        d_dot, &
+                                        c_loc(d_xval(1)), &
+                                        c_loc(d_xind(1)), &
+                                        c_loc(d_y(1)), &
+                                        c_loc(d_dot), &
                                         rocsparse_index_base_zero))
 
 !   Copy result back to host

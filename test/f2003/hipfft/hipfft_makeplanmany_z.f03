@@ -25,9 +25,8 @@
 
 program hipfft_makeplanmany_z
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipfft
+  use hip
+  use hipfft
 
   implicit none
 
@@ -53,7 +52,7 @@ program hipfft_makeplanmany_z
   type(c_ptr) :: plan    = c_null_ptr
   type(c_ptr) :: workBuf = c_null_ptr
 
-  integer(c_size_t)        :: workSize, workSize2
+  integer(c_size_t), target :: workSize, workSize2
   double precision         :: max_error, error
   complex(c_double_complex) :: expected
   integer :: b, j, pos, kb

@@ -33,16 +33,12 @@
 !
 program device_properties
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
-  use hipfort_types
-  use hipfort_auxiliary
+  use hip
 
   implicit none
 
   type(hipDeviceProp_t) :: prop
-  integer(c_int)        :: warp_attr, nmp_attr
+  integer(c_int), target :: warp_attr, nmp_attr
   integer(c_int)        :: namelen, i
   character(len=256)    :: devname
   type(c_ptr)           :: dptr

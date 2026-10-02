@@ -43,9 +43,8 @@
 !
 program zcsrilu0
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
   implicit none
   integer :: i
   integer(c_int), parameter :: m = 3, nnz = 7
@@ -59,7 +58,7 @@ program zcsrilu0
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr, info = c_null_ptr
   type(c_ptr) :: dRowPtr, dColInd, dVal, dBuf
-  integer(c_size_t) :: bufSize
+  integer(c_size_t), target :: bufSize
   write(*,"(a)",advance="no") "-- Running test 'rocsparse_zcsrilu0' (Fortran 2003 interfaces) - "
 
   hExp(1) = (4.0d0,0.0d0)

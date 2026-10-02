@@ -39,10 +39,8 @@
 !
 program cgesvdj
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
-  use hipfort_hipsolver_enums
+  use hip
+  use hipsolver
 
   implicit none
   integer :: i, j ! indices for iterating over results
@@ -72,7 +70,7 @@ program cgesvdj
   type(c_ptr) :: params = c_null_ptr
   type(c_ptr) :: dA, dS, dU, dV, dInfo, dWork
   integer(c_int), pointer :: dInfo_p(:)
-  integer(c_int) :: lwork
+  integer(c_int), target :: lwork
 
   real(c_float) :: error
   real(c_float), parameter :: error_max = 1.0e-4

@@ -48,8 +48,8 @@
 !!!!!!!!!!!!!!
 program rocsolver_version
   use iso_c_binding
-  use hipfort_check
-  use hipfort_rocsolver
+  use hip
+  use rocsolver
 
   implicit none
 

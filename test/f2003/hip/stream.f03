@@ -33,13 +33,12 @@
 !
 program test_stream
   use iso_c_binding
-  use hipfort
-  use hipfort_check
+  use hip
 
   implicit none
 
   type(c_ptr)    :: stream = c_null_ptr
-  integer(c_int) :: dev, sdev
+  integer(c_int), target :: dev, sdev
 
   write(*,"(a)",advance="no") "-- Running test 'hip stream' (Fortran 2003 interfaces) - "
 

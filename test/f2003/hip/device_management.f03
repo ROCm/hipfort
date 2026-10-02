@@ -34,14 +34,12 @@
 !
 program device_management
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
+  use hip
 
   implicit none
 
-  integer(c_int)    :: ndev, dev, warp, nmp
-  integer(c_size_t) :: totmem, freemem, total2, stacklimit
+  integer(c_int), target :: ndev, dev, warp, nmp
+  integer(c_size_t), target :: totmem, freemem, total2, stacklimit
 
   write(*,"(a)",advance="no") "-- Running test 'hip device_management' (Fortran 2003 interfaces) - "
 

@@ -33,9 +33,8 @@
 !
 program csr2coo
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
 
   implicit none
   integer :: i
@@ -63,8 +62,8 @@ program csr2coo
   call rocsparseCheck(rocsparse_create_handle(handle))
 
   ! Convert CSR row pointers to COO row indices
-  call rocsparseCheck(rocsparse_csr2coo(handle, d_csr_row_ptr(1), nnz, M, &
-                                        d_coo_row_ind(1), rocsparse_index_base_zero))
+  call rocsparseCheck(rocsparse_csr2coo(handle, c_loc(d_csr_row_ptr(1)), nnz, M, &
+                                        c_loc(d_coo_row_ind(1)), rocsparse_index_base_zero))
 
   ! Copy the result back to host
   call hipCheck(hipMemcpy(h_coo_row_ind, d_coo_row_ind, hipMemcpyDeviceToHost))

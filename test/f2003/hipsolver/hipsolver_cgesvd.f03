@@ -33,16 +33,15 @@
 !
 program hipsolver_cgesvd
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
   implicit none
   integer(c_int), parameter :: M = 2, N = 2, lda = 2, ldu = 2, ldv = 2
   integer(c_int), parameter :: mn = 2
   complex(c_float_complex), target :: hA(M,N) = reshape((/ (1.,0.),(3.,0.),(2.,0.),(4.,0.) /), (/M,N/))
   real(c_float), target :: hS(mn)
   type(c_ptr) :: dA, dS, dU, dV, dWork, dRwork, dInfo, handle = c_null_ptr
-  integer(c_int) :: lwork
+  integer(c_int), target :: lwork
   integer(c_size_t) :: szA = M*N, szS = mn, szU = M*M, szV = N*N, szR = mn
   real(c_float) :: frob, ssum, error
   real(c_float), parameter :: rtol = 1.0e-5

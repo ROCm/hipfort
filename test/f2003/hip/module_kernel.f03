@@ -35,10 +35,7 @@
 !
 program module_kernel
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
-  use hipfort_types
+  use hip
 
   implicit none
 
@@ -59,7 +56,7 @@ program module_kernel
   type(hipKernelNodeParams) :: kparams
   integer(c_size_t) :: nbytes
   integer(c_int), target :: maxthreads
-  integer(c_int) :: gridsize, blocksize, numblocks
+  integer(c_int), target :: gridsize, blocksize, numblocks
 
   write(*,"(a)",advance="no") "-- Running test 'hip module_kernel' (Fortran 2003 interfaces) - "
 

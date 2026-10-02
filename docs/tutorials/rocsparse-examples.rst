@@ -8,7 +8,7 @@ rocSPARSE examples
 
 `rocSPARSE <https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/>`_ is the AMD
 implementation of sparse linear algebra for AMD GPUs. hipFORT exposes it through
-the ``hipfort_rocsparse`` module, which mirrors the rocSPARSE C API one to one.
+the ``rocsparse`` module, which mirrors the rocSPARSE C API one to one.
 Each program creates a library context with ``rocsparse_create_handle`` and
 releases it with ``rocsparse_destroy_handle``.
 
@@ -51,8 +51,8 @@ rocSPARSE follows a small number of conventions that recur in every program:
   in the generic API, and as host scalars by reference in the older
   level-2/level-3 routines such as ``bsrmv`` and ``gemvi``.
 * **Every call returns a status code.** The programs wrap rocSPARSE calls in
-  ``rocsparseCheck`` and HIP calls in ``hipCheck`` from the ``hipfort_check``
-  module, both of which abort on failure.
+  ``rocsparseCheck`` from the ``rocsparse`` module and HIP calls in ``hipCheck``
+  from the ``hip`` module, both of which abort on failure.
 
 Building and running
 ====================
@@ -61,10 +61,11 @@ The programs only need the ``rocsparse`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip rocsparse)
+   find_package(hip-fortran REQUIRED)
+   find_package(rocsparse-fortran REQUIRED)
 
    add_executable(my_sparse rocsparse_dspmv.f08)
-   target_link_libraries(my_sparse PRIVATE hipfort::rocsparse hipfort::hip)
+   target_link_libraries(my_sparse PRIVATE roc::rocsparse_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

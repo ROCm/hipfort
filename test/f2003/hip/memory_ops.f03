@@ -33,10 +33,7 @@
 !
 program memory_ops
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
-  use hipfort_hipmemcpy
+  use hip
 
   implicit none
 
@@ -51,8 +48,8 @@ program memory_ops
   type(c_ptr) :: dptr_c = c_null_ptr  ! pitched dst (async test)
   type(c_ptr) :: stream = c_null_ptr
 
-  integer(c_size_t) :: pitch_a, pitch_c
-  integer(c_size_t) :: free_mem, total_mem
+  integer(c_size_t), target :: pitch_a, pitch_c
+  integer(c_size_t), target :: free_mem, total_mem
 
   integer(c_int8_t), target :: hbuf8(COL_BYTES * NROWS)
   integer(c_int),    target :: hbuf_i(NCOLS * NROWS)
