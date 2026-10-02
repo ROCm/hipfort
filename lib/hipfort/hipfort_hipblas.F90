@@ -167,7 +167,7 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetPointerMode_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: mode
+      integer(kind(HIPBLAS_POINTER_MODE_HOST)) :: mode
     end function
   end interface
 
@@ -199,7 +199,7 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetMathMode_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: mode
+      integer(kind(HIPBLAS_DEFAULT_MATH)) :: mode
     end function
   end interface
 
@@ -250,7 +250,7 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetAtomicsMode_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: atomics_mode
+      integer(kind(HIPBLAS_ATOMICS_NOT_ALLOWED)) :: atomics_mode
     end function
   end interface
 

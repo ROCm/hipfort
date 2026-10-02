@@ -78,7 +78,7 @@ program test_rocblas
     if (never) v1 = rocblas_set_start_stop_events_(v0, v0, v0)
     if (never) v1 = rocblas_set_solution_fitness_query_(v0, v0)
     if (never) v1 = rocblas_set_performance_metric_(v0, v6)
-    if (never) v1 = rocblas_get_performance_metric_(v0, v0)
+    if (never) v1 = rocblas_get_performance_metric_(v0, v6)
     if (never) v1 = rocblas_sscal_(v0, v7, v0, v0, v7)
     if (never) v1 = rocblas_dscal_(v0, v7, v0, v0, v7)
     if (never) v1 = rocblas_cscal_(v0, v7, v0, v0, v7)

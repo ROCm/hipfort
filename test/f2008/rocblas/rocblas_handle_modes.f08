@@ -24,10 +24,10 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ! Exercises the rocBLAS handle mode getters and setters:
-!   rocblas_{set,get}_pointer_mode, rocblas_{set,get}_atomics_mode and
-!   rocblas_{set,get}_math_mode.
+!   rocblas_{set,get}_pointer_mode, rocblas_{set,get}_atomics_mode,
+!   rocblas_{set,get}_math_mode and rocblas_{set,get}_performance_metric.
 !
-! The three set_* routines take their mode by value, while the three get_*
+! The four set_* routines take their mode by value, while the four get_*
 ! routines take a *bare* (non-value) enum scalar that rocBLAS fills in, so the
 ! variable is passed directly and never wrapped in c_loc.
 !
@@ -52,6 +52,7 @@ program rocblas_handle_modes_test
     integer(kind(rocblas_pointer_mode_host))  :: pmode
     integer(kind(rocblas_atomics_not_allowed)) :: amode
     integer(kind(rocblas_default_math))       :: mmode
+    integer(kind(rocblas_default_performance_metric)) :: pmetric
 
     write(*,"(a)",advance="no") "-- Running test 'rocblas_handle_modes' (Fortran 2008 interfaces) - "
 
@@ -140,8 +141,48 @@ program rocblas_handle_modes_test
        STOP 1
     end if
 
+    !---------------------------------------------------------------------
+    ! Performance metric: the default is rocblas_default_performance_metric,
+    ! and unlike the math mode every member of the enum is honoured on every
+    ! architecture (it only steers Tensile solution selection), so this one is
+    ! asserted as an exact round-trip in both directions.
+    !---------------------------------------------------------------------
+    pmetric = -1
+    call rocblasCheck(rocblas_get_performance_metric(handle, pmetric))
+    if (pmetric /= rocblas_default_performance_metric) then
+       write(*,*) "FAILED! fresh handle performance metric is not rocblas_default_performance_metric"
+       STOP 1
+    end if
+
+    call rocblasCheck(rocblas_set_performance_metric(handle, rocblas_device_efficiency_performance_metric))
+    pmetric = -1
+    call rocblasCheck(rocblas_get_performance_metric(handle, pmetric))
+    if (pmetric /= rocblas_device_efficiency_performance_metric) then
+       write(*,*) "FAILED! rocblas_get_performance_metric did not return &
+                  &rocblas_device_efficiency_performance_metric"
+       STOP 1
+    end if
+
+    call rocblasCheck(rocblas_set_performance_metric(handle, rocblas_cu_efficiency_performance_metric))
+    pmetric = -1
+    call rocblasCheck(rocblas_get_performance_metric(handle, pmetric))
+    if (pmetric /= rocblas_cu_efficiency_performance_metric) then
+       write(*,*) "FAILED! rocblas_get_performance_metric did not return &
+                  &rocblas_cu_efficiency_performance_metric"
+       STOP 1
+    end if
+
+    call rocblasCheck(rocblas_set_performance_metric(handle, rocblas_default_performance_metric))
+    pmetric = -1
+    call rocblasCheck(rocblas_get_performance_metric(handle, pmetric))
+    if (pmetric /= rocblas_default_performance_metric) then
+       write(*,*) "FAILED! rocblas_get_performance_metric did not restore &
+                  &rocblas_default_performance_metric"
+       STOP 1
+    end if
+
     call rocblasCheck(rocblas_destroy_handle(handle))
 
-    write(*,*) "PASSED! pointer/atomics/math: ", pmode, amode, mmode
+    write(*,*) "PASSED! pointer/atomics/math/metric: ", pmode, amode, mmode, pmetric
 
 end program rocblas_handle_modes_test

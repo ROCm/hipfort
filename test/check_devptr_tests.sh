@@ -87,9 +87,14 @@ for f in "${FILES[@]}"; do
   [ -z "$stray" ] || note "$rel: host scalar still passed at: ${stray//$'\n'/ ; }"
 
   # 5. the verification still reads the host scalar, so a device/host mismatch
-  #    shows up as a wrong result instead of being asserted away
-  grep -vE "hipMemcpy\(d_|type\(c_ptr\)|^\s*!" "$f" | grep -qE "\balpha\b" \
-    || note "$rel: host alpha is no longer used in the verification"
+  #    shows up as a wrong result instead of being asserted away.
+  #    `grep -c` not `grep -q`: under pipefail a quiet grep exits on its first
+  #    match and kills the upstream grep with SIGPIPE, whose 141 then becomes
+  #    the pipeline status -- a false "no longer used" that only shows up when
+  #    the machine is loaded enough for the upstream grep to still be writing.
+  if [ "$(grep -vE "hipMemcpy\(d_|type\(c_ptr\)|^\s*!" "$f" | grep -cE "\balpha\b")" = 0 ]; then
+    note "$rel: host alpha is no longer used in the verification"
+  fi
 
   # 6. it is a variant of a real host test, not an orphan
   host="${f/_devptr.f03/.f03}"

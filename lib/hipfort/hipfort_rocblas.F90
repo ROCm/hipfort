@@ -432,7 +432,7 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_performance_metric_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: metric
+      integer(kind(rocblas_default_performance_metric)) :: metric
     end function
   end interface
 

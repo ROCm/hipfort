@@ -23,20 +23,26 @@
 !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-! Exercises the two state getters of a hipBLAS handle, which happen to use the
-! two different argument conventions:
+! Exercises the three state getters of a hipBLAS handle. All take their output
+! argument by reference -- hipblasGetAtomicsMode and hipblasGetMathMode an enum
+! ('integer(kind(HIPBLAS_ATOMICS_NOT_ALLOWED)) :: atomics_mode' and
+! 'integer(kind(HIPBLAS_DEFAULT_MATH)) :: mode'), hipblasGetStream a bare
+! 'type(c_ptr) :: streamId' -- so in every case the variable itself is passed
+! and the library writes into it.
 !
-!   * hipblasGetAtomicsMode takes 'type(c_ptr),value :: atomics_mode', so the
-!     enum variable has to be wrapped in c_loc.
-!   * hipblasGetStream takes a BARE 'type(c_ptr) :: streamId', so the variable
-!     itself is passed and the library writes into it.
-!
-! The test passes only if both getters actually report back what the matching
+! The test passes only if the getters actually report back what the matching
 ! setter installed: the atomics mode is driven in both directions (ALLOWED and
 ! NOT_ALLOWED) so a setter that silently ignores its argument cannot pass, and
 ! the stream is first set to a freshly created stream (the getter must hand
 ! back the very same object) and then reset to the null/default stream with a
 ! pre-poisoned output variable (so the getter must overwrite it, not leave it).
+!
+! The math mode is checked more loosely on purpose. HIPBLAS_XF32_XDL_MATH is
+! accepted on every architecture but only honoured on hardware with XF32 XDL
+! support, so the handle may legitimately stay on HIPBLAS_DEFAULT_MATH; a hard
+! round-trip would be a false failure elsewhere. What is asserted is that the
+! getter overwrote the -1 sentinel with a member of the enum, and that setting
+! HIPBLAS_DEFAULT_MATH back does round-trip exactly.
 program hipblas_handle_state
   use iso_c_binding
   use hipfort
@@ -49,7 +55,8 @@ program hipblas_handle_state
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: stream = c_null_ptr
   type(c_ptr) :: got = c_null_ptr
-  integer(kind(HIPBLAS_ATOMICS_NOT_ALLOWED)), target :: amode
+  integer(kind(HIPBLAS_ATOMICS_NOT_ALLOWED)) :: amode
+  integer(kind(HIPBLAS_DEFAULT_MATH)) :: mmode
 
   write(*,"(a)",advance="no") "-- Running test 'hipblas_handle_state' (Fortran 2008 interfaces) - "
 
@@ -57,7 +64,7 @@ program hipblas_handle_state
 
   ! 1. The default atomics mode must be one of the two legal enum values.
   amode = -1
-  call hipblasCheck(hipblasGetAtomicsMode(handle, c_loc(amode)))
+  call hipblasCheck(hipblasGetAtomicsMode(handle, amode))
   if (amode /= HIPBLAS_ATOMICS_NOT_ALLOWED .and. amode /= HIPBLAS_ATOMICS_ALLOWED) then
      write(*,*) "FAILED! hipblasGetAtomicsMode did not return a legal mode, got ", amode
      STOP 1
@@ -66,7 +73,7 @@ program hipblas_handle_state
   ! 2. Switch atomics on and check that the getter observes the change.
   call hipblasCheck(hipblasSetAtomicsMode(handle, HIPBLAS_ATOMICS_ALLOWED))
   amode = -1
-  call hipblasCheck(hipblasGetAtomicsMode(handle, c_loc(amode)))
+  call hipblasCheck(hipblasGetAtomicsMode(handle, amode))
   if (amode /= HIPBLAS_ATOMICS_ALLOWED) then
      write(*,*) "FAILED! expected HIPBLAS_ATOMICS_ALLOWED, got ", amode
      STOP 1
@@ -75,7 +82,7 @@ program hipblas_handle_state
   ! 3. Switch atomics back off, so an ignored setter cannot sneak through.
   call hipblasCheck(hipblasSetAtomicsMode(handle, HIPBLAS_ATOMICS_NOT_ALLOWED))
   amode = -1
-  call hipblasCheck(hipblasGetAtomicsMode(handle, c_loc(amode)))
+  call hipblasCheck(hipblasGetAtomicsMode(handle, amode))
   if (amode /= HIPBLAS_ATOMICS_NOT_ALLOWED) then
      write(*,*) "FAILED! expected HIPBLAS_ATOMICS_NOT_ALLOWED, got ", amode
      STOP 1
@@ -107,7 +114,37 @@ program hipblas_handle_state
      STOP 1
   end if
 
-  ! 7. Unbind before destroying, so no dead stream is left on the handle.
+  ! 7. Math mode: the default must be reported exactly, a non-default request
+  !    must at least leave a legal enum member behind, and restoring the
+  !    default must round-trip.
+  mmode = -1
+  call hipblasCheck(hipblasGetMathMode(handle, mmode))
+  if (mmode /= HIPBLAS_DEFAULT_MATH) then
+     write(*,*) "FAILED! fresh handle math mode is ", mmode, &
+                " instead of HIPBLAS_DEFAULT_MATH"
+     STOP 1
+  end if
+
+  call hipblasCheck(hipblasSetMathMode(handle, HIPBLAS_XF32_XDL_MATH))
+  mmode = -1
+  call hipblasCheck(hipblasGetMathMode(handle, mmode))
+  if (mmode /= HIPBLAS_DEFAULT_MATH .and. mmode /= HIPBLAS_XF32_XDL_MATH .and. &
+      mmode /= HIPBLAS_PEDANTIC_MATH .and. mmode /= HIPBLAS_TF32_TENSOR_OP_MATH .and. &
+      mmode /= HIPBLAS_TENSOR_OP_MATH) then
+     write(*,*) "FAILED! hipblasGetMathMode returned ", mmode, &
+                " which is not a member of hipblasMath_t"
+     STOP 1
+  end if
+
+  call hipblasCheck(hipblasSetMathMode(handle, HIPBLAS_DEFAULT_MATH))
+  mmode = -1
+  call hipblasCheck(hipblasGetMathMode(handle, mmode))
+  if (mmode /= HIPBLAS_DEFAULT_MATH) then
+     write(*,*) "FAILED! hipblasGetMathMode did not restore HIPBLAS_DEFAULT_MATH, got ", mmode
+     STOP 1
+  end if
+
+  ! 8. Unbind before destroying, so no dead stream is left on the handle.
   call hipCheck(hipStreamDestroy(stream))
   call hipblasCheck(hipblasDestroy(handle))
 

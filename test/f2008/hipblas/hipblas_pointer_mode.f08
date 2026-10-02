@@ -55,7 +55,7 @@ program hipblas_pointer_mode
   real(c_float), target :: res_host
   real(c_float) :: hres(1)
   real(c_float), pointer :: dx(:) => null(), dy(:) => null(), dres(:) => null()
-  integer(kind(HIPBLAS_POINTER_MODE_HOST)), target :: mode
+  integer(kind(HIPBLAS_POINTER_MODE_HOST)) :: mode
   type(c_ptr) :: handle = c_null_ptr
   integer :: i
 
@@ -77,9 +77,10 @@ program hipblas_pointer_mode
   call hipCheck(hipMemcpy(dy, hy, hipMemcpyHostToDevice))
 
   ! 1. A new handle defaults to host pointer mode. The 'mode' dummy argument is
-  !    'type(c_ptr),value', so the address of the variable must be passed.
+  !    the enum itself, passed by reference, so the variable is handed over
+  !    directly and hipBLAS writes the mode into it.
   mode = -1
-  call hipblasCheck(hipblasGetPointerMode(handle, c_loc(mode)))
+  call hipblasCheck(hipblasGetPointerMode(handle, mode))
   if (mode /= HIPBLAS_POINTER_MODE_HOST) then
      write(*,*) "FAILED! fresh handle reported pointer mode ", mode, &
                 " instead of HIPBLAS_POINTER_MODE_HOST"
@@ -98,7 +99,7 @@ program hipblas_pointer_mode
   ! 3. Flip to device pointer mode and make sure the getter agrees.
   call hipblasCheck(hipblasSetPointerMode(handle, HIPBLAS_POINTER_MODE_DEVICE))
   mode = -1
-  call hipblasCheck(hipblasGetPointerMode(handle, c_loc(mode)))
+  call hipblasCheck(hipblasGetPointerMode(handle, mode))
   if (mode /= HIPBLAS_POINTER_MODE_DEVICE) then
      write(*,*) "FAILED! after hipblasSetPointerMode(DEVICE) the getter reported ", mode
      STOP 1
@@ -121,7 +122,7 @@ program hipblas_pointer_mode
   ! 5. Close the round-trip by restoring the host pointer mode.
   call hipblasCheck(hipblasSetPointerMode(handle, HIPBLAS_POINTER_MODE_HOST))
   mode = -1
-  call hipblasCheck(hipblasGetPointerMode(handle, c_loc(mode)))
+  call hipblasCheck(hipblasGetPointerMode(handle, mode))
   if (mode /= HIPBLAS_POINTER_MODE_HOST) then
      write(*,*) "FAILED! after restoring HIPBLAS_POINTER_MODE_HOST the getter reported ", mode
      STOP 1
