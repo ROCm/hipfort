@@ -347,7 +347,7 @@ module hipfort_rocsparse
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_get_pointer_mode_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: pointer_mode
+      integer(kind(rocsparse_pointer_mode_host)) :: pointer_mode
     end function
   end interface
 
@@ -379,7 +379,7 @@ module hipfort_rocsparse
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_get_version_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: version
+      integer(c_int) :: version
     end function
   end interface
 
@@ -1021,9 +1021,9 @@ module hipfort_rocsparse
       integer(c_int64_t) :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
-      type(c_ptr),value :: idx_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: idx_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -1040,9 +1040,9 @@ module hipfort_rocsparse
       integer(c_int64_t) :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
-      type(c_ptr),value :: idx_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: idx_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -1063,7 +1063,7 @@ module hipfort_rocsparse
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_spvec_get_index_base_
       type(c_ptr),value :: descr
-      type(c_ptr),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
     end function
   end interface
 
@@ -2708,9 +2708,9 @@ module hipfort_rocsparse
       type(c_ptr) :: coo_row_ind
       type(c_ptr) :: coo_col_ind
       type(c_ptr) :: coo_val
-      type(c_ptr),value :: idx_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: idx_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -2729,9 +2729,9 @@ module hipfort_rocsparse
       type(c_ptr) :: coo_row_ind
       type(c_ptr) :: coo_col_ind
       type(c_ptr) :: coo_val
-      type(c_ptr),value :: idx_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: idx_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -2771,9 +2771,9 @@ module hipfort_rocsparse
       integer(c_int64_t) :: nnz
       type(c_ptr) :: coo_ind
       type(c_ptr) :: coo_val
-      type(c_ptr),value :: idx_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: idx_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -2791,9 +2791,9 @@ module hipfort_rocsparse
       integer(c_int64_t) :: nnz
       type(c_ptr) :: coo_ind
       type(c_ptr) :: coo_val
-      type(c_ptr),value :: idx_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: idx_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -2838,10 +2838,10 @@ module hipfort_rocsparse
       type(c_ptr) :: csr_row_ptr
       type(c_ptr) :: csr_col_ind
       type(c_ptr) :: csr_val
-      type(c_ptr),value :: row_ptr_type
-      type(c_ptr),value :: col_ind_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: row_ptr_type
+      integer(kind(rocsparse_indextype_i32)) :: col_ind_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -2860,10 +2860,10 @@ module hipfort_rocsparse
       type(c_ptr) :: csr_row_ptr
       type(c_ptr) :: csr_col_ind
       type(c_ptr) :: csr_val
-      type(c_ptr),value :: row_ptr_type
-      type(c_ptr),value :: col_ind_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: row_ptr_type
+      integer(kind(rocsparse_indextype_i32)) :: col_ind_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -2907,10 +2907,10 @@ module hipfort_rocsparse
       type(c_ptr) :: csc_col_ptr
       type(c_ptr) :: csc_row_ind
       type(c_ptr) :: csc_val
-      type(c_ptr),value :: col_ptr_type
-      type(c_ptr),value :: row_ind_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: col_ptr_type
+      integer(kind(rocsparse_indextype_i32)) :: row_ind_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -2929,10 +2929,10 @@ module hipfort_rocsparse
       type(c_ptr) :: csc_col_ptr
       type(c_ptr) :: csc_row_ind
       type(c_ptr) :: csc_val
-      type(c_ptr),value :: col_ptr_type
-      type(c_ptr),value :: row_ind_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: col_ptr_type
+      integer(kind(rocsparse_indextype_i32)) :: row_ind_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -2973,9 +2973,9 @@ module hipfort_rocsparse
       type(c_ptr) :: ell_col_ind
       type(c_ptr) :: ell_val
       type(c_ptr),value :: ell_width
-      type(c_ptr),value :: idx_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: idx_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -2993,9 +2993,9 @@ module hipfort_rocsparse
       type(c_ptr) :: ell_col_ind
       type(c_ptr) :: ell_val
       type(c_ptr),value :: ell_width
-      type(c_ptr),value :: idx_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: idx_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -3037,14 +3037,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: descr
       integer(c_int64_t) :: rows
       integer(c_int64_t) :: cols
-      type(c_ptr),value :: ell_block_dir
+      integer(kind(rocsparse_direction_row)) :: ell_block_dir
       type(c_ptr),value :: ell_block_dim
       type(c_ptr),value :: ell_cols
       type(c_ptr) :: ell_col_ind
       type(c_ptr) :: ell_val
-      type(c_ptr),value :: idx_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: idx_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -3059,14 +3059,14 @@ module hipfort_rocsparse
       type(c_ptr),value :: descr
       integer(c_int64_t) :: rows
       integer(c_int64_t) :: cols
-      type(c_ptr),value :: ell_block_dir
+      integer(kind(rocsparse_direction_row)) :: ell_block_dir
       type(c_ptr),value :: ell_block_dim
       type(c_ptr),value :: ell_cols
       type(c_ptr) :: ell_col_ind
       type(c_ptr) :: ell_val
-      type(c_ptr),value :: idx_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: idx_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -3119,10 +3119,10 @@ module hipfort_rocsparse
       type(c_ptr) :: sell_slice_offsets
       type(c_ptr) :: sell_col_ind
       type(c_ptr) :: sell_val
-      type(c_ptr),value :: sell_slice_offsets_type
-      type(c_ptr),value :: sell_col_ind_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: sell_slice_offsets_type
+      integer(kind(rocsparse_indextype_i32)) :: sell_col_ind_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -3144,10 +3144,10 @@ module hipfort_rocsparse
       type(c_ptr) :: sell_slice_offsets
       type(c_ptr) :: sell_col_ind
       type(c_ptr) :: sell_val
-      type(c_ptr),value :: sell_slice_offsets_type
-      type(c_ptr),value :: sell_col_ind_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: sell_slice_offsets_type
+      integer(kind(rocsparse_indextype_i32)) :: sell_col_ind_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -3191,15 +3191,15 @@ module hipfort_rocsparse
       type(c_ptr),value :: brows
       type(c_ptr),value :: bcols
       type(c_ptr),value :: bnnz
-      type(c_ptr),value :: block_dir
+      integer(kind(rocsparse_direction_row)) :: block_dir
       type(c_ptr),value :: block_dim
       type(c_ptr) :: bsr_row_ptr
       type(c_ptr) :: bsr_col_ind
       type(c_ptr) :: bsr_val
-      type(c_ptr),value :: row_ptr_type
-      type(c_ptr),value :: col_ind_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: row_ptr_type
+      integer(kind(rocsparse_indextype_i32)) :: col_ind_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -3215,15 +3215,15 @@ module hipfort_rocsparse
       type(c_ptr),value :: brows
       type(c_ptr),value :: bcols
       type(c_ptr),value :: bnnz
-      type(c_ptr),value :: block_dir
+      integer(kind(rocsparse_direction_row)) :: block_dir
       type(c_ptr),value :: block_dim
       type(c_ptr) :: bsr_row_ptr
       type(c_ptr) :: bsr_col_ind
       type(c_ptr) :: bsr_val
-      type(c_ptr),value :: row_ptr_type
-      type(c_ptr),value :: col_ind_type
-      type(c_ptr),value :: idx_base
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_indextype_i32)) :: row_ptr_type
+      integer(kind(rocsparse_indextype_i32)) :: col_ind_type
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -3448,7 +3448,7 @@ module hipfort_rocsparse
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_spmat_get_format_
       type(c_ptr),value :: descr
-      type(c_ptr),value :: myFormat
+      integer(kind(rocsparse_format_coo)) :: myFormat
     end function
   end interface
 
@@ -3469,7 +3469,7 @@ module hipfort_rocsparse
       implicit none
       integer(kind(rocsparse_status_success)) :: rocsparse_spmat_get_index_base_
       type(c_ptr),value :: descr
-      type(c_ptr),value :: idx_base
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
     end function
   end interface
 
@@ -3894,7 +3894,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: descr
       type(c_ptr),value :: mySize
       type(c_ptr) :: values
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -3908,7 +3908,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: descr
       type(c_ptr),value :: mySize
       type(c_ptr) :: values
-      type(c_ptr),value :: data_type
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
     end function
   end interface
 
@@ -4068,8 +4068,8 @@ module hipfort_rocsparse
       integer(c_int64_t) :: cols
       type(c_ptr),value :: ld
       type(c_ptr) :: values
-      type(c_ptr),value :: data_type
-      type(c_ptr),value :: order
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
+      integer(kind(rocsparse_order_row)) :: order
     end function
   end interface
 
@@ -4085,8 +4085,8 @@ module hipfort_rocsparse
       integer(c_int64_t) :: cols
       type(c_ptr),value :: ld
       type(c_ptr) :: values
-      type(c_ptr),value :: data_type
-      type(c_ptr),value :: order
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
+      integer(kind(rocsparse_order_row)) :: order
     end function
   end interface
 
@@ -8584,7 +8584,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: row_block_dim
       integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -8615,7 +8615,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: row_block_dim
       integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -8646,7 +8646,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: row_block_dim
       integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -8677,7 +8677,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: row_block_dim
       integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -14522,7 +14522,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_check_spmat_
       type(c_ptr),value :: handle
       type(c_ptr),value :: mat
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       integer(kind(rocsparse_check_spmat_stage_buffer_size)),value :: stage
       integer(c_size_t) :: buffer_size
       type(c_ptr),value :: temp_buffer
@@ -14697,7 +14697,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: source
       type(c_ptr),value :: target
       integer(kind(rocsparse_extract_stage_analysis)),value :: stage
-      type(c_ptr),value :: buffer_size_in_bytes
+      integer(c_size_t) :: buffer_size_in_bytes
     end function
   end interface
 
@@ -15557,7 +15557,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: source
       type(c_ptr),value :: target
       integer(kind(rocsparse_sparse_to_sparse_stage_analysis)),value :: stage
-      type(c_ptr),value :: buffer_size_in_bytes
+      integer(c_size_t) :: buffer_size_in_bytes
     end function
   end interface
 
@@ -16076,7 +16076,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: A
       type(c_ptr),value :: P
       integer(kind(rocsparse_spic0_stage_analysis)),value :: spic0_stage
-      type(c_ptr),value :: p_buffer_size_in_bytes
+      integer(c_size_t) :: p_buffer_size_in_bytes
       type(c_ptr) :: p_error
     end function
   end interface
@@ -16306,7 +16306,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: A
       type(c_ptr),value :: P
       integer(kind(rocsparse_spildlt0_stage_analysis)),value :: spildlt0_stage
-      type(c_ptr),value :: p_buffer_size_in_bytes
+      integer(c_size_t) :: p_buffer_size_in_bytes
       type(c_ptr) :: p_error
     end function
   end interface
@@ -16454,7 +16454,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: A
       type(c_ptr),value :: P
       integer(kind(rocsparse_spilu0_stage_analysis)),value :: spilu0_stage
-      type(c_ptr),value :: p_buffer_size_in_bytes
+      integer(c_size_t) :: p_buffer_size_in_bytes
       type(c_ptr) :: p_error
     end function
   end interface
@@ -17539,7 +17539,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: X
       type(c_ptr),value :: Y
       integer(kind(rocsparse_sptrsm_stage_analysis)),value :: sptrsm_stage
-      type(c_ptr),value :: buffer_size_in_bytes
+      integer(c_size_t) :: buffer_size_in_bytes
       type(c_ptr) :: p_error
     end function
   end interface
@@ -17724,7 +17724,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: x
       type(c_ptr),value :: y
       integer(kind(rocsparse_sptrsv_stage_analysis)),value :: sptrsv_stage
-      type(c_ptr),value :: buffer_size_in_bytes
+      integer(c_size_t) :: buffer_size_in_bytes
       type(c_ptr) :: p_error
     end function
   end interface
@@ -17992,7 +17992,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: x
       type(c_ptr),value :: y
       integer(kind(rocsparse_v2_spmv_stage_analysis)),value :: stage
-      type(c_ptr),value :: buffer_size_in_bytes
+      integer(c_size_t) :: buffer_size_in_bytes
       type(c_ptr) :: error
     end function
   end interface
@@ -28138,7 +28138,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_csric0_get_tolerance_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: tolerance
+      real(c_double) :: tolerance
     end function
   end interface
 
@@ -28925,7 +28925,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_status_success)) :: rocsparse_csrilu0_get_tolerance_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: tolerance
+      real(c_double) :: tolerance
     end function
   end interface
 
@@ -32572,7 +32572,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -32596,7 +32596,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -32620,7 +32620,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -32644,7 +32644,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -32907,7 +32907,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -32931,7 +32931,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -32955,7 +32955,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -32979,7 +32979,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -33241,7 +33241,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -33265,7 +33265,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -33289,7 +33289,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -33313,7 +33313,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -33503,7 +33503,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -33526,7 +33526,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -33549,7 +33549,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -33572,7 +33572,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -33800,7 +33800,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -33827,7 +33827,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -33854,7 +33854,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -33881,7 +33881,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -34181,7 +34181,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -34208,7 +34208,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -34235,7 +34235,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -34262,7 +34262,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -34363,7 +34363,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
       integer(kind(rocsparse_fill_mode_lower)),value :: uplo
       integer(kind(rocsparse_storage_mode_sorted)),value :: storage
-      type(c_ptr),value :: data_status
+      integer(kind(rocsparse_data_status_success)) :: data_status
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -40300,7 +40300,7 @@ module hipfort_rocsparse
       integer(c_int),target,contiguous,dimension(..) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
       !
       rocsparse_sgebsr2gebsc_buffer_size_assumed_rank = rocsparse_sgebsr2gebsc_buffer_size_( &
         handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim, &
@@ -40323,7 +40323,7 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
       !
       rocsparse_sgebsr2gebsc_buffer_size_rank_0 = rocsparse_sgebsr2gebsc_buffer_size_(handle,mb, &
         nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim, &
@@ -40345,7 +40345,7 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
       !
       rocsparse_sgebsr2gebsc_buffer_size_rank_1 = rocsparse_sgebsr2gebsc_buffer_size_(handle,mb, &
         nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim, &
@@ -40369,7 +40369,7 @@ module hipfort_rocsparse
       integer(c_int),target,contiguous,dimension(..) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
       !
       rocsparse_dgebsr2gebsc_buffer_size_assumed_rank = rocsparse_dgebsr2gebsc_buffer_size_( &
         handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim, &
@@ -40392,7 +40392,7 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
       !
       rocsparse_dgebsr2gebsc_buffer_size_rank_0 = rocsparse_dgebsr2gebsc_buffer_size_(handle,mb, &
         nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim, &
@@ -40414,7 +40414,7 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
       !
       rocsparse_dgebsr2gebsc_buffer_size_rank_1 = rocsparse_dgebsr2gebsc_buffer_size_(handle,mb, &
         nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim, &
@@ -40438,7 +40438,7 @@ module hipfort_rocsparse
       integer(c_int),target,contiguous,dimension(..) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
       !
       rocsparse_cgebsr2gebsc_buffer_size_assumed_rank = rocsparse_cgebsr2gebsc_buffer_size_( &
         handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim, &
@@ -40461,7 +40461,7 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
       !
       rocsparse_cgebsr2gebsc_buffer_size_rank_0 = rocsparse_cgebsr2gebsc_buffer_size_(handle,mb, &
         nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim, &
@@ -40483,7 +40483,7 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
       !
       rocsparse_cgebsr2gebsc_buffer_size_rank_1 = rocsparse_cgebsr2gebsc_buffer_size_(handle,mb, &
         nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim, &
@@ -40507,7 +40507,7 @@ module hipfort_rocsparse
       integer(c_int),target,contiguous,dimension(..) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
       !
       rocsparse_zgebsr2gebsc_buffer_size_assumed_rank = rocsparse_zgebsr2gebsc_buffer_size_( &
         handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim, &
@@ -40530,7 +40530,7 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
       !
       rocsparse_zgebsr2gebsc_buffer_size_rank_0 = rocsparse_zgebsr2gebsc_buffer_size_(handle,mb, &
         nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim, &
@@ -40552,7 +40552,7 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t) :: p_buffer_size
       !
       rocsparse_zgebsr2gebsc_buffer_size_rank_1 = rocsparse_zgebsr2gebsc_buffer_size_(handle,mb, &
         nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim, &

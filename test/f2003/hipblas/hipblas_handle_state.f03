@@ -1,0 +1,116 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Copyright (C) 2026 Advanced Micro Devices, Inc. All rights reserved.
+!
+! SPDX-License-Identifier: MIT
+!
+! Permission is hereby granted, free of charge, to any person obtaining a copy
+! of this software and associated documentation files (the "Software"), to deal
+! in the Software without restriction, including without limitation the rights
+! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+! copies of the Software, and to permit persons to whom the Software is
+! furnished to do so, subject to the following conditions:
+!
+! The above copyright notice and this permission notice shall be included in
+! all copies or substantial portions of the Software.
+!
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+! THE SOFTWARE.
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! Exercises the two state getters of a hipBLAS handle, which happen to use the
+! two different argument conventions:
+!
+!   * hipblasGetAtomicsMode takes 'type(c_ptr),value :: atomics_mode', so the
+!     enum variable has to be wrapped in c_loc.
+!   * hipblasGetStream takes a BARE 'type(c_ptr) :: streamId', so the variable
+!     itself is passed and the library writes into it.
+!
+! The test passes only if both getters actually report back what the matching
+! setter installed: the atomics mode is driven in both directions (ALLOWED and
+! NOT_ALLOWED) so a setter that silently ignores its argument cannot pass, and
+! the stream is first set to a freshly created stream (the getter must hand
+! back the very same object) and then reset to the null/default stream with a
+! pre-poisoned output variable (so the getter must overwrite it, not leave it).
+program hipblas_handle_state
+  use iso_c_binding
+  use hipfort
+  use hipfort_check
+  use hipfort_hipblas
+  use hipfort_hipblas_enums
+
+  implicit none
+
+  type(c_ptr) :: handle = c_null_ptr
+  type(c_ptr) :: stream = c_null_ptr
+  type(c_ptr) :: got = c_null_ptr
+  integer(kind(HIPBLAS_ATOMICS_NOT_ALLOWED)), target :: amode
+
+  write(*,"(a)",advance="no") "-- Running test 'hipblas_handle_state' (Fortran 2003 interfaces) - "
+
+  call hipblasCheck(hipblasCreate(handle))
+
+  ! 1. The default atomics mode must be one of the two legal enum values.
+  amode = -1
+  call hipblasCheck(hipblasGetAtomicsMode(handle, c_loc(amode)))
+  if (amode /= HIPBLAS_ATOMICS_NOT_ALLOWED .and. amode /= HIPBLAS_ATOMICS_ALLOWED) then
+     write(*,*) "FAILED! hipblasGetAtomicsMode did not return a legal mode, got ", amode
+     STOP 1
+  end if
+
+  ! 2. Switch atomics on and check that the getter observes the change.
+  call hipblasCheck(hipblasSetAtomicsMode(handle, HIPBLAS_ATOMICS_ALLOWED))
+  amode = -1
+  call hipblasCheck(hipblasGetAtomicsMode(handle, c_loc(amode)))
+  if (amode /= HIPBLAS_ATOMICS_ALLOWED) then
+     write(*,*) "FAILED! expected HIPBLAS_ATOMICS_ALLOWED, got ", amode
+     STOP 1
+  end if
+
+  ! 3. Switch atomics back off, so an ignored setter cannot sneak through.
+  call hipblasCheck(hipblasSetAtomicsMode(handle, HIPBLAS_ATOMICS_NOT_ALLOWED))
+  amode = -1
+  call hipblasCheck(hipblasGetAtomicsMode(handle, c_loc(amode)))
+  if (amode /= HIPBLAS_ATOMICS_NOT_ALLOWED) then
+     write(*,*) "FAILED! expected HIPBLAS_ATOMICS_NOT_ALLOWED, got ", amode
+     STOP 1
+  end if
+
+  ! 4. Create a real stream to bind to the handle.
+  call hipCheck(hipStreamCreate(stream))
+  if (.not. c_associated(stream)) then
+     write(*,*) "FAILED! hipStreamCreate returned a null stream"
+     STOP 1
+  end if
+
+  ! 5. The handle must hand back exactly the stream it was given.
+  call hipblasCheck(hipblasSetStream(handle, stream))
+  got = c_null_ptr
+  call hipblasCheck(hipblasGetStream(handle, got))
+  if (.not. c_associated(got, stream)) then
+     write(*,*) "FAILED! hipblasGetStream did not return the stream set by hipblasSetStream"
+     STOP 1
+  end if
+
+  ! 6. Back to the null (default) stream, with 'got' pre-poisoned so that the
+  !    getter has to overwrite it rather than leave it untouched.
+  call hipblasCheck(hipblasSetStream(handle, c_null_ptr))
+  got = stream
+  call hipblasCheck(hipblasGetStream(handle, got))
+  if (c_associated(got)) then
+     write(*,*) "FAILED! hipblasGetStream did not report the default (null) stream"
+     STOP 1
+  end if
+
+  ! 7. Unbind before destroying, so no dead stream is left on the handle.
+  call hipCheck(hipStreamDestroy(stream))
+  call hipblasCheck(hipblasDestroy(handle))
+
+  write(*,*) "PASSED! atomics mode and stream round-trip through the hipBLAS handle"
+
+end program hipblas_handle_state

@@ -57,7 +57,7 @@ program spildlt0
   integer(kind(rocsparse_analysis_policy_reuse)), target :: apol = rocsparse_analysis_policy_reuse
   integer(kind(rocsparse_datatype_f64_r)), target :: cdt = rocsparse_datatype_f64_r
   integer(kind(rocsparse_singularity_none)), target :: sing
-  integer(c_size_t), target :: bufSize
+  integer(c_size_t) :: bufSize
   write(*,"(a)",advance="no") "-- Running test 'rocsparse_spildlt0' (Fortran 2008 interfaces) - "
 
   call hipCheck(hipMalloc(d_row_ptr, source=h_row_ptr))
@@ -79,7 +79,7 @@ program spildlt0
 
   ! Analysis stage.
   call rocsparseCheck(rocsparse_spildlt0_buffer_size(handle, descr, matA, matA, &
-       rocsparse_spildlt0_stage_analysis, c_loc(bufSize), c_null_ptr))
+       rocsparse_spildlt0_stage_analysis, bufSize, c_null_ptr))
   call hipCheck(hipMalloc(dBuf, max(bufSize, 1_c_size_t)))
   call rocsparseCheck(rocsparse_spildlt0(handle, descr, matA, matA, &
        rocsparse_spildlt0_stage_analysis, bufSize, dBuf, c_null_ptr))
@@ -87,7 +87,7 @@ program spildlt0
 
   ! Compute stage.
   call rocsparseCheck(rocsparse_spildlt0_buffer_size(handle, descr, matA, matA, &
-       rocsparse_spildlt0_stage_compute, c_loc(bufSize), c_null_ptr))
+       rocsparse_spildlt0_stage_compute, bufSize, c_null_ptr))
   call hipCheck(hipMalloc(dBuf, max(bufSize, 1_c_size_t)))
   call rocsparseCheck(rocsparse_spildlt0(handle, descr, matA, matA, &
        rocsparse_spildlt0_stage_compute, bufSize, dBuf, c_null_ptr))
