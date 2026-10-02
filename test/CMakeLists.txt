@@ -328,7 +328,16 @@ if(BUILD_FORTRAN_CLIENTS)
     hipfort_add_test(hipfft hipfft_estimate_getsize_d f2008)
     hipfort_add_test(hipfft hipfft_setstream_z f2003)
     hipfort_add_test(hipfft hipfft_setstream_z f2008)
-    hipfort_add_test(hipfft hipfft_version f2003)
+    # hipfft_version passes its output scalars straight to hipfftGetProperty.
+    # That generic only resolves through the assumed-shape/assumed-rank module
+    # procedures; with FORTRAN_ARRAY_INTERFACES=none the interface is reduced to
+    # the raw bind(C) specific, whose dummy is type(c_ptr),value, so the call has
+    # no matching specific and the test does not compile.  The f2008 copy is
+    # already skipped by hipfort_add_test unless the tier is assumed-shape; the
+    # f2003 copy needs the same guard spelled out.
+    if(NOT FORTRAN_ARRAY_INTERFACES STREQUAL "none")
+      hipfort_add_test(hipfft hipfft_version f2003)
+    endif()
     hipfort_add_test(hipfft hipfft_version f2008)
   endif()
 
