@@ -39,7 +39,7 @@
 ! It deliberately does NOT compare against the compile-time HIPRAND_VERSION
 ! macro: hipRAND on ROCm reports the underlying rocRAND version at runtime,
 ! which legitimately differs from the installed header's value.
-program hiprand_version
+program hiprand_version_test
 
     use iso_c_binding
     use hipfort_check
@@ -96,4 +96,4 @@ program hiprand_version
     write(*,"(a,i0,a,i0,a,i0,a,i0,a)") " PASSED! hipRAND version: ", &
         major, ".", minor, ".", patch, " (code ", version, ")"
 
-end program hiprand_version
+end program hiprand_version_test
