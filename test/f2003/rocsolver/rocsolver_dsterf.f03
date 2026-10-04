@@ -66,14 +66,14 @@ program dsterf
   call hipCheck(hipMalloc(dInfo, size_Info * 8))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dD, c_loc(hD(1)), size_D * 8, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dE, c_loc(hE(1)), size_E * 8, hipMemcpyHostToDevice))
 
   ! Compute eigenvalues
-  call hipCheck(rocsolver_dsterf(handle, n, dD, dE, dInfo))
+  call rocsolverCheck(rocsolver_dsterf(handle, n, dD, dE, dInfo))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(c_loc(hD(1)), dD,    size_D * 8,    hipMemcpyDeviceToHost))
@@ -97,7 +97,7 @@ program dsterf
   call hipCheck(hipFree(dD))
   call hipCheck(hipFree(dE))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

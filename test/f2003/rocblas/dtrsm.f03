@@ -57,7 +57,7 @@ program rocblas_dtrsm_test
 
   ! Create rocblas handle and set host pointer mode for host alpha
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0))
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host))
 
   NAbytes = int(m, c_size_t) * int(m, c_size_t) * bytes_per_element
   NBbytes = int(m, c_size_t) * int(n, c_size_t) * bytes_per_element

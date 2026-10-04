@@ -51,9 +51,9 @@ program dgetrf_64
   call hipCheck(hipMalloc(dA,    size_A * 8))
   call hipCheck(hipMalloc(dIpiv, 3_c_size_t * 8))   ! int64 pivots
   call hipCheck(hipMalloc(dInfo, 8_c_size_t))       ! int64 info
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 8, hipMemcpyHostToDevice))
-  call hipCheck(rocsolver_dgetrf_64(handle, M, N, dA, lda, dIpiv, dInfo))
+  call rocsolverCheck(rocsolver_dgetrf_64(handle, M, N, dA, lda, dIpiv, dInfo))
   call hipCheck(hipMemcpy(c_loc(hLU(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))
   ! Reconstruct A = L*U (unit-lower L below the diagonal, U on/above).
   do j = 1, 3
@@ -71,6 +71,6 @@ program dgetrf_64
      end do
   end do
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dIpiv)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
   write(*,*) "PASSED!"
 end program dgetrf_64

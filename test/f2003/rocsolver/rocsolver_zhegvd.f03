@@ -77,9 +77,9 @@ program zhegvd
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sizeA * 16, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), sizeB * 16, hipMemcpyHostToDevice))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_zhegvd(handle, rocblas_eform_ax, rocblas_evect_original, &
+  call rocsolverCheck(rocsolver_zhegvd(handle, rocblas_eform_ax, rocblas_evect_original, &
        rocblas_fill_upper, N, dA, lda, dB, ldb, dD, dE, dInfo))
 
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sizeA * 16, hipMemcpyDeviceToHost))
@@ -98,7 +98,7 @@ program zhegvd
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dD)); call hipCheck(hipFree(dE)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

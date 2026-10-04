@@ -54,7 +54,7 @@ program rocblas_ztrsm_test
 
   ! Create rocblas handle and set host pointer mode for host alpha
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0))
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host))
 
   allocate(hA(m,m), hB(m,n))
 

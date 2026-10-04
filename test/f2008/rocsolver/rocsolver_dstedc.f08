@@ -52,8 +52,8 @@ program dstedc
   call hipCheck(hipMalloc(dE, source=hE))
   call hipCheck(hipMalloc(dC, int(N,c_size_t), int(N,c_size_t)))
   call hipCheck(hipMalloc(dInfo, 1))
-  call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_dstedc(handle, rocblas_evect_none, N, dD, dE, dC, ldc, c_loc(dInfo)))
+  call rocblasCheck(rocblas_create_handle(handle))
+  call rocsolverCheck(rocsolver_dstedc(handle, rocblas_evect_none, N, dD, dE, dC, ldc, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
   error = abs(sum(hD) - trace) / abs(trace)
   if (error > rtol) then
@@ -61,6 +61,6 @@ program dstedc
      call exit(1)
   end if
   call hipCheck(hipFree(dD)); call hipCheck(hipFree(dE)); call hipCheck(hipFree(dC)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
   write(*,*) "PASSED!"
 end program dstedc

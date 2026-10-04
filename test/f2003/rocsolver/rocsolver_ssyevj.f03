@@ -84,13 +84,13 @@ program ssyevj
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 4, hipMemcpyHostToDevice))
 
   ! Compute eigenvalues and eigenvectors (A overwritten with eigenvectors)
-  call hipCheck(rocsolver_ssyevj(handle, rocblas_esort_ascending, rocblas_evect_original, &
+  call rocsolverCheck(rocsolver_ssyevj(handle, rocblas_esort_ascending, rocblas_evect_original, &
        rocblas_fill_upper, N, dA, lda, abstol, dResidual, max_sweeps, dNsweeps, dW, dInfo))
 
   ! Copy results back to host
@@ -116,7 +116,7 @@ program ssyevj
   call hipCheck(hipFree(dResidual))
   call hipCheck(hipFree(dNsweeps))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

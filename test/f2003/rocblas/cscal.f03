@@ -76,7 +76,7 @@ program rocblas_cscal_test
     call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes, hipMemcpyHostToDevice))
 
     ! Call rocblas function. scal is in-place: dx is both input and output.
-    call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, 0))
+    call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, rocblas_pointer_mode_host))
     call rocblasCheck(rocblas_cscal(rocblas_handle, N, c_loc(alpha), dx, 1))
     call hipCheck(hipDeviceSynchronize())
 

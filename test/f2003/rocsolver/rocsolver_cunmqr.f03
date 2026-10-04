@@ -83,17 +83,17 @@ program cunmqr
   call hipCheck(hipMalloc(dIpiv, szp * 8))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sza * 8, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), szc * 8, hipMemcpyHostToDevice))
 
   ! Factorize to get Q, then apply C <- Q*C followed by C <- Q**H*C
-  call hipCheck(rocsolver_cgeqrf(handle, M, K, dA, lda, dIpiv))
-  call hipCheck(rocsolver_cunmqr(handle, rocblas_side_left, rocblas_operation_none, &
+  call rocsolverCheck(rocsolver_cgeqrf(handle, M, K, dA, lda, dIpiv))
+  call rocsolverCheck(rocsolver_cunmqr(handle, rocblas_side_left, rocblas_operation_none, &
        M, N, K, dA, lda, dIpiv, dC, ldc))
-  call hipCheck(rocsolver_cunmqr(handle, rocblas_side_left, rocblas_operation_conjugate_transpose, &
+  call rocsolverCheck(rocsolver_cunmqr(handle, rocblas_side_left, rocblas_operation_conjugate_transpose, &
        M, N, K, dA, lda, dIpiv, dC, ldc))
 
   ! Copy result back to host
@@ -114,7 +114,7 @@ program cunmqr
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dC))
   call hipCheck(hipFree(dIpiv))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

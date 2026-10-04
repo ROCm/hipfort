@@ -63,11 +63,11 @@ program dpotri
   call hipCheck(hipMalloc(dA,    source=hA))
   call hipCheck(hipMalloc(dInfo, 1))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Cholesky factorization, then inverse (both on the upper triangle).
-  call hipCheck(rocsolver_dpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
-  call hipCheck(rocsolver_dpotri(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dpotri(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
 
   call hipCheck(hipMemcpy(hAinv, dA, hipMemcpyDeviceToHost))
 
@@ -95,7 +95,7 @@ program dpotri
 
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

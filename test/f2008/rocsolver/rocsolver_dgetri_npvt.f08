@@ -48,9 +48,9 @@ program dgetri_npvt
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_dgetri_npvt' (Fortran 2008 interfaces) - "
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dInfo, 1))
-  call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_dgetrf_npvt(handle, N, N, dA, lda, c_loc(dInfo)))
-  call hipCheck(rocsolver_dgetri_npvt(handle, N, dA, lda, c_loc(dInfo)))
+  call rocblasCheck(rocblas_create_handle(handle))
+  call rocsolverCheck(rocsolver_dgetrf_npvt(handle, N, N, dA, lda, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dgetri_npvt(handle, N, dA, lda, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hAinv, dA, hipMemcpyDeviceToHost))
   do j = 1, N
      do i = 1, N
@@ -66,6 +66,6 @@ program dgetri_npvt
      end do
   end do
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
   write(*,*) "PASSED!"
 end program dgetri_npvt

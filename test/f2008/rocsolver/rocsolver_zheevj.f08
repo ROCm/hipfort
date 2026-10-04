@@ -86,10 +86,10 @@ program zheevj
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Compute eigenvalues and eigenvectors (A overwritten with eigenvectors)
-  call hipCheck(rocsolver_zheevj(handle, rocblas_esort_ascending, rocblas_evect_original, &
+  call rocsolverCheck(rocsolver_zheevj(handle, rocblas_esort_ascending, rocblas_evect_original, &
        rocblas_fill_upper, N, c_loc(dA(1,1)), lda, abstol, c_loc(dResidual(1)), max_sweeps, &
        c_loc(dNsweeps(1)), c_loc(dW(1)), c_loc(dInfo(1))))
 
@@ -116,7 +116,7 @@ program zheevj
   call hipCheck(hipFree(dResidual))
   call hipCheck(hipFree(dNsweeps))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

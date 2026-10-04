@@ -78,8 +78,8 @@ program dgemv_batched
   call hipCheck(hipMalloc(dyp, int(batch,c_size_t)*psize))
   call hipCheck(hipMemcpy(dyp, c_loc(hyp(1)), int(batch,c_size_t)*psize, hipMemcpyHostToDevice))
 
-  call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocblas_dgemv_batched(handle, rocblas_operation_none, M, N, c_loc(alpha), dAp, lda, &
+  call rocblasCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_dgemv_batched(handle, rocblas_operation_none, M, N, c_loc(alpha), dAp, lda, &
                                       dxp, incx, c_loc(beta), dyp, incy, batch))
   call hipCheck(hipDeviceSynchronize())
 
@@ -103,7 +103,7 @@ program dgemv_batched
   call hipCheck(hipFree(dx1)); call hipCheck(hipFree(dx2))
   call hipCheck(hipFree(dy1)); call hipCheck(hipFree(dy2))
   call hipCheck(hipFree(dAp)); call hipCheck(hipFree(dxp)); call hipCheck(hipFree(dyp))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"
 

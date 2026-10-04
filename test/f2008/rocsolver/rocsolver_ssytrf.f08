@@ -53,8 +53,8 @@ program ssytrf
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
   call hipCheck(hipMalloc(dInfo, 1))
-  call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_ssytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call rocblasCheck(rocblas_create_handle(handle))
+  call rocsolverCheck(rocsolver_ssytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hIpiv, dIpiv, hipMemcpyDeviceToHost))
   if (hInfo(1) /= 0) then
@@ -62,6 +62,6 @@ program ssytrf
      call exit(1)
   end if
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dIpiv)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
   write(*,*) "PASSED!"
 end program ssytrf

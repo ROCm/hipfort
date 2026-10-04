@@ -62,12 +62,12 @@ program dsterf
   call hipCheck(hipMalloc(dInfo))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Compute eigenvalues.
   ! `dInfo` is passed as a device pointer (c_loc), which is what the
   ! myInfo -> c_ptr binding fix enables.
-  call hipCheck(rocsolver_dsterf(handle, n, dD, dE, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dsterf(handle, n, dD, dE, c_loc(dInfo)))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hD,    dD,    hipMemcpyDeviceToHost))
@@ -91,7 +91,7 @@ program dsterf
   call hipCheck(hipFree(dD))
   call hipCheck(hipFree(dE))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

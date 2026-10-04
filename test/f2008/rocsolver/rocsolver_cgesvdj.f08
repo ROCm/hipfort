@@ -93,10 +93,10 @@ program cgesvdj
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Compute the singular value decomposition
-  call hipCheck(rocsolver_cgesvdj(handle, rocblas_svect_singular, rocblas_svect_singular, &
+  call rocsolverCheck(rocsolver_cgesvdj(handle, rocblas_svect_singular, rocblas_svect_singular, &
        M, N, c_loc(dA(1,1)), lda, abstol, c_loc(dResidual(1)), max_sweeps, c_loc(dNsweeps(1)), &
        c_loc(dS(1)), c_loc(dU(1,1)), ldu, c_loc(dV(1,1)), ldv, c_loc(dInfo(1))))
 
@@ -130,7 +130,7 @@ program cgesvdj
   call hipCheck(hipFree(dResidual))
   call hipCheck(hipFree(dNsweeps))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

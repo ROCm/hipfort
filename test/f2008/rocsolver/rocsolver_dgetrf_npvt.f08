@@ -49,8 +49,8 @@ program dgetrf_npvt
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_dgetrf_npvt' (Fortran 2008 interfaces) - "
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dInfo, 1))
-  call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_dgetrf_npvt(handle, M, N, dA, lda, c_loc(dInfo)))
+  call rocblasCheck(rocblas_create_handle(handle))
+  call rocsolverCheck(rocsolver_dgetrf_npvt(handle, M, N, dA, lda, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hLU, dA, hipMemcpyDeviceToHost))
   ! Reconstruct A = L*U (L unit-lower from strictly-below, U on/above diagonal).
   do j = 1, N
@@ -73,6 +73,6 @@ program dgetrf_npvt
      end do
   end do
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
   write(*,*) "PASSED!"
 end program dgetrf_npvt

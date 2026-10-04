@@ -68,11 +68,11 @@ program dgetri
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! LU factorization, then invert in place
-  call hipCheck(rocsolver_dgetrf(handle, N, N, dA, lda, dIpiv, c_loc(dInfo)))
-  call hipCheck(rocsolver_dgetri(handle, N,    dA, lda, dIpiv, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dgetrf(handle, N, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dgetri(handle, N,    dA, lda, dIpiv, c_loc(dInfo)))
 
   ! Copy the inverse back to the host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
@@ -92,7 +92,7 @@ program dgetri
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dIpiv))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"
