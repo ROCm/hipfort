@@ -174,6 +174,10 @@ Usually not. Find your case:
        built along with each library, by that compiler.
    * - ROCm older than 10.2
      - **hipFORT, as today.** See `Codes that build on several ROCm versions`_.
+   * - Windows
+     - **Each binding you use, from the repository.** ROCm for Windows ships
+       no Fortran compiler, so it ships neither the compiled bindings nor
+       their sources. See `Windows`_.
 
 Compile and link
 ================
@@ -464,6 +468,19 @@ build the bindings you use (see `Do I need to build anything?`_).
 The C libraries you link (``libamdhip64.so``, ``librocblas.so``, and so on) are
 the stable, compiler-agnostic ABI; only the thin Fortran layer is
 compiler-specific.
+
+Windows
+-------
+
+The bindings are Linux-first. ROCm for Windows ships no Fortran compiler, so
+``BUILD_FORTRAN_BINDINGS`` defaults to ``OFF`` there, and a Windows install
+contains no ``.mod``, no ``lib<lib>_fortran`` archive, and no installed
+``.F90``. Nothing in the bindings is Linux-specific, though: they are plain
+``iso_c_binding`` code. With a Fortran compiler of your own (Intel ``ifx``, for
+example), take the ``fortran/`` directory from the repository at the tag of
+your ROCm and build it as in `Building a binding with your compiler`_. This
+path is not tested yet; if you try it, please
+`report how it went <https://github.com/ROCm/hipfort/issues>`_.
 
 Where the files install
 -----------------------
