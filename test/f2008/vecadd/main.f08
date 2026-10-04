@@ -87,11 +87,13 @@ program fortran_hip
   ! Transfer data back to host memory
   call hipCheck(hipMemcpy(out, dout, N, hipMemcpyDeviceToHost))
 
-  if ( sum(out) .eq. N*2.0 ) then
-     print *, "PASSED!"
-  else
-     print *, "FAILED!"
-  endif
+  ! Verification
+  do i = 1,N
+     if ( out(i) .ne. a(i) + b(i) ) then
+        write(*,*) "FAILED! i = ", i, " out = ", out(i)
+        call exit(1)
+     endif
+  end do
 
   call hipCheck(hipFree(da))
   call hipCheck(hipFree(db))
@@ -99,5 +101,7 @@ program fortran_hip
 
   ! Deallocate host memory
   deallocate(a,b,out)
+
+  write(*,*) "PASSED!"
 
 end program fortran_hip
