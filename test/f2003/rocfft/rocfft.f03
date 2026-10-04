@@ -68,7 +68,7 @@ program rocfft_example
   do i = 1, int(N)
      x_ref(i) = (0.d0, 0.d0)
      do j = 1, int(N)
-        x_ref(i) = x_ref(i) + x_in(j) * exp(cmplx(0.d0, -two_pi*(i-1)*(j-1)/N, kind=8))
+        x_ref(i) = x_ref(i) + x_in(j) * exp(cmplx(0.d0, -two_pi*mod(int((i-1)*(j-1), c_size_t), N)/N, kind=8))
      end do
   end do
 
