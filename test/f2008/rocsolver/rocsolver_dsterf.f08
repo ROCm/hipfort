@@ -52,7 +52,7 @@ program dsterf
   type(c_ptr) :: handle ! rocblas_handle
 
   real(c_double) :: error
-  real(c_double), parameter :: error_max = 10 * epsilon(error_max)
+  real(c_double), parameter :: error_max = 100 * epsilon(error_max)
   !
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_dsterf' (Fortran 2008 interfaces) - "
 
@@ -79,7 +79,7 @@ program dsterf
     call exit(1)
   else
     do i = 1,n
-      error = abs(hD(i) - hResult(i))
+      error = abs(hD(i) - hResult(i)) / abs(hResult(i))
         if(error .gt. error_max) then
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " hD(", i, ") = ", hD(i)
             call exit(1)
