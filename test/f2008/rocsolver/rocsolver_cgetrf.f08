@@ -82,10 +82,10 @@ program cgetrf
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Compute the LU factorization on the device
-  call hipCheck(rocsolver_cgetrf(handle, M, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_cgetrf(handle, M, N, dA, lda, dIpiv, c_loc(dInfo)))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))
@@ -114,7 +114,7 @@ program cgetrf
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dIpiv))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

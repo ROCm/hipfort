@@ -79,10 +79,10 @@ program zpotrf
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Compute the Cholesky factorization on the device (upper triangle)
-  call hipCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
@@ -101,7 +101,7 @@ program zpotrf
   ! Clean up
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

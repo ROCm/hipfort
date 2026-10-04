@@ -64,9 +64,9 @@ program dpotf2
   call hipCheck(hipMalloc(dA,    source=hA))
   call hipCheck(hipMalloc(dInfo, 1))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_dpotf2(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dpotf2(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
 
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
 
@@ -82,7 +82,7 @@ program dpotf2
 
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

@@ -76,8 +76,8 @@ program zsddmm
   type(c_ptr) :: handle, matA, matB, matC, d_buffer
   integer(c_size_t) :: buffer_size
 
-  real :: error
-  real, parameter :: error_max = 10 * epsilon(error_max)
+  real(c_double) :: error
+  real(c_double), parameter :: error_max = 10 * epsilon(error_max)
 
   write(*,"(a)",advance="no") "-- Running test 'rocsparse_zsddmm_devptr' (Fortran 2003 interfaces) - "
 
@@ -133,7 +133,7 @@ program zsddmm
   call hipCheck(hipMemcpy(c_loc(h_csr_val(1)), d_csr_val, size_v * 16, hipMemcpyDeviceToHost))
 
   do i = 1,nnz
-    error = abs(h_csr_val(i) - h_expected(i)) / max(abs(h_expected(i)), 1.0)
+    error = abs(h_csr_val(i) - h_expected(i)) / max(abs(h_expected(i)), 1.0_c_double)
     if(error .gt. error_max) then
         write(*,*) "FAILED! Error bigger than max! Error = ", error, " at nnz ", i
         call exit(1)

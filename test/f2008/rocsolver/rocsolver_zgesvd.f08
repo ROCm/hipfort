@@ -88,10 +88,10 @@ program zgesvd
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Compute the full SVD on the device
-  call hipCheck(rocsolver_zgesvd(handle, rocblas_svect_all, rocblas_svect_all, M, N, dA, lda, &
+  call rocsolverCheck(rocsolver_zgesvd(handle, rocblas_svect_all, rocblas_svect_all, M, N, dA, lda, &
                                  dS, dU, ldu, dV, ldv, dE, rocblas_outofplace, c_loc(dInfo)))
 
   ! Copy factors back to host
@@ -124,7 +124,7 @@ program zgesvd
   call hipCheck(hipFree(dV))
   call hipCheck(hipFree(dE))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

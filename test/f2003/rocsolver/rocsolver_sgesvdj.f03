@@ -89,13 +89,13 @@ program sgesvdj
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sz * 4, hipMemcpyHostToDevice))
 
   ! Compute the singular value decomposition
-  call hipCheck(rocsolver_sgesvdj(handle, rocblas_svect_singular, rocblas_svect_singular, &
+  call rocsolverCheck(rocsolver_sgesvdj(handle, rocblas_svect_singular, rocblas_svect_singular, &
        M, N, dA, lda, abstol, dResidual, max_sweeps, dNsweeps, dS, dU, ldu, dV, ldv, dInfo))
 
   ! Copy results back to host
@@ -128,7 +128,7 @@ program sgesvdj
   call hipCheck(hipFree(dResidual))
   call hipCheck(hipFree(dNsweeps))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

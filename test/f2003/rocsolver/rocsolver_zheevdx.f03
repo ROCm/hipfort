@@ -60,7 +60,7 @@ program zheevdx
   type(c_ptr) :: handle
 
   real(c_double) :: error
-  real(c_double), parameter :: error_max = 1.0e-5
+  real(c_double), parameter :: error_max = 1.0d-10
   !
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_zheevdx' (Fortran 2003 interfaces) - "
 
@@ -74,9 +74,9 @@ program zheevdx
 
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sizeA * 16, hipMemcpyHostToDevice))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_zheevdx(handle, rocblas_evect_original, rocblas_erange_index, &
+  call rocsolverCheck(rocsolver_zheevdx(handle, rocblas_evect_original, rocblas_erange_index, &
        rocblas_fill_upper, N, dA, lda, 0.0d0, 0.0d0, 1, N, dNev, dW, dZ, ldz, dInfo))
 
   call hipCheck(hipMemcpy(c_loc(hNev), dNev, 4_c_size_t, hipMemcpyDeviceToHost))
@@ -100,7 +100,7 @@ program zheevdx
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dW)); call hipCheck(hipFree(dZ))
   call hipCheck(hipFree(dNev)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

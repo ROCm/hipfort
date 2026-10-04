@@ -72,14 +72,14 @@ program dgesv
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 8, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), size_B * 8, hipMemcpyHostToDevice))
 
   ! Solve A*X = B on the device (X overwrites B)
-  call hipCheck(rocsolver_dgesv(handle, N, nrhs, dA, lda, dIpiv, dB, ldb, dInfo))
+  call rocsolverCheck(rocsolver_dgesv(handle, N, nrhs, dA, lda, dIpiv, dB, ldb, dInfo))
 
   ! Copy the solution back to the host
   call hipCheck(hipMemcpy(c_loc(hB(1,1)), dB, size_B * 8, hipMemcpyDeviceToHost))
@@ -98,7 +98,7 @@ program dgesv
   call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dIpiv))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

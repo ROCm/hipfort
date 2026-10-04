@@ -67,9 +67,9 @@ program dgetf2
   call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
   call hipCheck(hipMalloc(dInfo, 1))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_dgetf2(handle, M, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dgetf2(handle, M, N, dA, lda, dIpiv, c_loc(dInfo)))
 
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hIpiv, dIpiv, hipMemcpyDeviceToHost))
@@ -94,7 +94,7 @@ program dgetf2
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dIpiv))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

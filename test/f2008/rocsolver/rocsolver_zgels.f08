@@ -81,10 +81,10 @@ program zgels
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Solve min || A*X - B || in place (B is overwritten with the solution)
-  call hipCheck(rocsolver_zgels(handle, rocblas_operation_none, M, N, nrhs, dA, lda, dB, ldb, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_zgels(handle, rocblas_operation_none, M, N, nrhs, dA, lda, dB, ldb, c_loc(dInfo)))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))
@@ -102,7 +102,7 @@ program zgels
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

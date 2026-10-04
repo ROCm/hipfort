@@ -80,15 +80,15 @@ program spotrs
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 4, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), size_B * 4, hipMemcpyHostToDevice))
 
   ! Factorize (Cholesky), then solve A*X = B in place (B overwritten with solution)
-  call hipCheck(rocsolver_spotrf(handle, rocblas_fill_upper, N, dA, lda, dInfo))
-  call hipCheck(rocsolver_spotrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dB, ldb))
+  call rocsolverCheck(rocsolver_spotrf(handle, rocblas_fill_upper, N, dA, lda, dInfo))
+  call rocsolverCheck(rocsolver_spotrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dB, ldb))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(c_loc(hB(1,1)), dB, size_B * 4, hipMemcpyDeviceToHost))
@@ -106,7 +106,7 @@ program spotrs
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

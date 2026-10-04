@@ -62,6 +62,7 @@ program fortran_hip
   ret = roctxRangePush(c_loc(msg))
   if (ret /= 0) then
     write (*, *) "ROCTX ERROR: roctxRangePush: Invalid nested range level ", ret
+    call exit(1)
   end if
 
   call launch()
@@ -70,6 +71,7 @@ program fortran_hip
   ret = roctxRangePop()
   if (ret /= 0) then
     write (*, *) "ROCTX ERROR: roctxRangePop: Invalid nested range level ", ret
+    call exit(1)
   end if
 
   write(*,*) "PASSED!"

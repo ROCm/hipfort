@@ -76,11 +76,11 @@ program zpotrs
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Factorize (Cholesky), then solve A*X = B in place (B overwritten with solution)
-  call hipCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
-  call hipCheck(rocsolver_zpotrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dB, ldb))
+  call rocsolverCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_zpotrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dB, ldb))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))
@@ -98,7 +98,7 @@ program zpotrs
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

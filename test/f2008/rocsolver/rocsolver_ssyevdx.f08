@@ -72,9 +72,9 @@ program ssyevdx
   call hipCheck(hipMalloc(dNev, 1))
   call hipCheck(hipMalloc(dInfo, 1))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_ssyevdx(handle, rocblas_evect_original, rocblas_erange_index, &
+  call rocsolverCheck(rocsolver_ssyevdx(handle, rocblas_evect_original, rocblas_erange_index, &
        rocblas_fill_upper, N, c_loc(dA(1,1)), lda, 0.0, 0.0, 1, N, c_loc(dNev(1)), &
        c_loc(dW(1)), c_loc(dZ(1,1)), ldz, c_loc(dInfo(1))))
 
@@ -99,7 +99,7 @@ program ssyevdx
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dW)); call hipCheck(hipFree(dZ))
   call hipCheck(hipFree(dNev)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

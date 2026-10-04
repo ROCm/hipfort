@@ -44,7 +44,7 @@ program hip_dgemm
 
   integer :: i,j
   double precision :: error
-  double precision, parameter :: error_max = 10*epsilon(error)
+  double precision, parameter :: error_max = 10*epsilon(real(1.0,kind=4))
 
   write(*,"(a)",advance="no") "-- Running test 'CGEMM' (Fortran 2008 interfaces) - "
 

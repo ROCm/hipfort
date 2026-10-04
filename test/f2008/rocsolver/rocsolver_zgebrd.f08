@@ -85,10 +85,10 @@ program zgebrd
   call hipCheck(hipMalloc(dTaup, mold=hTaup))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Reduce A to bidiagonal form
-  call hipCheck(rocsolver_zgebrd(handle, M, N, dA, lda, dD, dE, dTauq, dTaup))
+  call rocsolverCheck(rocsolver_zgebrd(handle, M, N, dA, lda, dD, dE, dTauq, dTaup))
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
@@ -123,7 +123,7 @@ program zgebrd
   call hipCheck(hipFree(dE))
   call hipCheck(hipFree(dTauq))
   call hipCheck(hipFree(dTaup))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

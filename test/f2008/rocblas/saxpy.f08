@@ -74,7 +74,7 @@ program rocblas_saxpy_test
     call hipCheck(hipMalloc(dy, source=hy))
 
     ! Call rocblas function
-    call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, 0))
+    call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, rocblas_pointer_mode_host))
     call rocblasCheck(rocblas_saxpy(rocblas_handle, N, alpha, dx, 1, dy, 1))
     call hipCheck(hipDeviceSynchronize())
 

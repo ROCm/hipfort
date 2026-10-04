@@ -41,7 +41,7 @@ program hipblas_cgemv_test
 
   complex(kind=4) :: y_exact
   double precision :: error
-  double precision, parameter :: error_max = 10*epsilon(error)
+  double precision, parameter :: error_max = 10*epsilon(real(1.0,kind=4))
   integer :: i
 
   write(*,"(a)",advance="no") "-- Running test 'CGEMV' (Fortran 2008 interfaces) - "

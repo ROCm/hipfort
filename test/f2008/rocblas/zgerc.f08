@@ -54,7 +54,7 @@ program rocblas_zgerc_test
   write(*,"(a)",advance="no") "-- Running test 'zgerc' (Fortran 2008 interfaces) - "
 
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0)) ! host pointer mode
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host)) ! host pointer mode
 
   hA = (0.0, 0.0)
   do j = 1, n

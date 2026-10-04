@@ -72,9 +72,9 @@ program zheev
   call hipCheck(hipMalloc(dE,    source=hE))
   call hipCheck(hipMalloc(dInfo, 1))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_zheev(handle, rocblas_evect_none, rocblas_fill_upper, N, dA, lda, &
+  call rocsolverCheck(rocsolver_zheev(handle, rocblas_evect_none, rocblas_fill_upper, N, dA, lda, &
                                 dD, dE, c_loc(dInfo)))
 
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
@@ -90,7 +90,7 @@ program zheev
   call hipCheck(hipFree(dD))
   call hipCheck(hipFree(dE))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

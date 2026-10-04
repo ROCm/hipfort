@@ -53,9 +53,9 @@ program dpotrf_64
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_dpotrf_64' (Fortran 2008 interfaces) - "
   call hipCheck(hipMalloc(dA,    size_A * 8))
   call hipCheck(hipMalloc(dInfo, 8_c_size_t))   ! int64 info
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 8, hipMemcpyHostToDevice))
-  call hipCheck(rocsolver_dpotrf_64(handle, rocblas_fill_upper, N, dA, lda, dInfo))
+  call rocsolverCheck(rocsolver_dpotrf_64(handle, rocblas_fill_upper, N, dA, lda, dInfo))
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))
   do j = 1, 3
      do i = 1, 3
@@ -67,6 +67,6 @@ program dpotrf_64
      end do
   end do
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
   write(*,*) "PASSED!"
 end program dpotrf_64

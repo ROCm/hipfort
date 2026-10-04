@@ -56,7 +56,7 @@ program rocblas_cgemm_test
 
   ! Create rocblas handle and set host pointer mode for host alpha/beta
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0))
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host))
 
   lda = m; size_a = k * lda; Nabytes = size_a*bytes_per_element
   ldb = k; size_b = n * ldb; Nbbytes = size_b*bytes_per_element

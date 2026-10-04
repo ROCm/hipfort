@@ -33,23 +33,34 @@ program hipfft_example
 
   integer(c_int), parameter :: N = 16
 
-  complex(8), allocatable, dimension(:) :: hx
+  complex(8), allocatable, dimension(:) :: hx, x_ref
   integer(c_int) :: direction = HIPFFT_FORWARD
   complex(8), pointer, dimension(:) :: dx
   type(c_ptr) :: plan = c_null_ptr
   integer(c_size_t)            :: lengths(3)
   integer(c_size_t), parameter :: one = 1
-  integer :: i
-  integer(kind(HIPFFT_SUCCESS)) :: ierr
-  double precision :: error
-  double precision, parameter :: error_max = epsilon(error)
+  integer :: i, j
+  double precision :: error, x_scale
+  double precision, parameter :: error_max = 100*epsilon(error)
+  double precision, parameter :: two_pi = 2*acos(-1.0d0)
 
   write(*,"(a)",advance="no") "-- Running test 'hipFFT' (Fortran 2008 interfaces) - "
 
   lengths(1) = N
 
-  allocate(hx(N))
-  hx(:) = (1, -1)
+  ! A non-constant input, so that a transform that leaves the data untouched
+  ! cannot pass. The reference is a direct O(N^2) DFT on the host.
+  allocate(hx(N), x_ref(N))
+  do i = 1, N
+     hx(i) = cmplx(i, mod(3*i, 5) - 2, kind=8)
+  end do
+  do i = 1, N
+     x_ref(i) = (0.d0, 0.d0)
+     do j = 1, N
+        x_ref(i) = x_ref(i) + hx(j) * exp(cmplx(0.d0, -two_pi*mod((i-1)*(j-1), N)/N, kind=8))
+     end do
+  end do
+  x_scale = sum(abs(hx))
 
   call hipCheck(hipMalloc(dx, source=hx))
 
@@ -62,17 +73,15 @@ program hipfft_example
   call hipCheck(hipMemcpy(hx,dx,hipMemcpyDeviceToHost))
   call hipCheck(hipFree(dx))
 
-  ! Using the C++ version of this as the "gold".
-  ! first components were \pm 16 and the remaining componenents
-  ! were zero, so the sum of each component pair should be zero
-  do i = 1,N
-     error = abs(DBLE(hx(i)) + AIMAG(hx(i)))
-     if(error > error_max)then
-        write(*,*) "FAILED! Error = ", error, "hx(i)%x = ", DBLE(hx(i)), "hx(i)%y = ", AIMAG(hx(i))
+  do i = 1, N
+     error = abs(hx(i) - x_ref(i))
+     if(error > error_max * x_scale)then
+        write(*,*) "FAILED! i = ", i, " error = ", error, " hx(i) = ", hx(i)
+        call exit(1)
      end if
   end do
 
-  deallocate(hx)
+  deallocate(hx, x_ref)
 
   call hipfftcheck( hipfftDestroy(plan))
 
