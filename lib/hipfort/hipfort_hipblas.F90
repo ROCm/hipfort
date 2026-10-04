@@ -41997,7 +41997,7 @@ module hipfort_hipblas
   !>     @param[in] status - [hipblasStatus_t]
   !>             hipBLAS status to convert to string.
 #ifndef USE_CUDA_NAMES
-  interface hipblasStatusToString
+  interface
     function hipblasStatusToString_(status) bind(c, name="hipblasStatusToString")
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -42005,6 +42005,11 @@ module hipfort_hipblas
       type(c_ptr) :: hipblasStatusToString_
       integer(kind(HIPBLAS_STATUS_SUCCESS)),value :: status
     end function
+  end interface
+
+  interface hipblasStatusToString
+
+    module procedure hipblasStatusToString_str
   end interface
 #endif
 
@@ -42321,8 +42326,37 @@ module hipfort_hipblas
   end interface
 
 
-#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
+
+#ifndef USE_CUDA_NAMES
+    function hipblasStatusToString_str(status) result(StatusToString)
+      use, intrinsic :: iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)), value, intent(in) :: status
+      character(len=:), allocatable :: StatusToString
+      type(c_ptr) :: ptr__c
+      character(kind=c_char), pointer :: str__c(:)
+      integer :: n__c, i__c
+      ptr__c = hipblasStatusToString_(status)
+      if (.not. c_associated(ptr__c)) then
+        StatusToString = ""
+        return
+      end if
+      call c_f_pointer(ptr__c, str__c, [huge(0)])
+      n__c = 0
+      do while (str__c(n__c + 1) /= c_null_char)
+        n__c = n__c + 1
+      end do
+      allocate(character(len=n__c) :: StatusToString)
+      do i__c = 1, n__c
+        StatusToString(i__c:i__c) = str__c(i__c)
+      end do
+    end function hipblasStatusToString_str
+
+#endif
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
 #ifdef USE_ASSUMED_RANK
     function hipblasIsamax_assumed_rank(handle,n,x,incx,myResult)

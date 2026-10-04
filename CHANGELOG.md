@@ -35,6 +35,18 @@
 
 ### Changed
 
+* **Breaking.** The generics for C functions returning `const char*` now return
+  a Fortran `character(len=:), allocatable` string, as CUDA Fortran does for
+  `cudaGetErrorString`, so `print *, hipGetErrorString(stat)` works directly.
+  They used to return the `type(c_ptr)`, which needed `c_f_pointer` and a scan
+  for the NUL before it could be printed. This covers `hipGetErrorName`,
+  `hipGetErrorString`, `hipApiName`, `hipKernelNameRef`, `hipKernelNameRefByPtr`,
+  `hipblasStatusToString`, `hipsparseGetErrorName`, `hipsparseGetErrorString`,
+  `rocblas_status_to_string`, `rocsparse_get_status_name`,
+  `rocsparse_get_status_description` and `rocsparse_error_get_message`. Code that
+  wants the pointer calls the raw binding, the same name with a trailing
+  underscore (`hipGetErrorString_`).
+
 * **Breaking, for anyone compiling the `.F90` by hand.** The preprocessor macros
   that select the array interfaces are renamed, and each now selects its own
   tier: `USE_ASSUMED_SHAPE` for the per-rank overloads (Fortran 2008) and

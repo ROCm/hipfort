@@ -46,7 +46,7 @@ program error_version
   real(c_float), target     :: hval
   type(c_ptr)               :: dptr = c_null_ptr
   integer(c_size_t)         :: nbytes
-  character(len=256)        :: ename, estr
+  character(len=:), allocatable :: ename, estr
 
   write(*,"(a)",advance="no") "-- Running test 'hip error_version' (Fortran 2003 interfaces) - "
 
@@ -109,15 +109,22 @@ program error_version
   end if
 
   ! Both accessors describe the error the runtime just reported.
-  ename = c_string(hipGetErrorName(hipErrorInvalidDevice))
-  if (trim(ename) /= "hipErrorInvalidDevice") then
-     write(*,*) "FAILED! hipGetErrorName = '", trim(ename), "'"
+  ! They return a Fortran string, sized to the message.
+  ename = hipGetErrorName(hipErrorInvalidDevice)
+  if (ename /= "hipErrorInvalidDevice" .or. len(ename) /= len("hipErrorInvalidDevice")) then
+     write(*,*) "FAILED! hipGetErrorName = '", ename, "'"
      call exit(1)
   end if
 
-  estr = c_string(hipGetErrorString(hipErrorInvalidDevice))
-  if (len_trim(estr) == 0 .or. index(estr, "device") == 0) then
-     write(*,*) "FAILED! hipGetErrorString = '", trim(estr), "'"
+  estr = hipGetErrorString(hipErrorInvalidDevice)
+  if (len(estr) == 0 .or. index(estr, "device") == 0) then
+     write(*,*) "FAILED! hipGetErrorString = '", estr, "'"
+     call exit(1)
+  end if
+
+  ! The raw bind(c) form still hands back the C pointer.
+  if (.not. c_associated(hipGetErrorString_(hipErrorInvalidDevice))) then
+     write(*,*) "FAILED! hipGetErrorString_ returned a null pointer"
      call exit(1)
   end if
 
@@ -135,23 +142,5 @@ program error_version
   call hipCheck(hipFree(dptr))
 
   write(*,*) "PASSED!"
-
-contains
-
-  ! Copy a null-terminated C string returned by reference into a Fortran string.
-  function c_string(cptr) result(res)
-    type(c_ptr), intent(in) :: cptr
-    character(len=256) :: res
-    character(kind=c_char), pointer :: chars(:)
-    integer :: i
-
-    res = " "
-    if (.not. c_associated(cptr)) return
-    call c_f_pointer(cptr, chars, [len(res)])
-    do i = 1, len(res)
-       if (chars(i) == c_null_char) exit
-       res(i:i) = chars(i)
-    end do
-  end function c_string
 
 end program error_version

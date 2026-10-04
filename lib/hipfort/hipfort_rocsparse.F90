@@ -176,7 +176,7 @@ module hipfort_rocsparse
   !>   @return an error message from a rocSPARSE error descriptor.
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_internal_error an internal error occurred.
-  interface rocsparse_error_get_message
+  interface
     function rocsparse_error_get_message_(error) bind(c, name="rocsparse_error_get_message")
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -184,6 +184,11 @@ module hipfort_rocsparse
       type(c_ptr) :: rocsparse_error_get_message_
       type(c_ptr),value :: error
     end function
+  end interface
+
+  interface rocsparse_error_get_message
+
+    module procedure rocsparse_error_get_message_str
   end interface
 
   !>  \ingroup aux_module
@@ -197,7 +202,7 @@ module hipfort_rocsparse
   !>   @param[in] status - a rocSPARSE status.
   !>
   !>   \retval pointer to null-terminated string.
-  interface rocsparse_get_status_name
+  interface
     function rocsparse_get_status_name_(status) bind(c, name="rocsparse_get_status_name")
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -205,6 +210,11 @@ module hipfort_rocsparse
       type(c_ptr) :: rocsparse_get_status_name_
       integer(kind(rocsparse_status_success)),value :: status
     end function
+  end interface
+
+  interface rocsparse_get_status_name
+
+    module procedure rocsparse_get_status_name_str
   end interface
 
   !>  \ingroup aux_module
@@ -218,7 +228,7 @@ module hipfort_rocsparse
   !>   @param[in] status - a rocSPARSE status.
   !>
   !>   \retval pointer to null-terminated string.
-  interface rocsparse_get_status_description
+  interface
     function rocsparse_get_status_description_(status) &
         bind(c, name="rocsparse_get_status_description")
       use iso_c_binding
@@ -227,6 +237,11 @@ module hipfort_rocsparse
       type(c_ptr) :: rocsparse_get_status_description_
       integer(kind(rocsparse_status_success)),value :: status
     end function
+  end interface
+
+  interface rocsparse_get_status_description
+
+    module procedure rocsparse_get_status_description_str
   end interface
 
   !>  \ingroup aux_module
@@ -34404,8 +34419,85 @@ module hipfort_rocsparse
   end interface
 
 
-#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
+
+    function rocsparse_error_get_message_str(error) result(error_get_message)
+      use, intrinsic :: iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      type(c_ptr), value, intent(in) :: error
+      character(len=:), allocatable :: error_get_message
+      type(c_ptr) :: ptr__c
+      character(kind=c_char), pointer :: str__c(:)
+      integer :: n__c, i__c
+      ptr__c = rocsparse_error_get_message_(error)
+      if (.not. c_associated(ptr__c)) then
+        error_get_message = ""
+        return
+      end if
+      call c_f_pointer(ptr__c, str__c, [huge(0)])
+      n__c = 0
+      do while (str__c(n__c + 1) /= c_null_char)
+        n__c = n__c + 1
+      end do
+      allocate(character(len=n__c) :: error_get_message)
+      do i__c = 1, n__c
+        error_get_message(i__c:i__c) = str__c(i__c)
+      end do
+    end function rocsparse_error_get_message_str
+
+    function rocsparse_get_status_name_str(status) result(get_status_name)
+      use, intrinsic :: iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)), value, intent(in) :: status
+      character(len=:), allocatable :: get_status_name
+      type(c_ptr) :: ptr__c
+      character(kind=c_char), pointer :: str__c(:)
+      integer :: n__c, i__c
+      ptr__c = rocsparse_get_status_name_(status)
+      if (.not. c_associated(ptr__c)) then
+        get_status_name = ""
+        return
+      end if
+      call c_f_pointer(ptr__c, str__c, [huge(0)])
+      n__c = 0
+      do while (str__c(n__c + 1) /= c_null_char)
+        n__c = n__c + 1
+      end do
+      allocate(character(len=n__c) :: get_status_name)
+      do i__c = 1, n__c
+        get_status_name(i__c:i__c) = str__c(i__c)
+      end do
+    end function rocsparse_get_status_name_str
+
+    function rocsparse_get_status_description_str(status) result(get_status_description)
+      use, intrinsic :: iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)), value, intent(in) :: status
+      character(len=:), allocatable :: get_status_description
+      type(c_ptr) :: ptr__c
+      character(kind=c_char), pointer :: str__c(:)
+      integer :: n__c, i__c
+      ptr__c = rocsparse_get_status_description_(status)
+      if (.not. c_associated(ptr__c)) then
+        get_status_description = ""
+        return
+      end if
+      call c_f_pointer(ptr__c, str__c, [huge(0)])
+      n__c = 0
+      do while (str__c(n__c + 1) /= c_null_char)
+        n__c = n__c + 1
+      end do
+      allocate(character(len=n__c) :: get_status_description)
+      do i__c = 1, n__c
+        get_status_description(i__c:i__c) = str__c(i__c)
+      end do
+    end function rocsparse_get_status_description_str
+
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
 #ifdef USE_ASSUMED_RANK
     function rocsparse_sbsr2csr_assumed_rank(handle,dir,mb,nb,bsr_descr,bsr_val,bsr_row_ptr, &

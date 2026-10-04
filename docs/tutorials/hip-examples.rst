@@ -35,7 +35,7 @@ Conventions
   and its code, for example ``HIP ERROR: hipErrorInvalidDevice (code 101)``,
   then stops with exit code 1. A call whose non-success return is the thing
   being tested, such as ``hipStreamQuery``, keeps the status in a variable
-  instead.
+  instead, and ``hipGetErrorString`` gives its description as a Fortran string.
 * **Enumerators are integers.** Declare status variables as
   ``integer(kind(hipSuccess))`` so they match the kind the interfaces return.
 * **Host callbacks and kernel stubs** are passed as ``c_funloc`` of a procedure

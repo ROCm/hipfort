@@ -1341,7 +1341,7 @@ module hipfort
   !>  @returns const char pointer to the NULL-terminated error name
   !>
   !>  @see hipGetErrorString, hipGetLastError, hipPeakAtLastError, hipError_t
-  interface hipGetErrorName
+  interface
 #ifdef USE_CUDA_NAMES
     function hipGetErrorName_(hip_error) bind(c, name="cudaGetErrorName")
 #else
@@ -1355,13 +1355,18 @@ module hipfort
     end function
   end interface
 
+  interface hipGetErrorName
+
+    module procedure hipGetErrorName_str
+  end interface
+
   !>  @brief Return handy text string message to explain the error which occurred
   !>
   !>  @param hipError - Error code to convert to string.
   !>  @returns const char pointer to the NULL-terminated error string
   !>
   !>  @see hipGetErrorName, hipGetLastError, hipPeakAtLastError, hipError_t
-  interface hipGetErrorString
+  interface
 #ifdef USE_CUDA_NAMES
     function hipGetErrorString_(hipError) bind(c, name="cudaGetErrorString")
 #else
@@ -1373,6 +1378,11 @@ module hipfort
       type(c_ptr) :: hipGetErrorString_
       integer(kind(hipSuccess)),value :: hipError
     end function
+  end interface
+
+  interface hipGetErrorString
+
+    module procedure hipGetErrorString_str
   end interface
 
   !>  @brief Return hip error as text string form.
@@ -10081,7 +10091,7 @@ module hipfort
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`
 #ifndef USE_CUDA_NAMES
-  interface hipApiName
+  interface
     function hipApiName_(id) bind(c, name="hipApiName")
       use iso_c_binding
       use hipfort_enums
@@ -10089,6 +10099,11 @@ module hipfort
       type(c_ptr) :: hipApiName_
       integer(c_int32_t),value :: id
     end function
+  end interface
+
+  interface hipApiName
+
+    module procedure hipApiName_str
   end interface
 #endif
 
@@ -10098,7 +10113,7 @@ module hipfort
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`
 #ifndef USE_CUDA_NAMES
-  interface hipKernelNameRef
+  interface
     function hipKernelNameRef_(f) bind(c, name="hipKernelNameRef")
       use iso_c_binding
       use hipfort_enums
@@ -10106,6 +10121,11 @@ module hipfort
       type(c_ptr) :: hipKernelNameRef_
       type(c_ptr),value :: f
     end function
+  end interface
+
+  interface hipKernelNameRef
+
+    module procedure hipKernelNameRef_str
   end interface
 #endif
 
@@ -10116,7 +10136,7 @@ module hipfort
   !>
   !>  @returns The name of the passed kernel function object, or nullptr.
 #ifndef USE_CUDA_NAMES
-  interface hipKernelNameRefByPtr
+  interface
     function hipKernelNameRefByPtr_(hostFunction,stream) bind(c, name="hipKernelNameRefByPtr")
       use iso_c_binding
       use hipfort_enums
@@ -10125,6 +10145,11 @@ module hipfort
       type(c_ptr),value :: hostFunction
       type(c_ptr),value :: stream
     end function
+  end interface
+
+  interface hipKernelNameRefByPtr
+
+    module procedure hipKernelNameRefByPtr_str
   end interface
 #endif
 
@@ -14086,6 +14111,141 @@ module hipfort
     end function
   end interface
 
+
+  contains
+
+    function hipGetErrorName_str(hip_error) result(GetErrorName)
+      use, intrinsic :: iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)), value, intent(in) :: hip_error
+      character(len=:), allocatable :: GetErrorName
+      type(c_ptr) :: ptr__c
+      character(kind=c_char), pointer :: str__c(:)
+      integer :: n__c, i__c
+      ptr__c = hipGetErrorName_(hip_error)
+      if (.not. c_associated(ptr__c)) then
+        GetErrorName = ""
+        return
+      end if
+      call c_f_pointer(ptr__c, str__c, [huge(0)])
+      n__c = 0
+      do while (str__c(n__c + 1) /= c_null_char)
+        n__c = n__c + 1
+      end do
+      allocate(character(len=n__c) :: GetErrorName)
+      do i__c = 1, n__c
+        GetErrorName(i__c:i__c) = str__c(i__c)
+      end do
+    end function hipGetErrorName_str
+
+    function hipGetErrorString_str(hipError) result(GetErrorString)
+      use, intrinsic :: iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)), value, intent(in) :: hipError
+      character(len=:), allocatable :: GetErrorString
+      type(c_ptr) :: ptr__c
+      character(kind=c_char), pointer :: str__c(:)
+      integer :: n__c, i__c
+      ptr__c = hipGetErrorString_(hipError)
+      if (.not. c_associated(ptr__c)) then
+        GetErrorString = ""
+        return
+      end if
+      call c_f_pointer(ptr__c, str__c, [huge(0)])
+      n__c = 0
+      do while (str__c(n__c + 1) /= c_null_char)
+        n__c = n__c + 1
+      end do
+      allocate(character(len=n__c) :: GetErrorString)
+      do i__c = 1, n__c
+        GetErrorString(i__c:i__c) = str__c(i__c)
+      end do
+    end function hipGetErrorString_str
+
+#ifndef USE_CUDA_NAMES
+    function hipApiName_str(id) result(ApiName)
+      use, intrinsic :: iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(c_int32_t), value, intent(in) :: id
+      character(len=:), allocatable :: ApiName
+      type(c_ptr) :: ptr__c
+      character(kind=c_char), pointer :: str__c(:)
+      integer :: n__c, i__c
+      ptr__c = hipApiName_(id)
+      if (.not. c_associated(ptr__c)) then
+        ApiName = ""
+        return
+      end if
+      call c_f_pointer(ptr__c, str__c, [huge(0)])
+      n__c = 0
+      do while (str__c(n__c + 1) /= c_null_char)
+        n__c = n__c + 1
+      end do
+      allocate(character(len=n__c) :: ApiName)
+      do i__c = 1, n__c
+        ApiName(i__c:i__c) = str__c(i__c)
+      end do
+    end function hipApiName_str
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipKernelNameRef_str(f) result(KernelNameRef)
+      use, intrinsic :: iso_c_binding
+      use hipfort_enums
+      implicit none
+      type(c_ptr), value, intent(in) :: f
+      character(len=:), allocatable :: KernelNameRef
+      type(c_ptr) :: ptr__c
+      character(kind=c_char), pointer :: str__c(:)
+      integer :: n__c, i__c
+      ptr__c = hipKernelNameRef_(f)
+      if (.not. c_associated(ptr__c)) then
+        KernelNameRef = ""
+        return
+      end if
+      call c_f_pointer(ptr__c, str__c, [huge(0)])
+      n__c = 0
+      do while (str__c(n__c + 1) /= c_null_char)
+        n__c = n__c + 1
+      end do
+      allocate(character(len=n__c) :: KernelNameRef)
+      do i__c = 1, n__c
+        KernelNameRef(i__c:i__c) = str__c(i__c)
+      end do
+    end function hipKernelNameRef_str
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipKernelNameRefByPtr_str(hostFunction, stream) result(KernelNameRefByPtr)
+      use, intrinsic :: iso_c_binding
+      use hipfort_enums
+      implicit none
+      type(c_ptr), value, intent(in) :: hostFunction
+      type(c_ptr), value, intent(in) :: stream
+      character(len=:), allocatable :: KernelNameRefByPtr
+      type(c_ptr) :: ptr__c
+      character(kind=c_char), pointer :: str__c(:)
+      integer :: n__c, i__c
+      ptr__c = hipKernelNameRefByPtr_(hostFunction, stream)
+      if (.not. c_associated(ptr__c)) then
+        KernelNameRefByPtr = ""
+        return
+      end if
+      call c_f_pointer(ptr__c, str__c, [huge(0)])
+      n__c = 0
+      do while (str__c(n__c + 1) /= c_null_char)
+        n__c = n__c + 1
+      end do
+      allocate(character(len=n__c) :: KernelNameRefByPtr)
+      do i__c = 1, n__c
+        KernelNameRefByPtr(i__c:i__c) = str__c(i__c)
+      end do
+    end function hipKernelNameRefByPtr_str
+
+#endif
 
   !>   @defgroup API HIP API
   !>

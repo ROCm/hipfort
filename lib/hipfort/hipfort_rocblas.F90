@@ -37573,7 +37573,7 @@ module hipfort_rocblas
   !>
   !>     @param[in] status - [rocblas_status]
   !>             rocBLAS status to convert to string
-  interface rocblas_status_to_string
+  interface
     function rocblas_status_to_string_(status) bind(c, name="rocblas_status_to_string")
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -37581,6 +37581,11 @@ module hipfort_rocblas
       type(c_ptr) :: rocblas_status_to_string_
       integer(kind(rocblas_status_success)),value :: status
     end function
+  end interface
+
+  interface rocblas_status_to_string
+
+    module procedure rocblas_status_to_string_str
   end interface
 
   !>  \brief Initialize rocBLAS on the current HIP device to avoid costly startup time for the first
@@ -38151,8 +38156,35 @@ module hipfort_rocblas
   end interface
 
 
-#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
+
+    function rocblas_status_to_string_str(status) result(status_to_string)
+      use, intrinsic :: iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)), value, intent(in) :: status
+      character(len=:), allocatable :: status_to_string
+      type(c_ptr) :: ptr__c
+      character(kind=c_char), pointer :: str__c(:)
+      integer :: n__c, i__c
+      ptr__c = rocblas_status_to_string_(status)
+      if (.not. c_associated(ptr__c)) then
+        status_to_string = ""
+        return
+      end if
+      call c_f_pointer(ptr__c, str__c, [huge(0)])
+      n__c = 0
+      do while (str__c(n__c + 1) /= c_null_char)
+        n__c = n__c + 1
+      end do
+      allocate(character(len=n__c) :: status_to_string)
+      do i__c = 1, n__c
+        status_to_string(i__c:i__c) = str__c(i__c)
+      end do
+    end function rocblas_status_to_string_str
+
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
 #ifdef USE_ASSUMED_RANK
     function rocblas_sscal_assumed_rank(handle,n,alpha,x,incx)

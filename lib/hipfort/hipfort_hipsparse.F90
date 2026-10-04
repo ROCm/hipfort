@@ -85,7 +85,7 @@ module hipfort_hipsparse
   !>   return \p rocsparse_status_success. On a system with a cuSPARSE backend this function would
   !>   return
   !>   \p CUSPARSE_STATUS_SUCCESS.
-  interface hipsparseGetErrorName
+  interface
 #ifdef USE_CUDA_NAMES
     function hipsparseGetErrorName_(status) bind(c, name="cusparseGetErrorName")
 #else
@@ -99,6 +99,11 @@ module hipfort_hipsparse
     end function
   end interface
 
+  interface hipsparseGetErrorName
+
+    module procedure hipsparseGetErrorName_str
+  end interface
+
   !>  \ingroup aux_module
   !>   \brief Return the hipSPARSE status's matching backend status description as a string
   !>
@@ -108,7 +113,7 @@ module hipfort_hipsparse
   !>   status (either \p rocsparse_status or \p cusparseStatus_t). It then returns the string
   !>   description of this status.
   !>   If the status is not recognized, the function returns "Unrecognized status code".
-  interface hipsparseGetErrorString
+  interface
 #ifdef USE_CUDA_NAMES
     function hipsparseGetErrorString_(status) bind(c, name="cusparseGetErrorString")
 #else
@@ -120,6 +125,11 @@ module hipfort_hipsparse
       type(c_ptr) :: hipsparseGetErrorString_
       integer(kind(HIPSPARSE_STATUS_SUCCESS)),value :: status
     end function
+  end interface
+
+  interface hipsparseGetErrorString
+
+    module procedure hipsparseGetErrorString_str
   end interface
 
   !>  \ingroup aux_module
@@ -25247,8 +25257,60 @@ module hipfort_hipsparse
   end interface
 
 
-#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
+
+    function hipsparseGetErrorName_str(status) result(GetErrorName)
+      use, intrinsic :: iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)), value, intent(in) :: status
+      character(len=:), allocatable :: GetErrorName
+      type(c_ptr) :: ptr__c
+      character(kind=c_char), pointer :: str__c(:)
+      integer :: n__c, i__c
+      ptr__c = hipsparseGetErrorName_(status)
+      if (.not. c_associated(ptr__c)) then
+        GetErrorName = ""
+        return
+      end if
+      call c_f_pointer(ptr__c, str__c, [huge(0)])
+      n__c = 0
+      do while (str__c(n__c + 1) /= c_null_char)
+        n__c = n__c + 1
+      end do
+      allocate(character(len=n__c) :: GetErrorName)
+      do i__c = 1, n__c
+        GetErrorName(i__c:i__c) = str__c(i__c)
+      end do
+    end function hipsparseGetErrorName_str
+
+    function hipsparseGetErrorString_str(status) result(GetErrorString)
+      use, intrinsic :: iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)), value, intent(in) :: status
+      character(len=:), allocatable :: GetErrorString
+      type(c_ptr) :: ptr__c
+      character(kind=c_char), pointer :: str__c(:)
+      integer :: n__c, i__c
+      ptr__c = hipsparseGetErrorString_(status)
+      if (.not. c_associated(ptr__c)) then
+        GetErrorString = ""
+        return
+      end if
+      call c_f_pointer(ptr__c, str__c, [huge(0)])
+      n__c = 0
+      do while (str__c(n__c + 1) /= c_null_char)
+        n__c = n__c + 1
+      end do
+      allocate(character(len=n__c) :: GetErrorString)
+      do i__c = 1, n__c
+        GetErrorString(i__c:i__c) = str__c(i__c)
+      end do
+    end function hipsparseGetErrorString_str
+
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
