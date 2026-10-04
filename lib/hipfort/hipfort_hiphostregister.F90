@@ -485,7 +485,7 @@ contains
     integer(c_int), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_1_nosize
 
   function hipHostRegister_i4_1(hostPtr, length1, flags) result(res)
@@ -520,7 +520,7 @@ contains
     integer(c_int), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_2_nosize
 
   function hipHostRegister_i4_2(hostPtr, length1, length2, flags) result(res)
@@ -557,7 +557,7 @@ contains
     integer(c_int), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_3_nosize
 
   function hipHostRegister_i4_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -596,7 +596,7 @@ contains
     integer(c_int), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_4_nosize
 
   function hipHostRegister_i4_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -637,7 +637,7 @@ contains
     integer(c_int), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_5_nosize
 
   function hipHostRegister_i4_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -680,7 +680,7 @@ contains
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_6_nosize
 
   function hipHostRegister_i4_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -725,7 +725,7 @@ contains
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_7_nosize
 
   function hipHostRegister_i4_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -781,7 +781,7 @@ contains
     integer(c_int64_t), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_1_nosize
 
   function hipHostRegister_i8_1(hostPtr, length1, flags) result(res)
@@ -816,7 +816,7 @@ contains
     integer(c_int64_t), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_2_nosize
 
   function hipHostRegister_i8_2(hostPtr, length1, length2, flags) result(res)
@@ -853,7 +853,7 @@ contains
     integer(c_int64_t), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_3_nosize
 
   function hipHostRegister_i8_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -892,7 +892,7 @@ contains
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_4_nosize
 
   function hipHostRegister_i8_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -933,7 +933,7 @@ contains
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_5_nosize
 
   function hipHostRegister_i8_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -976,7 +976,7 @@ contains
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_6_nosize
 
   function hipHostRegister_i8_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -1021,7 +1021,7 @@ contains
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_7_nosize
 
   function hipHostRegister_i8_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -1077,7 +1077,7 @@ contains
     real(c_float), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_1_nosize
 
   function hipHostRegister_r4_1(hostPtr, length1, flags) result(res)
@@ -1112,7 +1112,7 @@ contains
     real(c_float), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_2_nosize
 
   function hipHostRegister_r4_2(hostPtr, length1, length2, flags) result(res)
@@ -1149,7 +1149,7 @@ contains
     real(c_float), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_3_nosize
 
   function hipHostRegister_r4_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -1188,7 +1188,7 @@ contains
     real(c_float), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_4_nosize
 
   function hipHostRegister_r4_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -1229,7 +1229,7 @@ contains
     real(c_float), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_5_nosize
 
   function hipHostRegister_r4_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -1272,7 +1272,7 @@ contains
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_6_nosize
 
   function hipHostRegister_r4_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -1317,7 +1317,7 @@ contains
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_7_nosize
 
   function hipHostRegister_r4_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -1373,7 +1373,7 @@ contains
     real(c_double), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_1_nosize
 
   function hipHostRegister_r8_1(hostPtr, length1, flags) result(res)
@@ -1408,7 +1408,7 @@ contains
     real(c_double), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_2_nosize
 
   function hipHostRegister_r8_2(hostPtr, length1, length2, flags) result(res)
@@ -1445,7 +1445,7 @@ contains
     real(c_double), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_3_nosize
 
   function hipHostRegister_r8_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -1484,7 +1484,7 @@ contains
     real(c_double), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_4_nosize
 
   function hipHostRegister_r8_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -1525,7 +1525,7 @@ contains
     real(c_double), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_5_nosize
 
   function hipHostRegister_r8_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -1568,7 +1568,7 @@ contains
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_6_nosize
 
   function hipHostRegister_r8_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -1613,7 +1613,7 @@ contains
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_7_nosize
 
   function hipHostRegister_r8_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -1669,7 +1669,7 @@ contains
     complex(c_float_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_1_nosize
 
   function hipHostRegister_c4_1(hostPtr, length1, flags) result(res)
@@ -1704,7 +1704,7 @@ contains
     complex(c_float_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_2_nosize
 
   function hipHostRegister_c4_2(hostPtr, length1, length2, flags) result(res)
@@ -1741,7 +1741,7 @@ contains
     complex(c_float_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_3_nosize
 
   function hipHostRegister_c4_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -1780,7 +1780,7 @@ contains
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_4_nosize
 
   function hipHostRegister_c4_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -1821,7 +1821,7 @@ contains
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_5_nosize
 
   function hipHostRegister_c4_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -1864,7 +1864,7 @@ contains
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_6_nosize
 
   function hipHostRegister_c4_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -1909,7 +1909,7 @@ contains
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_7_nosize
 
   function hipHostRegister_c4_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -1965,7 +1965,7 @@ contains
     complex(c_double_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_1_nosize
 
   function hipHostRegister_c8_1(hostPtr, length1, flags) result(res)
@@ -2000,7 +2000,7 @@ contains
     complex(c_double_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_2_nosize
 
   function hipHostRegister_c8_2(hostPtr, length1, length2, flags) result(res)
@@ -2037,7 +2037,7 @@ contains
     complex(c_double_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_3_nosize
 
   function hipHostRegister_c8_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -2076,7 +2076,7 @@ contains
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_4_nosize
 
   function hipHostRegister_c8_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -2117,7 +2117,7 @@ contains
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_5_nosize
 
   function hipHostRegister_c8_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -2160,7 +2160,7 @@ contains
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_6_nosize
 
   function hipHostRegister_c8_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -2205,7 +2205,7 @@ contains
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_7_nosize
 
   function hipHostRegister_c8_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -2261,7 +2261,7 @@ contains
     logical(c_bool), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_1_nosize
 
   function hipHostRegister_l_1(hostPtr, length1, flags) result(res)
@@ -2296,7 +2296,7 @@ contains
     logical(c_bool), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_2_nosize
 
   function hipHostRegister_l_2(hostPtr, length1, length2, flags) result(res)
@@ -2333,7 +2333,7 @@ contains
     logical(c_bool), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_3_nosize
 
   function hipHostRegister_l_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -2372,7 +2372,7 @@ contains
     logical(c_bool), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_4_nosize
 
   function hipHostRegister_l_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -2413,7 +2413,7 @@ contains
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_5_nosize
 
   function hipHostRegister_l_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -2456,7 +2456,7 @@ contains
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_6_nosize
 
   function hipHostRegister_l_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -2501,7 +2501,7 @@ contains
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_7_nosize
 
   function hipHostRegister_l_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)

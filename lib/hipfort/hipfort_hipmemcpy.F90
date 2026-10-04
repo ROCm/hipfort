@@ -917,7 +917,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_i4_assumed_rank
 
@@ -955,7 +955,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_i8_assumed_rank
 
@@ -993,7 +993,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_r4_assumed_rank
 
@@ -1031,7 +1031,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_r8_assumed_rank
 
@@ -1069,7 +1069,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_c4_assumed_rank
 
@@ -1107,7 +1107,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_c8_assumed_rank
 
@@ -1145,7 +1145,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_l_assumed_rank
 
@@ -1186,7 +1186,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_assumed_rank
 
@@ -1227,7 +1227,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_assumed_rank
 
@@ -1268,7 +1268,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_assumed_rank
 
@@ -1309,7 +1309,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_assumed_rank
 
@@ -1350,7 +1350,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_assumed_rank
 
@@ -1391,7 +1391,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_assumed_rank
 
@@ -1432,7 +1432,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_assumed_rank
 
@@ -1943,7 +1943,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_i4_1
 
@@ -1981,7 +1981,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_i4_2
 
@@ -2019,7 +2019,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_3
 
@@ -2057,7 +2057,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_4
 
@@ -2095,7 +2095,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_5
 
@@ -2133,7 +2133,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_6
 
@@ -2171,7 +2171,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_7
 
@@ -2247,7 +2247,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_i8_1
 
@@ -2285,7 +2285,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_i8_2
 
@@ -2323,7 +2323,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_3
 
@@ -2361,7 +2361,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_4
 
@@ -2399,7 +2399,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_5
 
@@ -2437,7 +2437,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_6
 
@@ -2475,7 +2475,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_7
 
@@ -2551,7 +2551,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_r4_1
 
@@ -2589,7 +2589,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_r4_2
 
@@ -2627,7 +2627,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_3
 
@@ -2665,7 +2665,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_4
 
@@ -2703,7 +2703,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_5
 
@@ -2741,7 +2741,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_6
 
@@ -2779,7 +2779,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_7
 
@@ -2855,7 +2855,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_r8_1
 
@@ -2893,7 +2893,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_r8_2
 
@@ -2931,7 +2931,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_3
 
@@ -2969,7 +2969,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_4
 
@@ -3007,7 +3007,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_5
 
@@ -3045,7 +3045,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_6
 
@@ -3083,7 +3083,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_7
 
@@ -3159,7 +3159,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_c4_1
 
@@ -3197,7 +3197,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_c4_2
 
@@ -3235,7 +3235,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_3
 
@@ -3273,7 +3273,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_4
 
@@ -3311,7 +3311,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_5
 
@@ -3349,7 +3349,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_6
 
@@ -3387,7 +3387,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_7
 
@@ -3463,7 +3463,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_c8_1
 
@@ -3501,7 +3501,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_c8_2
 
@@ -3539,7 +3539,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_3
 
@@ -3577,7 +3577,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_4
 
@@ -3615,7 +3615,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_5
 
@@ -3653,7 +3653,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_6
 
@@ -3691,7 +3691,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_7
 
@@ -3767,7 +3767,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_l_1
 
@@ -3805,7 +3805,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_l_2
 
@@ -3843,7 +3843,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_l_3
 
@@ -3881,7 +3881,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_l_4
 
@@ -3919,7 +3919,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_l_5
 
@@ -3957,7 +3957,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_l_6
 
@@ -3995,7 +3995,7 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_l_7
 
@@ -4077,7 +4077,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_1
 
@@ -4118,7 +4118,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_2
 
@@ -4159,7 +4159,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_3
 
@@ -4200,7 +4200,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_4
 
@@ -4241,7 +4241,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_5
 
@@ -4282,7 +4282,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_6
 
@@ -4323,7 +4323,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_7
 
@@ -4405,7 +4405,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_1
 
@@ -4446,7 +4446,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_2
 
@@ -4487,7 +4487,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_3
 
@@ -4528,7 +4528,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_4
 
@@ -4569,7 +4569,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_5
 
@@ -4610,7 +4610,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_6
 
@@ -4651,7 +4651,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_7
 
@@ -4733,7 +4733,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_1
 
@@ -4774,7 +4774,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_2
 
@@ -4815,7 +4815,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_3
 
@@ -4856,7 +4856,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_4
 
@@ -4897,7 +4897,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_5
 
@@ -4938,7 +4938,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_6
 
@@ -4979,7 +4979,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_7
 
@@ -5061,7 +5061,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_1
 
@@ -5102,7 +5102,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_2
 
@@ -5143,7 +5143,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_3
 
@@ -5184,7 +5184,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_4
 
@@ -5225,7 +5225,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_5
 
@@ -5266,7 +5266,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_6
 
@@ -5307,7 +5307,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_7
 
@@ -5389,7 +5389,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_1
 
@@ -5430,7 +5430,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_2
 
@@ -5471,7 +5471,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_3
 
@@ -5512,7 +5512,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_4
 
@@ -5553,7 +5553,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_5
 
@@ -5594,7 +5594,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_6
 
@@ -5635,7 +5635,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_7
 
@@ -5717,7 +5717,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_1
 
@@ -5758,7 +5758,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_2
 
@@ -5799,7 +5799,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_3
 
@@ -5840,7 +5840,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_4
 
@@ -5881,7 +5881,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_5
 
@@ -5922,7 +5922,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_6
 
@@ -5963,7 +5963,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_7
 
@@ -6045,7 +6045,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_1
 
@@ -6086,7 +6086,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_2
 
@@ -6127,7 +6127,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_3
 
@@ -6168,7 +6168,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_4
 
@@ -6209,7 +6209,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_5
 
@@ -6250,7 +6250,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_6
 
@@ -6291,7 +6291,7 @@ contains
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_7
 
