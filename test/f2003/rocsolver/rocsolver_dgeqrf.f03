@@ -41,9 +41,9 @@ program dgeqrf
   ! Define our input data
   real(c_double), target :: hA(3,3) = reshape((/12, 6, -4, -51, 167, 24, 4, -68, -41/), (/3, 3/))
   real(c_double), target :: hResult(3,3) = reshape((/&
-  -14.000000000000000,       -21.000000000000000,        14.000000000000002,&
-  0.23076923076923078,       -175.00000000000000,        70.000000000000000,&
- -0.15384615384615385,        5.5555555555555559E-002,  -35.000000000000000/), shape(hResult), order=(/2,1/))
+  -14.000000000000000d0,       -21.000000000000000d0,        14.000000000000002d0,&
+  0.23076923076923078d0,       -175.00000000000000d0,        70.000000000000000d0,&
+ -0.15384615384615385d0,        5.5555555555555559D-002,  -35.000000000000000d0/), shape(hResult), order=(/2,1/))
   integer(c_int), parameter :: M = 3
   integer(c_int), parameter :: N = 3
   integer(c_int), parameter :: lda = 3
@@ -57,8 +57,8 @@ program dgeqrf
 
   type(c_ptr) :: handle ! rocblas_handle
     
-  real :: error
-  real, parameter :: error_max = 10 * epsilon(error_max)
+  real(c_double) :: error
+  real(c_double), parameter :: error_max = 100 * epsilon(error_max)
   !
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_dgeqrf' (Fortran 2003 interfaces) - "
 
@@ -82,7 +82,7 @@ program dgeqrf
   ! Output results
   do j = 1,size(hA,2)
     do i = 1,size(hA,1)
-        error = abs(hA(i,j) - hResult(i,j))
+        error = abs(hA(i,j) - hResult(i,j)) / max(abs(hResult(i,j)), 1.0_c_double)
         if(error .gt. error_max) then
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " hA(", i, ",", j, ") = ", hA(i,j)
             call exit(1)

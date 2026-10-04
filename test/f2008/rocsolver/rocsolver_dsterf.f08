@@ -51,8 +51,8 @@ program dsterf
 
   type(c_ptr) :: handle ! rocblas_handle
 
-  real :: error
-  real, parameter :: error_max = 10 * epsilon(error_max)
+  real(c_double) :: error
+  real(c_double), parameter :: error_max = 10 * epsilon(error_max)
   !
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_dsterf' (Fortran 2008 interfaces) - "
 

@@ -43,7 +43,7 @@ program hipblas_cgemv_test
   complex(kind=4), allocatable, target, dimension(:) :: hA, hx, hy
   complex(kind=4) :: y_exact
   double precision :: error
-  double precision, parameter :: error_max = 10*epsilon(error)
+  double precision, parameter :: error_max = 10*epsilon(real(1.0,kind=4))
   type(c_ptr) :: dA = c_null_ptr, dx = c_null_ptr, dy = c_null_ptr
   type(c_ptr) :: handle = c_null_ptr
   integer :: i

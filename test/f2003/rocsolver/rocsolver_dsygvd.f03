@@ -59,7 +59,7 @@ program dsygvd
   type(c_ptr) :: handle
 
   real(c_double) :: error
-  real(c_double), parameter :: error_max = 1.0e-5
+  real(c_double), parameter :: error_max = 1.0d-10
   !
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_dsygvd' (Fortran 2003 interfaces) - "
 

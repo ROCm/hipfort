@@ -60,7 +60,7 @@ program dsyevdx
   type(c_ptr) :: handle
 
   real(c_double) :: error
-  real(c_double), parameter :: error_max = 1.0e-5
+  real(c_double), parameter :: error_max = 1.0d-10
   !
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_dsyevdx' (Fortran 2008 interfaces) - "
 

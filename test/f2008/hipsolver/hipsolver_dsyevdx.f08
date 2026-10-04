@@ -58,7 +58,7 @@ program hipsolver_dsyevdx
   integer(c_int) :: lwork
 
   real(c_double) :: error
-  real(c_double), parameter :: error_max = 1.0e-5
+  real(c_double), parameter :: error_max = 1.0d-10
 
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_dsyevdx' (Fortran 2008 interfaces) - "
 
