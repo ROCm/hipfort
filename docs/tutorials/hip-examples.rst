@@ -31,9 +31,11 @@ Conventions
   libraries, these overloads are unconditional, so they are available in every
   hipFORT build.
 * **Every call returns a status code.** The programs wrap calls in ``hipCheck``
-  from the ``hipfort_check`` module, which aborts on failure. A call whose
-  non-success return is the thing being tested, such as ``hipStreamQuery``,
-  keeps the status in a variable instead.
+  from the ``hipfort_check`` module, which on failure prints the status by name
+  and its code, for example ``HIP ERROR: hipErrorInvalidDevice (code 101)``,
+  then stops with exit code 1. A call whose non-success return is the thing
+  being tested, such as ``hipStreamQuery``, keeps the status in a variable
+  instead.
 * **Enumerators are integers.** Declare status variables as
   ``integer(kind(hipSuccess))`` so they match the kind the interfaces return.
 * **Host callbacks and kernel stubs** are passed as ``c_funloc`` of a procedure
