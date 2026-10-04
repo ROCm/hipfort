@@ -45,7 +45,7 @@ program hipsolver_zgesvd
   integer(c_int) :: lwork
   integer(c_size_t) :: szA = M*N, szS = mn, szU = M*M, szV = N*N, szR = mn
   real(c_double) :: frob, ssum, error
-  real(c_double), parameter :: rtol = 1.0e-5
+  real(c_double), parameter :: rtol = 1.0d-10
   integer :: i
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_zgesvd' (Fortran 2008 interfaces) - "
   call hipsolverCheck(hipsolverCreate(handle))

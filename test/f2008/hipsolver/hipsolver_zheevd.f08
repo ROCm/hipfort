@@ -48,7 +48,7 @@ program hipsolver_zheevd
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
   real(c_double) :: trace_A, error
-  real(c_double), parameter :: rtol = 1.0e-5
+  real(c_double), parameter :: rtol = 1.0d-10
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_zheevd' (Fortran 2008 interfaces) - "
   trace_A = real(hA(1,1)) + real(hA(2,2)) + real(hA(3,3)) + real(hA(4,4))
   call hipsolverCheck(hipsolverCreate(handle))
