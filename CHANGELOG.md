@@ -4,6 +4,17 @@
 
 ### Added
 
+* `hipfort_check`: every `<lib>Check` routine now reports a failing status by
+  name, then its code, for example
+  `HIPBLAS ERROR: HIPBLAS_STATUS_INVALID_VALUE (code 3)` instead of
+  `HIPBLAS ERROR: code = 3`. The names come from each library's status enum, so
+  this covers the libraries with no to-string function of their own (hipFFT,
+  hipRAND, hipSOLVER, rocFFT, rocRAND, rocSOLVER) and adds no link dependency:
+  `hipfort_check` still references no library symbol. A build with
+  `USE_CUDA_NAMES` keeps printing the code only, since CUDA statuses do not
+  follow the HIP values. `hipCheck` now compares against `hipSuccess`, from
+  `hipError_t`, rather than `HIP_SUCCESS`, from a legacy four-entry enum; both
+  are 0.
 * Tutorial pages of complete, runnable Fortran programs for rocBLAS and hipBLAS,
   and for rocRAND and hipRAND.
 * rocBLAS tests for `nrm2`/`asum`, `iamax`/`iamin`, `ger`, `syrk`/`herk`,
