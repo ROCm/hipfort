@@ -100,9 +100,11 @@
 * The rank 1 to 7 overloads of `hipFree` and `hipHostFree` passed
   `c_loc(ptr(1,...,1))` to the C call, which is the base of the allocation only
   when every lower bound is 1. A pointer from `hipMalloc(..., lbounds=)`, or one
-  remapped with `ptr(0:,0:) => ptr`, was freed at the wrong address, so the call
-  failed and the memory leaked. They pass `c_loc(ptr)` now, like the rank 0
-  overloads already did.
+  remapped with `ptr(0:,0:) => ptr`, was freed through an address inside the
+  allocation rather than the one the allocator returned. ROCm happens to resolve
+  such an address to its allocation and free it, but HIP and CUDA both document
+  that the pointer must be the one the allocation returned. They pass
+  `c_loc(ptr)` now, like the rank 0 overloads already did.
 * `roctx_range_id_t` is a `uint64_t`, but `hipfort_roctx` declared it
   `integer(c_size_t)`. Both are eight bytes on every platform ROCm supports, so
   this was harmless in practice; it is `integer(c_int64_t)` now.

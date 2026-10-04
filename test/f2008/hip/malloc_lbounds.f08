@@ -31,7 +31,9 @@
 ! Allocates device memory with hipMalloc(dims=, lbounds=) and pinned host memory
 ! with hipHostMalloc, remaps the pinned array to lower bounds of zero, then
 ! frees both. hipFree/hipHostFree must pass the base address of the allocation,
-! not the address of element (1,1), so both calls have to succeed.
+! not the address of element (1,1). ROCm happens to accept an address inside
+! the allocation as well, so on AMD this test cannot catch a wrong free; it
+! guards the bounds, the round trip, and that both frees succeed.
 !!!!!!!!!!!!!!
 !
 program malloc_lbounds
