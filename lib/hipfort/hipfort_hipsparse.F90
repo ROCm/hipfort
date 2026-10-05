@@ -22826,7 +22826,7 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpVecGet_
       type(c_ptr),value :: spVecDescr
-      type(c_ptr),value :: mySize
+      integer(c_int64_t) :: mySize
       integer(c_int64_t) :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
@@ -22852,7 +22852,7 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstSpVecGet_
       type(c_ptr),value :: spVecDescr
-      type(c_ptr),value :: mySize
+      integer(c_int64_t) :: mySize
       integer(c_int64_t) :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
@@ -23534,8 +23534,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: spMatDescr
       integer(c_int64_t) :: rows
       integer(c_int64_t) :: cols
-      type(c_ptr),value :: ellBlockSize
-      type(c_ptr),value :: ellCols
+      integer(c_int64_t) :: ellBlockSize
+      integer(c_int64_t) :: ellCols
       type(c_ptr) :: ellColInd
       type(c_ptr) :: ellValue
       integer(kind(HIPSPARSE_INDEX_16U)) :: ellIdxType
@@ -23562,8 +23562,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: spMatDescr
       integer(c_int64_t) :: rows
       integer(c_int64_t) :: cols
-      type(c_ptr),value :: ellBlockSize
-      type(c_ptr),value :: ellCols
+      integer(c_int64_t) :: ellBlockSize
+      integer(c_int64_t) :: ellCols
       type(c_ptr) :: ellColInd
       type(c_ptr) :: ellValue
       integer(kind(HIPSPARSE_INDEX_16U)) :: ellIdxType
@@ -23753,7 +23753,7 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatGetStridedBatch_
       type(c_ptr),value :: spMatDescr
-      type(c_ptr),value :: batchCount
+      integer(c_int) :: batchCount
     end function
   end interface
 
@@ -23915,7 +23915,7 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnVecGet_
       type(c_ptr),value :: dnVecDescr
-      type(c_ptr),value :: mySize
+      integer(c_int64_t) :: mySize
       type(c_ptr) :: values
       integer(kind(HIP_R_32F)) :: valueType
     end function
@@ -23935,7 +23935,7 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnVecGet_
       type(c_ptr),value :: dnVecDescr
-      type(c_ptr),value :: mySize
+      integer(c_int64_t) :: mySize
       type(c_ptr) :: values
       integer(kind(HIP_R_32F)) :: valueType
     end function
@@ -24064,7 +24064,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: dnMatDescr
       integer(c_int64_t) :: rows
       integer(c_int64_t) :: cols
-      type(c_ptr),value :: ld
+      integer(c_int64_t) :: ld
       type(c_ptr) :: values
       integer(kind(HIP_R_32F)) :: valueType
       integer(kind(HIPSPARSE_ORDER_COLUMN)) :: order
@@ -24087,7 +24087,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: dnMatDescr
       integer(c_int64_t) :: rows
       integer(c_int64_t) :: cols
-      type(c_ptr),value :: ld
+      integer(c_int64_t) :: ld
       type(c_ptr) :: values
       integer(kind(HIP_R_32F)) :: valueType
       integer(kind(HIPSPARSE_ORDER_COLUMN)) :: order
@@ -24154,8 +24154,8 @@ module hipfort_hipsparse
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnMatGetStridedBatch_
       type(c_ptr),value :: dnMatDescr
-      type(c_ptr),value :: batchCount
-      type(c_ptr),value :: batchStride
+      integer(c_int) :: batchCount
+      integer(c_int64_t) :: batchStride
     end function
   end interface
 
@@ -24484,7 +24484,7 @@ module hipfort_hipsparse
       integer(kind(HIP_R_32F)),value :: computeType
       integer(kind(HIPSPARSE_SPGEAM_ALG1)),value :: alg
       type(c_ptr),value :: spgeamDescr
-      type(c_ptr),value :: bufferSize
+      integer(c_size_t) :: bufferSize
     end function
   end interface
 

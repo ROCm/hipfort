@@ -82,7 +82,7 @@ program stream_capture_info
 
   capstat = -1
   capid = -1
-  call hipCheck(hipStreamGetCaptureInfo(stream, capstat, c_loc(capid)))
+  call hipCheck(hipStreamGetCaptureInfo(stream, capstat, capid))
   call expect_status(capstat, hipStreamCaptureStatusNone, "hipStreamGetCaptureInfo before capture")
 
   ! 2. Inside a capture all three queries must report Active, and the two
@@ -96,7 +96,7 @@ program stream_capture_info
 
   capstat = -1
   capid = -1
-  call hipCheck(hipStreamGetCaptureInfo(stream, capstat, c_loc(capid)))
+  call hipCheck(hipStreamGetCaptureInfo(stream, capstat, capid))
   call expect_status(capstat, hipStreamCaptureStatusActive, "hipStreamGetCaptureInfo during capture")
   if (capid <= 0) then
      write(*,*) "FAILED! hipStreamGetCaptureInfo returned capture id ", capid, &
@@ -107,8 +107,8 @@ program stream_capture_info
   capstat = -1
   capid_v2 = -1
   ndeps = 0
-  call hipCheck(hipStreamGetCaptureInfo_v2(stream, capstat, c_loc(capid_v2), &
-                                           graph_out, deps_out, c_loc(ndeps)))
+  call hipCheck(hipStreamGetCaptureInfo_v2(stream, capstat, capid_v2, &
+                                           graph_out, deps_out, ndeps))
   call expect_status(capstat, hipStreamCaptureStatusActive, "hipStreamGetCaptureInfo_v2 during capture")
   if (capid_v2 /= capid) then
      write(*,*) "FAILED! hipStreamGetCaptureInfo_v2 capture id ", capid_v2, &
@@ -141,7 +141,7 @@ program stream_capture_info
   call hipCheck(hipGraphAddEmptyNode(emptynode, graph, c_null_ptr, 0_c_size_t))
 
   numnodes = size(nodes_out, kind=c_size_t)
-  call hipCheck(hipGraphGetNodes(graph, nodes_out(1), c_loc(numnodes)))
+  call hipCheck(hipGraphGetNodes(graph, nodes_out(1), numnodes))
   if (numnodes /= 2) then
      write(*,*) "FAILED! captured graph holds ", numnodes, " nodes (expected 2)"
      call exit(1)

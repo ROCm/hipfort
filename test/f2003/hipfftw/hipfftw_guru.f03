@@ -64,10 +64,7 @@ program hipfftw_guru_test
 
   dims(1) = fftw_iodim(N, 1, 1)         ! n=N, is=1, os=1
   howmany_dims(1) = fftw_iodim(HOWMANY, N, N)  ! n=HOWMANY, is=N, os=N
-  ! The dims/howmany_dims dummies are declared scalar type(fftw_iodim); pass the
-  ! first element of each array so the callee receives the base address of
-  ! the contiguous struct array — looks like an element but acts as a pointer.
-  plan = fftw_plan_guru_dft(1, dims(1), 1, howmany_dims(1), &
+  plan = fftw_plan_guru_dft(1, dims, 1, howmany_dims, &
       dx, dy, FFTW_FORWARD, FFTW_ESTIMATE)
   call fftw_execute_dft(plan, dx, dy)
   call fftw_destroy_plan(plan)

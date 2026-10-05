@@ -2008,7 +2008,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
   end interface
@@ -2037,7 +2037,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
   end interface
@@ -2066,7 +2066,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
   end interface
@@ -2095,7 +2095,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
   end interface
@@ -2500,7 +2500,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
 
@@ -2537,7 +2537,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
 
@@ -2574,7 +2574,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
 
@@ -2611,7 +2611,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
 
@@ -8639,7 +8639,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
   end interface
@@ -8668,7 +8668,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
   end interface
@@ -8697,7 +8697,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
   end interface
@@ -8726,7 +8726,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
   end interface
@@ -9043,7 +9043,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
   end interface
@@ -9072,7 +9072,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
   end interface
@@ -9101,7 +9101,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
   end interface
@@ -9130,7 +9130,7 @@ module hipfort_hipsolver
       integer(c_int),value :: ldx
       type(c_ptr),value :: work
       integer(c_size_t),value :: lwork
-      type(c_ptr),value :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
     end function
   end interface
@@ -13318,8 +13318,8 @@ module hipfort_hipsolver
       type(c_ptr),value :: T
       integer(c_int64_t),value :: ldt
       integer(kind(HIP_R_32F)),value :: computeType
-      type(c_ptr),value :: lworkOnDevice
-      type(c_ptr),value :: lworkOnHost
+      integer(c_size_t) :: lworkOnDevice
+      integer(c_size_t) :: lworkOnHost
     end function
   end interface
 
@@ -14050,7 +14050,7 @@ module hipfort_hipsolver
       integer(c_int),value :: nnzA
       type(c_ptr),value :: h_csrRowPtrA
       type(c_ptr),value :: h_csrColIndA
-      type(c_ptr) :: h_csrValA_array
+      type(c_ptr),value :: h_csrValA_array
       integer(c_int),value :: nnzL
       type(c_ptr),value :: h_csrRowPtrL
       type(c_ptr),value :: h_csrColIndL
@@ -14112,7 +14112,7 @@ module hipfort_hipsolver
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrRowPtrA
       type(c_ptr),value :: csrColIndA
-      type(c_ptr) :: csrValA_array
+      type(c_ptr),value :: csrValA_array
       type(c_ptr),value :: P
       type(c_ptr),value :: Q
       type(c_ptr),value :: handle
@@ -14137,7 +14137,7 @@ module hipfort_hipsolver
       integer(c_int),value :: nrhs
       type(c_ptr),value :: Temp
       integer(c_int),value :: ldt
-      type(c_ptr) :: XF_array
+      type(c_ptr),value :: XF_array
       integer(c_int),value :: ldxf
     end function
   end interface
@@ -19288,7 +19288,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverSSgesv_assumed_rank = hipsolverSSgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19314,7 +19314,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverSSgesv_rank_0 = hipsolverSSgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19339,7 +19339,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverSSgesv_rank_1 = hipsolverSSgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19364,7 +19364,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverSSgesv_full_rank = hipsolverSSgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19393,7 +19393,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverDDgesv_assumed_rank = hipsolverDDgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19419,7 +19419,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverDDgesv_rank_0 = hipsolverDDgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19444,7 +19444,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverDDgesv_rank_1 = hipsolverDDgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19469,7 +19469,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverDDgesv_full_rank = hipsolverDDgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19498,7 +19498,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverCCgesv_assumed_rank = hipsolverCCgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19524,7 +19524,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverCCgesv_rank_0 = hipsolverCCgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19549,7 +19549,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverCCgesv_rank_1 = hipsolverCCgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19574,7 +19574,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverCCgesv_full_rank = hipsolverCCgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19603,7 +19603,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverZZgesv_assumed_rank = hipsolverZZgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19629,7 +19629,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverZZgesv_rank_0 = hipsolverZZgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19654,7 +19654,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverZZgesv_rank_1 = hipsolverZZgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &
@@ -19679,7 +19679,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldx
       type(c_ptr) :: work
       integer(c_size_t) :: lwork
-      type(c_ptr) :: niters
+      integer(c_int) :: niters
       type(c_ptr),value :: devInfo
       !
       hipsolverZZgesv_full_rank = hipsolverZZgesv_(handle,n,nrhs,c_loc(A),lda,c_loc(devIpiv), &

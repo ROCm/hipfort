@@ -48,8 +48,7 @@
 !
 ! All of the "get" routines now return their scalar outputs through real
 ! Fortran scalars, so the variables are passed directly and never wrapped in
-! c_loc -- except the "size" argument of rocsparse_dnvec_get and
-! rocsparse_spvec_get, which the binding still declares as type(c_ptr),value.
+! c_loc.
 !
 ! f2003 style: device buffers are type(c_ptr) allocated by byte count; host
 ! data is moved with hipMemcpy + c_loc.
@@ -183,7 +182,7 @@ program rocsparse_descr_get
 
   ! ---- dnvec_get ------------------------------------------------------------
   g_size = -1; g_dt = -1; g_c = c_null_ptr
-  call rocsparseCheck(rocsparse_dnvec_get(vecX, c_loc(g_size), g_c, g_dt))
+  call rocsparseCheck(rocsparse_dnvec_get(vecX, g_size, g_c, g_dt))
   if (g_size /= int(n,c_int64_t) .or. g_dt /= rocsparse_datatype_f64_r) then
      write(*,*) "FAILED! dnvec_get expected size ", n, " datatype ", rocsparse_datatype_f64_r, &
           " got ", g_size, g_dt
@@ -197,7 +196,7 @@ program rocsparse_descr_get
   ! ---- spvec_get ------------------------------------------------------------
   g_size = -1; g_nnz = -1; g_it = -1; g_base = -1; g_dt = -1
   g_b = c_null_ptr; g_c = c_null_ptr
-  call rocsparseCheck(rocsparse_spvec_get(spv, c_loc(g_size), g_nnz, g_b, g_c, g_it, g_base, g_dt))
+  call rocsparseCheck(rocsparse_spvec_get(spv, g_size, g_nnz, g_b, g_c, g_it, g_base, g_dt))
   if (g_size /= spv_size .or. g_nnz /= spv_nnz) then
      write(*,*) "FAILED! spvec_get expected size/nnz ", spv_size, spv_nnz, " got ", g_size, g_nnz
      STOP 1

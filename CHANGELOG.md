@@ -35,6 +35,24 @@
 
 ### Changed
 
+* **Breaking.** 116 host output arguments are now typed (`integer`, `real` or
+  the enum kind) instead of `type(c_ptr), value`, so they take the Fortran
+  variable directly: `hipGraphGetNodes(graph, nodes, numnodes)` rather than
+  `c_loc(numnodes)`. This covers the HIP runtime queries (`hipStreamGetId`,
+  `hipStreamGetCaptureInfo`, the `hipOccupancy*` and `hipGraph*` counts, ...),
+  `hipblasGetProperty`, `hipfftGetProperty`, the hipSOLVER `*gels` `niters`, the
+  hipSPARSE and rocSPARSE descriptor getters (`hipsparseSpVecGet`,
+  `rocsparse_dnvec_get`, ...) and `rocfft_cache_serialize`. Code that passes
+  `c_loc(x)` there must now pass `x`. In all, 192 arguments of 149 routines
+  change. Outputs the C API lets the caller skip by passing `NULL` (`p_error` in
+  rocSPARSE, the `hipGraph*` node arrays, `hipStreamGetCaptureInfo_v2`, ...) are
+  `optional`. The hipFFTW guru planners take their `dims` and `howmany_dims` as
+  `type(fftw_iodim)` / `type(fftw_iodim64)` arrays in every precision, and the
+  `hipfftGetProperty` rank overloads are gone, its value being a plain integer.
+  A few arrays of host pointers become `type(c_ptr), value`
+  (`hipsolverRfBatch*`, `rocfft_execution_info_set_*_callback_data`), so they
+  take `c_loc` of the array.
+
 * **Breaking, for anyone compiling the `.F90` by hand.** The preprocessor macros
   that select the array interfaces are renamed, and each now selects its own
   tier: `USE_ASSUMED_SHAPE` for the per-rank overloads (Fortran 2008) and
