@@ -145,7 +145,7 @@ module hipfort_enums
     enumerator :: hipLibraryBinaryIsPreserved = 1
   end enum
 
-  ! enum (unnamed at /opt/rocm-10.1/include/hip/hip_runtime_api.h:33:1)
+  ! enum (unnamed at hip/hip_runtime_api.h:33:1)
   enum, bind(c)
     enumerator :: HIP_SUCCESS = 0
     enumerator :: HIP_ERROR_INVALID_VALUE = 1

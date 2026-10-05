@@ -103,7 +103,7 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetProperty_
       integer(kind(HIPBLAS_MAJOR_VERSION)),value :: myType
-      type(c_ptr),value :: myValue
+      integer(c_int) :: myValue
     end function
   end interface
 
@@ -288,7 +288,7 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetBatchAlphaStride_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: alpha_stride
+      integer(c_int64_t) :: alpha_stride
     end function
   end interface
 #endif
@@ -327,7 +327,7 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetBatchBetaStride_
       type(c_ptr),value :: handle
-      type(c_ptr),value :: beta_stride
+      integer(c_int64_t) :: beta_stride
     end function
   end interface
 #endif

@@ -95,7 +95,7 @@ program cooperative_launch
 
   ! A cooperative grid must be co-resident, so it is capped by the occupancy of
   ! the kernel times the number of compute units.
-  call hipCheck(hipOccupancyMaxActiveBlocksPerMultiprocessor(c_loc(nblocks), &
+  call hipCheck(hipOccupancyMaxActiveBlocksPerMultiprocessor(nblocks, &
                                                              c_funloc(vector_add), &
                                                              blocksize, 0_c_size_t))
   call hipCheck(hipDeviceGetAttribute(ncu, hipDeviceAttributeMultiprocessorCount, 0))

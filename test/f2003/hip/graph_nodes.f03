@@ -78,7 +78,7 @@ program graph_nodes
   ! numnodes holds the actual count. (nodes is a by-reference c_ptr in the
   ! binding, so a real capacity buffer is used rather than a null query.)
   numnodes = size(nodes_out, kind=c_size_t)
-  call hipCheck(hipGraphGetNodes(graph, nodes_out(1), c_loc(numnodes)))
+  call hipCheck(hipGraphGetNodes(graph, nodes_out(1), numnodes))
   if (numnodes /= 2) then
      write(*,*) "FAILED! graph node count = ", numnodes, " (expected 2)"
      call exit(1)

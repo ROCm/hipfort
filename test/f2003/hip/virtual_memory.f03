@@ -64,7 +64,7 @@ program virtual_memory
   prop%allocFlags = 0
 
   granularity = 0
-  call hipCheck(hipMemGetAllocationGranularity(c_loc(granularity), prop, &
+  call hipCheck(hipMemGetAllocationGranularity(granularity, prop, &
                                                hipMemAllocationGranularityMinimum))
   if (granularity <= 0) then
      write(*,*) "FAILED! allocation granularity =", granularity

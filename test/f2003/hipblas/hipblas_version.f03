@@ -79,9 +79,9 @@ program hipblas_version
   pmajor = -1
   pminor = -1
   ppatch = -1
-  call hipblasCheck(hipblasGetProperty(HIPBLAS_MAJOR_VERSION, c_loc(pmajor)))
-  call hipblasCheck(hipblasGetProperty(HIPBLAS_MINOR_VERSION, c_loc(pminor)))
-  call hipblasCheck(hipblasGetProperty(HIPBLAS_PATCH_LEVEL, c_loc(ppatch)))
+  call hipblasCheck(hipblasGetProperty(HIPBLAS_MAJOR_VERSION, pmajor))
+  call hipblasCheck(hipblasGetProperty(HIPBLAS_MINOR_VERSION, pminor))
+  call hipblasCheck(hipblasGetProperty(HIPBLAS_PATCH_LEVEL, ppatch))
 
   if (major /= pmajor .or. minor /= pminor .or. patch /= ppatch) then
      write(*,*) "FAILED! hipblasGetVersion and hipblasGetProperty disagree: ", &
