@@ -943,8 +943,10 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetVersion_
-      integer(c_int) :: version
+      type(c_ptr),value :: version
     end function
+
+    module procedure hiprandGetVersion_typed
   end interface
 
   !>  \brief Construct the histogram for a Poisson distribution.
@@ -1089,8 +1091,20 @@ module hipfort_hiprand
   end interface
 
 
-#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
+
+    function hiprandGetVersion_typed(version)
+      use iso_c_binding
+      use hipfort_hiprand_enums
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetVersion_typed
+      integer(c_int),target :: version
+      !
+      hiprandGetVersion_typed = hiprandGetVersion_(c_loc(version))
+    end function
+
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
 #ifdef USE_ASSUMED_RANK
     function hiprandGenerate_assumed_rank(generator,output_data,n)

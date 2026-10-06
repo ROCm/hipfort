@@ -20,7 +20,7 @@
 16 | [rocfft_field_add_brick](interfacehipfort__rocfft_1_1rocfft__field__add__brick.html "Interface documentation") | C binding
 17 | [rocfft_plan_description_add_infield](interfacehipfort__rocfft_1_1rocfft__plan__description__add__infield.html "Interface documentation") | C binding
 18 | [rocfft_plan_description_add_outfield](interfacehipfort__rocfft_1_1rocfft__plan__description__add__outfield.html "Interface documentation") | C binding
-19 | [rocfft_plan_get_work_buffer_size](interfacehipfort__rocfft_1_1rocfft__plan__get__work__buffer__size.html "Interface documentation") | C binding
+19 | [rocfft_plan_get_work_buffer_size](interfacehipfort__rocfft_1_1rocfft__plan__get__work__buffer__size.html "Interface documentation") | C binding, typed
 20 | [rocfft_plan_get_print](interfacehipfort__rocfft_1_1rocfft__plan__get__print.html "Interface documentation") | C binding
 21 | [rocfft_plan_description_create](interfacehipfort__rocfft_1_1rocfft__plan__description__create.html "Interface documentation") | C binding
 22 | [rocfft_plan_description_destroy](interfacehipfort__rocfft_1_1rocfft__plan__description__destroy.html "Interface documentation") | C binding
@@ -32,6 +32,6 @@
 28 | [rocfft_execution_info_set_load_callback_data](interfacehipfort__rocfft_1_1rocfft__execution__info__set__load__callback__data.html "Interface documentation") | C binding
 29 | [rocfft_execution_info_set_store_callback](interfacehipfort__rocfft_1_1rocfft__execution__info__set__store__callback.html "Interface documentation") | C binding
 30 | [rocfft_execution_info_set_store_callback_data](interfacehipfort__rocfft_1_1rocfft__execution__info__set__store__callback__data.html "Interface documentation") | C binding
-31 | [rocfft_cache_serialize](interfacehipfort__rocfft_1_1rocfft__cache__serialize.html "Interface documentation") | C binding
+31 | [rocfft_cache_serialize](interfacehipfort__rocfft_1_1rocfft__cache__serialize.html "Interface documentation") | C binding, typed
 32 | [rocfft_cache_buffer_free](interfacehipfort__rocfft_1_1rocfft__cache__buffer__free.html "Interface documentation") | C binding
 33 | [rocfft_cache_deserialize](interfacehipfort__rocfft_1_1rocfft__cache__deserialize.html "Interface documentation") | C binding

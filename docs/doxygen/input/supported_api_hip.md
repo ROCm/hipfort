@@ -18,39 +18,39 @@
 14 | [hipGetDeviceProperties](interfacehipfort__auxiliary_1_1hipgetdeviceproperties.html "Interface documentation") | C binding
 15 | [hipCreateChannelDesc](interfacehipfort_1_1hipcreatechanneldesc.html "Interface documentation") | C binding
 16 | [hipInit](interfacehipfort_1_1hipinit.html "Interface documentation") | C binding
-17 | [hipDriverGetVersion](interfacehipfort_1_1hipdrivergetversion.html "Interface documentation") | C binding
-18 | [hipRuntimeGetVersion](interfacehipfort_1_1hipruntimegetversion.html "Interface documentation") | C binding
-19 | [hipDeviceGet](interfacehipfort_1_1hipdeviceget.html "Interface documentation") | C binding
-20 | [hipDeviceComputeCapability](interfacehipfort_1_1hipdevicecomputecapability.html "Interface documentation") | C binding
+17 | [hipDriverGetVersion](interfacehipfort_1_1hipdrivergetversion.html "Interface documentation") | C binding, typed
+18 | [hipRuntimeGetVersion](interfacehipfort_1_1hipruntimegetversion.html "Interface documentation") | C binding, typed
+19 | [hipDeviceGet](interfacehipfort_1_1hipdeviceget.html "Interface documentation") | C binding, typed
+20 | [hipDeviceComputeCapability](interfacehipfort_1_1hipdevicecomputecapability.html "Interface documentation") | C binding, typed
 21 | [hipDeviceGetName](interfacehipfort_1_1hipdevicegetname.html "Interface documentation") | C binding
 22 | [hipDeviceGetUuid](interfacehipfort_1_1hipdevicegetuuid.html "Interface documentation") | C binding
-23 | [hipDeviceGetLuid](interfacehipfort_1_1hipdevicegetluid.html "Interface documentation") | C binding
-24 | [hipDeviceGetP2PAttribute](interfacehipfort_1_1hipdevicegetp2pattribute.html "Interface documentation") | C binding
+23 | [hipDeviceGetLuid](interfacehipfort_1_1hipdevicegetluid.html "Interface documentation") | C binding, typed
+24 | [hipDeviceGetP2PAttribute](interfacehipfort_1_1hipdevicegetp2pattribute.html "Interface documentation") | C binding, typed
 25 | [hipDeviceGetPCIBusId](interfacehipfort_1_1hipdevicegetpcibusid.html "Interface documentation") | C binding
-26 | [hipDeviceGetByPCIBusId](interfacehipfort_1_1hipdevicegetbypcibusid.html "Interface documentation") | C binding
-27 | [hipDeviceTotalMem](interfacehipfort_1_1hipdevicetotalmem.html "Interface documentation") | C binding
+26 | [hipDeviceGetByPCIBusId](interfacehipfort_1_1hipdevicegetbypcibusid.html "Interface documentation") | C binding, typed
+27 | [hipDeviceTotalMem](interfacehipfort_1_1hipdevicetotalmem.html "Interface documentation") | C binding, typed
 28 | [hipDeviceSynchronize](interfacehipfort_1_1hipdevicesynchronize.html "Interface documentation") | C binding
 29 | [hipDeviceReset](interfacehipfort_1_1hipdevicereset.html "Interface documentation") | C binding
 30 | [hipSetDevice](interfacehipfort_1_1hipsetdevice.html "Interface documentation") | C binding
 31 | [hipSetValidDevices](interfacehipfort_1_1hipsetvaliddevices.html "Interface documentation") | C binding
-32 | [hipGetDevice](interfacehipfort_1_1hipgetdevice.html "Interface documentation") | C binding
-33 | [hipGetDeviceCount](interfacehipfort_1_1hipgetdevicecount.html "Interface documentation") | C binding
-34 | [hipDeviceGetAttribute](interfacehipfort_1_1hipdevicegetattribute.html "Interface documentation") | C binding
+32 | [hipGetDevice](interfacehipfort_1_1hipgetdevice.html "Interface documentation") | C binding, typed
+33 | [hipGetDeviceCount](interfacehipfort_1_1hipgetdevicecount.html "Interface documentation") | C binding, typed
+34 | [hipDeviceGetAttribute](interfacehipfort_1_1hipdevicegetattribute.html "Interface documentation") | C binding, typed
 35 | [hipDeviceGetDefaultMemPool](interfacehipfort_1_1hipdevicegetdefaultmempool.html "Interface documentation") | C binding
 36 | [hipDeviceSetMemPool](interfacehipfort_1_1hipdevicesetmempool.html "Interface documentation") | C binding
 37 | [hipDeviceGetMemPool](interfacehipfort_1_1hipdevicegetmempool.html "Interface documentation") | C binding
-38 | [hipDeviceGetTexture1DLinearMaxWidth](interfacehipfort_1_1hipdevicegettexture1dlinearmaxwidth.html "Interface documentation") | C binding
+38 | [hipDeviceGetTexture1DLinearMaxWidth](interfacehipfort_1_1hipdevicegettexture1dlinearmaxwidth.html "Interface documentation") | C binding, typed
 39 | [hipDeviceSetCacheConfig](interfacehipfort_1_1hipdevicesetcacheconfig.html "Interface documentation") | C binding
-40 | [hipDeviceGetCacheConfig](interfacehipfort_1_1hipdevicegetcacheconfig.html "Interface documentation") | C binding
-41 | [hipDeviceGetLimit](interfacehipfort_1_1hipdevicegetlimit.html "Interface documentation") | C binding
+40 | [hipDeviceGetCacheConfig](interfacehipfort_1_1hipdevicegetcacheconfig.html "Interface documentation") | C binding, typed
+41 | [hipDeviceGetLimit](interfacehipfort_1_1hipdevicegetlimit.html "Interface documentation") | C binding, typed
 42 | [hipDeviceSetLimit](interfacehipfort_1_1hipdevicesetlimit.html "Interface documentation") | C binding
-43 | [hipDeviceGetSharedMemConfig](interfacehipfort_1_1hipdevicegetsharedmemconfig.html "Interface documentation") | C binding
-44 | [hipGetDeviceFlags](interfacehipfort_1_1hipgetdeviceflags.html "Interface documentation") | C binding
+43 | [hipDeviceGetSharedMemConfig](interfacehipfort_1_1hipdevicegetsharedmemconfig.html "Interface documentation") | C binding, typed
+44 | [hipGetDeviceFlags](interfacehipfort_1_1hipgetdeviceflags.html "Interface documentation") | C binding, typed
 45 | [hipDeviceSetSharedMemConfig](interfacehipfort_1_1hipdevicesetsharedmemconfig.html "Interface documentation") | C binding
 46 | [hipSetDeviceFlags](interfacehipfort_1_1hipsetdeviceflags.html "Interface documentation") | C binding
 47 | [hipInitDevice](interfacehipfort_1_1hipinitdevice.html "Interface documentation") | C binding
 48 | [hipChooseDeviceR0600](interfacehipfort_1_1hipchoosedevicer0600.html "Interface documentation") | C binding
-49 | [hipExtGetLinkTypeAndHopCount](interfacehipfort_1_1hipextgetlinktypeandhopcount.html "Interface documentation") | C binding
+49 | [hipExtGetLinkTypeAndHopCount](interfacehipfort_1_1hipextgetlinktypeandhopcount.html "Interface documentation") | C binding, typed
 50 | [hipIpcGetMemHandle](interfacehipfort_1_1hipipcgetmemhandle.html "Interface documentation") | C binding
 51 | [hipIpcOpenMemHandle](interfacehipfort_1_1hipipcopenmemhandle.html "Interface documentation") | C binding
 52 | [hipIpcCloseMemHandle](interfacehipfort_1_1hipipcclosememhandle.html "Interface documentation") | C binding
@@ -71,15 +71,15 @@
 67 | [hipStreamCreate](interfacehipfort_1_1hipstreamcreate.html "Interface documentation") | C binding
 68 | [hipStreamCreateWithFlags](interfacehipfort_1_1hipstreamcreatewithflags.html "Interface documentation") | C binding
 69 | [hipStreamCreateWithPriority](interfacehipfort_1_1hipstreamcreatewithpriority.html "Interface documentation") | C binding
-70 | [hipDeviceGetStreamPriorityRange](interfacehipfort_1_1hipdevicegetstreampriorityrange.html "Interface documentation") | C binding
+70 | [hipDeviceGetStreamPriorityRange](interfacehipfort_1_1hipdevicegetstreampriorityrange.html "Interface documentation") | C binding, typed
 71 | [hipStreamDestroy](interfacehipfort_1_1hipstreamdestroy.html "Interface documentation") | C binding
 72 | [hipStreamQuery](interfacehipfort_1_1hipstreamquery.html "Interface documentation") | C binding
 73 | [hipStreamSynchronize](interfacehipfort_1_1hipstreamsynchronize.html "Interface documentation") | C binding
 74 | [hipStreamWaitEvent](interfacehipfort_1_1hipstreamwaitevent.html "Interface documentation") | C binding
-75 | [hipStreamGetFlags](interfacehipfort_1_1hipstreamgetflags.html "Interface documentation") | C binding
-76 | [hipStreamGetId](interfacehipfort_1_1hipstreamgetid.html "Interface documentation") | C binding
-77 | [hipStreamGetPriority](interfacehipfort_1_1hipstreamgetpriority.html "Interface documentation") | C binding
-78 | [hipStreamGetDevice](interfacehipfort_1_1hipstreamgetdevice.html "Interface documentation") | C binding
+75 | [hipStreamGetFlags](interfacehipfort_1_1hipstreamgetflags.html "Interface documentation") | C binding, typed
+76 | [hipStreamGetId](interfacehipfort_1_1hipstreamgetid.html "Interface documentation") | C binding, typed
+77 | [hipStreamGetPriority](interfacehipfort_1_1hipstreamgetpriority.html "Interface documentation") | C binding, typed
+78 | [hipStreamGetDevice](interfacehipfort_1_1hipstreamgetdevice.html "Interface documentation") | C binding, typed
 79 | [hipExtStreamCreateWithCUMask](interfacehipfort_1_1hipextstreamcreatewithcumask.html "Interface documentation") | C binding
 80 | [hipExtStreamGetCUMask](interfacehipfort_1_1hipextstreamgetcumask.html "Interface documentation") | C binding
 81 | [hipStreamAddCallback](interfacehipfort_1_1hipstreamaddcallback.html "Interface documentation") | C binding
@@ -101,7 +101,7 @@
 97 | [hipEventRecord](interfacehipfort_1_1hipeventrecord.html "Interface documentation") | C binding
 98 | [hipEventDestroy](interfacehipfort_1_1hipeventdestroy.html "Interface documentation") | C binding
 99 | [hipEventSynchronize](interfacehipfort_1_1hipeventsynchronize.html "Interface documentation") | C binding
-100 | [hipEventElapsedTime](interfacehipfort_1_1hipeventelapsedtime.html "Interface documentation") | C binding
+100 | [hipEventElapsedTime](interfacehipfort_1_1hipeventelapsedtime.html "Interface documentation") | C binding, typed
 101 | [hipEventQuery](interfacehipfort_1_1hipeventquery.html "Interface documentation") | C binding
 102 | [hipPointerSetAttribute](interfacehipfort_1_1hippointersetattribute.html "Interface documentation") | C binding
 103 | [hipPointerGetAttributes](interfacehipfort_1_1hippointergetattributes.html "Interface documentation") | C binding
@@ -136,7 +136,7 @@
 132 | [hipMemPoolSetAttribute](interfacehipfort_1_1hipmempoolsetattribute.html "Interface documentation") | C binding
 133 | [hipMemPoolGetAttribute](interfacehipfort_1_1hipmempoolgetattribute.html "Interface documentation") | C binding
 134 | [hipMemPoolSetAccess](interfacehipfort_1_1hipmempoolsetaccess.html "Interface documentation") | C binding
-135 | [hipMemPoolGetAccess](interfacehipfort_1_1hipmempoolgetaccess.html "Interface documentation") | C binding
+135 | [hipMemPoolGetAccess](interfacehipfort_1_1hipmempoolgetaccess.html "Interface documentation") | C binding, typed
 136 | [hipMemPoolCreate](interfacehipfort_1_1hipmempoolcreate.html "Interface documentation") | C binding
 137 | [hipMemPoolDestroy](interfacehipfort_1_1hipmempooldestroy.html "Interface documentation") | C binding
 138 | [hipMallocFromPoolAsync](interfacehipfort_1_1hipmallocfrompoolasync.html "Interface documentation") | C binding
@@ -148,8 +148,8 @@
 144 | [hipMemGetMemPool](interfacehipfort_1_1hipmemgetmempool.html "Interface documentation") | C binding
 145 | [hipMemGetDefaultMemPool](interfacehipfort_1_1hipmemgetdefaultmempool.html "Interface documentation") | C binding
 146 | [hipHostAlloc](interfacehipfort_1_1hiphostalloc.html "Interface documentation") | C binding
-147 | [hipMallocPitch](interfacehipfort_1_1hipmallocpitch.html "Interface documentation") | C binding
-148 | [hipMemAllocPitch](interfacehipfort_1_1hipmemallocpitch.html "Interface documentation") | C binding
+147 | [hipMallocPitch](interfacehipfort_1_1hipmallocpitch.html "Interface documentation") | C binding, typed
+148 | [hipMemAllocPitch](interfacehipfort_1_1hipmemallocpitch.html "Interface documentation") | C binding, typed
 149 | [hipFreeHost](interfacehipfort_1_1hipfreehost.html "Interface documentation") | C binding
 150 | [hipMemcpyWithStream](interfacehipfort_1_1hipmemcpywithstream.html "Interface documentation") | C binding
 151 | [hipMemcpyHtoD](interfacehipfort_1_1hipmemcpyhtod.html "Interface documentation") | C binding
@@ -163,10 +163,10 @@
 159 | [hipMemcpyDtoDAsync](interfacehipfort_1_1hipmemcpydtodasync.html "Interface documentation") | C binding
 160 | [hipMemcpyAtoHAsync](interfacehipfort_1_1hipmemcpyatohasync.html "Interface documentation") | C binding
 161 | [hipMemcpyHtoAAsync](interfacehipfort_1_1hipmemcpyhtoaasync.html "Interface documentation") | C binding
-162 | [hipModuleGetGlobal](interfacehipfort_1_1hipmodulegetglobal.html "Interface documentation") | C binding
+162 | [hipModuleGetGlobal](interfacehipfort_1_1hipmodulegetglobal.html "Interface documentation") | C binding, typed
 163 | [hipGetSymbolAddress](interfacehipfort_1_1hipgetsymboladdress.html "Interface documentation") | C binding
-164 | [hipGetSymbolSize](interfacehipfort_1_1hipgetsymbolsize.html "Interface documentation") | C binding
-165 | [hipGetProcAddress](interfacehipfort_1_1hipgetprocaddress.html "Interface documentation") | C binding
+164 | [hipGetSymbolSize](interfacehipfort_1_1hipgetsymbolsize.html "Interface documentation") | C binding, typed
+165 | [hipGetProcAddress](interfacehipfort_1_1hipgetprocaddress.html "Interface documentation") | C binding, typed
 166 | [hipMemcpyToSymbol](interfacehipfort_1_1hipmemcpytosymbol.html "Interface documentation") | C binding
 167 | [hipMemcpyToSymbolAsync](interfacehipfort_1_1hipmemcpytosymbolasync.html "Interface documentation") | C binding
 168 | [hipMemcpyFromSymbol](interfacehipfort_1_1hipmemcpyfromsymbol.html "Interface documentation") | C binding
@@ -189,8 +189,8 @@
 185 | [hipMemsetD2D16Async](interfacehipfort_1_1hipmemsetd2d16async.html "Interface documentation") | C binding
 186 | [hipMemsetD2D32](interfacehipfort_1_1hipmemsetd2d32.html "Interface documentation") | C binding
 187 | [hipMemsetD2D32Async](interfacehipfort_1_1hipmemsetd2d32async.html "Interface documentation") | C binding
-188 | [hipMemGetInfo](interfacehipfort_1_1hipmemgetinfo.html "Interface documentation") | C binding
-189 | [hipMemPtrGetInfo](interfacehipfort_1_1hipmemptrgetinfo.html "Interface documentation") | C binding
+188 | [hipMemGetInfo](interfacehipfort_1_1hipmemgetinfo.html "Interface documentation") | C binding, typed
+189 | [hipMemPtrGetInfo](interfacehipfort_1_1hipmemptrgetinfo.html "Interface documentation") | C binding, typed
 190 | [hipMallocArray](interfacehipfort_1_1hipmallocarray.html "Interface documentation") | C binding
 191 | [hipArrayCreate](interfacehipfort_1_1hiparraycreate.html "Interface documentation") | C binding
 192 | [hipArrayDestroy](interfacehipfort_1_1hiparraydestroy.html "Interface documentation") | C binding
@@ -198,7 +198,7 @@
 194 | [hipMalloc3D](interfacehipfort_1_1hipmalloc3d.html "Interface documentation") | C binding
 195 | [hipFreeArray](interfacehipfort_1_1hipfreearray.html "Interface documentation") | C binding
 196 | [hipMalloc3DArray](interfacehipfort_1_1hipmalloc3darray.html "Interface documentation") | C binding
-197 | [hipArrayGetInfo](interfacehipfort_1_1hiparraygetinfo.html "Interface documentation") | C binding
+197 | [hipArrayGetInfo](interfacehipfort_1_1hiparraygetinfo.html "Interface documentation") | C binding, typed
 198 | [hipArrayGetDescriptor](interfacehipfort_1_1hiparraygetdescriptor.html "Interface documentation") | C binding
 199 | [hipArray3DGetDescriptor](interfacehipfort_1_1hiparray3dgetdescriptor.html "Interface documentation") | C binding
 200 | [hipMemcpyParam2D](interfacehipfort_1_1hipmemcpyparam2d.html "Interface documentation") | C binding
@@ -216,13 +216,13 @@
 212 | [hipMemcpy3DAsync](interfacehipfort_1_1hipmemcpy3dasync.html "Interface documentation") | C binding
 213 | [hipDrvMemcpy3D](interfacehipfort_1_1hipdrvmemcpy3d.html "Interface documentation") | C binding
 214 | [hipDrvMemcpy3DAsync](interfacehipfort_1_1hipdrvmemcpy3dasync.html "Interface documentation") | C binding
-215 | [hipMemGetAddressRange](interfacehipfort_1_1hipmemgetaddressrange.html "Interface documentation") | C binding
+215 | [hipMemGetAddressRange](interfacehipfort_1_1hipmemgetaddressrange.html "Interface documentation") | C binding, typed
 216 | [hipMemcpyBatchAsync](interfacehipfort_1_1hipmemcpybatchasync.html "Interface documentation") | C binding
 217 | [hipMemcpy3DBatchAsync](interfacehipfort_1_1hipmemcpy3dbatchasync.html "Interface documentation") | C binding
 218 | [hipMemcpy3DPeer](interfacehipfort_1_1hipmemcpy3dpeer.html "Interface documentation") | C binding
 219 | [hipMemcpy3DPeerAsync](interfacehipfort_1_1hipmemcpy3dpeerasync.html "Interface documentation") | C binding
 220 | [hipMipmappedArrayGetMemoryRequirements](interfacehipfort_1_1hipmipmappedarraygetmemoryrequirements.html "Interface documentation") | C binding
-221 | [hipDeviceCanAccessPeer](interfacehipfort_1_1hipdevicecanaccesspeer.html "Interface documentation") | C binding
+221 | [hipDeviceCanAccessPeer](interfacehipfort_1_1hipdevicecanaccesspeer.html "Interface documentation") | C binding, typed
 222 | [hipDeviceEnablePeerAccess](interfacehipfort_1_1hipdeviceenablepeeraccess.html "Interface documentation") | C binding
 223 | [hipDeviceDisablePeerAccess](interfacehipfort_1_1hipdevicedisablepeeraccess.html "Interface documentation") | C binding
 224 | [hipMemcpyPeer](interfacehipfort_1_1hipmemcpypeer.html "Interface documentation") | C binding
@@ -236,8 +236,8 @@
 232 | [hipDeviceGetExecutionCtx](interfacehipfort_1_1hipdevicegetexecutionctx.html "Interface documentation") | C binding
 233 | [hipExecutionCtxStreamCreate](interfacehipfort_1_1hipexecutionctxstreamcreate.html "Interface documentation") | C binding
 234 | [hipExecutionCtxGetDevResource](interfacehipfort_1_1hipexecutionctxgetdevresource.html "Interface documentation") | C binding
-235 | [hipExecutionCtxGetDevice](interfacehipfort_1_1hipexecutionctxgetdevice.html "Interface documentation") | C binding
-236 | [hipExecutionCtxGetId](interfacehipfort_1_1hipexecutionctxgetid.html "Interface documentation") | C binding
+235 | [hipExecutionCtxGetDevice](interfacehipfort_1_1hipexecutionctxgetdevice.html "Interface documentation") | C binding, typed
+236 | [hipExecutionCtxGetId](interfacehipfort_1_1hipexecutionctxgetid.html "Interface documentation") | C binding, typed
 237 | [hipStreamGetDevResource](interfacehipfort_1_1hipstreamgetdevresource.html "Interface documentation") | C binding
 238 | [hipExecutionCtxRecordEvent](interfacehipfort_1_1hipexecutionctxrecordevent.html "Interface documentation") | C binding
 239 | [hipExecutionCtxSynchronize](interfacehipfort_1_1hipexecutionctxsynchronize.html "Interface documentation") | C binding
@@ -248,17 +248,17 @@
 244 | [hipCtxPushCurrent](interfacehipfort_1_1hipctxpushcurrent.html "Interface documentation") | C binding
 245 | [hipCtxSetCurrent](interfacehipfort_1_1hipctxsetcurrent.html "Interface documentation") | C binding
 246 | [hipCtxGetCurrent](interfacehipfort_1_1hipctxgetcurrent.html "Interface documentation") | C binding
-247 | [hipCtxGetDevice](interfacehipfort_1_1hipctxgetdevice.html "Interface documentation") | C binding
-248 | [hipCtxGetApiVersion](interfacehipfort_1_1hipctxgetapiversion.html "Interface documentation") | C binding
-249 | [hipCtxGetCacheConfig](interfacehipfort_1_1hipctxgetcacheconfig.html "Interface documentation") | C binding
+247 | [hipCtxGetDevice](interfacehipfort_1_1hipctxgetdevice.html "Interface documentation") | C binding, typed
+248 | [hipCtxGetApiVersion](interfacehipfort_1_1hipctxgetapiversion.html "Interface documentation") | C binding, typed
+249 | [hipCtxGetCacheConfig](interfacehipfort_1_1hipctxgetcacheconfig.html "Interface documentation") | C binding, typed
 250 | [hipCtxSetCacheConfig](interfacehipfort_1_1hipctxsetcacheconfig.html "Interface documentation") | C binding
 251 | [hipCtxSetSharedMemConfig](interfacehipfort_1_1hipctxsetsharedmemconfig.html "Interface documentation") | C binding
-252 | [hipCtxGetSharedMemConfig](interfacehipfort_1_1hipctxgetsharedmemconfig.html "Interface documentation") | C binding
+252 | [hipCtxGetSharedMemConfig](interfacehipfort_1_1hipctxgetsharedmemconfig.html "Interface documentation") | C binding, typed
 253 | [hipCtxSynchronize](interfacehipfort_1_1hipctxsynchronize.html "Interface documentation") | C binding
-254 | [hipCtxGetFlags](interfacehipfort_1_1hipctxgetflags.html "Interface documentation") | C binding
+254 | [hipCtxGetFlags](interfacehipfort_1_1hipctxgetflags.html "Interface documentation") | C binding, typed
 255 | [hipCtxEnablePeerAccess](interfacehipfort_1_1hipctxenablepeeraccess.html "Interface documentation") | C binding
 256 | [hipCtxDisablePeerAccess](interfacehipfort_1_1hipctxdisablepeeraccess.html "Interface documentation") | C binding
-257 | [hipDevicePrimaryCtxGetState](interfacehipfort_1_1hipdeviceprimaryctxgetstate.html "Interface documentation") | C binding
+257 | [hipDevicePrimaryCtxGetState](interfacehipfort_1_1hipdeviceprimaryctxgetstate.html "Interface documentation") | C binding, typed
 258 | [hipDevicePrimaryCtxRelease](interfacehipfort_1_1hipdeviceprimaryctxrelease.html "Interface documentation") | C binding
 259 | [hipDevicePrimaryCtxRetain](interfacehipfort_1_1hipdeviceprimaryctxretain.html "Interface documentation") | C binding
 260 | [hipDevicePrimaryCtxReset](interfacehipfort_1_1hipdeviceprimaryctxreset.html "Interface documentation") | C binding
@@ -267,29 +267,29 @@
 263 | [hipModuleLoad](interfacehipfort_1_1hipmoduleload.html "Interface documentation") | C binding
 264 | [hipModuleUnload](interfacehipfort_1_1hipmoduleunload.html "Interface documentation") | C binding
 265 | [hipModuleGetFunction](interfacehipfort_1_1hipmodulegetfunction.html "Interface documentation") | C binding
-266 | [hipModuleGetFunctionCount](interfacehipfort_1_1hipmodulegetfunctioncount.html "Interface documentation") | C binding
-267 | [hipKernelGetAttribute](interfacehipfort_1_1hipkernelgetattribute.html "Interface documentation") | C binding
+266 | [hipModuleGetFunctionCount](interfacehipfort_1_1hipmodulegetfunctioncount.html "Interface documentation") | C binding, typed
+267 | [hipKernelGetAttribute](interfacehipfort_1_1hipkernelgetattribute.html "Interface documentation") | C binding, typed
 268 | [hipLibraryLoadData](interfacehipfort_1_1hiplibraryloaddata.html "Interface documentation") | C binding
 269 | [hipLibraryLoadFromFile](interfacehipfort_1_1hiplibraryloadfromfile.html "Interface documentation") | C binding
 270 | [hipLibraryUnload](interfacehipfort_1_1hiplibraryunload.html "Interface documentation") | C binding
 271 | [hipLibraryGetKernel](interfacehipfort_1_1hiplibrarygetkernel.html "Interface documentation") | C binding
-272 | [hipLibraryGetKernelCount](interfacehipfort_1_1hiplibrarygetkernelcount.html "Interface documentation") | C binding
-273 | [hipLibraryGetGlobal](interfacehipfort_1_1hiplibrarygetglobal.html "Interface documentation") | C binding
-274 | [hipLibraryGetManaged](interfacehipfort_1_1hiplibrarygetmanaged.html "Interface documentation") | C binding
+272 | [hipLibraryGetKernelCount](interfacehipfort_1_1hiplibrarygetkernelcount.html "Interface documentation") | C binding, typed
+273 | [hipLibraryGetGlobal](interfacehipfort_1_1hiplibrarygetglobal.html "Interface documentation") | C binding, typed
+274 | [hipLibraryGetManaged](interfacehipfort_1_1hiplibrarygetmanaged.html "Interface documentation") | C binding, typed
 275 | [hipLibraryEnumerateKernels](interfacehipfort_1_1hiplibraryenumeratekernels.html "Interface documentation") | C binding
 276 | [hipKernelGetLibrary](interfacehipfort_1_1hipkernelgetlibrary.html "Interface documentation") | C binding
 277 | [hipKernelGetName](interfacehipfort_1_1hipkernelgetname.html "Interface documentation") | C binding
-278 | [hipKernelGetParamInfo](interfacehipfort_1_1hipkernelgetparaminfo.html "Interface documentation") | C binding
+278 | [hipKernelGetParamInfo](interfacehipfort_1_1hipkernelgetparaminfo.html "Interface documentation") | C binding, typed
 279 | [hipFuncGetAttributes](interfacehipfort_1_1hipfuncgetattributes.html "Interface documentation") | C binding
-280 | [hipFuncGetAttribute](interfacehipfort_1_1hipfuncgetattribute.html "Interface documentation") | C binding
+280 | [hipFuncGetAttribute](interfacehipfort_1_1hipfuncgetattribute.html "Interface documentation") | C binding, typed
 281 | [hipGetFuncBySymbol](interfacehipfort_1_1hipgetfuncbysymbol.html "Interface documentation") | C binding
-282 | [hipGetDriverEntryPoint](interfacehipfort_1_1hipgetdriverentrypoint.html "Interface documentation") | C binding
+282 | [hipGetDriverEntryPoint](interfacehipfort_1_1hipgetdriverentrypoint.html "Interface documentation") | C binding, typed
 283 | [hipModuleGetTexRef](interfacehipfort_1_1hipmodulegettexref.html "Interface documentation") | C binding
 284 | [hipModuleLoadData](interfacehipfort_1_1hipmoduleloaddata.html "Interface documentation") | C binding
 285 | [hipModuleLoadDataEx](interfacehipfort_1_1hipmoduleloaddataex.html "Interface documentation") | C binding
 286 | [hipLinkAddData](interfacehipfort_1_1hiplinkadddata.html "Interface documentation") | C binding
 287 | [hipLinkAddFile](interfacehipfort_1_1hiplinkaddfile.html "Interface documentation") | C binding
-288 | [hipLinkComplete](interfacehipfort_1_1hiplinkcomplete.html "Interface documentation") | C binding
+288 | [hipLinkComplete](interfacehipfort_1_1hiplinkcomplete.html "Interface documentation") | C binding, typed
 289 | [hipLinkCreate](interfacehipfort_1_1hiplinkcreate.html "Interface documentation") | C binding
 290 | [hipLinkDestroy](interfacehipfort_1_1hiplinkdestroy.html "Interface documentation") | C binding
 291 | [hipModuleLaunchKernel](interfacehipfort_1_1hipmodulelaunchkernel.html "Interface documentation") | C binding
@@ -301,16 +301,16 @@
 297 | [hipLaunchKernelExC](interfacehipfort_1_1hiplaunchkernelexc.html "Interface documentation") | C binding
 298 | [hipDrvLaunchKernelEx](interfacehipfort_1_1hipdrvlaunchkernelex.html "Interface documentation") | C binding
 299 | [hipMemGetHandleForAddressRange](interfacehipfort_1_1hipmemgethandleforaddressrange.html "Interface documentation") | C binding
-300 | [hipModuleOccupancyMaxPotentialBlockSize](interfacehipfort_1_1hipmoduleoccupancymaxpotentialblocksize.html "Interface documentation") | C binding
-301 | [hipModuleOccupancyMaxPotentialBlockSizeWithFlags](interfacehipfort_1_1hipmoduleoccupancymaxpotentialblocksizewithflags.html "Interface documentation") | C binding
-302 | [hipModuleOccupancyMaxActiveBlocksPerMultiprocessor](interfacehipfort_1_1hipmoduleoccupancymaxactiveblockspermultiprocessor.html "Interface documentation") | C binding
-303 | [hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags](interfacehipfort_1_1hipmoduleoccupancymaxactiveblockspermultiprocessorwithflags.html "Interface documentation") | C binding
-304 | [hipOccupancyMaxActiveBlocksPerMultiprocessor](interfacehipfort_1_1hipoccupancymaxactiveblockspermultiprocessor.html "Interface documentation") | C binding
-305 | [hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags](interfacehipfort_1_1hipoccupancymaxactiveblockspermultiprocessorwithflags.html "Interface documentation") | C binding
-306 | [hipOccupancyMaxPotentialBlockSize](interfacehipfort_1_1hipoccupancymaxpotentialblocksize.html "Interface documentation") | C binding
-307 | [hipOccupancyAvailableDynamicSMemPerBlock](interfacehipfort_1_1hipoccupancyavailabledynamicsmemperblock.html "Interface documentation") | C binding
-308 | [hipOccupancyMaxActiveClusters](interfacehipfort_1_1hipoccupancymaxactiveclusters.html "Interface documentation") | C binding
-309 | [hipOccupancyMaxPotentialClusterSize](interfacehipfort_1_1hipoccupancymaxpotentialclustersize.html "Interface documentation") | C binding
+300 | [hipModuleOccupancyMaxPotentialBlockSize](interfacehipfort_1_1hipmoduleoccupancymaxpotentialblocksize.html "Interface documentation") | C binding, typed
+301 | [hipModuleOccupancyMaxPotentialBlockSizeWithFlags](interfacehipfort_1_1hipmoduleoccupancymaxpotentialblocksizewithflags.html "Interface documentation") | C binding, typed
+302 | [hipModuleOccupancyMaxActiveBlocksPerMultiprocessor](interfacehipfort_1_1hipmoduleoccupancymaxactiveblockspermultiprocessor.html "Interface documentation") | C binding, typed
+303 | [hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags](interfacehipfort_1_1hipmoduleoccupancymaxactiveblockspermultiprocessorwithflags.html "Interface documentation") | C binding, typed
+304 | [hipOccupancyMaxActiveBlocksPerMultiprocessor](interfacehipfort_1_1hipoccupancymaxactiveblockspermultiprocessor.html "Interface documentation") | C binding, typed
+305 | [hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags](interfacehipfort_1_1hipoccupancymaxactiveblockspermultiprocessorwithflags.html "Interface documentation") | C binding, typed
+306 | [hipOccupancyMaxPotentialBlockSize](interfacehipfort_1_1hipoccupancymaxpotentialblocksize.html "Interface documentation") | C binding, typed
+307 | [hipOccupancyAvailableDynamicSMemPerBlock](interfacehipfort_1_1hipoccupancyavailabledynamicsmemperblock.html "Interface documentation") | C binding, typed
+308 | [hipOccupancyMaxActiveClusters](interfacehipfort_1_1hipoccupancymaxactiveclusters.html "Interface documentation") | C binding, typed
+309 | [hipOccupancyMaxPotentialClusterSize](interfacehipfort_1_1hipoccupancymaxpotentialclustersize.html "Interface documentation") | C binding, typed
 310 | [hipProfilerStart](interfacehipfort_1_1hipprofilerstart.html "Interface documentation") | C binding
 311 | [hipProfilerStop](interfacehipfort_1_1hipprofilerstop.html "Interface documentation") | C binding
 312 | [hipConfigureCall](interfacehipfort_1_1hipconfigurecall.html "Interface documentation") | C binding
@@ -346,22 +346,22 @@
 342 | [hipTexRefSetFilterMode](interfacehipfort_1_1hiptexrefsetfiltermode.html "Interface documentation") | C binding
 343 | [hipTexRefSetFlags](interfacehipfort_1_1hiptexrefsetflags.html "Interface documentation") | C binding
 344 | [hipTexRefSetFormat](interfacehipfort_1_1hiptexrefsetformat.html "Interface documentation") | C binding
-345 | [hipBindTexture](interfacehipfort_1_1hipbindtexture.html "Interface documentation") | C binding
-346 | [hipBindTexture2D](interfacehipfort_1_1hipbindtexture2d.html "Interface documentation") | C binding
+345 | [hipBindTexture](interfacehipfort_1_1hipbindtexture.html "Interface documentation") | C binding, typed
+346 | [hipBindTexture2D](interfacehipfort_1_1hipbindtexture2d.html "Interface documentation") | C binding, typed
 347 | [hipBindTextureToArray](interfacehipfort_1_1hipbindtexturetoarray.html "Interface documentation") | C binding
-348 | [hipGetTextureAlignmentOffset](interfacehipfort_1_1hipgettexturealignmentoffset.html "Interface documentation") | C binding
+348 | [hipGetTextureAlignmentOffset](interfacehipfort_1_1hipgettexturealignmentoffset.html "Interface documentation") | C binding, typed
 349 | [hipUnbindTexture](interfacehipfort_1_1hipunbindtexture.html "Interface documentation") | C binding
 350 | [hipTexRefGetAddress](interfacehipfort_1_1hiptexrefgetaddress.html "Interface documentation") | C binding
-351 | [hipTexRefGetAddressMode](interfacehipfort_1_1hiptexrefgetaddressmode.html "Interface documentation") | C binding
-352 | [hipTexRefGetFilterMode](interfacehipfort_1_1hiptexrefgetfiltermode.html "Interface documentation") | C binding
-353 | [hipTexRefGetFlags](interfacehipfort_1_1hiptexrefgetflags.html "Interface documentation") | C binding
-354 | [hipTexRefGetFormat](interfacehipfort_1_1hiptexrefgetformat.html "Interface documentation") | C binding
-355 | [hipTexRefGetMaxAnisotropy](interfacehipfort_1_1hiptexrefgetmaxanisotropy.html "Interface documentation") | C binding
-356 | [hipTexRefGetMipmapFilterMode](interfacehipfort_1_1hiptexrefgetmipmapfiltermode.html "Interface documentation") | C binding
-357 | [hipTexRefGetMipmapLevelBias](interfacehipfort_1_1hiptexrefgetmipmaplevelbias.html "Interface documentation") | C binding
-358 | [hipTexRefGetMipmapLevelClamp](interfacehipfort_1_1hiptexrefgetmipmaplevelclamp.html "Interface documentation") | C binding
+351 | [hipTexRefGetAddressMode](interfacehipfort_1_1hiptexrefgetaddressmode.html "Interface documentation") | C binding, typed
+352 | [hipTexRefGetFilterMode](interfacehipfort_1_1hiptexrefgetfiltermode.html "Interface documentation") | C binding, typed
+353 | [hipTexRefGetFlags](interfacehipfort_1_1hiptexrefgetflags.html "Interface documentation") | C binding, typed
+354 | [hipTexRefGetFormat](interfacehipfort_1_1hiptexrefgetformat.html "Interface documentation") | C binding, typed
+355 | [hipTexRefGetMaxAnisotropy](interfacehipfort_1_1hiptexrefgetmaxanisotropy.html "Interface documentation") | C binding, typed
+356 | [hipTexRefGetMipmapFilterMode](interfacehipfort_1_1hiptexrefgetmipmapfiltermode.html "Interface documentation") | C binding, typed
+357 | [hipTexRefGetMipmapLevelBias](interfacehipfort_1_1hiptexrefgetmipmaplevelbias.html "Interface documentation") | C binding, typed
+358 | [hipTexRefGetMipmapLevelClamp](interfacehipfort_1_1hiptexrefgetmipmaplevelclamp.html "Interface documentation") | C binding, typed
 359 | [hipTexRefGetMipMappedArray](interfacehipfort_1_1hiptexrefgetmipmappedarray.html "Interface documentation") | C binding
-360 | [hipTexRefSetAddress](interfacehipfort_1_1hiptexrefsetaddress.html "Interface documentation") | C binding
+360 | [hipTexRefSetAddress](interfacehipfort_1_1hiptexrefsetaddress.html "Interface documentation") | C binding, typed
 361 | [hipTexRefSetAddress2D](interfacehipfort_1_1hiptexrefsetaddress2d.html "Interface documentation") | C binding
 362 | [hipTexRefSetMaxAnisotropy](interfacehipfort_1_1hiptexrefsetmaxanisotropy.html "Interface documentation") | C binding
 363 | [hipTexRefSetBorderColor](interfacehipfort_1_1hiptexrefsetbordercolor.html "Interface documentation") | C binding
@@ -376,21 +376,21 @@
 372 | [hipStreamBeginCapture](interfacehipfort_1_1hipstreambegincapture.html "Interface documentation") | C binding
 373 | [hipStreamBeginCaptureToGraph](interfacehipfort_1_1hipstreambegincapturetograph.html "Interface documentation") | C binding
 374 | [hipStreamEndCapture](interfacehipfort_1_1hipstreamendcapture.html "Interface documentation") | C binding
-375 | [hipStreamGetCaptureInfo](interfacehipfort_1_1hipstreamgetcaptureinfo.html "Interface documentation") | C binding
-376 | [hipStreamGetCaptureInfo_v2](interfacehipfort_1_1hipstreamgetcaptureinfo__v2.html "Interface documentation") | C binding
-377 | [hipStreamIsCapturing](interfacehipfort_1_1hipstreamiscapturing.html "Interface documentation") | C binding
+375 | [hipStreamGetCaptureInfo](interfacehipfort_1_1hipstreamgetcaptureinfo.html "Interface documentation") | C binding, typed
+376 | [hipStreamGetCaptureInfo_v2](interfacehipfort_1_1hipstreamgetcaptureinfo__v2.html "Interface documentation") | C binding, typed
+377 | [hipStreamIsCapturing](interfacehipfort_1_1hipstreamiscapturing.html "Interface documentation") | C binding, typed
 378 | [hipStreamUpdateCaptureDependencies](interfacehipfort_1_1hipstreamupdatecapturedependencies.html "Interface documentation") | C binding
-379 | [hipThreadExchangeStreamCaptureMode](interfacehipfort_1_1hipthreadexchangestreamcapturemode.html "Interface documentation") | C binding
+379 | [hipThreadExchangeStreamCaptureMode](interfacehipfort_1_1hipthreadexchangestreamcapturemode.html "Interface documentation") | C binding, typed
 380 | [hipGraphCreate](interfacehipfort_1_1hipgraphcreate.html "Interface documentation") | C binding
 381 | [hipGraphDestroy](interfacehipfort_1_1hipgraphdestroy.html "Interface documentation") | C binding
 382 | [hipGraphAddDependencies](interfacehipfort_1_1hipgraphadddependencies.html "Interface documentation") | C binding
 383 | [hipGraphRemoveDependencies](interfacehipfort_1_1hipgraphremovedependencies.html "Interface documentation") | C binding
-384 | [hipGraphGetEdges](interfacehipfort_1_1hipgraphgetedges.html "Interface documentation") | C binding
-385 | [hipGraphGetNodes](interfacehipfort_1_1hipgraphgetnodes.html "Interface documentation") | C binding
-386 | [hipGraphGetRootNodes](interfacehipfort_1_1hipgraphgetrootnodes.html "Interface documentation") | C binding
-387 | [hipGraphNodeGetDependencies](interfacehipfort_1_1hipgraphnodegetdependencies.html "Interface documentation") | C binding
-388 | [hipGraphNodeGetDependentNodes](interfacehipfort_1_1hipgraphnodegetdependentnodes.html "Interface documentation") | C binding
-389 | [hipGraphNodeGetType](interfacehipfort_1_1hipgraphnodegettype.html "Interface documentation") | C binding
+384 | [hipGraphGetEdges](interfacehipfort_1_1hipgraphgetedges.html "Interface documentation") | C binding, typed
+385 | [hipGraphGetNodes](interfacehipfort_1_1hipgraphgetnodes.html "Interface documentation") | C binding, typed
+386 | [hipGraphGetRootNodes](interfacehipfort_1_1hipgraphgetrootnodes.html "Interface documentation") | C binding, typed
+387 | [hipGraphNodeGetDependencies](interfacehipfort_1_1hipgraphnodegetdependencies.html "Interface documentation") | C binding, typed
+388 | [hipGraphNodeGetDependentNodes](interfacehipfort_1_1hipgraphnodegetdependentnodes.html "Interface documentation") | C binding, typed
+389 | [hipGraphNodeGetType](interfacehipfort_1_1hipgraphnodegettype.html "Interface documentation") | C binding, typed
 390 | [hipGraphDestroyNode](interfacehipfort_1_1hipgraphdestroynode.html "Interface documentation") | C binding
 391 | [hipGraphClone](interfacehipfort_1_1hipgraphclone.html "Interface documentation") | C binding
 392 | [hipGraphNodeFindInClone](interfacehipfort_1_1hipgraphnodefindinclone.html "Interface documentation") | C binding
@@ -400,11 +400,11 @@
 396 | [hipGraphLaunch](interfacehipfort_1_1hipgraphlaunch.html "Interface documentation") | C binding
 397 | [hipGraphUpload](interfacehipfort_1_1hipgraphupload.html "Interface documentation") | C binding
 398 | [hipGraphAddNode](interfacehipfort_1_1hipgraphaddnode.html "Interface documentation") | C binding
-399 | [hipGraphExecGetFlags](interfacehipfort_1_1hipgraphexecgetflags.html "Interface documentation") | C binding
+399 | [hipGraphExecGetFlags](interfacehipfort_1_1hipgraphexecgetflags.html "Interface documentation") | C binding, typed
 400 | [hipGraphNodeSetParams](interfacehipfort_1_1hipgraphnodesetparams.html "Interface documentation") | C binding
 401 | [hipGraphExecNodeSetParams](interfacehipfort_1_1hipgraphexecnodesetparams.html "Interface documentation") | C binding
 402 | [hipGraphExecDestroy](interfacehipfort_1_1hipgraphexecdestroy.html "Interface documentation") | C binding
-403 | [hipGraphExecUpdate](interfacehipfort_1_1hipgraphexecupdate.html "Interface documentation") | C binding
+403 | [hipGraphExecUpdate](interfacehipfort_1_1hipgraphexecupdate.html "Interface documentation") | C binding, typed
 404 | [hipGraphAddKernelNode](interfacehipfort_1_1hipgraphaddkernelnode.html "Interface documentation") | C binding
 405 | [hipGraphKernelNodeGetParams](interfacehipfort_1_1hipgraphkernelnodegetparams.html "Interface documentation") | C binding
 406 | [hipGraphKernelNodeSetParams](interfacehipfort_1_1hipgraphkernelnodesetparams.html "Interface documentation") | C binding
@@ -460,7 +460,7 @@
 456 | [hipGraphDebugDotPrint](interfacehipfort_1_1hipgraphdebugdotprint.html "Interface documentation") | C binding
 457 | [hipGraphKernelNodeCopyAttributes](interfacehipfort_1_1hipgraphkernelnodecopyattributes.html "Interface documentation") | C binding
 458 | [hipGraphNodeSetEnabled](interfacehipfort_1_1hipgraphnodesetenabled.html "Interface documentation") | C binding
-459 | [hipGraphNodeGetEnabled](interfacehipfort_1_1hipgraphnodegetenabled.html "Interface documentation") | C binding
+459 | [hipGraphNodeGetEnabled](interfacehipfort_1_1hipgraphnodegetenabled.html "Interface documentation") | C binding, typed
 460 | [hipGraphAddExternalSemaphoresWaitNode](interfacehipfort_1_1hipgraphaddexternalsemaphoreswaitnode.html "Interface documentation") | C binding
 461 | [hipGraphAddExternalSemaphoresSignalNode](interfacehipfort_1_1hipgraphaddexternalsemaphoressignalnode.html "Interface documentation") | C binding
 462 | [hipGraphExternalSemaphoresSignalNodeSetParams](interfacehipfort_1_1hipgraphexternalsemaphoressignalnodesetparams.html "Interface documentation") | C binding
@@ -479,8 +479,8 @@
 475 | [hipMemAddressReserve](interfacehipfort_1_1hipmemaddressreserve.html "Interface documentation") | C binding
 476 | [hipMemCreate](interfacehipfort_1_1hipmemcreate.html "Interface documentation") | C binding
 477 | [hipMemExportToShareableHandle](interfacehipfort_1_1hipmemexporttoshareablehandle.html "Interface documentation") | C binding
-478 | [hipMemGetAccess](interfacehipfort_1_1hipmemgetaccess.html "Interface documentation") | C binding
-479 | [hipMemGetAllocationGranularity](interfacehipfort_1_1hipmemgetallocationgranularity.html "Interface documentation") | C binding
+478 | [hipMemGetAccess](interfacehipfort_1_1hipmemgetaccess.html "Interface documentation") | C binding, typed
+479 | [hipMemGetAllocationGranularity](interfacehipfort_1_1hipmemgetallocationgranularity.html "Interface documentation") | C binding, typed
 480 | [hipMemGetAllocationPropertiesFromHandle](interfacehipfort_1_1hipmemgetallocationpropertiesfromhandle.html "Interface documentation") | C binding
 481 | [hipMemImportFromShareableHandle](interfacehipfort_1_1hipmemimportfromshareablehandle.html "Interface documentation") | C binding
 482 | [hipMemMap](interfacehipfort_1_1hipmemmap.html "Interface documentation") | C binding
@@ -491,7 +491,7 @@
 487 | [hipMemUnmap](interfacehipfort_1_1hipmemunmap.html "Interface documentation") | C binding
 488 | [hipGraphicsMapResources](interfacehipfort_1_1hipgraphicsmapresources.html "Interface documentation") | C binding
 489 | [hipGraphicsSubResourceGetMappedArray](interfacehipfort_1_1hipgraphicssubresourcegetmappedarray.html "Interface documentation") | C binding
-490 | [hipGraphicsResourceGetMappedPointer](interfacehipfort_1_1hipgraphicsresourcegetmappedpointer.html "Interface documentation") | C binding
+490 | [hipGraphicsResourceGetMappedPointer](interfacehipfort_1_1hipgraphicsresourcegetmappedpointer.html "Interface documentation") | C binding, typed
 491 | [hipGraphicsUnmapResources](interfacehipfort_1_1hipgraphicsunmapresources.html "Interface documentation") | C binding
 492 | [hipGraphicsUnregisterResource](interfacehipfort_1_1hipgraphicsunregisterresource.html "Interface documentation") | C binding
 493 | [hipCreateSurfaceObject](interfacehipfort_1_1hipcreatesurfaceobject.html "Interface documentation") | C binding

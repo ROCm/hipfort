@@ -33,8 +33,8 @@ program test_hipfftw
   integer(c_size_t) :: v0
   type(c_ptr) :: v1
   integer(c_int) :: v2
-  type(fftw_iodim) :: v3
-  type(fftw_iodim64) :: v4
+  type(fftw_iodim) :: v3(1)
+  type(fftw_iodim64) :: v4(1)
   real(c_double) :: v5
 
   ! Always .false., but not foldable by the compiler, so every guarded
@@ -80,17 +80,17 @@ program test_hipfftw
     if (never) v1 = fftw_plan_many_dft_c2r_(v2, v1, v2, v1, v1, v2, v2, v1, v1, v2, v2, v2)
     if (never) v1 = fftwf_plan_many_dft_c2r_(v2, v1, v2, v1, v1, v2, v2, v1, v1, v2, v2, v2)
     if (never) v1 = fftw_plan_guru_dft_(v2, v3, v2, v3, v1, v1, v2, v2)
-    if (never) v1 = fftwf_plan_guru_dft_(v2, v1, v2, v1, v1, v1, v2, v2)
+    if (never) v1 = fftwf_plan_guru_dft_(v2, v3, v2, v3, v1, v1, v2, v2)
     if (never) v1 = fftw_plan_guru_dft_r2c_(v2, v3, v2, v3, v1, v1, v2)
-    if (never) v1 = fftwf_plan_guru_dft_r2c_(v2, v1, v2, v1, v1, v1, v2)
+    if (never) v1 = fftwf_plan_guru_dft_r2c_(v2, v3, v2, v3, v1, v1, v2)
     if (never) v1 = fftw_plan_guru_dft_c2r_(v2, v3, v2, v3, v1, v1, v2)
-    if (never) v1 = fftwf_plan_guru_dft_c2r_(v2, v1, v2, v1, v1, v1, v2)
+    if (never) v1 = fftwf_plan_guru_dft_c2r_(v2, v3, v2, v3, v1, v1, v2)
     if (never) v1 = fftw_plan_guru64_dft_(v2, v4, v2, v4, v1, v1, v2, v2)
-    if (never) v1 = fftwf_plan_guru64_dft_(v2, v1, v2, v1, v1, v1, v2, v2)
+    if (never) v1 = fftwf_plan_guru64_dft_(v2, v4, v2, v4, v1, v1, v2, v2)
     if (never) v1 = fftw_plan_guru64_dft_r2c_(v2, v4, v2, v4, v1, v1, v2)
-    if (never) v1 = fftwf_plan_guru64_dft_r2c_(v2, v1, v2, v1, v1, v1, v2)
+    if (never) v1 = fftwf_plan_guru64_dft_r2c_(v2, v4, v2, v4, v1, v1, v2)
     if (never) v1 = fftw_plan_guru64_dft_c2r_(v2, v4, v2, v4, v1, v1, v2)
-    if (never) v1 = fftwf_plan_guru64_dft_c2r_(v2, v1, v2, v1, v1, v1, v2)
+    if (never) v1 = fftwf_plan_guru64_dft_c2r_(v2, v4, v2, v4, v1, v1, v2)
     if (never) call fftw_execute_(v1)
     if (never) call fftwf_execute_(v1)
     if (never) call fftw_execute_dft_(v1, v1, v1)

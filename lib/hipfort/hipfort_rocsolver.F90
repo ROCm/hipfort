@@ -59,8 +59,10 @@ module hipfort_rocsolver
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_get_version_string_size_
-      integer(c_size_t) :: len
+      type(c_ptr),value :: len
     end function
+
+    module procedure rocsolver_get_version_string_size_typed
   end interface
 
   !>  \brief The LOG_BEGIN function initiates a rocSOLVER multi-level logging session.
@@ -212,8 +214,10 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_get_alg_mode_
       type(c_ptr),value :: handle
       integer(kind(rocsolver_function_bdsqr)),value :: func
-      integer(kind(rocsolver_alg_mode_gpu)) :: mode
+      type(c_ptr),value :: mode
     end function
+
+    module procedure rocsolver_get_alg_mode_typed
   end interface
 
   !>     \brief The LACGV functions conjugate the complex vector ``x``.
@@ -871,6 +875,8 @@ module hipfort_rocsolver
       type(c_ptr),value :: tau
     end function
 
+    module procedure rocsolver_slarfg_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsolver_slarfg_assumed_rank
 #else
@@ -896,6 +902,8 @@ module hipfort_rocsolver
       integer(c_int),value :: incx
       type(c_ptr),value :: tau
     end function
+
+    module procedure rocsolver_dlarfg_typed
 
 #ifdef USE_ASSUMED_RANK
     module procedure rocsolver_dlarfg_assumed_rank
@@ -923,6 +931,8 @@ module hipfort_rocsolver
       type(c_ptr),value :: tau
     end function
 
+    module procedure rocsolver_clarfg_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsolver_clarfg_assumed_rank
 #else
@@ -949,6 +959,8 @@ module hipfort_rocsolver
       type(c_ptr),value :: tau
     end function
 
+    module procedure rocsolver_zlarfg_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsolver_zlarfg_assumed_rank
 #else
@@ -974,6 +986,8 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: tau
     end function
+
+    module procedure rocsolver_slarfg_64_typed
   end interface
 
   interface rocsolver_dlarfg_64
@@ -990,6 +1004,8 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: tau
     end function
+
+    module procedure rocsolver_dlarfg_64_typed
   end interface
 
   interface rocsolver_clarfg_64
@@ -1006,6 +1022,8 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: tau
     end function
+
+    module procedure rocsolver_clarfg_64_typed
   end interface
 
   interface rocsolver_zlarfg_64
@@ -1022,6 +1040,8 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: tau
     end function
+
+    module procedure rocsolver_zlarfg_64_typed
   end interface
 
   !>     \brief The LARFT functions generate the triangular factor ``T`` of a block reflector H of
@@ -1343,6 +1363,8 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
+    module procedure rocsolver_slarf_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsolver_slarf_assumed_rank
 #else
@@ -1372,6 +1394,8 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
     end function
+
+    module procedure rocsolver_dlarf_typed
 
 #ifdef USE_ASSUMED_RANK
     module procedure rocsolver_dlarf_assumed_rank
@@ -1403,6 +1427,8 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
+    module procedure rocsolver_clarf_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsolver_clarf_assumed_rank
 #else
@@ -1432,6 +1458,8 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int),value :: lda
     end function
+
+    module procedure rocsolver_zlarf_typed
 
 #ifdef USE_ASSUMED_RANK
     module procedure rocsolver_zlarf_assumed_rank
@@ -1463,6 +1491,8 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
     end function
+
+    module procedure rocsolver_slarf_64_typed
   end interface
 
   interface rocsolver_dlarf_64
@@ -1483,6 +1513,8 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
     end function
+
+    module procedure rocsolver_dlarf_64_typed
   end interface
 
   interface rocsolver_clarf_64
@@ -1503,6 +1535,8 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
     end function
+
+    module procedure rocsolver_clarf_64_typed
   end interface
 
   interface rocsolver_zlarf_64
@@ -1523,6 +1557,8 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
     end function
+
+    module procedure rocsolver_zlarf_64_typed
   end interface
 
   !>     \brief The LARFB functions apply a block reflector ``H`` to a general ``m`` -by-``n``
@@ -42089,8 +42125,10 @@ module hipfort_rocsolver
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_get_rfinfo_mode_
       type(c_ptr),value :: rfinfo
-      integer(kind(rocsolver_rfinfo_mode_lu)) :: mode
+      type(c_ptr),value :: mode
     end function
+
+    module procedure rocsolver_get_rfinfo_mode_typed
   end interface
 
   !>     \brief The CSRRF_SUMLU functions bundle the factors \f$L\f$ and \f$U\f$, associated with
@@ -45774,8 +45812,326 @@ module hipfort_rocsolver
   end interface
 
 
-#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
+
+    function rocsolver_get_version_string_size_typed(len)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_get_version_string_size_typed
+      integer(c_size_t),target :: len
+      !
+      rocsolver_get_version_string_size_typed = rocsolver_get_version_string_size_(c_loc(len))
+    end function
+
+    function rocsolver_get_alg_mode_typed(handle,func,mode)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_get_alg_mode_typed
+      type(c_ptr) :: handle
+      integer(kind(rocsolver_function_bdsqr)) :: func
+      integer(kind(rocsolver_alg_mode_gpu)),target :: mode
+      !
+      rocsolver_get_alg_mode_typed = rocsolver_get_alg_mode_(handle,func,c_loc(mode))
+    end function
+
+    function rocsolver_slarfg_typed(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarfg_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target :: alpha
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_float),target :: tau
+      !
+      rocsolver_slarfg_typed = rocsolver_slarfg_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
+    end function
+
+    function rocsolver_dlarfg_typed(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarfg_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target :: alpha
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_double),target :: tau
+      !
+      rocsolver_dlarfg_typed = rocsolver_dlarfg_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
+    end function
+
+    function rocsolver_clarfg_typed(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarfg_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: alpha
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target :: tau
+      !
+      rocsolver_clarfg_typed = rocsolver_clarfg_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
+    end function
+
+    function rocsolver_zlarfg_typed(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarfg_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: alpha
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target :: tau
+      !
+      rocsolver_zlarfg_typed = rocsolver_zlarfg_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
+    end function
+
+    function rocsolver_slarfg_64_typed(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarfg_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: tau
+      !
+      rocsolver_slarfg_64_typed = rocsolver_slarfg_64_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
+    end function
+
+    function rocsolver_dlarfg_64_typed(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarfg_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: tau
+      !
+      rocsolver_dlarfg_64_typed = rocsolver_dlarfg_64_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
+    end function
+
+    function rocsolver_clarfg_64_typed(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarfg_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: tau
+      !
+      rocsolver_clarfg_64_typed = rocsolver_clarfg_64_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
+    end function
+
+    function rocsolver_zlarfg_64_typed(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarfg_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: tau
+      !
+      rocsolver_zlarfg_64_typed = rocsolver_zlarfg_64_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
+    end function
+
+    function rocsolver_slarf_typed(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarf_typed
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_float),target :: alpha
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_slarf_typed = rocsolver_slarf_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
+    end function
+
+    function rocsolver_dlarf_typed(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_typed
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_double),target :: alpha
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_dlarf_typed = rocsolver_dlarf_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
+    end function
+
+    function rocsolver_clarf_typed(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarf_typed
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target :: alpha
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_clarf_typed = rocsolver_clarf_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
+    end function
+
+    function rocsolver_zlarf_typed(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_typed
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target :: alpha
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_zlarf_typed = rocsolver_zlarf_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
+    end function
+
+    function rocsolver_slarf_64_typed(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarf_64_typed
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: alpha
+      type(c_ptr) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocsolver_slarf_64_typed = rocsolver_slarf_64_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
+    end function
+
+    function rocsolver_dlarf_64_typed(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_64_typed
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: alpha
+      type(c_ptr) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocsolver_dlarf_64_typed = rocsolver_dlarf_64_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
+    end function
+
+    function rocsolver_clarf_64_typed(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarf_64_typed
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: alpha
+      type(c_ptr) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocsolver_clarf_64_typed = rocsolver_clarf_64_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
+    end function
+
+    function rocsolver_zlarf_64_typed(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_64_typed
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: alpha
+      type(c_ptr) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocsolver_zlarf_64_typed = rocsolver_zlarf_64_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
+    end function
+
+    function rocsolver_get_rfinfo_mode_typed(rfinfo,mode)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_get_rfinfo_mode_typed
+      type(c_ptr) :: rfinfo
+      integer(kind(rocsolver_rfinfo_mode_lu)),target :: mode
+      !
+      rocsolver_get_rfinfo_mode_typed = rocsolver_get_rfinfo_mode_(rfinfo,c_loc(mode))
+    end function
+
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
 #ifdef USE_ASSUMED_RANK
     function rocsolver_clacgv_assumed_rank(handle,n,x,incx)
