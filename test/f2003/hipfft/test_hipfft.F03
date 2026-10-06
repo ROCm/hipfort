@@ -67,6 +67,7 @@ program test_hipfft
     if (never) v3 = hipfftGetSize_(v0, v5)
     if (never) v3 = hipfftSetAutoAllocation_(v0, v1)
     if (never) v3 = hipfftSetWorkArea_(v0, v0)
+    if (never) v3 = hipfftXtSetWorkArea_(v0, v0)
     if (never) v3 = hipfftExecC2C_(v0, v0, v0, v1)
     if (never) v3 = hipfftExecR2C_(v0, v0, v0)
     if (never) v3 = hipfftExecC2R_(v0, v0, v0)
@@ -76,7 +77,7 @@ program test_hipfft
     if (never) v3 = hipfftSetStream_(v0, v0)
     if (never) v3 = hipfftDestroy_(v0)
     if (never) v3 = hipfftGetVersion_(v1)
-    if (never) v3 = hipfftGetProperty_(v7, v0)
+    if (never) v3 = hipfftGetProperty_(v7, v1)
 
   write(*,"(a)") "-- test_hipfft (bind(C) symbols): PASSED (compile+link only)!"
 end program test_hipfft

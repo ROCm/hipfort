@@ -48,12 +48,14 @@ program test_hipsolver
   integer(kind(HIPSOLVERDN_GETRF)) :: v15
   integer(kind(HIPSOLVER_ALG_0)) :: v16
   integer(kind(HIP_R_32F)) :: v17
-  integer(kind(HIPSOLVERRF_FACTORIZATION_ALG0)) :: v18
-  integer(kind(HIPSOLVERRF_TRIANGULAR_SOLVE_ALG1)) :: v19
-  integer(kind(HIPSOLVERRF_MATRIX_FORMAT_CSR)) :: v20
-  integer(kind(HIPSOLVERRF_UNIT_DIAGONAL_STORED_L)) :: v21
-  integer(kind(HIPSOLVERRF_RESET_VALUES_FAST_MODE_OFF)) :: v22
-  integer(kind(HIPSOLVERRF_NUMERIC_BOOST_NOT_USED)) :: v23
+  integer(kind(HIPSOLVER_DIRECT_FORWARD)) :: v18
+  integer(kind(HIPSOLVER_STOREV_COLUMNWISE)) :: v19
+  integer(kind(HIPSOLVERRF_FACTORIZATION_ALG0)) :: v20
+  integer(kind(HIPSOLVERRF_TRIANGULAR_SOLVE_ALG1)) :: v21
+  integer(kind(HIPSOLVERRF_MATRIX_FORMAT_CSR)) :: v22
+  integer(kind(HIPSOLVERRF_UNIT_DIAGONAL_STORED_L)) :: v23
+  integer(kind(HIPSOLVERRF_NUMERIC_BOOST_NOT_USED)) :: v24
+  integer(kind(HIPSOLVERRF_RESET_VALUES_FAST_MODE_OFF)) :: v25
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
@@ -135,10 +137,10 @@ program test_hipsolver
     if (never) v1 = hipsolverDDgels_bufferSize_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v8)
     if (never) v1 = hipsolverCCgels_bufferSize_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v8)
     if (never) v1 = hipsolverZZgels_bufferSize_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v8)
-    if (never) v1 = hipsolverSSgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v0, v0)
-    if (never) v1 = hipsolverDDgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v0, v0)
-    if (never) v1 = hipsolverCCgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v0, v0)
-    if (never) v1 = hipsolverZZgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v0, v0)
+    if (never) v1 = hipsolverSSgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v3, v0)
+    if (never) v1 = hipsolverDDgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v3, v0)
+    if (never) v1 = hipsolverCCgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v3, v0)
+    if (never) v1 = hipsolverZZgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v3, v0)
 #ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverSgeqrf_bufferSize_(v0, v3, v3, v0, v3, v3)
     if (never) v1 = hipsolverDgeqrf_bufferSize_(v0, v3, v3, v0, v3, v3)
@@ -152,10 +154,10 @@ program test_hipsolver
     if (never) v1 = hipsolverDDgesv_bufferSize_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v8)
     if (never) v1 = hipsolverCCgesv_bufferSize_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v8)
     if (never) v1 = hipsolverZZgesv_bufferSize_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v8)
-    if (never) v1 = hipsolverSSgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v0, v0)
-    if (never) v1 = hipsolverDDgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v0, v0)
-    if (never) v1 = hipsolverCCgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v0, v0)
-    if (never) v1 = hipsolverZZgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v0, v0)
+    if (never) v1 = hipsolverSSgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v3, v0)
+    if (never) v1 = hipsolverDDgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v3, v0)
+    if (never) v1 = hipsolverCCgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v3, v0)
+    if (never) v1 = hipsolverZZgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v3, v0)
 #endif
     if (never) v1 = hipsolverSgesvd_bufferSize_(v0, v9, v9, v3, v3, v3)
     if (never) v1 = hipsolverDgesvd_bufferSize_(v0, v9, v9, v3, v3, v3)
@@ -391,10 +393,10 @@ program test_hipsolver
     if (never) v1 = hipsolverDnDDgels_bufferSize_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8)
     if (never) v1 = hipsolverDnCCgels_bufferSize_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8)
     if (never) v1 = hipsolverDnZZgels_bufferSize_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8)
-    if (never) v1 = hipsolverDnSSgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v0, v0)
-    if (never) v1 = hipsolverDnDDgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v0, v0)
-    if (never) v1 = hipsolverDnCCgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v0, v0)
-    if (never) v1 = hipsolverDnZZgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v0, v0)
+    if (never) v1 = hipsolverDnSSgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v3, v0)
+    if (never) v1 = hipsolverDnDDgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v3, v0)
+    if (never) v1 = hipsolverDnCCgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v3, v0)
+    if (never) v1 = hipsolverDnZZgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v3, v0)
     if (never) v1 = hipsolverDnSgeqrf_bufferSize_(v0, v3, v3, v0, v3, v3)
     if (never) v1 = hipsolverDnDgeqrf_bufferSize_(v0, v3, v3, v0, v3, v3)
     if (never) v1 = hipsolverDnCgeqrf_bufferSize_(v0, v3, v3, v0, v3, v3)
@@ -407,10 +409,10 @@ program test_hipsolver
     if (never) v1 = hipsolverDnDDgesv_bufferSize_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8)
     if (never) v1 = hipsolverDnCCgesv_bufferSize_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8)
     if (never) v1 = hipsolverDnZZgesv_bufferSize_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8)
-    if (never) v1 = hipsolverDnSSgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v0, v0)
-    if (never) v1 = hipsolverDnDDgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v0, v0)
-    if (never) v1 = hipsolverDnCCgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v0, v0)
-    if (never) v1 = hipsolverDnZZgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v0, v0)
+    if (never) v1 = hipsolverDnSSgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v3, v0)
+    if (never) v1 = hipsolverDnDDgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v3, v0)
+    if (never) v1 = hipsolverDnCCgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v3, v0)
+    if (never) v1 = hipsolverDnZZgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v3, v0)
     if (never) v1 = hipsolverDnSgesvd_bufferSize_(v0, v3, v3, v3)
     if (never) v1 = hipsolverDnDgesvd_bufferSize_(v0, v3, v3, v3)
     if (never) v1 = hipsolverDnCgesvd_bufferSize_(v0, v3, v3, v3)
@@ -579,6 +581,10 @@ program test_hipsolver
     if (never) v1 = hipsolverDnXgetrf_bufferSize_(v0, v0, v14, v14, v17, v0, v14, v17, v8, v8)
     if (never) v1 = hipsolverDnXgetrf_(v0, v0, v14, v14, v17, v0, v14, v0, v17, v0, v8, v0, v8, v0)
     if (never) v1 = hipsolverDnXgetrs_(v0, v0, v7, v14, v14, v17, v0, v14, v0, v17, v0, v14, v0)
+    if (never) v1 = hipsolverDnXlarft_bufferSize_(v0, v0, v18, v19, v14, v14, v17, v0, v14, v17, v0, v17, v0, v14, &
+      v17, v8, v8)
+    if (never) v1 = hipsolverDnXlarft_(v0, v0, v18, v19, v14, v14, v17, v0, v14, v17, v0, v17, v0, v14, v17, v0, v8, &
+      v0, v8)
     if (never) v1 = hipsolverDnXpotrf_bufferSize_(v0, v0, v6, v14, v17, v0, v14, v17, v8, v8)
     if (never) v1 = hipsolverDnXpotrf_(v0, v0, v6, v14, v17, v0, v14, v17, v0, v8, v0, v8, v0)
     if (never) v1 = hipsolverDnXpotrs_(v0, v0, v6, v14, v14, v17, v0, v14, v17, v0, v14, v0)
@@ -597,18 +603,18 @@ program test_hipsolver
     if (never) v1 = hipsolverRfExtractBundledFactorsHost_(v0, v3, v0, v0, v0)
     if (never) v1 = hipsolverRfExtractSplitFactorsHost_(v0, v3, v0, v0, v0, v3, v0, v0, v0)
 #ifndef USE_CUDA_NAMES
-    if (never) v1 = hipsolverRfGet_Algs_(v0, v18, v19)
+    if (never) v1 = hipsolverRfGet_Algs_(v0, v20, v21)
 #endif
-    if (never) v1 = hipsolverRfGetMatrixFormat_(v0, v20, v21)
-    if (never) v1 = hipsolverRfGetNumericBoostReport_(v0, v23)
+    if (never) v1 = hipsolverRfGetMatrixFormat_(v0, v22, v23)
+    if (never) v1 = hipsolverRfGetNumericBoostReport_(v0, v24)
     if (never) v1 = hipsolverRfGetNumericProperties_(v0, v4, v4)
-    if (never) v1 = hipsolverRfGetResetValuesFastMode_(v0, v22)
+    if (never) v1 = hipsolverRfGetResetValuesFastMode_(v0, v25)
     if (never) v1 = hipsolverRfRefactor_(v0)
     if (never) v1 = hipsolverRfResetValues_(v3, v3, v0, v0, v0, v0, v0, v0)
-    if (never) v1 = hipsolverRfSetAlgs_(v0, v18, v19)
-    if (never) v1 = hipsolverRfSetMatrixFormat_(v0, v20, v21)
+    if (never) v1 = hipsolverRfSetAlgs_(v0, v20, v21)
+    if (never) v1 = hipsolverRfSetMatrixFormat_(v0, v22, v23)
     if (never) v1 = hipsolverRfSetNumericProperties_(v0, v4, v4)
-    if (never) v1 = hipsolverRfSetResetValuesFastMode_(v0, v22)
+    if (never) v1 = hipsolverRfSetResetValuesFastMode_(v0, v25)
     if (never) v1 = hipsolverRfSolve_(v0, v0, v0, v3, v0, v3, v0, v3)
     if (never) v1 = hipsolverRfBatchSetupHost_(v3, v3, v3, v0, v0, v0, v3, v0, v0, v0, v3, v0, v0, v0, v0, v0, v0)
     if (never) v1 = hipsolverRfBatchAnalyze_(v0)
