@@ -382,13 +382,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasIsamax_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasIsamax_assumed_rank
+    module procedure &
+      hipblasIsamax_assumed_rank,&
+      hipblasIsamax_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIsamax_rank_0,&
-      hipblasIsamax_rank_1
+      hipblasIsamax_rank_0_devptr,&
+      hipblasIsamax_rank_1,&
+      hipblasIsamax_rank_1_devptr
 #endif
 #endif
   end interface
@@ -410,13 +416,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasIdamax_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasIdamax_assumed_rank
+    module procedure &
+      hipblasIdamax_assumed_rank,&
+      hipblasIdamax_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIdamax_rank_0,&
-      hipblasIdamax_rank_1
+      hipblasIdamax_rank_0_devptr,&
+      hipblasIdamax_rank_1,&
+      hipblasIdamax_rank_1_devptr
 #endif
 #endif
   end interface
@@ -438,13 +450,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasIcamax_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasIcamax_assumed_rank
+    module procedure &
+      hipblasIcamax_assumed_rank,&
+      hipblasIcamax_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIcamax_rank_0,&
-      hipblasIcamax_rank_1
+      hipblasIcamax_rank_0_devptr,&
+      hipblasIcamax_rank_1,&
+      hipblasIcamax_rank_1_devptr
 #endif
 #endif
   end interface
@@ -466,13 +484,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasIzamax_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasIzamax_assumed_rank
+    module procedure &
+      hipblasIzamax_assumed_rank,&
+      hipblasIzamax_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIzamax_rank_0,&
-      hipblasIzamax_rank_1
+      hipblasIzamax_rank_0_devptr,&
+      hipblasIzamax_rank_1,&
+      hipblasIzamax_rank_1_devptr
 #endif
 #endif
   end interface
@@ -493,6 +517,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasIsamax_64_typed
   end interface
 
   interface hipblasIdamax_64
@@ -511,6 +537,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasIdamax_64_typed
   end interface
 
   interface hipblasIcamax_64
@@ -529,6 +557,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasIcamax_64_typed
   end interface
 
   interface hipblasIzamax_64
@@ -547,6 +577,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasIzamax_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -965,13 +997,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasIsamin_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasIsamin_assumed_rank
+    module procedure &
+      hipblasIsamin_assumed_rank,&
+      hipblasIsamin_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIsamin_rank_0,&
-      hipblasIsamin_rank_1
+      hipblasIsamin_rank_0_devptr,&
+      hipblasIsamin_rank_1,&
+      hipblasIsamin_rank_1_devptr
 #endif
 #endif
   end interface
@@ -993,13 +1031,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasIdamin_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasIdamin_assumed_rank
+    module procedure &
+      hipblasIdamin_assumed_rank,&
+      hipblasIdamin_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIdamin_rank_0,&
-      hipblasIdamin_rank_1
+      hipblasIdamin_rank_0_devptr,&
+      hipblasIdamin_rank_1,&
+      hipblasIdamin_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1021,13 +1065,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasIcamin_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasIcamin_assumed_rank
+    module procedure &
+      hipblasIcamin_assumed_rank,&
+      hipblasIcamin_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIcamin_rank_0,&
-      hipblasIcamin_rank_1
+      hipblasIcamin_rank_0_devptr,&
+      hipblasIcamin_rank_1,&
+      hipblasIcamin_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1049,13 +1099,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasIzamin_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasIzamin_assumed_rank
+    module procedure &
+      hipblasIzamin_assumed_rank,&
+      hipblasIzamin_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasIzamin_rank_0,&
-      hipblasIzamin_rank_1
+      hipblasIzamin_rank_0_devptr,&
+      hipblasIzamin_rank_1,&
+      hipblasIzamin_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1076,6 +1132,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasIsamin_64_typed
   end interface
 
   interface hipblasIdamin_64
@@ -1094,6 +1152,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasIdamin_64_typed
   end interface
 
   interface hipblasIcamin_64
@@ -1112,6 +1172,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasIcamin_64_typed
   end interface
 
   interface hipblasIzamin_64
@@ -1130,6 +1192,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasIzamin_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -1549,13 +1613,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasSasum_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasSasum_assumed_rank
+    module procedure &
+      hipblasSasum_assumed_rank,&
+      hipblasSasum_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSasum_rank_0,&
-      hipblasSasum_rank_1
+      hipblasSasum_rank_0_devptr,&
+      hipblasSasum_rank_1,&
+      hipblasSasum_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1577,13 +1647,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasDasum_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasDasum_assumed_rank
+    module procedure &
+      hipblasDasum_assumed_rank,&
+      hipblasDasum_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDasum_rank_0,&
-      hipblasDasum_rank_1
+      hipblasDasum_rank_0_devptr,&
+      hipblasDasum_rank_1,&
+      hipblasDasum_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1605,13 +1681,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasScasum_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasScasum_assumed_rank
+    module procedure &
+      hipblasScasum_assumed_rank,&
+      hipblasScasum_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasScasum_rank_0,&
-      hipblasScasum_rank_1
+      hipblasScasum_rank_0_devptr,&
+      hipblasScasum_rank_1,&
+      hipblasScasum_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1633,13 +1715,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasDzasum_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasDzasum_assumed_rank
+    module procedure &
+      hipblasDzasum_assumed_rank,&
+      hipblasDzasum_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDzasum_rank_0,&
-      hipblasDzasum_rank_1
+      hipblasDzasum_rank_0_devptr,&
+      hipblasDzasum_rank_1,&
+      hipblasDzasum_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1660,6 +1748,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasSasum_64_typed
   end interface
 
   interface hipblasDasum_64
@@ -1678,6 +1768,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasDasum_64_typed
   end interface
 
   interface hipblasScasum_64
@@ -1696,6 +1788,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasScasum_64_typed
   end interface
 
   interface hipblasDzasum_64
@@ -1714,6 +1808,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasDzasum_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -3642,13 +3738,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasSdot_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasSdot_assumed_rank
+    module procedure &
+      hipblasSdot_assumed_rank,&
+      hipblasSdot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSdot_rank_0,&
-      hipblasSdot_rank_1
+      hipblasSdot_rank_0_devptr,&
+      hipblasSdot_rank_1,&
+      hipblasSdot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3672,13 +3774,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasDdot_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasDdot_assumed_rank
+    module procedure &
+      hipblasDdot_assumed_rank,&
+      hipblasDdot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDdot_rank_0,&
-      hipblasDdot_rank_1
+      hipblasDdot_rank_0_devptr,&
+      hipblasDdot_rank_1,&
+      hipblasDdot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3702,13 +3810,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasCdotc_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasCdotc_assumed_rank
+    module procedure &
+      hipblasCdotc_assumed_rank,&
+      hipblasCdotc_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCdotc_rank_0,&
-      hipblasCdotc_rank_1
+      hipblasCdotc_rank_0_devptr,&
+      hipblasCdotc_rank_1,&
+      hipblasCdotc_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3732,13 +3846,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasCdotu_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasCdotu_assumed_rank
+    module procedure &
+      hipblasCdotu_assumed_rank,&
+      hipblasCdotu_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCdotu_rank_0,&
-      hipblasCdotu_rank_1
+      hipblasCdotu_rank_0_devptr,&
+      hipblasCdotu_rank_1,&
+      hipblasCdotu_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3762,13 +3882,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasZdotc_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasZdotc_assumed_rank
+    module procedure &
+      hipblasZdotc_assumed_rank,&
+      hipblasZdotc_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdotc_rank_0,&
-      hipblasZdotc_rank_1
+      hipblasZdotc_rank_0_devptr,&
+      hipblasZdotc_rank_1,&
+      hipblasZdotc_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3792,13 +3918,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasZdotu_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasZdotu_assumed_rank
+    module procedure &
+      hipblasZdotu_assumed_rank,&
+      hipblasZdotu_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdotu_rank_0,&
-      hipblasZdotu_rank_1
+      hipblasZdotu_rank_0_devptr,&
+      hipblasZdotu_rank_1,&
+      hipblasZdotu_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3857,6 +3989,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasSdot_64_typed
   end interface
 
   interface hipblasDdot_64
@@ -3877,6 +4011,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasDdot_64_typed
   end interface
 
   interface hipblasCdotc_64
@@ -3897,6 +4033,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasCdotc_64_typed
   end interface
 
   interface hipblasCdotu_64
@@ -3917,6 +4055,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasCdotu_64_typed
   end interface
 
   interface hipblasZdotc_64
@@ -3937,6 +4077,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasZdotc_64_typed
   end interface
 
   interface hipblasZdotu_64
@@ -3957,6 +4099,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasZdotu_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -4818,13 +4962,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasSnrm2_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasSnrm2_assumed_rank
+    module procedure &
+      hipblasSnrm2_assumed_rank,&
+      hipblasSnrm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSnrm2_rank_0,&
-      hipblasSnrm2_rank_1
+      hipblasSnrm2_rank_0_devptr,&
+      hipblasSnrm2_rank_1,&
+      hipblasSnrm2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4846,13 +4996,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasDnrm2_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasDnrm2_assumed_rank
+    module procedure &
+      hipblasDnrm2_assumed_rank,&
+      hipblasDnrm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDnrm2_rank_0,&
-      hipblasDnrm2_rank_1
+      hipblasDnrm2_rank_0_devptr,&
+      hipblasDnrm2_rank_1,&
+      hipblasDnrm2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4874,13 +5030,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasScnrm2_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasScnrm2_assumed_rank
+    module procedure &
+      hipblasScnrm2_assumed_rank,&
+      hipblasScnrm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasScnrm2_rank_0,&
-      hipblasScnrm2_rank_1
+      hipblasScnrm2_rank_0_devptr,&
+      hipblasScnrm2_rank_1,&
+      hipblasScnrm2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4902,13 +5064,19 @@ module hipfort_hipblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure hipblasDznrm2_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasDznrm2_assumed_rank
+    module procedure &
+      hipblasDznrm2_assumed_rank,&
+      hipblasDznrm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDznrm2_rank_0,&
-      hipblasDznrm2_rank_1
+      hipblasDznrm2_rank_0_devptr,&
+      hipblasDznrm2_rank_1,&
+      hipblasDznrm2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4929,6 +5097,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasSnrm2_64_typed
   end interface
 
   interface hipblasDnrm2_64
@@ -4947,6 +5117,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasDnrm2_64_typed
   end interface
 
   interface hipblasScnrm2_64
@@ -4965,6 +5137,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasScnrm2_64_typed
   end interface
 
   interface hipblasDznrm2_64
@@ -4983,6 +5157,8 @@ module hipfort_hipblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure hipblasDznrm2_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -5420,13 +5596,19 @@ module hipfort_hipblas
       type(c_ptr),value :: s
     end function
 
+    module procedure hipblasSrot_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasSrot_assumed_rank
+    module procedure &
+      hipblasSrot_assumed_rank,&
+      hipblasSrot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSrot_rank_0,&
-      hipblasSrot_rank_1
+      hipblasSrot_rank_0_devptr,&
+      hipblasSrot_rank_1,&
+      hipblasSrot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -5451,13 +5633,19 @@ module hipfort_hipblas
       type(c_ptr),value :: s
     end function
 
+    module procedure hipblasDrot_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasDrot_assumed_rank
+    module procedure &
+      hipblasDrot_assumed_rank,&
+      hipblasDrot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDrot_rank_0,&
-      hipblasDrot_rank_1
+      hipblasDrot_rank_0_devptr,&
+      hipblasDrot_rank_1,&
+      hipblasDrot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -5482,13 +5670,19 @@ module hipfort_hipblas
       type(c_ptr),value :: s
     end function
 
+    module procedure hipblasCrot_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasCrot_assumed_rank
+    module procedure &
+      hipblasCrot_assumed_rank,&
+      hipblasCrot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCrot_rank_0,&
-      hipblasCrot_rank_1
+      hipblasCrot_rank_0_devptr,&
+      hipblasCrot_rank_1,&
+      hipblasCrot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -5513,13 +5707,19 @@ module hipfort_hipblas
       type(c_ptr),value :: s
     end function
 
+    module procedure hipblasCsrot_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasCsrot_assumed_rank
+    module procedure &
+      hipblasCsrot_assumed_rank,&
+      hipblasCsrot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsrot_rank_0,&
-      hipblasCsrot_rank_1
+      hipblasCsrot_rank_0_devptr,&
+      hipblasCsrot_rank_1,&
+      hipblasCsrot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -5544,13 +5744,19 @@ module hipfort_hipblas
       type(c_ptr),value :: s
     end function
 
+    module procedure hipblasZrot_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasZrot_assumed_rank
+    module procedure &
+      hipblasZrot_assumed_rank,&
+      hipblasZrot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZrot_rank_0,&
-      hipblasZrot_rank_1
+      hipblasZrot_rank_0_devptr,&
+      hipblasZrot_rank_1,&
+      hipblasZrot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -5575,13 +5781,19 @@ module hipfort_hipblas
       type(c_ptr),value :: s
     end function
 
+    module procedure hipblasZdrot_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasZdrot_assumed_rank
+    module procedure &
+      hipblasZdrot_assumed_rank,&
+      hipblasZdrot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdrot_rank_0,&
-      hipblasZdrot_rank_1
+      hipblasZdrot_rank_0_devptr,&
+      hipblasZdrot_rank_1,&
+      hipblasZdrot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -5605,6 +5817,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasSrot_64_typed
   end interface
 
   interface hipblasDrot_64
@@ -5626,6 +5840,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasDrot_64_typed
   end interface
 
   interface hipblasCrot_64
@@ -5647,6 +5863,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasCrot_64_typed
   end interface
 
   interface hipblasCsrot_64
@@ -5668,6 +5886,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasCsrot_64_typed
   end interface
 
   interface hipblasZrot_64
@@ -5689,6 +5909,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasZrot_64_typed
   end interface
 
   interface hipblasZdrot_64
@@ -5710,6 +5932,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasZdrot_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -6400,6 +6624,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasSrotg_typed
   end interface
 
   interface hipblasDrotg
@@ -6418,6 +6644,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasDrotg_typed
   end interface
 
   interface hipblasCrotg
@@ -6436,6 +6664,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasCrotg_typed
   end interface
 
   interface hipblasZrotg
@@ -6454,6 +6684,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasZrotg_typed
   end interface
 
 #ifndef USE_CUDA_NAMES
@@ -6469,6 +6701,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasSrotg_64_typed
   end interface
 #endif
 
@@ -6485,6 +6719,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasDrotg_64_typed
   end interface
 #endif
 
@@ -6501,6 +6737,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasCrotg_64_typed
   end interface
 #endif
 
@@ -6517,6 +6755,8 @@ module hipfort_hipblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure hipblasZrotg_64_typed
   end interface
 #endif
 
@@ -7360,6 +7600,8 @@ module hipfort_hipblas
       type(c_ptr),value :: y1
       type(c_ptr),value :: param
     end function
+
+    module procedure hipblasSrotmg_typed
   end interface
 
   interface hipblasDrotmg
@@ -7379,6 +7621,8 @@ module hipfort_hipblas
       type(c_ptr),value :: y1
       type(c_ptr),value :: param
     end function
+
+    module procedure hipblasDrotmg_typed
   end interface
 
 #ifndef USE_CUDA_NAMES
@@ -7395,6 +7639,8 @@ module hipfort_hipblas
       type(c_ptr),value :: y1
       type(c_ptr),value :: param
     end function
+
+    module procedure hipblasSrotmg_64_typed
   end interface
 #endif
 
@@ -7412,6 +7658,8 @@ module hipfort_hipblas
       type(c_ptr),value :: y1
       type(c_ptr),value :: param
     end function
+
+    module procedure hipblasDrotmg_64_typed
   end interface
 #endif
 
@@ -38479,14 +38727,21 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
+    module procedure hipblasSgetrs_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasSgetrs_assumed_rank
+    module procedure &
+      hipblasSgetrs_assumed_rank,&
+      hipblasSgetrs_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgetrs_rank_0,&
+      hipblasSgetrs_rank_0_devptr,&
       hipblasSgetrs_rank_1,&
-      hipblasSgetrs_full_rank
+      hipblasSgetrs_rank_1_devptr,&
+      hipblasSgetrs_full_rank,&
+      hipblasSgetrs_full_rank_devptr
 #endif
 #endif
   end interface
@@ -38512,14 +38767,21 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
+    module procedure hipblasDgetrs_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasDgetrs_assumed_rank
+    module procedure &
+      hipblasDgetrs_assumed_rank,&
+      hipblasDgetrs_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgetrs_rank_0,&
+      hipblasDgetrs_rank_0_devptr,&
       hipblasDgetrs_rank_1,&
-      hipblasDgetrs_full_rank
+      hipblasDgetrs_rank_1_devptr,&
+      hipblasDgetrs_full_rank,&
+      hipblasDgetrs_full_rank_devptr
 #endif
 #endif
   end interface
@@ -38545,14 +38807,21 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
+    module procedure hipblasCgetrs_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasCgetrs_assumed_rank
+    module procedure &
+      hipblasCgetrs_assumed_rank,&
+      hipblasCgetrs_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgetrs_rank_0,&
+      hipblasCgetrs_rank_0_devptr,&
       hipblasCgetrs_rank_1,&
-      hipblasCgetrs_full_rank
+      hipblasCgetrs_rank_1_devptr,&
+      hipblasCgetrs_full_rank,&
+      hipblasCgetrs_full_rank_devptr
 #endif
 #endif
   end interface
@@ -38578,14 +38847,21 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
+    module procedure hipblasZgetrs_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasZgetrs_assumed_rank
+    module procedure &
+      hipblasZgetrs_assumed_rank,&
+      hipblasZgetrs_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgetrs_rank_0,&
+      hipblasZgetrs_rank_0_devptr,&
       hipblasZgetrs_rank_1,&
-      hipblasZgetrs_full_rank
+      hipblasZgetrs_rank_1_devptr,&
+      hipblasZgetrs_full_rank,&
+      hipblasZgetrs_full_rank_devptr
 #endif
 #endif
   end interface
@@ -38667,6 +38943,8 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasSgetrsBatched_typed
   end interface
 
   interface hipblasDgetrsBatched
@@ -38693,6 +38971,8 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasDgetrsBatched_typed
   end interface
 
   interface hipblasCgetrsBatched
@@ -38719,6 +38999,8 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasCgetrsBatched_typed
   end interface
 
   interface hipblasZgetrsBatched
@@ -38745,6 +39027,8 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasZgetrsBatched_typed
   end interface
 
   !>     \brief  SOLVER API
@@ -38837,14 +39121,21 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
+    module procedure hipblasSgetrsStridedBatched_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasSgetrsStridedBatched_assumed_rank
+    module procedure &
+      hipblasSgetrsStridedBatched_assumed_rank,&
+      hipblasSgetrsStridedBatched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgetrsStridedBatched_rank_0,&
+      hipblasSgetrsStridedBatched_rank_0_devptr,&
       hipblasSgetrsStridedBatched_rank_1,&
-      hipblasSgetrsStridedBatched_full_rank
+      hipblasSgetrsStridedBatched_rank_1_devptr,&
+      hipblasSgetrsStridedBatched_full_rank,&
+      hipblasSgetrsStridedBatched_full_rank_devptr
 #endif
 #endif
   end interface
@@ -38875,14 +39166,21 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
+    module procedure hipblasDgetrsStridedBatched_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasDgetrsStridedBatched_assumed_rank
+    module procedure &
+      hipblasDgetrsStridedBatched_assumed_rank,&
+      hipblasDgetrsStridedBatched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgetrsStridedBatched_rank_0,&
+      hipblasDgetrsStridedBatched_rank_0_devptr,&
       hipblasDgetrsStridedBatched_rank_1,&
-      hipblasDgetrsStridedBatched_full_rank
+      hipblasDgetrsStridedBatched_rank_1_devptr,&
+      hipblasDgetrsStridedBatched_full_rank,&
+      hipblasDgetrsStridedBatched_full_rank_devptr
 #endif
 #endif
   end interface
@@ -38913,14 +39211,21 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
+    module procedure hipblasCgetrsStridedBatched_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasCgetrsStridedBatched_assumed_rank
+    module procedure &
+      hipblasCgetrsStridedBatched_assumed_rank,&
+      hipblasCgetrsStridedBatched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgetrsStridedBatched_rank_0,&
+      hipblasCgetrsStridedBatched_rank_0_devptr,&
       hipblasCgetrsStridedBatched_rank_1,&
-      hipblasCgetrsStridedBatched_full_rank
+      hipblasCgetrsStridedBatched_rank_1_devptr,&
+      hipblasCgetrsStridedBatched_full_rank,&
+      hipblasCgetrsStridedBatched_full_rank_devptr
 #endif
 #endif
   end interface
@@ -38951,14 +39256,21 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
+    module procedure hipblasZgetrsStridedBatched_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasZgetrsStridedBatched_assumed_rank
+    module procedure &
+      hipblasZgetrsStridedBatched_assumed_rank,&
+      hipblasZgetrsStridedBatched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgetrsStridedBatched_rank_0,&
+      hipblasZgetrsStridedBatched_rank_0_devptr,&
       hipblasZgetrsStridedBatched_rank_1,&
-      hipblasZgetrsStridedBatched_full_rank
+      hipblasZgetrsStridedBatched_rank_1_devptr,&
+      hipblasZgetrsStridedBatched_full_rank,&
+      hipblasZgetrsStridedBatched_full_rank_devptr
 #endif
 #endif
   end interface
@@ -39186,6 +39498,8 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: deviceInfo
     end function
+
+    module procedure hipblasSgels_typed
   end interface
 #endif
 
@@ -39209,6 +39523,8 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: deviceInfo
     end function
+
+    module procedure hipblasDgels_typed
   end interface
 #endif
 
@@ -39232,6 +39548,8 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: deviceInfo
     end function
+
+    module procedure hipblasCgels_typed
   end interface
 #endif
 
@@ -39255,6 +39573,8 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: deviceInfo
     end function
+
+    module procedure hipblasZgels_typed
   end interface
 #endif
 
@@ -39357,6 +39677,8 @@ module hipfort_hipblas
       type(c_ptr),value :: deviceInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasSgelsBatched_typed
   end interface
 
   interface hipblasDgelsBatched
@@ -39384,6 +39706,8 @@ module hipfort_hipblas
       type(c_ptr),value :: deviceInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasDgelsBatched_typed
   end interface
 
   interface hipblasCgelsBatched
@@ -39411,6 +39735,8 @@ module hipfort_hipblas
       type(c_ptr),value :: deviceInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasCgelsBatched_typed
   end interface
 
   interface hipblasZgelsBatched
@@ -39438,6 +39764,8 @@ module hipfort_hipblas
       type(c_ptr),value :: deviceInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasZgelsBatched_typed
   end interface
 
   !>     \brief  SOLVER API
@@ -39544,6 +39872,8 @@ module hipfort_hipblas
       type(c_ptr),value :: deviceInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasSgelsStridedBatched_typed
   end interface
 #endif
 
@@ -39571,6 +39901,8 @@ module hipfort_hipblas
       type(c_ptr),value :: deviceInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasDgelsStridedBatched_typed
   end interface
 #endif
 
@@ -39598,6 +39930,8 @@ module hipfort_hipblas
       type(c_ptr),value :: deviceInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasCgelsStridedBatched_typed
   end interface
 #endif
 
@@ -39625,6 +39959,8 @@ module hipfort_hipblas
       type(c_ptr),value :: deviceInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasZgelsStridedBatched_typed
   end interface
 #endif
 
@@ -39694,14 +40030,21 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
+    module procedure hipblasSgeqrf_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasSgeqrf_assumed_rank
+    module procedure &
+      hipblasSgeqrf_assumed_rank,&
+      hipblasSgeqrf_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgeqrf_rank_0,&
+      hipblasSgeqrf_rank_0_devptr,&
       hipblasSgeqrf_rank_1,&
-      hipblasSgeqrf_full_rank
+      hipblasSgeqrf_rank_1_devptr,&
+      hipblasSgeqrf_full_rank,&
+      hipblasSgeqrf_full_rank_devptr
 #endif
 #endif
   end interface
@@ -39723,14 +40066,21 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
+    module procedure hipblasDgeqrf_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasDgeqrf_assumed_rank
+    module procedure &
+      hipblasDgeqrf_assumed_rank,&
+      hipblasDgeqrf_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgeqrf_rank_0,&
+      hipblasDgeqrf_rank_0_devptr,&
       hipblasDgeqrf_rank_1,&
-      hipblasDgeqrf_full_rank
+      hipblasDgeqrf_rank_1_devptr,&
+      hipblasDgeqrf_full_rank,&
+      hipblasDgeqrf_full_rank_devptr
 #endif
 #endif
   end interface
@@ -39752,14 +40102,21 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
+    module procedure hipblasCgeqrf_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasCgeqrf_assumed_rank
+    module procedure &
+      hipblasCgeqrf_assumed_rank,&
+      hipblasCgeqrf_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgeqrf_rank_0,&
+      hipblasCgeqrf_rank_0_devptr,&
       hipblasCgeqrf_rank_1,&
-      hipblasCgeqrf_full_rank
+      hipblasCgeqrf_rank_1_devptr,&
+      hipblasCgeqrf_full_rank,&
+      hipblasCgeqrf_full_rank_devptr
 #endif
 #endif
   end interface
@@ -39781,14 +40138,21 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
     end function
 
+    module procedure hipblasZgeqrf_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasZgeqrf_assumed_rank
+    module procedure &
+      hipblasZgeqrf_assumed_rank,&
+      hipblasZgeqrf_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgeqrf_rank_0,&
+      hipblasZgeqrf_rank_0_devptr,&
       hipblasZgeqrf_rank_1,&
-      hipblasZgeqrf_full_rank
+      hipblasZgeqrf_rank_1_devptr,&
+      hipblasZgeqrf_full_rank,&
+      hipblasZgeqrf_full_rank_devptr
 #endif
 #endif
   end interface
@@ -39871,6 +40235,8 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasSgeqrfBatched_typed
   end interface
 
   interface hipblasDgeqrfBatched
@@ -39894,6 +40260,8 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasDgeqrfBatched_typed
   end interface
 
   interface hipblasCgeqrfBatched
@@ -39917,6 +40285,8 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasCgeqrfBatched_typed
   end interface
 
   interface hipblasZgeqrfBatched
@@ -39940,6 +40310,8 @@ module hipfort_hipblas
       type(c_ptr),value :: myInfo
       integer(c_int),value :: batchCount
     end function
+
+    module procedure hipblasZgeqrfBatched_typed
   end interface
 
   !>     \brief  SOLVER API
@@ -40026,14 +40398,21 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
+    module procedure hipblasSgeqrfStridedBatched_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasSgeqrfStridedBatched_assumed_rank
+    module procedure &
+      hipblasSgeqrfStridedBatched_assumed_rank,&
+      hipblasSgeqrfStridedBatched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgeqrfStridedBatched_rank_0,&
+      hipblasSgeqrfStridedBatched_rank_0_devptr,&
       hipblasSgeqrfStridedBatched_rank_1,&
-      hipblasSgeqrfStridedBatched_full_rank
+      hipblasSgeqrfStridedBatched_rank_1_devptr,&
+      hipblasSgeqrfStridedBatched_full_rank,&
+      hipblasSgeqrfStridedBatched_full_rank_devptr
 #endif
 #endif
   end interface
@@ -40059,14 +40438,21 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
+    module procedure hipblasDgeqrfStridedBatched_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasDgeqrfStridedBatched_assumed_rank
+    module procedure &
+      hipblasDgeqrfStridedBatched_assumed_rank,&
+      hipblasDgeqrfStridedBatched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgeqrfStridedBatched_rank_0,&
+      hipblasDgeqrfStridedBatched_rank_0_devptr,&
       hipblasDgeqrfStridedBatched_rank_1,&
-      hipblasDgeqrfStridedBatched_full_rank
+      hipblasDgeqrfStridedBatched_rank_1_devptr,&
+      hipblasDgeqrfStridedBatched_full_rank,&
+      hipblasDgeqrfStridedBatched_full_rank_devptr
 #endif
 #endif
   end interface
@@ -40092,14 +40478,21 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
+    module procedure hipblasCgeqrfStridedBatched_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasCgeqrfStridedBatched_assumed_rank
+    module procedure &
+      hipblasCgeqrfStridedBatched_assumed_rank,&
+      hipblasCgeqrfStridedBatched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgeqrfStridedBatched_rank_0,&
+      hipblasCgeqrfStridedBatched_rank_0_devptr,&
       hipblasCgeqrfStridedBatched_rank_1,&
-      hipblasCgeqrfStridedBatched_full_rank
+      hipblasCgeqrfStridedBatched_rank_1_devptr,&
+      hipblasCgeqrfStridedBatched_full_rank,&
+      hipblasCgeqrfStridedBatched_full_rank_devptr
 #endif
 #endif
   end interface
@@ -40125,14 +40518,21 @@ module hipfort_hipblas
       integer(c_int),value :: batchCount
     end function
 
+    module procedure hipblasZgeqrfStridedBatched_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure hipblasZgeqrfStridedBatched_assumed_rank
+    module procedure &
+      hipblasZgeqrfStridedBatched_assumed_rank,&
+      hipblasZgeqrfStridedBatched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgeqrfStridedBatched_rank_0,&
+      hipblasZgeqrfStridedBatched_rank_0_devptr,&
       hipblasZgeqrfStridedBatched_rank_1,&
-      hipblasZgeqrfStridedBatched_full_rank
+      hipblasZgeqrfStridedBatched_rank_1_devptr,&
+      hipblasZgeqrfStridedBatched_full_rank,&
+      hipblasZgeqrfStridedBatched_full_rank_devptr
 #endif
 #endif
   end interface
@@ -43618,6 +44018,342 @@ module hipfort_hipblas
     end function
 
 #endif
+    function hipblasIsamax_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      hipblasIsamax_typed = hipblasIsamax_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIdamax_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      hipblasIdamax_typed = hipblasIdamax_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIcamax_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      hipblasIcamax_typed = hipblasIcamax_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIzamax_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      hipblasIzamax_typed = hipblasIzamax_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIsamax_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      hipblasIsamax_64_typed = hipblasIsamax_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIdamax_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      hipblasIdamax_64_typed = hipblasIdamax_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIcamax_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      hipblasIcamax_64_typed = hipblasIcamax_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIzamax_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      hipblasIzamax_64_typed = hipblasIzamax_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIsamin_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      hipblasIsamin_typed = hipblasIsamin_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIdamin_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      hipblasIdamin_typed = hipblasIdamin_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIcamin_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      hipblasIcamin_typed = hipblasIcamin_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIzamin_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      hipblasIzamin_typed = hipblasIzamin_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIsamin_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      hipblasIsamin_64_typed = hipblasIsamin_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIdamin_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      hipblasIdamin_64_typed = hipblasIdamin_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIcamin_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      hipblasIcamin_64_typed = hipblasIcamin_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasIzamin_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      hipblasIzamin_64_typed = hipblasIzamin_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasSasum_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_float),target :: myResult
+      !
+      hipblasSasum_typed = hipblasSasum_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasDasum_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_double),target :: myResult
+      !
+      hipblasDasum_typed = hipblasDasum_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasScasum_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_float),target :: myResult
+      !
+      hipblasScasum_typed = hipblasScasum_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasDzasum_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_double),target :: myResult
+      !
+      hipblasDzasum_typed = hipblasDzasum_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasSasum_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: myResult
+      !
+      hipblasSasum_64_typed = hipblasSasum_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasDasum_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: myResult
+      !
+      hipblasDasum_64_typed = hipblasDasum_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasScasum_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: myResult
+      !
+      hipblasScasum_64_typed = hipblasScasum_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasDzasum_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: myResult
+      !
+      hipblasDzasum_64_typed = hipblasDzasum_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
     function hipblasSaxpy_typed(handle,n,alpha,x,incx,y,incy)
       use iso_c_binding
       use hipfort_hipblas_enums
@@ -44087,6 +44823,700 @@ module hipfort_hipblas
       !
       hipblasZaxpyStridedBatched_64_typed = hipblasZaxpyStridedBatched_64_(handle,n,c_loc(alpha), &
         x,incx,stridex,y,incy,stridey,batchCount)
+    end function
+
+#endif
+    function hipblasSdot_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      real(c_float),target :: myResult
+      !
+      hipblasSdot_typed = hipblasSdot_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function hipblasDdot_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      real(c_double),target :: myResult
+      !
+      hipblasDdot_typed = hipblasDdot_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function hipblasCdotc_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      complex(c_float_complex),target :: myResult
+      !
+      hipblasCdotc_typed = hipblasCdotc_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function hipblasCdotu_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      complex(c_float_complex),target :: myResult
+      !
+      hipblasCdotu_typed = hipblasCdotu_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function hipblasZdotc_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      complex(c_double_complex),target :: myResult
+      !
+      hipblasZdotc_typed = hipblasZdotc_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function hipblasZdotu_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      complex(c_double_complex),target :: myResult
+      !
+      hipblasZdotu_typed = hipblasZdotu_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function hipblasSdot_64_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      real(c_float),target :: myResult
+      !
+      hipblasSdot_64_typed = hipblasSdot_64_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function hipblasDdot_64_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      real(c_double),target :: myResult
+      !
+      hipblasDdot_64_typed = hipblasDdot_64_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function hipblasCdotc_64_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      complex(c_float_complex),target :: myResult
+      !
+      hipblasCdotc_64_typed = hipblasCdotc_64_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function hipblasCdotu_64_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      complex(c_float_complex),target :: myResult
+      !
+      hipblasCdotu_64_typed = hipblasCdotu_64_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function hipblasZdotc_64_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      complex(c_double_complex),target :: myResult
+      !
+      hipblasZdotc_64_typed = hipblasZdotc_64_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function hipblasZdotu_64_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      complex(c_double_complex),target :: myResult
+      !
+      hipblasZdotu_64_typed = hipblasZdotu_64_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function hipblasSnrm2_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_float),target :: myResult
+      !
+      hipblasSnrm2_typed = hipblasSnrm2_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasDnrm2_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_double),target :: myResult
+      !
+      hipblasDnrm2_typed = hipblasDnrm2_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasScnrm2_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_float),target :: myResult
+      !
+      hipblasScnrm2_typed = hipblasScnrm2_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasDznrm2_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_double),target :: myResult
+      !
+      hipblasDznrm2_typed = hipblasDznrm2_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasSnrm2_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: myResult
+      !
+      hipblasSnrm2_64_typed = hipblasSnrm2_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasDnrm2_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: myResult
+      !
+      hipblasDnrm2_64_typed = hipblasDnrm2_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasScnrm2_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: myResult
+      !
+      hipblasScnrm2_64_typed = hipblasScnrm2_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasDznrm2_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: myResult
+      !
+      hipblasDznrm2_64_typed = hipblasDznrm2_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function hipblasSrot_typed(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      real(c_float),target :: c
+      real(c_float),target :: s
+      !
+      hipblasSrot_typed = hipblasSrot_(handle,n,x,incx,y,incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasDrot_typed(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      real(c_double),target :: c
+      real(c_double),target :: s
+      !
+      hipblasDrot_typed = hipblasDrot_(handle,n,x,incx,y,incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasCrot_typed(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      real(c_float),target :: c
+      complex(c_float_complex),target :: s
+      !
+      hipblasCrot_typed = hipblasCrot_(handle,n,x,incx,y,incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasCsrot_typed(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      real(c_float),target :: c
+      real(c_float),target :: s
+      !
+      hipblasCsrot_typed = hipblasCsrot_(handle,n,x,incx,y,incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasZrot_typed(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      real(c_double),target :: c
+      complex(c_double_complex),target :: s
+      !
+      hipblasZrot_typed = hipblasZrot_(handle,n,x,incx,y,incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasZdrot_typed(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      real(c_double),target :: c
+      real(c_double),target :: s
+      !
+      hipblasZdrot_typed = hipblasZdrot_(handle,n,x,incx,y,incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasSrot_64_typed(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      real(c_float),target :: c
+      real(c_float),target :: s
+      !
+      hipblasSrot_64_typed = hipblasSrot_64_(handle,n,x,incx,y,incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasDrot_64_typed(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      real(c_double),target :: c
+      real(c_double),target :: s
+      !
+      hipblasDrot_64_typed = hipblasDrot_64_(handle,n,x,incx,y,incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasCrot_64_typed(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      real(c_float),target :: c
+      complex(c_float_complex),target :: s
+      !
+      hipblasCrot_64_typed = hipblasCrot_64_(handle,n,x,incx,y,incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasCsrot_64_typed(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      real(c_float),target :: c
+      real(c_float),target :: s
+      !
+      hipblasCsrot_64_typed = hipblasCsrot_64_(handle,n,x,incx,y,incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasZrot_64_typed(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      real(c_double),target :: c
+      complex(c_double_complex),target :: s
+      !
+      hipblasZrot_64_typed = hipblasZrot_64_(handle,n,x,incx,y,incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasZdrot_64_typed(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      real(c_double),target :: c
+      real(c_double),target :: s
+      !
+      hipblasZdrot_64_typed = hipblasZdrot_64_(handle,n,x,incx,y,incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasSrotg_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotg_typed
+      type(c_ptr) :: handle
+      real(c_float),target :: a
+      real(c_float),target :: b
+      real(c_float),target :: c
+      real(c_float),target :: s
+      !
+      hipblasSrotg_typed = hipblasSrotg_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+    function hipblasDrotg_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotg_typed
+      type(c_ptr) :: handle
+      real(c_double),target :: a
+      real(c_double),target :: b
+      real(c_double),target :: c
+      real(c_double),target :: s
+      !
+      hipblasDrotg_typed = hipblasDrotg_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+    function hipblasCrotg_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotg_typed
+      type(c_ptr) :: handle
+      complex(c_float_complex),target :: a
+      complex(c_float_complex),target :: b
+      real(c_float),target :: c
+      complex(c_float_complex),target :: s
+      !
+      hipblasCrotg_typed = hipblasCrotg_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+    function hipblasZrotg_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotg_typed
+      type(c_ptr) :: handle
+      complex(c_double_complex),target :: a
+      complex(c_double_complex),target :: b
+      real(c_double),target :: c
+      complex(c_double_complex),target :: s
+      !
+      hipblasZrotg_typed = hipblasZrotg_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipblasSrotg_64_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotg_64_typed
+      type(c_ptr) :: handle
+      real(c_float),target :: a
+      real(c_float),target :: b
+      real(c_float),target :: c
+      real(c_float),target :: s
+      !
+      hipblasSrotg_64_typed = hipblasSrotg_64_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasDrotg_64_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotg_64_typed
+      type(c_ptr) :: handle
+      real(c_double),target :: a
+      real(c_double),target :: b
+      real(c_double),target :: c
+      real(c_double),target :: s
+      !
+      hipblasDrotg_64_typed = hipblasDrotg_64_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasCrotg_64_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotg_64_typed
+      type(c_ptr) :: handle
+      complex(c_float_complex),target :: a
+      complex(c_float_complex),target :: b
+      real(c_float),target :: c
+      complex(c_float_complex),target :: s
+      !
+      hipblasCrotg_64_typed = hipblasCrotg_64_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasZrotg_64_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotg_64_typed
+      type(c_ptr) :: handle
+      complex(c_double_complex),target :: a
+      complex(c_double_complex),target :: b
+      real(c_double),target :: c
+      complex(c_double_complex),target :: s
+      !
+      hipblasZrotg_64_typed = hipblasZrotg_64_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+#endif
+    function hipblasSrotmg_typed(handle,d1,d2,x1,y1,param)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmg_typed
+      type(c_ptr) :: handle
+      real(c_float),target :: d1
+      real(c_float),target :: d2
+      real(c_float),target :: x1
+      real(c_float),target :: y1
+      type(c_ptr) :: param
+      !
+      hipblasSrotmg_typed = hipblasSrotmg_(handle,c_loc(d1),c_loc(d2),c_loc(x1),c_loc(y1),param)
+    end function
+
+    function hipblasDrotmg_typed(handle,d1,d2,x1,y1,param)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmg_typed
+      type(c_ptr) :: handle
+      real(c_double),target :: d1
+      real(c_double),target :: d2
+      real(c_double),target :: x1
+      real(c_double),target :: y1
+      type(c_ptr) :: param
+      !
+      hipblasDrotmg_typed = hipblasDrotmg_(handle,c_loc(d1),c_loc(d2),c_loc(x1),c_loc(y1),param)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipblasSrotmg_64_typed(handle,d1,d2,x1,y1,param)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmg_64_typed
+      type(c_ptr) :: handle
+      real(c_float),target :: d1
+      real(c_float),target :: d2
+      real(c_float),target :: x1
+      real(c_float),target :: y1
+      type(c_ptr) :: param
+      !
+      hipblasSrotmg_64_typed = hipblasSrotmg_64_(handle,c_loc(d1),c_loc(d2),c_loc(x1),c_loc(y1), &
+        param)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasDrotmg_64_typed(handle,d1,d2,x1,y1,param)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmg_64_typed
+      type(c_ptr) :: handle
+      real(c_double),target :: d1
+      real(c_double),target :: d2
+      real(c_double),target :: x1
+      real(c_double),target :: y1
+      type(c_ptr) :: param
+      !
+      hipblasDrotmg_64_typed = hipblasDrotmg_64_(handle,c_loc(d1),c_loc(d2),c_loc(x1),c_loc(y1), &
+        param)
     end function
 
 #endif
@@ -57906,6 +59336,806 @@ module hipfort_hipblas
     end function
 
 #endif
+#ifndef USE_CUDA_NAMES
+    function hipblasSgetrs_typed(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      !
+      hipblasSgetrs_typed = hipblasSgetrs_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,c_loc(myInfo))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasDgetrs_typed(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      !
+      hipblasDgetrs_typed = hipblasDgetrs_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,c_loc(myInfo))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasCgetrs_typed(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      !
+      hipblasCgetrs_typed = hipblasCgetrs_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,c_loc(myInfo))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasZgetrs_typed(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      !
+      hipblasZgetrs_typed = hipblasZgetrs_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,c_loc(myInfo))
+    end function
+
+#endif
+    function hipblasSgetrsBatched_typed(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgetrsBatched_typed = hipblasSgetrsBatched_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb, &
+        c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasDgetrsBatched_typed(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgetrsBatched_typed = hipblasDgetrsBatched_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb, &
+        c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasCgetrsBatched_typed(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgetrsBatched_typed = hipblasCgetrsBatched_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb, &
+        c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasZgetrsBatched_typed(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgetrsBatched_typed = hipblasZgetrsBatched_(handle,trans,n,nrhs,A,lda,ipiv,B,ldb, &
+        c_loc(myInfo),batchCount)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipblasSgetrsStridedBatched_typed(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
+        ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgetrsStridedBatched_typed = hipblasSgetrsStridedBatched_(handle,trans,n,nrhs,A,lda, &
+        strideA,ipiv,strideP,B,ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasDgetrsStridedBatched_typed(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
+        ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgetrsStridedBatched_typed = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs,A,lda, &
+        strideA,ipiv,strideP,B,ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasCgetrsStridedBatched_typed(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
+        ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgetrsStridedBatched_typed = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs,A,lda, &
+        strideA,ipiv,strideP,B,ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasZgetrsStridedBatched_typed(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
+        ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgetrsStridedBatched_typed = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs,A,lda, &
+        strideA,ipiv,strideP,B,ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasSgels_typed(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgels_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      type(c_ptr) :: deviceInfo
+      !
+      hipblasSgels_typed = hipblasSgels_(handle,trans,m,n,nrhs,A,lda,B,ldb,c_loc(myInfo),deviceInfo)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasDgels_typed(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgels_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      type(c_ptr) :: deviceInfo
+      !
+      hipblasDgels_typed = hipblasDgels_(handle,trans,m,n,nrhs,A,lda,B,ldb,c_loc(myInfo),deviceInfo)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasCgels_typed(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgels_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      type(c_ptr) :: deviceInfo
+      !
+      hipblasCgels_typed = hipblasCgels_(handle,trans,m,n,nrhs,A,lda,B,ldb,c_loc(myInfo),deviceInfo)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasZgels_typed(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgels_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      type(c_ptr) :: deviceInfo
+      !
+      hipblasZgels_typed = hipblasZgels_(handle,trans,m,n,nrhs,A,lda,B,ldb,c_loc(myInfo),deviceInfo)
+    end function
+
+#endif
+    function hipblasSgelsBatched_typed(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo, &
+        batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgelsBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      type(c_ptr) :: deviceInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgelsBatched_typed = hipblasSgelsBatched_(handle,trans,m,n,nrhs,A,lda,B,ldb, &
+        c_loc(myInfo),deviceInfo,batchCount)
+    end function
+
+    function hipblasDgelsBatched_typed(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo, &
+        batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgelsBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      type(c_ptr) :: deviceInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgelsBatched_typed = hipblasDgelsBatched_(handle,trans,m,n,nrhs,A,lda,B,ldb, &
+        c_loc(myInfo),deviceInfo,batchCount)
+    end function
+
+    function hipblasCgelsBatched_typed(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo, &
+        batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgelsBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      type(c_ptr) :: deviceInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgelsBatched_typed = hipblasCgelsBatched_(handle,trans,m,n,nrhs,A,lda,B,ldb, &
+        c_loc(myInfo),deviceInfo,batchCount)
+    end function
+
+    function hipblasZgelsBatched_typed(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo, &
+        batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgelsBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int),target :: myInfo
+      type(c_ptr) :: deviceInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgelsBatched_typed = hipblasZgelsBatched_(handle,trans,m,n,nrhs,A,lda,B,ldb, &
+        c_loc(myInfo),deviceInfo,batchCount)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipblasSgelsStridedBatched_typed(handle,trans,m,n,nrhs,A,lda,strideA,B,ldb,strideB, &
+        myInfo,deviceInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgelsStridedBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int),target :: myInfo
+      type(c_ptr) :: deviceInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgelsStridedBatched_typed = hipblasSgelsStridedBatched_(handle,trans,m,n,nrhs,A,lda, &
+        strideA,B,ldb,strideB,c_loc(myInfo),deviceInfo,batchCount)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasDgelsStridedBatched_typed(handle,trans,m,n,nrhs,A,lda,strideA,B,ldb,strideB, &
+        myInfo,deviceInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgelsStridedBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int),target :: myInfo
+      type(c_ptr) :: deviceInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgelsStridedBatched_typed = hipblasDgelsStridedBatched_(handle,trans,m,n,nrhs,A,lda, &
+        strideA,B,ldb,strideB,c_loc(myInfo),deviceInfo,batchCount)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasCgelsStridedBatched_typed(handle,trans,m,n,nrhs,A,lda,strideA,B,ldb,strideB, &
+        myInfo,deviceInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgelsStridedBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int),target :: myInfo
+      type(c_ptr) :: deviceInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgelsStridedBatched_typed = hipblasCgelsStridedBatched_(handle,trans,m,n,nrhs,A,lda, &
+        strideA,B,ldb,strideB,c_loc(myInfo),deviceInfo,batchCount)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasZgelsStridedBatched_typed(handle,trans,m,n,nrhs,A,lda,strideA,B,ldb,strideB, &
+        myInfo,deviceInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgelsStridedBatched_typed
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int),target :: myInfo
+      type(c_ptr) :: deviceInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgelsStridedBatched_typed = hipblasZgelsStridedBatched_(handle,trans,m,n,nrhs,A,lda, &
+        strideA,B,ldb,strideB,c_loc(myInfo),deviceInfo,batchCount)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasSgeqrf_typed(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      integer(c_int),target :: myInfo
+      !
+      hipblasSgeqrf_typed = hipblasSgeqrf_(handle,m,n,A,lda,ipiv,c_loc(myInfo))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasDgeqrf_typed(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      integer(c_int),target :: myInfo
+      !
+      hipblasDgeqrf_typed = hipblasDgeqrf_(handle,m,n,A,lda,ipiv,c_loc(myInfo))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasCgeqrf_typed(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      integer(c_int),target :: myInfo
+      !
+      hipblasCgeqrf_typed = hipblasCgeqrf_(handle,m,n,A,lda,ipiv,c_loc(myInfo))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasZgeqrf_typed(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      integer(c_int),target :: myInfo
+      !
+      hipblasZgeqrf_typed = hipblasZgeqrf_(handle,m,n,A,lda,ipiv,c_loc(myInfo))
+    end function
+
+#endif
+    function hipblasSgeqrfBatched_typed(handle,m,n,A,lda,ipiv,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfBatched_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgeqrfBatched_typed = hipblasSgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo), &
+        batchCount)
+    end function
+
+    function hipblasDgeqrfBatched_typed(handle,m,n,A,lda,ipiv,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfBatched_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgeqrfBatched_typed = hipblasDgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo), &
+        batchCount)
+    end function
+
+    function hipblasCgeqrfBatched_typed(handle,m,n,A,lda,ipiv,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfBatched_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgeqrfBatched_typed = hipblasCgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo), &
+        batchCount)
+    end function
+
+    function hipblasZgeqrfBatched_typed(handle,m,n,A,lda,ipiv,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfBatched_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr) :: ipiv
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgeqrfBatched_typed = hipblasZgeqrfBatched_(handle,m,n,A,lda,ipiv,c_loc(myInfo), &
+        batchCount)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipblasSgeqrfStridedBatched_typed(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
+        batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgeqrfStridedBatched_typed = hipblasSgeqrfStridedBatched_(handle,m,n,A,lda,strideA, &
+        ipiv,strideP,c_loc(myInfo),batchCount)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasDgeqrfStridedBatched_typed(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
+        batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgeqrfStridedBatched_typed = hipblasDgeqrfStridedBatched_(handle,m,n,A,lda,strideA, &
+        ipiv,strideP,c_loc(myInfo),batchCount)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasCgeqrfStridedBatched_typed(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
+        batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgeqrfStridedBatched_typed = hipblasCgeqrfStridedBatched_(handle,m,n,A,lda,strideA, &
+        ipiv,strideP,c_loc(myInfo),batchCount)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipblasZgeqrfStridedBatched_typed(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
+        batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int),target :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgeqrfStridedBatched_typed = hipblasZgeqrfStridedBatched_(handle,m,n,A,lda,strideA, &
+        ipiv,strideP,c_loc(myInfo),batchCount)
+    end function
+
+#endif
 
 #if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
@@ -57919,9 +60149,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIsamax_assumed_rank = hipblasIsamax_(handle,n,c_loc(x),incx,myResult)
+      hipblasIsamax_assumed_rank = hipblasIsamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIsamax_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIsamax_assumed_rank_devptr = hipblasIsamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -57934,9 +60178,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIsamax_rank_0 = hipblasIsamax_(handle,n,c_loc(x),incx,myResult)
+      hipblasIsamax_rank_0 = hipblasIsamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIsamax_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIsamax_rank_0_devptr = hipblasIsamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasIsamax_rank_1(handle,n,x,incx,myResult)
@@ -57948,9 +60206,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIsamax_rank_1 = hipblasIsamax_(handle,n,c_loc(x),incx,myResult)
+      hipblasIsamax_rank_1 = hipblasIsamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIsamax_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIsamax_rank_1_devptr = hipblasIsamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -57964,9 +60236,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIdamax_assumed_rank = hipblasIdamax_(handle,n,c_loc(x),incx,myResult)
+      hipblasIdamax_assumed_rank = hipblasIdamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIdamax_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIdamax_assumed_rank_devptr = hipblasIdamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -57979,9 +60265,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIdamax_rank_0 = hipblasIdamax_(handle,n,c_loc(x),incx,myResult)
+      hipblasIdamax_rank_0 = hipblasIdamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIdamax_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIdamax_rank_0_devptr = hipblasIdamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasIdamax_rank_1(handle,n,x,incx,myResult)
@@ -57993,9 +60293,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIdamax_rank_1 = hipblasIdamax_(handle,n,c_loc(x),incx,myResult)
+      hipblasIdamax_rank_1 = hipblasIdamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIdamax_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIdamax_rank_1_devptr = hipblasIdamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58009,9 +60323,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIcamax_assumed_rank = hipblasIcamax_(handle,n,c_loc(x),incx,myResult)
+      hipblasIcamax_assumed_rank = hipblasIcamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIcamax_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIcamax_assumed_rank_devptr = hipblasIcamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58024,9 +60352,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIcamax_rank_0 = hipblasIcamax_(handle,n,c_loc(x),incx,myResult)
+      hipblasIcamax_rank_0 = hipblasIcamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIcamax_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIcamax_rank_0_devptr = hipblasIcamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasIcamax_rank_1(handle,n,x,incx,myResult)
@@ -58038,9 +60380,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIcamax_rank_1 = hipblasIcamax_(handle,n,c_loc(x),incx,myResult)
+      hipblasIcamax_rank_1 = hipblasIcamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIcamax_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIcamax_rank_1_devptr = hipblasIcamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58054,9 +60410,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIzamax_assumed_rank = hipblasIzamax_(handle,n,c_loc(x),incx,myResult)
+      hipblasIzamax_assumed_rank = hipblasIzamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIzamax_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIzamax_assumed_rank_devptr = hipblasIzamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58069,9 +60439,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIzamax_rank_0 = hipblasIzamax_(handle,n,c_loc(x),incx,myResult)
+      hipblasIzamax_rank_0 = hipblasIzamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIzamax_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIzamax_rank_0_devptr = hipblasIzamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasIzamax_rank_1(handle,n,x,incx,myResult)
@@ -58083,9 +60467,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIzamax_rank_1 = hipblasIzamax_(handle,n,c_loc(x),incx,myResult)
+      hipblasIzamax_rank_1 = hipblasIzamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIzamax_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIzamax_rank_1_devptr = hipblasIzamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58323,9 +60721,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIsamin_assumed_rank = hipblasIsamin_(handle,n,c_loc(x),incx,myResult)
+      hipblasIsamin_assumed_rank = hipblasIsamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIsamin_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIsamin_assumed_rank_devptr = hipblasIsamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58338,9 +60750,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIsamin_rank_0 = hipblasIsamin_(handle,n,c_loc(x),incx,myResult)
+      hipblasIsamin_rank_0 = hipblasIsamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIsamin_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIsamin_rank_0_devptr = hipblasIsamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasIsamin_rank_1(handle,n,x,incx,myResult)
@@ -58352,9 +60778,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIsamin_rank_1 = hipblasIsamin_(handle,n,c_loc(x),incx,myResult)
+      hipblasIsamin_rank_1 = hipblasIsamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIsamin_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIsamin_rank_1_devptr = hipblasIsamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58368,9 +60808,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIdamin_assumed_rank = hipblasIdamin_(handle,n,c_loc(x),incx,myResult)
+      hipblasIdamin_assumed_rank = hipblasIdamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIdamin_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIdamin_assumed_rank_devptr = hipblasIdamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58383,9 +60837,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIdamin_rank_0 = hipblasIdamin_(handle,n,c_loc(x),incx,myResult)
+      hipblasIdamin_rank_0 = hipblasIdamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIdamin_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIdamin_rank_0_devptr = hipblasIdamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasIdamin_rank_1(handle,n,x,incx,myResult)
@@ -58397,9 +60865,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIdamin_rank_1 = hipblasIdamin_(handle,n,c_loc(x),incx,myResult)
+      hipblasIdamin_rank_1 = hipblasIdamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIdamin_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIdamin_rank_1_devptr = hipblasIdamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58413,9 +60895,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIcamin_assumed_rank = hipblasIcamin_(handle,n,c_loc(x),incx,myResult)
+      hipblasIcamin_assumed_rank = hipblasIcamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIcamin_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIcamin_assumed_rank_devptr = hipblasIcamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58428,9 +60924,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIcamin_rank_0 = hipblasIcamin_(handle,n,c_loc(x),incx,myResult)
+      hipblasIcamin_rank_0 = hipblasIcamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIcamin_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIcamin_rank_0_devptr = hipblasIcamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasIcamin_rank_1(handle,n,x,incx,myResult)
@@ -58442,9 +60952,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIcamin_rank_1 = hipblasIcamin_(handle,n,c_loc(x),incx,myResult)
+      hipblasIcamin_rank_1 = hipblasIcamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIcamin_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIcamin_rank_1_devptr = hipblasIcamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58458,9 +60982,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIzamin_assumed_rank = hipblasIzamin_(handle,n,c_loc(x),incx,myResult)
+      hipblasIzamin_assumed_rank = hipblasIzamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIzamin_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIzamin_assumed_rank_devptr = hipblasIzamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58473,9 +61011,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIzamin_rank_0 = hipblasIzamin_(handle,n,c_loc(x),incx,myResult)
+      hipblasIzamin_rank_0 = hipblasIzamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIzamin_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIzamin_rank_0_devptr = hipblasIzamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasIzamin_rank_1(handle,n,x,incx,myResult)
@@ -58487,9 +61039,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      hipblasIzamin_rank_1 = hipblasIzamin_(handle,n,c_loc(x),incx,myResult)
+      hipblasIzamin_rank_1 = hipblasIzamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasIzamin_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasIzamin_rank_1_devptr = hipblasIzamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58727,9 +61293,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasSasum_assumed_rank = hipblasSasum_(handle,n,c_loc(x),incx,myResult)
+      hipblasSasum_assumed_rank = hipblasSasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasSasum_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasSasum_assumed_rank_devptr = hipblasSasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58742,9 +61322,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasSasum_rank_0 = hipblasSasum_(handle,n,c_loc(x),incx,myResult)
+      hipblasSasum_rank_0 = hipblasSasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasSasum_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasSasum_rank_0_devptr = hipblasSasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasSasum_rank_1(handle,n,x,incx,myResult)
@@ -58756,9 +61350,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasSasum_rank_1 = hipblasSasum_(handle,n,c_loc(x),incx,myResult)
+      hipblasSasum_rank_1 = hipblasSasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasSasum_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasSasum_rank_1_devptr = hipblasSasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58772,9 +61380,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDasum_assumed_rank = hipblasDasum_(handle,n,c_loc(x),incx,myResult)
+      hipblasDasum_assumed_rank = hipblasDasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasDasum_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasDasum_assumed_rank_devptr = hipblasDasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58787,9 +61409,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDasum_rank_0 = hipblasDasum_(handle,n,c_loc(x),incx,myResult)
+      hipblasDasum_rank_0 = hipblasDasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasDasum_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasDasum_rank_0_devptr = hipblasDasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasDasum_rank_1(handle,n,x,incx,myResult)
@@ -58801,9 +61437,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDasum_rank_1 = hipblasDasum_(handle,n,c_loc(x),incx,myResult)
+      hipblasDasum_rank_1 = hipblasDasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasDasum_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasDasum_rank_1_devptr = hipblasDasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58817,9 +61467,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasScasum_assumed_rank = hipblasScasum_(handle,n,c_loc(x),incx,myResult)
+      hipblasScasum_assumed_rank = hipblasScasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasScasum_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasScasum_assumed_rank_devptr = hipblasScasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58832,9 +61496,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasScasum_rank_0 = hipblasScasum_(handle,n,c_loc(x),incx,myResult)
+      hipblasScasum_rank_0 = hipblasScasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasScasum_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasScasum_rank_0_devptr = hipblasScasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasScasum_rank_1(handle,n,x,incx,myResult)
@@ -58846,9 +61524,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasScasum_rank_1 = hipblasScasum_(handle,n,c_loc(x),incx,myResult)
+      hipblasScasum_rank_1 = hipblasScasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasScasum_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasScasum_rank_1_devptr = hipblasScasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58862,9 +61554,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDzasum_assumed_rank = hipblasDzasum_(handle,n,c_loc(x),incx,myResult)
+      hipblasDzasum_assumed_rank = hipblasDzasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasDzasum_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasDzasum_assumed_rank_devptr = hipblasDzasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58877,9 +61583,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDzasum_rank_0 = hipblasDzasum_(handle,n,c_loc(x),incx,myResult)
+      hipblasDzasum_rank_0 = hipblasDzasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasDzasum_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasDzasum_rank_0_devptr = hipblasDzasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasDzasum_rank_1(handle,n,x,incx,myResult)
@@ -58891,9 +61611,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDzasum_rank_1 = hipblasDzasum_(handle,n,c_loc(x),incx,myResult)
+      hipblasDzasum_rank_1 = hipblasDzasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasDzasum_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasDzasum_rank_1_devptr = hipblasDzasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -60053,9 +62787,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_float),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasSdot_assumed_rank = hipblasSdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasSdot_assumed_rank = hipblasSdot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasSdot_assumed_rank_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasSdot_assumed_rank_devptr = hipblasSdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #else
@@ -60070,9 +62820,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_float),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasSdot_rank_0 = hipblasSdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasSdot_rank_0 = hipblasSdot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasSdot_rank_0_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target :: x
+      integer(c_int) :: incx
+      real(c_float),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasSdot_rank_0_devptr = hipblasSdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
     function hipblasSdot_rank_1(handle,n,x,incx,y,incy,myResult)
@@ -60086,9 +62852,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasSdot_rank_1 = hipblasSdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasSdot_rank_1 = hipblasSdot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasSdot_rank_1_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      real(c_float),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasSdot_rank_1_devptr = hipblasSdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #endif
@@ -60104,9 +62886,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_double),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDdot_assumed_rank = hipblasDdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasDdot_assumed_rank = hipblasDdot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasDdot_assumed_rank_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasDdot_assumed_rank_devptr = hipblasDdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #else
@@ -60121,9 +62919,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_double),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDdot_rank_0 = hipblasDdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasDdot_rank_0 = hipblasDdot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasDdot_rank_0_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target :: x
+      integer(c_int) :: incx
+      real(c_double),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasDdot_rank_0_devptr = hipblasDdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
     function hipblasDdot_rank_1(handle,n,x,incx,y,incy,myResult)
@@ -60137,9 +62951,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDdot_rank_1 = hipblasDdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasDdot_rank_1 = hipblasDdot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasDdot_rank_1_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      real(c_double),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasDdot_rank_1_devptr = hipblasDdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #endif
@@ -60155,9 +62985,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_float_complex),target :: myResult
       !
-      hipblasCdotc_assumed_rank = hipblasCdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasCdotc_assumed_rank = hipblasCdotc_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(myResult))
+    end function
+
+    function hipblasCdotc_assumed_rank_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasCdotc_assumed_rank_devptr = hipblasCdotc_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        myResult)
     end function
 
 #else
@@ -60172,9 +63020,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_float_complex),target :: myResult
       !
-      hipblasCdotc_rank_0 = hipblasCdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasCdotc_rank_0 = hipblasCdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasCdotc_rank_0_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasCdotc_rank_0_devptr = hipblasCdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
     function hipblasCdotc_rank_1(handle,n,x,incx,y,incy,myResult)
@@ -60188,9 +63052,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_float_complex),target :: myResult
       !
-      hipblasCdotc_rank_1 = hipblasCdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasCdotc_rank_1 = hipblasCdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasCdotc_rank_1_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasCdotc_rank_1_devptr = hipblasCdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #endif
@@ -60206,9 +63086,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_float_complex),target :: myResult
       !
-      hipblasCdotu_assumed_rank = hipblasCdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasCdotu_assumed_rank = hipblasCdotu_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(myResult))
+    end function
+
+    function hipblasCdotu_assumed_rank_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasCdotu_assumed_rank_devptr = hipblasCdotu_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        myResult)
     end function
 
 #else
@@ -60223,9 +63121,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_float_complex),target :: myResult
       !
-      hipblasCdotu_rank_0 = hipblasCdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasCdotu_rank_0 = hipblasCdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasCdotu_rank_0_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasCdotu_rank_0_devptr = hipblasCdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
     function hipblasCdotu_rank_1(handle,n,x,incx,y,incy,myResult)
@@ -60239,9 +63153,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_float_complex),target :: myResult
       !
-      hipblasCdotu_rank_1 = hipblasCdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasCdotu_rank_1 = hipblasCdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasCdotu_rank_1_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasCdotu_rank_1_devptr = hipblasCdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #endif
@@ -60257,9 +63187,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_double_complex),target :: myResult
       !
-      hipblasZdotc_assumed_rank = hipblasZdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasZdotc_assumed_rank = hipblasZdotc_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(myResult))
+    end function
+
+    function hipblasZdotc_assumed_rank_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasZdotc_assumed_rank_devptr = hipblasZdotc_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        myResult)
     end function
 
 #else
@@ -60274,9 +63222,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_double_complex),target :: myResult
       !
-      hipblasZdotc_rank_0 = hipblasZdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasZdotc_rank_0 = hipblasZdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasZdotc_rank_0_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasZdotc_rank_0_devptr = hipblasZdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
     function hipblasZdotc_rank_1(handle,n,x,incx,y,incy,myResult)
@@ -60290,9 +63254,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_double_complex),target :: myResult
       !
-      hipblasZdotc_rank_1 = hipblasZdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasZdotc_rank_1 = hipblasZdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasZdotc_rank_1_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasZdotc_rank_1_devptr = hipblasZdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #endif
@@ -60308,9 +63288,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_double_complex),target :: myResult
       !
-      hipblasZdotu_assumed_rank = hipblasZdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasZdotu_assumed_rank = hipblasZdotu_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(myResult))
+    end function
+
+    function hipblasZdotu_assumed_rank_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasZdotu_assumed_rank_devptr = hipblasZdotu_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        myResult)
     end function
 
 #else
@@ -60325,9 +63323,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_double_complex),target :: myResult
       !
-      hipblasZdotu_rank_0 = hipblasZdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasZdotu_rank_0 = hipblasZdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasZdotu_rank_0_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasZdotu_rank_0_devptr = hipblasZdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
     function hipblasZdotu_rank_1(handle,n,x,incx,y,incy,myResult)
@@ -60341,9 +63355,25 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_double_complex),target :: myResult
       !
-      hipblasZdotu_rank_1 = hipblasZdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      hipblasZdotu_rank_1 = hipblasZdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function hipblasZdotu_rank_1_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      hipblasZdotu_rank_1_devptr = hipblasZdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #endif
@@ -60765,9 +63795,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasSnrm2_assumed_rank = hipblasSnrm2_(handle,n,c_loc(x),incx,myResult)
+      hipblasSnrm2_assumed_rank = hipblasSnrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasSnrm2_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasSnrm2_assumed_rank_devptr = hipblasSnrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -60780,9 +63824,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasSnrm2_rank_0 = hipblasSnrm2_(handle,n,c_loc(x),incx,myResult)
+      hipblasSnrm2_rank_0 = hipblasSnrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasSnrm2_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasSnrm2_rank_0_devptr = hipblasSnrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasSnrm2_rank_1(handle,n,x,incx,myResult)
@@ -60794,9 +63852,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasSnrm2_rank_1 = hipblasSnrm2_(handle,n,c_loc(x),incx,myResult)
+      hipblasSnrm2_rank_1 = hipblasSnrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasSnrm2_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasSnrm2_rank_1_devptr = hipblasSnrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -60810,9 +63882,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDnrm2_assumed_rank = hipblasDnrm2_(handle,n,c_loc(x),incx,myResult)
+      hipblasDnrm2_assumed_rank = hipblasDnrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasDnrm2_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasDnrm2_assumed_rank_devptr = hipblasDnrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -60825,9 +63911,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDnrm2_rank_0 = hipblasDnrm2_(handle,n,c_loc(x),incx,myResult)
+      hipblasDnrm2_rank_0 = hipblasDnrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasDnrm2_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasDnrm2_rank_0_devptr = hipblasDnrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasDnrm2_rank_1(handle,n,x,incx,myResult)
@@ -60839,9 +63939,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDnrm2_rank_1 = hipblasDnrm2_(handle,n,c_loc(x),incx,myResult)
+      hipblasDnrm2_rank_1 = hipblasDnrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasDnrm2_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasDnrm2_rank_1_devptr = hipblasDnrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -60855,9 +63969,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasScnrm2_assumed_rank = hipblasScnrm2_(handle,n,c_loc(x),incx,myResult)
+      hipblasScnrm2_assumed_rank = hipblasScnrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasScnrm2_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasScnrm2_assumed_rank_devptr = hipblasScnrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -60870,9 +63998,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasScnrm2_rank_0 = hipblasScnrm2_(handle,n,c_loc(x),incx,myResult)
+      hipblasScnrm2_rank_0 = hipblasScnrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasScnrm2_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasScnrm2_rank_0_devptr = hipblasScnrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasScnrm2_rank_1(handle,n,x,incx,myResult)
@@ -60884,9 +64026,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      hipblasScnrm2_rank_1 = hipblasScnrm2_(handle,n,c_loc(x),incx,myResult)
+      hipblasScnrm2_rank_1 = hipblasScnrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasScnrm2_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasScnrm2_rank_1_devptr = hipblasScnrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -60900,9 +64056,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDznrm2_assumed_rank = hipblasDznrm2_(handle,n,c_loc(x),incx,myResult)
+      hipblasDznrm2_assumed_rank = hipblasDznrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasDznrm2_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasDznrm2_assumed_rank_devptr = hipblasDznrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -60915,9 +64085,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDznrm2_rank_0 = hipblasDznrm2_(handle,n,c_loc(x),incx,myResult)
+      hipblasDznrm2_rank_0 = hipblasDznrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasDznrm2_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasDznrm2_rank_0_devptr = hipblasDznrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function hipblasDznrm2_rank_1(handle,n,x,incx,myResult)
@@ -60929,9 +64113,23 @@ module hipfort_hipblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      hipblasDznrm2_rank_1 = hipblasDznrm2_(handle,n,c_loc(x),incx,myResult)
+      hipblasDznrm2_rank_1 = hipblasDznrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function hipblasDznrm2_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      hipblasDznrm2_rank_1_devptr = hipblasDznrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -61171,10 +64369,28 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_float),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_float),target :: c
+      real(c_float),target :: s
       !
-      hipblasSrot_assumed_rank = hipblasSrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasSrot_assumed_rank = hipblasSrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c), &
+        c_loc(s))
+    end function
+
+    function hipblasSrot_assumed_rank_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasSrot_assumed_rank_devptr = hipblasSrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #else
@@ -61189,10 +64405,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_float),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_float),target :: c
+      real(c_float),target :: s
       !
-      hipblasSrot_rank_0 = hipblasSrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasSrot_rank_0 = hipblasSrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasSrot_rank_0_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target :: x
+      integer(c_int) :: incx
+      real(c_float),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasSrot_rank_0_devptr = hipblasSrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
     function hipblasSrot_rank_1(handle,n,x,incx,y,incy,c,s)
@@ -61206,10 +64439,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_float),target :: c
+      real(c_float),target :: s
       !
-      hipblasSrot_rank_1 = hipblasSrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasSrot_rank_1 = hipblasSrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasSrot_rank_1_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      real(c_float),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasSrot_rank_1_devptr = hipblasSrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #endif
@@ -61225,10 +64475,28 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_double),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_double),target :: c
+      real(c_double),target :: s
       !
-      hipblasDrot_assumed_rank = hipblasDrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasDrot_assumed_rank = hipblasDrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c), &
+        c_loc(s))
+    end function
+
+    function hipblasDrot_assumed_rank_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasDrot_assumed_rank_devptr = hipblasDrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #else
@@ -61243,10 +64511,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_double),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_double),target :: c
+      real(c_double),target :: s
       !
-      hipblasDrot_rank_0 = hipblasDrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasDrot_rank_0 = hipblasDrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasDrot_rank_0_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target :: x
+      integer(c_int) :: incx
+      real(c_double),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasDrot_rank_0_devptr = hipblasDrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
     function hipblasDrot_rank_1(handle,n,x,incx,y,incy,c,s)
@@ -61260,10 +64545,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_double),target :: c
+      real(c_double),target :: s
       !
-      hipblasDrot_rank_1 = hipblasDrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasDrot_rank_1 = hipblasDrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasDrot_rank_1_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      real(c_double),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasDrot_rank_1_devptr = hipblasDrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #endif
@@ -61279,10 +64581,28 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_float),target :: c
+      complex(c_float_complex),target :: s
       !
-      hipblasCrot_assumed_rank = hipblasCrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasCrot_assumed_rank = hipblasCrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c), &
+        c_loc(s))
+    end function
+
+    function hipblasCrot_assumed_rank_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasCrot_assumed_rank_devptr = hipblasCrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #else
@@ -61297,10 +64617,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_float),target :: c
+      complex(c_float_complex),target :: s
       !
-      hipblasCrot_rank_0 = hipblasCrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasCrot_rank_0 = hipblasCrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasCrot_rank_0_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasCrot_rank_0_devptr = hipblasCrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
     function hipblasCrot_rank_1(handle,n,x,incx,y,incy,c,s)
@@ -61314,10 +64651,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_float),target :: c
+      complex(c_float_complex),target :: s
       !
-      hipblasCrot_rank_1 = hipblasCrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasCrot_rank_1 = hipblasCrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasCrot_rank_1_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasCrot_rank_1_devptr = hipblasCrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #endif
@@ -61333,10 +64687,28 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_float),target :: c
+      real(c_float),target :: s
       !
-      hipblasCsrot_assumed_rank = hipblasCsrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasCsrot_assumed_rank = hipblasCsrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c), &
+        c_loc(s))
+    end function
+
+    function hipblasCsrot_assumed_rank_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasCsrot_assumed_rank_devptr = hipblasCsrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #else
@@ -61351,10 +64723,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_float),target :: c
+      real(c_float),target :: s
       !
-      hipblasCsrot_rank_0 = hipblasCsrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasCsrot_rank_0 = hipblasCsrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasCsrot_rank_0_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasCsrot_rank_0_devptr = hipblasCsrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
     function hipblasCsrot_rank_1(handle,n,x,incx,y,incy,c,s)
@@ -61368,10 +64757,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_float),target :: c
+      real(c_float),target :: s
       !
-      hipblasCsrot_rank_1 = hipblasCsrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasCsrot_rank_1 = hipblasCsrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasCsrot_rank_1_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasCsrot_rank_1_devptr = hipblasCsrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #endif
@@ -61387,10 +64793,28 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_double),target :: c
+      complex(c_double_complex),target :: s
       !
-      hipblasZrot_assumed_rank = hipblasZrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasZrot_assumed_rank = hipblasZrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c), &
+        c_loc(s))
+    end function
+
+    function hipblasZrot_assumed_rank_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasZrot_assumed_rank_devptr = hipblasZrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #else
@@ -61405,10 +64829,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_double),target :: c
+      complex(c_double_complex),target :: s
       !
-      hipblasZrot_rank_0 = hipblasZrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasZrot_rank_0 = hipblasZrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasZrot_rank_0_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasZrot_rank_0_devptr = hipblasZrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
     function hipblasZrot_rank_1(handle,n,x,incx,y,incy,c,s)
@@ -61422,10 +64863,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_double),target :: c
+      complex(c_double_complex),target :: s
       !
-      hipblasZrot_rank_1 = hipblasZrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasZrot_rank_1 = hipblasZrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasZrot_rank_1_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasZrot_rank_1_devptr = hipblasZrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #endif
@@ -61441,10 +64899,28 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_double),target :: c
+      real(c_double),target :: s
       !
-      hipblasZdrot_assumed_rank = hipblasZdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasZdrot_assumed_rank = hipblasZdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c), &
+        c_loc(s))
+    end function
+
+    function hipblasZdrot_assumed_rank_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasZdrot_assumed_rank_devptr = hipblasZdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #else
@@ -61459,10 +64935,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_double),target :: c
+      real(c_double),target :: s
       !
-      hipblasZdrot_rank_0 = hipblasZdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasZdrot_rank_0 = hipblasZdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasZdrot_rank_0_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasZdrot_rank_0_devptr = hipblasZdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
     function hipblasZdrot_rank_1(handle,n,x,incx,y,incy,c,s)
@@ -61476,10 +64969,27 @@ module hipfort_hipblas
       integer(c_int) :: incx
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: c
-      type(c_ptr) :: s
+      real(c_double),target :: c
+      real(c_double),target :: s
       !
-      hipblasZdrot_rank_1 = hipblasZdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+      hipblasZdrot_rank_1 = hipblasZdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function hipblasZdrot_rank_1_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      hipblasZdrot_rank_1_devptr = hipblasZdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #endif
@@ -86379,10 +89889,30 @@ module hipfort_hipblas
       integer(c_int),target,contiguous,dimension(..) :: ipiv
       real(c_float),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasSgetrs_assumed_rank = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
-        c_loc(B),ldb,myInfo)
+        c_loc(B),ldb,c_loc(myInfo))
+    end function
+
+    function hipblasSgetrs_assumed_rank_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasSgetrs_assumed_rank_devptr = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda, &
+        c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
 
 #else
@@ -86400,10 +89930,30 @@ module hipfort_hipblas
       integer(c_int),target :: ipiv
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasSgetrs_rank_0 = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
-        ldb,myInfo)
+        ldb,c_loc(myInfo))
+    end function
+
+    function hipblasSgetrs_rank_0_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      integer(c_int),target :: ipiv
+      real(c_float),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasSgetrs_rank_0_devptr = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
+        c_loc(B),ldb,myInfo)
     end function
 
     function hipblasSgetrs_rank_1(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -86420,10 +89970,30 @@ module hipfort_hipblas
       integer(c_int),target,dimension(:) :: ipiv
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasSgetrs_rank_1 = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
-        ldb,myInfo)
+        ldb,c_loc(myInfo))
+    end function
+
+    function hipblasSgetrs_rank_1_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: ipiv
+      real(c_float),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasSgetrs_rank_1_devptr = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
+        c_loc(B),ldb,myInfo)
     end function
 
     function hipblasSgetrs_full_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -86440,10 +90010,30 @@ module hipfort_hipblas
       integer(c_int),target,dimension(:) :: ipiv
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasSgetrs_full_rank = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
-        c_loc(B),ldb,myInfo)
+        c_loc(B),ldb,c_loc(myInfo))
+    end function
+
+    function hipblasSgetrs_full_rank_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: ipiv
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasSgetrs_full_rank_devptr = hipblasSgetrs_(handle,trans,n,nrhs,c_loc(A),lda, &
+        c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
 
 #endif
@@ -86464,10 +90054,30 @@ module hipfort_hipblas
       integer(c_int),target,contiguous,dimension(..) :: ipiv
       real(c_double),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasDgetrs_assumed_rank = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
-        c_loc(B),ldb,myInfo)
+        c_loc(B),ldb,c_loc(myInfo))
+    end function
+
+    function hipblasDgetrs_assumed_rank_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasDgetrs_assumed_rank_devptr = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda, &
+        c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
 
 #else
@@ -86485,10 +90095,30 @@ module hipfort_hipblas
       integer(c_int),target :: ipiv
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasDgetrs_rank_0 = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
-        ldb,myInfo)
+        ldb,c_loc(myInfo))
+    end function
+
+    function hipblasDgetrs_rank_0_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      integer(c_int),target :: ipiv
+      real(c_double),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasDgetrs_rank_0_devptr = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
+        c_loc(B),ldb,myInfo)
     end function
 
     function hipblasDgetrs_rank_1(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -86505,10 +90135,30 @@ module hipfort_hipblas
       integer(c_int),target,dimension(:) :: ipiv
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasDgetrs_rank_1 = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
-        ldb,myInfo)
+        ldb,c_loc(myInfo))
+    end function
+
+    function hipblasDgetrs_rank_1_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: ipiv
+      real(c_double),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasDgetrs_rank_1_devptr = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
+        c_loc(B),ldb,myInfo)
     end function
 
     function hipblasDgetrs_full_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -86525,10 +90175,30 @@ module hipfort_hipblas
       integer(c_int),target,dimension(:) :: ipiv
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasDgetrs_full_rank = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
-        c_loc(B),ldb,myInfo)
+        c_loc(B),ldb,c_loc(myInfo))
+    end function
+
+    function hipblasDgetrs_full_rank_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: ipiv
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasDgetrs_full_rank_devptr = hipblasDgetrs_(handle,trans,n,nrhs,c_loc(A),lda, &
+        c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
 
 #endif
@@ -86549,10 +90219,30 @@ module hipfort_hipblas
       integer(c_int),target,contiguous,dimension(..) :: ipiv
       complex(c_float_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasCgetrs_assumed_rank = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
-        c_loc(B),ldb,myInfo)
+        c_loc(B),ldb,c_loc(myInfo))
+    end function
+
+    function hipblasCgetrs_assumed_rank_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasCgetrs_assumed_rank_devptr = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda, &
+        c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
 
 #else
@@ -86570,10 +90260,30 @@ module hipfort_hipblas
       integer(c_int),target :: ipiv
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasCgetrs_rank_0 = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
-        ldb,myInfo)
+        ldb,c_loc(myInfo))
+    end function
+
+    function hipblasCgetrs_rank_0_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target :: A
+      integer(c_int) :: lda
+      integer(c_int),target :: ipiv
+      complex(c_float_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasCgetrs_rank_0_devptr = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
+        c_loc(B),ldb,myInfo)
     end function
 
     function hipblasCgetrs_rank_1(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -86590,10 +90300,30 @@ module hipfort_hipblas
       integer(c_int),target,dimension(:) :: ipiv
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasCgetrs_rank_1 = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
-        ldb,myInfo)
+        ldb,c_loc(myInfo))
+    end function
+
+    function hipblasCgetrs_rank_1_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: ipiv
+      complex(c_float_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasCgetrs_rank_1_devptr = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
+        c_loc(B),ldb,myInfo)
     end function
 
     function hipblasCgetrs_full_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -86610,10 +90340,30 @@ module hipfort_hipblas
       integer(c_int),target,dimension(:) :: ipiv
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasCgetrs_full_rank = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
-        c_loc(B),ldb,myInfo)
+        c_loc(B),ldb,c_loc(myInfo))
+    end function
+
+    function hipblasCgetrs_full_rank_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasCgetrs_full_rank_devptr = hipblasCgetrs_(handle,trans,n,nrhs,c_loc(A),lda, &
+        c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
 
 #endif
@@ -86634,10 +90384,30 @@ module hipfort_hipblas
       integer(c_int),target,contiguous,dimension(..) :: ipiv
       complex(c_double_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasZgetrs_assumed_rank = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
-        c_loc(B),ldb,myInfo)
+        c_loc(B),ldb,c_loc(myInfo))
+    end function
+
+    function hipblasZgetrs_assumed_rank_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasZgetrs_assumed_rank_devptr = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda, &
+        c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
 
 #else
@@ -86655,10 +90425,30 @@ module hipfort_hipblas
       integer(c_int),target :: ipiv
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasZgetrs_rank_0 = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
-        ldb,myInfo)
+        ldb,c_loc(myInfo))
+    end function
+
+    function hipblasZgetrs_rank_0_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target :: A
+      integer(c_int) :: lda
+      integer(c_int),target :: ipiv
+      complex(c_double_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasZgetrs_rank_0_devptr = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
+        c_loc(B),ldb,myInfo)
     end function
 
     function hipblasZgetrs_rank_1(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -86675,10 +90465,30 @@ module hipfort_hipblas
       integer(c_int),target,dimension(:) :: ipiv
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasZgetrs_rank_1 = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv),c_loc(B), &
-        ldb,myInfo)
+        ldb,c_loc(myInfo))
+    end function
+
+    function hipblasZgetrs_rank_1_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: ipiv
+      complex(c_double_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasZgetrs_rank_1_devptr = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
+        c_loc(B),ldb,myInfo)
     end function
 
     function hipblasZgetrs_full_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
@@ -86695,10 +90505,30 @@ module hipfort_hipblas
       integer(c_int),target,dimension(:) :: ipiv
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
       hipblasZgetrs_full_rank = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda,c_loc(ipiv), &
-        c_loc(B),ldb,myInfo)
+        c_loc(B),ldb,c_loc(myInfo))
+    end function
+
+    function hipblasZgetrs_full_rank_devptr(handle,trans,n,nrhs,A,lda,ipiv,B,ldb,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: myInfo
+      !
+      hipblasZgetrs_full_rank_devptr = hipblasZgetrs_(handle,trans,n,nrhs,c_loc(A),lda, &
+        c_loc(ipiv),c_loc(B),ldb,myInfo)
     end function
 
 #endif
@@ -86723,11 +90553,36 @@ module hipfort_hipblas
       real(c_float),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgetrsStridedBatched_assumed_rank = hipblasSgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasSgetrsStridedBatched_assumed_rank_devptr(handle,trans,n,nrhs,A,lda,strideA, &
+        ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int64_t) :: strideP
+      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgetrsStridedBatched_assumed_rank_devptr = hipblasSgetrsStridedBatched_(handle,trans, &
+        n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
 #else
@@ -86749,11 +90604,36 @@ module hipfort_hipblas
       real(c_float),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgetrsStridedBatched_rank_0 = hipblasSgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasSgetrsStridedBatched_rank_0_devptr(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target :: ipiv
+      integer(c_int64_t) :: strideP
+      real(c_float),target :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgetrsStridedBatched_rank_0_devptr = hipblasSgetrsStridedBatched_(handle,trans,n, &
+        nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasSgetrsStridedBatched_rank_1(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
@@ -86774,11 +90654,36 @@ module hipfort_hipblas
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgetrsStridedBatched_rank_1 = hipblasSgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasSgetrsStridedBatched_rank_1_devptr(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      real(c_float),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgetrsStridedBatched_rank_1_devptr = hipblasSgetrsStridedBatched_(handle,trans,n, &
+        nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasSgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP, &
@@ -86799,11 +90704,36 @@ module hipfort_hipblas
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgetrsStridedBatched_full_rank = hipblasSgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasSgetrsStridedBatched_full_rank_devptr(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgetrsStridedBatched_full_rank_devptr = hipblasSgetrsStridedBatched_(handle,trans,n, &
+        nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
 #endif
@@ -86828,11 +90758,36 @@ module hipfort_hipblas
       real(c_double),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgetrsStridedBatched_assumed_rank = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasDgetrsStridedBatched_assumed_rank_devptr(handle,trans,n,nrhs,A,lda,strideA, &
+        ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int64_t) :: strideP
+      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgetrsStridedBatched_assumed_rank_devptr = hipblasDgetrsStridedBatched_(handle,trans, &
+        n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
 #else
@@ -86854,11 +90809,36 @@ module hipfort_hipblas
       real(c_double),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgetrsStridedBatched_rank_0 = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasDgetrsStridedBatched_rank_0_devptr(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target :: ipiv
+      integer(c_int64_t) :: strideP
+      real(c_double),target :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgetrsStridedBatched_rank_0_devptr = hipblasDgetrsStridedBatched_(handle,trans,n, &
+        nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasDgetrsStridedBatched_rank_1(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
@@ -86879,11 +90859,36 @@ module hipfort_hipblas
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgetrsStridedBatched_rank_1 = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasDgetrsStridedBatched_rank_1_devptr(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      real(c_double),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgetrsStridedBatched_rank_1_devptr = hipblasDgetrsStridedBatched_(handle,trans,n, &
+        nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasDgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP, &
@@ -86904,11 +90909,36 @@ module hipfort_hipblas
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgetrsStridedBatched_full_rank = hipblasDgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasDgetrsStridedBatched_full_rank_devptr(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgetrsStridedBatched_full_rank_devptr = hipblasDgetrsStridedBatched_(handle,trans,n, &
+        nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
 #endif
@@ -86933,11 +90963,36 @@ module hipfort_hipblas
       complex(c_float_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgetrsStridedBatched_assumed_rank = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasCgetrsStridedBatched_assumed_rank_devptr(handle,trans,n,nrhs,A,lda,strideA, &
+        ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int64_t) :: strideP
+      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgetrsStridedBatched_assumed_rank_devptr = hipblasCgetrsStridedBatched_(handle,trans, &
+        n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
 #else
@@ -86959,11 +91014,36 @@ module hipfort_hipblas
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgetrsStridedBatched_rank_0 = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasCgetrsStridedBatched_rank_0_devptr(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target :: ipiv
+      integer(c_int64_t) :: strideP
+      complex(c_float_complex),target :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgetrsStridedBatched_rank_0_devptr = hipblasCgetrsStridedBatched_(handle,trans,n, &
+        nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasCgetrsStridedBatched_rank_1(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
@@ -86984,11 +91064,36 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgetrsStridedBatched_rank_1 = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasCgetrsStridedBatched_rank_1_devptr(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      complex(c_float_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgetrsStridedBatched_rank_1_devptr = hipblasCgetrsStridedBatched_(handle,trans,n, &
+        nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasCgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP, &
@@ -87009,11 +91114,36 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgetrsStridedBatched_full_rank = hipblasCgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasCgetrsStridedBatched_full_rank_devptr(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgetrsStridedBatched_full_rank_devptr = hipblasCgetrsStridedBatched_(handle,trans,n, &
+        nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
 #endif
@@ -87038,11 +91168,36 @@ module hipfort_hipblas
       complex(c_double_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgetrsStridedBatched_assumed_rank = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasZgetrsStridedBatched_assumed_rank_devptr(handle,trans,n,nrhs,A,lda,strideA, &
+        ipiv,strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int64_t) :: strideP
+      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgetrsStridedBatched_assumed_rank_devptr = hipblasZgetrsStridedBatched_(handle,trans, &
+        n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
 #else
@@ -87064,11 +91219,36 @@ module hipfort_hipblas
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgetrsStridedBatched_rank_0 = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasZgetrsStridedBatched_rank_0_devptr(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target :: ipiv
+      integer(c_int64_t) :: strideP
+      complex(c_double_complex),target :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgetrsStridedBatched_rank_0_devptr = hipblasZgetrsStridedBatched_(handle,trans,n, &
+        nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasZgetrsStridedBatched_rank_1(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP,B, &
@@ -87089,11 +91269,36 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgetrsStridedBatched_rank_1 = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasZgetrsStridedBatched_rank_1_devptr(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      complex(c_double_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgetrsStridedBatched_rank_1_devptr = hipblasZgetrsStridedBatched_(handle,trans,n, &
+        nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
     function hipblasZgetrsStridedBatched_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv,strideP, &
@@ -87114,11 +91319,36 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgetrsStridedBatched_full_rank = hipblasZgetrsStridedBatched_(handle,trans,n,nrhs, &
-        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasZgetrsStridedBatched_full_rank_devptr(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      integer(c_int64_t) :: strideB
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgetrsStridedBatched_full_rank_devptr = hipblasZgetrsStridedBatched_(handle,trans,n, &
+        nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,myInfo,batchCount)
     end function
 
 #endif
@@ -87136,9 +91366,25 @@ module hipfort_hipblas
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasSgeqrf_assumed_rank = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasSgeqrf_assumed_rank = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasSgeqrf_assumed_rank_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,contiguous,dimension(..) :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasSgeqrf_assumed_rank_devptr = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #else
@@ -87153,9 +91399,25 @@ module hipfort_hipblas
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasSgeqrf_rank_0 = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasSgeqrf_rank_0 = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasSgeqrf_rank_0_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      real(c_float),target :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasSgeqrf_rank_0_devptr = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasSgeqrf_rank_1(handle,m,n,A,lda,ipiv,myInfo)
@@ -87169,9 +91431,25 @@ module hipfort_hipblas
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasSgeqrf_rank_1 = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasSgeqrf_rank_1 = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasSgeqrf_rank_1_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      real(c_float),target,dimension(:) :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasSgeqrf_rank_1_devptr = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasSgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
@@ -87185,9 +91463,25 @@ module hipfort_hipblas
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasSgeqrf_full_rank = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasSgeqrf_full_rank = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasSgeqrf_full_rank_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      real(c_float),target,dimension(:) :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasSgeqrf_full_rank_devptr = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #endif
@@ -87205,9 +91499,25 @@ module hipfort_hipblas
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasDgeqrf_assumed_rank = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasDgeqrf_assumed_rank = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasDgeqrf_assumed_rank_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,contiguous,dimension(..) :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasDgeqrf_assumed_rank_devptr = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #else
@@ -87222,9 +91532,25 @@ module hipfort_hipblas
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasDgeqrf_rank_0 = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasDgeqrf_rank_0 = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasDgeqrf_rank_0_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      real(c_double),target :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasDgeqrf_rank_0_devptr = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasDgeqrf_rank_1(handle,m,n,A,lda,ipiv,myInfo)
@@ -87238,9 +91564,25 @@ module hipfort_hipblas
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasDgeqrf_rank_1 = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasDgeqrf_rank_1 = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasDgeqrf_rank_1_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      real(c_double),target,dimension(:) :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasDgeqrf_rank_1_devptr = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasDgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
@@ -87254,9 +91596,25 @@ module hipfort_hipblas
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasDgeqrf_full_rank = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasDgeqrf_full_rank = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasDgeqrf_full_rank_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      real(c_double),target,dimension(:) :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasDgeqrf_full_rank_devptr = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #endif
@@ -87274,9 +91632,25 @@ module hipfort_hipblas
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,contiguous,dimension(..) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasCgeqrf_assumed_rank = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasCgeqrf_assumed_rank = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasCgeqrf_assumed_rank_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target,contiguous,dimension(..) :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasCgeqrf_assumed_rank_devptr = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #else
@@ -87291,9 +91665,25 @@ module hipfort_hipblas
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasCgeqrf_rank_0 = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasCgeqrf_rank_0 = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasCgeqrf_rank_0_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasCgeqrf_rank_0_devptr = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasCgeqrf_rank_1(handle,m,n,A,lda,ipiv,myInfo)
@@ -87307,9 +91697,25 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasCgeqrf_rank_1 = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasCgeqrf_rank_1 = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasCgeqrf_rank_1_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target,dimension(:) :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasCgeqrf_rank_1_devptr = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasCgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
@@ -87323,9 +91729,25 @@ module hipfort_hipblas
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasCgeqrf_full_rank = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasCgeqrf_full_rank = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasCgeqrf_full_rank_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target,dimension(:) :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasCgeqrf_full_rank_devptr = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #endif
@@ -87343,9 +91765,25 @@ module hipfort_hipblas
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,contiguous,dimension(..) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasZgeqrf_assumed_rank = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasZgeqrf_assumed_rank = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasZgeqrf_assumed_rank_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target,contiguous,dimension(..) :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasZgeqrf_assumed_rank_devptr = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #else
@@ -87360,9 +91798,25 @@ module hipfort_hipblas
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasZgeqrf_rank_0 = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasZgeqrf_rank_0 = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasZgeqrf_rank_0_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasZgeqrf_rank_0_devptr = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasZgeqrf_rank_1(handle,m,n,A,lda,ipiv,myInfo)
@@ -87376,9 +91830,25 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasZgeqrf_rank_1 = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasZgeqrf_rank_1 = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasZgeqrf_rank_1_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target,dimension(:) :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasZgeqrf_rank_1_devptr = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
     function hipblasZgeqrf_full_rank(handle,m,n,A,lda,ipiv,myInfo)
@@ -87392,9 +91862,25 @@ module hipfort_hipblas
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: ipiv
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       !
-      hipblasZgeqrf_full_rank = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      hipblasZgeqrf_full_rank = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
+    end function
+
+    function hipblasZgeqrf_full_rank_devptr(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target,dimension(:) :: ipiv
+      type(c_ptr),value :: myInfo
+      !
+      hipblasZgeqrf_full_rank_devptr = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
 #endif
@@ -87415,11 +91901,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       real(c_float),target,contiguous,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgeqrfStridedBatched_assumed_rank = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A), &
-        lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasSgeqrfStridedBatched_assumed_rank_devptr(handle,m,n,A,lda,strideA,ipiv, &
+        strideP,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,contiguous,dimension(..) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgeqrfStridedBatched_assumed_rank_devptr = hipblasSgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #else
@@ -87437,11 +91944,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       real(c_float),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgeqrfStridedBatched_rank_0 = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasSgeqrfStridedBatched_rank_0_devptr(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgeqrfStridedBatched_rank_0_devptr = hipblasSgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasSgeqrfStridedBatched_rank_1(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -87458,11 +91986,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       real(c_float),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgeqrfStridedBatched_rank_1 = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasSgeqrfStridedBatched_rank_1_devptr(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgeqrfStridedBatched_rank_1_devptr = hipblasSgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasSgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -87479,11 +92028,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       real(c_float),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasSgeqrfStridedBatched_full_rank = hipblasSgeqrfStridedBatched_(handle,m,n,c_loc(A), &
-        lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasSgeqrfStridedBatched_full_rank_devptr(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasSgeqrfStridedBatched_full_rank_devptr = hipblasSgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #endif
@@ -87504,11 +92074,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       real(c_double),target,contiguous,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgeqrfStridedBatched_assumed_rank = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A), &
-        lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasDgeqrfStridedBatched_assumed_rank_devptr(handle,m,n,A,lda,strideA,ipiv, &
+        strideP,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,contiguous,dimension(..) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgeqrfStridedBatched_assumed_rank_devptr = hipblasDgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #else
@@ -87526,11 +92117,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       real(c_double),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgeqrfStridedBatched_rank_0 = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasDgeqrfStridedBatched_rank_0_devptr(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgeqrfStridedBatched_rank_0_devptr = hipblasDgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasDgeqrfStridedBatched_rank_1(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -87547,11 +92159,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       real(c_double),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgeqrfStridedBatched_rank_1 = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasDgeqrfStridedBatched_rank_1_devptr(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgeqrfStridedBatched_rank_1_devptr = hipblasDgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasDgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -87568,11 +92201,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       real(c_double),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasDgeqrfStridedBatched_full_rank = hipblasDgeqrfStridedBatched_(handle,m,n,c_loc(A), &
-        lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasDgeqrfStridedBatched_full_rank_devptr(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasDgeqrfStridedBatched_full_rank_devptr = hipblasDgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #endif
@@ -87593,11 +92247,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target,contiguous,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgeqrfStridedBatched_assumed_rank = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A), &
-        lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasCgeqrfStridedBatched_assumed_rank_devptr(handle,m,n,A,lda,strideA,ipiv, &
+        strideP,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,contiguous,dimension(..) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgeqrfStridedBatched_assumed_rank_devptr = hipblasCgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #else
@@ -87615,11 +92290,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgeqrfStridedBatched_rank_0 = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasCgeqrfStridedBatched_rank_0_devptr(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgeqrfStridedBatched_rank_0_devptr = hipblasCgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasCgeqrfStridedBatched_rank_1(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -87636,11 +92332,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgeqrfStridedBatched_rank_1 = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasCgeqrfStridedBatched_rank_1_devptr(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgeqrfStridedBatched_rank_1_devptr = hipblasCgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasCgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -87657,11 +92374,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasCgeqrfStridedBatched_full_rank = hipblasCgeqrfStridedBatched_(handle,m,n,c_loc(A), &
-        lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasCgeqrfStridedBatched_full_rank_devptr(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasCgeqrfStridedBatched_full_rank_devptr = hipblasCgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #endif
@@ -87682,11 +92420,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target,contiguous,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgeqrfStridedBatched_assumed_rank = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A), &
-        lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasZgeqrfStridedBatched_assumed_rank_devptr(handle,m,n,A,lda,strideA,ipiv, &
+        strideP,myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,contiguous,dimension(..) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgeqrfStridedBatched_assumed_rank_devptr = hipblasZgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #else
@@ -87704,11 +92463,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgeqrfStridedBatched_rank_0 = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasZgeqrfStridedBatched_rank_0_devptr(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgeqrfStridedBatched_rank_0_devptr = hipblasZgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasZgeqrfStridedBatched_rank_1(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -87725,11 +92505,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgeqrfStridedBatched_rank_1 = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A),lda, &
-        strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasZgeqrfStridedBatched_rank_1_devptr(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgeqrfStridedBatched_rank_1_devptr = hipblasZgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
     function hipblasZgeqrfStridedBatched_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP,myInfo, &
@@ -87746,11 +92547,32 @@ module hipfort_hipblas
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr) :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
       hipblasZgeqrfStridedBatched_full_rank = hipblasZgeqrfStridedBatched_(handle,m,n,c_loc(A), &
-        lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
+        lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batchCount)
+    end function
+
+    function hipblasZgeqrfStridedBatched_full_rank_devptr(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr),value :: myInfo
+      integer(c_int) :: batchCount
+      !
+      hipblasZgeqrfStridedBatched_full_rank_devptr = hipblasZgeqrfStridedBatched_(handle,m,n, &
+        c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batchCount)
     end function
 
 #endif

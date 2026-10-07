@@ -23,8 +23,10 @@
   the code only.
 * Tutorial pages of complete, runnable Fortran programs for rocBLAS, hipBLAS,
   rocRAND and hipRAND, and a *Fortran interface variants* how-to page covering
-  the `hipMalloc`/`hipMemcpy` array interfaces and the experimental Fortran 2018
-  assumed-rank mode.
+  the `hipMalloc`/`hipMemcpy` array interfaces, the experimental Fortran 2018
+  assumed-rank mode, and the two forms of a scalar passed by pointer: when to
+  pass the variable and when its address, the device pointer mode, and
+  hipSOLVER's `devInfo`.
 * Test coverage for:
   * the BLAS `nrm2`, `asum`, `iamax`/`iamin`, `ger`, `syrk`/`herk`,
     `symm`/`hemm`, `trmm`, `geam` and `gemm_ex` routines in rocBLAS and hipBLAS;
@@ -34,7 +36,11 @@
   * the version, pointer-mode, handle-state and descriptor getters of nine
     libraries;
   * the rocRAND and hipRAND `mrg32k3a`, `mtgp32` and `sobol32` generators and
-    the Poisson and log-normal distributions.
+    the Poisson and log-normal distributions;
+  * the `_typed` forms of scalar arguments, through rocBLAS, hipBLAS, rocSPARSE
+    and hipSPARSE tests that pass `alpha`, `beta` or a result as Fortran
+    variables, and hipSOLVER `getrf` tests that pass a device `devInfo` to the
+    array overloads.
 
 ### Changed
 
@@ -51,21 +57,24 @@
   ```
 
   This covers:
-  * the scalars a library reads per its handle's pointer mode: `alpha` and
-    `beta` throughout rocBLAS, hipBLAS, rocSPARSE and hipSPARSE,
-    `nnzTotalDevHostPtr`, the rotation `c`/`s`, the coloring outputs. The
-    `type(c_ptr)` form makes `rocblas_pointer_mode_device` and its equivalents
-    usable from Fortran;
+  * the scalars a library reads or writes per its handle's pointer mode:
+    `alpha` and `beta` throughout rocBLAS, hipBLAS, rocSPARSE and hipSPARSE,
+    the `dot`, `nrm2`, `asum` and `iamax`/`iamin` results and the `rot`, `rotg`
+    and `rotmg` scalars of rocBLAS and hipBLAS, the sparse `doti`/`dotci`
+    results, `nnzTotalDevHostPtr`, the nnz counts of the `*_nnz` routines and
+    the pivot positions. The `type(c_ptr)` form makes
+    `rocblas_pointer_mode_device` and its equivalents usable from Fortran;
   * the host outputs: the HIP runtime queries (`hipStreamGetId`,
     `hipStreamGetCaptureInfo`, `hipFuncGetAttribute`,
     `hipDeviceGetP2PAttribute`, the `hipOccupancy*` and `hipGraph*` counts,
     ...), the version, pointer-mode, math-mode and handle-state getters of the
     BLAS, sparse and solver libraries, the hipSPARSE and rocSPARSE descriptor
-    getters, `hipblasGetProperty`, `hipfftGetProperty`, the hipSOLVER buffer
-    sizes, `*gels` `niters` and `*{sy,he}evdx`/`*{sy,he}gvdx` `nev`, and
-    `rocfft_cache_serialize`. An output the C API lets the caller skip is
-    `optional` in the `_typed` form; pass `c_null_ptr` to the `type(c_ptr)`
-    one.
+    getters, `hipblasGetProperty`, `hipfftGetProperty`, the hipBLAS
+    `getrs`/`geqrf`/`gels` `info`, the hipSOLVER buffer sizes, `*gels`
+    `niters` and `*{sy,he}evdx`/`*{sy,he}gvdx` `nev`, the `csrcolor` color
+    count, `hipChooseDevice`, and `rocfft_cache_serialize`. An output the C
+    API lets the caller skip is `optional` in the `_typed` form; pass
+    `c_null_ptr` to the `type(c_ptr)` one.
 
   Scalars that only ever live on the device, such as rocSOLVER `info` and
   hipSOLVER `devInfo`, keep the `type(c_ptr)` form only.
@@ -73,6 +82,10 @@
   The 28 rocSPARSE and hipSPARSE routines with both kinds (`alpha`/`beta` beside
   a buffer size) also get `<routine>_devptr`, for the device pointer mode: the
   pointer-mode scalars as `type(c_ptr)`, the host outputs typed.
+
+  The array overloads take the BLAS results and the hipBLAS `info` as
+  variables too; their `<routine>_rank_N_devptr` variants keep the
+  `type(c_ptr)` these arguments have always taken there.
 * hipSOLVER `devInfo` is device memory. The `bind(C)` specific takes it as
   `type(c_ptr), value`, with no typed form: a host integer next to `type(c_ptr)`
   buffers would be written by the GPU. The array overloads take it as an
@@ -175,6 +188,17 @@
   SDDMM test is dropped, because rocSPARSE does not support batched SDDMM.
 * Fixed factual errors across the tutorial pages, and added the missing
   tutorials to the documentation landing page.
+* The `source`/`dsource` forms of `hipMalloc`, `hipMallocManaged` and
+  `hipHostMalloc` copied even when the allocation had failed, and returned the
+  copy's status, so the allocation failure went unreported. They now copy only
+  after a successful allocation.
+* The array overloads of `rocsparse_?csrcolor` and `hipsparse?csrcolor` took
+  `coloring` and `reordering` as scalars, although both are arrays of size `m`.
+* rocSPARSE's nullable `error` arguments (`spgeam`, `spmv_set_input`,
+  `v2_spmv`, ...) are `optional`, so NULL can be passed by omitting them.
+* Under `USE_CUDA_NAMES`, the compatibility-API `hipsolver?gesvd_bufferSize`
+  and `hipsolver??gels_bufferSize` were bound to the `cusolverDn` routines of
+  the same name, whose arguments differ. They are now ROCm-only.
 
 ## hipfort 0.9.0 for ROCm 10.0.0
 

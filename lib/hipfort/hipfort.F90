@@ -963,6 +963,8 @@ module hipfort
       type(c_ptr),value :: device
       type(hipDeviceProp_t) :: prop
     end function
+
+    module procedure hipChooseDeviceR0600_typed
   end interface
 
   !>  @brief Returns the link type and hop count between two devices
@@ -6203,6 +6205,8 @@ module hipfort
       type(c_ptr),value :: failIdx
       type(c_ptr),value :: stream
     end function
+
+    module procedure hipMemcpyBatchAsync_typed
   end interface
 
   !>  @brief Perform Batch of 3D copies
@@ -6234,6 +6238,8 @@ module hipfort
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: stream
     end function
+
+    module procedure hipMemcpy3DBatchAsync_typed
   end interface
 
   !>  @brief Performs 3D memory copies between devices
@@ -6529,6 +6535,8 @@ module hipfort
       integer(c_int),value :: flags
       integer(c_int),value :: minCount
     end function
+
+    module procedure hipDevSmResourceSplitByCount_typed
   end interface
 #endif
 
@@ -14261,19 +14269,9 @@ module hipfort
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`
   interface hipChooseDevice
-#ifdef USE_CUDA_NAMES
-    function hipChooseDevice_(device,prop) bind(c, name="cudaChooseDevice")
-#else
-    function hipChooseDevice_(device,prop) bind(c, name="hipChooseDeviceR0600")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(kind(hipSuccess)) :: hipChooseDevice_
-      type(c_ptr),value :: device
-      type(hipDeviceProp_t) :: prop
-    end function
+    procedure hipChooseDeviceR0600_
+
+    module procedure hipChooseDeviceR0600_typed
   end interface
 
 
@@ -14464,6 +14462,18 @@ module hipfort
       integer(c_int),target :: flags
       !
       hipGetDeviceFlags_typed = hipGetDeviceFlags_(c_loc(flags))
+    end function
+
+    function hipChooseDeviceR0600_typed(device,prop)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipChooseDeviceR0600_typed
+      integer(c_int),target :: device
+      type(hipDeviceProp_t) :: prop
+      !
+      hipChooseDeviceR0600_typed = hipChooseDeviceR0600_(c_loc(device),prop)
     end function
 
 #ifndef USE_CUDA_NAMES
@@ -14693,6 +14703,43 @@ module hipfort
     end function
 
 #endif
+    function hipMemcpyBatchAsync_typed(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx, &
+        stream)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyBatchAsync_typed
+      type(c_ptr) :: dsts
+      type(c_ptr) :: srcs
+      type(c_ptr) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemcpyAttributes) :: attrs
+      type(c_ptr) :: attrsIdxs
+      integer(c_size_t) :: numAttrs
+      integer(c_size_t),target :: failIdx
+      type(c_ptr) :: stream
+      !
+      hipMemcpyBatchAsync_typed = hipMemcpyBatchAsync_(dsts,srcs,sizes,count,attrs,attrsIdxs, &
+        numAttrs,c_loc(failIdx),stream)
+    end function
+
+    function hipMemcpy3DBatchAsync_typed(numOps,opList,failIdx,flags,stream)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpy3DBatchAsync_typed
+      integer(c_size_t) :: numOps
+      type(hipMemcpy3DBatchOp) :: opList
+      integer(c_size_t),target :: failIdx
+      integer(c_int64_t) :: flags
+      type(c_ptr) :: stream
+      !
+      hipMemcpy3DBatchAsync_typed = hipMemcpy3DBatchAsync_(numOps,opList,c_loc(failIdx),flags, &
+        stream)
+    end function
+
     function hipDeviceCanAccessPeer_typed(canAccessPeer,deviceId,peerDeviceId)
       use iso_c_binding
       use hipfort_enums
@@ -14706,6 +14753,25 @@ module hipfort
         peerDeviceId)
     end function
 
+#ifndef USE_CUDA_NAMES
+    function hipDevSmResourceSplitByCount_typed(myResult,nbGroups,input,remainder,flags,minCount)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipDevSmResourceSplitByCount_typed
+      type(hipDevResource) :: myResult
+      integer(c_int),target :: nbGroups
+      type(hipDevResource) :: input
+      type(hipDevResource) :: remainder
+      integer(c_int) :: flags
+      integer(c_int) :: minCount
+      !
+      hipDevSmResourceSplitByCount_typed = hipDevSmResourceSplitByCount_(myResult,c_loc(nbGroups), &
+        input,remainder,flags,minCount)
+    end function
+
+#endif
 #ifndef USE_CUDA_NAMES
     function hipExecutionCtxGetDevice_typed(device,ctx)
       use iso_c_binding

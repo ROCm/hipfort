@@ -37,10 +37,10 @@
 33 | [rocsolver_dlaswp](interfacehipfort__rocsolver_1_1rocsolver__dlaswp.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 34 | [rocsolver_claswp](interfacehipfort__rocsolver_1_1rocsolver__claswp.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 35 | [rocsolver_zlaswp](interfacehipfort__rocsolver_1_1rocsolver__zlaswp.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-36 | [rocsolver_slarfg](interfacehipfort__rocsolver_1_1rocsolver__slarfg.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-37 | [rocsolver_dlarfg](interfacehipfort__rocsolver_1_1rocsolver__dlarfg.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-38 | [rocsolver_clarfg](interfacehipfort__rocsolver_1_1rocsolver__clarfg.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-39 | [rocsolver_zlarfg](interfacehipfort__rocsolver_1_1rocsolver__zlarfg.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+36 | [rocsolver_slarfg](interfacehipfort__rocsolver_1_1rocsolver__slarfg.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
+37 | [rocsolver_dlarfg](interfacehipfort__rocsolver_1_1rocsolver__dlarfg.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
+38 | [rocsolver_clarfg](interfacehipfort__rocsolver_1_1rocsolver__clarfg.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
+39 | [rocsolver_zlarfg](interfacehipfort__rocsolver_1_1rocsolver__zlarfg.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
 40 | [rocsolver_slarfg_64](interfacehipfort__rocsolver_1_1rocsolver__slarfg__64.html "Interface documentation") | C binding, typed
 41 | [rocsolver_dlarfg_64](interfacehipfort__rocsolver_1_1rocsolver__dlarfg__64.html "Interface documentation") | C binding, typed
 42 | [rocsolver_clarfg_64](interfacehipfort__rocsolver_1_1rocsolver__clarfg__64.html "Interface documentation") | C binding, typed
@@ -53,10 +53,10 @@
 49 | [rocsolver_dlarft_64](interfacehipfort__rocsolver_1_1rocsolver__dlarft__64.html "Interface documentation") | C binding
 50 | [rocsolver_clarft_64](interfacehipfort__rocsolver_1_1rocsolver__clarft__64.html "Interface documentation") | C binding
 51 | [rocsolver_zlarft_64](interfacehipfort__rocsolver_1_1rocsolver__zlarft__64.html "Interface documentation") | C binding
-52 | [rocsolver_slarf](interfacehipfort__rocsolver_1_1rocsolver__slarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-53 | [rocsolver_dlarf](interfacehipfort__rocsolver_1_1rocsolver__dlarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-54 | [rocsolver_clarf](interfacehipfort__rocsolver_1_1rocsolver__clarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-55 | [rocsolver_zlarf](interfacehipfort__rocsolver_1_1rocsolver__zlarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+52 | [rocsolver_slarf](interfacehipfort__rocsolver_1_1rocsolver__slarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+53 | [rocsolver_dlarf](interfacehipfort__rocsolver_1_1rocsolver__dlarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+54 | [rocsolver_clarf](interfacehipfort__rocsolver_1_1rocsolver__clarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+55 | [rocsolver_zlarf](interfacehipfort__rocsolver_1_1rocsolver__zlarf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
 56 | [rocsolver_slarf_64](interfacehipfort__rocsolver_1_1rocsolver__slarf__64.html "Interface documentation") | C binding, typed
 57 | [rocsolver_dlarf_64](interfacehipfort__rocsolver_1_1rocsolver__dlarf__64.html "Interface documentation") | C binding, typed
 58 | [rocsolver_clarf_64](interfacehipfort__rocsolver_1_1rocsolver__clarf__64.html "Interface documentation") | C binding, typed

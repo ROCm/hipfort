@@ -699,7 +699,6 @@ program test_hip
     if (never) v3 = hipStreamGetCaptureInfo_v2_spt_(v4, v4, v4, v4, v4, v4)
     if (never) v3 = hipLaunchHostFunc_spt_(v4, v17, v4)
     if (never) v3 = hipGetDriverEntryPoint_spt_(v4, v4, v19, v4)
-    if (never) v3 = hipChooseDevice_(v4, v12)
     if (never) v0 = hipMalloc_(v4, v10)
     if (never) v0 = hipMallocManaged_(v4, v10, v0)
     if (never) v0 = hipHostMalloc_(v4, v10, v0)

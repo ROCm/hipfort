@@ -19,14 +19,14 @@
 15 | [hipblasGetBatchAlphaStride](interfacehipfort__hipblas_1_1hipblasgetbatchalphastride.html "Interface documentation") | C binding, typed
 16 | [hipblasSetBatchBetaStride](interfacehipfort__hipblas_1_1hipblassetbatchbetastride.html "Interface documentation") | C binding
 17 | [hipblasGetBatchBetaStride](interfacehipfort__hipblas_1_1hipblasgetbatchbetastride.html "Interface documentation") | C binding, typed
-18 | [hipblasIsamax](interfacehipfort__hipblas_1_1hipblasisamax.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-19 | [hipblasIdamax](interfacehipfort__hipblas_1_1hipblasidamax.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-20 | [hipblasIcamax](interfacehipfort__hipblas_1_1hipblasicamax.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-21 | [hipblasIzamax](interfacehipfort__hipblas_1_1hipblasizamax.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-22 | [hipblasIsamax_64](interfacehipfort__hipblas_1_1hipblasisamax__64.html "Interface documentation") | C binding
-23 | [hipblasIdamax_64](interfacehipfort__hipblas_1_1hipblasidamax__64.html "Interface documentation") | C binding
-24 | [hipblasIcamax_64](interfacehipfort__hipblas_1_1hipblasicamax__64.html "Interface documentation") | C binding
-25 | [hipblasIzamax_64](interfacehipfort__hipblas_1_1hipblasizamax__64.html "Interface documentation") | C binding
+18 | [hipblasIsamax](interfacehipfort__hipblas_1_1hipblasisamax.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+19 | [hipblasIdamax](interfacehipfort__hipblas_1_1hipblasidamax.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+20 | [hipblasIcamax](interfacehipfort__hipblas_1_1hipblasicamax.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+21 | [hipblasIzamax](interfacehipfort__hipblas_1_1hipblasizamax.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+22 | [hipblasIsamax_64](interfacehipfort__hipblas_1_1hipblasisamax__64.html "Interface documentation") | C binding, typed
+23 | [hipblasIdamax_64](interfacehipfort__hipblas_1_1hipblasidamax__64.html "Interface documentation") | C binding, typed
+24 | [hipblasIcamax_64](interfacehipfort__hipblas_1_1hipblasicamax__64.html "Interface documentation") | C binding, typed
+25 | [hipblasIzamax_64](interfacehipfort__hipblas_1_1hipblasizamax__64.html "Interface documentation") | C binding, typed
 26 | [hipblasIsamaxBatched](interfacehipfort__hipblas_1_1hipblasisamaxbatched.html "Interface documentation") | C binding
 27 | [hipblasIdamaxBatched](interfacehipfort__hipblas_1_1hipblasidamaxbatched.html "Interface documentation") | C binding
 28 | [hipblasIcamaxBatched](interfacehipfort__hipblas_1_1hipblasicamaxbatched.html "Interface documentation") | C binding
@@ -43,14 +43,14 @@
 39 | [hipblasIdamaxStridedBatched_64](interfacehipfort__hipblas_1_1hipblasidamaxstridedbatched__64.html "Interface documentation") | C binding
 40 | [hipblasIcamaxStridedBatched_64](interfacehipfort__hipblas_1_1hipblasicamaxstridedbatched__64.html "Interface documentation") | C binding
 41 | [hipblasIzamaxStridedBatched_64](interfacehipfort__hipblas_1_1hipblasizamaxstridedbatched__64.html "Interface documentation") | C binding
-42 | [hipblasIsamin](interfacehipfort__hipblas_1_1hipblasisamin.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-43 | [hipblasIdamin](interfacehipfort__hipblas_1_1hipblasidamin.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-44 | [hipblasIcamin](interfacehipfort__hipblas_1_1hipblasicamin.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-45 | [hipblasIzamin](interfacehipfort__hipblas_1_1hipblasizamin.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-46 | [hipblasIsamin_64](interfacehipfort__hipblas_1_1hipblasisamin__64.html "Interface documentation") | C binding
-47 | [hipblasIdamin_64](interfacehipfort__hipblas_1_1hipblasidamin__64.html "Interface documentation") | C binding
-48 | [hipblasIcamin_64](interfacehipfort__hipblas_1_1hipblasicamin__64.html "Interface documentation") | C binding
-49 | [hipblasIzamin_64](interfacehipfort__hipblas_1_1hipblasizamin__64.html "Interface documentation") | C binding
+42 | [hipblasIsamin](interfacehipfort__hipblas_1_1hipblasisamin.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+43 | [hipblasIdamin](interfacehipfort__hipblas_1_1hipblasidamin.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+44 | [hipblasIcamin](interfacehipfort__hipblas_1_1hipblasicamin.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+45 | [hipblasIzamin](interfacehipfort__hipblas_1_1hipblasizamin.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+46 | [hipblasIsamin_64](interfacehipfort__hipblas_1_1hipblasisamin__64.html "Interface documentation") | C binding, typed
+47 | [hipblasIdamin_64](interfacehipfort__hipblas_1_1hipblasidamin__64.html "Interface documentation") | C binding, typed
+48 | [hipblasIcamin_64](interfacehipfort__hipblas_1_1hipblasicamin__64.html "Interface documentation") | C binding, typed
+49 | [hipblasIzamin_64](interfacehipfort__hipblas_1_1hipblasizamin__64.html "Interface documentation") | C binding, typed
 50 | [hipblasIsaminBatched](interfacehipfort__hipblas_1_1hipblasisaminbatched.html "Interface documentation") | C binding
 51 | [hipblasIdaminBatched](interfacehipfort__hipblas_1_1hipblasidaminbatched.html "Interface documentation") | C binding
 52 | [hipblasIcaminBatched](interfacehipfort__hipblas_1_1hipblasicaminbatched.html "Interface documentation") | C binding
@@ -67,14 +67,14 @@
 63 | [hipblasIdaminStridedBatched_64](interfacehipfort__hipblas_1_1hipblasidaminstridedbatched__64.html "Interface documentation") | C binding
 64 | [hipblasIcaminStridedBatched_64](interfacehipfort__hipblas_1_1hipblasicaminstridedbatched__64.html "Interface documentation") | C binding
 65 | [hipblasIzaminStridedBatched_64](interfacehipfort__hipblas_1_1hipblasizaminstridedbatched__64.html "Interface documentation") | C binding
-66 | [hipblasSasum](interfacehipfort__hipblas_1_1hipblassasum.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-67 | [hipblasDasum](interfacehipfort__hipblas_1_1hipblasdasum.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-68 | [hipblasScasum](interfacehipfort__hipblas_1_1hipblasscasum.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-69 | [hipblasDzasum](interfacehipfort__hipblas_1_1hipblasdzasum.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-70 | [hipblasSasum_64](interfacehipfort__hipblas_1_1hipblassasum__64.html "Interface documentation") | C binding
-71 | [hipblasDasum_64](interfacehipfort__hipblas_1_1hipblasdasum__64.html "Interface documentation") | C binding
-72 | [hipblasScasum_64](interfacehipfort__hipblas_1_1hipblasscasum__64.html "Interface documentation") | C binding
-73 | [hipblasDzasum_64](interfacehipfort__hipblas_1_1hipblasdzasum__64.html "Interface documentation") | C binding
+66 | [hipblasSasum](interfacehipfort__hipblas_1_1hipblassasum.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+67 | [hipblasDasum](interfacehipfort__hipblas_1_1hipblasdasum.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+68 | [hipblasScasum](interfacehipfort__hipblas_1_1hipblasscasum.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+69 | [hipblasDzasum](interfacehipfort__hipblas_1_1hipblasdzasum.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+70 | [hipblasSasum_64](interfacehipfort__hipblas_1_1hipblassasum__64.html "Interface documentation") | C binding, typed
+71 | [hipblasDasum_64](interfacehipfort__hipblas_1_1hipblasdasum__64.html "Interface documentation") | C binding, typed
+72 | [hipblasScasum_64](interfacehipfort__hipblas_1_1hipblasscasum__64.html "Interface documentation") | C binding, typed
+73 | [hipblasDzasum_64](interfacehipfort__hipblas_1_1hipblasdzasum__64.html "Interface documentation") | C binding, typed
 74 | [hipblasSasumBatched](interfacehipfort__hipblas_1_1hipblassasumbatched.html "Interface documentation") | C binding
 75 | [hipblasDasumBatched](interfacehipfort__hipblas_1_1hipblasdasumbatched.html "Interface documentation") | C binding
 76 | [hipblasScasumBatched](interfacehipfort__hipblas_1_1hipblasscasumbatched.html "Interface documentation") | C binding
@@ -147,20 +147,20 @@
 143 | [hipblasZcopyStridedBatched_64](interfacehipfort__hipblas_1_1hipblaszcopystridedbatched__64.html "Interface documentation") | C binding
 144 | [hipblasHdot](interfacehipfort__hipblas_1_1hipblashdot.html "Interface documentation") | C binding
 145 | [hipblasBfdot](interfacehipfort__hipblas_1_1hipblasbfdot.html "Interface documentation") | C binding
-146 | [hipblasSdot](interfacehipfort__hipblas_1_1hipblassdot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-147 | [hipblasDdot](interfacehipfort__hipblas_1_1hipblasddot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-148 | [hipblasCdotc](interfacehipfort__hipblas_1_1hipblascdotc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-149 | [hipblasCdotu](interfacehipfort__hipblas_1_1hipblascdotu.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-150 | [hipblasZdotc](interfacehipfort__hipblas_1_1hipblaszdotc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-151 | [hipblasZdotu](interfacehipfort__hipblas_1_1hipblaszdotu.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+146 | [hipblasSdot](interfacehipfort__hipblas_1_1hipblassdot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+147 | [hipblasDdot](interfacehipfort__hipblas_1_1hipblasddot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+148 | [hipblasCdotc](interfacehipfort__hipblas_1_1hipblascdotc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+149 | [hipblasCdotu](interfacehipfort__hipblas_1_1hipblascdotu.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+150 | [hipblasZdotc](interfacehipfort__hipblas_1_1hipblaszdotc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+151 | [hipblasZdotu](interfacehipfort__hipblas_1_1hipblaszdotu.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 152 | [hipblasHdot_64](interfacehipfort__hipblas_1_1hipblashdot__64.html "Interface documentation") | C binding
 153 | [hipblasBfdot_64](interfacehipfort__hipblas_1_1hipblasbfdot__64.html "Interface documentation") | C binding
-154 | [hipblasSdot_64](interfacehipfort__hipblas_1_1hipblassdot__64.html "Interface documentation") | C binding
-155 | [hipblasDdot_64](interfacehipfort__hipblas_1_1hipblasddot__64.html "Interface documentation") | C binding
-156 | [hipblasCdotc_64](interfacehipfort__hipblas_1_1hipblascdotc__64.html "Interface documentation") | C binding
-157 | [hipblasCdotu_64](interfacehipfort__hipblas_1_1hipblascdotu__64.html "Interface documentation") | C binding
-158 | [hipblasZdotc_64](interfacehipfort__hipblas_1_1hipblaszdotc__64.html "Interface documentation") | C binding
-159 | [hipblasZdotu_64](interfacehipfort__hipblas_1_1hipblaszdotu__64.html "Interface documentation") | C binding
+154 | [hipblasSdot_64](interfacehipfort__hipblas_1_1hipblassdot__64.html "Interface documentation") | C binding, typed
+155 | [hipblasDdot_64](interfacehipfort__hipblas_1_1hipblasddot__64.html "Interface documentation") | C binding, typed
+156 | [hipblasCdotc_64](interfacehipfort__hipblas_1_1hipblascdotc__64.html "Interface documentation") | C binding, typed
+157 | [hipblasCdotu_64](interfacehipfort__hipblas_1_1hipblascdotu__64.html "Interface documentation") | C binding, typed
+158 | [hipblasZdotc_64](interfacehipfort__hipblas_1_1hipblaszdotc__64.html "Interface documentation") | C binding, typed
+159 | [hipblasZdotu_64](interfacehipfort__hipblas_1_1hipblaszdotu__64.html "Interface documentation") | C binding, typed
 160 | [hipblasHdotBatched](interfacehipfort__hipblas_1_1hipblashdotbatched.html "Interface documentation") | C binding
 161 | [hipblasBfdotBatched](interfacehipfort__hipblas_1_1hipblasbfdotbatched.html "Interface documentation") | C binding
 162 | [hipblasSdotBatched](interfacehipfort__hipblas_1_1hipblassdotbatched.html "Interface documentation") | C binding
@@ -193,14 +193,14 @@
 189 | [hipblasCdotuStridedBatched_64](interfacehipfort__hipblas_1_1hipblascdotustridedbatched__64.html "Interface documentation") | C binding
 190 | [hipblasZdotcStridedBatched_64](interfacehipfort__hipblas_1_1hipblaszdotcstridedbatched__64.html "Interface documentation") | C binding
 191 | [hipblasZdotuStridedBatched_64](interfacehipfort__hipblas_1_1hipblaszdotustridedbatched__64.html "Interface documentation") | C binding
-192 | [hipblasSnrm2](interfacehipfort__hipblas_1_1hipblassnrm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-193 | [hipblasDnrm2](interfacehipfort__hipblas_1_1hipblasdnrm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-194 | [hipblasScnrm2](interfacehipfort__hipblas_1_1hipblasscnrm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-195 | [hipblasDznrm2](interfacehipfort__hipblas_1_1hipblasdznrm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-196 | [hipblasSnrm2_64](interfacehipfort__hipblas_1_1hipblassnrm2__64.html "Interface documentation") | C binding
-197 | [hipblasDnrm2_64](interfacehipfort__hipblas_1_1hipblasdnrm2__64.html "Interface documentation") | C binding
-198 | [hipblasScnrm2_64](interfacehipfort__hipblas_1_1hipblasscnrm2__64.html "Interface documentation") | C binding
-199 | [hipblasDznrm2_64](interfacehipfort__hipblas_1_1hipblasdznrm2__64.html "Interface documentation") | C binding
+192 | [hipblasSnrm2](interfacehipfort__hipblas_1_1hipblassnrm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+193 | [hipblasDnrm2](interfacehipfort__hipblas_1_1hipblasdnrm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+194 | [hipblasScnrm2](interfacehipfort__hipblas_1_1hipblasscnrm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+195 | [hipblasDznrm2](interfacehipfort__hipblas_1_1hipblasdznrm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+196 | [hipblasSnrm2_64](interfacehipfort__hipblas_1_1hipblassnrm2__64.html "Interface documentation") | C binding, typed
+197 | [hipblasDnrm2_64](interfacehipfort__hipblas_1_1hipblasdnrm2__64.html "Interface documentation") | C binding, typed
+198 | [hipblasScnrm2_64](interfacehipfort__hipblas_1_1hipblasscnrm2__64.html "Interface documentation") | C binding, typed
+199 | [hipblasDznrm2_64](interfacehipfort__hipblas_1_1hipblasdznrm2__64.html "Interface documentation") | C binding, typed
 200 | [hipblasSnrm2Batched](interfacehipfort__hipblas_1_1hipblassnrm2batched.html "Interface documentation") | C binding
 201 | [hipblasDnrm2Batched](interfacehipfort__hipblas_1_1hipblasdnrm2batched.html "Interface documentation") | C binding
 202 | [hipblasScnrm2Batched](interfacehipfort__hipblas_1_1hipblasscnrm2batched.html "Interface documentation") | C binding
@@ -217,18 +217,18 @@
 213 | [hipblasDnrm2StridedBatched_64](interfacehipfort__hipblas_1_1hipblasdnrm2stridedbatched__64.html "Interface documentation") | C binding
 214 | [hipblasScnrm2StridedBatched_64](interfacehipfort__hipblas_1_1hipblasscnrm2stridedbatched__64.html "Interface documentation") | C binding
 215 | [hipblasDznrm2StridedBatched_64](interfacehipfort__hipblas_1_1hipblasdznrm2stridedbatched__64.html "Interface documentation") | C binding
-216 | [hipblasSrot](interfacehipfort__hipblas_1_1hipblassrot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-217 | [hipblasDrot](interfacehipfort__hipblas_1_1hipblasdrot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-218 | [hipblasCrot](interfacehipfort__hipblas_1_1hipblascrot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-219 | [hipblasCsrot](interfacehipfort__hipblas_1_1hipblascsrot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-220 | [hipblasZrot](interfacehipfort__hipblas_1_1hipblaszrot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-221 | [hipblasZdrot](interfacehipfort__hipblas_1_1hipblaszdrot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-222 | [hipblasSrot_64](interfacehipfort__hipblas_1_1hipblassrot__64.html "Interface documentation") | C binding
-223 | [hipblasDrot_64](interfacehipfort__hipblas_1_1hipblasdrot__64.html "Interface documentation") | C binding
-224 | [hipblasCrot_64](interfacehipfort__hipblas_1_1hipblascrot__64.html "Interface documentation") | C binding
-225 | [hipblasCsrot_64](interfacehipfort__hipblas_1_1hipblascsrot__64.html "Interface documentation") | C binding
-226 | [hipblasZrot_64](interfacehipfort__hipblas_1_1hipblaszrot__64.html "Interface documentation") | C binding
-227 | [hipblasZdrot_64](interfacehipfort__hipblas_1_1hipblaszdrot__64.html "Interface documentation") | C binding
+216 | [hipblasSrot](interfacehipfort__hipblas_1_1hipblassrot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+217 | [hipblasDrot](interfacehipfort__hipblas_1_1hipblasdrot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+218 | [hipblasCrot](interfacehipfort__hipblas_1_1hipblascrot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+219 | [hipblasCsrot](interfacehipfort__hipblas_1_1hipblascsrot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+220 | [hipblasZrot](interfacehipfort__hipblas_1_1hipblaszrot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+221 | [hipblasZdrot](interfacehipfort__hipblas_1_1hipblaszdrot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+222 | [hipblasSrot_64](interfacehipfort__hipblas_1_1hipblassrot__64.html "Interface documentation") | C binding, typed
+223 | [hipblasDrot_64](interfacehipfort__hipblas_1_1hipblasdrot__64.html "Interface documentation") | C binding, typed
+224 | [hipblasCrot_64](interfacehipfort__hipblas_1_1hipblascrot__64.html "Interface documentation") | C binding, typed
+225 | [hipblasCsrot_64](interfacehipfort__hipblas_1_1hipblascsrot__64.html "Interface documentation") | C binding, typed
+226 | [hipblasZrot_64](interfacehipfort__hipblas_1_1hipblaszrot__64.html "Interface documentation") | C binding, typed
+227 | [hipblasZdrot_64](interfacehipfort__hipblas_1_1hipblaszdrot__64.html "Interface documentation") | C binding, typed
 228 | [hipblasSrotBatched](interfacehipfort__hipblas_1_1hipblassrotbatched.html "Interface documentation") | C binding
 229 | [hipblasDrotBatched](interfacehipfort__hipblas_1_1hipblasdrotbatched.html "Interface documentation") | C binding
 230 | [hipblasCrotBatched](interfacehipfort__hipblas_1_1hipblascrotbatched.html "Interface documentation") | C binding
@@ -253,14 +253,14 @@
 249 | [hipblasCsrotStridedBatched_64](interfacehipfort__hipblas_1_1hipblascsrotstridedbatched__64.html "Interface documentation") | C binding
 250 | [hipblasZrotStridedBatched_64](interfacehipfort__hipblas_1_1hipblaszrotstridedbatched__64.html "Interface documentation") | C binding
 251 | [hipblasZdrotStridedBatched_64](interfacehipfort__hipblas_1_1hipblaszdrotstridedbatched__64.html "Interface documentation") | C binding
-252 | [hipblasSrotg](interfacehipfort__hipblas_1_1hipblassrotg.html "Interface documentation") | C binding
-253 | [hipblasDrotg](interfacehipfort__hipblas_1_1hipblasdrotg.html "Interface documentation") | C binding
-254 | [hipblasCrotg](interfacehipfort__hipblas_1_1hipblascrotg.html "Interface documentation") | C binding
-255 | [hipblasZrotg](interfacehipfort__hipblas_1_1hipblaszrotg.html "Interface documentation") | C binding
-256 | [hipblasSrotg_64](interfacehipfort__hipblas_1_1hipblassrotg__64.html "Interface documentation") | C binding
-257 | [hipblasDrotg_64](interfacehipfort__hipblas_1_1hipblasdrotg__64.html "Interface documentation") | C binding
-258 | [hipblasCrotg_64](interfacehipfort__hipblas_1_1hipblascrotg__64.html "Interface documentation") | C binding
-259 | [hipblasZrotg_64](interfacehipfort__hipblas_1_1hipblaszrotg__64.html "Interface documentation") | C binding
+252 | [hipblasSrotg](interfacehipfort__hipblas_1_1hipblassrotg.html "Interface documentation") | C binding, typed
+253 | [hipblasDrotg](interfacehipfort__hipblas_1_1hipblasdrotg.html "Interface documentation") | C binding, typed
+254 | [hipblasCrotg](interfacehipfort__hipblas_1_1hipblascrotg.html "Interface documentation") | C binding, typed
+255 | [hipblasZrotg](interfacehipfort__hipblas_1_1hipblaszrotg.html "Interface documentation") | C binding, typed
+256 | [hipblasSrotg_64](interfacehipfort__hipblas_1_1hipblassrotg__64.html "Interface documentation") | C binding, typed
+257 | [hipblasDrotg_64](interfacehipfort__hipblas_1_1hipblasdrotg__64.html "Interface documentation") | C binding, typed
+258 | [hipblasCrotg_64](interfacehipfort__hipblas_1_1hipblascrotg__64.html "Interface documentation") | C binding, typed
+259 | [hipblasZrotg_64](interfacehipfort__hipblas_1_1hipblaszrotg__64.html "Interface documentation") | C binding, typed
 260 | [hipblasSrotgBatched](interfacehipfort__hipblas_1_1hipblassrotgbatched.html "Interface documentation") | C binding
 261 | [hipblasDrotgBatched](interfacehipfort__hipblas_1_1hipblasdrotgbatched.html "Interface documentation") | C binding
 262 | [hipblasCrotgBatched](interfacehipfort__hipblas_1_1hipblascrotgbatched.html "Interface documentation") | C binding
@@ -289,10 +289,10 @@
 285 | [hipblasDrotmStridedBatched](interfacehipfort__hipblas_1_1hipblasdrotmstridedbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 286 | [hipblasSrotmStridedBatched_64](interfacehipfort__hipblas_1_1hipblassrotmstridedbatched__64.html "Interface documentation") | C binding
 287 | [hipblasDrotmStridedBatched_64](interfacehipfort__hipblas_1_1hipblasdrotmstridedbatched__64.html "Interface documentation") | C binding
-288 | [hipblasSrotmg](interfacehipfort__hipblas_1_1hipblassrotmg.html "Interface documentation") | C binding
-289 | [hipblasDrotmg](interfacehipfort__hipblas_1_1hipblasdrotmg.html "Interface documentation") | C binding
-290 | [hipblasSrotmg_64](interfacehipfort__hipblas_1_1hipblassrotmg__64.html "Interface documentation") | C binding
-291 | [hipblasDrotmg_64](interfacehipfort__hipblas_1_1hipblasdrotmg__64.html "Interface documentation") | C binding
+288 | [hipblasSrotmg](interfacehipfort__hipblas_1_1hipblassrotmg.html "Interface documentation") | C binding, typed
+289 | [hipblasDrotmg](interfacehipfort__hipblas_1_1hipblasdrotmg.html "Interface documentation") | C binding, typed
+290 | [hipblasSrotmg_64](interfacehipfort__hipblas_1_1hipblassrotmg__64.html "Interface documentation") | C binding, typed
+291 | [hipblasDrotmg_64](interfacehipfort__hipblas_1_1hipblasdrotmg__64.html "Interface documentation") | C binding, typed
 292 | [hipblasSrotmgBatched](interfacehipfort__hipblas_1_1hipblassrotmgbatched.html "Interface documentation") | C binding
 293 | [hipblasDrotmgBatched](interfacehipfort__hipblas_1_1hipblasdrotmgbatched.html "Interface documentation") | C binding
 294 | [hipblasSrotmgBatched_64](interfacehipfort__hipblas_1_1hipblassrotmgbatched__64.html "Interface documentation") | C binding
@@ -1103,46 +1103,46 @@
 1099 | [hipblasDgetrfStridedBatched](interfacehipfort__hipblas_1_1hipblasdgetrfstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 1100 | [hipblasCgetrfStridedBatched](interfacehipfort__hipblas_1_1hipblascgetrfstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 1101 | [hipblasZgetrfStridedBatched](interfacehipfort__hipblas_1_1hipblaszgetrfstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1102 | [hipblasSgetrs](interfacehipfort__hipblas_1_1hipblassgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1103 | [hipblasDgetrs](interfacehipfort__hipblas_1_1hipblasdgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1104 | [hipblasCgetrs](interfacehipfort__hipblas_1_1hipblascgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1105 | [hipblasZgetrs](interfacehipfort__hipblas_1_1hipblaszgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1106 | [hipblasSgetrsBatched](interfacehipfort__hipblas_1_1hipblassgetrsbatched.html "Interface documentation") | C binding
-1107 | [hipblasDgetrsBatched](interfacehipfort__hipblas_1_1hipblasdgetrsbatched.html "Interface documentation") | C binding
-1108 | [hipblasCgetrsBatched](interfacehipfort__hipblas_1_1hipblascgetrsbatched.html "Interface documentation") | C binding
-1109 | [hipblasZgetrsBatched](interfacehipfort__hipblas_1_1hipblaszgetrsbatched.html "Interface documentation") | C binding
-1110 | [hipblasSgetrsStridedBatched](interfacehipfort__hipblas_1_1hipblassgetrsstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1111 | [hipblasDgetrsStridedBatched](interfacehipfort__hipblas_1_1hipblasdgetrsstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1112 | [hipblasCgetrsStridedBatched](interfacehipfort__hipblas_1_1hipblascgetrsstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1113 | [hipblasZgetrsStridedBatched](interfacehipfort__hipblas_1_1hipblaszgetrsstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1102 | [hipblasSgetrs](interfacehipfort__hipblas_1_1hipblassgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1103 | [hipblasDgetrs](interfacehipfort__hipblas_1_1hipblasdgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1104 | [hipblasCgetrs](interfacehipfort__hipblas_1_1hipblascgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1105 | [hipblasZgetrs](interfacehipfort__hipblas_1_1hipblaszgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1106 | [hipblasSgetrsBatched](interfacehipfort__hipblas_1_1hipblassgetrsbatched.html "Interface documentation") | C binding, typed
+1107 | [hipblasDgetrsBatched](interfacehipfort__hipblas_1_1hipblasdgetrsbatched.html "Interface documentation") | C binding, typed
+1108 | [hipblasCgetrsBatched](interfacehipfort__hipblas_1_1hipblascgetrsbatched.html "Interface documentation") | C binding, typed
+1109 | [hipblasZgetrsBatched](interfacehipfort__hipblas_1_1hipblaszgetrsbatched.html "Interface documentation") | C binding, typed
+1110 | [hipblasSgetrsStridedBatched](interfacehipfort__hipblas_1_1hipblassgetrsstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1111 | [hipblasDgetrsStridedBatched](interfacehipfort__hipblas_1_1hipblasdgetrsstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1112 | [hipblasCgetrsStridedBatched](interfacehipfort__hipblas_1_1hipblascgetrsstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1113 | [hipblasZgetrsStridedBatched](interfacehipfort__hipblas_1_1hipblaszgetrsstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
 1114 | [hipblasSgetriBatched](interfacehipfort__hipblas_1_1hipblassgetribatched.html "Interface documentation") | C binding
 1115 | [hipblasDgetriBatched](interfacehipfort__hipblas_1_1hipblasdgetribatched.html "Interface documentation") | C binding
 1116 | [hipblasCgetriBatched](interfacehipfort__hipblas_1_1hipblascgetribatched.html "Interface documentation") | C binding
 1117 | [hipblasZgetriBatched](interfacehipfort__hipblas_1_1hipblaszgetribatched.html "Interface documentation") | C binding
-1118 | [hipblasSgels](interfacehipfort__hipblas_1_1hipblassgels.html "Interface documentation") | C binding
-1119 | [hipblasDgels](interfacehipfort__hipblas_1_1hipblasdgels.html "Interface documentation") | C binding
-1120 | [hipblasCgels](interfacehipfort__hipblas_1_1hipblascgels.html "Interface documentation") | C binding
-1121 | [hipblasZgels](interfacehipfort__hipblas_1_1hipblaszgels.html "Interface documentation") | C binding
-1122 | [hipblasSgelsBatched](interfacehipfort__hipblas_1_1hipblassgelsbatched.html "Interface documentation") | C binding
-1123 | [hipblasDgelsBatched](interfacehipfort__hipblas_1_1hipblasdgelsbatched.html "Interface documentation") | C binding
-1124 | [hipblasCgelsBatched](interfacehipfort__hipblas_1_1hipblascgelsbatched.html "Interface documentation") | C binding
-1125 | [hipblasZgelsBatched](interfacehipfort__hipblas_1_1hipblaszgelsbatched.html "Interface documentation") | C binding
-1126 | [hipblasSgelsStridedBatched](interfacehipfort__hipblas_1_1hipblassgelsstridedbatched.html "Interface documentation") | C binding
-1127 | [hipblasDgelsStridedBatched](interfacehipfort__hipblas_1_1hipblasdgelsstridedbatched.html "Interface documentation") | C binding
-1128 | [hipblasCgelsStridedBatched](interfacehipfort__hipblas_1_1hipblascgelsstridedbatched.html "Interface documentation") | C binding
-1129 | [hipblasZgelsStridedBatched](interfacehipfort__hipblas_1_1hipblaszgelsstridedbatched.html "Interface documentation") | C binding
-1130 | [hipblasSgeqrf](interfacehipfort__hipblas_1_1hipblassgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1131 | [hipblasDgeqrf](interfacehipfort__hipblas_1_1hipblasdgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1132 | [hipblasCgeqrf](interfacehipfort__hipblas_1_1hipblascgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1133 | [hipblasZgeqrf](interfacehipfort__hipblas_1_1hipblaszgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1134 | [hipblasSgeqrfBatched](interfacehipfort__hipblas_1_1hipblassgeqrfbatched.html "Interface documentation") | C binding
-1135 | [hipblasDgeqrfBatched](interfacehipfort__hipblas_1_1hipblasdgeqrfbatched.html "Interface documentation") | C binding
-1136 | [hipblasCgeqrfBatched](interfacehipfort__hipblas_1_1hipblascgeqrfbatched.html "Interface documentation") | C binding
-1137 | [hipblasZgeqrfBatched](interfacehipfort__hipblas_1_1hipblaszgeqrfbatched.html "Interface documentation") | C binding
-1138 | [hipblasSgeqrfStridedBatched](interfacehipfort__hipblas_1_1hipblassgeqrfstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1139 | [hipblasDgeqrfStridedBatched](interfacehipfort__hipblas_1_1hipblasdgeqrfstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1140 | [hipblasCgeqrfStridedBatched](interfacehipfort__hipblas_1_1hipblascgeqrfstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-1141 | [hipblasZgeqrfStridedBatched](interfacehipfort__hipblas_1_1hipblaszgeqrfstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+1118 | [hipblasSgels](interfacehipfort__hipblas_1_1hipblassgels.html "Interface documentation") | C binding, typed
+1119 | [hipblasDgels](interfacehipfort__hipblas_1_1hipblasdgels.html "Interface documentation") | C binding, typed
+1120 | [hipblasCgels](interfacehipfort__hipblas_1_1hipblascgels.html "Interface documentation") | C binding, typed
+1121 | [hipblasZgels](interfacehipfort__hipblas_1_1hipblaszgels.html "Interface documentation") | C binding, typed
+1122 | [hipblasSgelsBatched](interfacehipfort__hipblas_1_1hipblassgelsbatched.html "Interface documentation") | C binding, typed
+1123 | [hipblasDgelsBatched](interfacehipfort__hipblas_1_1hipblasdgelsbatched.html "Interface documentation") | C binding, typed
+1124 | [hipblasCgelsBatched](interfacehipfort__hipblas_1_1hipblascgelsbatched.html "Interface documentation") | C binding, typed
+1125 | [hipblasZgelsBatched](interfacehipfort__hipblas_1_1hipblaszgelsbatched.html "Interface documentation") | C binding, typed
+1126 | [hipblasSgelsStridedBatched](interfacehipfort__hipblas_1_1hipblassgelsstridedbatched.html "Interface documentation") | C binding, typed
+1127 | [hipblasDgelsStridedBatched](interfacehipfort__hipblas_1_1hipblasdgelsstridedbatched.html "Interface documentation") | C binding, typed
+1128 | [hipblasCgelsStridedBatched](interfacehipfort__hipblas_1_1hipblascgelsstridedbatched.html "Interface documentation") | C binding, typed
+1129 | [hipblasZgelsStridedBatched](interfacehipfort__hipblas_1_1hipblaszgelsstridedbatched.html "Interface documentation") | C binding, typed
+1130 | [hipblasSgeqrf](interfacehipfort__hipblas_1_1hipblassgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1131 | [hipblasDgeqrf](interfacehipfort__hipblas_1_1hipblasdgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1132 | [hipblasCgeqrf](interfacehipfort__hipblas_1_1hipblascgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1133 | [hipblasZgeqrf](interfacehipfort__hipblas_1_1hipblaszgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1134 | [hipblasSgeqrfBatched](interfacehipfort__hipblas_1_1hipblassgeqrfbatched.html "Interface documentation") | C binding, typed
+1135 | [hipblasDgeqrfBatched](interfacehipfort__hipblas_1_1hipblasdgeqrfbatched.html "Interface documentation") | C binding, typed
+1136 | [hipblasCgeqrfBatched](interfacehipfort__hipblas_1_1hipblascgeqrfbatched.html "Interface documentation") | C binding, typed
+1137 | [hipblasZgeqrfBatched](interfacehipfort__hipblas_1_1hipblaszgeqrfbatched.html "Interface documentation") | C binding, typed
+1138 | [hipblasSgeqrfStridedBatched](interfacehipfort__hipblas_1_1hipblassgeqrfstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1139 | [hipblasDgeqrfStridedBatched](interfacehipfort__hipblas_1_1hipblasdgeqrfstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1140 | [hipblasCgeqrfStridedBatched](interfacehipfort__hipblas_1_1hipblascgeqrfstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+1141 | [hipblasZgeqrfStridedBatched](interfacehipfort__hipblas_1_1hipblaszgeqrfstridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
 1142 | [hipblasGemmEx](interfacehipfort__hipblas_1_1hipblasgemmex.html "Interface documentation") | C binding
 1143 | [hipblasGemmExWithFlags](interfacehipfort__hipblas_1_1hipblasgemmexwithflags.html "Interface documentation") | C binding
 1144 | [hipblasGemmEx_64](interfacehipfort__hipblas_1_1hipblasgemmex__64.html "Interface documentation") | C binding

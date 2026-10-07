@@ -131,11 +131,11 @@ program test_hipsolver
     if (never) v1 = hipsolverDgebrd_(v0, v3, v3, v0, v3, v0, v0, v0, v0, v0, v3, v0)
     if (never) v1 = hipsolverCgebrd_(v0, v3, v3, v0, v3, v0, v0, v0, v0, v0, v3, v0)
     if (never) v1 = hipsolverZgebrd_(v0, v3, v3, v0, v3, v0, v0, v0, v0, v0, v3, v0)
-#endif
     if (never) v1 = hipsolverSSgels_bufferSize_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0)
     if (never) v1 = hipsolverDDgels_bufferSize_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0)
     if (never) v1 = hipsolverCCgels_bufferSize_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0)
     if (never) v1 = hipsolverZZgels_bufferSize_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0)
+#endif
     if (never) v1 = hipsolverSSgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v0, v0)
     if (never) v1 = hipsolverDDgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v0, v0)
     if (never) v1 = hipsolverCCgels_(v0, v3, v3, v3, v0, v3, v0, v3, v0, v3, v0, v8, v0, v0)
@@ -157,11 +157,11 @@ program test_hipsolver
     if (never) v1 = hipsolverDDgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v0, v0)
     if (never) v1 = hipsolverCCgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v0, v0)
     if (never) v1 = hipsolverZZgesv_(v0, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v8, v0, v0)
-#endif
     if (never) v1 = hipsolverSgesvd_bufferSize_(v0, v9, v9, v3, v3, v0)
     if (never) v1 = hipsolverDgesvd_bufferSize_(v0, v9, v9, v3, v3, v0)
     if (never) v1 = hipsolverCgesvd_bufferSize_(v0, v9, v9, v3, v3, v0)
     if (never) v1 = hipsolverZgesvd_bufferSize_(v0, v9, v9, v3, v3, v0)
+#endif
     if (never) v1 = hipsolverSgesvd_(v0, v9, v9, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v3, v0, v0)
     if (never) v1 = hipsolverDgesvd_(v0, v9, v9, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v3, v0, v0)
     if (never) v1 = hipsolverCgesvd_(v0, v9, v9, v3, v3, v0, v3, v0, v0, v3, v0, v3, v0, v3, v0, v0)

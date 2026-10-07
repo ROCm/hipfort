@@ -49,7 +49,7 @@
 45 | [hipDeviceSetSharedMemConfig](interfacehipfort_1_1hipdevicesetsharedmemconfig.html "Interface documentation") | C binding
 46 | [hipSetDeviceFlags](interfacehipfort_1_1hipsetdeviceflags.html "Interface documentation") | C binding
 47 | [hipInitDevice](interfacehipfort_1_1hipinitdevice.html "Interface documentation") | C binding
-48 | [hipChooseDeviceR0600](interfacehipfort_1_1hipchoosedevicer0600.html "Interface documentation") | C binding
+48 | [hipChooseDeviceR0600](interfacehipfort_1_1hipchoosedevicer0600.html "Interface documentation") | C binding, typed
 49 | [hipExtGetLinkTypeAndHopCount](interfacehipfort_1_1hipextgetlinktypeandhopcount.html "Interface documentation") | C binding, typed
 50 | [hipIpcGetMemHandle](interfacehipfort_1_1hipipcgetmemhandle.html "Interface documentation") | C binding
 51 | [hipIpcOpenMemHandle](interfacehipfort_1_1hipipcopenmemhandle.html "Interface documentation") | C binding
@@ -217,8 +217,8 @@
 213 | [hipDrvMemcpy3D](interfacehipfort_1_1hipdrvmemcpy3d.html "Interface documentation") | C binding
 214 | [hipDrvMemcpy3DAsync](interfacehipfort_1_1hipdrvmemcpy3dasync.html "Interface documentation") | C binding
 215 | [hipMemGetAddressRange](interfacehipfort_1_1hipmemgetaddressrange.html "Interface documentation") | C binding, typed
-216 | [hipMemcpyBatchAsync](interfacehipfort_1_1hipmemcpybatchasync.html "Interface documentation") | C binding
-217 | [hipMemcpy3DBatchAsync](interfacehipfort_1_1hipmemcpy3dbatchasync.html "Interface documentation") | C binding
+216 | [hipMemcpyBatchAsync](interfacehipfort_1_1hipmemcpybatchasync.html "Interface documentation") | C binding, typed
+217 | [hipMemcpy3DBatchAsync](interfacehipfort_1_1hipmemcpy3dbatchasync.html "Interface documentation") | C binding, typed
 218 | [hipMemcpy3DPeer](interfacehipfort_1_1hipmemcpy3dpeer.html "Interface documentation") | C binding
 219 | [hipMemcpy3DPeerAsync](interfacehipfort_1_1hipmemcpy3dpeerasync.html "Interface documentation") | C binding
 220 | [hipMipmappedArrayGetMemoryRequirements](interfacehipfort_1_1hipmipmappedarraygetmemoryrequirements.html "Interface documentation") | C binding
@@ -228,7 +228,7 @@
 224 | [hipMemcpyPeer](interfacehipfort_1_1hipmemcpypeer.html "Interface documentation") | C binding
 225 | [hipMemcpyPeerAsync](interfacehipfort_1_1hipmemcpypeerasync.html "Interface documentation") | C binding
 226 | [hipDeviceGetDevResource](interfacehipfort_1_1hipdevicegetdevresource.html "Interface documentation") | C binding
-227 | [hipDevSmResourceSplitByCount](interfacehipfort_1_1hipdevsmresourcesplitbycount.html "Interface documentation") | C binding
+227 | [hipDevSmResourceSplitByCount](interfacehipfort_1_1hipdevsmresourcesplitbycount.html "Interface documentation") | C binding, typed
 228 | [hipDevSmResourceSplit](interfacehipfort_1_1hipdevsmresourcesplit.html "Interface documentation") | C binding
 229 | [hipDevResourceGenerateDesc](interfacehipfort_1_1hipdevresourcegeneratedesc.html "Interface documentation") | C binding
 230 | [hipGreenCtxCreate](interfacehipfort_1_1hipgreenctxcreate.html "Interface documentation") | C binding
@@ -538,4 +538,4 @@
 534 | [hipLaunchHostFunc_spt](interfacehipfort_1_1hiplaunchhostfunc__spt.html "Interface documentation") | C binding
 535 | [hipGetDriverEntryPoint_spt](interfacehipfort_1_1hipgetdriverentrypoint__spt.html "Interface documentation") | C binding
 536 | [hipGetProcAddress_spt](interfacehipfort_1_1hipgetprocaddress__spt.html "Interface documentation") | C binding
-537 | [hipChooseDevice](interfacehipfort_1_1hipchoosedevice.html "Interface documentation") | C binding
+537 | [hipChooseDevice](interfacehipfort_1_1hipchoosedevice.html "Interface documentation") | C binding, typed

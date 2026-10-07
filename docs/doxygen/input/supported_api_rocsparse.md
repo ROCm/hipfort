@@ -198,7 +198,7 @@
 194 | [rocsparse_zcsc2dense](interfacehipfort__rocsparse_1_1rocsparse__zcsc2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 195 | [rocsparse_cscsort_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__cscsort__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 196 | [rocsparse_cscsort](interfacehipfort__rocsparse_1_1rocsparse__cscsort.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-197 | [rocsparse_csr2bsr_nnz](interfacehipfort__rocsparse_1_1rocsparse__csr2bsr__nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+197 | [rocsparse_csr2bsr_nnz](interfacehipfort__rocsparse_1_1rocsparse__csr2bsr__nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 198 | [rocsparse_scsr2bsr](interfacehipfort__rocsparse_1_1rocsparse__scsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 199 | [rocsparse_dcsr2bsr](interfacehipfort__rocsparse_1_1rocsparse__dcsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 200 | [rocsparse_ccsr2bsr](interfacehipfort__rocsparse_1_1rocsparse__ccsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
@@ -217,7 +217,7 @@
 213 | [rocsparse_dcsr2dense](interfacehipfort__rocsparse_1_1rocsparse__dcsr2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 214 | [rocsparse_ccsr2dense](interfacehipfort__rocsparse_1_1rocsparse__ccsr2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 215 | [rocsparse_zcsr2dense](interfacehipfort__rocsparse_1_1rocsparse__zcsr2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-216 | [rocsparse_csr2ell_width](interfacehipfort__rocsparse_1_1rocsparse__csr2ell__width.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+216 | [rocsparse_csr2ell_width](interfacehipfort__rocsparse_1_1rocsparse__csr2ell__width.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 217 | [rocsparse_scsr2ell](interfacehipfort__rocsparse_1_1rocsparse__scsr2ell.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 218 | [rocsparse_dcsr2ell](interfacehipfort__rocsparse_1_1rocsparse__dcsr2ell.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 219 | [rocsparse_ccsr2ell](interfacehipfort__rocsparse_1_1rocsparse__ccsr2ell.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
@@ -226,7 +226,7 @@
 222 | [rocsparse_dcsr2gebsr_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__dcsr2gebsr__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 223 | [rocsparse_ccsr2gebsr_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__ccsr2gebsr__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 224 | [rocsparse_zcsr2gebsr_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__zcsr2gebsr__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-225 | [rocsparse_csr2gebsr_nnz](interfacehipfort__rocsparse_1_1rocsparse__csr2gebsr__nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+225 | [rocsparse_csr2gebsr_nnz](interfacehipfort__rocsparse_1_1rocsparse__csr2gebsr__nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 226 | [rocsparse_scsr2gebsr](interfacehipfort__rocsparse_1_1rocsparse__scsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 227 | [rocsparse_dcsr2gebsr](interfacehipfort__rocsparse_1_1rocsparse__dcsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 228 | [rocsparse_ccsr2gebsr](interfacehipfort__rocsparse_1_1rocsparse__ccsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
@@ -249,7 +249,7 @@
 245 | [rocsparse_ddense2csr](interfacehipfort__rocsparse_1_1rocsparse__ddense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 246 | [rocsparse_cdense2csr](interfacehipfort__rocsparse_1_1rocsparse__cdense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 247 | [rocsparse_zdense2csr](interfacehipfort__rocsparse_1_1rocsparse__zdense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-248 | [rocsparse_ell2csr_nnz](interfacehipfort__rocsparse_1_1rocsparse__ell2csr__nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+248 | [rocsparse_ell2csr_nnz](interfacehipfort__rocsparse_1_1rocsparse__ell2csr__nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 249 | [rocsparse_sell2csr](interfacehipfort__rocsparse_1_1rocsparse__sell2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 250 | [rocsparse_dell2csr](interfacehipfort__rocsparse_1_1rocsparse__dell2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 251 | [rocsparse_cell2csr](interfacehipfort__rocsparse_1_1rocsparse__cell2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
@@ -258,10 +258,10 @@
 254 | [rocsparse_dgebsr2csr](interfacehipfort__rocsparse_1_1rocsparse__dgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 255 | [rocsparse_cgebsr2csr](interfacehipfort__rocsparse_1_1rocsparse__cgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 256 | [rocsparse_zgebsr2csr](interfacehipfort__rocsparse_1_1rocsparse__zgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-257 | [rocsparse_sgebsr2gebsc_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__sgebsr2gebsc__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-258 | [rocsparse_dgebsr2gebsc_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__dgebsr2gebsc__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-259 | [rocsparse_cgebsr2gebsc_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__cgebsr2gebsc__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-260 | [rocsparse_zgebsr2gebsc_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__zgebsr2gebsc__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+257 | [rocsparse_sgebsr2gebsc_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__sgebsr2gebsc__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+258 | [rocsparse_dgebsr2gebsc_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__dgebsr2gebsc__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+259 | [rocsparse_cgebsr2gebsc_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__cgebsr2gebsc__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+260 | [rocsparse_zgebsr2gebsc_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__zgebsr2gebsc__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 261 | [rocsparse_sgebsr2gebsc](interfacehipfort__rocsparse_1_1rocsparse__sgebsr2gebsc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 262 | [rocsparse_dgebsr2gebsc](interfacehipfort__rocsparse_1_1rocsparse__dgebsr2gebsc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 263 | [rocsparse_cgebsr2gebsc](interfacehipfort__rocsparse_1_1rocsparse__cgebsr2gebsc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
@@ -287,10 +287,10 @@
 283 | [rocsparse_dnnz](interfacehipfort__rocsparse_1_1rocsparse__dnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 284 | [rocsparse_cnnz](interfacehipfort__rocsparse_1_1rocsparse__cnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 285 | [rocsparse_znnz](interfacehipfort__rocsparse_1_1rocsparse__znnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-286 | [rocsparse_snnz_compress](interfacehipfort__rocsparse_1_1rocsparse__snnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-287 | [rocsparse_dnnz_compress](interfacehipfort__rocsparse_1_1rocsparse__dnnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-288 | [rocsparse_cnnz_compress](interfacehipfort__rocsparse_1_1rocsparse__cnnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-289 | [rocsparse_znnz_compress](interfacehipfort__rocsparse_1_1rocsparse__znnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+286 | [rocsparse_snnz_compress](interfacehipfort__rocsparse_1_1rocsparse__snnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+287 | [rocsparse_dnnz_compress](interfacehipfort__rocsparse_1_1rocsparse__dnnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+288 | [rocsparse_cnnz_compress](interfacehipfort__rocsparse_1_1rocsparse__cnnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+289 | [rocsparse_znnz_compress](interfacehipfort__rocsparse_1_1rocsparse__znnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 290 | [rocsparse_sprune_csr2csr_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__sprune__csr2csr__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 291 | [rocsparse_dprune_csr2csr_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__dprune__csr2csr__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 292 | [rocsparse_sprune_csr2csr_nnz](interfacehipfort__rocsparse_1_1rocsparse__sprune__csr2csr__nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
@@ -315,7 +315,7 @@
 311 | [rocsparse_dprune_dense2csr_nnz_by_percentage](interfacehipfort__rocsparse_1_1rocsparse__dprune__dense2csr__nnz__by__percentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 312 | [rocsparse_sprune_dense2csr_by_percentage](interfacehipfort__rocsparse_1_1rocsparse__sprune__dense2csr__by__percentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 313 | [rocsparse_dprune_dense2csr_by_percentage](interfacehipfort__rocsparse_1_1rocsparse__dprune__dense2csr__by__percentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-314 | [rocsparse_bsrgeam_nnzb](interfacehipfort__rocsparse_1_1rocsparse__bsrgeam__nnzb.html "Interface documentation") | C binding
+314 | [rocsparse_bsrgeam_nnzb](interfacehipfort__rocsparse_1_1rocsparse__bsrgeam__nnzb.html "Interface documentation") | C binding, typed
 315 | [rocsparse_sbsrgeam](interfacehipfort__rocsparse_1_1rocsparse__sbsrgeam.html "Interface documentation") | C binding, typed
 316 | [rocsparse_dbsrgeam](interfacehipfort__rocsparse_1_1rocsparse__dbsrgeam.html "Interface documentation") | C binding, typed
 317 | [rocsparse_cbsrgeam](interfacehipfort__rocsparse_1_1rocsparse__cbsrgeam.html "Interface documentation") | C binding, typed
@@ -324,12 +324,12 @@
 320 | [rocsparse_dbsrgemm_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__dbsrgemm__buffer__size.html "Interface documentation") | C binding, typed
 321 | [rocsparse_cbsrgemm_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__cbsrgemm__buffer__size.html "Interface documentation") | C binding, typed
 322 | [rocsparse_zbsrgemm_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__zbsrgemm__buffer__size.html "Interface documentation") | C binding, typed
-323 | [rocsparse_bsrgemm_nnzb](interfacehipfort__rocsparse_1_1rocsparse__bsrgemm__nnzb.html "Interface documentation") | C binding
+323 | [rocsparse_bsrgemm_nnzb](interfacehipfort__rocsparse_1_1rocsparse__bsrgemm__nnzb.html "Interface documentation") | C binding, typed
 324 | [rocsparse_sbsrgemm](interfacehipfort__rocsparse_1_1rocsparse__sbsrgemm.html "Interface documentation") | C binding, typed
 325 | [rocsparse_dbsrgemm](interfacehipfort__rocsparse_1_1rocsparse__dbsrgemm.html "Interface documentation") | C binding, typed
 326 | [rocsparse_cbsrgemm](interfacehipfort__rocsparse_1_1rocsparse__cbsrgemm.html "Interface documentation") | C binding, typed
 327 | [rocsparse_zbsrgemm](interfacehipfort__rocsparse_1_1rocsparse__zbsrgemm.html "Interface documentation") | C binding, typed
-328 | [rocsparse_csrgeam_nnz](interfacehipfort__rocsparse_1_1rocsparse__csrgeam__nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+328 | [rocsparse_csrgeam_nnz](interfacehipfort__rocsparse_1_1rocsparse__csrgeam__nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 329 | [rocsparse_scsrgeam](interfacehipfort__rocsparse_1_1rocsparse__scsrgeam.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 330 | [rocsparse_dcsrgeam](interfacehipfort__rocsparse_1_1rocsparse__dcsrgeam.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 331 | [rocsparse_ccsrgeam](interfacehipfort__rocsparse_1_1rocsparse__ccsrgeam.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
@@ -338,7 +338,7 @@
 334 | [rocsparse_dcsrgemm_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__dcsrgemm__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 335 | [rocsparse_ccsrgemm_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__ccsrgemm__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 336 | [rocsparse_zcsrgemm_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__zcsrgemm__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
-337 | [rocsparse_csrgemm_nnz](interfacehipfort__rocsparse_1_1rocsparse__csrgemm__nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+337 | [rocsparse_csrgemm_nnz](interfacehipfort__rocsparse_1_1rocsparse__csrgemm__nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 338 | [rocsparse_scsrgemm](interfacehipfort__rocsparse_1_1rocsparse__scsrgemm.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 339 | [rocsparse_dcsrgemm](interfacehipfort__rocsparse_1_1rocsparse__dcsrgemm.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 340 | [rocsparse_ccsrgemm](interfacehipfort__rocsparse_1_1rocsparse__ccsrgemm.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
@@ -391,12 +391,12 @@
 387 | [rocsparse_daxpyi](interfacehipfort__rocsparse_1_1rocsparse__daxpyi.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 388 | [rocsparse_caxpyi](interfacehipfort__rocsparse_1_1rocsparse__caxpyi.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 389 | [rocsparse_zaxpyi](interfacehipfort__rocsparse_1_1rocsparse__zaxpyi.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-390 | [rocsparse_cdotci](interfacehipfort__rocsparse_1_1rocsparse__cdotci.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-391 | [rocsparse_zdotci](interfacehipfort__rocsparse_1_1rocsparse__zdotci.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-392 | [rocsparse_sdoti](interfacehipfort__rocsparse_1_1rocsparse__sdoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-393 | [rocsparse_ddoti](interfacehipfort__rocsparse_1_1rocsparse__ddoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-394 | [rocsparse_cdoti](interfacehipfort__rocsparse_1_1rocsparse__cdoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-395 | [rocsparse_zdoti](interfacehipfort__rocsparse_1_1rocsparse__zdoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+390 | [rocsparse_cdotci](interfacehipfort__rocsparse_1_1rocsparse__cdotci.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+391 | [rocsparse_zdotci](interfacehipfort__rocsparse_1_1rocsparse__zdotci.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+392 | [rocsparse_sdoti](interfacehipfort__rocsparse_1_1rocsparse__sdoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+393 | [rocsparse_ddoti](interfacehipfort__rocsparse_1_1rocsparse__ddoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+394 | [rocsparse_cdoti](interfacehipfort__rocsparse_1_1rocsparse__cdoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+395 | [rocsparse_zdoti](interfacehipfort__rocsparse_1_1rocsparse__zdoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 396 | [rocsparse_sgthr](interfacehipfort__rocsparse_1_1rocsparse__sgthr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 397 | [rocsparse_dgthr](interfacehipfort__rocsparse_1_1rocsparse__dgthr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 398 | [rocsparse_cgthr](interfacehipfort__rocsparse_1_1rocsparse__cgthr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
@@ -443,7 +443,7 @@
 439 | [rocsparse_dcoomv](interfacehipfort__rocsparse_1_1rocsparse__dcoomv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 440 | [rocsparse_ccoomv](interfacehipfort__rocsparse_1_1rocsparse__ccoomv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 441 | [rocsparse_zcoomv](interfacehipfort__rocsparse_1_1rocsparse__zcoomv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-442 | [rocsparse_csritsv_zero_pivot](interfacehipfort__rocsparse_1_1rocsparse__csritsv__zero__pivot.html "Interface documentation") | C binding
+442 | [rocsparse_csritsv_zero_pivot](interfacehipfort__rocsparse_1_1rocsparse__csritsv__zero__pivot.html "Interface documentation") | C binding, typed
 443 | [rocsparse_scsritsv_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__scsritsv__buffer__size.html "Interface documentation") | C binding, typed
 444 | [rocsparse_dcsritsv_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__dcsritsv__buffer__size.html "Interface documentation") | C binding, typed
 445 | [rocsparse_ccsritsv_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__ccsritsv__buffer__size.html "Interface documentation") | C binding, typed
@@ -583,7 +583,7 @@
 579 | [rocsparse_cbsrilu0](interfacehipfort__rocsparse_1_1rocsparse__cbsrilu0.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 580 | [rocsparse_zbsrilu0](interfacehipfort__rocsparse_1_1rocsparse__zbsrilu0.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 581 | [rocsparse_csric0_zero_pivot](interfacehipfort__rocsparse_1_1rocsparse__csric0__zero__pivot.html "Interface documentation") | C binding, typed
-582 | [rocsparse_csric0_singular_pivot](interfacehipfort__rocsparse_1_1rocsparse__csric0__singular__pivot.html "Interface documentation") | C binding
+582 | [rocsparse_csric0_singular_pivot](interfacehipfort__rocsparse_1_1rocsparse__csric0__singular__pivot.html "Interface documentation") | C binding, typed
 583 | [rocsparse_csric0_set_tolerance](interfacehipfort__rocsparse_1_1rocsparse__csric0__set__tolerance.html "Interface documentation") | C binding
 584 | [rocsparse_csric0_get_tolerance](interfacehipfort__rocsparse_1_1rocsparse__csric0__get__tolerance.html "Interface documentation") | C binding, typed
 585 | [rocsparse_scsric0_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__scsric0__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
@@ -602,7 +602,7 @@
 598 | [rocsparse_csrilu0_zero_pivot](interfacehipfort__rocsparse_1_1rocsparse__csrilu0__zero__pivot.html "Interface documentation") | C binding, typed
 599 | [rocsparse_csrilu0_set_tolerance](interfacehipfort__rocsparse_1_1rocsparse__csrilu0__set__tolerance.html "Interface documentation") | C binding
 600 | [rocsparse_csrilu0_get_tolerance](interfacehipfort__rocsparse_1_1rocsparse__csrilu0__get__tolerance.html "Interface documentation") | C binding, typed
-601 | [rocsparse_csrilu0_singular_pivot](interfacehipfort__rocsparse_1_1rocsparse__csrilu0__singular__pivot.html "Interface documentation") | C binding
+601 | [rocsparse_csrilu0_singular_pivot](interfacehipfort__rocsparse_1_1rocsparse__csrilu0__singular__pivot.html "Interface documentation") | C binding, typed
 602 | [rocsparse_scsrilu0_numeric_boost](interfacehipfort__rocsparse_1_1rocsparse__scsrilu0__numeric__boost.html "Interface documentation") | C binding, typed
 603 | [rocsparse_dcsrilu0_numeric_boost](interfacehipfort__rocsparse_1_1rocsparse__dcsrilu0__numeric__boost.html "Interface documentation") | C binding, typed
 604 | [rocsparse_ccsrilu0_numeric_boost](interfacehipfort__rocsparse_1_1rocsparse__ccsrilu0__numeric__boost.html "Interface documentation") | C binding, typed
