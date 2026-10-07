@@ -83,8 +83,9 @@ program hipsolver_cgetrf
   call hipsolverCheck(hipsolverCgetrf_bufferSize(handle, M, N, dA, lda, lwork))
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 8, 1_c_size_t)))
 
-  ! Compute the LU factorization (A/pivots as native arrays, devInfo by reference)
-  call hipsolverCheck(hipsolverCgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, c_loc(dInfo)))
+  ! Compute the LU factorization. A and the pivots are native arrays, and devInfo is
+  ! the device-resident integer itself, like them.
+  call hipsolverCheck(hipsolverCgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, dInfo))
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))
