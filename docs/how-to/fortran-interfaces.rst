@@ -1,6 +1,6 @@
 .. meta::
   :description: The Fortran interface variants hipFORT generates and how to call them
-  :keywords: hipFORT, ROCm, Fortran, interfaces, hipMalloc, assumed-rank, f2003, f2008, f2018
+  :keywords: hipFORT, ROCm, Fortran, interfaces, hipMalloc, assumed-rank, f2003, f2008, f2018, c_loc, pointer mode
 
 **************************
 Fortran interface variants
@@ -32,6 +32,10 @@ The three variants
 By convention, application and test sources that rely on the array overloads use
 the ``.f08`` file extension (see the ``test/f2008`` examples), while Fortran 2003
 sources use ``.f03``.
+
+Independently of these variants, a routine that takes a scalar through a pointer
+accepts either the Fortran variable or its address; see
+`Scalar arguments passed by pointer`_.
 
 Allocating and copying device memory
 ====================================
@@ -82,6 +86,87 @@ device.
 Unlike the array interfaces of the math libraries, these ``hipMalloc`` and
 ``hipMemcpy`` overloads are unconditional, so they are available in every
 hipFORT build.
+
+Scalar arguments passed by pointer
+==================================
+
+Many C routines take a scalar through a pointer: ``alpha`` and ``beta`` in the
+BLAS and sparse libraries, or an output such as a buffer size, a version or a
+count. hipFORT offers two forms of each such routine under the same name, and the
+compiler picks one from the type of the argument:
+
+* **The Fortran variable.** hipFORT passes its address to the library. This is
+  the usual call, for a scalar held on the host:
+
+  .. code-block:: fortran
+
+     real(c_double)    :: alpha, beta
+     integer(c_size_t) :: buffer_size
+     !
+     ierr = rocblas_dgemm(handle, transa, transb, m, n, k, alpha, &
+                          dA, lda, dB, ldb, beta, dC, ldc)
+     ierr = rocsparse_dgemvi_buffer_size(handle, trans, m, n, nnz, buffer_size)
+
+* **Its address, a** ``type(c_ptr)``. This is the C API's own spelling. Use it
+  to pass a device address, to pass ``c_null_ptr`` for an output the C API lets
+  you skip, or to keep calling with ``c_loc``:
+
+  .. code-block:: fortran
+
+     real(c_double), target :: alpha, beta
+     !
+     ierr = rocblas_dgemm(handle, transa, transb, m, n, k, c_loc(alpha), &
+                          dA, lda, dB, ldb, c_loc(beta), dC, ldc)
+
+An output the C API lets you skip is an ``optional`` argument of the first form.
+
+Device pointer mode
+-------------------
+
+``alpha``, ``beta`` and a few other scalars are read from host or device memory
+depending on the pointer mode of the handle (``rocblas_set_pointer_mode``,
+``hipblasSetPointerMode``, ``rocsparse_set_pointer_mode``,
+``hipsparseSetPointerMode``). The Fortran-variable form passes the address of the
+variable, which is normally host memory, so it is for the host pointer mode, the
+default. In device pointer mode, pass the device address as a ``type(c_ptr)``:
+
+.. code-block:: fortran
+
+   type(c_ptr) :: d_alpha, d_beta   ! device memory, from hipMalloc
+   !
+   ierr = rocblas_set_pointer_mode(handle, rocblas_pointer_mode_device)
+   ierr = rocblas_dgemm(handle, transa, transb, m, n, k, d_alpha, &
+                        dA, lda, dB, ldb, d_beta, dC, ldc)
+
+A few rocSPARSE and hipSPARSE routines take both kinds of scalar, for example
+``rocsparse_dcsrgemm_buffer_size``, which reads ``alpha`` and ``beta`` per the
+pointer mode but always writes ``buffer_size`` on the host. In device pointer
+mode, pass ``alpha`` and ``beta`` as ``type(c_ptr)`` and ``buffer_size`` as the
+variable.
+
+The Fortran 2008 array overloads take ``alpha`` and ``beta`` as Fortran variables
+only. To use them in device pointer mode, the variables themselves must live on
+the device, for example a ``real(c_double), pointer`` allocated with
+``hipMalloc``; otherwise, call the ``type(c_ptr)`` form.
+
+Device-only scalars
+-------------------
+
+hipSOLVER's ``devInfo`` is written by the GPU, so it is always device memory.
+
+* With ``type(c_ptr)`` buffers, pass it as a ``type(c_ptr)``, for example the
+  one ``hipMalloc`` returned. There is no Fortran-variable form here: a host
+  integer would be written by the GPU.
+* With the Fortran 2008 array overloads, pass either an integer that lives on
+  the device, such as an ``integer(c_int), pointer`` allocated with
+  ``hipMalloc``, like the arrays beside it, or a ``type(c_ptr)``.
+
+.. note::
+
+   In the API reference and the supported-API tables, the Fortran-variable form
+   of a routine ``X`` appears as the module procedure ``X_typed``, and the
+   device-pointer-mode form of the routines that mix both kinds of scalar as
+   ``X_devptr``. Call them through the generic name ``X``.
 
 Assumed-rank interfaces (Fortran 2018)
 ======================================
