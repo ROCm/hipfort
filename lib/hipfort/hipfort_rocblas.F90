@@ -400,8 +400,6 @@ module hipfort_rocblas
       type(c_ptr),value :: handle
       type(c_ptr),value :: fitness
     end function
-
-    module procedure rocblas_set_solution_fitness_query_typed
   end interface
 
   !>  \brief specifies the performance metric that solution selection uses
@@ -1867,13 +1865,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_sdot_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_sdot_assumed_rank
+    module procedure &
+      rocblas_sdot_assumed_rank,&
+      rocblas_sdot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sdot_rank_0,&
-      rocblas_sdot_rank_1
+      rocblas_sdot_rank_0_devptr,&
+      rocblas_sdot_rank_1,&
+      rocblas_sdot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1893,13 +1897,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_ddot_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_ddot_assumed_rank
+    module procedure &
+      rocblas_ddot_assumed_rank,&
+      rocblas_ddot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ddot_rank_0,&
-      rocblas_ddot_rank_1
+      rocblas_ddot_rank_0_devptr,&
+      rocblas_ddot_rank_1,&
+      rocblas_ddot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1951,13 +1961,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_cdotu_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_cdotu_assumed_rank
+    module procedure &
+      rocblas_cdotu_assumed_rank,&
+      rocblas_cdotu_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cdotu_rank_0,&
-      rocblas_cdotu_rank_1
+      rocblas_cdotu_rank_0_devptr,&
+      rocblas_cdotu_rank_1,&
+      rocblas_cdotu_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1977,13 +1993,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_zdotu_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_zdotu_assumed_rank
+    module procedure &
+      rocblas_zdotu_assumed_rank,&
+      rocblas_zdotu_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdotu_rank_0,&
-      rocblas_zdotu_rank_1
+      rocblas_zdotu_rank_0_devptr,&
+      rocblas_zdotu_rank_1,&
+      rocblas_zdotu_rank_1_devptr
 #endif
 #endif
   end interface
@@ -2003,13 +2025,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_cdotc_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_cdotc_assumed_rank
+    module procedure &
+      rocblas_cdotc_assumed_rank,&
+      rocblas_cdotc_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cdotc_rank_0,&
-      rocblas_cdotc_rank_1
+      rocblas_cdotc_rank_0_devptr,&
+      rocblas_cdotc_rank_1,&
+      rocblas_cdotc_rank_1_devptr
 #endif
 #endif
   end interface
@@ -2029,13 +2057,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_zdotc_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_zdotc_assumed_rank
+    module procedure &
+      rocblas_zdotc_assumed_rank,&
+      rocblas_zdotc_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdotc_rank_0,&
-      rocblas_zdotc_rank_1
+      rocblas_zdotc_rank_0_devptr,&
+      rocblas_zdotc_rank_1,&
+      rocblas_zdotc_rank_1_devptr
 #endif
 #endif
   end interface
@@ -2054,6 +2088,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_sdot_64_typed
   end interface
 
   interface rocblas_ddot_64
@@ -2070,6 +2106,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_ddot_64_typed
   end interface
 
   interface rocblas_hdot_64
@@ -2118,6 +2156,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_cdotu_64_typed
   end interface
 
   interface rocblas_zdotu_64
@@ -2134,6 +2174,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_zdotu_64_typed
   end interface
 
   interface rocblas_cdotc_64
@@ -2150,6 +2192,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_cdotc_64_typed
   end interface
 
   interface rocblas_zdotc_64
@@ -2166,6 +2210,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_zdotc_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -4236,6 +4282,8 @@ module hipfort_rocblas
       integer(c_int),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_sasum_typed
   end interface
 
   interface rocblas_dasum
@@ -4250,6 +4298,8 @@ module hipfort_rocblas
       integer(c_int),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_dasum_typed
   end interface
 
   interface rocblas_scasum
@@ -4265,13 +4315,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_scasum_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_scasum_assumed_rank
+    module procedure &
+      rocblas_scasum_assumed_rank,&
+      rocblas_scasum_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_scasum_rank_0,&
-      rocblas_scasum_rank_1
+      rocblas_scasum_rank_0_devptr,&
+      rocblas_scasum_rank_1,&
+      rocblas_scasum_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4289,13 +4345,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_dzasum_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_dzasum_assumed_rank
+    module procedure &
+      rocblas_dzasum_assumed_rank,&
+      rocblas_dzasum_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dzasum_rank_0,&
-      rocblas_dzasum_rank_1
+      rocblas_dzasum_rank_0_devptr,&
+      rocblas_dzasum_rank_1,&
+      rocblas_dzasum_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4312,6 +4374,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_sasum_64_typed
   end interface
 
   interface rocblas_dasum_64
@@ -4326,6 +4390,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_dasum_64_typed
   end interface
 
   interface rocblas_scasum_64
@@ -4340,6 +4406,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_scasum_64_typed
   end interface
 
   interface rocblas_dzasum_64
@@ -4354,6 +4422,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_dzasum_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -4738,6 +4808,8 @@ module hipfort_rocblas
       integer(c_int),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_snrm2_typed
   end interface
 
   interface rocblas_dnrm2
@@ -4752,6 +4824,8 @@ module hipfort_rocblas
       integer(c_int),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_dnrm2_typed
   end interface
 
   interface rocblas_scnrm2
@@ -4767,13 +4841,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_scnrm2_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_scnrm2_assumed_rank
+    module procedure &
+      rocblas_scnrm2_assumed_rank,&
+      rocblas_scnrm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_scnrm2_rank_0,&
-      rocblas_scnrm2_rank_1
+      rocblas_scnrm2_rank_0_devptr,&
+      rocblas_scnrm2_rank_1,&
+      rocblas_scnrm2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4791,13 +4871,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_dznrm2_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_dznrm2_assumed_rank
+    module procedure &
+      rocblas_dznrm2_assumed_rank,&
+      rocblas_dznrm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dznrm2_rank_0,&
-      rocblas_dznrm2_rank_1
+      rocblas_dznrm2_rank_0_devptr,&
+      rocblas_dznrm2_rank_1,&
+      rocblas_dznrm2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4814,6 +4900,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_snrm2_64_typed
   end interface
 
   interface rocblas_dnrm2_64
@@ -4828,6 +4916,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_dnrm2_64_typed
   end interface
 
   interface rocblas_scnrm2_64
@@ -4842,6 +4932,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_scnrm2_64_typed
   end interface
 
   interface rocblas_dznrm2_64
@@ -4856,6 +4948,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_dznrm2_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -5238,6 +5332,8 @@ module hipfort_rocblas
       integer(c_int),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_isamax_typed
   end interface
 
   interface rocblas_idamax
@@ -5252,6 +5348,8 @@ module hipfort_rocblas
       integer(c_int),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_idamax_typed
   end interface
 
   interface rocblas_icamax
@@ -5267,13 +5365,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_icamax_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_icamax_assumed_rank
+    module procedure &
+      rocblas_icamax_assumed_rank,&
+      rocblas_icamax_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_icamax_rank_0,&
-      rocblas_icamax_rank_1
+      rocblas_icamax_rank_0_devptr,&
+      rocblas_icamax_rank_1,&
+      rocblas_icamax_rank_1_devptr
 #endif
 #endif
   end interface
@@ -5291,13 +5395,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_izamax_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_izamax_assumed_rank
+    module procedure &
+      rocblas_izamax_assumed_rank,&
+      rocblas_izamax_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_izamax_rank_0,&
-      rocblas_izamax_rank_1
+      rocblas_izamax_rank_0_devptr,&
+      rocblas_izamax_rank_1,&
+      rocblas_izamax_rank_1_devptr
 #endif
 #endif
   end interface
@@ -5314,6 +5424,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_isamax_64_typed
   end interface
 
   interface rocblas_idamax_64
@@ -5328,6 +5440,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_idamax_64_typed
   end interface
 
   interface rocblas_icamax_64
@@ -5342,6 +5456,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_icamax_64_typed
   end interface
 
   interface rocblas_izamax_64
@@ -5356,6 +5472,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_izamax_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -5728,6 +5846,8 @@ module hipfort_rocblas
       integer(c_int),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_isamin_typed
   end interface
 
   interface rocblas_idamin
@@ -5742,6 +5862,8 @@ module hipfort_rocblas
       integer(c_int),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_idamin_typed
   end interface
 
   interface rocblas_icamin
@@ -5757,13 +5879,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_icamin_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_icamin_assumed_rank
+    module procedure &
+      rocblas_icamin_assumed_rank,&
+      rocblas_icamin_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_icamin_rank_0,&
-      rocblas_icamin_rank_1
+      rocblas_icamin_rank_0_devptr,&
+      rocblas_icamin_rank_1,&
+      rocblas_icamin_rank_1_devptr
 #endif
 #endif
   end interface
@@ -5781,13 +5909,19 @@ module hipfort_rocblas
       type(c_ptr),value :: myResult
     end function
 
+    module procedure rocblas_izamin_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_izamin_assumed_rank
+    module procedure &
+      rocblas_izamin_assumed_rank,&
+      rocblas_izamin_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_izamin_rank_0,&
-      rocblas_izamin_rank_1
+      rocblas_izamin_rank_0_devptr,&
+      rocblas_izamin_rank_1,&
+      rocblas_izamin_rank_1_devptr
 #endif
 #endif
   end interface
@@ -5804,6 +5938,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_isamin_64_typed
   end interface
 
   interface rocblas_idamin_64
@@ -5818,6 +5954,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_idamin_64_typed
   end interface
 
   interface rocblas_icamin_64
@@ -5832,6 +5970,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_icamin_64_typed
   end interface
 
   interface rocblas_izamin_64
@@ -5846,6 +5986,8 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: myResult
     end function
+
+    module procedure rocblas_izamin_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -6231,12 +6373,16 @@ module hipfort_rocblas
     module procedure rocblas_srot_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_srot_assumed_rank
+    module procedure &
+      rocblas_srot_assumed_rank,&
+      rocblas_srot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_srot_rank_0,&
-      rocblas_srot_rank_1
+      rocblas_srot_rank_0_devptr,&
+      rocblas_srot_rank_1,&
+      rocblas_srot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -6260,12 +6406,16 @@ module hipfort_rocblas
     module procedure rocblas_drot_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_drot_assumed_rank
+    module procedure &
+      rocblas_drot_assumed_rank,&
+      rocblas_drot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_drot_rank_0,&
-      rocblas_drot_rank_1
+      rocblas_drot_rank_0_devptr,&
+      rocblas_drot_rank_1,&
+      rocblas_drot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -6289,12 +6439,16 @@ module hipfort_rocblas
     module procedure rocblas_crot_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_crot_assumed_rank
+    module procedure &
+      rocblas_crot_assumed_rank,&
+      rocblas_crot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_crot_rank_0,&
-      rocblas_crot_rank_1
+      rocblas_crot_rank_0_devptr,&
+      rocblas_crot_rank_1,&
+      rocblas_crot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -6318,12 +6472,16 @@ module hipfort_rocblas
     module procedure rocblas_csrot_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_csrot_assumed_rank
+    module procedure &
+      rocblas_csrot_assumed_rank,&
+      rocblas_csrot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csrot_rank_0,&
-      rocblas_csrot_rank_1
+      rocblas_csrot_rank_0_devptr,&
+      rocblas_csrot_rank_1,&
+      rocblas_csrot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -6347,12 +6505,16 @@ module hipfort_rocblas
     module procedure rocblas_zrot_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_zrot_assumed_rank
+    module procedure &
+      rocblas_zrot_assumed_rank,&
+      rocblas_zrot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zrot_rank_0,&
-      rocblas_zrot_rank_1
+      rocblas_zrot_rank_0_devptr,&
+      rocblas_zrot_rank_1,&
+      rocblas_zrot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -6376,12 +6538,16 @@ module hipfort_rocblas
     module procedure rocblas_zdrot_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_zdrot_assumed_rank
+    module procedure &
+      rocblas_zdrot_assumed_rank,&
+      rocblas_zdrot_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdrot_rank_0,&
-      rocblas_zdrot_rank_1
+      rocblas_zdrot_rank_0_devptr,&
+      rocblas_zdrot_rank_1,&
+      rocblas_zdrot_rank_1_devptr
 #endif
 #endif
   end interface
@@ -6830,12 +6996,16 @@ module hipfort_rocblas
     module procedure rocblas_srot_strided_batched_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_srot_strided_batched_assumed_rank
+    module procedure &
+      rocblas_srot_strided_batched_assumed_rank,&
+      rocblas_srot_strided_batched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_srot_strided_batched_rank_0,&
-      rocblas_srot_strided_batched_rank_1
+      rocblas_srot_strided_batched_rank_0_devptr,&
+      rocblas_srot_strided_batched_rank_1,&
+      rocblas_srot_strided_batched_rank_1_devptr
 #endif
 #endif
   end interface
@@ -6864,12 +7034,16 @@ module hipfort_rocblas
     module procedure rocblas_drot_strided_batched_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_drot_strided_batched_assumed_rank
+    module procedure &
+      rocblas_drot_strided_batched_assumed_rank,&
+      rocblas_drot_strided_batched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_drot_strided_batched_rank_0,&
-      rocblas_drot_strided_batched_rank_1
+      rocblas_drot_strided_batched_rank_0_devptr,&
+      rocblas_drot_strided_batched_rank_1,&
+      rocblas_drot_strided_batched_rank_1_devptr
 #endif
 #endif
   end interface
@@ -6898,12 +7072,16 @@ module hipfort_rocblas
     module procedure rocblas_crot_strided_batched_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_crot_strided_batched_assumed_rank
+    module procedure &
+      rocblas_crot_strided_batched_assumed_rank,&
+      rocblas_crot_strided_batched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_crot_strided_batched_rank_0,&
-      rocblas_crot_strided_batched_rank_1
+      rocblas_crot_strided_batched_rank_0_devptr,&
+      rocblas_crot_strided_batched_rank_1,&
+      rocblas_crot_strided_batched_rank_1_devptr
 #endif
 #endif
   end interface
@@ -6932,12 +7110,16 @@ module hipfort_rocblas
     module procedure rocblas_csrot_strided_batched_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_csrot_strided_batched_assumed_rank
+    module procedure &
+      rocblas_csrot_strided_batched_assumed_rank,&
+      rocblas_csrot_strided_batched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csrot_strided_batched_rank_0,&
-      rocblas_csrot_strided_batched_rank_1
+      rocblas_csrot_strided_batched_rank_0_devptr,&
+      rocblas_csrot_strided_batched_rank_1,&
+      rocblas_csrot_strided_batched_rank_1_devptr
 #endif
 #endif
   end interface
@@ -6966,12 +7148,16 @@ module hipfort_rocblas
     module procedure rocblas_zrot_strided_batched_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_zrot_strided_batched_assumed_rank
+    module procedure &
+      rocblas_zrot_strided_batched_assumed_rank,&
+      rocblas_zrot_strided_batched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zrot_strided_batched_rank_0,&
-      rocblas_zrot_strided_batched_rank_1
+      rocblas_zrot_strided_batched_rank_0_devptr,&
+      rocblas_zrot_strided_batched_rank_1,&
+      rocblas_zrot_strided_batched_rank_1_devptr
 #endif
 #endif
   end interface
@@ -7000,12 +7186,16 @@ module hipfort_rocblas
     module procedure rocblas_zdrot_strided_batched_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocblas_zdrot_strided_batched_assumed_rank
+    module procedure &
+      rocblas_zdrot_strided_batched_assumed_rank,&
+      rocblas_zdrot_strided_batched_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdrot_strided_batched_rank_0,&
-      rocblas_zdrot_strided_batched_rank_1
+      rocblas_zdrot_strided_batched_rank_0_devptr,&
+      rocblas_zdrot_strided_batched_rank_1,&
+      rocblas_zdrot_strided_batched_rank_1_devptr
 #endif
 #endif
   end interface
@@ -7198,6 +7388,8 @@ module hipfort_rocblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure rocblas_srotg_typed
   end interface
 
   interface rocblas_drotg
@@ -7212,6 +7404,8 @@ module hipfort_rocblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure rocblas_drotg_typed
   end interface
 
   interface rocblas_crotg
@@ -7226,6 +7420,8 @@ module hipfort_rocblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure rocblas_crotg_typed
   end interface
 
   interface rocblas_zrotg
@@ -7240,6 +7436,8 @@ module hipfort_rocblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure rocblas_zrotg_typed
   end interface
 
   interface rocblas_srotg_64
@@ -7254,6 +7452,8 @@ module hipfort_rocblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure rocblas_srotg_64_typed
   end interface
 
   interface rocblas_drotg_64
@@ -7268,6 +7468,8 @@ module hipfort_rocblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure rocblas_drotg_64_typed
   end interface
 
   interface rocblas_crotg_64
@@ -7282,6 +7484,8 @@ module hipfort_rocblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure rocblas_crotg_64_typed
   end interface
 
   interface rocblas_zrotg_64
@@ -7296,6 +7500,8 @@ module hipfort_rocblas
       type(c_ptr),value :: c
       type(c_ptr),value :: s
     end function
+
+    module procedure rocblas_zrotg_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -8059,6 +8265,8 @@ module hipfort_rocblas
       type(c_ptr),value :: y1
       type(c_ptr),value :: param
     end function
+
+    module procedure rocblas_srotmg_typed
   end interface
 
   interface rocblas_drotmg
@@ -8074,6 +8282,8 @@ module hipfort_rocblas
       type(c_ptr),value :: y1
       type(c_ptr),value :: param
     end function
+
+    module procedure rocblas_drotmg_typed
   end interface
 
   interface rocblas_srotmg_64
@@ -8089,6 +8299,8 @@ module hipfort_rocblas
       type(c_ptr),value :: y1
       type(c_ptr),value :: param
     end function
+
+    module procedure rocblas_srotmg_64_typed
   end interface
 
   interface rocblas_drotmg_64
@@ -8104,6 +8316,8 @@ module hipfort_rocblas
       type(c_ptr),value :: y1
       type(c_ptr),value :: param
     end function
+
+    module procedure rocblas_drotmg_64_typed
   end interface
 
   !>     \brief  BLAS Level 1 API
@@ -39608,18 +39822,6 @@ module hipfort_rocblas
       rocblas_get_math_mode_typed = rocblas_get_math_mode_(handle,c_loc(math_mode))
     end function
 
-    function rocblas_set_solution_fitness_query_typed(handle,fitness)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_set_solution_fitness_query_typed
-      type(c_ptr) :: handle
-      real(c_double),target :: fitness
-      !
-      rocblas_set_solution_fitness_query_typed = rocblas_set_solution_fitness_query_(handle, &
-        c_loc(fitness))
-    end function
-
     function rocblas_get_performance_metric_typed(handle,metric)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -40191,6 +40393,198 @@ module hipfort_rocblas
         c_loc(alpha),x,incx,stride_x,batch_count)
     end function
 
+    function rocblas_sdot_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sdot_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      real(c_float),target :: myResult
+      !
+      rocblas_sdot_typed = rocblas_sdot_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function rocblas_ddot_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ddot_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      real(c_double),target :: myResult
+      !
+      rocblas_ddot_typed = rocblas_ddot_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function rocblas_cdotu_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cdotu_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      complex(c_float_complex),target :: myResult
+      !
+      rocblas_cdotu_typed = rocblas_cdotu_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function rocblas_zdotu_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdotu_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      complex(c_double_complex),target :: myResult
+      !
+      rocblas_zdotu_typed = rocblas_zdotu_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function rocblas_cdotc_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cdotc_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      complex(c_float_complex),target :: myResult
+      !
+      rocblas_cdotc_typed = rocblas_cdotc_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function rocblas_zdotc_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdotc_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      type(c_ptr) :: y
+      integer(c_int) :: incy
+      complex(c_double_complex),target :: myResult
+      !
+      rocblas_zdotc_typed = rocblas_zdotc_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function rocblas_sdot_64_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sdot_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      real(c_float),target :: myResult
+      !
+      rocblas_sdot_64_typed = rocblas_sdot_64_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function rocblas_ddot_64_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ddot_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      real(c_double),target :: myResult
+      !
+      rocblas_ddot_64_typed = rocblas_ddot_64_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function rocblas_cdotu_64_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cdotu_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      complex(c_float_complex),target :: myResult
+      !
+      rocblas_cdotu_64_typed = rocblas_cdotu_64_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function rocblas_zdotu_64_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdotu_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      complex(c_double_complex),target :: myResult
+      !
+      rocblas_zdotu_64_typed = rocblas_zdotu_64_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function rocblas_cdotc_64_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cdotc_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      complex(c_float_complex),target :: myResult
+      !
+      rocblas_cdotc_64_typed = rocblas_cdotc_64_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
+    function rocblas_zdotc_64_typed(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdotc_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t) :: incy
+      complex(c_double_complex),target :: myResult
+      !
+      rocblas_zdotc_64_typed = rocblas_zdotc_64_(handle,n,x,incx,y,incy,c_loc(myResult))
+    end function
+
     function rocblas_haxpy_typed(handle,n,alpha,x,incx,y,incy)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -40739,6 +41133,454 @@ module hipfort_rocblas
       !
       rocblas_zaxpy_strided_batched_64_typed = rocblas_zaxpy_strided_batched_64_(handle,n, &
         c_loc(alpha),x,incx,stridex,y,incy,stridey,batch_count)
+    end function
+
+    function rocblas_sasum_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sasum_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_float),target :: myResult
+      !
+      rocblas_sasum_typed = rocblas_sasum_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_dasum_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dasum_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_double),target :: myResult
+      !
+      rocblas_dasum_typed = rocblas_dasum_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_scasum_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_scasum_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_float),target :: myResult
+      !
+      rocblas_scasum_typed = rocblas_scasum_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_dzasum_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dzasum_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_double),target :: myResult
+      !
+      rocblas_dzasum_typed = rocblas_dzasum_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_sasum_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sasum_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: myResult
+      !
+      rocblas_sasum_64_typed = rocblas_sasum_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_dasum_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dasum_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: myResult
+      !
+      rocblas_dasum_64_typed = rocblas_dasum_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_scasum_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_scasum_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: myResult
+      !
+      rocblas_scasum_64_typed = rocblas_scasum_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_dzasum_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dzasum_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: myResult
+      !
+      rocblas_dzasum_64_typed = rocblas_dzasum_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_snrm2_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_snrm2_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_float),target :: myResult
+      !
+      rocblas_snrm2_typed = rocblas_snrm2_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_dnrm2_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dnrm2_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_double),target :: myResult
+      !
+      rocblas_dnrm2_typed = rocblas_dnrm2_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_scnrm2_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_scnrm2_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_float),target :: myResult
+      !
+      rocblas_scnrm2_typed = rocblas_scnrm2_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_dznrm2_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dznrm2_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      real(c_double),target :: myResult
+      !
+      rocblas_dznrm2_typed = rocblas_dznrm2_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_snrm2_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_snrm2_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: myResult
+      !
+      rocblas_snrm2_64_typed = rocblas_snrm2_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_dnrm2_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dnrm2_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: myResult
+      !
+      rocblas_dnrm2_64_typed = rocblas_dnrm2_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_scnrm2_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_scnrm2_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: myResult
+      !
+      rocblas_scnrm2_64_typed = rocblas_scnrm2_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_dznrm2_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dznrm2_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: myResult
+      !
+      rocblas_dznrm2_64_typed = rocblas_dznrm2_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_isamax_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_isamax_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      rocblas_isamax_typed = rocblas_isamax_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_idamax_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_idamax_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      rocblas_idamax_typed = rocblas_idamax_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_icamax_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_icamax_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      rocblas_icamax_typed = rocblas_icamax_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_izamax_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_izamax_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      rocblas_izamax_typed = rocblas_izamax_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_isamax_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_isamax_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      rocblas_isamax_64_typed = rocblas_isamax_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_idamax_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_idamax_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      rocblas_idamax_64_typed = rocblas_idamax_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_icamax_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_icamax_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      rocblas_icamax_64_typed = rocblas_icamax_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_izamax_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_izamax_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      rocblas_izamax_64_typed = rocblas_izamax_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_isamin_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_isamin_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      rocblas_isamin_typed = rocblas_isamin_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_idamin_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_idamin_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      rocblas_idamin_typed = rocblas_idamin_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_icamin_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_icamin_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      rocblas_icamin_typed = rocblas_icamin_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_izamin_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_izamin_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr) :: x
+      integer(c_int) :: incx
+      integer(c_int),target :: myResult
+      !
+      rocblas_izamin_typed = rocblas_izamin_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_isamin_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_isamin_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      rocblas_isamin_64_typed = rocblas_isamin_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_idamin_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_idamin_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      rocblas_idamin_64_typed = rocblas_idamin_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_icamin_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_icamin_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      rocblas_icamin_64_typed = rocblas_icamin_64_(handle,n,x,incx,c_loc(myResult))
+    end function
+
+    function rocblas_izamin_64_typed(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_izamin_64_typed
+      type(c_ptr) :: handle
+      integer(c_int64_t) :: n
+      type(c_ptr) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t),target :: myResult
+      !
+      rocblas_izamin_64_typed = rocblas_izamin_64_(handle,n,x,incx,c_loc(myResult))
     end function
 
     function rocblas_srot_typed(handle,n,x,incx,y,incy,c,s)
@@ -41435,6 +42277,180 @@ module hipfort_rocblas
       !
       rocblas_zdrot_strided_batched_64_typed = rocblas_zdrot_strided_batched_64_(handle,n,x,incx, &
         stride_x,y,incy,stride_y,c_loc(c),c_loc(s),batch_count)
+    end function
+
+    function rocblas_srotg_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_srotg_typed
+      type(c_ptr) :: handle
+      real(c_float),target :: a
+      real(c_float),target :: b
+      real(c_float),target :: c
+      real(c_float),target :: s
+      !
+      rocblas_srotg_typed = rocblas_srotg_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_drotg_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_drotg_typed
+      type(c_ptr) :: handle
+      real(c_double),target :: a
+      real(c_double),target :: b
+      real(c_double),target :: c
+      real(c_double),target :: s
+      !
+      rocblas_drotg_typed = rocblas_drotg_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_crotg_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_crotg_typed
+      type(c_ptr) :: handle
+      complex(c_float_complex),target :: a
+      complex(c_float_complex),target :: b
+      real(c_float),target :: c
+      complex(c_float_complex),target :: s
+      !
+      rocblas_crotg_typed = rocblas_crotg_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_zrotg_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zrotg_typed
+      type(c_ptr) :: handle
+      complex(c_double_complex),target :: a
+      complex(c_double_complex),target :: b
+      real(c_double),target :: c
+      complex(c_double_complex),target :: s
+      !
+      rocblas_zrotg_typed = rocblas_zrotg_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_srotg_64_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_srotg_64_typed
+      type(c_ptr) :: handle
+      real(c_float),target :: a
+      real(c_float),target :: b
+      real(c_float),target :: c
+      real(c_float),target :: s
+      !
+      rocblas_srotg_64_typed = rocblas_srotg_64_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_drotg_64_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_drotg_64_typed
+      type(c_ptr) :: handle
+      real(c_double),target :: a
+      real(c_double),target :: b
+      real(c_double),target :: c
+      real(c_double),target :: s
+      !
+      rocblas_drotg_64_typed = rocblas_drotg_64_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_crotg_64_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_crotg_64_typed
+      type(c_ptr) :: handle
+      complex(c_float_complex),target :: a
+      complex(c_float_complex),target :: b
+      real(c_float),target :: c
+      complex(c_float_complex),target :: s
+      !
+      rocblas_crotg_64_typed = rocblas_crotg_64_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_zrotg_64_typed(handle,a,b,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zrotg_64_typed
+      type(c_ptr) :: handle
+      complex(c_double_complex),target :: a
+      complex(c_double_complex),target :: b
+      real(c_double),target :: c
+      complex(c_double_complex),target :: s
+      !
+      rocblas_zrotg_64_typed = rocblas_zrotg_64_(handle,c_loc(a),c_loc(b),c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_srotmg_typed(handle,d1,d2,x1,y1,param)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_srotmg_typed
+      type(c_ptr) :: handle
+      real(c_float),target :: d1
+      real(c_float),target :: d2
+      real(c_float),target :: x1
+      real(c_float),target :: y1
+      type(c_ptr) :: param
+      !
+      rocblas_srotmg_typed = rocblas_srotmg_(handle,c_loc(d1),c_loc(d2),c_loc(x1),c_loc(y1),param)
+    end function
+
+    function rocblas_drotmg_typed(handle,d1,d2,x1,y1,param)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_drotmg_typed
+      type(c_ptr) :: handle
+      real(c_double),target :: d1
+      real(c_double),target :: d2
+      real(c_double),target :: x1
+      real(c_double),target :: y1
+      type(c_ptr) :: param
+      !
+      rocblas_drotmg_typed = rocblas_drotmg_(handle,c_loc(d1),c_loc(d2),c_loc(x1),c_loc(y1),param)
+    end function
+
+    function rocblas_srotmg_64_typed(handle,d1,d2,x1,y1,param)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_srotmg_64_typed
+      type(c_ptr) :: handle
+      real(c_float),target :: d1
+      real(c_float),target :: d2
+      real(c_float),target :: x1
+      real(c_float),target :: y1
+      type(c_ptr) :: param
+      !
+      rocblas_srotmg_64_typed = rocblas_srotmg_64_(handle,c_loc(d1),c_loc(d2),c_loc(x1),c_loc(y1), &
+        param)
+    end function
+
+    function rocblas_drotmg_64_typed(handle,d1,d2,x1,y1,param)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_drotmg_64_typed
+      type(c_ptr) :: handle
+      real(c_double),target :: d1
+      real(c_double),target :: d2
+      real(c_double),target :: x1
+      real(c_double),target :: y1
+      type(c_ptr) :: param
+      !
+      rocblas_drotmg_64_typed = rocblas_drotmg_64_(handle,c_loc(d1),c_loc(d2),c_loc(x1),c_loc(y1), &
+        param)
     end function
 
     function rocblas_sgbmv_typed(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -56320,9 +57336,27 @@ module hipfort_rocblas
       integer(c_int) :: incx
       real(c_float),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      rocblas_sdot_assumed_rank = rocblas_sdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_sdot_assumed_rank = rocblas_sdot_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(myResult))
+    end function
+
+    function rocblas_sdot_assumed_rank_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sdot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_sdot_assumed_rank_devptr = rocblas_sdot_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        myResult)
     end function
 
 #else
@@ -56337,9 +57371,25 @@ module hipfort_rocblas
       integer(c_int) :: incx
       real(c_float),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      rocblas_sdot_rank_0 = rocblas_sdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_sdot_rank_0 = rocblas_sdot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function rocblas_sdot_rank_0_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sdot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target :: x
+      integer(c_int) :: incx
+      real(c_float),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_sdot_rank_0_devptr = rocblas_sdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
     function rocblas_sdot_rank_1(handle,n,x,incx,y,incy,myResult)
@@ -56353,9 +57403,25 @@ module hipfort_rocblas
       integer(c_int) :: incx
       real(c_float),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      rocblas_sdot_rank_1 = rocblas_sdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_sdot_rank_1 = rocblas_sdot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function rocblas_sdot_rank_1_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sdot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      real(c_float),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_sdot_rank_1_devptr = rocblas_sdot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #endif
@@ -56371,9 +57437,27 @@ module hipfort_rocblas
       integer(c_int) :: incx
       real(c_double),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      rocblas_ddot_assumed_rank = rocblas_ddot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_ddot_assumed_rank = rocblas_ddot_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(myResult))
+    end function
+
+    function rocblas_ddot_assumed_rank_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ddot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_ddot_assumed_rank_devptr = rocblas_ddot_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        myResult)
     end function
 
 #else
@@ -56388,9 +57472,25 @@ module hipfort_rocblas
       integer(c_int) :: incx
       real(c_double),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      rocblas_ddot_rank_0 = rocblas_ddot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_ddot_rank_0 = rocblas_ddot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function rocblas_ddot_rank_0_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ddot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target :: x
+      integer(c_int) :: incx
+      real(c_double),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_ddot_rank_0_devptr = rocblas_ddot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
     function rocblas_ddot_rank_1(handle,n,x,incx,y,incy,myResult)
@@ -56404,9 +57504,25 @@ module hipfort_rocblas
       integer(c_int) :: incx
       real(c_double),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      rocblas_ddot_rank_1 = rocblas_ddot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_ddot_rank_1 = rocblas_ddot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function rocblas_ddot_rank_1_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ddot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      real(c_double),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_ddot_rank_1_devptr = rocblas_ddot_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #endif
@@ -56422,9 +57538,27 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_float_complex),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_float_complex),target :: myResult
       !
-      rocblas_cdotu_assumed_rank = rocblas_cdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_cdotu_assumed_rank = rocblas_cdotu_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(myResult))
+    end function
+
+    function rocblas_cdotu_assumed_rank_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cdotu_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_cdotu_assumed_rank_devptr = rocblas_cdotu_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        myResult)
     end function
 
 #else
@@ -56439,9 +57573,25 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_float_complex),target :: myResult
       !
-      rocblas_cdotu_rank_0 = rocblas_cdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_cdotu_rank_0 = rocblas_cdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function rocblas_cdotu_rank_0_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cdotu_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_cdotu_rank_0_devptr = rocblas_cdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
     function rocblas_cdotu_rank_1(handle,n,x,incx,y,incy,myResult)
@@ -56455,9 +57605,25 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_float_complex),target :: myResult
       !
-      rocblas_cdotu_rank_1 = rocblas_cdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_cdotu_rank_1 = rocblas_cdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function rocblas_cdotu_rank_1_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cdotu_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_cdotu_rank_1_devptr = rocblas_cdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #endif
@@ -56473,9 +57639,27 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_double_complex),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_double_complex),target :: myResult
       !
-      rocblas_zdotu_assumed_rank = rocblas_zdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_zdotu_assumed_rank = rocblas_zdotu_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(myResult))
+    end function
+
+    function rocblas_zdotu_assumed_rank_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdotu_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_zdotu_assumed_rank_devptr = rocblas_zdotu_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        myResult)
     end function
 
 #else
@@ -56490,9 +57674,25 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_double_complex),target :: myResult
       !
-      rocblas_zdotu_rank_0 = rocblas_zdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_zdotu_rank_0 = rocblas_zdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function rocblas_zdotu_rank_0_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdotu_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_zdotu_rank_0_devptr = rocblas_zdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
     function rocblas_zdotu_rank_1(handle,n,x,incx,y,incy,myResult)
@@ -56506,9 +57706,25 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_double_complex),target :: myResult
       !
-      rocblas_zdotu_rank_1 = rocblas_zdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_zdotu_rank_1 = rocblas_zdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function rocblas_zdotu_rank_1_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdotu_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_zdotu_rank_1_devptr = rocblas_zdotu_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #endif
@@ -56524,9 +57740,27 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_float_complex),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_float_complex),target :: myResult
       !
-      rocblas_cdotc_assumed_rank = rocblas_cdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_cdotc_assumed_rank = rocblas_cdotc_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(myResult))
+    end function
+
+    function rocblas_cdotc_assumed_rank_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cdotc_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_cdotc_assumed_rank_devptr = rocblas_cdotc_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        myResult)
     end function
 
 #else
@@ -56541,9 +57775,25 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_float_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_float_complex),target :: myResult
       !
-      rocblas_cdotc_rank_0 = rocblas_cdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_cdotc_rank_0 = rocblas_cdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function rocblas_cdotc_rank_0_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cdotc_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_cdotc_rank_0_devptr = rocblas_cdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
     function rocblas_cdotc_rank_1(handle,n,x,incx,y,incy,myResult)
@@ -56557,9 +57807,25 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_float_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_float_complex),target :: myResult
       !
-      rocblas_cdotc_rank_1 = rocblas_cdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_cdotc_rank_1 = rocblas_cdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function rocblas_cdotc_rank_1_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cdotc_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_cdotc_rank_1_devptr = rocblas_cdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #endif
@@ -56575,9 +57841,27 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_double_complex),target,contiguous,dimension(..) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_double_complex),target :: myResult
       !
-      rocblas_zdotc_assumed_rank = rocblas_zdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_zdotc_assumed_rank = rocblas_zdotc_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        c_loc(myResult))
+    end function
+
+    function rocblas_zdotc_assumed_rank_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdotc_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_zdotc_assumed_rank_devptr = rocblas_zdotc_(handle,n,c_loc(x),incx,c_loc(y),incy, &
+        myResult)
     end function
 
 #else
@@ -56592,9 +57876,25 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_double_complex),target :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_double_complex),target :: myResult
       !
-      rocblas_zdotc_rank_0 = rocblas_zdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_zdotc_rank_0 = rocblas_zdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function rocblas_zdotc_rank_0_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdotc_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_zdotc_rank_0_devptr = rocblas_zdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
     function rocblas_zdotc_rank_1(handle,n,x,incx,y,incy,myResult)
@@ -56608,9 +57908,25 @@ module hipfort_rocblas
       integer(c_int) :: incx
       complex(c_double_complex),target,dimension(:) :: y
       integer(c_int) :: incy
-      type(c_ptr) :: myResult
+      complex(c_double_complex),target :: myResult
       !
-      rocblas_zdotc_rank_1 = rocblas_zdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
+      rocblas_zdotc_rank_1 = rocblas_zdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(myResult))
+    end function
+
+    function rocblas_zdotc_rank_1_devptr(handle,n,x,incx,y,incy,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdotc_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: myResult
+      !
+      rocblas_zdotc_rank_1_devptr = rocblas_zdotc_(handle,n,c_loc(x),incx,c_loc(y),incy,myResult)
     end function
 
 #endif
@@ -57836,9 +59152,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      rocblas_scasum_assumed_rank = rocblas_scasum_(handle,n,c_loc(x),incx,myResult)
+      rocblas_scasum_assumed_rank = rocblas_scasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_scasum_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_scasum_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_scasum_assumed_rank_devptr = rocblas_scasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -57851,9 +59181,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      rocblas_scasum_rank_0 = rocblas_scasum_(handle,n,c_loc(x),incx,myResult)
+      rocblas_scasum_rank_0 = rocblas_scasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_scasum_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_scasum_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_scasum_rank_0_devptr = rocblas_scasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function rocblas_scasum_rank_1(handle,n,x,incx,myResult)
@@ -57865,9 +59209,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      rocblas_scasum_rank_1 = rocblas_scasum_(handle,n,c_loc(x),incx,myResult)
+      rocblas_scasum_rank_1 = rocblas_scasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_scasum_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_scasum_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_scasum_rank_1_devptr = rocblas_scasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -57881,9 +59239,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      rocblas_dzasum_assumed_rank = rocblas_dzasum_(handle,n,c_loc(x),incx,myResult)
+      rocblas_dzasum_assumed_rank = rocblas_dzasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_dzasum_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dzasum_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_dzasum_assumed_rank_devptr = rocblas_dzasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -57896,9 +59268,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      rocblas_dzasum_rank_0 = rocblas_dzasum_(handle,n,c_loc(x),incx,myResult)
+      rocblas_dzasum_rank_0 = rocblas_dzasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_dzasum_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dzasum_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_dzasum_rank_0_devptr = rocblas_dzasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function rocblas_dzasum_rank_1(handle,n,x,incx,myResult)
@@ -57910,9 +59296,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      rocblas_dzasum_rank_1 = rocblas_dzasum_(handle,n,c_loc(x),incx,myResult)
+      rocblas_dzasum_rank_1 = rocblas_dzasum_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_dzasum_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dzasum_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_dzasum_rank_1_devptr = rocblas_dzasum_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58144,9 +59544,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      rocblas_scnrm2_assumed_rank = rocblas_scnrm2_(handle,n,c_loc(x),incx,myResult)
+      rocblas_scnrm2_assumed_rank = rocblas_scnrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_scnrm2_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_scnrm2_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_scnrm2_assumed_rank_devptr = rocblas_scnrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58159,9 +59573,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      rocblas_scnrm2_rank_0 = rocblas_scnrm2_(handle,n,c_loc(x),incx,myResult)
+      rocblas_scnrm2_rank_0 = rocblas_scnrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_scnrm2_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_scnrm2_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_scnrm2_rank_0_devptr = rocblas_scnrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function rocblas_scnrm2_rank_1(handle,n,x,incx,myResult)
@@ -58173,9 +59601,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_float),target :: myResult
       !
-      rocblas_scnrm2_rank_1 = rocblas_scnrm2_(handle,n,c_loc(x),incx,myResult)
+      rocblas_scnrm2_rank_1 = rocblas_scnrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_scnrm2_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_scnrm2_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_scnrm2_rank_1_devptr = rocblas_scnrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58189,9 +59631,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      rocblas_dznrm2_assumed_rank = rocblas_dznrm2_(handle,n,c_loc(x),incx,myResult)
+      rocblas_dznrm2_assumed_rank = rocblas_dznrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_dznrm2_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dznrm2_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_dznrm2_assumed_rank_devptr = rocblas_dznrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58204,9 +59660,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      rocblas_dznrm2_rank_0 = rocblas_dznrm2_(handle,n,c_loc(x),incx,myResult)
+      rocblas_dznrm2_rank_0 = rocblas_dznrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_dznrm2_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dznrm2_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_dznrm2_rank_0_devptr = rocblas_dznrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function rocblas_dznrm2_rank_1(handle,n,x,incx,myResult)
@@ -58218,9 +59688,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      real(c_double),target :: myResult
       !
-      rocblas_dznrm2_rank_1 = rocblas_dznrm2_(handle,n,c_loc(x),incx,myResult)
+      rocblas_dznrm2_rank_1 = rocblas_dznrm2_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_dznrm2_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dznrm2_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_dznrm2_rank_1_devptr = rocblas_dznrm2_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58452,9 +59936,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      rocblas_icamax_assumed_rank = rocblas_icamax_(handle,n,c_loc(x),incx,myResult)
+      rocblas_icamax_assumed_rank = rocblas_icamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_icamax_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_icamax_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_icamax_assumed_rank_devptr = rocblas_icamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58467,9 +59965,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      rocblas_icamax_rank_0 = rocblas_icamax_(handle,n,c_loc(x),incx,myResult)
+      rocblas_icamax_rank_0 = rocblas_icamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_icamax_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_icamax_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_icamax_rank_0_devptr = rocblas_icamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function rocblas_icamax_rank_1(handle,n,x,incx,myResult)
@@ -58481,9 +59993,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      rocblas_icamax_rank_1 = rocblas_icamax_(handle,n,c_loc(x),incx,myResult)
+      rocblas_icamax_rank_1 = rocblas_icamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_icamax_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_icamax_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_icamax_rank_1_devptr = rocblas_icamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58497,9 +60023,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      rocblas_izamax_assumed_rank = rocblas_izamax_(handle,n,c_loc(x),incx,myResult)
+      rocblas_izamax_assumed_rank = rocblas_izamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_izamax_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_izamax_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_izamax_assumed_rank_devptr = rocblas_izamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58512,9 +60052,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      rocblas_izamax_rank_0 = rocblas_izamax_(handle,n,c_loc(x),incx,myResult)
+      rocblas_izamax_rank_0 = rocblas_izamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_izamax_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_izamax_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_izamax_rank_0_devptr = rocblas_izamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function rocblas_izamax_rank_1(handle,n,x,incx,myResult)
@@ -58526,9 +60080,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      rocblas_izamax_rank_1 = rocblas_izamax_(handle,n,c_loc(x),incx,myResult)
+      rocblas_izamax_rank_1 = rocblas_izamax_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_izamax_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_izamax_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_izamax_rank_1_devptr = rocblas_izamax_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58762,9 +60330,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      rocblas_icamin_assumed_rank = rocblas_icamin_(handle,n,c_loc(x),incx,myResult)
+      rocblas_icamin_assumed_rank = rocblas_icamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_icamin_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_icamin_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_icamin_assumed_rank_devptr = rocblas_icamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58777,9 +60359,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      rocblas_icamin_rank_0 = rocblas_icamin_(handle,n,c_loc(x),incx,myResult)
+      rocblas_icamin_rank_0 = rocblas_icamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_icamin_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_icamin_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_icamin_rank_0_devptr = rocblas_icamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function rocblas_icamin_rank_1(handle,n,x,incx,myResult)
@@ -58791,9 +60387,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      rocblas_icamin_rank_1 = rocblas_icamin_(handle,n,c_loc(x),incx,myResult)
+      rocblas_icamin_rank_1 = rocblas_icamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_icamin_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_icamin_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_icamin_rank_1_devptr = rocblas_icamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -58807,9 +60417,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      rocblas_izamin_assumed_rank = rocblas_izamin_(handle,n,c_loc(x),incx,myResult)
+      rocblas_izamin_assumed_rank = rocblas_izamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_izamin_assumed_rank_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_izamin_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_izamin_assumed_rank_devptr = rocblas_izamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #else
@@ -58822,9 +60446,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      rocblas_izamin_rank_0 = rocblas_izamin_(handle,n,c_loc(x),incx,myResult)
+      rocblas_izamin_rank_0 = rocblas_izamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_izamin_rank_0_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_izamin_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_izamin_rank_0_devptr = rocblas_izamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
     function rocblas_izamin_rank_1(handle,n,x,incx,myResult)
@@ -58836,9 +60474,23 @@ module hipfort_rocblas
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
-      type(c_ptr) :: myResult
+      integer(c_int),target :: myResult
       !
-      rocblas_izamin_rank_1 = rocblas_izamin_(handle,n,c_loc(x),incx,myResult)
+      rocblas_izamin_rank_1 = rocblas_izamin_(handle,n,c_loc(x),incx,c_loc(myResult))
+    end function
+
+    function rocblas_izamin_rank_1_devptr(handle,n,x,incx,myResult)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_izamin_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: myResult
+      !
+      rocblas_izamin_rank_1_devptr = rocblas_izamin_(handle,n,c_loc(x),incx,myResult)
     end function
 
 #endif
@@ -59081,6 +60733,23 @@ module hipfort_rocblas
         c_loc(s))
     end function
 
+    function rocblas_srot_assumed_rank_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_srot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_srot_assumed_rank_devptr = rocblas_srot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+    end function
+
 #else
     function rocblas_srot_rank_0(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
@@ -59099,6 +60768,23 @@ module hipfort_rocblas
       rocblas_srot_rank_0 = rocblas_srot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
     end function
 
+    function rocblas_srot_rank_0_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_srot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target :: x
+      integer(c_int) :: incx
+      real(c_float),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_srot_rank_0_devptr = rocblas_srot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+    end function
+
     function rocblas_srot_rank_1(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -59114,6 +60800,23 @@ module hipfort_rocblas
       real(c_float),target :: s
       !
       rocblas_srot_rank_1 = rocblas_srot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_srot_rank_1_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_srot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      real(c_float),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_srot_rank_1_devptr = rocblas_srot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #endif
@@ -59136,6 +60839,23 @@ module hipfort_rocblas
         c_loc(s))
     end function
 
+    function rocblas_drot_assumed_rank_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_drot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_drot_assumed_rank_devptr = rocblas_drot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+    end function
+
 #else
     function rocblas_drot_rank_0(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
@@ -59154,6 +60874,23 @@ module hipfort_rocblas
       rocblas_drot_rank_0 = rocblas_drot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
     end function
 
+    function rocblas_drot_rank_0_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_drot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target :: x
+      integer(c_int) :: incx
+      real(c_double),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_drot_rank_0_devptr = rocblas_drot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+    end function
+
     function rocblas_drot_rank_1(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -59169,6 +60906,23 @@ module hipfort_rocblas
       real(c_double),target :: s
       !
       rocblas_drot_rank_1 = rocblas_drot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_drot_rank_1_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_drot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      real(c_double),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_drot_rank_1_devptr = rocblas_drot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #endif
@@ -59191,6 +60945,23 @@ module hipfort_rocblas
         c_loc(s))
     end function
 
+    function rocblas_crot_assumed_rank_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_crot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_crot_assumed_rank_devptr = rocblas_crot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+    end function
+
 #else
     function rocblas_crot_rank_0(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
@@ -59209,6 +60980,23 @@ module hipfort_rocblas
       rocblas_crot_rank_0 = rocblas_crot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
     end function
 
+    function rocblas_crot_rank_0_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_crot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_crot_rank_0_devptr = rocblas_crot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+    end function
+
     function rocblas_crot_rank_1(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -59224,6 +61012,23 @@ module hipfort_rocblas
       complex(c_float_complex),target :: s
       !
       rocblas_crot_rank_1 = rocblas_crot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_crot_rank_1_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_crot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_crot_rank_1_devptr = rocblas_crot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #endif
@@ -59246,6 +61051,23 @@ module hipfort_rocblas
         c_loc(s))
     end function
 
+    function rocblas_csrot_assumed_rank_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csrot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_csrot_assumed_rank_devptr = rocblas_csrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+    end function
+
 #else
     function rocblas_csrot_rank_0(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
@@ -59264,6 +61086,23 @@ module hipfort_rocblas
       rocblas_csrot_rank_0 = rocblas_csrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
     end function
 
+    function rocblas_csrot_rank_0_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csrot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_csrot_rank_0_devptr = rocblas_csrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+    end function
+
     function rocblas_csrot_rank_1(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -59279,6 +61118,23 @@ module hipfort_rocblas
       real(c_float),target :: s
       !
       rocblas_csrot_rank_1 = rocblas_csrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_csrot_rank_1_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csrot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_csrot_rank_1_devptr = rocblas_csrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #endif
@@ -59301,6 +61157,23 @@ module hipfort_rocblas
         c_loc(s))
     end function
 
+    function rocblas_zrot_assumed_rank_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zrot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_zrot_assumed_rank_devptr = rocblas_zrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+    end function
+
 #else
     function rocblas_zrot_rank_0(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
@@ -59319,6 +61192,23 @@ module hipfort_rocblas
       rocblas_zrot_rank_0 = rocblas_zrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
     end function
 
+    function rocblas_zrot_rank_0_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zrot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_zrot_rank_0_devptr = rocblas_zrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+    end function
+
     function rocblas_zrot_rank_1(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -59334,6 +61224,23 @@ module hipfort_rocblas
       complex(c_double_complex),target :: s
       !
       rocblas_zrot_rank_1 = rocblas_zrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_zrot_rank_1_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zrot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_zrot_rank_1_devptr = rocblas_zrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #endif
@@ -59356,6 +61263,23 @@ module hipfort_rocblas
         c_loc(s))
     end function
 
+    function rocblas_zdrot_assumed_rank_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdrot_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_zdrot_assumed_rank_devptr = rocblas_zdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+    end function
+
 #else
     function rocblas_zdrot_rank_0(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
@@ -59374,6 +61298,23 @@ module hipfort_rocblas
       rocblas_zdrot_rank_0 = rocblas_zdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
     end function
 
+    function rocblas_zdrot_rank_0_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdrot_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_zdrot_rank_0_devptr = rocblas_zdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
+    end function
+
     function rocblas_zdrot_rank_1(handle,n,x,incx,y,incy,c,s)
       use iso_c_binding
       use hipfort_rocblas_enums
@@ -59389,6 +61330,23 @@ module hipfort_rocblas
       real(c_double),target :: s
       !
       rocblas_zdrot_rank_1 = rocblas_zdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c_loc(c),c_loc(s))
+    end function
+
+    function rocblas_zdrot_rank_1_devptr(handle,n,x,incx,y,incy,c,s)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdrot_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      !
+      rocblas_zdrot_rank_1_devptr = rocblas_zdrot_(handle,n,c_loc(x),incx,c_loc(y),incy,c,s)
     end function
 
 #endif
@@ -59415,6 +61373,28 @@ module hipfort_rocblas
         incx,stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
     end function
 
+    function rocblas_srot_strided_batched_assumed_rank_devptr(handle,n,x,incx,stride_x,y,incy, &
+        stride_y,c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      real(c_float),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_srot_strided_batched_assumed_rank_devptr = rocblas_srot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+    end function
+
 #else
     function rocblas_srot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
         batch_count)
@@ -59438,6 +61418,28 @@ module hipfort_rocblas
         stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
     end function
 
+    function rocblas_srot_strided_batched_rank_0_devptr(handle,n,x,incx,stride_x,y,incy,stride_y, &
+        c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      real(c_float),target :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_srot_strided_batched_rank_0_devptr = rocblas_srot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+    end function
+
     function rocblas_srot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
         batch_count)
       use iso_c_binding
@@ -59458,6 +61460,28 @@ module hipfort_rocblas
       !
       rocblas_srot_strided_batched_rank_1 = rocblas_srot_strided_batched_(handle,n,c_loc(x),incx, &
         stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
+    end function
+
+    function rocblas_srot_strided_batched_rank_1_devptr(handle,n,x,incx,stride_x,y,incy,stride_y, &
+        c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      real(c_float),target,dimension(:) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_srot_strided_batched_rank_1_devptr = rocblas_srot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
 #endif
@@ -59484,6 +61508,28 @@ module hipfort_rocblas
         incx,stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
     end function
 
+    function rocblas_drot_strided_batched_assumed_rank_devptr(handle,n,x,incx,stride_x,y,incy, &
+        stride_y,c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      real(c_double),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_drot_strided_batched_assumed_rank_devptr = rocblas_drot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+    end function
+
 #else
     function rocblas_drot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
         batch_count)
@@ -59507,6 +61553,28 @@ module hipfort_rocblas
         stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
     end function
 
+    function rocblas_drot_strided_batched_rank_0_devptr(handle,n,x,incx,stride_x,y,incy,stride_y, &
+        c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      real(c_double),target :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_drot_strided_batched_rank_0_devptr = rocblas_drot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+    end function
+
     function rocblas_drot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
         batch_count)
       use iso_c_binding
@@ -59527,6 +61595,28 @@ module hipfort_rocblas
       !
       rocblas_drot_strided_batched_rank_1 = rocblas_drot_strided_batched_(handle,n,c_loc(x),incx, &
         stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
+    end function
+
+    function rocblas_drot_strided_batched_rank_1_devptr(handle,n,x,incx,stride_x,y,incy,stride_y, &
+        c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      real(c_double),target,dimension(:) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_drot_strided_batched_rank_1_devptr = rocblas_drot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
 #endif
@@ -59553,6 +61643,28 @@ module hipfort_rocblas
         incx,stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
     end function
 
+    function rocblas_crot_strided_batched_assumed_rank_devptr(handle,n,x,incx,stride_x,y,incy, &
+        stride_y,c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_crot_strided_batched_assumed_rank_devptr = rocblas_crot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+    end function
+
 #else
     function rocblas_crot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
         batch_count)
@@ -59576,6 +61688,28 @@ module hipfort_rocblas
         stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
     end function
 
+    function rocblas_crot_strided_batched_rank_0_devptr(handle,n,x,incx,stride_x,y,incy,stride_y, &
+        c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_float_complex),target :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_crot_strided_batched_rank_0_devptr = rocblas_crot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+    end function
+
     function rocblas_crot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
         batch_count)
       use iso_c_binding
@@ -59596,6 +61730,28 @@ module hipfort_rocblas
       !
       rocblas_crot_strided_batched_rank_1 = rocblas_crot_strided_batched_(handle,n,c_loc(x),incx, &
         stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
+    end function
+
+    function rocblas_crot_strided_batched_rank_1_devptr(handle,n,x,incx,stride_x,y,incy,stride_y, &
+        c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_crot_strided_batched_rank_1_devptr = rocblas_crot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
 #endif
@@ -59622,6 +61778,28 @@ module hipfort_rocblas
         c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
     end function
 
+    function rocblas_csrot_strided_batched_assumed_rank_devptr(handle,n,x,incx,stride_x,y,incy, &
+        stride_y,c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_csrot_strided_batched_assumed_rank_devptr = rocblas_csrot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+    end function
+
 #else
     function rocblas_csrot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
         batch_count)
@@ -59645,6 +61823,28 @@ module hipfort_rocblas
         incx,stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
     end function
 
+    function rocblas_csrot_strided_batched_rank_0_devptr(handle,n,x,incx,stride_x,y,incy,stride_y, &
+        c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_float_complex),target :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_csrot_strided_batched_rank_0_devptr = rocblas_csrot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+    end function
+
     function rocblas_csrot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
         batch_count)
       use iso_c_binding
@@ -59665,6 +61865,28 @@ module hipfort_rocblas
       !
       rocblas_csrot_strided_batched_rank_1 = rocblas_csrot_strided_batched_(handle,n,c_loc(x), &
         incx,stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
+    end function
+
+    function rocblas_csrot_strided_batched_rank_1_devptr(handle,n,x,incx,stride_x,y,incy,stride_y, &
+        c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_csrot_strided_batched_rank_1_devptr = rocblas_csrot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
 #endif
@@ -59691,6 +61913,28 @@ module hipfort_rocblas
         incx,stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
     end function
 
+    function rocblas_zrot_strided_batched_assumed_rank_devptr(handle,n,x,incx,stride_x,y,incy, &
+        stride_y,c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_zrot_strided_batched_assumed_rank_devptr = rocblas_zrot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+    end function
+
 #else
     function rocblas_zrot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
         batch_count)
@@ -59714,6 +61958,28 @@ module hipfort_rocblas
         stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
     end function
 
+    function rocblas_zrot_strided_batched_rank_0_devptr(handle,n,x,incx,stride_x,y,incy,stride_y, &
+        c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_zrot_strided_batched_rank_0_devptr = rocblas_zrot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+    end function
+
     function rocblas_zrot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
         batch_count)
       use iso_c_binding
@@ -59734,6 +62000,28 @@ module hipfort_rocblas
       !
       rocblas_zrot_strided_batched_rank_1 = rocblas_zrot_strided_batched_(handle,n,c_loc(x),incx, &
         stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
+    end function
+
+    function rocblas_zrot_strided_batched_rank_1_devptr(handle,n,x,incx,stride_x,y,incy,stride_y, &
+        c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_zrot_strided_batched_rank_1_devptr = rocblas_zrot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
 #endif
@@ -59760,6 +62048,28 @@ module hipfort_rocblas
         c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
     end function
 
+    function rocblas_zdrot_strided_batched_assumed_rank_devptr(handle,n,x,incx,stride_x,y,incy, &
+        stride_y,c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_zdrot_strided_batched_assumed_rank_devptr = rocblas_zdrot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+    end function
+
 #else
     function rocblas_zdrot_strided_batched_rank_0(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
         batch_count)
@@ -59783,6 +62093,28 @@ module hipfort_rocblas
         incx,stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
     end function
 
+    function rocblas_zdrot_strided_batched_rank_0_devptr(handle,n,x,incx,stride_x,y,incy,stride_y, &
+        c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_zdrot_strided_batched_rank_0_devptr = rocblas_zdrot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
+    end function
+
     function rocblas_zdrot_strided_batched_rank_1(handle,n,x,incx,stride_x,y,incy,stride_y,c,s, &
         batch_count)
       use iso_c_binding
@@ -59803,6 +62135,28 @@ module hipfort_rocblas
       !
       rocblas_zdrot_strided_batched_rank_1 = rocblas_zdrot_strided_batched_(handle,n,c_loc(x), &
         incx,stride_x,c_loc(y),incy,stride_y,c_loc(c),c_loc(s),batch_count)
+    end function
+
+    function rocblas_zdrot_strided_batched_rank_1_devptr(handle,n,x,incx,stride_x,y,incy,stride_y, &
+        c,s,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int) :: incy
+      integer(c_int64_t) :: stride_y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int) :: batch_count
+      !
+      rocblas_zdrot_strided_batched_rank_1_devptr = rocblas_zdrot_strided_batched_(handle,n, &
+        c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c,s,batch_count)
     end function
 
 #endif

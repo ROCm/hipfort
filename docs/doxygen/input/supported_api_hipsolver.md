@@ -528,7 +528,7 @@
 524 | [hipsolverRfBatchRefactor](interfacehipfort__hipsolver_1_1hipsolverrfbatchrefactor.html "Interface documentation") | C binding
 525 | [hipsolverRfBatchResetValues](interfacehipfort__hipsolver_1_1hipsolverrfbatchresetvalues.html "Interface documentation") | C binding
 526 | [hipsolverRfBatchSolve](interfacehipfort__hipsolver_1_1hipsolverrfbatchsolve.html "Interface documentation") | C binding
-527 | [hipsolverRfBatchZeroPivot](interfacehipfort__hipsolver_1_1hipsolverrfbatchzeropivot.html "Interface documentation") | C binding, typed
+527 | [hipsolverRfBatchZeroPivot](interfacehipfort__hipsolver_1_1hipsolverrfbatchzeropivot.html "Interface documentation") | C binding
 528 | [hipsolverSpCreate](interfacehipfort__hipsolver_1_1hipsolverspcreate.html "Interface documentation") | C binding
 529 | [hipsolverSpDestroy](interfacehipfort__hipsolver_1_1hipsolverspdestroy.html "Interface documentation") | C binding
 530 | [hipsolverSpSetStream](interfacehipfort__hipsolver_1_1hipsolverspsetstream.html "Interface documentation") | C binding

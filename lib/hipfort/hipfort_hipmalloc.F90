@@ -2450,11 +2450,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 4_c_size_t)
@@ -2487,12 +2487,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -2543,12 +2543,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -2599,12 +2599,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -2655,12 +2655,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -2711,12 +2711,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -2767,7 +2767,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -2777,7 +2777,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -2828,7 +2828,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -2839,7 +2839,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -2893,11 +2893,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 8_c_size_t)
@@ -2930,12 +2930,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -2986,12 +2986,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -3042,12 +3042,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -3098,12 +3098,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -3154,12 +3154,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -3210,7 +3210,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -3220,7 +3220,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -3271,7 +3271,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -3282,7 +3282,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -3336,11 +3336,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 4_c_size_t)
@@ -3373,12 +3373,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -3429,12 +3429,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -3485,12 +3485,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -3541,12 +3541,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -3597,12 +3597,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -3653,7 +3653,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -3663,7 +3663,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -3714,7 +3714,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -3725,7 +3725,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -3779,11 +3779,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 8_c_size_t)
@@ -3816,12 +3816,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -3872,12 +3872,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -3928,12 +3928,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -3984,12 +3984,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -4040,12 +4040,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -4096,7 +4096,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -4106,7 +4106,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -4157,7 +4157,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -4168,7 +4168,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -4222,11 +4222,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 8_c_size_t)
@@ -4259,12 +4259,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -4315,12 +4315,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -4371,12 +4371,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -4427,12 +4427,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -4483,12 +4483,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -4539,7 +4539,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -4549,7 +4549,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -4600,7 +4600,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -4611,7 +4611,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -4665,11 +4665,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 16_c_size_t)
@@ -4702,12 +4702,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -4758,12 +4758,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -4814,12 +4814,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -4870,12 +4870,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -4926,12 +4926,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -4982,7 +4982,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -4992,7 +4992,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -5043,7 +5043,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -5054,7 +5054,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -5108,11 +5108,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 1_c_size_t)
@@ -5145,12 +5145,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -5201,12 +5201,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -5257,12 +5257,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -5313,12 +5313,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -5369,12 +5369,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -5425,7 +5425,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -5435,7 +5435,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -5486,7 +5486,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -5497,7 +5497,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -7708,11 +7708,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 4_c_size_t, flags)
@@ -7746,12 +7746,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -7803,12 +7803,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -7860,12 +7860,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -7917,12 +7917,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -7974,12 +7974,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -8031,7 +8031,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -8041,7 +8041,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -8093,7 +8093,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -8104,7 +8104,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -8159,11 +8159,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
@@ -8197,12 +8197,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -8254,12 +8254,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -8311,12 +8311,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -8368,12 +8368,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -8425,12 +8425,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -8482,7 +8482,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -8492,7 +8492,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -8544,7 +8544,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -8555,7 +8555,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -8610,11 +8610,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 4_c_size_t, flags)
@@ -8648,12 +8648,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -8705,12 +8705,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -8762,12 +8762,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -8819,12 +8819,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -8876,12 +8876,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -8933,7 +8933,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -8943,7 +8943,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -8995,7 +8995,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -9006,7 +9006,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -9061,11 +9061,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
@@ -9099,12 +9099,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -9156,12 +9156,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -9213,12 +9213,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -9270,12 +9270,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -9327,12 +9327,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -9384,7 +9384,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -9394,7 +9394,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -9446,7 +9446,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -9457,7 +9457,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -9512,11 +9512,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
@@ -9550,12 +9550,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -9607,12 +9607,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -9664,12 +9664,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -9721,12 +9721,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -9778,12 +9778,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -9835,7 +9835,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -9845,7 +9845,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -9897,7 +9897,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -9908,7 +9908,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -9963,11 +9963,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 16_c_size_t, flags)
@@ -10001,12 +10001,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -10058,12 +10058,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -10115,12 +10115,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -10172,12 +10172,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -10229,12 +10229,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -10286,7 +10286,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -10296,7 +10296,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -10348,7 +10348,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -10359,7 +10359,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -10414,11 +10414,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 1_c_size_t, flags)
@@ -10452,12 +10452,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -10509,12 +10509,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -10566,12 +10566,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -10623,12 +10623,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -10680,12 +10680,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -10737,7 +10737,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -10747,7 +10747,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -10799,7 +10799,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -10810,7 +10810,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -13021,11 +13021,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 4_c_size_t, flags)
@@ -13059,12 +13059,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -13116,12 +13116,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -13173,12 +13173,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -13230,12 +13230,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -13287,12 +13287,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -13344,7 +13344,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -13354,7 +13354,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -13406,7 +13406,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -13417,7 +13417,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -13472,11 +13472,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
@@ -13510,12 +13510,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -13567,12 +13567,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -13624,12 +13624,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -13681,12 +13681,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -13738,12 +13738,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -13795,7 +13795,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -13805,7 +13805,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -13857,7 +13857,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -13868,7 +13868,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -13923,11 +13923,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 4_c_size_t, flags)
@@ -13961,12 +13961,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -14018,12 +14018,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -14075,12 +14075,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -14132,12 +14132,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -14189,12 +14189,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -14246,7 +14246,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -14256,7 +14256,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -14308,7 +14308,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -14319,7 +14319,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -14374,11 +14374,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
@@ -14412,12 +14412,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -14469,12 +14469,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -14526,12 +14526,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -14583,12 +14583,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -14640,12 +14640,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -14697,7 +14697,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -14707,7 +14707,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -14759,7 +14759,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -14770,7 +14770,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -14825,11 +14825,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
@@ -14863,12 +14863,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -14920,12 +14920,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -14977,12 +14977,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -15034,12 +15034,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -15091,12 +15091,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -15148,7 +15148,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -15158,7 +15158,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -15210,7 +15210,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -15221,7 +15221,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -15276,11 +15276,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 16_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 16_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 16_c_size_t, flags)
@@ -15314,12 +15314,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -15371,12 +15371,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -15428,12 +15428,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -15485,12 +15485,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -15542,12 +15542,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -15599,7 +15599,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -15609,7 +15609,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -15661,7 +15661,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -15672,7 +15672,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -15727,11 +15727,11 @@ contains
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 1_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 1_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 1_c_size_t, flags)
@@ -15765,12 +15765,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
@@ -15822,12 +15822,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
@@ -15879,12 +15879,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
@@ -15936,12 +15936,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
@@ -15993,12 +15993,12 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
@@ -16050,7 +16050,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -16060,7 +16060,7 @@ contains
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
@@ -16112,7 +16112,7 @@ contains
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -16123,7 +16123,7 @@ contains
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
       res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&

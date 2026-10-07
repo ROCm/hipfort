@@ -875,15 +875,17 @@ module hipfort_rocsolver
       type(c_ptr),value :: tau
     end function
 
-    module procedure rocsolver_slarfg_typed
-
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsolver_slarfg_assumed_rank
+    module procedure &
+      rocsolver_slarfg_assumed_rank,&
+      rocsolver_slarfg_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_slarfg_rank_0,&
-      rocsolver_slarfg_rank_1
+      rocsolver_slarfg_rank_0_devptr,&
+      rocsolver_slarfg_rank_1,&
+      rocsolver_slarfg_rank_1_devptr
 #endif
 #endif
   end interface
@@ -903,15 +905,17 @@ module hipfort_rocsolver
       type(c_ptr),value :: tau
     end function
 
-    module procedure rocsolver_dlarfg_typed
-
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsolver_dlarfg_assumed_rank
+    module procedure &
+      rocsolver_dlarfg_assumed_rank,&
+      rocsolver_dlarfg_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dlarfg_rank_0,&
-      rocsolver_dlarfg_rank_1
+      rocsolver_dlarfg_rank_0_devptr,&
+      rocsolver_dlarfg_rank_1,&
+      rocsolver_dlarfg_rank_1_devptr
 #endif
 #endif
   end interface
@@ -931,15 +935,17 @@ module hipfort_rocsolver
       type(c_ptr),value :: tau
     end function
 
-    module procedure rocsolver_clarfg_typed
-
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsolver_clarfg_assumed_rank
+    module procedure &
+      rocsolver_clarfg_assumed_rank,&
+      rocsolver_clarfg_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_clarfg_rank_0,&
-      rocsolver_clarfg_rank_1
+      rocsolver_clarfg_rank_0_devptr,&
+      rocsolver_clarfg_rank_1,&
+      rocsolver_clarfg_rank_1_devptr
 #endif
 #endif
   end interface
@@ -959,15 +965,17 @@ module hipfort_rocsolver
       type(c_ptr),value :: tau
     end function
 
-    module procedure rocsolver_zlarfg_typed
-
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsolver_zlarfg_assumed_rank
+    module procedure &
+      rocsolver_zlarfg_assumed_rank,&
+      rocsolver_zlarfg_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zlarfg_rank_0,&
-      rocsolver_zlarfg_rank_1
+      rocsolver_zlarfg_rank_0_devptr,&
+      rocsolver_zlarfg_rank_1,&
+      rocsolver_zlarfg_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1363,16 +1371,19 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
-    module procedure rocsolver_slarf_typed
-
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsolver_slarf_assumed_rank
+    module procedure &
+      rocsolver_slarf_assumed_rank,&
+      rocsolver_slarf_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_slarf_rank_0,&
+      rocsolver_slarf_rank_0_devptr,&
       rocsolver_slarf_rank_1,&
-      rocsolver_slarf_full_rank
+      rocsolver_slarf_rank_1_devptr,&
+      rocsolver_slarf_full_rank,&
+      rocsolver_slarf_full_rank_devptr
 #endif
 #endif
   end interface
@@ -1395,16 +1406,19 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
-    module procedure rocsolver_dlarf_typed
-
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsolver_dlarf_assumed_rank
+    module procedure &
+      rocsolver_dlarf_assumed_rank,&
+      rocsolver_dlarf_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dlarf_rank_0,&
+      rocsolver_dlarf_rank_0_devptr,&
       rocsolver_dlarf_rank_1,&
-      rocsolver_dlarf_full_rank
+      rocsolver_dlarf_rank_1_devptr,&
+      rocsolver_dlarf_full_rank,&
+      rocsolver_dlarf_full_rank_devptr
 #endif
 #endif
   end interface
@@ -1427,16 +1441,19 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
-    module procedure rocsolver_clarf_typed
-
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsolver_clarf_assumed_rank
+    module procedure &
+      rocsolver_clarf_assumed_rank,&
+      rocsolver_clarf_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_clarf_rank_0,&
+      rocsolver_clarf_rank_0_devptr,&
       rocsolver_clarf_rank_1,&
-      rocsolver_clarf_full_rank
+      rocsolver_clarf_rank_1_devptr,&
+      rocsolver_clarf_full_rank,&
+      rocsolver_clarf_full_rank_devptr
 #endif
 #endif
   end interface
@@ -1459,16 +1476,19 @@ module hipfort_rocsolver
       integer(c_int),value :: lda
     end function
 
-    module procedure rocsolver_zlarf_typed
-
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsolver_zlarf_assumed_rank
+    module procedure &
+      rocsolver_zlarf_assumed_rank,&
+      rocsolver_zlarf_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zlarf_rank_0,&
+      rocsolver_zlarf_rank_0_devptr,&
       rocsolver_zlarf_rank_1,&
-      rocsolver_zlarf_full_rank
+      rocsolver_zlarf_rank_1_devptr,&
+      rocsolver_zlarf_full_rank,&
+      rocsolver_zlarf_full_rank_devptr
 #endif
 #endif
   end interface
@@ -45838,70 +45858,6 @@ module hipfort_rocsolver
       rocsolver_get_alg_mode_typed = rocsolver_get_alg_mode_(handle,func,c_loc(mode))
     end function
 
-    function rocsolver_slarfg_typed(handle,n,alpha,x,incx,tau)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_slarfg_typed
-      type(c_ptr) :: handle
-      integer(c_int) :: n
-      real(c_float),target :: alpha
-      type(c_ptr) :: x
-      integer(c_int) :: incx
-      real(c_float),target :: tau
-      !
-      rocsolver_slarfg_typed = rocsolver_slarfg_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
-    end function
-
-    function rocsolver_dlarfg_typed(handle,n,alpha,x,incx,tau)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dlarfg_typed
-      type(c_ptr) :: handle
-      integer(c_int) :: n
-      real(c_double),target :: alpha
-      type(c_ptr) :: x
-      integer(c_int) :: incx
-      real(c_double),target :: tau
-      !
-      rocsolver_dlarfg_typed = rocsolver_dlarfg_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
-    end function
-
-    function rocsolver_clarfg_typed(handle,n,alpha,x,incx,tau)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_clarfg_typed
-      type(c_ptr) :: handle
-      integer(c_int) :: n
-      complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex),target :: tau
-      !
-      rocsolver_clarfg_typed = rocsolver_clarfg_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
-    end function
-
-    function rocsolver_zlarfg_typed(handle,n,alpha,x,incx,tau)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zlarfg_typed
-      type(c_ptr) :: handle
-      integer(c_int) :: n
-      complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
-      integer(c_int) :: incx
-      complex(c_double_complex),target :: tau
-      !
-      rocsolver_zlarfg_typed = rocsolver_zlarfg_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
-    end function
-
     function rocsolver_slarfg_64_typed(handle,n,alpha,x,incx,tau)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -45964,82 +45920,6 @@ module hipfort_rocsolver
       complex(c_double_complex),target :: tau
       !
       rocsolver_zlarfg_64_typed = rocsolver_zlarfg_64_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
-    end function
-
-    function rocsolver_slarf_typed(handle,side,m,n,x,incx,alpha,A,lda)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_slarf_typed
-      type(c_ptr) :: handle
-      integer(kind(rocblas_side_left)) :: side
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: x
-      integer(c_int) :: incx
-      real(c_float),target :: alpha
-      type(c_ptr) :: A
-      integer(c_int) :: lda
-      !
-      rocsolver_slarf_typed = rocsolver_slarf_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
-    end function
-
-    function rocsolver_dlarf_typed(handle,side,m,n,x,incx,alpha,A,lda)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_typed
-      type(c_ptr) :: handle
-      integer(kind(rocblas_side_left)) :: side
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: x
-      integer(c_int) :: incx
-      real(c_double),target :: alpha
-      type(c_ptr) :: A
-      integer(c_int) :: lda
-      !
-      rocsolver_dlarf_typed = rocsolver_dlarf_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
-    end function
-
-    function rocsolver_clarf_typed(handle,side,m,n,x,incx,alpha,A,lda)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_clarf_typed
-      type(c_ptr) :: handle
-      integer(kind(rocblas_side_left)) :: side
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: x
-      integer(c_int) :: incx
-      complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
-      integer(c_int) :: lda
-      !
-      rocsolver_clarf_typed = rocsolver_clarf_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
-    end function
-
-    function rocsolver_zlarf_typed(handle,side,m,n,x,incx,alpha,A,lda)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_typed
-      type(c_ptr) :: handle
-      integer(kind(rocblas_side_left)) :: side
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: x
-      integer(c_int) :: incx
-      complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
-      integer(c_int) :: lda
-      !
-      rocsolver_zlarf_typed = rocsolver_zlarf_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
     end function
 
     function rocsolver_slarf_64_typed(handle,side,m,n,x,incx,alpha,A,lda)
@@ -46545,6 +46425,22 @@ module hipfort_rocsolver
         c_loc(tau))
     end function
 
+    function rocsolver_slarfg_assumed_rank_devptr(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarfg_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: tau
+      !
+      rocsolver_slarfg_assumed_rank_devptr = rocsolver_slarfg_(handle,n,alpha,c_loc(x),incx,tau)
+    end function
+
 #else
     function rocsolver_slarfg_rank_0(handle,n,alpha,x,incx,tau)
       use iso_c_binding
@@ -46562,6 +46458,22 @@ module hipfort_rocsolver
       rocsolver_slarfg_rank_0 = rocsolver_slarfg_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(tau))
     end function
 
+    function rocsolver_slarfg_rank_0_devptr(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarfg_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_float),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: tau
+      !
+      rocsolver_slarfg_rank_0_devptr = rocsolver_slarfg_(handle,n,alpha,c_loc(x),incx,tau)
+    end function
+
     function rocsolver_slarfg_rank_1(handle,n,alpha,x,incx,tau)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -46576,6 +46488,22 @@ module hipfort_rocsolver
       real(c_float),target :: tau
       !
       rocsolver_slarfg_rank_1 = rocsolver_slarfg_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(tau))
+    end function
+
+    function rocsolver_slarfg_rank_1_devptr(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarfg_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: tau
+      !
+      rocsolver_slarfg_rank_1_devptr = rocsolver_slarfg_(handle,n,alpha,c_loc(x),incx,tau)
     end function
 
 #endif
@@ -46597,6 +46525,22 @@ module hipfort_rocsolver
         c_loc(tau))
     end function
 
+    function rocsolver_dlarfg_assumed_rank_devptr(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarfg_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: tau
+      !
+      rocsolver_dlarfg_assumed_rank_devptr = rocsolver_dlarfg_(handle,n,alpha,c_loc(x),incx,tau)
+    end function
+
 #else
     function rocsolver_dlarfg_rank_0(handle,n,alpha,x,incx,tau)
       use iso_c_binding
@@ -46614,6 +46558,22 @@ module hipfort_rocsolver
       rocsolver_dlarfg_rank_0 = rocsolver_dlarfg_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(tau))
     end function
 
+    function rocsolver_dlarfg_rank_0_devptr(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarfg_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_double),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: tau
+      !
+      rocsolver_dlarfg_rank_0_devptr = rocsolver_dlarfg_(handle,n,alpha,c_loc(x),incx,tau)
+    end function
+
     function rocsolver_dlarfg_rank_1(handle,n,alpha,x,incx,tau)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -46628,6 +46588,22 @@ module hipfort_rocsolver
       real(c_double),target :: tau
       !
       rocsolver_dlarfg_rank_1 = rocsolver_dlarfg_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(tau))
+    end function
+
+    function rocsolver_dlarfg_rank_1_devptr(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarfg_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: tau
+      !
+      rocsolver_dlarfg_rank_1_devptr = rocsolver_dlarfg_(handle,n,alpha,c_loc(x),incx,tau)
     end function
 
 #endif
@@ -46649,6 +46625,22 @@ module hipfort_rocsolver
         c_loc(tau))
     end function
 
+    function rocsolver_clarfg_assumed_rank_devptr(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarfg_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: tau
+      !
+      rocsolver_clarfg_assumed_rank_devptr = rocsolver_clarfg_(handle,n,alpha,c_loc(x),incx,tau)
+    end function
+
 #else
     function rocsolver_clarfg_rank_0(handle,n,alpha,x,incx,tau)
       use iso_c_binding
@@ -46666,6 +46658,22 @@ module hipfort_rocsolver
       rocsolver_clarfg_rank_0 = rocsolver_clarfg_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(tau))
     end function
 
+    function rocsolver_clarfg_rank_0_devptr(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarfg_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: tau
+      !
+      rocsolver_clarfg_rank_0_devptr = rocsolver_clarfg_(handle,n,alpha,c_loc(x),incx,tau)
+    end function
+
     function rocsolver_clarfg_rank_1(handle,n,alpha,x,incx,tau)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -46680,6 +46688,22 @@ module hipfort_rocsolver
       complex(c_float_complex),target :: tau
       !
       rocsolver_clarfg_rank_1 = rocsolver_clarfg_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(tau))
+    end function
+
+    function rocsolver_clarfg_rank_1_devptr(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarfg_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: tau
+      !
+      rocsolver_clarfg_rank_1_devptr = rocsolver_clarfg_(handle,n,alpha,c_loc(x),incx,tau)
     end function
 
 #endif
@@ -46701,6 +46725,22 @@ module hipfort_rocsolver
         c_loc(tau))
     end function
 
+    function rocsolver_zlarfg_assumed_rank_devptr(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarfg_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: tau
+      !
+      rocsolver_zlarfg_assumed_rank_devptr = rocsolver_zlarfg_(handle,n,alpha,c_loc(x),incx,tau)
+    end function
+
 #else
     function rocsolver_zlarfg_rank_0(handle,n,alpha,x,incx,tau)
       use iso_c_binding
@@ -46718,6 +46758,22 @@ module hipfort_rocsolver
       rocsolver_zlarfg_rank_0 = rocsolver_zlarfg_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(tau))
     end function
 
+    function rocsolver_zlarfg_rank_0_devptr(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarfg_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: tau
+      !
+      rocsolver_zlarfg_rank_0_devptr = rocsolver_zlarfg_(handle,n,alpha,c_loc(x),incx,tau)
+    end function
+
     function rocsolver_zlarfg_rank_1(handle,n,alpha,x,incx,tau)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -46732,6 +46788,22 @@ module hipfort_rocsolver
       complex(c_double_complex),target :: tau
       !
       rocsolver_zlarfg_rank_1 = rocsolver_zlarfg_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(tau))
+    end function
+
+    function rocsolver_zlarfg_rank_1_devptr(handle,n,alpha,x,incx,tau)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarfg_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: tau
+      !
+      rocsolver_zlarfg_rank_1_devptr = rocsolver_zlarfg_(handle,n,alpha,c_loc(x),incx,tau)
     end function
 
 #endif
@@ -47104,6 +47176,26 @@ module hipfort_rocsolver
         c_loc(A),lda)
     end function
 
+    function rocsolver_slarf_assumed_rank_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarf_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      real(c_float),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_slarf_assumed_rank_devptr = rocsolver_slarf_(handle,side,m,n,c_loc(x),incx,alpha, &
+        c_loc(A),lda)
+    end function
+
 #else
     function rocsolver_slarf_rank_0(handle,side,m,n,x,incx,alpha,A,lda)
       use iso_c_binding
@@ -47122,6 +47214,26 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       !
       rocsolver_slarf_rank_0 = rocsolver_slarf_(handle,side,m,n,c_loc(x),incx,c_loc(alpha), &
+        c_loc(A),lda)
+    end function
+
+    function rocsolver_slarf_rank_0_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarf_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_slarf_rank_0_devptr = rocsolver_slarf_(handle,side,m,n,c_loc(x),incx,alpha, &
         c_loc(A),lda)
     end function
 
@@ -47145,6 +47257,26 @@ module hipfort_rocsolver
         c_loc(A),lda)
     end function
 
+    function rocsolver_slarf_rank_1_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarf_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_slarf_rank_1_devptr = rocsolver_slarf_(handle,side,m,n,c_loc(x),incx,alpha, &
+        c_loc(A),lda)
+    end function
+
     function rocsolver_slarf_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -47162,6 +47294,26 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       !
       rocsolver_slarf_full_rank = rocsolver_slarf_(handle,side,m,n,c_loc(x),incx,c_loc(alpha), &
+        c_loc(A),lda)
+    end function
+
+    function rocsolver_slarf_full_rank_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarf_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_slarf_full_rank_devptr = rocsolver_slarf_(handle,side,m,n,c_loc(x),incx,alpha, &
         c_loc(A),lda)
     end function
 
@@ -47187,6 +47339,26 @@ module hipfort_rocsolver
         c_loc(A),lda)
     end function
 
+    function rocsolver_dlarf_assumed_rank_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      real(c_double),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_dlarf_assumed_rank_devptr = rocsolver_dlarf_(handle,side,m,n,c_loc(x),incx,alpha, &
+        c_loc(A),lda)
+    end function
+
 #else
     function rocsolver_dlarf_rank_0(handle,side,m,n,x,incx,alpha,A,lda)
       use iso_c_binding
@@ -47205,6 +47377,26 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       !
       rocsolver_dlarf_rank_0 = rocsolver_dlarf_(handle,side,m,n,c_loc(x),incx,c_loc(alpha), &
+        c_loc(A),lda)
+    end function
+
+    function rocsolver_dlarf_rank_0_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_dlarf_rank_0_devptr = rocsolver_dlarf_(handle,side,m,n,c_loc(x),incx,alpha, &
         c_loc(A),lda)
     end function
 
@@ -47228,6 +47420,26 @@ module hipfort_rocsolver
         c_loc(A),lda)
     end function
 
+    function rocsolver_dlarf_rank_1_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_dlarf_rank_1_devptr = rocsolver_dlarf_(handle,side,m,n,c_loc(x),incx,alpha, &
+        c_loc(A),lda)
+    end function
+
     function rocsolver_dlarf_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -47245,6 +47457,26 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       !
       rocsolver_dlarf_full_rank = rocsolver_dlarf_(handle,side,m,n,c_loc(x),incx,c_loc(alpha), &
+        c_loc(A),lda)
+    end function
+
+    function rocsolver_dlarf_full_rank_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_dlarf_full_rank_devptr = rocsolver_dlarf_(handle,side,m,n,c_loc(x),incx,alpha, &
         c_loc(A),lda)
     end function
 
@@ -47270,6 +47502,26 @@ module hipfort_rocsolver
         c_loc(A),lda)
     end function
 
+    function rocsolver_clarf_assumed_rank_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarf_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_clarf_assumed_rank_devptr = rocsolver_clarf_(handle,side,m,n,c_loc(x),incx,alpha, &
+        c_loc(A),lda)
+    end function
+
 #else
     function rocsolver_clarf_rank_0(handle,side,m,n,x,incx,alpha,A,lda)
       use iso_c_binding
@@ -47288,6 +47540,26 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       !
       rocsolver_clarf_rank_0 = rocsolver_clarf_(handle,side,m,n,c_loc(x),incx,c_loc(alpha), &
+        c_loc(A),lda)
+    end function
+
+    function rocsolver_clarf_rank_0_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarf_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_clarf_rank_0_devptr = rocsolver_clarf_(handle,side,m,n,c_loc(x),incx,alpha, &
         c_loc(A),lda)
     end function
 
@@ -47311,6 +47583,26 @@ module hipfort_rocsolver
         c_loc(A),lda)
     end function
 
+    function rocsolver_clarf_rank_1_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarf_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_clarf_rank_1_devptr = rocsolver_clarf_(handle,side,m,n,c_loc(x),incx,alpha, &
+        c_loc(A),lda)
+    end function
+
     function rocsolver_clarf_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -47328,6 +47620,26 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       !
       rocsolver_clarf_full_rank = rocsolver_clarf_(handle,side,m,n,c_loc(x),incx,c_loc(alpha), &
+        c_loc(A),lda)
+    end function
+
+    function rocsolver_clarf_full_rank_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarf_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_clarf_full_rank_devptr = rocsolver_clarf_(handle,side,m,n,c_loc(x),incx,alpha, &
         c_loc(A),lda)
     end function
 
@@ -47353,6 +47665,26 @@ module hipfort_rocsolver
         c_loc(A),lda)
     end function
 
+    function rocsolver_zlarf_assumed_rank_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_zlarf_assumed_rank_devptr = rocsolver_zlarf_(handle,side,m,n,c_loc(x),incx,alpha, &
+        c_loc(A),lda)
+    end function
+
 #else
     function rocsolver_zlarf_rank_0(handle,side,m,n,x,incx,alpha,A,lda)
       use iso_c_binding
@@ -47371,6 +47703,26 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       !
       rocsolver_zlarf_rank_0 = rocsolver_zlarf_(handle,side,m,n,c_loc(x),incx,c_loc(alpha), &
+        c_loc(A),lda)
+    end function
+
+    function rocsolver_zlarf_rank_0_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_zlarf_rank_0_devptr = rocsolver_zlarf_(handle,side,m,n,c_loc(x),incx,alpha, &
         c_loc(A),lda)
     end function
 
@@ -47394,6 +47746,26 @@ module hipfort_rocsolver
         c_loc(A),lda)
     end function
 
+    function rocsolver_zlarf_rank_1_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_zlarf_rank_1_devptr = rocsolver_zlarf_(handle,side,m,n,c_loc(x),incx,alpha, &
+        c_loc(A),lda)
+    end function
+
     function rocsolver_zlarf_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -47411,6 +47783,26 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       !
       rocsolver_zlarf_full_rank = rocsolver_zlarf_(handle,side,m,n,c_loc(x),incx,c_loc(alpha), &
+        c_loc(A),lda)
+    end function
+
+    function rocsolver_zlarf_full_rank_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_full_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int) :: m
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: incx
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      !
+      rocsolver_zlarf_full_rank_devptr = rocsolver_zlarf_(handle,side,m,n,c_loc(x),incx,alpha, &
         c_loc(A),lda)
     end function
 
