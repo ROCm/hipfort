@@ -4,9 +4,10 @@
 
 ### Added
 
-* Regenerated all Fortran bindings against the ROCm 10.1 API. Sixty routines are
-  new, none are dropped: rocSOLVER (+28), hipBLAS (+9), rocBLAS (+6), hipSPARSE
-  (+5), rocFFT (+4), rocSPARSE (+3), hipSOLVER (+2), HIP (+2) and hipFFT (+1).
+* Regenerated all Fortran bindings against the ROCm 10.1 API. 59 routines are
+  new: rocSOLVER (+28), hipBLAS (+8), rocBLAS (+6), hipSPARSE (+5), rocFFT
+  (+4), rocSPARSE (+3), hipSOLVER (+2), HIP (+2) and hipFFT (+1). The only
+  routines dropped are the two rocBLAS helpers listed under *Removed*.
 * CMake option `HIPFORT_BUILD_AMDGCN` (default `ON`), the counterpart of
   `HIPFORT_BUILD_NVPTX`. `-DHIPFORT_BUILD_AMDGCN=OFF` skips
   `libhipfort-amdgcn.a` for a CUDA-only build. The two options stay independent
@@ -37,7 +38,8 @@
 
 ### Changed
 
-* Every scalar pointer argument now comes in two forms under the same generic.
+* Every pointer-mode scalar and host output now comes in two forms under the
+  same generic.
   The `bind(C)` specific takes it as `type(c_ptr), value`, the C API's own
   spelling, and a `<routine>_typed` module procedure takes the Fortran variable
   (`integer`, `real`, `complex` or the enum kind) and passes its address, so
@@ -59,15 +61,18 @@
     `hipDeviceGetP2PAttribute`, the `hipOccupancy*` and `hipGraph*` counts,
     ...), the version, pointer-mode, math-mode and handle-state getters of the
     BLAS, sparse and solver libraries, the hipSPARSE and rocSPARSE descriptor
-    getters, `hipblasGetProperty`,
-    `hipfftGetProperty`, the hipSOLVER buffer sizes, `*gels` `niters` and
-    `*{sy,he}evdx`/`*{sy,he}gvdx` `nev`, and `rocfft_cache_serialize`. An output
-    the C API lets the caller skip is `optional` in the `_typed` form; pass
-    `c_null_ptr` to the `type(c_ptr)` one.
+    getters, `hipblasGetProperty`, `hipfftGetProperty`, the hipSOLVER buffer
+    sizes, `*gels` `niters` and `*{sy,he}evdx`/`*{sy,he}gvdx` `nev`, and
+    `rocfft_cache_serialize`. An output the C API lets the caller skip is
+    `optional` in the `_typed` form; pass `c_null_ptr` to the `type(c_ptr)`
+    one.
 
-  The 42 rocSPARSE and hipSPARSE routines with both kinds (`alpha`/`beta` beside
-  a buffer size) also get `<routine>_devptr`, the call of the device pointer
-  mode: the pointer-mode scalars as `type(c_ptr)`, the host outputs typed.
+  Scalars that only ever live on the device, such as rocSOLVER `info` and
+  hipSOLVER `devInfo`, keep the `type(c_ptr)` form only.
+
+  The 28 rocSPARSE and hipSPARSE routines with both kinds (`alpha`/`beta` beside
+  a buffer size) also get `<routine>_devptr`, for the device pointer mode: the
+  pointer-mode scalars as `type(c_ptr)`, the host outputs typed.
 * hipSOLVER `devInfo` is device memory. The `bind(C)` specific takes it as
   `type(c_ptr), value`, with no typed form: a host integer next to `type(c_ptr)`
   buffers would be written by the GPU. The array overloads take it as an
@@ -77,19 +82,21 @@
   `type(fftw_iodim)` / `type(fftw_iodim64)` arrays in every precision. The
   `hipfftGetProperty` rank overloads are removed, as its value is a plain
   integer.
-* **Breaking.** Apart from ROCTx (below), five patterns of code written against
+* **Breaking.** Apart from ROCTx (below), six patterns of code written against
   hipfort 0.9.0 no longer compile:
   * hipSOLVER, an `integer` `devInfo` passed with `type(c_ptr)` buffers: pass
     `c_loc(devInfo)`, or the `type(c_ptr)` from `hipMalloc`;
   * hipSOLVER array overloads, `tau` passed as an element, `dTau(1)`: pass the
     array;
-  * hipSOLVER `*syevdx`, `*heevdx`, `*sygvdx` and `*hegvdx`, `nev` passed as a
-    `type(c_ptr)` while `lwork` is typed: pass both variables, or both
-    addresses;
+  * hipSOLVER `*syevdx_bufferSize`, `*heevdx_bufferSize`, `*sygvdx_bufferSize`
+    and `*hegvdx_bufferSize`, `nev` passed as a `type(c_ptr)` while `lwork` is
+    typed: pass both variables, or both addresses;
   * `rocsolver_chegvdx` and `rocsolver_zhegvdx`, `nev` passed as an integer: it
     is a device pointer, as for the rest of the `*gvdx` family, so pass
     `c_loc(nev)`;
-  * the hipFFTW guru planners, a scalar `dims`: pass an array.
+  * the hipFFTW guru planners, a scalar `dims`: pass an array;
+  * the single-precision hipFFTW guru planners (`fftwf_plan_guru*`),
+    `c_loc(dims)`: pass the `type(fftw_iodim)` array itself.
 
   One more change compiles but behaves differently: the array of host pointers
   of `hipsolverRfBatchSetupHost`, `hipsolverRfBatchResetValues` and
@@ -114,10 +121,11 @@
 * **Breaking, for anyone compiling the `.F90` files by hand.** The preprocessor
   macros that select the array interfaces are renamed: `USE_ASSUMED_SHAPE`
   selects the per-rank overloads (Fortran 2008) and `USE_ASSUMED_RANK` selects
-  the `dimension(..)` form (Fortran 2018). They replace `USE_FPOINTER_INTERFACES`
-  and `USE_ASSUMED_RANK_INTERFACES`. Previously, defining only the latter
-  produced no array overloads at all. The CMake options
-  `HIPFORT_USE_FPOINTER_INTERFACES` and `HIPFORT_ASSUMED_RANK` are unchanged.
+  the `dimension(..)` form (Fortran 2018). They replace
+  `USE_FPOINTER_INTERFACES` and `USE_ASSUMED_RANK_INTERFACES`. Previously,
+  defining only the latter produced no array overloads at all. The CMake
+  options `HIPFORT_USE_FPOINTER_INTERFACES` and `HIPFORT_ASSUMED_RANK` are
+  unchanged.
 * hipfort now follows the platform install layout. Libraries and modules go to
   `CMAKE_INSTALL_LIBDIR`/`CMAKE_INSTALL_INCLUDEDIR` as set by `GNUInstallDirs`
   (`lib64` on Fedora, RHEL and SUSE, `lib/<triplet>` on Debian multiarch)
@@ -153,7 +161,6 @@
 * The eight-byte integer overloads of the BLAS `Set`/`Get` `Vector`/`Matrix`
   routines and their `Async` variants declared their arrays `integer(c_long)`,
   which is four bytes on LLP64 targets. They are `integer(c_int64_t)` now.
-  Likewise, `roctx_range_id_t` is `integer(c_int64_t)`.
 * `hipfort::hipblas` was silently skipped when ROCm was installed outside the
   default CMake search prefixes. `ROCM_PATH` is now added to
   `CMAKE_PREFIX_PATH`, so the dependencies of the hipBLAS package resolve as
