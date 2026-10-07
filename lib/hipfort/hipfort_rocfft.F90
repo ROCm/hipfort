@@ -602,8 +602,10 @@ module hipfort_rocfft
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size_
       type(c_ptr),value :: plan
-      integer(c_size_t) :: size_in_bytes
+      type(c_ptr),value :: size_in_bytes
     end function
+
+    module procedure rocfft_plan_get_work_buffer_size_typed
   end interface
 
   !>  @brief Print all plan information
@@ -953,8 +955,10 @@ module hipfort_rocfft
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_cache_serialize_
       type(c_ptr) :: buffer
-      integer(c_size_t) :: buffer_len_bytes
+      type(c_ptr),value :: buffer_len_bytes
     end function
+
+    module procedure rocfft_cache_serialize_typed
   end interface
 
   !>  @brief Free cache serialization buffer
@@ -990,8 +994,33 @@ module hipfort_rocfft
   end interface
 
 
-#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
+
+    function rocfft_plan_get_work_buffer_size_typed(plan,size_in_bytes)
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size_typed
+      type(c_ptr) :: plan
+      integer(c_size_t),target :: size_in_bytes
+      !
+      rocfft_plan_get_work_buffer_size_typed = rocfft_plan_get_work_buffer_size_(plan, &
+        c_loc(size_in_bytes))
+    end function
+
+    function rocfft_cache_serialize_typed(buffer,buffer_len_bytes)
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_cache_serialize_typed
+      type(c_ptr) :: buffer
+      integer(c_size_t),target :: buffer_len_bytes
+      !
+      rocfft_cache_serialize_typed = rocfft_cache_serialize_(buffer,c_loc(buffer_len_bytes))
+    end function
+
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
 #ifdef USE_ASSUMED_RANK
     function rocfft_plan_create_assumed_rank(plan,placement,transform_type,myPrecision,dimensions, &

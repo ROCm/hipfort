@@ -25,7 +25,7 @@
 21 | [hiprandSetGeneratorOffset](interfacehipfort__hiprand_1_1hiprandsetgeneratoroffset.html "Interface documentation") | C binding
 22 | [hiprandSetGeneratorOrdering](interfacehipfort__hiprand_1_1hiprandsetgeneratorordering.html "Interface documentation") | C binding
 23 | [hiprandSetQuasiRandomGeneratorDimensions](interfacehipfort__hiprand_1_1hiprandsetquasirandomgeneratordimensions.html "Interface documentation") | C binding
-24 | [hiprandGetVersion](interfacehipfort__hiprand_1_1hiprandgetversion.html "Interface documentation") | C binding
+24 | [hiprandGetVersion](interfacehipfort__hiprand_1_1hiprandgetversion.html "Interface documentation") | C binding, typed
 25 | [hiprandCreatePoissonDistribution](interfacehipfort__hiprand_1_1hiprandcreatepoissondistribution.html "Interface documentation") | C binding
 26 | [hiprandDestroyDistribution](interfacehipfort__hiprand_1_1hipranddestroydistribution.html "Interface documentation") | C binding
 27 | [hiprandGetDirectionVectors32](interfacehipfort__hiprand_1_1hiprandgetdirectionvectors32.html "Interface documentation") | C binding

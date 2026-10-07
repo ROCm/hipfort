@@ -76,7 +76,7 @@ program test_hiprand
     if (never) v2 = hiprandSetGeneratorOffset_(v0, v7)
     if (never) v2 = hiprandSetGeneratorOrdering_(v0, v8)
     if (never) v2 = hiprandSetQuasiRandomGeneratorDimensions_(v0, v9)
-    if (never) v2 = hiprandGetVersion_(v9)
+    if (never) v2 = hiprandGetVersion_(v0)
     if (never) v2 = hiprandCreatePoissonDistribution_(v5, v0)
     if (never) v2 = hiprandDestroyDistribution_(v0)
     if (never) v2 = hiprandGetDirectionVectors32_(v0, v10)

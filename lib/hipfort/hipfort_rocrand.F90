@@ -885,8 +885,10 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_version_
-      integer(c_int) :: version
+      type(c_ptr),value :: version
     end function
+
+    module procedure rocrand_get_version_typed
   end interface
 
   !>  \brief Construct the histogram for a Poisson distribution.
@@ -1052,8 +1054,20 @@ module hipfort_rocrand
   end interface
 
 
-#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
+
+    function rocrand_get_version_typed(version)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_version_typed
+      integer(c_int),target :: version
+      !
+      rocrand_get_version_typed = rocrand_get_version_(c_loc(version))
+    end function
+
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
 #ifdef USE_ASSUMED_RANK
     function rocrand_generate_assumed_rank(generator,output_data,n)

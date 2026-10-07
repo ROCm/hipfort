@@ -111,8 +111,10 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDriverGetVersion_
-      integer(c_int) :: driverVersion
+      type(c_ptr),value :: driverVersion
     end function
+
+    module procedure hipDriverGetVersion_typed
   end interface
 
   !>  @brief Returns the approximate HIP Runtime version.
@@ -137,8 +139,10 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipRuntimeGetVersion_
-      integer(c_int) :: runtimeVersion
+      type(c_ptr),value :: runtimeVersion
     end function
+
+    module procedure hipRuntimeGetVersion_typed
   end interface
 
   !>  @brief Returns a handle to a compute device
@@ -153,9 +157,11 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGet_
-      integer(c_int) :: device
+      type(c_ptr),value :: device
       integer(c_int),value :: ordinal
     end function
+
+    module procedure hipDeviceGet_typed
   end interface
 #endif
 
@@ -173,10 +179,12 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceComputeCapability_
-      integer(c_int) :: major
-      integer(c_int) :: minor
+      type(c_ptr),value :: major
+      type(c_ptr),value :: minor
       integer(c_int),value :: device
     end function
+
+    module procedure hipDeviceComputeCapability_typed
   end interface
 #endif
 
@@ -250,9 +258,13 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetLuid_
       type(c_ptr),value :: luid
-      integer(c_int) :: deviceNodeMask
+      type(c_ptr),value :: deviceNodeMask
       integer(c_int),value :: device
     end function
+
+#ifndef USE_CUDA_NAMES
+    module procedure hipDeviceGetLuid_typed
+#endif
   end interface
 
   !>  @brief Returns a value for attribute of link between two devices
@@ -274,11 +286,13 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetP2PAttribute_
-      integer(c_int) :: myValue
+      type(c_ptr),value :: myValue
       integer(kind(hipDevP2PAttrPerformanceRank)),value :: attr
       integer(c_int),value :: srcDevice
       integer(c_int),value :: dstDevice
     end function
+
+    module procedure hipDeviceGetP2PAttribute_typed
   end interface
 
   !>  @brief Returns a PCI Bus Id string for the device, overloaded to take int device ID.
@@ -318,9 +332,11 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetByPCIBusId_
-      integer(c_int) :: device
+      type(c_ptr),value :: device
       type(c_ptr),value :: pciBusId
     end function
+
+    module procedure hipDeviceGetByPCIBusId_typed
   end interface
 
   !>  @brief Returns the total amount of memory on the device.
@@ -335,9 +351,11 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceTotalMem_
-      integer(c_size_t) :: bytes
+      type(c_ptr),value :: bytes
       integer(c_int),value :: device
     end function
+
+    module procedure hipDeviceTotalMem_typed
   end interface
 #endif
 
@@ -484,8 +502,10 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipGetDevice_
-      integer(c_int) :: deviceId
+      type(c_ptr),value :: deviceId
     end function
+
+    module procedure hipGetDevice_typed
   end interface
 
   !>  @brief Return number of compute-capable devices.
@@ -508,8 +528,10 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipGetDeviceCount_
-      integer(c_int) :: count
+      type(c_ptr),value :: count
     end function
+
+    module procedure hipGetDeviceCount_typed
   end interface
 
   !>  @brief Query for a specific device attribute.
@@ -529,10 +551,12 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetAttribute_
-      integer(c_int) :: pi
+      type(c_ptr),value :: pi
       integer(kind(hipDeviceAttributeCudaCompatibleBegin)),value :: attr
       integer(c_int),value :: deviceId
     end function
+
+    module procedure hipDeviceGetAttribute_typed
   end interface
 
   !>  @brief Returns the default memory pool of the specified device
@@ -658,10 +682,12 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetTexture1DLinearMaxWidth_
-      integer(c_size_t) :: max_width
+      type(c_ptr),value :: max_width
       type(hipChannelFormatDesc) :: desc
       integer(c_int),value :: device
     end function
+
+    module procedure hipDeviceGetTexture1DLinearMaxWidth_typed
   end interface
 
   !>  @brief Set L1/Shared cache partition.
@@ -703,8 +729,10 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetCacheConfig_
-      integer(kind(hipFuncCachePreferNone)) :: cacheConfig
+      type(c_ptr),value :: cacheConfig
     end function
+
+    module procedure hipDeviceGetCacheConfig_typed
   end interface
 
   !>  @brief Gets resource limits of current device
@@ -727,9 +755,11 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetLimit_
-      integer(c_size_t) :: pValue
+      type(c_ptr),value :: pValue
       integer(kind(hipLimitStackSize)),value :: limit
     end function
+
+    module procedure hipDeviceGetLimit_typed
   end interface
 
   !>  @brief Sets resource limits of current device.
@@ -783,8 +813,10 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetSharedMemConfig_
-      integer(kind(hipSharedMemBankSizeDefault)) :: pConfig
+      type(c_ptr),value :: pConfig
     end function
+
+    module procedure hipDeviceGetSharedMemConfig_typed
   end interface
 
   !>  @brief Gets the flags set for current device
@@ -802,8 +834,10 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipGetDeviceFlags_
-      integer(c_int) :: flags
+      type(c_ptr),value :: flags
     end function
+
+    module procedure hipGetDeviceFlags_typed
   end interface
 
   !>  @brief The bank width of shared memory on current device is set
@@ -952,9 +986,11 @@ module hipfort
       integer(kind(hipSuccess)) :: hipExtGetLinkTypeAndHopCount_
       integer(c_int),value :: device1
       integer(c_int),value :: device2
-      integer(c_int32_t) :: linktype
-      integer(c_int32_t) :: hopcount
+      type(c_ptr),value :: linktype
+      type(c_ptr),value :: hopcount
     end function
+
+    module procedure hipExtGetLinkTypeAndHopCount_typed
   end interface
 #endif
 
@@ -1545,9 +1581,11 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetStreamPriorityRange_
-      integer(c_int) :: leastPriority
-      integer(c_int) :: greatestPriority
+      type(c_ptr),value :: leastPriority
+      type(c_ptr),value :: greatestPriority
     end function
+
+    module procedure hipDeviceGetStreamPriorityRange_typed
   end interface
 
   !>  @brief Destroys the specified stream.
@@ -1705,8 +1743,10 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetFlags_
       type(c_ptr),value :: stream
-      integer(c_int) :: flags
+      type(c_ptr),value :: flags
     end function
+
+    module procedure hipStreamGetFlags_typed
   end interface
 
   !>  @brief Queries the Id of a stream.
@@ -1728,8 +1768,10 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetId_
       type(c_ptr),value :: stream
-      integer(c_int64_t) :: streamId
+      type(c_ptr),value :: streamId
     end function
+
+    module procedure hipStreamGetId_typed
   end interface
 
   !>  @brief Queries the priority of a stream.
@@ -1752,8 +1794,10 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetPriority_
       type(c_ptr),value :: stream
-      integer(c_int) :: priority
+      type(c_ptr),value :: priority
     end function
+
+    module procedure hipStreamGetPriority_typed
   end interface
 
   !>  @brief Gets the device associated with the stream.
@@ -1776,8 +1820,10 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetDevice_
       type(c_ptr),value :: stream
-      integer(c_int) :: device
+      type(c_ptr),value :: device
     end function
+
+    module procedure hipStreamGetDevice_typed
   end interface
 
   !>  @brief Creates an asynchronous stream with the specified CU mask.
@@ -2516,10 +2562,12 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipEventElapsedTime_
-      real(c_float) :: ms
+      type(c_ptr),value :: ms
       type(c_ptr),value :: start
       type(c_ptr),value :: myStop
     end function
+
+    module procedure hipEventElapsedTime_typed
   end interface
 
   !>  @brief Query event status
@@ -3689,10 +3737,12 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipMemPoolGetAccess_
-      integer(kind(hipMemAccessFlagsProtNone)) :: flags
+      type(c_ptr),value :: flags
       type(c_ptr),value :: mem_pool
       type(hipMemLocation) :: location
     end function
+
+    module procedure hipMemPoolGetAccess_typed
   end interface
 
   !>  @brief Creates a memory pool
@@ -4105,10 +4155,12 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipMallocPitch_
       type(c_ptr) :: ptr
-      integer(c_size_t) :: pitch
+      type(c_ptr),value :: pitch
       integer(c_size_t),value :: width
       integer(c_size_t),value :: height
     end function
+
+    module procedure hipMallocPitch_typed
   end interface
 
   !>   Allocates at least width (in bytes) * height bytes of linear memory
@@ -4140,11 +4192,13 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipMemAllocPitch_
       type(c_ptr) :: dptr
-      integer(c_size_t) :: pitch
+      type(c_ptr),value :: pitch
       integer(c_size_t),value :: widthInBytes
       integer(c_size_t),value :: height
       integer(c_int),value :: elementSizeBytes
     end function
+
+    module procedure hipMemAllocPitch_typed
   end interface
 #endif
 
@@ -4592,10 +4646,12 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipModuleGetGlobal_
       type(c_ptr), optional :: dptr
-      integer(c_size_t), optional :: bytes
+      type(c_ptr),value :: bytes
       type(c_ptr),value :: hmod
       type(c_ptr),value :: name
     end function
+
+    module procedure hipModuleGetGlobal_typed
   end interface
 #endif
 
@@ -4636,9 +4692,11 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipGetSymbolSize_
-      integer(c_size_t) :: mySize
+      type(c_ptr),value :: mySize
       type(c_ptr),value :: symbol
     end function
+
+    module procedure hipGetSymbolSize_typed
   end interface
 
   !>  @brief Gets the pointer of requested HIP driver function.
@@ -4676,8 +4734,12 @@ module hipfort
       type(c_ptr) :: pfn
       integer(c_int),value :: hipVersion
       integer(c_int64_t),value :: flags
-      integer(kind(HIP_GET_PROC_ADDRESS_SUCCESS)), optional :: symbolStatus
+      type(c_ptr),value :: symbolStatus
     end function
+
+#ifndef USE_CUDA_NAMES
+    module procedure hipGetProcAddress_typed
+#endif
   end interface
 
   !>   @brief Copies data to the given symbol on the device.
@@ -5331,9 +5393,11 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipMemGetInfo_
-      integer(c_size_t) :: free
-      integer(c_size_t) :: total
+      type(c_ptr),value :: free
+      type(c_ptr),value :: total
     end function
+
+    module procedure hipMemGetInfo_typed
   end interface
 
   !>  @brief Get allocated memory size via memory pointer.
@@ -5352,8 +5416,10 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipMemPtrGetInfo_
       type(c_ptr),value :: ptr
-      integer(c_size_t) :: mySize
+      type(c_ptr),value :: mySize
     end function
+
+    module procedure hipMemPtrGetInfo_typed
   end interface
 #endif
 
@@ -5543,9 +5609,11 @@ module hipfort
       integer(kind(hipSuccess)) :: hipArrayGetInfo_
       type(hipChannelFormatDesc) :: desc
       type(hipExtent) :: extent
-      integer(c_int) :: flags
+      type(c_ptr),value :: flags
       type(c_ptr),value :: array
     end function
+
+    module procedure hipArrayGetInfo_typed
   end interface
 
   !>  @brief Gets a 1D or 2D array descriptor
@@ -6091,9 +6159,11 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipMemGetAddressRange_
       type(c_ptr) :: pbase
-      integer(c_size_t) :: psize
+      type(c_ptr),value :: psize
       type(c_ptr),value :: dptr
     end function
+
+    module procedure hipMemGetAddressRange_typed
   end interface
 #endif
 
@@ -6279,10 +6349,12 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceCanAccessPeer_
-      integer(c_int) :: canAccessPeer
+      type(c_ptr),value :: canAccessPeer
       integer(c_int),value :: deviceId
       integer(c_int),value :: peerDeviceId
     end function
+
+    module procedure hipDeviceCanAccessPeer_typed
   end interface
 
   !>  @brief Enables direct access to memory allocations on a peer device.
@@ -6637,9 +6709,11 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipExecutionCtxGetDevice_
-      integer(c_int) :: device
+      type(c_ptr),value :: device
       type(c_ptr),value :: ctx
     end function
+
+    module procedure hipExecutionCtxGetDevice_typed
   end interface
 #endif
 
@@ -6657,8 +6731,10 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipExecutionCtxGetId_
       type(c_ptr),value :: ctx
-      integer(c_int64_t) :: ctxId
+      type(c_ptr),value :: ctxId
     end function
+
+    module procedure hipExecutionCtxGetId_typed
   end interface
 #endif
 
@@ -6908,8 +6984,10 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetDevice_
-      integer(c_int) :: device
+      type(c_ptr),value :: device
     end function
+
+    module procedure hipCtxGetDevice_typed
   end interface
 #endif
 
@@ -6940,8 +7018,10 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetApiVersion_
       type(c_ptr),value :: ctx
-      integer(c_int) :: apiVersion
+      type(c_ptr),value :: apiVersion
     end function
+
+    module procedure hipCtxGetApiVersion_typed
   end interface
 #endif
 
@@ -6967,8 +7047,10 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetCacheConfig_
-      integer(kind(hipFuncCachePreferNone)) :: cacheConfig
+      type(c_ptr),value :: cacheConfig
     end function
+
+    module procedure hipCtxGetCacheConfig_typed
   end interface
 #endif
 
@@ -7048,8 +7130,10 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetSharedMemConfig_
-      integer(kind(hipSharedMemBankSizeDefault)) :: pConfig
+      type(c_ptr),value :: pConfig
     end function
+
+    module procedure hipCtxGetSharedMemConfig_typed
   end interface
 #endif
 
@@ -7097,8 +7181,10 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetFlags_
-      integer(c_int) :: flags
+      type(c_ptr),value :: flags
     end function
+
+    module procedure hipCtxGetFlags_typed
   end interface
 #endif
 
@@ -7191,9 +7277,11 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipDevicePrimaryCtxGetState_
       integer(c_int),value :: dev
-      integer(c_int) :: flags
-      integer(c_int) :: active
+      type(c_ptr),value :: flags
+      type(c_ptr),value :: active
     end function
+
+    module procedure hipDevicePrimaryCtxGetState_typed
   end interface
 #endif
 
@@ -7412,9 +7500,13 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipModuleGetFunctionCount_
-      integer(c_int) :: count
+      type(c_ptr),value :: count
       type(c_ptr),value :: mod
     end function
+
+#ifndef USE_CUDA_NAMES
+    module procedure hipModuleGetFunctionCount_typed
+#endif
   end interface
 
   !>  @brief Returns information about a kernel.
@@ -7463,11 +7555,13 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipKernelGetAttribute_
-      integer(c_int) :: pi
+      type(c_ptr),value :: pi
       integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)),value :: attrib
       type(c_ptr),value :: kernel
       integer(c_int),value :: dev
     end function
+
+    module procedure hipKernelGetAttribute_typed
   end interface
 #endif
 
@@ -7598,9 +7692,11 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipLibraryGetKernelCount_
-      integer(c_int) :: count
+      type(c_ptr),value :: count
       type(c_ptr),value :: library
     end function
+
+    module procedure hipLibraryGetKernelCount_typed
   end interface
 
   !>  @brief Get device pointer to a `__device__` global variable defined in a library.
@@ -7623,10 +7719,12 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipLibraryGetGlobal_
       type(c_ptr), optional :: dptr
-      integer(c_size_t), optional :: bytes
+      type(c_ptr),value :: bytes
       type(c_ptr),value :: library
       type(c_ptr),value :: name
     end function
+
+    module procedure hipLibraryGetGlobal_typed
   end interface
 #endif
 
@@ -7652,10 +7750,12 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipLibraryGetManaged_
       type(c_ptr), optional :: dptr
-      integer(c_size_t), optional :: bytes
+      type(c_ptr),value :: bytes
       type(c_ptr),value :: library
       type(c_ptr),value :: name
     end function
+
+    module procedure hipLibraryGetManaged_typed
   end interface
 #endif
 
@@ -7737,9 +7837,11 @@ module hipfort
       integer(kind(hipSuccess)) :: hipKernelGetParamInfo_
       type(c_ptr),value :: kernel
       integer(c_size_t),value :: paramIndex
-      integer(c_size_t) :: paramOffset
-      integer(c_size_t), optional :: paramSize
+      type(c_ptr),value :: paramOffset
+      type(c_ptr),value :: paramSize
     end function
+
+    module procedure hipKernelGetParamInfo_typed
   end interface
 #endif
 
@@ -7779,10 +7881,12 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipFuncGetAttribute_
-      integer(c_int) :: myValue
+      type(c_ptr),value :: myValue
       integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)),value :: attrib
       type(c_ptr),value :: hfunc
     end function
+
+    module procedure hipFuncGetAttribute_typed
   end interface
 #endif
 
@@ -7830,8 +7934,10 @@ module hipfort
       type(c_ptr),value :: symbol
       type(c_ptr) :: funcPtr
       integer(c_int64_t),value :: flags
-      integer(kind(hipDriverEntryPointSuccess)), optional :: driverStatus
+      type(c_ptr),value :: driverStatus
     end function
+
+    module procedure hipGetDriverEntryPoint_typed
   end interface
 
   !>  @brief returns the handle of the texture reference with the name from the module.
@@ -8016,8 +8122,12 @@ module hipfort
       integer(kind(hipSuccess)) :: hipLinkComplete_
       type(c_ptr),value :: state
       type(c_ptr) :: hipBinOut
-      integer(c_size_t), optional :: sizeOut
+      type(c_ptr),value :: sizeOut
     end function
+
+#ifndef USE_CUDA_NAMES
+    module procedure hipLinkComplete_typed
+#endif
   end interface
 
   !>  @brief Creates a linker instance with options.
@@ -8415,12 +8525,14 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSize_
-      integer(c_int) :: gridSize
-      integer(c_int) :: blockSize
+      type(c_ptr),value :: gridSize
+      type(c_ptr),value :: blockSize
       type(c_ptr),value :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
     end function
+
+    module procedure hipModuleOccupancyMaxPotentialBlockSize_typed
   end interface
 #endif
 
@@ -8447,13 +8559,15 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSizeWithFlags_
-      integer(c_int) :: gridSize
-      integer(c_int) :: blockSize
+      type(c_ptr),value :: gridSize
+      type(c_ptr),value :: blockSize
       type(c_ptr),value :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
       integer(c_int),value :: flags
     end function
+
+    module procedure hipModuleOccupancyMaxPotentialBlockSizeWithFlags_typed
   end interface
 #endif
 
@@ -8473,11 +8587,13 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_
-      integer(c_int) :: numBlocks
+      type(c_ptr),value :: numBlocks
       type(c_ptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
     end function
+
+    module procedure hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_typed
   end interface
 #endif
 
@@ -8498,12 +8614,14 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_
-      integer(c_int) :: numBlocks
+      type(c_ptr),value :: numBlocks
       type(c_ptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: flags
     end function
+
+    module procedure hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFla_typed
   end interface
 #endif
 
@@ -8528,11 +8646,13 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessor_
-      integer(c_int) :: numBlocks
+      type(c_ptr),value :: numBlocks
       type(c_funptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
     end function
+
+    module procedure hipOccupancyMaxActiveBlocksPerMultiprocessor_typed
   end interface
 
   !>  @brief Returns occupancy for a device function.
@@ -8557,12 +8677,14 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_
-      integer(c_int) :: numBlocks
+      type(c_ptr),value :: numBlocks
       type(c_funptr),value :: f
       integer(c_int),value :: blockSize
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: flags
     end function
+
+    module procedure hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_typed
   end interface
 
   !>  @brief determine the grid and block sizes to achieves maximum occupancy for a kernel
@@ -8587,12 +8709,14 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialBlockSize_
-      integer(c_int) :: gridSize
-      integer(c_int) :: blockSize
+      type(c_ptr),value :: gridSize
+      type(c_ptr),value :: blockSize
       type(c_funptr),value :: f
       integer(c_size_t),value :: dynSharedMemPerBlk
       integer(c_int),value :: blockSizeLimit
     end function
+
+    module procedure hipOccupancyMaxPotentialBlockSize_typed
   end interface
 #endif
 
@@ -8623,11 +8747,13 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyAvailableDynamicSMemPerBlock_
-      integer(c_size_t) :: dynamicSmemSize
+      type(c_ptr),value :: dynamicSmemSize
       type(c_funptr),value :: f
       integer(c_int),value :: numBlocks
       integer(c_int),value :: blockSize
     end function
+
+    module procedure hipOccupancyAvailableDynamicSMemPerBlock_typed
   end interface
 
   !>  @brief determines the amount of active kernel clusters can co-exist at the same time in a
@@ -8648,10 +8774,12 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxActiveClusters_
-      integer(c_int) :: numClusters
+      type(c_ptr),value :: numClusters
       type(c_funptr),value :: f
       type(hipLaunchConfig_t) :: config
     end function
+
+    module procedure hipOccupancyMaxActiveClusters_typed
   end interface
 #endif
 
@@ -8672,10 +8800,12 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialClusterSize_
-      integer(c_int) :: clusterSize
+      type(c_ptr),value :: clusterSize
       type(c_funptr),value :: f
       type(hipLaunchConfig_t) :: config
     end function
+
+    module procedure hipOccupancyMaxPotentialClusterSize_typed
   end interface
 #endif
 
@@ -9545,12 +9675,14 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipBindTexture_
-      integer(c_size_t) :: offset
+      type(c_ptr),value :: offset
       type(textureReference) :: tex
       type(c_ptr),value :: devPtr
       type(hipChannelFormatDesc) :: desc
       integer(c_size_t),value :: mySize
     end function
+
+    module procedure hipBindTexture_typed
   end interface
 #endif
 
@@ -9576,7 +9708,7 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipBindTexture2D_
-      integer(c_size_t) :: offset
+      type(c_ptr),value :: offset
       type(textureReference) :: tex
       type(c_ptr),value :: devPtr
       type(hipChannelFormatDesc) :: desc
@@ -9584,6 +9716,8 @@ module hipfort
       integer(c_size_t),value :: height
       integer(c_size_t),value :: pitch
     end function
+
+    module procedure hipBindTexture2D_typed
   end interface
 #endif
 
@@ -9628,9 +9762,11 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipGetTextureAlignmentOffset_
-      integer(c_size_t) :: offset
+      type(c_ptr),value :: offset
       type(textureReference) :: texref
     end function
+
+    module procedure hipGetTextureAlignmentOffset_typed
   end interface
 #endif
 
@@ -9693,10 +9829,12 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetAddressMode_
-      integer(kind(hipAddressModeWrap)) :: pam
+      type(c_ptr),value :: pam
       type(textureReference) :: texRef
       integer(c_int),value :: dim
     end function
+
+    module procedure hipTexRefGetAddressMode_typed
   end interface
 #endif
 
@@ -9716,9 +9854,11 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetFilterMode_
-      integer(kind(hipFilterModePoint)) :: pfm
+      type(c_ptr),value :: pfm
       type(textureReference) :: texRef
     end function
+
+    module procedure hipTexRefGetFilterMode_typed
   end interface
 #endif
 
@@ -9738,9 +9878,11 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetFlags_
-      integer(c_int) :: pFlags
+      type(c_ptr),value :: pFlags
       type(textureReference) :: texRef
     end function
+
+    module procedure hipTexRefGetFlags_typed
   end interface
 #endif
 
@@ -9761,10 +9903,12 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetFormat_
-      integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)) :: pFormat
-      integer(c_int) :: pNumChannels
+      type(c_ptr),value :: pFormat
+      type(c_ptr),value :: pNumChannels
       type(textureReference) :: texRef
     end function
+
+    module procedure hipTexRefGetFormat_typed
   end interface
 #endif
 
@@ -9784,9 +9928,11 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetMaxAnisotropy_
-      integer(c_int) :: pmaxAnsio
+      type(c_ptr),value :: pmaxAnsio
       type(textureReference) :: texRef
     end function
+
+    module procedure hipTexRefGetMaxAnisotropy_typed
   end interface
 #endif
 
@@ -9806,9 +9952,11 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetMipmapFilterMode_
-      integer(kind(hipFilterModePoint)) :: pfm
+      type(c_ptr),value :: pfm
       type(textureReference) :: texRef
     end function
+
+    module procedure hipTexRefGetMipmapFilterMode_typed
   end interface
 #endif
 
@@ -9828,9 +9976,11 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelBias_
-      real(c_float) :: pbias
+      type(c_ptr),value :: pbias
       type(textureReference) :: texRef
     end function
+
+    module procedure hipTexRefGetMipmapLevelBias_typed
   end interface
 #endif
 
@@ -9852,10 +10002,12 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelClamp_
-      real(c_float) :: pminMipmapLevelClamp
-      real(c_float) :: pmaxMipmapLevelClamp
+      type(c_ptr),value :: pminMipmapLevelClamp
+      type(c_ptr),value :: pmaxMipmapLevelClamp
       type(textureReference) :: texRef
     end function
+
+    module procedure hipTexRefGetMipmapLevelClamp_typed
   end interface
 #endif
 
@@ -9899,11 +10051,13 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefSetAddress_
-      integer(c_size_t) :: ByteOffset
+      type(c_ptr),value :: ByteOffset
       type(textureReference) :: texRef
       type(c_ptr),value :: dptr
       integer(c_size_t),value :: bytes
     end function
+
+    module procedure hipTexRefSetAddress_typed
   end interface
 #endif
 
@@ -10247,9 +10401,11 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_
       type(c_ptr),value :: stream
-      integer(kind(hipStreamCaptureStatusNone)) :: pCaptureStatus
-      integer(c_int64_t), optional :: pId
+      type(c_ptr),value :: pCaptureStatus
+      type(c_ptr),value :: pId
     end function
+
+    module procedure hipStreamGetCaptureInfo_typed
   end interface
 #endif
 
@@ -10274,12 +10430,14 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_v2_
       type(c_ptr),value :: stream
-      integer(kind(hipStreamCaptureStatusNone)) :: captureStatus_out
-      integer(c_int64_t), optional :: id_out
+      type(c_ptr),value :: captureStatus_out
+      type(c_ptr),value :: id_out
       type(c_ptr), optional :: graph_out
       type(c_ptr), optional :: dependencies_out
-      integer(c_size_t), optional :: numDependencies_out
+      type(c_ptr),value :: numDependencies_out
     end function
+
+    module procedure hipStreamGetCaptureInfo_v2_typed
   end interface
 #endif
 
@@ -10300,8 +10458,10 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipStreamIsCapturing_
       type(c_ptr),value :: stream
-      integer(kind(hipStreamCaptureStatusNone)) :: pCaptureStatus
+      type(c_ptr),value :: pCaptureStatus
     end function
+
+    module procedure hipStreamIsCapturing_typed
   end interface
 
   !>  @brief Update the set of dependencies in a capturing stream
@@ -10347,8 +10507,10 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipThreadExchangeStreamCaptureMode_
-      integer(kind(hipStreamCaptureModeGlobal)) :: mode
+      type(c_ptr),value :: mode
     end function
+
+    module procedure hipThreadExchangeStreamCaptureMode_typed
   end interface
 
   !>  @brief Creates a graph
@@ -10459,8 +10621,10 @@ module hipfort
       type(c_ptr),value :: graph
       type(c_ptr), optional :: from
       type(c_ptr), optional :: to
-      integer(c_size_t) :: numEdges
+      type(c_ptr),value :: numEdges
     end function
+
+    module procedure hipGraphGetEdges_typed
   end interface
 #endif
 
@@ -10487,8 +10651,10 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGraphGetNodes_
       type(c_ptr),value :: graph
       type(c_ptr), optional :: nodes
-      integer(c_size_t) :: numNodes
+      type(c_ptr),value :: numNodes
     end function
+
+    module procedure hipGraphGetNodes_typed
   end interface
 
   !>  @brief Returns a graph's root nodes.
@@ -10516,8 +10682,10 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGraphGetRootNodes_
       type(c_ptr),value :: graph
       type(c_ptr), optional :: pRootNodes
-      integer(c_size_t) :: pNumRootNodes
+      type(c_ptr),value :: pNumRootNodes
     end function
+
+    module procedure hipGraphGetRootNodes_typed
   end interface
 
   !>  @brief Returns a node's dependencies.
@@ -10544,8 +10712,10 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGraphNodeGetDependencies_
       type(c_ptr),value :: node
       type(c_ptr), optional :: pDependencies
-      integer(c_size_t) :: pNumDependencies
+      type(c_ptr),value :: pNumDependencies
     end function
+
+    module procedure hipGraphNodeGetDependencies_typed
   end interface
 #endif
 
@@ -10573,8 +10743,10 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGraphNodeGetDependentNodes_
       type(c_ptr),value :: node
       type(c_ptr), optional :: pDependentNodes
-      integer(c_size_t) :: pNumDependentNodes
+      type(c_ptr),value :: pNumDependentNodes
     end function
+
+    module procedure hipGraphNodeGetDependentNodes_typed
   end interface
 #endif
 
@@ -10594,8 +10766,10 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipGraphNodeGetType_
       type(c_ptr),value :: node
-      integer(kind(hipGraphNodeTypeKernel)) :: pType
+      type(c_ptr),value :: pType
     end function
+
+    module procedure hipGraphNodeGetType_typed
   end interface
 
   !>  @brief Remove a node from the graph.
@@ -10823,8 +10997,10 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipGraphExecGetFlags_
       type(c_ptr),value :: graphExec
-      integer(c_int64_t) :: flags
+      type(c_ptr),value :: flags
     end function
+
+    module procedure hipGraphExecGetFlags_typed
   end interface
 
   !>  @brief Updates parameters of a graph's node.
@@ -10918,8 +11094,10 @@ module hipfort
       type(c_ptr),value :: hGraphExec
       type(c_ptr),value :: hGraph
       type(c_ptr) :: hErrorNode_out
-      integer(kind(hipGraphExecUpdateSuccess)) :: updateResult_out
+      type(c_ptr),value :: updateResult_out
     end function
+
+    module procedure hipGraphExecUpdate_typed
   end interface
 
   !>  @brief Creates a kernel execution node and adds it to a graph.
@@ -12391,8 +12569,10 @@ module hipfort
       integer(kind(hipSuccess)) :: hipGraphNodeGetEnabled_
       type(c_ptr),value :: hGraphExec
       type(c_ptr),value :: hNode
-      integer(c_int) :: isEnabled
+      type(c_ptr),value :: isEnabled
     end function
+
+    module procedure hipGraphNodeGetEnabled_typed
   end interface
 
   !>  @brief Creates a external semaphor wait node and adds it to a graph.
@@ -12875,10 +13055,14 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipMemGetAccess_
-      integer(c_int64_t) :: flags
+      type(c_ptr),value :: flags
       type(hipMemLocation) :: location
       type(c_ptr),value :: ptr
     end function
+
+#ifndef USE_CUDA_NAMES
+    module procedure hipMemGetAccess_typed
+#endif
   end interface
 
   !>  @brief Calculates either the minimal or recommended granularity.
@@ -12902,10 +13086,14 @@ module hipfort
       use hipfort_types
       implicit none
       integer(kind(hipSuccess)) :: hipMemGetAllocationGranularity_
-      integer(c_size_t) :: granularity
+      type(c_ptr),value :: granularity
       type(hipMemAllocationProp) :: prop
       integer(kind(hipMemAllocationGranularityMinimum)),value :: option
     end function
+
+#ifndef USE_CUDA_NAMES
+    module procedure hipMemGetAllocationGranularity_typed
+#endif
   end interface
 
   !>  @brief Retrieve the property structure of the given handle.
@@ -13178,9 +13366,11 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipGraphicsResourceGetMappedPointer_
       type(c_ptr) :: devPtr
-      integer(c_size_t) :: mySize
+      type(c_ptr),value :: mySize
       type(c_ptr),value :: resource
     end function
+
+    module procedure hipGraphicsResourceGetMappedPointer_typed
   end interface
 
   !>  @brief Unmaps graphics resources.
@@ -14085,6 +14275,1257 @@ module hipfort
       type(hipDeviceProp_t) :: prop
     end function
   end interface
+
+
+  contains
+
+    function hipDriverGetVersion_typed(driverVersion)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDriverGetVersion_typed
+      integer(c_int),target :: driverVersion
+      !
+      hipDriverGetVersion_typed = hipDriverGetVersion_(c_loc(driverVersion))
+    end function
+
+    function hipRuntimeGetVersion_typed(runtimeVersion)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipRuntimeGetVersion_typed
+      integer(c_int),target :: runtimeVersion
+      !
+      hipRuntimeGetVersion_typed = hipRuntimeGetVersion_(c_loc(runtimeVersion))
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipDeviceGet_typed(device,ordinal)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGet_typed
+      integer(c_int),target :: device
+      integer(c_int) :: ordinal
+      !
+      hipDeviceGet_typed = hipDeviceGet_(c_loc(device),ordinal)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipDeviceComputeCapability_typed(major,minor,device)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceComputeCapability_typed
+      integer(c_int),target :: major
+      integer(c_int),target :: minor
+      integer(c_int) :: device
+      !
+      hipDeviceComputeCapability_typed = hipDeviceComputeCapability_(c_loc(major),c_loc(minor), &
+        device)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipDeviceGetLuid_typed(luid,deviceNodeMask,device)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetLuid_typed
+      type(c_ptr) :: luid
+      integer(c_int),target :: deviceNodeMask
+      integer(c_int) :: device
+      !
+      hipDeviceGetLuid_typed = hipDeviceGetLuid_(luid,c_loc(deviceNodeMask),device)
+    end function
+
+#endif
+    function hipDeviceGetP2PAttribute_typed(myValue,attr,srcDevice,dstDevice)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetP2PAttribute_typed
+      integer(c_int),target :: myValue
+      integer(kind(hipDevP2PAttrPerformanceRank)) :: attr
+      integer(c_int) :: srcDevice
+      integer(c_int) :: dstDevice
+      !
+      hipDeviceGetP2PAttribute_typed = hipDeviceGetP2PAttribute_(c_loc(myValue),attr,srcDevice, &
+        dstDevice)
+    end function
+
+    function hipDeviceGetByPCIBusId_typed(device,pciBusId)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetByPCIBusId_typed
+      integer(c_int),target :: device
+      type(c_ptr) :: pciBusId
+      !
+      hipDeviceGetByPCIBusId_typed = hipDeviceGetByPCIBusId_(c_loc(device),pciBusId)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipDeviceTotalMem_typed(bytes,device)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceTotalMem_typed
+      integer(c_size_t),target :: bytes
+      integer(c_int) :: device
+      !
+      hipDeviceTotalMem_typed = hipDeviceTotalMem_(c_loc(bytes),device)
+    end function
+
+#endif
+    function hipGetDevice_typed(deviceId)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDevice_typed
+      integer(c_int),target :: deviceId
+      !
+      hipGetDevice_typed = hipGetDevice_(c_loc(deviceId))
+    end function
+
+    function hipGetDeviceCount_typed(count)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDeviceCount_typed
+      integer(c_int),target :: count
+      !
+      hipGetDeviceCount_typed = hipGetDeviceCount_(c_loc(count))
+    end function
+
+    function hipDeviceGetAttribute_typed(pi,attr,deviceId)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetAttribute_typed
+      integer(c_int),target :: pi
+      integer(kind(hipDeviceAttributeCudaCompatibleBegin)) :: attr
+      integer(c_int) :: deviceId
+      !
+      hipDeviceGetAttribute_typed = hipDeviceGetAttribute_(c_loc(pi),attr,deviceId)
+    end function
+
+    function hipDeviceGetTexture1DLinearMaxWidth_typed(max_width,desc,device)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetTexture1DLinearMaxWidth_typed
+      integer(c_size_t),target :: max_width
+      type(hipChannelFormatDesc) :: desc
+      integer(c_int) :: device
+      !
+      hipDeviceGetTexture1DLinearMaxWidth_typed = hipDeviceGetTexture1DLinearMaxWidth_(c_loc( &
+        max_width),desc,device)
+    end function
+
+    function hipDeviceGetCacheConfig_typed(cacheConfig)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetCacheConfig_typed
+      integer(kind(hipFuncCachePreferNone)),target :: cacheConfig
+      !
+      hipDeviceGetCacheConfig_typed = hipDeviceGetCacheConfig_(c_loc(cacheConfig))
+    end function
+
+    function hipDeviceGetLimit_typed(pValue,limit)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetLimit_typed
+      integer(c_size_t),target :: pValue
+      integer(kind(hipLimitStackSize)) :: limit
+      !
+      hipDeviceGetLimit_typed = hipDeviceGetLimit_(c_loc(pValue),limit)
+    end function
+
+    function hipDeviceGetSharedMemConfig_typed(pConfig)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetSharedMemConfig_typed
+      integer(kind(hipSharedMemBankSizeDefault)),target :: pConfig
+      !
+      hipDeviceGetSharedMemConfig_typed = hipDeviceGetSharedMemConfig_(c_loc(pConfig))
+    end function
+
+    function hipGetDeviceFlags_typed(flags)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDeviceFlags_typed
+      integer(c_int),target :: flags
+      !
+      hipGetDeviceFlags_typed = hipGetDeviceFlags_(c_loc(flags))
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipExtGetLinkTypeAndHopCount_typed(device1,device2,linktype,hopcount)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtGetLinkTypeAndHopCount_typed
+      integer(c_int) :: device1
+      integer(c_int) :: device2
+      integer(c_int32_t),target :: linktype
+      integer(c_int32_t),target :: hopcount
+      !
+      hipExtGetLinkTypeAndHopCount_typed = hipExtGetLinkTypeAndHopCount_(device1,device2, &
+        c_loc(linktype),c_loc(hopcount))
+    end function
+
+#endif
+    function hipDeviceGetStreamPriorityRange_typed(leastPriority,greatestPriority)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetStreamPriorityRange_typed
+      integer(c_int),target :: leastPriority
+      integer(c_int),target :: greatestPriority
+      !
+      hipDeviceGetStreamPriorityRange_typed = hipDeviceGetStreamPriorityRange_(c_loc( &
+        leastPriority),c_loc(greatestPriority))
+    end function
+
+    function hipStreamGetFlags_typed(stream,flags)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetFlags_typed
+      type(c_ptr) :: stream
+      integer(c_int),target :: flags
+      !
+      hipStreamGetFlags_typed = hipStreamGetFlags_(stream,c_loc(flags))
+    end function
+
+    function hipStreamGetId_typed(stream,streamId)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetId_typed
+      type(c_ptr) :: stream
+      integer(c_int64_t),target :: streamId
+      !
+      hipStreamGetId_typed = hipStreamGetId_(stream,c_loc(streamId))
+    end function
+
+    function hipStreamGetPriority_typed(stream,priority)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetPriority_typed
+      type(c_ptr) :: stream
+      integer(c_int),target :: priority
+      !
+      hipStreamGetPriority_typed = hipStreamGetPriority_(stream,c_loc(priority))
+    end function
+
+    function hipStreamGetDevice_typed(stream,device)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetDevice_typed
+      type(c_ptr) :: stream
+      integer(c_int),target :: device
+      !
+      hipStreamGetDevice_typed = hipStreamGetDevice_(stream,c_loc(device))
+    end function
+
+    function hipEventElapsedTime_typed(ms,start,myStop)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipEventElapsedTime_typed
+      real(c_float),target :: ms
+      type(c_ptr) :: start
+      type(c_ptr) :: myStop
+      !
+      hipEventElapsedTime_typed = hipEventElapsedTime_(c_loc(ms),start,myStop)
+    end function
+
+    function hipMemPoolGetAccess_typed(flags,mem_pool,location)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolGetAccess_typed
+      integer(kind(hipMemAccessFlagsProtNone)),target :: flags
+      type(c_ptr) :: mem_pool
+      type(hipMemLocation) :: location
+      !
+      hipMemPoolGetAccess_typed = hipMemPoolGetAccess_(c_loc(flags),mem_pool,location)
+    end function
+
+    function hipMallocPitch_typed(ptr,pitch,width,height)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMallocPitch_typed
+      type(c_ptr) :: ptr
+      integer(c_size_t),target :: pitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      !
+      hipMallocPitch_typed = hipMallocPitch_(ptr,c_loc(pitch),width,height)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipMemAllocPitch_typed(dptr,pitch,widthInBytes,height,elementSizeBytes)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemAllocPitch_typed
+      type(c_ptr) :: dptr
+      integer(c_size_t),target :: pitch
+      integer(c_size_t) :: widthInBytes
+      integer(c_size_t) :: height
+      integer(c_int) :: elementSizeBytes
+      !
+      hipMemAllocPitch_typed = hipMemAllocPitch_(dptr,c_loc(pitch),widthInBytes,height, &
+        elementSizeBytes)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipModuleGetGlobal_typed(dptr,bytes,hmod,name)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleGetGlobal_typed
+      type(c_ptr), optional :: dptr
+      integer(c_size_t),optional,target :: bytes
+      type(c_ptr) :: hmod
+      type(c_ptr) :: name
+      type(c_ptr) :: bytes__p
+      !
+      bytes__p = c_null_ptr
+      if (present(bytes)) bytes__p = c_loc(bytes)
+      hipModuleGetGlobal_typed = hipModuleGetGlobal_(dptr,bytes__p,hmod,name)
+    end function
+
+#endif
+    function hipGetSymbolSize_typed(mySize,symbol)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetSymbolSize_typed
+      integer(c_size_t),target :: mySize
+      type(c_ptr) :: symbol
+      !
+      hipGetSymbolSize_typed = hipGetSymbolSize_(c_loc(mySize),symbol)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipGetProcAddress_typed(symbol,pfn,hipVersion,flags,symbolStatus)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetProcAddress_typed
+      type(c_ptr) :: symbol
+      type(c_ptr) :: pfn
+      integer(c_int) :: hipVersion
+      integer(c_int64_t) :: flags
+      integer(kind(HIP_GET_PROC_ADDRESS_SUCCESS)),optional,target :: symbolStatus
+      type(c_ptr) :: symbolStatus__p
+      !
+      symbolStatus__p = c_null_ptr
+      if (present(symbolStatus)) symbolStatus__p = c_loc(symbolStatus)
+      hipGetProcAddress_typed = hipGetProcAddress_(symbol,pfn,hipVersion,flags,symbolStatus__p)
+    end function
+
+#endif
+    function hipMemGetInfo_typed(free,total)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemGetInfo_typed
+      integer(c_size_t),target :: free
+      integer(c_size_t),target :: total
+      !
+      hipMemGetInfo_typed = hipMemGetInfo_(c_loc(free),c_loc(total))
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipMemPtrGetInfo_typed(ptr,mySize)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPtrGetInfo_typed
+      type(c_ptr) :: ptr
+      integer(c_size_t),target :: mySize
+      !
+      hipMemPtrGetInfo_typed = hipMemPtrGetInfo_(ptr,c_loc(mySize))
+    end function
+
+#endif
+    function hipArrayGetInfo_typed(desc,extent,flags,array)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipArrayGetInfo_typed
+      type(hipChannelFormatDesc) :: desc
+      type(hipExtent) :: extent
+      integer(c_int),target :: flags
+      type(c_ptr) :: array
+      !
+      hipArrayGetInfo_typed = hipArrayGetInfo_(desc,extent,c_loc(flags),array)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipMemGetAddressRange_typed(pbase,psize,dptr)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemGetAddressRange_typed
+      type(c_ptr) :: pbase
+      integer(c_size_t),target :: psize
+      type(c_ptr) :: dptr
+      !
+      hipMemGetAddressRange_typed = hipMemGetAddressRange_(pbase,c_loc(psize),dptr)
+    end function
+
+#endif
+    function hipDeviceCanAccessPeer_typed(canAccessPeer,deviceId,peerDeviceId)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceCanAccessPeer_typed
+      integer(c_int),target :: canAccessPeer
+      integer(c_int) :: deviceId
+      integer(c_int) :: peerDeviceId
+      !
+      hipDeviceCanAccessPeer_typed = hipDeviceCanAccessPeer_(c_loc(canAccessPeer),deviceId, &
+        peerDeviceId)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipExecutionCtxGetDevice_typed(device,ctx)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipExecutionCtxGetDevice_typed
+      integer(c_int),target :: device
+      type(c_ptr) :: ctx
+      !
+      hipExecutionCtxGetDevice_typed = hipExecutionCtxGetDevice_(c_loc(device),ctx)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipExecutionCtxGetId_typed(ctx,ctxId)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipExecutionCtxGetId_typed
+      type(c_ptr) :: ctx
+      integer(c_int64_t),target :: ctxId
+      !
+      hipExecutionCtxGetId_typed = hipExecutionCtxGetId_(ctx,c_loc(ctxId))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipCtxGetDevice_typed(device)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetDevice_typed
+      integer(c_int),target :: device
+      !
+      hipCtxGetDevice_typed = hipCtxGetDevice_(c_loc(device))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipCtxGetApiVersion_typed(ctx,apiVersion)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetApiVersion_typed
+      type(c_ptr) :: ctx
+      integer(c_int),target :: apiVersion
+      !
+      hipCtxGetApiVersion_typed = hipCtxGetApiVersion_(ctx,c_loc(apiVersion))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipCtxGetCacheConfig_typed(cacheConfig)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetCacheConfig_typed
+      integer(kind(hipFuncCachePreferNone)),target :: cacheConfig
+      !
+      hipCtxGetCacheConfig_typed = hipCtxGetCacheConfig_(c_loc(cacheConfig))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipCtxGetSharedMemConfig_typed(pConfig)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetSharedMemConfig_typed
+      integer(kind(hipSharedMemBankSizeDefault)),target :: pConfig
+      !
+      hipCtxGetSharedMemConfig_typed = hipCtxGetSharedMemConfig_(c_loc(pConfig))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipCtxGetFlags_typed(flags)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetFlags_typed
+      integer(c_int),target :: flags
+      !
+      hipCtxGetFlags_typed = hipCtxGetFlags_(c_loc(flags))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipDevicePrimaryCtxGetState_typed(dev,flags,active)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxGetState_typed
+      integer(c_int) :: dev
+      integer(c_int),target :: flags
+      integer(c_int),target :: active
+      !
+      hipDevicePrimaryCtxGetState_typed = hipDevicePrimaryCtxGetState_(dev,c_loc(flags), &
+        c_loc(active))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipModuleGetFunctionCount_typed(count,mod)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleGetFunctionCount_typed
+      integer(c_int),target :: count
+      type(c_ptr) :: mod
+      !
+      hipModuleGetFunctionCount_typed = hipModuleGetFunctionCount_(c_loc(count),mod)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipKernelGetAttribute_typed(pi,attrib,kernel,dev)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipKernelGetAttribute_typed
+      integer(c_int),target :: pi
+      integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)) :: attrib
+      type(c_ptr) :: kernel
+      integer(c_int) :: dev
+      !
+      hipKernelGetAttribute_typed = hipKernelGetAttribute_(c_loc(pi),attrib,kernel,dev)
+    end function
+
+#endif
+    function hipLibraryGetKernelCount_typed(count,library)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetKernelCount_typed
+      integer(c_int),target :: count
+      type(c_ptr) :: library
+      !
+      hipLibraryGetKernelCount_typed = hipLibraryGetKernelCount_(c_loc(count),library)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipLibraryGetGlobal_typed(dptr,bytes,library,name)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetGlobal_typed
+      type(c_ptr), optional :: dptr
+      integer(c_size_t),optional,target :: bytes
+      type(c_ptr) :: library
+      type(c_ptr) :: name
+      type(c_ptr) :: bytes__p
+      !
+      bytes__p = c_null_ptr
+      if (present(bytes)) bytes__p = c_loc(bytes)
+      hipLibraryGetGlobal_typed = hipLibraryGetGlobal_(dptr,bytes__p,library,name)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipLibraryGetManaged_typed(dptr,bytes,library,name)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetManaged_typed
+      type(c_ptr), optional :: dptr
+      integer(c_size_t),optional,target :: bytes
+      type(c_ptr) :: library
+      type(c_ptr) :: name
+      type(c_ptr) :: bytes__p
+      !
+      bytes__p = c_null_ptr
+      if (present(bytes)) bytes__p = c_loc(bytes)
+      hipLibraryGetManaged_typed = hipLibraryGetManaged_(dptr,bytes__p,library,name)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipKernelGetParamInfo_typed(kernel,paramIndex,paramOffset,paramSize)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipKernelGetParamInfo_typed
+      type(c_ptr) :: kernel
+      integer(c_size_t) :: paramIndex
+      integer(c_size_t),target :: paramOffset
+      integer(c_size_t),optional,target :: paramSize
+      type(c_ptr) :: paramSize__p
+      !
+      paramSize__p = c_null_ptr
+      if (present(paramSize)) paramSize__p = c_loc(paramSize)
+      hipKernelGetParamInfo_typed = hipKernelGetParamInfo_(kernel,paramIndex,c_loc(paramOffset), &
+        paramSize__p)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipFuncGetAttribute_typed(myValue,attrib,hfunc)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipFuncGetAttribute_typed
+      integer(c_int),target :: myValue
+      integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)) :: attrib
+      type(c_ptr) :: hfunc
+      !
+      hipFuncGetAttribute_typed = hipFuncGetAttribute_(c_loc(myValue),attrib,hfunc)
+    end function
+
+#endif
+    function hipGetDriverEntryPoint_typed(symbol,funcPtr,flags,driverStatus)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDriverEntryPoint_typed
+      type(c_ptr) :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t) :: flags
+      integer(kind(hipDriverEntryPointSuccess)),optional,target :: driverStatus
+      type(c_ptr) :: driverStatus__p
+      !
+      driverStatus__p = c_null_ptr
+      if (present(driverStatus)) driverStatus__p = c_loc(driverStatus)
+      hipGetDriverEntryPoint_typed = hipGetDriverEntryPoint_(symbol,funcPtr,flags,driverStatus__p)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipLinkComplete_typed(state,hipBinOut,sizeOut)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkComplete_typed
+      type(c_ptr) :: state
+      type(c_ptr) :: hipBinOut
+      integer(c_size_t),optional,target :: sizeOut
+      type(c_ptr) :: sizeOut__p
+      !
+      sizeOut__p = c_null_ptr
+      if (present(sizeOut)) sizeOut__p = c_loc(sizeOut)
+      hipLinkComplete_typed = hipLinkComplete_(state,hipBinOut,sizeOut__p)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipModuleOccupancyMaxPotentialBlockSize_typed(gridSize,blockSize,f, &
+        dynSharedMemPerBlk,blockSizeLimit)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSize_typed
+      integer(c_int),target :: gridSize
+      integer(c_int),target :: blockSize
+      type(c_ptr) :: f
+      integer(c_size_t) :: dynSharedMemPerBlk
+      integer(c_int) :: blockSizeLimit
+      !
+      hipModuleOccupancyMaxPotentialBlockSize_typed = hipModuleOccupancyMaxPotentialBlockSize_( &
+        c_loc(gridSize),c_loc(blockSize),f,dynSharedMemPerBlk,blockSizeLimit)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipModuleOccupancyMaxPotentialBlockSizeWithFlags_typed(gridSize,blockSize,f, &
+        dynSharedMemPerBlk,blockSizeLimit,flags)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSizeWithFlags_typed
+      integer(c_int),target :: gridSize
+      integer(c_int),target :: blockSize
+      type(c_ptr) :: f
+      integer(c_size_t) :: dynSharedMemPerBlk
+      integer(c_int) :: blockSizeLimit
+      integer(c_int) :: flags
+      !
+      hipModuleOccupancyMaxPotentialBlockSizeWithFlags_typed = &
+        hipModuleOccupancyMaxPotentialBlockSizeWithFlags_(c_loc(gridSize),c_loc(blockSize),f, &
+        dynSharedMemPerBlk,blockSizeLimit,flags)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_typed(numBlocks,f,blockSize, &
+        dynSharedMemPerBlk)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_typed
+      integer(c_int),target :: numBlocks
+      type(c_ptr) :: f
+      integer(c_int) :: blockSize
+      integer(c_size_t) :: dynSharedMemPerBlk
+      !
+      hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_typed = &
+        hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_(c_loc(numBlocks),f,blockSize, &
+        dynSharedMemPerBlk)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFla_typed(numBlocks,f, &
+        blockSize,dynSharedMemPerBlk,flags)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFla_typed
+      integer(c_int),target :: numBlocks
+      type(c_ptr) :: f
+      integer(c_int) :: blockSize
+      integer(c_size_t) :: dynSharedMemPerBlk
+      integer(c_int) :: flags
+      !
+      hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFla_typed = &
+        hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(c_loc(numBlocks),f,blockSize, &
+        dynSharedMemPerBlk,flags)
+    end function
+
+#endif
+    function hipOccupancyMaxActiveBlocksPerMultiprocessor_typed(numBlocks,f,blockSize, &
+        dynSharedMemPerBlk)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessor_typed
+      integer(c_int),target :: numBlocks
+      type(c_funptr) :: f
+      integer(c_int) :: blockSize
+      integer(c_size_t) :: dynSharedMemPerBlk
+      !
+      hipOccupancyMaxActiveBlocksPerMultiprocessor_typed = &
+        hipOccupancyMaxActiveBlocksPerMultiprocessor_(c_loc(numBlocks),f,blockSize, &
+        dynSharedMemPerBlk)
+    end function
+
+    function hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_typed(numBlocks,f,blockSize, &
+        dynSharedMemPerBlk,flags)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_typed
+      integer(c_int),target :: numBlocks
+      type(c_funptr) :: f
+      integer(c_int) :: blockSize
+      integer(c_size_t) :: dynSharedMemPerBlk
+      integer(c_int) :: flags
+      !
+      hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_typed = &
+        hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(c_loc(numBlocks),f,blockSize, &
+        dynSharedMemPerBlk,flags)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipOccupancyMaxPotentialBlockSize_typed(gridSize,blockSize,f,dynSharedMemPerBlk, &
+        blockSizeLimit)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialBlockSize_typed
+      integer(c_int),target :: gridSize
+      integer(c_int),target :: blockSize
+      type(c_funptr) :: f
+      integer(c_size_t) :: dynSharedMemPerBlk
+      integer(c_int) :: blockSizeLimit
+      !
+      hipOccupancyMaxPotentialBlockSize_typed = hipOccupancyMaxPotentialBlockSize_(c_loc( &
+        gridSize),c_loc(blockSize),f,dynSharedMemPerBlk,blockSizeLimit)
+    end function
+
+#endif
+    function hipOccupancyAvailableDynamicSMemPerBlock_typed(dynamicSmemSize,f,numBlocks,blockSize)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyAvailableDynamicSMemPerBlock_typed
+      integer(c_size_t),target :: dynamicSmemSize
+      type(c_funptr) :: f
+      integer(c_int) :: numBlocks
+      integer(c_int) :: blockSize
+      !
+      hipOccupancyAvailableDynamicSMemPerBlock_typed = hipOccupancyAvailableDynamicSMemPerBlock_( &
+        c_loc(dynamicSmemSize),f,numBlocks,blockSize)
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipOccupancyMaxActiveClusters_typed(numClusters,f,config)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyMaxActiveClusters_typed
+      integer(c_int),target :: numClusters
+      type(c_funptr) :: f
+      type(hipLaunchConfig_t) :: config
+      !
+      hipOccupancyMaxActiveClusters_typed = hipOccupancyMaxActiveClusters_(c_loc(numClusters),f, &
+        config)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipOccupancyMaxPotentialClusterSize_typed(clusterSize,f,config)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialClusterSize_typed
+      integer(c_int),target :: clusterSize
+      type(c_funptr) :: f
+      type(hipLaunchConfig_t) :: config
+      !
+      hipOccupancyMaxPotentialClusterSize_typed = hipOccupancyMaxPotentialClusterSize_(c_loc( &
+        clusterSize),f,config)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipBindTexture_typed(offset,tex,devPtr,desc,mySize)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipBindTexture_typed
+      integer(c_size_t),target :: offset
+      type(textureReference) :: tex
+      type(c_ptr) :: devPtr
+      type(hipChannelFormatDesc) :: desc
+      integer(c_size_t) :: mySize
+      !
+      hipBindTexture_typed = hipBindTexture_(c_loc(offset),tex,devPtr,desc,mySize)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipBindTexture2D_typed(offset,tex,devPtr,desc,width,height,pitch)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipBindTexture2D_typed
+      integer(c_size_t),target :: offset
+      type(textureReference) :: tex
+      type(c_ptr) :: devPtr
+      type(hipChannelFormatDesc) :: desc
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(c_size_t) :: pitch
+      !
+      hipBindTexture2D_typed = hipBindTexture2D_(c_loc(offset),tex,devPtr,desc,width,height,pitch)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipGetTextureAlignmentOffset_typed(offset,texref)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetTextureAlignmentOffset_typed
+      integer(c_size_t),target :: offset
+      type(textureReference) :: texref
+      !
+      hipGetTextureAlignmentOffset_typed = hipGetTextureAlignmentOffset_(c_loc(offset),texref)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipTexRefGetAddressMode_typed(pam,texRef,dim)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetAddressMode_typed
+      integer(kind(hipAddressModeWrap)),target :: pam
+      type(textureReference) :: texRef
+      integer(c_int) :: dim
+      !
+      hipTexRefGetAddressMode_typed = hipTexRefGetAddressMode_(c_loc(pam),texRef,dim)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipTexRefGetFilterMode_typed(pfm,texRef)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetFilterMode_typed
+      integer(kind(hipFilterModePoint)),target :: pfm
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetFilterMode_typed = hipTexRefGetFilterMode_(c_loc(pfm),texRef)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipTexRefGetFlags_typed(pFlags,texRef)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetFlags_typed
+      integer(c_int),target :: pFlags
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetFlags_typed = hipTexRefGetFlags_(c_loc(pFlags),texRef)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipTexRefGetFormat_typed(pFormat,pNumChannels,texRef)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetFormat_typed
+      integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)),target :: pFormat
+      integer(c_int),target :: pNumChannels
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetFormat_typed = hipTexRefGetFormat_(c_loc(pFormat),c_loc(pNumChannels),texRef)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipTexRefGetMaxAnisotropy_typed(pmaxAnsio,texRef)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetMaxAnisotropy_typed
+      integer(c_int),target :: pmaxAnsio
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetMaxAnisotropy_typed = hipTexRefGetMaxAnisotropy_(c_loc(pmaxAnsio),texRef)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipTexRefGetMipmapFilterMode_typed(pfm,texRef)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetMipmapFilterMode_typed
+      integer(kind(hipFilterModePoint)),target :: pfm
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetMipmapFilterMode_typed = hipTexRefGetMipmapFilterMode_(c_loc(pfm),texRef)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipTexRefGetMipmapLevelBias_typed(pbias,texRef)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelBias_typed
+      real(c_float),target :: pbias
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetMipmapLevelBias_typed = hipTexRefGetMipmapLevelBias_(c_loc(pbias),texRef)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipTexRefGetMipmapLevelClamp_typed(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelClamp_typed
+      real(c_float),target :: pminMipmapLevelClamp
+      real(c_float),target :: pmaxMipmapLevelClamp
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetMipmapLevelClamp_typed = hipTexRefGetMipmapLevelClamp_(c_loc( &
+        pminMipmapLevelClamp),c_loc(pmaxMipmapLevelClamp),texRef)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipTexRefSetAddress_typed(ByteOffset,texRef,dptr,bytes)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetAddress_typed
+      integer(c_size_t),target :: ByteOffset
+      type(textureReference) :: texRef
+      type(c_ptr) :: dptr
+      integer(c_size_t) :: bytes
+      !
+      hipTexRefSetAddress_typed = hipTexRefSetAddress_(c_loc(ByteOffset),texRef,dptr,bytes)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipStreamGetCaptureInfo_typed(stream,pCaptureStatus,pId)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_typed
+      type(c_ptr) :: stream
+      integer(kind(hipStreamCaptureStatusNone)),target :: pCaptureStatus
+      integer(c_int64_t),optional,target :: pId
+      type(c_ptr) :: pId__p
+      !
+      pId__p = c_null_ptr
+      if (present(pId)) pId__p = c_loc(pId)
+      hipStreamGetCaptureInfo_typed = hipStreamGetCaptureInfo_(stream,c_loc(pCaptureStatus),pId__p)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipStreamGetCaptureInfo_v2_typed(stream,captureStatus_out,id_out,graph_out, &
+        dependencies_out,numDependencies_out)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_v2_typed
+      type(c_ptr) :: stream
+      integer(kind(hipStreamCaptureStatusNone)),target :: captureStatus_out
+      integer(c_int64_t),optional,target :: id_out
+      type(c_ptr), optional :: graph_out
+      type(c_ptr), optional :: dependencies_out
+      integer(c_size_t),optional,target :: numDependencies_out
+      type(c_ptr) :: id_out__p
+      type(c_ptr) :: numDependencies_out__p
+      !
+      id_out__p = c_null_ptr
+      if (present(id_out)) id_out__p = c_loc(id_out)
+      numDependencies_out__p = c_null_ptr
+      if (present(numDependencies_out)) numDependencies_out__p = c_loc(numDependencies_out)
+      hipStreamGetCaptureInfo_v2_typed = hipStreamGetCaptureInfo_v2_(stream, &
+        c_loc(captureStatus_out),id_out__p,graph_out,dependencies_out,numDependencies_out__p)
+    end function
+
+#endif
+    function hipStreamIsCapturing_typed(stream,pCaptureStatus)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamIsCapturing_typed
+      type(c_ptr) :: stream
+      integer(kind(hipStreamCaptureStatusNone)),target :: pCaptureStatus
+      !
+      hipStreamIsCapturing_typed = hipStreamIsCapturing_(stream,c_loc(pCaptureStatus))
+    end function
+
+    function hipThreadExchangeStreamCaptureMode_typed(mode)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipThreadExchangeStreamCaptureMode_typed
+      integer(kind(hipStreamCaptureModeGlobal)),target :: mode
+      !
+      hipThreadExchangeStreamCaptureMode_typed = hipThreadExchangeStreamCaptureMode_(c_loc(mode))
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipGraphGetEdges_typed(graph,from,to,numEdges)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphGetEdges_typed
+      type(c_ptr) :: graph
+      type(c_ptr), optional :: from
+      type(c_ptr), optional :: to
+      integer(c_size_t),target :: numEdges
+      !
+      hipGraphGetEdges_typed = hipGraphGetEdges_(graph,from,to,c_loc(numEdges))
+    end function
+
+#endif
+    function hipGraphGetNodes_typed(graph,nodes,numNodes)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphGetNodes_typed
+      type(c_ptr) :: graph
+      type(c_ptr), optional :: nodes
+      integer(c_size_t),target :: numNodes
+      !
+      hipGraphGetNodes_typed = hipGraphGetNodes_(graph,nodes,c_loc(numNodes))
+    end function
+
+    function hipGraphGetRootNodes_typed(graph,pRootNodes,pNumRootNodes)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphGetRootNodes_typed
+      type(c_ptr) :: graph
+      type(c_ptr), optional :: pRootNodes
+      integer(c_size_t),target :: pNumRootNodes
+      !
+      hipGraphGetRootNodes_typed = hipGraphGetRootNodes_(graph,pRootNodes,c_loc(pNumRootNodes))
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipGraphNodeGetDependencies_typed(node,pDependencies,pNumDependencies)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetDependencies_typed
+      type(c_ptr) :: node
+      type(c_ptr), optional :: pDependencies
+      integer(c_size_t),target :: pNumDependencies
+      !
+      hipGraphNodeGetDependencies_typed = hipGraphNodeGetDependencies_(node,pDependencies, &
+        c_loc(pNumDependencies))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipGraphNodeGetDependentNodes_typed(node,pDependentNodes,pNumDependentNodes)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetDependentNodes_typed
+      type(c_ptr) :: node
+      type(c_ptr), optional :: pDependentNodes
+      integer(c_size_t),target :: pNumDependentNodes
+      !
+      hipGraphNodeGetDependentNodes_typed = hipGraphNodeGetDependentNodes_(node,pDependentNodes, &
+        c_loc(pNumDependentNodes))
+    end function
+
+#endif
+    function hipGraphNodeGetType_typed(node,pType)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetType_typed
+      type(c_ptr) :: node
+      integer(kind(hipGraphNodeTypeKernel)),target :: pType
+      !
+      hipGraphNodeGetType_typed = hipGraphNodeGetType_(node,c_loc(pType))
+    end function
+
+    function hipGraphExecGetFlags_typed(graphExec,flags)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphExecGetFlags_typed
+      type(c_ptr) :: graphExec
+      integer(c_int64_t),target :: flags
+      !
+      hipGraphExecGetFlags_typed = hipGraphExecGetFlags_(graphExec,c_loc(flags))
+    end function
+
+    function hipGraphExecUpdate_typed(hGraphExec,hGraph,hErrorNode_out,updateResult_out)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphExecUpdate_typed
+      type(c_ptr) :: hGraphExec
+      type(c_ptr) :: hGraph
+      type(c_ptr) :: hErrorNode_out
+      integer(kind(hipGraphExecUpdateSuccess)),target :: updateResult_out
+      !
+      hipGraphExecUpdate_typed = hipGraphExecUpdate_(hGraphExec,hGraph,hErrorNode_out, &
+        c_loc(updateResult_out))
+    end function
+
+    function hipGraphNodeGetEnabled_typed(hGraphExec,hNode,isEnabled)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetEnabled_typed
+      type(c_ptr) :: hGraphExec
+      type(c_ptr) :: hNode
+      integer(c_int),target :: isEnabled
+      !
+      hipGraphNodeGetEnabled_typed = hipGraphNodeGetEnabled_(hGraphExec,hNode,c_loc(isEnabled))
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipMemGetAccess_typed(flags,location,ptr)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemGetAccess_typed
+      integer(c_int64_t),target :: flags
+      type(hipMemLocation) :: location
+      type(c_ptr) :: ptr
+      !
+      hipMemGetAccess_typed = hipMemGetAccess_(c_loc(flags),location,ptr)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipMemGetAllocationGranularity_typed(granularity,prop,option)
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemGetAllocationGranularity_typed
+      integer(c_size_t),target :: granularity
+      type(hipMemAllocationProp) :: prop
+      integer(kind(hipMemAllocationGranularityMinimum)) :: option
+      !
+      hipMemGetAllocationGranularity_typed = hipMemGetAllocationGranularity_(c_loc(granularity), &
+        prop,option)
+    end function
+
+#endif
+    function hipGraphicsResourceGetMappedPointer_typed(devPtr,mySize,resource)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphicsResourceGetMappedPointer_typed
+      type(c_ptr) :: devPtr
+      integer(c_size_t),target :: mySize
+      type(c_ptr) :: resource
+      !
+      hipGraphicsResourceGetMappedPointer_typed = hipGraphicsResourceGetMappedPointer_(devPtr, &
+        c_loc(mySize),resource)
+    end function
 
 
   !>   @defgroup API HIP API

@@ -62,7 +62,7 @@ program test_rocfft
     if (never) v0 = rocfft_field_add_brick_(v1, v1)
     if (never) v0 = rocfft_plan_description_add_infield_(v1, v1)
     if (never) v0 = rocfft_plan_description_add_outfield_(v1, v1)
-    if (never) v0 = rocfft_plan_get_work_buffer_size_(v1, v5)
+    if (never) v0 = rocfft_plan_get_work_buffer_size_(v1, v1)
     if (never) v0 = rocfft_plan_get_print_(v1)
     if (never) v0 = rocfft_plan_description_create_(v1)
     if (never) v0 = rocfft_plan_description_destroy_(v1)
@@ -74,7 +74,7 @@ program test_rocfft
     if (never) v0 = rocfft_execution_info_set_load_callback_data_(v1, v1, v5)
     if (never) v0 = rocfft_execution_info_set_store_callback_(v1, v1, v1, v5)
     if (never) v0 = rocfft_execution_info_set_store_callback_data_(v1, v1, v5)
-    if (never) v0 = rocfft_cache_serialize_(v1, v5)
+    if (never) v0 = rocfft_cache_serialize_(v1, v1)
     if (never) v0 = rocfft_cache_buffer_free_(v1)
     if (never) v0 = rocfft_cache_deserialize_(v1, v5)
 

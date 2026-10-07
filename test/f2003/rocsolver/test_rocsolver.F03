@@ -63,7 +63,7 @@ program test_rocsolver
   never = command_argument_count() > 1000000
 
     if (never) v2 = rocsolver_get_version_string_(v0, v1)
-    if (never) v2 = rocsolver_get_version_string_size_(v1)
+    if (never) v2 = rocsolver_get_version_string_size_(v0)
     if (never) v2 = rocsolver_log_begin_()
     if (never) v2 = rocsolver_log_end_()
     if (never) v2 = rocsolver_log_set_layer_mode_(v3)
@@ -72,7 +72,7 @@ program test_rocsolver
     if (never) v2 = rocsolver_log_write_profile_()
     if (never) v2 = rocsolver_log_flush_profile_()
     if (never) v2 = rocsolver_set_alg_mode_(v0, v4, v5)
-    if (never) v2 = rocsolver_get_alg_mode_(v0, v4, v5)
+    if (never) v2 = rocsolver_get_alg_mode_(v0, v4, v0)
     if (never) v2 = rocsolver_clacgv_(v0, v3, v0, v3)
     if (never) v2 = rocsolver_zlacgv_(v0, v3, v0, v3)
     if (never) v2 = rocsolver_clacgv_64_(v0, v6, v0, v6)
@@ -1102,7 +1102,7 @@ program test_rocsolver
     if (never) v2 = rocsolver_create_rfinfo_(v0, v0)
     if (never) v2 = rocsolver_destroy_rfinfo_(v0)
     if (never) v2 = rocsolver_set_rfinfo_mode_(v0, v25)
-    if (never) v2 = rocsolver_get_rfinfo_mode_(v0, v25)
+    if (never) v2 = rocsolver_get_rfinfo_mode_(v0, v0)
     if (never) v2 = rocsolver_scsrrf_sumlu_(v0, v3, v3, v0, v0, v0, v3, v0, v0, v0, v0, v0, v0)
     if (never) v2 = rocsolver_dcsrrf_sumlu_(v0, v3, v3, v0, v0, v0, v3, v0, v0, v0, v0, v0, v0)
     if (never) v2 = rocsolver_scsrrf_splitlu_(v0, v3, v3, v0, v0, v0, v0, v0, v0, v0, v0, v0)

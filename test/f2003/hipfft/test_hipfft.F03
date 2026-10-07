@@ -34,9 +34,8 @@ program test_hipfft
   integer(kind(HIPFFT_R2C)) :: v2
   integer(kind(HIPFFT_SUCCESS)) :: v3
   real(c_double) :: v4
-  integer(c_size_t) :: v5
-  integer(c_int64_t) :: v6
-  integer(kind(HIPFFT_MAJOR_VERSION)) :: v7
+  integer(c_int64_t) :: v5
+  integer(kind(HIPFFT_MAJOR_VERSION)) :: v6
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
@@ -50,21 +49,21 @@ program test_hipfft
 #ifndef USE_CUDA_NAMES
     if (never) v3 = hipfftExtPlanScaleFactor_(v0, v4)
 #endif
-    if (never) v3 = hipfftMakePlan1d_(v0, v1, v2, v1, v5)
-    if (never) v3 = hipfftMakePlan2d_(v0, v1, v1, v2, v5)
-    if (never) v3 = hipfftMakePlan3d_(v0, v1, v1, v1, v2, v5)
-    if (never) v3 = hipfftMakePlanMany_(v0, v1, v0, v0, v1, v1, v0, v1, v1, v2, v1, v5)
-    if (never) v3 = hipfftMakePlanMany64_(v0, v1, v0, v0, v6, v6, v0, v6, v6, v2, v6, v5)
-    if (never) v3 = hipfftEstimate1d_(v1, v2, v1, v5)
-    if (never) v3 = hipfftEstimate2d_(v1, v1, v2, v5)
-    if (never) v3 = hipfftEstimate3d_(v1, v1, v1, v2, v5)
-    if (never) v3 = hipfftEstimateMany_(v1, v0, v0, v1, v1, v0, v1, v1, v2, v1, v5)
-    if (never) v3 = hipfftGetSize1d_(v0, v1, v2, v1, v5)
-    if (never) v3 = hipfftGetSize2d_(v0, v1, v1, v2, v5)
-    if (never) v3 = hipfftGetSize3d_(v0, v1, v1, v1, v2, v5)
-    if (never) v3 = hipfftGetSizeMany_(v0, v1, v0, v0, v1, v1, v0, v1, v1, v2, v1, v5)
-    if (never) v3 = hipfftGetSizeMany64_(v0, v1, v0, v0, v6, v6, v0, v6, v6, v2, v6, v5)
-    if (never) v3 = hipfftGetSize_(v0, v5)
+    if (never) v3 = hipfftMakePlan1d_(v0, v1, v2, v1, v0)
+    if (never) v3 = hipfftMakePlan2d_(v0, v1, v1, v2, v0)
+    if (never) v3 = hipfftMakePlan3d_(v0, v1, v1, v1, v2, v0)
+    if (never) v3 = hipfftMakePlanMany_(v0, v1, v0, v0, v1, v1, v0, v1, v1, v2, v1, v0)
+    if (never) v3 = hipfftMakePlanMany64_(v0, v1, v0, v0, v5, v5, v0, v5, v5, v2, v5, v0)
+    if (never) v3 = hipfftEstimate1d_(v1, v2, v1, v0)
+    if (never) v3 = hipfftEstimate2d_(v1, v1, v2, v0)
+    if (never) v3 = hipfftEstimate3d_(v1, v1, v1, v2, v0)
+    if (never) v3 = hipfftEstimateMany_(v1, v0, v0, v1, v1, v0, v1, v1, v2, v1, v0)
+    if (never) v3 = hipfftGetSize1d_(v0, v1, v2, v1, v0)
+    if (never) v3 = hipfftGetSize2d_(v0, v1, v1, v2, v0)
+    if (never) v3 = hipfftGetSize3d_(v0, v1, v1, v1, v2, v0)
+    if (never) v3 = hipfftGetSizeMany_(v0, v1, v0, v0, v1, v1, v0, v1, v1, v2, v1, v0)
+    if (never) v3 = hipfftGetSizeMany64_(v0, v1, v0, v0, v5, v5, v0, v5, v5, v2, v5, v0)
+    if (never) v3 = hipfftGetSize_(v0, v0)
     if (never) v3 = hipfftSetAutoAllocation_(v0, v1)
     if (never) v3 = hipfftSetWorkArea_(v0, v0)
     if (never) v3 = hipfftXtSetWorkArea_(v0, v0)
@@ -76,8 +75,8 @@ program test_hipfft
     if (never) v3 = hipfftExecZ2D_(v0, v0, v0)
     if (never) v3 = hipfftSetStream_(v0, v0)
     if (never) v3 = hipfftDestroy_(v0)
-    if (never) v3 = hipfftGetVersion_(v1)
-    if (never) v3 = hipfftGetProperty_(v7, v1)
+    if (never) v3 = hipfftGetVersion_(v0)
+    if (never) v3 = hipfftGetProperty_(v6, v0)
 
   write(*,"(a)") "-- test_hipfft (bind(C) symbols): PASSED (compile+link only)!"
 end program test_hipfft
