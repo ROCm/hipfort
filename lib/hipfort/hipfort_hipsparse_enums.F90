@@ -161,8 +161,8 @@ module hipfort_hipsparse_enums
     enumerator :: HIPSPARSE_SPMV_CSR_ALG2 = 3
     enumerator :: HIPSPARSE_SPMV_COO_ALG2 = 4
     enumerator :: HIPSPARSE_SPMV_SELL_ALG1 = 5
-    enumerator :: HIPSPARSE_SPMV_CSR_ALG3 = 7
     enumerator :: HIPSPARSE_SPMV_BSR_ALG1 = 6
+    enumerator :: HIPSPARSE_SPMV_CSR_ALG3 = 7
   end enum
 
   ! hipsparseSpMMAlg_t

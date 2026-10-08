@@ -45,82 +45,84 @@ program test_hip
   type(hipUUID) :: v5
   integer(kind(hipDevP2PAttrPerformanceRank)) :: v6
   integer(kind(hipDeviceAttributeCudaCompatibleBegin)) :: v7
-  integer(kind(hipFuncCachePreferNone)) :: v8
-  integer(kind(hipLimitStackSize)) :: v9
-  integer(c_size_t) :: v10
-  integer(kind(hipSharedMemBankSizeDefault)) :: v11
-  type(hipDeviceProp_t) :: v12
-  type(hipIpcMemHandle_t) :: v13
-  type(hipIpcEventHandle_t) :: v14
-  integer(kind(hipFuncAttributeMaxDynamicSharedMemorySize)) :: v15
-  integer(c_int32_t) :: v16
-  type(c_funptr) :: v17
-  integer(kind(hipLaunchAttributeIgnore)) :: v18
-  integer(c_int64_t) :: v19
-  type(hipBatchMemOpNodeParams) :: v20
-  integer(kind(HIP_POINTER_ATTRIBUTE_CONTEXT)) :: v21
-  type(hipPointerAttribute_t) :: v22
-  type(hipExternalSemaphoreHandleDesc) :: v23
-  type(hipExternalSemaphoreSignalParams) :: v24
-  type(hipExternalSemaphoreWaitParams) :: v25
-  type(hipExternalMemoryHandleDesc) :: v26
-  type(hipExternalMemoryBufferDesc) :: v27
-  type(hipMemLocation) :: v28
-  integer(kind(hipMemAdviseSetReadMostly)) :: v29
-  integer(kind(hipMemRangeAttributeReadMostly)) :: v30
-  integer(kind(hipMemPoolReuseFollowEventDependencies)) :: v31
-  type(hipMemAccessDesc) :: v32
-  type(hipMemPoolProps) :: v33
-  integer(kind(hipMemHandleTypeNone)) :: v34
-  type(hipMemPoolPtrExportData) :: v35
-  integer(kind(hipMemcpyHostToHost)) :: v36
-  character(c_char) :: v37
-  integer(c_short) :: v38
-  type(hipPitchedPtr) :: v39
-  type(hipExtent) :: v40
-  type(HIP_ARRAY_DESCRIPTOR) :: v41
-  type(HIP_ARRAY3D_DESCRIPTOR) :: v42
-  type(hip_Memcpy2D) :: v43
-  type(hipMemcpy3DParms) :: v44
-  type(HIP_MEMCPY3D) :: v45
-  type(hipMemcpyAttributes) :: v46
-  type(hipMemcpy3DBatchOp) :: v47
-  type(hipMemcpy3DPeerParms) :: v48
-  type(hipFuncAttributes) :: v49
-  integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)) :: v50
-  integer(kind(hipJitInputCubin)) :: v51
-  type(hipFunctionLaunchParams) :: v52
-  type(dim3) :: v53
-  type(hipLaunchParams) :: v54
-  type(hipLaunchConfig_t) :: v55
-  type(HIP_LAUNCH_CONFIG) :: v56
-  integer(kind(hipMemRangeHandleTypeDmaBufFd)) :: v57
-  type(hipResourceDesc) :: v58
-  type(hipTextureDesc) :: v59
-  type(hipResourceViewDesc) :: v60
-  type(HIP_RESOURCE_DESC) :: v61
-  type(HIP_TEXTURE_DESC) :: v62
-  type(HIP_RESOURCE_VIEW_DESC) :: v63
-  type(textureReference) :: v64
-  integer(kind(hipAddressModeWrap)) :: v65
-  integer(kind(hipFilterModePoint)) :: v66
-  integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)) :: v67
-  real(c_float) :: v68
-  type(hipMipmappedArray) :: v69
-  integer(kind(hipStreamCaptureModeGlobal)) :: v70
-  type(hipGraphEdgeData) :: v71
-  type(hipGraphInstantiateParams) :: v72
-  type(hipGraphNodeParams) :: v73
-  type(hipKernelNodeParams) :: v74
-  type(hipMemsetParams) :: v75
-  type(hipHostNodeParams) :: v76
-  type(hipMemAllocNodeParams) :: v77
-  integer(kind(hipGraphMemAttrUsedMemCurrent)) :: v78
-  type(hipExternalSemaphoreWaitNodeParams) :: v79
-  type(hipExternalSemaphoreSignalNodeParams) :: v80
-  type(hipMemAllocationProp) :: v81
-  integer(kind(hipMemAllocationGranularityMinimum)) :: v82
-  type(hipArrayMapInfo) :: v83
+  integer(kind(hipFlushGPUDirectRDMAWritesTargetCurrentDevice)) :: v8
+  integer(kind(hipFlushGPUDirectRDMAWritesToOwner)) :: v9
+  integer(kind(hipFuncCachePreferNone)) :: v10
+  integer(kind(hipLimitStackSize)) :: v11
+  integer(c_size_t) :: v12
+  integer(kind(hipSharedMemBankSizeDefault)) :: v13
+  type(hipDeviceProp_t) :: v14
+  type(hipIpcMemHandle_t) :: v15
+  type(hipIpcEventHandle_t) :: v16
+  integer(kind(hipFuncAttributeMaxDynamicSharedMemorySize)) :: v17
+  integer(c_int32_t) :: v18
+  type(c_funptr) :: v19
+  integer(kind(hipLaunchAttributeIgnore)) :: v20
+  integer(c_int64_t) :: v21
+  type(hipBatchMemOpNodeParams) :: v22
+  integer(kind(HIP_POINTER_ATTRIBUTE_CONTEXT)) :: v23
+  type(hipPointerAttribute_t) :: v24
+  type(hipExternalSemaphoreHandleDesc) :: v25
+  type(hipExternalSemaphoreSignalParams) :: v26
+  type(hipExternalSemaphoreWaitParams) :: v27
+  type(hipExternalMemoryHandleDesc) :: v28
+  type(hipExternalMemoryBufferDesc) :: v29
+  type(hipMemLocation) :: v30
+  integer(kind(hipMemAdviseSetReadMostly)) :: v31
+  integer(kind(hipMemRangeAttributeReadMostly)) :: v32
+  integer(kind(hipMemPoolReuseFollowEventDependencies)) :: v33
+  type(hipMemAccessDesc) :: v34
+  type(hipMemPoolProps) :: v35
+  integer(kind(hipMemHandleTypeNone)) :: v36
+  type(hipMemPoolPtrExportData) :: v37
+  integer(kind(hipMemcpyHostToHost)) :: v38
+  character(c_char) :: v39
+  integer(c_short) :: v40
+  type(hipPitchedPtr) :: v41
+  type(hipExtent) :: v42
+  type(HIP_ARRAY_DESCRIPTOR) :: v43
+  type(HIP_ARRAY3D_DESCRIPTOR) :: v44
+  type(hip_Memcpy2D) :: v45
+  type(hipMemcpy3DParms) :: v46
+  type(HIP_MEMCPY3D) :: v47
+  type(hipMemcpyAttributes) :: v48
+  type(hipMemcpy3DBatchOp) :: v49
+  type(hipMemcpy3DPeerParms) :: v50
+  type(hipFuncAttributes) :: v51
+  integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)) :: v52
+  integer(kind(hipJitInputCubin)) :: v53
+  type(hipFunctionLaunchParams) :: v54
+  type(dim3) :: v55
+  type(hipLaunchParams) :: v56
+  type(hipLaunchConfig_t) :: v57
+  type(HIP_LAUNCH_CONFIG) :: v58
+  integer(kind(hipMemRangeHandleTypeDmaBufFd)) :: v59
+  type(hipResourceDesc) :: v60
+  type(hipTextureDesc) :: v61
+  type(hipResourceViewDesc) :: v62
+  type(HIP_RESOURCE_DESC) :: v63
+  type(HIP_TEXTURE_DESC) :: v64
+  type(HIP_RESOURCE_VIEW_DESC) :: v65
+  type(textureReference) :: v66
+  integer(kind(hipAddressModeWrap)) :: v67
+  integer(kind(hipFilterModePoint)) :: v68
+  integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)) :: v69
+  real(c_float) :: v70
+  type(hipMipmappedArray) :: v71
+  integer(kind(hipStreamCaptureModeGlobal)) :: v72
+  type(hipGraphEdgeData) :: v73
+  type(hipGraphInstantiateParams) :: v74
+  type(hipGraphNodeParams) :: v75
+  type(hipKernelNodeParams) :: v76
+  type(hipMemsetParams) :: v77
+  type(hipHostNodeParams) :: v78
+  type(hipMemAllocNodeParams) :: v79
+  integer(kind(hipGraphMemAttrUsedMemCurrent)) :: v80
+  type(hipExternalSemaphoreWaitNodeParams) :: v81
+  type(hipExternalSemaphoreSignalNodeParams) :: v82
+  type(hipMemAllocationProp) :: v83
+  integer(kind(hipMemAllocationGranularityMinimum)) :: v84
+  type(hipArrayMapInfo) :: v85
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
@@ -152,31 +154,34 @@ program test_hip
     if (never) v3 = hipGetDevice_(v4)
     if (never) v3 = hipGetDeviceCount_(v4)
     if (never) v3 = hipDeviceGetAttribute_(v4, v7, v0)
+#ifndef USE_CUDA_NAMES
+    if (never) v3 = hipDeviceFlushGPUDirectRDMAWrites_(v8, v9)
+#endif
     if (never) v3 = hipDeviceGetDefaultMemPool_(v4, v0)
     if (never) v3 = hipDeviceSetMemPool_(v0, v4)
     if (never) v3 = hipDeviceGetMemPool_(v4, v0)
     if (never) v3 = hipDeviceGetTexture1DLinearMaxWidth_(v4, v2, v0)
-    if (never) v3 = hipDeviceSetCacheConfig_(v8)
+    if (never) v3 = hipDeviceSetCacheConfig_(v10)
     if (never) v3 = hipDeviceGetCacheConfig_(v4)
-    if (never) v3 = hipDeviceGetLimit_(v4, v9)
-    if (never) v3 = hipDeviceSetLimit_(v9, v10)
+    if (never) v3 = hipDeviceGetLimit_(v4, v11)
+    if (never) v3 = hipDeviceSetLimit_(v11, v12)
     if (never) v3 = hipDeviceGetSharedMemConfig_(v4)
     if (never) v3 = hipGetDeviceFlags_(v4)
-    if (never) v3 = hipDeviceSetSharedMemConfig_(v11)
+    if (never) v3 = hipDeviceSetSharedMemConfig_(v13)
     if (never) v3 = hipSetDeviceFlags_(v0)
+    if (never) v3 = hipChooseDeviceR0600_(v4, v14)
     if (never) v3 = hipInitDevice_(v0, v0, v0)
-    if (never) v3 = hipChooseDeviceR0600_(v4, v12)
 #ifndef USE_CUDA_NAMES
     if (never) v3 = hipExtGetLinkTypeAndHopCount_(v0, v0, v4, v4)
 #endif
-    if (never) v3 = hipIpcGetMemHandle_(v13, v4)
-    if (never) v3 = hipIpcOpenMemHandle_(v4, v13, v0)
+    if (never) v3 = hipIpcGetMemHandle_(v15, v4)
+    if (never) v3 = hipIpcOpenMemHandle_(v4, v15, v0)
     if (never) v3 = hipIpcCloseMemHandle_(v4)
-    if (never) v3 = hipIpcGetEventHandle_(v14, v4)
-    if (never) v3 = hipIpcOpenEventHandle_(v4, v14)
-    if (never) v3 = hipFuncSetAttribute_(v4, v15, v0)
-    if (never) v3 = hipFuncSetCacheConfig_(v4, v8)
-    if (never) v3 = hipFuncSetSharedMemConfig_(v4, v11)
+    if (never) v3 = hipIpcGetEventHandle_(v16, v4)
+    if (never) v3 = hipIpcOpenEventHandle_(v4, v16)
+    if (never) v3 = hipFuncSetAttribute_(v4, v17, v0)
+    if (never) v3 = hipFuncSetCacheConfig_(v4, v10)
+    if (never) v3 = hipFuncSetSharedMemConfig_(v4, v13)
     if (never) v3 = hipGetLastError_()
 #ifndef USE_CUDA_NAMES
     if (never) v3 = hipExtGetLastError_()
@@ -201,24 +206,24 @@ program test_hip
     if (never) v3 = hipStreamGetPriority_(v4, v4)
     if (never) v3 = hipStreamGetDevice_(v4, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipExtStreamCreateWithCUMask_(v4, v16, v4)
-    if (never) v3 = hipExtStreamGetCUMask_(v4, v16, v4)
+    if (never) v3 = hipExtStreamCreateWithCUMask_(v4, v18, v4)
+    if (never) v3 = hipExtStreamGetCUMask_(v4, v18, v4)
 #endif
-    if (never) v3 = hipStreamAddCallback_(v4, v17, v4, v0)
-    if (never) v3 = hipStreamSetAttribute_(v4, v18, v4)
-    if (never) v3 = hipStreamGetAttribute_(v4, v18, v4)
+    if (never) v3 = hipStreamAddCallback_(v4, v19, v4, v0)
+    if (never) v3 = hipStreamSetAttribute_(v4, v20, v4)
+    if (never) v3 = hipStreamGetAttribute_(v4, v20, v4)
     if (never) v3 = hipStreamCopyAttributes_(v4, v4)
-    if (never) v3 = hipStreamWaitValue32_(v4, v4, v16, v0, v16)
-    if (never) v3 = hipStreamWaitValue64_(v4, v4, v19, v0, v19)
+    if (never) v3 = hipStreamWaitValue32_(v4, v4, v18, v0, v18)
+    if (never) v3 = hipStreamWaitValue64_(v4, v4, v21, v0, v21)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipStreamWriteValue32_(v4, v4, v16, v0)
-    if (never) v3 = hipStreamWriteValue64_(v4, v4, v19, v0)
+    if (never) v3 = hipStreamWriteValue32_(v4, v4, v18, v0)
+    if (never) v3 = hipStreamWriteValue64_(v4, v4, v21, v0)
 #endif
     if (never) v3 = hipStreamBatchMemOp_(v4, v0, v4, v0)
-    if (never) v3 = hipGraphAddBatchMemOpNode_(v4, v4, v4, v10, v20)
-    if (never) v3 = hipGraphBatchMemOpNodeGetParams_(v4, v20)
-    if (never) v3 = hipGraphBatchMemOpNodeSetParams_(v4, v20)
-    if (never) v3 = hipGraphExecBatchMemOpNodeSetParams_(v4, v4, v20)
+    if (never) v3 = hipGraphAddBatchMemOpNode_(v4, v4, v4, v12, v22)
+    if (never) v3 = hipGraphBatchMemOpNodeGetParams_(v4, v22)
+    if (never) v3 = hipGraphBatchMemOpNodeSetParams_(v4, v22)
+    if (never) v3 = hipGraphExecBatchMemOpNodeSetParams_(v4, v4, v22)
     if (never) v3 = hipEventCreateWithFlags_(v4, v0)
     if (never) v3 = hipEventCreate_(v4)
     if (never) v3 = hipEventRecordWithFlags_(v4, v4, v0)
@@ -227,150 +232,150 @@ program test_hip
     if (never) v3 = hipEventSynchronize_(v4)
     if (never) v3 = hipEventElapsedTime_(v4, v4, v4)
     if (never) v3 = hipEventQuery_(v4)
-    if (never) v3 = hipPointerSetAttribute_(v4, v21, v4)
-    if (never) v3 = hipPointerGetAttributes_(v22, v4)
+    if (never) v3 = hipPointerSetAttribute_(v4, v23, v4)
+    if (never) v3 = hipPointerGetAttributes_(v24, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipPointerGetAttribute_(v4, v21, v4)
+    if (never) v3 = hipPointerGetAttribute_(v4, v23, v4)
     if (never) v3 = hipDrvPointerGetAttributes_(v0, v4, v4, v4)
 #endif
-    if (never) v3 = hipImportExternalSemaphore_(v4, v23)
-    if (never) v3 = hipSignalExternalSemaphoresAsync_(v4, v24, v0, v4)
-    if (never) v3 = hipWaitExternalSemaphoresAsync_(v4, v25, v0, v4)
+    if (never) v3 = hipImportExternalSemaphore_(v4, v25)
+    if (never) v3 = hipSignalExternalSemaphoresAsync_(v4, v26, v0, v4)
+    if (never) v3 = hipWaitExternalSemaphoresAsync_(v4, v27, v0, v4)
     if (never) v3 = hipDestroyExternalSemaphore_(v4)
-    if (never) v3 = hipImportExternalMemory_(v4, v26)
-    if (never) v3 = hipExternalMemoryGetMappedBuffer_(v4, v4, v27)
+    if (never) v3 = hipImportExternalMemory_(v4, v28)
+    if (never) v3 = hipExternalMemoryGetMappedBuffer_(v4, v4, v29)
     if (never) v3 = hipDestroyExternalMemory_(v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipExtMallocWithFlags_(v4, v10, v0)
+    if (never) v3 = hipExtMallocWithFlags_(v4, v12, v0)
 #endif
-    if (never) v3 = hipMallocHost_(v4, v10)
+    if (never) v3 = hipMallocHost_(v4, v12)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipMemAllocHost_(v4, v10)
-    if (never) v3 = hipMemPrefetchAsync_(v4, v10, v0, v4)
+    if (never) v3 = hipMemAllocHost_(v4, v12)
+    if (never) v3 = hipMemPrefetchAsync_(v4, v12, v0, v4)
 #endif
-    if (never) v3 = hipMemPrefetchAsync_v2_(v4, v10, v28, v0, v4)
+    if (never) v3 = hipMemPrefetchAsync_v2_(v4, v12, v30, v0, v4)
+    if (never) v3 = hipMemAdvise_v2_(v4, v12, v31, v30)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipMemAdvise_(v4, v10, v29, v0)
+    if (never) v3 = hipMemAdvise_(v4, v12, v31, v0)
 #endif
-    if (never) v3 = hipMemAdvise_v2_(v4, v10, v29, v28)
-    if (never) v3 = hipMemRangeGetAttribute_(v4, v10, v30, v4, v10)
-    if (never) v3 = hipMemRangeGetAttributes_(v4, v4, v4, v10, v4, v10)
-    if (never) v3 = hipStreamAttachMemAsync_(v4, v4, v10, v0)
-    if (never) v3 = hipMallocAsync_(v4, v10, v4)
+    if (never) v3 = hipMemRangeGetAttribute_(v4, v12, v32, v4, v12)
+    if (never) v3 = hipMemRangeGetAttributes_(v4, v4, v4, v12, v4, v12)
+    if (never) v3 = hipStreamAttachMemAsync_(v4, v4, v12, v0)
+    if (never) v3 = hipMallocAsync_(v4, v12, v4)
     if (never) v3 = hipFreeAsync_(v4, v4)
-    if (never) v3 = hipMemPoolTrimTo_(v4, v10)
-    if (never) v3 = hipMemPoolSetAttribute_(v4, v31, v4)
-    if (never) v3 = hipMemPoolGetAttribute_(v4, v31, v4)
-    if (never) v3 = hipMemPoolSetAccess_(v4, v32, v10)
-    if (never) v3 = hipMemPoolGetAccess_(v4, v4, v28)
-    if (never) v3 = hipMemPoolCreate_(v4, v33)
+    if (never) v3 = hipMemPoolTrimTo_(v4, v12)
+    if (never) v3 = hipMemPoolSetAttribute_(v4, v33, v4)
+    if (never) v3 = hipMemPoolGetAttribute_(v4, v33, v4)
+    if (never) v3 = hipMemPoolSetAccess_(v4, v34, v12)
+    if (never) v3 = hipMemPoolGetAccess_(v4, v4, v30)
+    if (never) v3 = hipMemPoolCreate_(v4, v35)
     if (never) v3 = hipMemPoolDestroy_(v4)
-    if (never) v3 = hipMallocFromPoolAsync_(v4, v10, v4, v4)
-    if (never) v3 = hipMemPoolExportToShareableHandle_(v4, v4, v34, v0)
-    if (never) v3 = hipMemPoolImportFromShareableHandle_(v4, v4, v34, v0)
-    if (never) v3 = hipMemPoolExportPointer_(v35, v4)
-    if (never) v3 = hipMemPoolImportPointer_(v4, v4, v35)
-    if (never) v3 = hipHostAlloc_(v4, v10, v0)
-    if (never) v3 = hipMallocPitch_(v4, v4, v10, v10)
+    if (never) v3 = hipMallocFromPoolAsync_(v4, v12, v4, v4)
+    if (never) v3 = hipMemPoolExportToShareableHandle_(v4, v4, v36, v0)
+    if (never) v3 = hipMemPoolImportFromShareableHandle_(v4, v4, v36, v0)
+    if (never) v3 = hipMemPoolExportPointer_(v37, v4)
+    if (never) v3 = hipMemPoolImportPointer_(v4, v4, v37)
+    if (never) v3 = hipHostAlloc_(v4, v12, v0)
+    if (never) v3 = hipMallocPitch_(v4, v4, v12, v12)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipMemAllocPitch_(v4, v4, v10, v10, v0)
+    if (never) v3 = hipMemAllocPitch_(v4, v4, v12, v12, v0)
 #endif
     if (never) v3 = hipFreeHost_(v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipMemcpyWithStream_(v4, v4, v10, v36, v4)
-    if (never) v3 = hipMemcpyHtoD_(v4, v4, v10)
-    if (never) v3 = hipMemcpyDtoH_(v4, v4, v10)
-    if (never) v3 = hipMemcpyDtoD_(v4, v4, v10)
+    if (never) v3 = hipMemcpyWithStream_(v4, v4, v12, v38, v4)
+    if (never) v3 = hipMemcpyHtoD_(v4, v4, v12)
+    if (never) v3 = hipMemcpyDtoH_(v4, v4, v12)
+    if (never) v3 = hipMemcpyDtoD_(v4, v4, v12)
 #endif
-    if (never) v3 = hipMemcpyAtoD_(v4, v4, v10, v10)
-    if (never) v3 = hipMemcpyDtoA_(v4, v10, v4, v10)
-    if (never) v3 = hipMemcpyAtoA_(v4, v10, v4, v10, v10)
+    if (never) v3 = hipMemcpyAtoD_(v4, v4, v12, v12)
+    if (never) v3 = hipMemcpyDtoA_(v4, v12, v4, v12)
+    if (never) v3 = hipMemcpyAtoA_(v4, v12, v4, v12, v12)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipMemcpyHtoDAsync_(v4, v4, v10, v4)
-    if (never) v3 = hipMemcpyDtoHAsync_(v4, v4, v10, v4)
-    if (never) v3 = hipMemcpyDtoDAsync_(v4, v4, v10, v4)
+    if (never) v3 = hipMemcpyHtoDAsync_(v4, v4, v12, v4)
+    if (never) v3 = hipMemcpyDtoHAsync_(v4, v4, v12, v4)
+    if (never) v3 = hipMemcpyDtoDAsync_(v4, v4, v12, v4)
 #endif
-    if (never) v3 = hipMemcpyAtoHAsync_(v4, v4, v10, v10, v4)
-    if (never) v3 = hipMemcpyHtoAAsync_(v4, v10, v4, v10, v4)
+    if (never) v3 = hipMemcpyAtoHAsync_(v4, v4, v12, v12, v4)
+    if (never) v3 = hipMemcpyHtoAAsync_(v4, v12, v4, v12, v4)
 #ifndef USE_CUDA_NAMES
     if (never) v3 = hipModuleGetGlobal_(v4, v4, v4, v4)
 #endif
     if (never) v3 = hipGetSymbolAddress_(v4, v4)
     if (never) v3 = hipGetSymbolSize_(v4, v4)
-    if (never) v3 = hipGetProcAddress_(v4, v4, v0, v19, v4)
-    if (never) v3 = hipMemcpyToSymbol_(v4, v4, v10, v10, v36)
-    if (never) v3 = hipMemcpyToSymbolAsync_(v4, v4, v10, v10, v36, v4)
-    if (never) v3 = hipMemcpyFromSymbol_(v4, v4, v10, v10, v36)
-    if (never) v3 = hipMemcpyFromSymbolAsync_(v4, v4, v10, v10, v36, v4)
-    if (never) v3 = hipMemset_(v4, v0, v10)
+    if (never) v3 = hipGetProcAddress_(v4, v4, v0, v21, v4)
+    if (never) v3 = hipMemcpyToSymbol_(v4, v4, v12, v12, v38)
+    if (never) v3 = hipMemcpyToSymbolAsync_(v4, v4, v12, v12, v38, v4)
+    if (never) v3 = hipMemcpyFromSymbol_(v4, v4, v12, v12, v38)
+    if (never) v3 = hipMemcpyFromSymbolAsync_(v4, v4, v12, v12, v38, v4)
+    if (never) v3 = hipMemset_(v4, v0, v12)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipMemsetD8_(v4, v37, v10)
-    if (never) v3 = hipMemsetD8Async_(v4, v37, v10, v4)
-    if (never) v3 = hipMemsetD16_(v4, v38, v10)
-    if (never) v3 = hipMemsetD16Async_(v4, v38, v10, v4)
-    if (never) v3 = hipMemsetD32_(v4, v0, v10)
+    if (never) v3 = hipMemsetD8_(v4, v39, v12)
+    if (never) v3 = hipMemsetD8Async_(v4, v39, v12, v4)
+    if (never) v3 = hipMemsetD16_(v4, v40, v12)
+    if (never) v3 = hipMemsetD16Async_(v4, v40, v12, v4)
+    if (never) v3 = hipMemsetD32_(v4, v0, v12)
 #endif
-    if (never) v3 = hipMemsetAsync_(v4, v0, v10, v4)
+    if (never) v3 = hipMemsetAsync_(v4, v0, v12, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipMemsetD32Async_(v4, v0, v10, v4)
+    if (never) v3 = hipMemsetD32Async_(v4, v0, v12, v4)
 #endif
-    if (never) v3 = hipMemset2D_(v4, v10, v0, v10, v10)
-    if (never) v3 = hipMemset2DAsync_(v4, v10, v0, v10, v10, v4)
-    if (never) v3 = hipMemset3D_(v39, v0, v40)
-    if (never) v3 = hipMemset3DAsync_(v39, v0, v40, v4)
-    if (never) v3 = hipMemsetD2D8_(v4, v10, v37, v10, v10)
-    if (never) v3 = hipMemsetD2D8Async_(v4, v10, v37, v10, v10, v4)
-    if (never) v3 = hipMemsetD2D16_(v4, v10, v38, v10, v10)
-    if (never) v3 = hipMemsetD2D16Async_(v4, v10, v38, v10, v10, v4)
-    if (never) v3 = hipMemsetD2D32_(v4, v10, v0, v10, v10)
-    if (never) v3 = hipMemsetD2D32Async_(v4, v10, v0, v10, v10, v4)
+    if (never) v3 = hipMemset2D_(v4, v12, v0, v12, v12)
+    if (never) v3 = hipMemset2DAsync_(v4, v12, v0, v12, v12, v4)
+    if (never) v3 = hipMemset3D_(v41, v0, v42)
+    if (never) v3 = hipMemset3DAsync_(v41, v0, v42, v4)
+    if (never) v3 = hipMemsetD2D8_(v4, v12, v39, v12, v12)
+    if (never) v3 = hipMemsetD2D8Async_(v4, v12, v39, v12, v12, v4)
+    if (never) v3 = hipMemsetD2D16_(v4, v12, v40, v12, v12)
+    if (never) v3 = hipMemsetD2D16Async_(v4, v12, v40, v12, v12, v4)
+    if (never) v3 = hipMemsetD2D32_(v4, v12, v0, v12, v12)
+    if (never) v3 = hipMemsetD2D32Async_(v4, v12, v0, v12, v12, v4)
     if (never) v3 = hipMemGetInfo_(v4, v4)
 #ifndef USE_CUDA_NAMES
     if (never) v3 = hipMemPtrGetInfo_(v4, v4)
 #endif
-    if (never) v3 = hipMallocArray_(v4, v2, v10, v10, v0)
+    if (never) v3 = hipMallocArray_(v4, v2, v12, v12, v0)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipArrayCreate_(v4, v41)
+    if (never) v3 = hipArrayCreate_(v4, v43)
     if (never) v3 = hipArrayDestroy_(v4)
-    if (never) v3 = hipArray3DCreate_(v4, v42)
+    if (never) v3 = hipArray3DCreate_(v4, v44)
 #endif
-    if (never) v3 = hipMalloc3D_(v39, v40)
+    if (never) v3 = hipMalloc3D_(v41, v42)
     if (never) v3 = hipFreeArray_(v4)
-    if (never) v3 = hipMalloc3DArray_(v4, v2, v40, v0)
-    if (never) v3 = hipArrayGetInfo_(v2, v40, v4, v4)
-    if (never) v3 = hipArrayGetDescriptor_(v41, v4)
-    if (never) v3 = hipArray3DGetDescriptor_(v42, v4)
+    if (never) v3 = hipMalloc3DArray_(v4, v2, v42, v0)
+    if (never) v3 = hipArrayGetInfo_(v2, v42, v4, v4)
+    if (never) v3 = hipArrayGetDescriptor_(v43, v4)
+    if (never) v3 = hipArray3DGetDescriptor_(v44, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipMemcpyParam2D_(v43)
-    if (never) v3 = hipMemcpyParam2DAsync_(v43, v4)
+    if (never) v3 = hipMemcpyParam2D_(v45)
+    if (never) v3 = hipMemcpyParam2DAsync_(v45, v4)
 #endif
-    if (never) v3 = hipMemcpy2DToArray_(v4, v10, v10, v4, v10, v10, v10, v36)
-    if (never) v3 = hipMemcpy2DToArrayAsync_(v4, v10, v10, v4, v10, v10, v10, v36, v4)
-    if (never) v3 = hipMemcpy2DArrayToArray_(v4, v10, v10, v4, v10, v10, v10, v10, v36)
-    if (never) v3 = hipMemcpyToArray_(v4, v10, v10, v4, v10, v36)
-    if (never) v3 = hipMemcpyFromArray_(v4, v4, v10, v10, v10, v36)
-    if (never) v3 = hipMemcpy2DFromArray_(v4, v10, v4, v10, v10, v10, v10, v36)
-    if (never) v3 = hipMemcpy2DFromArrayAsync_(v4, v10, v4, v10, v10, v10, v10, v36, v4)
+    if (never) v3 = hipMemcpy2DToArray_(v4, v12, v12, v4, v12, v12, v12, v38)
+    if (never) v3 = hipMemcpy2DToArrayAsync_(v4, v12, v12, v4, v12, v12, v12, v38, v4)
+    if (never) v3 = hipMemcpy2DArrayToArray_(v4, v12, v12, v4, v12, v12, v12, v12, v38)
+    if (never) v3 = hipMemcpyToArray_(v4, v12, v12, v4, v12, v38)
+    if (never) v3 = hipMemcpyFromArray_(v4, v4, v12, v12, v12, v38)
+    if (never) v3 = hipMemcpy2DFromArray_(v4, v12, v4, v12, v12, v12, v12, v38)
+    if (never) v3 = hipMemcpy2DFromArrayAsync_(v4, v12, v4, v12, v12, v12, v12, v38, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipMemcpyAtoH_(v4, v4, v10, v10)
-    if (never) v3 = hipMemcpyHtoA_(v4, v10, v4, v10)
+    if (never) v3 = hipMemcpyAtoH_(v4, v4, v12, v12)
+    if (never) v3 = hipMemcpyHtoA_(v4, v12, v4, v12)
 #endif
-    if (never) v3 = hipMemcpy3D_(v44)
-    if (never) v3 = hipMemcpy3DAsync_(v44, v4)
+    if (never) v3 = hipMemcpy3D_(v46)
+    if (never) v3 = hipMemcpy3DAsync_(v46, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipDrvMemcpy3D_(v45)
-    if (never) v3 = hipDrvMemcpy3DAsync_(v45, v4)
+    if (never) v3 = hipDrvMemcpy3D_(v47)
+    if (never) v3 = hipDrvMemcpy3DAsync_(v47, v4)
     if (never) v3 = hipMemGetAddressRange_(v4, v4, v4)
 #endif
-    if (never) v3 = hipMemcpyBatchAsync_(v4, v4, v4, v10, v46, v4, v10, v4, v4)
-    if (never) v3 = hipMemcpy3DBatchAsync_(v10, v47, v4, v19, v4)
-    if (never) v3 = hipMemcpy3DPeer_(v48)
-    if (never) v3 = hipMemcpy3DPeerAsync_(v48, v4)
+    if (never) v3 = hipMemcpyBatchAsync_(v4, v4, v4, v12, v48, v4, v12, v4, v4)
+    if (never) v3 = hipMemcpy3DBatchAsync_(v12, v49, v4, v21, v4)
+    if (never) v3 = hipMemcpy3DPeer_(v50)
+    if (never) v3 = hipMemcpy3DPeerAsync_(v50, v4)
     if (never) v3 = hipDeviceCanAccessPeer_(v4, v0, v0)
     if (never) v3 = hipDeviceEnablePeerAccess_(v0, v0)
     if (never) v3 = hipDeviceDisablePeerAccess_(v0)
-    if (never) v3 = hipMemcpyPeer_(v4, v0, v4, v0, v10)
-    if (never) v3 = hipMemcpyPeerAsync_(v4, v0, v4, v0, v10, v4)
+    if (never) v3 = hipMemcpyPeer_(v4, v0, v4, v0, v12)
+    if (never) v3 = hipMemcpyPeerAsync_(v4, v0, v4, v0, v12, v4)
 #ifndef USE_CUDA_NAMES
     if (never) v3 = hipCtxCreate_(v4, v0, v0)
     if (never) v3 = hipCtxDestroy_(v4)
@@ -381,8 +386,8 @@ program test_hip
     if (never) v3 = hipCtxGetDevice_(v4)
     if (never) v3 = hipCtxGetApiVersion_(v4, v4)
     if (never) v3 = hipCtxGetCacheConfig_(v4)
-    if (never) v3 = hipCtxSetCacheConfig_(v8)
-    if (never) v3 = hipCtxSetSharedMemConfig_(v11)
+    if (never) v3 = hipCtxSetCacheConfig_(v10)
+    if (never) v3 = hipCtxSetSharedMemConfig_(v13)
     if (never) v3 = hipCtxGetSharedMemConfig_(v4)
     if (never) v3 = hipCtxSynchronize_()
     if (never) v3 = hipCtxGetFlags_(v4)
@@ -401,6 +406,9 @@ program test_hip
     if (never) v3 = hipModuleGetFunction_(v4, v4, v4)
 #endif
     if (never) v3 = hipModuleGetFunctionCount_(v4, v4)
+#ifndef USE_CUDA_NAMES
+    if (never) v3 = hipModuleEnumerateFunctions_(v4, v0, v4)
+#endif
     if (never) v3 = hipLibraryLoadData_(v4, v4, v4, v4, v0, v4, v4, v0)
     if (never) v3 = hipLibraryLoadFromFile_(v4, v4, v4, v4, v0, v4, v4, v0)
     if (never) v3 = hipLibraryUnload_(v4)
@@ -411,136 +419,136 @@ program test_hip
     if (never) v3 = hipKernelGetLibrary_(v4, v4)
     if (never) v3 = hipKernelGetName_(v4, v4)
 #endif
-    if (never) v3 = hipFuncGetAttributes_(v49, v4)
+    if (never) v3 = hipFuncGetAttributes_(v51, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipFuncGetAttribute_(v4, v50, v4)
+    if (never) v3 = hipFuncGetAttribute_(v4, v52, v4)
 #endif
     if (never) v3 = hipGetFuncBySymbol_(v4, v4)
-    if (never) v3 = hipGetDriverEntryPoint_(v4, v4, v19, v4)
+    if (never) v3 = hipGetDriverEntryPoint_(v4, v4, v21, v4)
 #ifndef USE_CUDA_NAMES
     if (never) v3 = hipModuleGetTexRef_(v4, v4, v4)
     if (never) v3 = hipModuleLoadData_(v4, v4)
     if (never) v3 = hipModuleLoadDataEx_(v4, v4, v0, v4, v4)
 #endif
-    if (never) v3 = hipLinkAddData_(v4, v51, v4, v10, v4, v0, v4, v4)
-    if (never) v3 = hipLinkAddFile_(v4, v51, v4, v0, v4, v4)
+    if (never) v3 = hipLinkAddData_(v4, v53, v4, v12, v4, v0, v4, v4)
+    if (never) v3 = hipLinkAddFile_(v4, v53, v4, v0, v4, v4)
     if (never) v3 = hipLinkComplete_(v4, v4, v4)
     if (never) v3 = hipLinkCreate_(v0, v4, v4, v4)
     if (never) v3 = hipLinkDestroy_(v4)
 #ifndef USE_CUDA_NAMES
     if (never) v3 = hipModuleLaunchKernel_(v4, v0, v0, v0, v0, v0, v0, v0, v4, v4, v4)
     if (never) v3 = hipModuleLaunchCooperativeKernel_(v4, v0, v0, v0, v0, v0, v0, v0, v4, v4)
-    if (never) v3 = hipModuleLaunchCooperativeKernelMultiDevice_(v52, v0, v0)
+    if (never) v3 = hipModuleLaunchCooperativeKernelMultiDevice_(v54, v0, v0)
 #endif
-    if (never) v3 = hipLaunchCooperativeKernel_(v4, v53, v53, v4, v0, v4)
+    if (never) v3 = hipLaunchCooperativeKernel_(v4, v55, v55, v4, v0, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipLaunchCooperativeKernelMultiDevice_(v54, v0, v0)
-    if (never) v3 = hipExtLaunchMultiKernelMultiDevice_(v54, v0, v0)
+    if (never) v3 = hipLaunchCooperativeKernelMultiDevice_(v56, v0, v0)
+    if (never) v3 = hipExtLaunchMultiKernelMultiDevice_(v56, v0, v0)
 #endif
-    if (never) v3 = hipLaunchKernelExC_(v55, v4, v4)
+    if (never) v3 = hipLaunchKernelExC_(v57, v4, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipDrvLaunchKernelEx_(v56, v4, v4, v4)
+    if (never) v3 = hipDrvLaunchKernelEx_(v58, v4, v4, v4)
 #endif
-    if (never) v3 = hipMemGetHandleForAddressRange_(v4, v4, v10, v57, v19)
+    if (never) v3 = hipMemGetHandleForAddressRange_(v4, v4, v12, v59, v21)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipModuleOccupancyMaxPotentialBlockSize_(v4, v4, v4, v10, v0)
-    if (never) v3 = hipModuleOccupancyMaxPotentialBlockSizeWithFlags_(v4, v4, v4, v10, v0, v0)
-    if (never) v3 = hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_(v4, v4, v0, v10)
-    if (never) v3 = hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(v4, v4, v0, v10, v0)
+    if (never) v3 = hipModuleOccupancyMaxPotentialBlockSize_(v4, v4, v4, v12, v0)
+    if (never) v3 = hipModuleOccupancyMaxPotentialBlockSizeWithFlags_(v4, v4, v4, v12, v0, v0)
+    if (never) v3 = hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_(v4, v4, v0, v12)
+    if (never) v3 = hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(v4, v4, v0, v12, v0)
 #endif
-    if (never) v3 = hipOccupancyMaxActiveBlocksPerMultiprocessor_(v4, v17, v0, v10)
-    if (never) v3 = hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(v4, v17, v0, v10, v0)
+    if (never) v3 = hipOccupancyMaxActiveBlocksPerMultiprocessor_(v4, v19, v0, v12)
+    if (never) v3 = hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(v4, v19, v0, v12, v0)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipOccupancyMaxPotentialBlockSize_(v4, v4, v17, v10, v0)
+    if (never) v3 = hipOccupancyMaxPotentialBlockSize_(v4, v4, v19, v12, v0)
 #endif
-    if (never) v3 = hipOccupancyAvailableDynamicSMemPerBlock_(v4, v17, v0, v0)
+    if (never) v3 = hipOccupancyAvailableDynamicSMemPerBlock_(v4, v19, v0, v0)
     if (never) v3 = hipProfilerStart_()
     if (never) v3 = hipProfilerStop_()
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipConfigureCall_(v53, v53, v10, v4)
-    if (never) v3 = hipSetupArgument_(v4, v10, v10)
+    if (never) v3 = hipConfigureCall_(v55, v55, v12, v4)
+    if (never) v3 = hipSetupArgument_(v4, v12, v12)
     if (never) v3 = hipLaunchByPtr_(v4)
 #endif
-    if (never) v3 = hipLaunchKernel_(v4, v53, v53, v4, v10, v4)
-    if (never) v3 = hipLaunchHostFunc_(v4, v17, v4)
+    if (never) v3 = hipLaunchKernel_(v4, v55, v55, v4, v12, v4)
+    if (never) v3 = hipLaunchHostFunc_(v4, v19, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipDrvMemcpy2DUnaligned_(v43)
-    if (never) v3 = hipExtLaunchKernel_(v4, v53, v53, v4, v10, v4, v4, v4, v0)
+    if (never) v3 = hipDrvMemcpy2DUnaligned_(v45)
+    if (never) v3 = hipExtLaunchKernel_(v4, v55, v55, v4, v12, v4, v4, v4, v0)
 #endif
-    if (never) v3 = hipCreateTextureObject_(v4, v58, v59, v60)
+    if (never) v3 = hipCreateTextureObject_(v4, v60, v61, v62)
     if (never) v3 = hipDestroyTextureObject_(v4)
     if (never) v3 = hipGetChannelDesc_(v2, v4)
-    if (never) v3 = hipGetTextureObjectResourceDesc_(v58, v4)
-    if (never) v3 = hipGetTextureObjectResourceViewDesc_(v60, v4)
-    if (never) v3 = hipGetTextureObjectTextureDesc_(v59, v4)
+    if (never) v3 = hipGetTextureObjectResourceDesc_(v60, v4)
+    if (never) v3 = hipGetTextureObjectResourceViewDesc_(v62, v4)
+    if (never) v3 = hipGetTextureObjectTextureDesc_(v61, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipTexObjectCreate_(v4, v61, v62, v63)
+    if (never) v3 = hipTexObjectCreate_(v4, v63, v64, v65)
     if (never) v3 = hipTexObjectDestroy_(v4)
-    if (never) v3 = hipTexObjectGetResourceDesc_(v61, v4)
-    if (never) v3 = hipTexObjectGetResourceViewDesc_(v63, v4)
-    if (never) v3 = hipTexObjectGetTextureDesc_(v62, v4)
+    if (never) v3 = hipTexObjectGetResourceDesc_(v63, v4)
+    if (never) v3 = hipTexObjectGetResourceViewDesc_(v65, v4)
+    if (never) v3 = hipTexObjectGetTextureDesc_(v64, v4)
 #endif
-    if (never) v3 = hipMallocMipmappedArray_(v4, v2, v40, v0, v0)
+    if (never) v3 = hipMallocMipmappedArray_(v4, v2, v42, v0, v0)
     if (never) v3 = hipFreeMipmappedArray_(v4)
     if (never) v3 = hipGetMipmappedArrayLevel_(v4, v4, v0)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipMipmappedArrayCreate_(v4, v42, v0)
+    if (never) v3 = hipMipmappedArrayCreate_(v4, v44, v0)
     if (never) v3 = hipMipmappedArrayDestroy_(v4)
     if (never) v3 = hipMipmappedArrayGetLevel_(v4, v4, v0)
-    if (never) v3 = hipBindTextureToMipmappedArray_(v64, v4, v2)
+    if (never) v3 = hipBindTextureToMipmappedArray_(v66, v4, v2)
     if (never) v3 = hipGetTextureReference_(v4, v4)
 #endif
-    if (never) v3 = hipTexRefGetBorderColor_(v4, v64)
-    if (never) v3 = hipTexRefGetArray_(v4, v64)
+    if (never) v3 = hipTexRefGetBorderColor_(v4, v66)
+    if (never) v3 = hipTexRefGetArray_(v4, v66)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipTexRefSetAddressMode_(v64, v0, v65)
-    if (never) v3 = hipTexRefSetArray_(v64, v4, v0)
-    if (never) v3 = hipTexRefSetFilterMode_(v64, v66)
-    if (never) v3 = hipTexRefSetFlags_(v64, v0)
-    if (never) v3 = hipTexRefSetFormat_(v64, v67, v0)
-    if (never) v3 = hipBindTexture_(v4, v64, v4, v2, v10)
-    if (never) v3 = hipBindTexture2D_(v4, v64, v4, v2, v10, v10, v10)
-    if (never) v3 = hipBindTextureToArray_(v64, v4, v2)
-    if (never) v3 = hipGetTextureAlignmentOffset_(v4, v64)
-    if (never) v3 = hipUnbindTexture_(v64)
-    if (never) v3 = hipTexRefGetAddress_(v4, v64)
-    if (never) v3 = hipTexRefGetAddressMode_(v4, v64, v0)
-    if (never) v3 = hipTexRefGetFilterMode_(v4, v64)
-    if (never) v3 = hipTexRefGetFlags_(v4, v64)
-    if (never) v3 = hipTexRefGetFormat_(v4, v4, v64)
-    if (never) v3 = hipTexRefGetMaxAnisotropy_(v4, v64)
-    if (never) v3 = hipTexRefGetMipmapFilterMode_(v4, v64)
-    if (never) v3 = hipTexRefGetMipmapLevelBias_(v4, v64)
-    if (never) v3 = hipTexRefGetMipmapLevelClamp_(v4, v4, v64)
-    if (never) v3 = hipTexRefGetMipMappedArray_(v4, v64)
-    if (never) v3 = hipTexRefSetAddress_(v4, v64, v4, v10)
-    if (never) v3 = hipTexRefSetAddress2D_(v64, v41, v4, v10)
-    if (never) v3 = hipTexRefSetMaxAnisotropy_(v64, v0)
-    if (never) v3 = hipTexRefSetBorderColor_(v64, v4)
-    if (never) v3 = hipTexRefSetMipmapFilterMode_(v64, v66)
-    if (never) v3 = hipTexRefSetMipmapLevelBias_(v64, v68)
-    if (never) v3 = hipTexRefSetMipmapLevelClamp_(v64, v68, v68)
-    if (never) v3 = hipTexRefSetMipmappedArray_(v64, v69, v0)
-    if (never) v4 = hipApiName_(v16)
+    if (never) v3 = hipTexRefSetAddressMode_(v66, v0, v67)
+    if (never) v3 = hipTexRefSetArray_(v66, v4, v0)
+    if (never) v3 = hipTexRefSetFilterMode_(v66, v68)
+    if (never) v3 = hipTexRefSetFlags_(v66, v0)
+    if (never) v3 = hipTexRefSetFormat_(v66, v69, v0)
+    if (never) v3 = hipBindTexture_(v4, v66, v4, v2, v12)
+    if (never) v3 = hipBindTexture2D_(v4, v66, v4, v2, v12, v12, v12)
+    if (never) v3 = hipBindTextureToArray_(v66, v4, v2)
+    if (never) v3 = hipGetTextureAlignmentOffset_(v4, v66)
+    if (never) v3 = hipUnbindTexture_(v66)
+    if (never) v3 = hipTexRefGetAddress_(v4, v66)
+    if (never) v3 = hipTexRefGetAddressMode_(v4, v66, v0)
+    if (never) v3 = hipTexRefGetFilterMode_(v4, v66)
+    if (never) v3 = hipTexRefGetFlags_(v4, v66)
+    if (never) v3 = hipTexRefGetFormat_(v4, v4, v66)
+    if (never) v3 = hipTexRefGetMaxAnisotropy_(v4, v66)
+    if (never) v3 = hipTexRefGetMipmapFilterMode_(v4, v66)
+    if (never) v3 = hipTexRefGetMipmapLevelBias_(v4, v66)
+    if (never) v3 = hipTexRefGetMipmapLevelClamp_(v4, v4, v66)
+    if (never) v3 = hipTexRefGetMipMappedArray_(v4, v66)
+    if (never) v3 = hipTexRefSetAddress_(v4, v66, v4, v12)
+    if (never) v3 = hipTexRefSetAddress2D_(v66, v43, v4, v12)
+    if (never) v3 = hipTexRefSetMaxAnisotropy_(v66, v0)
+    if (never) v3 = hipTexRefSetBorderColor_(v66, v4)
+    if (never) v3 = hipTexRefSetMipmapFilterMode_(v66, v68)
+    if (never) v3 = hipTexRefSetMipmapLevelBias_(v66, v70)
+    if (never) v3 = hipTexRefSetMipmapLevelClamp_(v66, v70, v70)
+    if (never) v3 = hipTexRefSetMipmappedArray_(v66, v71, v0)
+    if (never) v4 = hipApiName_(v18)
     if (never) v4 = hipKernelNameRef_(v4)
     if (never) v4 = hipKernelNameRefByPtr_(v4, v4)
     if (never) v0 = hipGetStreamDeviceId_(v4)
 #endif
-    if (never) v3 = hipStreamBeginCapture_(v4, v70)
-    if (never) v3 = hipStreamBeginCaptureToGraph_(v4, v4, v4, v71, v10, v70)
+    if (never) v3 = hipStreamBeginCapture_(v4, v72)
+    if (never) v3 = hipStreamBeginCaptureToGraph_(v4, v4, v4, v73, v12, v72)
     if (never) v3 = hipStreamEndCapture_(v4, v4)
 #ifndef USE_CUDA_NAMES
     if (never) v3 = hipStreamGetCaptureInfo_(v4, v4, v4)
     if (never) v3 = hipStreamGetCaptureInfo_v2_(v4, v4, v4, v4, v4, v4)
 #endif
     if (never) v3 = hipStreamIsCapturing_(v4, v4)
-    if (never) v3 = hipStreamUpdateCaptureDependencies_(v4, v4, v10, v0)
+    if (never) v3 = hipStreamUpdateCaptureDependencies_(v4, v4, v12, v0)
     if (never) v3 = hipThreadExchangeStreamCaptureMode_(v4)
     if (never) v3 = hipGraphCreate_(v4, v0)
     if (never) v3 = hipGraphDestroy_(v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipGraphAddDependencies_(v4, v4, v4, v10)
-    if (never) v3 = hipGraphRemoveDependencies_(v4, v4, v4, v10)
+    if (never) v3 = hipGraphAddDependencies_(v4, v4, v4, v12)
+    if (never) v3 = hipGraphRemoveDependencies_(v4, v4, v4, v12)
     if (never) v3 = hipGraphGetEdges_(v4, v4, v4, v4)
 #endif
     if (never) v3 = hipGraphGetNodes_(v4, v4, v4)
@@ -554,68 +562,68 @@ program test_hip
     if (never) v3 = hipGraphClone_(v4, v4)
     if (never) v3 = hipGraphNodeFindInClone_(v4, v4, v4)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipGraphInstantiate_(v4, v4, v4, v4, v10)
+    if (never) v3 = hipGraphInstantiate_(v4, v4, v4, v4, v12)
 #endif
-    if (never) v3 = hipGraphInstantiateWithFlags_(v4, v4, v19)
-    if (never) v3 = hipGraphInstantiateWithParams_(v4, v4, v72)
+    if (never) v3 = hipGraphInstantiateWithFlags_(v4, v4, v21)
+    if (never) v3 = hipGraphInstantiateWithParams_(v4, v4, v74)
     if (never) v3 = hipGraphLaunch_(v4, v4)
     if (never) v3 = hipGraphUpload_(v4, v4)
-    if (never) v3 = hipGraphAddNode_(v4, v4, v4, v10, v73)
+    if (never) v3 = hipGraphAddNode_(v4, v4, v4, v12, v75)
     if (never) v3 = hipGraphExecGetFlags_(v4, v4)
-    if (never) v3 = hipGraphNodeSetParams_(v4, v73)
-    if (never) v3 = hipGraphExecNodeSetParams_(v4, v4, v73)
+    if (never) v3 = hipGraphNodeSetParams_(v4, v75)
+    if (never) v3 = hipGraphExecNodeSetParams_(v4, v4, v75)
     if (never) v3 = hipGraphExecDestroy_(v4)
     if (never) v3 = hipGraphExecUpdate_(v4, v4, v4, v4)
-    if (never) v3 = hipGraphAddKernelNode_(v4, v4, v4, v10, v74)
-    if (never) v3 = hipGraphKernelNodeGetParams_(v4, v74)
-    if (never) v3 = hipGraphKernelNodeSetParams_(v4, v74)
-    if (never) v3 = hipGraphExecKernelNodeSetParams_(v4, v4, v74)
+    if (never) v3 = hipGraphAddKernelNode_(v4, v4, v4, v12, v76)
+    if (never) v3 = hipGraphKernelNodeGetParams_(v4, v76)
+    if (never) v3 = hipGraphKernelNodeSetParams_(v4, v76)
+    if (never) v3 = hipGraphExecKernelNodeSetParams_(v4, v4, v76)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipDrvGraphAddMemcpyNode_(v4, v4, v4, v10, v45, v4)
+    if (never) v3 = hipDrvGraphAddMemcpyNode_(v4, v4, v4, v12, v47, v4)
 #endif
-    if (never) v3 = hipGraphAddMemcpyNode_(v4, v4, v4, v10, v44)
-    if (never) v3 = hipGraphMemcpyNodeGetParams_(v4, v44)
-    if (never) v3 = hipGraphMemcpyNodeSetParams_(v4, v44)
-    if (never) v3 = hipGraphKernelNodeSetAttribute_(v4, v18, v4)
-    if (never) v3 = hipGraphKernelNodeGetAttribute_(v4, v18, v4)
-    if (never) v3 = hipGraphExecMemcpyNodeSetParams_(v4, v4, v44)
-    if (never) v3 = hipGraphAddMemcpyNode1D_(v4, v4, v4, v10, v4, v4, v10, v36)
-    if (never) v3 = hipGraphMemcpyNodeSetParams1D_(v4, v4, v4, v10, v36)
-    if (never) v3 = hipGraphExecMemcpyNodeSetParams1D_(v4, v4, v4, v4, v10, v36)
-    if (never) v3 = hipGraphAddMemcpyNodeFromSymbol_(v4, v4, v4, v10, v4, v4, v10, v10, v36)
-    if (never) v3 = hipGraphMemcpyNodeSetParamsFromSymbol_(v4, v4, v4, v10, v10, v36)
-    if (never) v3 = hipGraphExecMemcpyNodeSetParamsFromSymbol_(v4, v4, v4, v4, v10, v10, v36)
-    if (never) v3 = hipGraphAddMemcpyNodeToSymbol_(v4, v4, v4, v10, v4, v4, v10, v10, v36)
-    if (never) v3 = hipGraphMemcpyNodeSetParamsToSymbol_(v4, v4, v4, v10, v10, v36)
-    if (never) v3 = hipGraphExecMemcpyNodeSetParamsToSymbol_(v4, v4, v4, v4, v10, v10, v36)
-    if (never) v3 = hipGraphAddMemsetNode_(v4, v4, v4, v10, v75)
-    if (never) v3 = hipGraphMemsetNodeGetParams_(v4, v75)
-    if (never) v3 = hipGraphMemsetNodeSetParams_(v4, v75)
-    if (never) v3 = hipGraphExecMemsetNodeSetParams_(v4, v4, v75)
-    if (never) v3 = hipGraphAddHostNode_(v4, v4, v4, v10, v76)
-    if (never) v3 = hipGraphHostNodeGetParams_(v4, v76)
-    if (never) v3 = hipGraphHostNodeSetParams_(v4, v76)
-    if (never) v3 = hipGraphExecHostNodeSetParams_(v4, v4, v76)
-    if (never) v3 = hipGraphAddChildGraphNode_(v4, v4, v4, v10, v4)
+    if (never) v3 = hipGraphAddMemcpyNode_(v4, v4, v4, v12, v46)
+    if (never) v3 = hipGraphMemcpyNodeGetParams_(v4, v46)
+    if (never) v3 = hipGraphMemcpyNodeSetParams_(v4, v46)
+    if (never) v3 = hipGraphKernelNodeSetAttribute_(v4, v20, v4)
+    if (never) v3 = hipGraphKernelNodeGetAttribute_(v4, v20, v4)
+    if (never) v3 = hipGraphExecMemcpyNodeSetParams_(v4, v4, v46)
+    if (never) v3 = hipGraphAddMemcpyNode1D_(v4, v4, v4, v12, v4, v4, v12, v38)
+    if (never) v3 = hipGraphMemcpyNodeSetParams1D_(v4, v4, v4, v12, v38)
+    if (never) v3 = hipGraphExecMemcpyNodeSetParams1D_(v4, v4, v4, v4, v12, v38)
+    if (never) v3 = hipGraphAddMemcpyNodeFromSymbol_(v4, v4, v4, v12, v4, v4, v12, v12, v38)
+    if (never) v3 = hipGraphMemcpyNodeSetParamsFromSymbol_(v4, v4, v4, v12, v12, v38)
+    if (never) v3 = hipGraphExecMemcpyNodeSetParamsFromSymbol_(v4, v4, v4, v4, v12, v12, v38)
+    if (never) v3 = hipGraphAddMemcpyNodeToSymbol_(v4, v4, v4, v12, v4, v4, v12, v12, v38)
+    if (never) v3 = hipGraphMemcpyNodeSetParamsToSymbol_(v4, v4, v4, v12, v12, v38)
+    if (never) v3 = hipGraphExecMemcpyNodeSetParamsToSymbol_(v4, v4, v4, v4, v12, v12, v38)
+    if (never) v3 = hipGraphAddMemsetNode_(v4, v4, v4, v12, v77)
+    if (never) v3 = hipGraphMemsetNodeGetParams_(v4, v77)
+    if (never) v3 = hipGraphMemsetNodeSetParams_(v4, v77)
+    if (never) v3 = hipGraphExecMemsetNodeSetParams_(v4, v4, v77)
+    if (never) v3 = hipGraphAddHostNode_(v4, v4, v4, v12, v78)
+    if (never) v3 = hipGraphHostNodeGetParams_(v4, v78)
+    if (never) v3 = hipGraphHostNodeSetParams_(v4, v78)
+    if (never) v3 = hipGraphExecHostNodeSetParams_(v4, v4, v78)
+    if (never) v3 = hipGraphAddChildGraphNode_(v4, v4, v4, v12, v4)
     if (never) v3 = hipGraphChildGraphNodeGetGraph_(v4, v4)
     if (never) v3 = hipGraphExecChildGraphNodeSetParams_(v4, v4, v4)
-    if (never) v3 = hipGraphAddEmptyNode_(v4, v4, v4, v10)
-    if (never) v3 = hipGraphAddEventRecordNode_(v4, v4, v4, v10, v4)
+    if (never) v3 = hipGraphAddEmptyNode_(v4, v4, v4, v12)
+    if (never) v3 = hipGraphAddEventRecordNode_(v4, v4, v4, v12, v4)
     if (never) v3 = hipGraphEventRecordNodeGetEvent_(v4, v4)
     if (never) v3 = hipGraphEventRecordNodeSetEvent_(v4, v4)
     if (never) v3 = hipGraphExecEventRecordNodeSetEvent_(v4, v4, v4)
-    if (never) v3 = hipGraphAddEventWaitNode_(v4, v4, v4, v10, v4)
+    if (never) v3 = hipGraphAddEventWaitNode_(v4, v4, v4, v12, v4)
     if (never) v3 = hipGraphEventWaitNodeGetEvent_(v4, v4)
     if (never) v3 = hipGraphEventWaitNodeSetEvent_(v4, v4)
     if (never) v3 = hipGraphExecEventWaitNodeSetEvent_(v4, v4, v4)
-    if (never) v3 = hipGraphAddMemAllocNode_(v4, v4, v4, v10, v77)
-    if (never) v3 = hipGraphMemAllocNodeGetParams_(v4, v77)
-    if (never) v3 = hipGraphAddMemFreeNode_(v4, v4, v4, v10, v4)
+    if (never) v3 = hipGraphAddMemAllocNode_(v4, v4, v4, v12, v79)
+    if (never) v3 = hipGraphMemAllocNodeGetParams_(v4, v79)
+    if (never) v3 = hipGraphAddMemFreeNode_(v4, v4, v4, v12, v4)
     if (never) v3 = hipGraphMemFreeNodeGetParams_(v4, v4)
-    if (never) v3 = hipDeviceGetGraphMemAttribute_(v0, v78, v4)
-    if (never) v3 = hipDeviceSetGraphMemAttribute_(v0, v78, v4)
+    if (never) v3 = hipDeviceGetGraphMemAttribute_(v0, v80, v4)
+    if (never) v3 = hipDeviceSetGraphMemAttribute_(v0, v80, v4)
     if (never) v3 = hipDeviceGraphMemTrim_(v0)
-    if (never) v3 = hipUserObjectCreate_(v4, v4, v17, v0, v0)
+    if (never) v3 = hipUserObjectCreate_(v4, v4, v19, v0, v0)
     if (never) v3 = hipUserObjectRelease_(v4, v0)
     if (never) v3 = hipUserObjectRetain_(v4, v0)
     if (never) v3 = hipGraphRetainUserObject_(v4, v4, v0, v0)
@@ -624,96 +632,95 @@ program test_hip
     if (never) v3 = hipGraphKernelNodeCopyAttributes_(v4, v4)
     if (never) v3 = hipGraphNodeSetEnabled_(v4, v4, v0)
     if (never) v3 = hipGraphNodeGetEnabled_(v4, v4, v4)
-    if (never) v3 = hipGraphAddExternalSemaphoresWaitNode_(v4, v4, v4, v10, v79)
-    if (never) v3 = hipGraphAddExternalSemaphoresSignalNode_(v4, v4, v4, v10, v80)
-    if (never) v3 = hipGraphExternalSemaphoresSignalNodeSetParams_(v4, v80)
-    if (never) v3 = hipGraphExternalSemaphoresWaitNodeSetParams_(v4, v79)
-    if (never) v3 = hipGraphExternalSemaphoresSignalNodeGetParams_(v4, v80)
-    if (never) v3 = hipGraphExternalSemaphoresWaitNodeGetParams_(v4, v79)
-    if (never) v3 = hipGraphExecExternalSemaphoresSignalNodeSetParams_(v4, v4, v80)
-    if (never) v3 = hipGraphExecExternalSemaphoresWaitNodeSetParams_(v4, v4, v79)
+    if (never) v3 = hipGraphAddExternalSemaphoresWaitNode_(v4, v4, v4, v12, v81)
+    if (never) v3 = hipGraphAddExternalSemaphoresSignalNode_(v4, v4, v4, v12, v82)
+    if (never) v3 = hipGraphExternalSemaphoresSignalNodeSetParams_(v4, v82)
+    if (never) v3 = hipGraphExternalSemaphoresWaitNodeSetParams_(v4, v81)
+    if (never) v3 = hipGraphExternalSemaphoresSignalNodeGetParams_(v4, v82)
+    if (never) v3 = hipGraphExternalSemaphoresWaitNodeGetParams_(v4, v81)
+    if (never) v3 = hipGraphExecExternalSemaphoresSignalNodeSetParams_(v4, v4, v82)
+    if (never) v3 = hipGraphExecExternalSemaphoresWaitNodeSetParams_(v4, v4, v81)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipDrvGraphMemcpyNodeGetParams_(v4, v45)
-    if (never) v3 = hipDrvGraphMemcpyNodeSetParams_(v4, v45)
-    if (never) v3 = hipDrvGraphAddMemsetNode_(v4, v4, v4, v10, v75, v4)
-    if (never) v3 = hipDrvGraphAddMemFreeNode_(v4, v4, v4, v10, v4)
-    if (never) v3 = hipDrvGraphExecMemcpyNodeSetParams_(v4, v4, v45, v4)
-    if (never) v3 = hipDrvGraphExecMemsetNodeSetParams_(v4, v4, v75, v4)
+    if (never) v3 = hipDrvGraphMemcpyNodeGetParams_(v4, v47)
+    if (never) v3 = hipDrvGraphMemcpyNodeSetParams_(v4, v47)
+    if (never) v3 = hipDrvGraphAddMemsetNode_(v4, v4, v4, v12, v77, v4)
+    if (never) v3 = hipDrvGraphAddMemFreeNode_(v4, v4, v4, v12, v4)
+    if (never) v3 = hipDrvGraphExecMemcpyNodeSetParams_(v4, v4, v47, v4)
+    if (never) v3 = hipDrvGraphExecMemsetNodeSetParams_(v4, v4, v77, v4)
 #endif
-    if (never) v3 = hipMemAddressFree_(v4, v10)
-    if (never) v3 = hipMemAddressReserve_(v4, v10, v10, v4, v19)
-    if (never) v3 = hipMemCreate_(v4, v10, v81, v19)
-    if (never) v3 = hipMemExportToShareableHandle_(v4, v4, v34, v19)
-    if (never) v3 = hipMemGetAccess_(v4, v28, v4)
-    if (never) v3 = hipMemGetAllocationGranularity_(v4, v81, v82)
-    if (never) v3 = hipMemGetAllocationPropertiesFromHandle_(v81, v4)
-    if (never) v3 = hipMemImportFromShareableHandle_(v4, v4, v34)
-    if (never) v3 = hipMemMap_(v4, v10, v10, v4, v19)
-    if (never) v3 = hipMemMapArrayAsync_(v83, v0, v4)
+    if (never) v3 = hipMemAddressFree_(v4, v12)
+    if (never) v3 = hipMemAddressReserve_(v4, v12, v12, v4, v21)
+    if (never) v3 = hipMemCreate_(v4, v12, v83, v21)
+    if (never) v3 = hipMemExportToShareableHandle_(v4, v4, v36, v21)
+    if (never) v3 = hipMemGetAccess_(v4, v30, v4)
+    if (never) v3 = hipMemGetAllocationGranularity_(v4, v83, v84)
+    if (never) v3 = hipMemGetAllocationPropertiesFromHandle_(v83, v4)
+    if (never) v3 = hipMemImportFromShareableHandle_(v4, v4, v36)
+    if (never) v3 = hipMemMap_(v4, v12, v12, v4, v21)
+    if (never) v3 = hipMemMapArrayAsync_(v85, v0, v4)
     if (never) v3 = hipMemRelease_(v4)
     if (never) v3 = hipMemRetainAllocationHandle_(v4, v4)
-    if (never) v3 = hipMemSetAccess_(v4, v10, v32, v10)
-    if (never) v3 = hipMemUnmap_(v4, v10)
+    if (never) v3 = hipMemSetAccess_(v4, v12, v34, v12)
+    if (never) v3 = hipMemUnmap_(v4, v12)
     if (never) v3 = hipGraphicsMapResources_(v0, v4, v4)
     if (never) v3 = hipGraphicsSubResourceGetMappedArray_(v4, v4, v0, v0)
     if (never) v3 = hipGraphicsResourceGetMappedPointer_(v4, v4, v4)
     if (never) v3 = hipGraphicsUnmapResources_(v0, v4, v4)
     if (never) v3 = hipGraphicsUnregisterResource_(v4)
-    if (never) v3 = hipCreateSurfaceObject_(v4, v58)
+    if (never) v3 = hipCreateSurfaceObject_(v4, v60)
     if (never) v3 = hipDestroySurfaceObject_(v4)
-    if (never) v3 = hipMemcpy_spt_(v4, v4, v10, v36)
-    if (never) v3 = hipMemcpyToSymbol_spt_(v4, v4, v10, v10, v36)
-    if (never) v3 = hipMemcpyFromSymbol_spt_(v4, v4, v10, v10, v36)
-    if (never) v3 = hipMemcpy2D_spt_(v4, v10, v4, v10, v10, v10, v36)
-    if (never) v3 = hipMemcpy2DFromArray_spt_(v4, v10, v4, v10, v10, v10, v10, v36)
-    if (never) v3 = hipMemcpy3D_spt_(v44)
-    if (never) v3 = hipMemset_spt_(v4, v0, v10)
-    if (never) v3 = hipMemsetAsync_spt_(v4, v0, v10, v4)
-    if (never) v3 = hipMemset2D_spt_(v4, v10, v0, v10, v10)
-    if (never) v3 = hipMemset2DAsync_spt_(v4, v10, v0, v10, v10, v4)
-    if (never) v3 = hipMemset3DAsync_spt_(v39, v0, v40, v4)
-    if (never) v3 = hipMemset3D_spt_(v39, v0, v40)
-    if (never) v3 = hipMemcpyAsync_spt_(v4, v4, v10, v36, v4)
-    if (never) v3 = hipMemcpy3DAsync_spt_(v44, v4)
-    if (never) v3 = hipMemcpy2DAsync_spt_(v4, v10, v4, v10, v10, v10, v36, v4)
-    if (never) v3 = hipMemcpyFromSymbolAsync_spt_(v4, v4, v10, v10, v36, v4)
-    if (never) v3 = hipMemcpyToSymbolAsync_spt_(v4, v4, v10, v10, v36, v4)
-    if (never) v3 = hipMemcpyFromArray_spt_(v4, v4, v10, v10, v10, v36)
-    if (never) v3 = hipMemcpy2DToArray_spt_(v4, v10, v10, v4, v10, v10, v10, v36)
-    if (never) v3 = hipMemcpy2DFromArrayAsync_spt_(v4, v10, v4, v10, v10, v10, v10, v36, v4)
-    if (never) v3 = hipMemcpy2DToArrayAsync_spt_(v4, v10, v10, v4, v10, v10, v10, v36, v4)
+    if (never) v3 = hipMemcpy_spt_(v4, v4, v12, v38)
+    if (never) v3 = hipMemcpyToSymbol_spt_(v4, v4, v12, v12, v38)
+    if (never) v3 = hipMemcpyFromSymbol_spt_(v4, v4, v12, v12, v38)
+    if (never) v3 = hipMemcpy2D_spt_(v4, v12, v4, v12, v12, v12, v38)
+    if (never) v3 = hipMemcpy2DFromArray_spt_(v4, v12, v4, v12, v12, v12, v12, v38)
+    if (never) v3 = hipMemcpy3D_spt_(v46)
+    if (never) v3 = hipMemset_spt_(v4, v0, v12)
+    if (never) v3 = hipMemsetAsync_spt_(v4, v0, v12, v4)
+    if (never) v3 = hipMemset2D_spt_(v4, v12, v0, v12, v12)
+    if (never) v3 = hipMemset2DAsync_spt_(v4, v12, v0, v12, v12, v4)
+    if (never) v3 = hipMemset3DAsync_spt_(v41, v0, v42, v4)
+    if (never) v3 = hipMemset3D_spt_(v41, v0, v42)
+    if (never) v3 = hipMemcpyAsync_spt_(v4, v4, v12, v38, v4)
+    if (never) v3 = hipMemcpy3DAsync_spt_(v46, v4)
+    if (never) v3 = hipMemcpy2DAsync_spt_(v4, v12, v4, v12, v12, v12, v38, v4)
+    if (never) v3 = hipMemcpyFromSymbolAsync_spt_(v4, v4, v12, v12, v38, v4)
+    if (never) v3 = hipMemcpyToSymbolAsync_spt_(v4, v4, v12, v12, v38, v4)
+    if (never) v3 = hipMemcpyFromArray_spt_(v4, v4, v12, v12, v12, v38)
+    if (never) v3 = hipMemcpy2DToArray_spt_(v4, v12, v12, v4, v12, v12, v12, v38)
+    if (never) v3 = hipMemcpy2DFromArrayAsync_spt_(v4, v12, v4, v12, v12, v12, v12, v38, v4)
+    if (never) v3 = hipMemcpy2DToArrayAsync_spt_(v4, v12, v12, v4, v12, v12, v12, v38, v4)
     if (never) v3 = hipStreamQuery_spt_(v4)
     if (never) v3 = hipStreamSynchronize_spt_(v4)
     if (never) v3 = hipStreamGetPriority_spt_(v4, v4)
     if (never) v3 = hipStreamWaitEvent_spt_(v4, v4, v0)
     if (never) v3 = hipStreamGetFlags_spt_(v4, v4)
-    if (never) v3 = hipStreamAddCallback_spt_(v4, v17, v4, v0)
+    if (never) v3 = hipStreamAddCallback_spt_(v4, v19, v4, v0)
     if (never) v3 = hipEventRecord_spt_(v4, v4)
-    if (never) v3 = hipLaunchCooperativeKernel_spt_(v4, v53, v53, v4, v16, v4)
-    if (never) v3 = hipLaunchKernel_spt_(v4, v53, v53, v4, v10, v4)
+    if (never) v3 = hipLaunchCooperativeKernel_spt_(v4, v55, v55, v4, v18, v4)
+    if (never) v3 = hipLaunchKernel_spt_(v4, v55, v55, v4, v12, v4)
     if (never) v3 = hipGraphLaunch_spt_(v4, v4)
-    if (never) v3 = hipStreamBeginCapture_spt_(v4, v70)
+    if (never) v3 = hipStreamBeginCapture_spt_(v4, v72)
     if (never) v3 = hipStreamEndCapture_spt_(v4, v4)
     if (never) v3 = hipStreamIsCapturing_spt_(v4, v4)
     if (never) v3 = hipStreamGetCaptureInfo_spt_(v4, v4, v4)
     if (never) v3 = hipStreamGetCaptureInfo_v2_spt_(v4, v4, v4, v4, v4, v4)
-    if (never) v3 = hipLaunchHostFunc_spt_(v4, v17, v4)
-    if (never) v3 = hipGetDriverEntryPoint_spt_(v4, v4, v19, v4)
-    if (never) v3 = hipChooseDevice_(v4, v12)
-    if (never) v0 = hipMalloc_(v4, v10)
-    if (never) v0 = hipMallocManaged_(v4, v10, v0)
-    if (never) v0 = hipHostMalloc_(v4, v10, v0)
+    if (never) v3 = hipLaunchHostFunc_spt_(v4, v19, v4)
+    if (never) v3 = hipGetDriverEntryPoint_spt_(v4, v4, v21, v4)
+    if (never) v0 = hipMalloc_(v4, v12)
+    if (never) v0 = hipMallocManaged_(v4, v12, v0)
+    if (never) v0 = hipHostMalloc_(v4, v12, v0)
     if (never) v0 = hipFree_(v4)
     if (never) v0 = hipHostFree_(v4)
-    if (never) v0 = hipMemcpy_(v4, v4, v10, v0)
-    if (never) v0 = hipMemcpyAsync_(v4, v4, v10, v0, v4)
-    if (never) v0 = hipMemcpy2D_(v4, v10, v4, v10, v10, v10, v0)
-    if (never) v0 = hipMemcpy2DAsync_(v4, v10, v4, v10, v10, v10, v0, v4)
-    if (never) v0 = hipHostRegister_(v4, v10, v0)
+    if (never) v0 = hipMemcpy_(v4, v4, v12, v0)
+    if (never) v0 = hipMemcpyAsync_(v4, v4, v12, v0, v4)
+    if (never) v0 = hipMemcpy2D_(v4, v12, v4, v12, v12, v12, v0)
+    if (never) v0 = hipMemcpy2DAsync_(v4, v12, v4, v12, v12, v12, v0, v4)
+    if (never) v0 = hipHostRegister_(v4, v12, v0)
     if (never) v0 = hipHostUnregister_(v4)
     if (never) v0 = hipHostGetDevicePointer_(v4, v4, v0)
     if (never) v0 = hipHostGetFlags_(v0, v4)
-    if (never) v3 = hipGetDeviceProperties_(v12, v0)
+    if (never) v3 = hipGetDeviceProperties_(v14, v0)
 
   write(*,"(a)") "-- test_hip (bind(C) symbols): PASSED (compile+link only)!"
 end program test_hip

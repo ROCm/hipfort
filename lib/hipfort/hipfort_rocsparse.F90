@@ -1896,7 +1896,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_spgeam_output_nnz)),value :: output
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size_in_bytes
-      type(c_ptr) :: error
+      type(c_ptr), optional :: error
     end function
   end interface
 
@@ -1970,7 +1970,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_spmv_input_alg)),value :: input
       type(c_ptr),value :: in
       integer(c_size_t),value :: size_in_bytes
-      type(c_ptr) :: error
+      type(c_ptr), optional :: error
     end function
   end interface
 
@@ -5687,6 +5687,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_nnz
     end function
 
+    module procedure rocsparse_csr2bsr_nnz_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_csr2bsr_nnz_assumed_rank
 #else
@@ -6680,6 +6682,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: ell_width
     end function
 
+    module procedure rocsparse_csr2ell_width_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_csr2ell_width_assumed_rank
 #else
@@ -7124,13 +7128,19 @@ module hipfort_rocsparse
       type(c_ptr),value :: temp_buffer
     end function
 
+    module procedure rocsparse_csr2gebsr_nnz_typed
+
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsparse_csr2gebsr_nnz_assumed_rank
+    module procedure &
+      rocsparse_csr2gebsr_nnz_assumed_rank,&
+      rocsparse_csr2gebsr_nnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_csr2gebsr_nnz_rank_0,&
-      rocsparse_csr2gebsr_nnz_rank_1
+      rocsparse_csr2gebsr_nnz_rank_0_devptr,&
+      rocsparse_csr2gebsr_nnz_rank_1,&
+      rocsparse_csr2gebsr_nnz_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8227,6 +8237,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_nnz
     end function
 
+    module procedure rocsparse_ell2csr_nnz_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_ell2csr_nnz_assumed_rank
 #else
@@ -8670,12 +8682,16 @@ module hipfort_rocsparse
     module procedure rocsparse_sgebsr2gebsc_buffer_size_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsparse_sgebsr2gebsc_buffer_size_assumed_rank
+    module procedure &
+      rocsparse_sgebsr2gebsc_buffer_size_assumed_rank,&
+      rocsparse_sgebsr2gebsc_buffer_size_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_sgebsr2gebsc_buffer_size_rank_0,&
-      rocsparse_sgebsr2gebsc_buffer_size_rank_1
+      rocsparse_sgebsr2gebsc_buffer_size_rank_0_devptr,&
+      rocsparse_sgebsr2gebsc_buffer_size_rank_1,&
+      rocsparse_sgebsr2gebsc_buffer_size_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8703,12 +8719,16 @@ module hipfort_rocsparse
     module procedure rocsparse_dgebsr2gebsc_buffer_size_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsparse_dgebsr2gebsc_buffer_size_assumed_rank
+    module procedure &
+      rocsparse_dgebsr2gebsc_buffer_size_assumed_rank,&
+      rocsparse_dgebsr2gebsc_buffer_size_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dgebsr2gebsc_buffer_size_rank_0,&
-      rocsparse_dgebsr2gebsc_buffer_size_rank_1
+      rocsparse_dgebsr2gebsc_buffer_size_rank_0_devptr,&
+      rocsparse_dgebsr2gebsc_buffer_size_rank_1,&
+      rocsparse_dgebsr2gebsc_buffer_size_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8736,12 +8756,16 @@ module hipfort_rocsparse
     module procedure rocsparse_cgebsr2gebsc_buffer_size_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsparse_cgebsr2gebsc_buffer_size_assumed_rank
+    module procedure &
+      rocsparse_cgebsr2gebsc_buffer_size_assumed_rank,&
+      rocsparse_cgebsr2gebsc_buffer_size_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_cgebsr2gebsc_buffer_size_rank_0,&
-      rocsparse_cgebsr2gebsc_buffer_size_rank_1
+      rocsparse_cgebsr2gebsc_buffer_size_rank_0_devptr,&
+      rocsparse_cgebsr2gebsc_buffer_size_rank_1,&
+      rocsparse_cgebsr2gebsc_buffer_size_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8769,12 +8793,16 @@ module hipfort_rocsparse
     module procedure rocsparse_zgebsr2gebsc_buffer_size_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsparse_zgebsr2gebsc_buffer_size_assumed_rank
+    module procedure &
+      rocsparse_zgebsr2gebsc_buffer_size_assumed_rank,&
+      rocsparse_zgebsr2gebsc_buffer_size_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zgebsr2gebsc_buffer_size_rank_0,&
-      rocsparse_zgebsr2gebsc_buffer_size_rank_1
+      rocsparse_zgebsr2gebsc_buffer_size_rank_0_devptr,&
+      rocsparse_zgebsr2gebsc_buffer_size_rank_1,&
+      rocsparse_zgebsr2gebsc_buffer_size_rank_1_devptr
 #endif
 #endif
   end interface
@@ -10071,6 +10099,8 @@ module hipfort_rocsparse
       real(c_float),value :: tol
     end function
 
+    module procedure rocsparse_snnz_compress_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_snnz_compress_assumed_rank
 #else
@@ -10099,6 +10129,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: nnz_C
       real(c_double),value :: tol
     end function
+
+    module procedure rocsparse_dnnz_compress_typed
 
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_dnnz_compress_assumed_rank
@@ -10129,6 +10161,8 @@ module hipfort_rocsparse
       complex(c_float_complex),value :: tol
     end function
 
+    module procedure rocsparse_cnnz_compress_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_cnnz_compress_assumed_rank
 #else
@@ -10157,6 +10191,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: nnz_C
       complex(c_double_complex),value :: tol
     end function
+
+    module procedure rocsparse_znnz_compress_typed
 
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_znnz_compress_assumed_rank
@@ -11765,6 +11801,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_row_ptr_C
       type(c_ptr),value :: nnzb_C
     end function
+
+    module procedure rocsparse_bsrgeam_nnzb_typed
   end interface
 
   !>  \ingroup extra_module
@@ -12345,6 +12383,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: info_C
       type(c_ptr),value :: temp_buffer
     end function
+
+    module procedure rocsparse_bsrgemm_nnzb_typed
   end interface
 
   !>  \ingroup extra_module
@@ -12744,6 +12784,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr_C
       type(c_ptr),value :: nnz_C
     end function
+
+    module procedure rocsparse_csrgeam_nnz_typed
 
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_csrgeam_nnz_assumed_rank
@@ -13388,6 +13430,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: info_C
       type(c_ptr),value :: temp_buffer
     end function
+
+    module procedure rocsparse_csrgemm_nnz_typed
 
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_csrgemm_nnz_assumed_rank
@@ -15880,7 +15924,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: mat_C
       integer(kind(rocsparse_spgeam_stage_analysis)),value :: stage
       type(c_ptr),value :: buffer_size
-      type(c_ptr) :: error
+      type(c_ptr), optional :: error
     end function
 
     module procedure rocsparse_spgeam_buffer_size_typed
@@ -16066,7 +16110,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_spgeam_stage_analysis)),value :: stage
       integer(c_size_t),value :: buffer_size
       type(c_ptr),value :: temp_buffer
-      type(c_ptr) :: error
+      type(c_ptr), optional :: error
     end function
   end interface
 
@@ -18253,7 +18297,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
       integer(kind(rocsparse_v2_spmv_stage_analysis)),value :: stage
       type(c_ptr),value :: buffer_size_in_bytes
-      type(c_ptr) :: error
+      type(c_ptr), optional :: error
     end function
 
     module procedure rocsparse_v2_spmv_buffer_size_typed
@@ -18465,7 +18509,7 @@ module hipfort_rocsparse
       integer(kind(rocsparse_v2_spmv_stage_analysis)),value :: stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
-      type(c_ptr) :: error
+      type(c_ptr), optional :: error
     end function
   end interface
 
@@ -18776,6 +18820,8 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+    module procedure rocsparse_cdotci_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_cdotci_assumed_rank
 #else
@@ -18802,6 +18848,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: myResult
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
+
+    module procedure rocsparse_zdotci_typed
 
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_zdotci_assumed_rank
@@ -18875,6 +18923,8 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+    module procedure rocsparse_sdoti_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_sdoti_assumed_rank
 #else
@@ -18901,6 +18951,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: myResult
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
+
+    module procedure rocsparse_ddoti_typed
 
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_ddoti_assumed_rank
@@ -18929,6 +18981,8 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
 
+    module procedure rocsparse_cdoti_typed
+
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_cdoti_assumed_rank
 #else
@@ -18955,6 +19009,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: myResult
       integer(kind(rocsparse_index_base_zero)),value :: idx_base
     end function
+
+    module procedure rocsparse_zdoti_typed
 
 #ifdef USE_ASSUMED_RANK
     module procedure rocsparse_zdoti_assumed_rank
@@ -21175,6 +21231,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
     end function
+
+    module procedure rocsparse_csritsv_zero_pivot_typed
   end interface
 
   !>  \ingroup level2_module
@@ -23776,15 +23834,15 @@ module hipfort_rocsparse
   !>   @param[in] m - number of rows of the dense matrix.
   !>   @param[in] n - number of columns of the dense matrix.
   !>   @param[in] nnz - number of non-zero entries in the sparse vector.
-  !>   @param[out] buffer_size - temporary storage buffer size.
+  !>   @param[out] buffer_size - temporary storage buffer size. Can return zero if no buffer is
+  !>   required
+  !>               for the supplied input parameters.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p nnz is invalid.
   !>   \retval     rocsparse_status_invalid_pointer \p buffer_size pointer is invalid.
-  !>   \retval     rocsparse_status_not_implemented
-  !>               \p trans != `rocsparse_operation_none` or
-  !>               `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
+  !>   \retval     rocsparse_status_not_implemented \p trans != `rocsparse_operation_none`.
   interface rocsparse_sgemvi_buffer_size
     function rocsparse_sgemvi_buffer_size_(handle,trans,m,n,nnz,buffer_size) &
         bind(c, name="rocsparse_sgemvi_buffer_size")
@@ -23907,16 +23965,16 @@ module hipfort_rocsparse
   !>   @param[inout] y - array of \p m elements (\f$op(A) == A\f$) or \p n elements
   !>               (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
   !>   @param[in] idx_base - rocsparse_index_base_zero or rocsparse_index_base_one.
-  !>   @param[in] temp_buffer - temporary storage buffer.
+  !>   @param[in] temp_buffer - temporary storage buffer of at least the size returned by
+  !>               \ref rocsparse_sgemvi_buffer_size "rocsparse_Xgemvi_buffer_size()".
+  !>               Might be a \p nullptr when the returned size is zero.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval     rocsparse_status_invalid_size \p m, \p n, \p lda, or \p nnz is invalid.
   !>   \retval     rocsparse_status_invalid_pointer \p alpha, \p A, \p x_val, \p x_ind,
   !>               \p beta, \p y, or \p temp_buffer pointer is invalid.
-  !>   \retval     rocsparse_status_not_implemented
-  !>               \p trans != `rocsparse_operation_none` or
-  !>               `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
+  !>   \retval     rocsparse_status_not_implemented \p trans != `rocsparse_operation_none`.
   !>
   !>   \par Example
   interface rocsparse_sgemvi
@@ -28610,6 +28668,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
     end function
+
+    module procedure rocsparse_csric0_singular_pivot_typed
   end interface
 
   !>  \ingroup precond_module
@@ -29522,6 +29582,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
     end function
+
+    module procedure rocsparse_csrilu0_singular_pivot_typed
   end interface
 
   !>  \ingroup precond_module
@@ -35743,6 +35805,28 @@ module hipfort_rocsparse
         csc_col_ptr,csc_row_ind,c_loc(buffer_size))
     end function
 
+    function rocsparse_csr2bsr_nnz_typed(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind, &
+        block_dim,bsr_descr,bsr_row_ptr,bsr_nnz)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_csr2bsr_nnz_typed
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      type(c_ptr) :: csr_row_ptr
+      type(c_ptr) :: csr_col_ind
+      integer(c_int) :: block_dim
+      type(c_ptr) :: bsr_descr
+      type(c_ptr) :: bsr_row_ptr
+      integer(c_int),target :: bsr_nnz
+      !
+      rocsparse_csr2bsr_nnz_typed = rocsparse_csr2bsr_nnz_(handle,dir,m,n,csr_descr,csr_row_ptr, &
+        csr_col_ind,block_dim,bsr_descr,bsr_row_ptr,c_loc(bsr_nnz))
+    end function
+
     function rocsparse_csr2csc_buffer_size_typed(handle,m,n,nnz,csr_row_ptr,csr_col_ind, &
         copy_values,buffer_size)
       use iso_c_binding
@@ -35760,6 +35844,22 @@ module hipfort_rocsparse
       !
       rocsparse_csr2csc_buffer_size_typed = rocsparse_csr2csc_buffer_size_(handle,m,n,nnz, &
         csr_row_ptr,csr_col_ind,copy_values,c_loc(buffer_size))
+    end function
+
+    function rocsparse_csr2ell_width_typed(handle,m,csr_descr,csr_row_ptr,ell_descr,ell_width)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_csr2ell_width_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: csr_descr
+      type(c_ptr) :: csr_row_ptr
+      type(c_ptr) :: ell_descr
+      integer(c_int),target :: ell_width
+      !
+      rocsparse_csr2ell_width_typed = rocsparse_csr2ell_width_(handle,m,csr_descr,csr_row_ptr, &
+        ell_descr,c_loc(ell_width))
     end function
 
     function rocsparse_scsr2gebsr_buffer_size_typed(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr, &
@@ -35850,6 +35950,31 @@ module hipfort_rocsparse
         csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,c_loc(buffer_size))
     end function
 
+    function rocsparse_csr2gebsr_nnz_typed(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind, &
+        bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_csr2gebsr_nnz_typed
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      type(c_ptr) :: csr_row_ptr
+      type(c_ptr) :: csr_col_ind
+      type(c_ptr) :: bsr_descr
+      type(c_ptr) :: bsr_row_ptr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      integer(c_int),target :: bsr_nnz_devhost
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_csr2gebsr_nnz_typed = rocsparse_csr2gebsr_nnz_(handle,dir,m,n,csr_descr, &
+        csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim, &
+        c_loc(bsr_nnz_devhost),temp_buffer)
+    end function
+
     function rocsparse_csrsort_buffer_size_typed(handle,m,n,nnz,csr_row_ptr,csr_col_ind,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -35865,6 +35990,26 @@ module hipfort_rocsparse
       !
       rocsparse_csrsort_buffer_size_typed = rocsparse_csrsort_buffer_size_(handle,m,n,nnz, &
         csr_row_ptr,csr_col_ind,c_loc(buffer_size))
+    end function
+
+    function rocsparse_ell2csr_nnz_typed(handle,m,n,ell_descr,ell_width,ell_col_ind,csr_descr, &
+        csr_row_ptr,csr_nnz)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_ell2csr_nnz_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: ell_descr
+      integer(c_int) :: ell_width
+      type(c_ptr) :: ell_col_ind
+      type(c_ptr) :: csr_descr
+      type(c_ptr) :: csr_row_ptr
+      integer(c_int),target :: csr_nnz
+      !
+      rocsparse_ell2csr_nnz_typed = rocsparse_ell2csr_nnz_(handle,m,n,ell_descr,ell_width, &
+        ell_col_ind,csr_descr,csr_row_ptr,c_loc(csr_nnz))
     end function
 
     function rocsparse_sgebsr2gebsc_buffer_size_typed(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
@@ -36181,6 +36326,82 @@ module hipfort_rocsparse
       !
       rocsparse_znnz_typed = rocsparse_znnz_(handle,dir,m,n,descr,A,ld,nnz_per_row_columns, &
         c_loc(nnz_total_dev_host_ptr))
+    end function
+
+    function rocsparse_snnz_compress_typed(handle,m,descr_A,csr_val_A,csr_row_ptr_A,nnz_per_row, &
+        nnz_C,tol)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_snnz_compress_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descr_A
+      type(c_ptr) :: csr_val_A
+      type(c_ptr) :: csr_row_ptr_A
+      type(c_ptr) :: nnz_per_row
+      integer(c_int),target :: nnz_C
+      real(c_float) :: tol
+      !
+      rocsparse_snnz_compress_typed = rocsparse_snnz_compress_(handle,m,descr_A,csr_val_A, &
+        csr_row_ptr_A,nnz_per_row,c_loc(nnz_C),tol)
+    end function
+
+    function rocsparse_dnnz_compress_typed(handle,m,descr_A,csr_val_A,csr_row_ptr_A,nnz_per_row, &
+        nnz_C,tol)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dnnz_compress_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descr_A
+      type(c_ptr) :: csr_val_A
+      type(c_ptr) :: csr_row_ptr_A
+      type(c_ptr) :: nnz_per_row
+      integer(c_int),target :: nnz_C
+      real(c_double) :: tol
+      !
+      rocsparse_dnnz_compress_typed = rocsparse_dnnz_compress_(handle,m,descr_A,csr_val_A, &
+        csr_row_ptr_A,nnz_per_row,c_loc(nnz_C),tol)
+    end function
+
+    function rocsparse_cnnz_compress_typed(handle,m,descr_A,csr_val_A,csr_row_ptr_A,nnz_per_row, &
+        nnz_C,tol)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cnnz_compress_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descr_A
+      type(c_ptr) :: csr_val_A
+      type(c_ptr) :: csr_row_ptr_A
+      type(c_ptr) :: nnz_per_row
+      integer(c_int),target :: nnz_C
+      complex(c_float_complex) :: tol
+      !
+      rocsparse_cnnz_compress_typed = rocsparse_cnnz_compress_(handle,m,descr_A,csr_val_A, &
+        csr_row_ptr_A,nnz_per_row,c_loc(nnz_C),tol)
+    end function
+
+    function rocsparse_znnz_compress_typed(handle,m,descr_A,csr_val_A,csr_row_ptr_A,nnz_per_row, &
+        nnz_C,tol)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_znnz_compress_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      type(c_ptr) :: descr_A
+      type(c_ptr) :: csr_val_A
+      type(c_ptr) :: csr_row_ptr_A
+      type(c_ptr) :: nnz_per_row
+      integer(c_int),target :: nnz_C
+      complex(c_double_complex) :: tol
+      !
+      rocsparse_znnz_compress_typed = rocsparse_znnz_compress_(handle,m,descr_A,csr_val_A, &
+        csr_row_ptr_A,nnz_per_row,c_loc(nnz_C),tol)
     end function
 
     function rocsparse_sprune_csr2csr_buffer_size_typed(handle,m,n,nnz_A,csr_descr_A,csr_val_A, &
@@ -36777,6 +36998,34 @@ module hipfort_rocsparse
         csr_row_ptr,c_loc(nnz_total_dev_host_ptr),myInfo,temp_buffer)
     end function
 
+    function rocsparse_bsrgeam_nnzb_typed(handle,dir,mb,nb,block_dim,descr_A,nnzb_A,bsr_row_ptr_A, &
+        bsr_col_ind_A,descr_B,nnzb_B,bsr_row_ptr_B,bsr_col_ind_B,descr_C,bsr_row_ptr_C,nnzb_C)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_bsrgeam_nnzb_typed
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: block_dim
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnzb_A
+      type(c_ptr) :: bsr_row_ptr_A
+      type(c_ptr) :: bsr_col_ind_A
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnzb_B
+      type(c_ptr) :: bsr_row_ptr_B
+      type(c_ptr) :: bsr_col_ind_B
+      type(c_ptr) :: descr_C
+      type(c_ptr) :: bsr_row_ptr_C
+      integer(c_int),target :: nnzb_C
+      !
+      rocsparse_bsrgeam_nnzb_typed = rocsparse_bsrgeam_nnzb_(handle,dir,mb,nb,block_dim,descr_A, &
+        nnzb_A,bsr_row_ptr_A,bsr_col_ind_A,descr_B,nnzb_B,bsr_row_ptr_B,bsr_col_ind_B,descr_C, &
+        bsr_row_ptr_C,c_loc(nnzb_C))
+    end function
+
     function rocsparse_sbsrgeam_typed(handle,dir,mb,nb,block_dim,alpha,descr_A,nnzb_A,bsr_val_A, &
         bsr_row_ptr_A,bsr_col_ind_A,beta,descr_B,nnzb_B,bsr_val_B,bsr_row_ptr_B,bsr_col_ind_B, &
         descr_C,bsr_val_C,bsr_row_ptr_C,bsr_col_ind_C)
@@ -37065,6 +37314,45 @@ module hipfort_rocsparse
         c_loc(buffer_size))
     end function
 
+    function rocsparse_bsrgemm_nnzb_typed(handle,dir,trans_A,trans_B,mb,nb,kb,block_dim,descr_A, &
+        nnzb_A,bsr_row_ptr_A,bsr_col_ind_A,descr_B,nnzb_B,bsr_row_ptr_B,bsr_col_ind_B,descr_D, &
+        nnzb_D,bsr_row_ptr_D,bsr_col_ind_D,descr_C,bsr_row_ptr_C,nnzb_C,info_C,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_bsrgemm_nnzb_typed
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: kb
+      integer(c_int) :: block_dim
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnzb_A
+      type(c_ptr) :: bsr_row_ptr_A
+      type(c_ptr) :: bsr_col_ind_A
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnzb_B
+      type(c_ptr) :: bsr_row_ptr_B
+      type(c_ptr) :: bsr_col_ind_B
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnzb_D
+      type(c_ptr) :: bsr_row_ptr_D
+      type(c_ptr) :: bsr_col_ind_D
+      type(c_ptr) :: descr_C
+      type(c_ptr) :: bsr_row_ptr_C
+      integer(c_int),target :: nnzb_C
+      type(c_ptr) :: info_C
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_bsrgemm_nnzb_typed = rocsparse_bsrgemm_nnzb_(handle,dir,trans_A,trans_B,mb,nb,kb, &
+        block_dim,descr_A,nnzb_A,bsr_row_ptr_A,bsr_col_ind_A,descr_B,nnzb_B,bsr_row_ptr_B, &
+        bsr_col_ind_B,descr_D,nnzb_D,bsr_row_ptr_D,bsr_col_ind_D,descr_C,bsr_row_ptr_C, &
+        c_loc(nnzb_C),info_C,temp_buffer)
+    end function
+
     function rocsparse_sbsrgemm_typed(handle,dir,trans_A,trans_B,mb,nb,kb,block_dim,alpha,descr_A, &
         nnzb_A,bsr_val_A,bsr_row_ptr_A,bsr_col_ind_A,descr_B,nnzb_B,bsr_val_B,bsr_row_ptr_B, &
         bsr_col_ind_B,beta,descr_D,nnzb_D,bsr_val_D,bsr_row_ptr_D,bsr_col_ind_D,descr_C,bsr_val_C, &
@@ -37251,6 +37539,31 @@ module hipfort_rocsparse
         nnzb_B,bsr_val_B,bsr_row_ptr_B,bsr_col_ind_B,c_loc(beta),descr_D,nnzb_D,bsr_val_D, &
         bsr_row_ptr_D,bsr_col_ind_D,descr_C,bsr_val_C,bsr_row_ptr_C,bsr_col_ind_C,info_C, &
         temp_buffer)
+    end function
+
+    function rocsparse_csrgeam_nnz_typed(handle,m,n,descr_A,nnz_A,csr_row_ptr_A,csr_col_ind_A, &
+        descr_B,nnz_B,csr_row_ptr_B,csr_col_ind_B,descr_C,csr_row_ptr_C,nnz_C)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_csrgeam_nnz_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_row_ptr_A
+      type(c_ptr) :: csr_col_ind_A
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
+      type(c_ptr) :: csr_row_ptr_B
+      type(c_ptr) :: csr_col_ind_B
+      type(c_ptr) :: descr_C
+      type(c_ptr) :: csr_row_ptr_C
+      integer(c_int),target :: nnz_C
+      !
+      rocsparse_csrgeam_nnz_typed = rocsparse_csrgeam_nnz_(handle,m,n,descr_A,nnz_A,csr_row_ptr_A, &
+        csr_col_ind_A,descr_B,nnz_B,csr_row_ptr_B,csr_col_ind_B,descr_C,csr_row_ptr_C,c_loc(nnz_C))
     end function
 
     function rocsparse_scsrgeam_typed(handle,m,n,alpha,descr_A,nnz_A,csr_val_A,csr_row_ptr_A, &
@@ -37663,6 +37976,42 @@ module hipfort_rocsparse
       rocsparse_zcsrgemm_buffer_size_devptr = rocsparse_zcsrgemm_buffer_size_(handle,trans_A, &
         trans_B,m,n,k,alpha,descr_A,nnz_A,csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_row_ptr_B, &
         csr_col_ind_B,beta,descr_D,nnz_D,csr_row_ptr_D,csr_col_ind_D,info_C,c_loc(buffer_size))
+    end function
+
+    function rocsparse_csrgemm_nnz_typed(handle,trans_A,trans_B,m,n,k,descr_A,nnz_A,csr_row_ptr_A, &
+        csr_col_ind_A,descr_B,nnz_B,csr_row_ptr_B,csr_col_ind_B,descr_D,nnz_D,csr_row_ptr_D, &
+        csr_col_ind_D,descr_C,csr_row_ptr_C,nnz_C,info_C,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_csrgemm_nnz_typed
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_operation_none)) :: trans_A
+      integer(kind(rocsparse_operation_none)) :: trans_B
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr) :: descr_A
+      integer(c_int) :: nnz_A
+      type(c_ptr) :: csr_row_ptr_A
+      type(c_ptr) :: csr_col_ind_A
+      type(c_ptr) :: descr_B
+      integer(c_int) :: nnz_B
+      type(c_ptr) :: csr_row_ptr_B
+      type(c_ptr) :: csr_col_ind_B
+      type(c_ptr) :: descr_D
+      integer(c_int) :: nnz_D
+      type(c_ptr) :: csr_row_ptr_D
+      type(c_ptr) :: csr_col_ind_D
+      type(c_ptr) :: descr_C
+      type(c_ptr) :: csr_row_ptr_C
+      integer(c_int),target :: nnz_C
+      type(c_ptr) :: info_C
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_csrgemm_nnz_typed = rocsparse_csrgemm_nnz_(handle,trans_A,trans_B,m,n,k,descr_A, &
+        nnz_A,csr_row_ptr_A,csr_col_ind_A,descr_B,nnz_B,csr_row_ptr_B,csr_col_ind_B,descr_D,nnz_D, &
+        csr_row_ptr_D,csr_col_ind_D,descr_C,csr_row_ptr_C,c_loc(nnz_C),info_C,temp_buffer)
     end function
 
     function rocsparse_scsrgemm_typed(handle,trans_A,trans_B,m,n,k,alpha,descr_A,nnz_A,csr_val_A, &
@@ -38150,7 +38499,7 @@ module hipfort_rocsparse
       type(c_ptr) :: mat_C
       integer(kind(rocsparse_spgeam_stage_analysis)) :: stage
       integer(c_size_t),target :: buffer_size
-      type(c_ptr) :: error
+      type(c_ptr), optional :: error
       !
       rocsparse_spgeam_buffer_size_typed = rocsparse_spgeam_buffer_size_(handle,descr,mat_A,mat_B, &
         mat_C,stage,c_loc(buffer_size),error)
@@ -38421,7 +38770,7 @@ module hipfort_rocsparse
       type(c_ptr) :: y
       integer(kind(rocsparse_v2_spmv_stage_analysis)) :: stage
       integer(c_size_t),target :: buffer_size_in_bytes
-      type(c_ptr) :: error
+      type(c_ptr), optional :: error
       !
       rocsparse_v2_spmv_buffer_size_typed = rocsparse_v2_spmv_buffer_size_(handle,descr,mat,x,y, &
         stage,c_loc(buffer_size_in_bytes),error)
@@ -38489,6 +38838,102 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zaxpyi_typed = rocsparse_zaxpyi_(handle,nnz,c_loc(alpha),x_val,x_ind,y,idx_base)
+    end function
+
+    function rocsparse_cdotci_typed(handle,nnz,x_val,x_ind,y,myResult,idx_base)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cdotci_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      type(c_ptr) :: x_val
+      type(c_ptr) :: x_ind
+      type(c_ptr) :: y
+      complex(c_float_complex),target :: myResult
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      !
+      rocsparse_cdotci_typed = rocsparse_cdotci_(handle,nnz,x_val,x_ind,y,c_loc(myResult),idx_base)
+    end function
+
+    function rocsparse_zdotci_typed(handle,nnz,x_val,x_ind,y,myResult,idx_base)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zdotci_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      type(c_ptr) :: x_val
+      type(c_ptr) :: x_ind
+      type(c_ptr) :: y
+      complex(c_double_complex),target :: myResult
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      !
+      rocsparse_zdotci_typed = rocsparse_zdotci_(handle,nnz,x_val,x_ind,y,c_loc(myResult),idx_base)
+    end function
+
+    function rocsparse_sdoti_typed(handle,nnz,x_val,x_ind,y,myResult,idx_base)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sdoti_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      type(c_ptr) :: x_val
+      type(c_ptr) :: x_ind
+      type(c_ptr) :: y
+      real(c_float),target :: myResult
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      !
+      rocsparse_sdoti_typed = rocsparse_sdoti_(handle,nnz,x_val,x_ind,y,c_loc(myResult),idx_base)
+    end function
+
+    function rocsparse_ddoti_typed(handle,nnz,x_val,x_ind,y,myResult,idx_base)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_ddoti_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      type(c_ptr) :: x_val
+      type(c_ptr) :: x_ind
+      type(c_ptr) :: y
+      real(c_double),target :: myResult
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      !
+      rocsparse_ddoti_typed = rocsparse_ddoti_(handle,nnz,x_val,x_ind,y,c_loc(myResult),idx_base)
+    end function
+
+    function rocsparse_cdoti_typed(handle,nnz,x_val,x_ind,y,myResult,idx_base)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cdoti_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      type(c_ptr) :: x_val
+      type(c_ptr) :: x_ind
+      type(c_ptr) :: y
+      complex(c_float_complex),target :: myResult
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      !
+      rocsparse_cdoti_typed = rocsparse_cdoti_(handle,nnz,x_val,x_ind,y,c_loc(myResult),idx_base)
+    end function
+
+    function rocsparse_zdoti_typed(handle,nnz,x_val,x_ind,y,myResult,idx_base)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zdoti_typed
+      type(c_ptr) :: handle
+      integer(c_int) :: nnz
+      type(c_ptr) :: x_val
+      type(c_ptr) :: x_ind
+      type(c_ptr) :: y
+      complex(c_double_complex),target :: myResult
+      integer(kind(rocsparse_index_base_zero)) :: idx_base
+      !
+      rocsparse_zdoti_typed = rocsparse_zdoti_(handle,nnz,x_val,x_ind,y,c_loc(myResult),idx_base)
     end function
 
     function rocsparse_sroti_typed(handle,nnz,x_val,x_ind,y,c,s,idx_base)
@@ -39059,6 +39504,20 @@ module hipfort_rocsparse
       !
       rocsparse_zcoomv_typed = rocsparse_zcoomv_(handle,trans,m,n,nnz,c_loc(alpha),descr,coo_val, &
         coo_row_ind,coo_col_ind,x,c_loc(beta),y)
+    end function
+
+    function rocsparse_csritsv_zero_pivot_typed(handle,descr,myInfo,position)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_csritsv_zero_pivot_typed
+      type(c_ptr) :: handle
+      type(c_ptr) :: descr
+      type(c_ptr) :: myInfo
+      integer(c_int),target :: position
+      !
+      rocsparse_csritsv_zero_pivot_typed = rocsparse_csritsv_zero_pivot_(handle,descr,myInfo, &
+        c_loc(position))
     end function
 
     function rocsparse_scsritsv_buffer_size_typed(handle,trans,m,nnz,descr,csr_val,csr_row_ptr, &
@@ -41840,6 +42299,19 @@ module hipfort_rocsparse
         c_loc(position))
     end function
 
+    function rocsparse_csric0_singular_pivot_typed(handle,myInfo,position)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_csric0_singular_pivot_typed
+      type(c_ptr) :: handle
+      type(c_ptr) :: myInfo
+      integer(c_int),target :: position
+      !
+      rocsparse_csric0_singular_pivot_typed = rocsparse_csric0_singular_pivot_(handle,myInfo, &
+        c_loc(position))
+    end function
+
     function rocsparse_csric0_get_tolerance_typed(handle,myInfo,tolerance)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -41957,6 +42429,19 @@ module hipfort_rocsparse
       !
       rocsparse_csrilu0_get_tolerance_typed = rocsparse_csrilu0_get_tolerance_(handle,myInfo, &
         c_loc(tolerance))
+    end function
+
+    function rocsparse_csrilu0_singular_pivot_typed(handle,myInfo,position)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_csrilu0_singular_pivot_typed
+      type(c_ptr) :: handle
+      type(c_ptr) :: myInfo
+      integer(c_int),target :: position
+      !
+      rocsparse_csrilu0_singular_pivot_typed = rocsparse_csrilu0_singular_pivot_(handle,myInfo, &
+        c_loc(position))
     end function
 
     function rocsparse_scsrilu0_numeric_boost_typed(handle,myInfo,enable_boost,boost_tol,boost_val)
@@ -42586,13 +43071,12 @@ module hipfort_rocsparse
       type(c_ptr) :: csr_col_ind
       real(c_float),target :: fraction_to_color
       integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
+      type(c_ptr) :: coloring
+      type(c_ptr) :: reordering
       type(c_ptr) :: myInfo
       !
       rocsparse_scsrcolor_typed = rocsparse_scsrcolor_(handle,m,nnz,descr,csr_val,csr_row_ptr, &
-        csr_col_ind,c_loc(fraction_to_color),c_loc(ncolors),c_loc(coloring),c_loc(reordering), &
-        myInfo)
+        csr_col_ind,c_loc(fraction_to_color),c_loc(ncolors),coloring,reordering,myInfo)
     end function
 
     function rocsparse_dcsrcolor_typed(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
@@ -42610,13 +43094,12 @@ module hipfort_rocsparse
       type(c_ptr) :: csr_col_ind
       real(c_double),target :: fraction_to_color
       integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
+      type(c_ptr) :: coloring
+      type(c_ptr) :: reordering
       type(c_ptr) :: myInfo
       !
       rocsparse_dcsrcolor_typed = rocsparse_dcsrcolor_(handle,m,nnz,descr,csr_val,csr_row_ptr, &
-        csr_col_ind,c_loc(fraction_to_color),c_loc(ncolors),c_loc(coloring),c_loc(reordering), &
-        myInfo)
+        csr_col_ind,c_loc(fraction_to_color),c_loc(ncolors),coloring,reordering,myInfo)
     end function
 
     function rocsparse_ccsrcolor_typed(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
@@ -42634,13 +43117,12 @@ module hipfort_rocsparse
       type(c_ptr) :: csr_col_ind
       real(c_float),target :: fraction_to_color
       integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
+      type(c_ptr) :: coloring
+      type(c_ptr) :: reordering
       type(c_ptr) :: myInfo
       !
       rocsparse_ccsrcolor_typed = rocsparse_ccsrcolor_(handle,m,nnz,descr,csr_val,csr_row_ptr, &
-        csr_col_ind,c_loc(fraction_to_color),c_loc(ncolors),c_loc(coloring),c_loc(reordering), &
-        myInfo)
+        csr_col_ind,c_loc(fraction_to_color),c_loc(ncolors),coloring,reordering,myInfo)
     end function
 
     function rocsparse_zcsrcolor_typed(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
@@ -42658,13 +43140,12 @@ module hipfort_rocsparse
       type(c_ptr) :: csr_col_ind
       real(c_double),target :: fraction_to_color
       integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
+      type(c_ptr) :: coloring
+      type(c_ptr) :: reordering
       type(c_ptr) :: myInfo
       !
       rocsparse_zcsrcolor_typed = rocsparse_zcsrcolor_(handle,m,nnz,descr,csr_val,csr_row_ptr, &
-        csr_col_ind,c_loc(fraction_to_color),c_loc(ncolors),c_loc(coloring),c_loc(reordering), &
-        myInfo)
+        csr_col_ind,c_loc(fraction_to_color),c_loc(ncolors),coloring,reordering,myInfo)
     end function
 
     function rocsparse_scheck_matrix_coo_buffer_size_typed(handle,m,n,nnz,coo_val,coo_row_ind, &
@@ -45258,7 +45739,7 @@ module hipfort_rocsparse
       integer(c_int) :: block_dim
       type(c_ptr) :: bsr_descr
       integer(c_int),target,contiguous,dimension(..) :: bsr_row_ptr
-      integer(c_int),target,contiguous,dimension(..) :: bsr_nnz
+      integer(c_int),target :: bsr_nnz
       !
       rocsparse_csr2bsr_nnz_assumed_rank = rocsparse_csr2bsr_nnz_(handle,dir,m,n,csr_descr, &
         c_loc(csr_row_ptr),c_loc(csr_col_ind),block_dim,bsr_descr,c_loc(bsr_row_ptr),c_loc(bsr_nnz))
@@ -45303,7 +45784,7 @@ module hipfort_rocsparse
       integer(c_int) :: block_dim
       type(c_ptr) :: bsr_descr
       integer(c_int),target,dimension(:) :: bsr_row_ptr
-      integer(c_int),target,dimension(:) :: bsr_nnz
+      integer(c_int),target :: bsr_nnz
       !
       rocsparse_csr2bsr_nnz_rank_1 = rocsparse_csr2bsr_nnz_(handle,dir,m,n,csr_descr, &
         c_loc(csr_row_ptr),c_loc(csr_col_ind),block_dim,bsr_descr,c_loc(bsr_row_ptr),c_loc(bsr_nnz))
@@ -46689,7 +47170,7 @@ module hipfort_rocsparse
       type(c_ptr) :: csr_descr
       integer(c_int),target,contiguous,dimension(..) :: csr_row_ptr
       type(c_ptr) :: ell_descr
-      integer(c_int),target,contiguous,dimension(..) :: ell_width
+      integer(c_int),target :: ell_width
       !
       rocsparse_csr2ell_width_assumed_rank = rocsparse_csr2ell_width_(handle,m,csr_descr, &
         c_loc(csr_row_ptr),ell_descr,c_loc(ell_width))
@@ -46722,7 +47203,7 @@ module hipfort_rocsparse
       type(c_ptr) :: csr_descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
       type(c_ptr) :: ell_descr
-      integer(c_int),target,dimension(:) :: ell_width
+      integer(c_int),target :: ell_width
       !
       rocsparse_csr2ell_width_rank_1 = rocsparse_csr2ell_width_(handle,m,csr_descr, &
         c_loc(csr_row_ptr),ell_descr,c_loc(ell_width))
@@ -47299,12 +47780,37 @@ module hipfort_rocsparse
       integer(c_int),target,contiguous,dimension(..) :: bsr_row_ptr
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsr_nnz_devhost
+      integer(c_int),target :: bsr_nnz_devhost
       type(c_ptr) :: temp_buffer
       !
       rocsparse_csr2gebsr_nnz_assumed_rank = rocsparse_csr2gebsr_nnz_(handle,dir,m,n,csr_descr, &
         c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_row_ptr),row_block_dim, &
-        col_block_dim,bsr_nnz_devhost,temp_buffer)
+        col_block_dim,c_loc(bsr_nnz_devhost),temp_buffer)
+    end function
+
+    function rocsparse_csr2gebsr_nnz_assumed_rank_devptr(handle,dir,m,n,csr_descr,csr_row_ptr, &
+        csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_csr2gebsr_nnz_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      integer(c_int),target,contiguous,dimension(..) :: csr_row_ptr
+      integer(c_int),target,contiguous,dimension(..) :: csr_col_ind
+      type(c_ptr) :: bsr_descr
+      integer(c_int),target,contiguous,dimension(..) :: bsr_row_ptr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: bsr_nnz_devhost
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_csr2gebsr_nnz_assumed_rank_devptr = rocsparse_csr2gebsr_nnz_(handle,dir,m,n, &
+        csr_descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_row_ptr), &
+        row_block_dim,col_block_dim,bsr_nnz_devhost,temp_buffer)
     end function
 
 #else
@@ -47325,10 +47831,35 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_row_ptr
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsr_nnz_devhost
+      integer(c_int),target :: bsr_nnz_devhost
       type(c_ptr) :: temp_buffer
       !
       rocsparse_csr2gebsr_nnz_rank_0 = rocsparse_csr2gebsr_nnz_(handle,dir,m,n,csr_descr, &
+        c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_row_ptr),row_block_dim, &
+        col_block_dim,c_loc(bsr_nnz_devhost),temp_buffer)
+    end function
+
+    function rocsparse_csr2gebsr_nnz_rank_0_devptr(handle,dir,m,n,csr_descr,csr_row_ptr, &
+        csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_csr2gebsr_nnz_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      integer(c_int),target :: csr_row_ptr
+      integer(c_int),target :: csr_col_ind
+      type(c_ptr) :: bsr_descr
+      integer(c_int),target :: bsr_row_ptr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: bsr_nnz_devhost
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_csr2gebsr_nnz_rank_0_devptr = rocsparse_csr2gebsr_nnz_(handle,dir,m,n,csr_descr, &
         c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_row_ptr),row_block_dim, &
         col_block_dim,bsr_nnz_devhost,temp_buffer)
     end function
@@ -47350,10 +47881,35 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsr_nnz_devhost
+      integer(c_int),target :: bsr_nnz_devhost
       type(c_ptr) :: temp_buffer
       !
       rocsparse_csr2gebsr_nnz_rank_1 = rocsparse_csr2gebsr_nnz_(handle,dir,m,n,csr_descr, &
+        c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_row_ptr),row_block_dim, &
+        col_block_dim,c_loc(bsr_nnz_devhost),temp_buffer)
+    end function
+
+    function rocsparse_csr2gebsr_nnz_rank_1_devptr(handle,dir,m,n,csr_descr,csr_row_ptr, &
+        csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_csr2gebsr_nnz_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_direction_row)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: csr_descr
+      integer(c_int),target,dimension(:) :: csr_row_ptr
+      integer(c_int),target,dimension(:) :: csr_col_ind
+      type(c_ptr) :: bsr_descr
+      integer(c_int),target,dimension(:) :: bsr_row_ptr
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: bsr_nnz_devhost
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_csr2gebsr_nnz_rank_1_devptr = rocsparse_csr2gebsr_nnz_(handle,dir,m,n,csr_descr, &
         c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_row_ptr),row_block_dim, &
         col_block_dim,bsr_nnz_devhost,temp_buffer)
     end function
@@ -49140,7 +49696,7 @@ module hipfort_rocsparse
       integer(c_int),target,contiguous,dimension(..) :: ell_col_ind
       type(c_ptr) :: csr_descr
       integer(c_int),target,contiguous,dimension(..) :: csr_row_ptr
-      integer(c_int),target,contiguous,dimension(..) :: csr_nnz
+      integer(c_int),target :: csr_nnz
       !
       rocsparse_ell2csr_nnz_assumed_rank = rocsparse_ell2csr_nnz_(handle,m,n,ell_descr,ell_width, &
         c_loc(ell_col_ind),csr_descr,c_loc(csr_row_ptr),c_loc(csr_nnz))
@@ -49181,7 +49737,7 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: ell_col_ind
       type(c_ptr) :: csr_descr
       integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_nnz
+      integer(c_int),target :: csr_nnz
       !
       rocsparse_ell2csr_nnz_rank_1 = rocsparse_ell2csr_nnz_(handle,m,n,ell_descr,ell_width, &
         c_loc(ell_col_ind),csr_descr,c_loc(csr_row_ptr),c_loc(csr_nnz))
@@ -49823,6 +50379,28 @@ module hipfort_rocsparse
         col_block_dim,c_loc(p_buffer_size))
     end function
 
+    function rocsparse_sgebsr2gebsc_buffer_size_assumed_rank_devptr(handle,mb,nb,nnzb,bsr_val, &
+        bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2gebsc_buffer_size_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_float),target,contiguous,dimension(..) :: bsr_val
+      integer(c_int),target,contiguous,dimension(..) :: bsr_row_ptr
+      integer(c_int),target,contiguous,dimension(..) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: p_buffer_size
+      !
+      rocsparse_sgebsr2gebsc_buffer_size_assumed_rank_devptr = &
+        rocsparse_sgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr), &
+        c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+    end function
+
 #else
     function rocsparse_sgebsr2gebsc_buffer_size_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
@@ -49846,6 +50424,28 @@ module hipfort_rocsparse
         c_loc(p_buffer_size))
     end function
 
+    function rocsparse_sgebsr2gebsc_buffer_size_rank_0_devptr(handle,mb,nb,nnzb,bsr_val, &
+        bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2gebsc_buffer_size_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_float),target :: bsr_val
+      integer(c_int),target :: bsr_row_ptr
+      integer(c_int),target :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: p_buffer_size
+      !
+      rocsparse_sgebsr2gebsc_buffer_size_rank_0_devptr = rocsparse_sgebsr2gebsc_buffer_size_( &
+        handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim, &
+        col_block_dim,p_buffer_size)
+    end function
+
     function rocsparse_sgebsr2gebsc_buffer_size_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
       use iso_c_binding
@@ -49866,6 +50466,28 @@ module hipfort_rocsparse
       rocsparse_sgebsr2gebsc_buffer_size_rank_1 = rocsparse_sgebsr2gebsc_buffer_size_(handle,mb, &
         nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim, &
         c_loc(p_buffer_size))
+    end function
+
+    function rocsparse_sgebsr2gebsc_buffer_size_rank_1_devptr(handle,mb,nb,nnzb,bsr_val, &
+        bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2gebsc_buffer_size_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_float),target,dimension(:) :: bsr_val
+      integer(c_int),target,dimension(:) :: bsr_row_ptr
+      integer(c_int),target,dimension(:) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: p_buffer_size
+      !
+      rocsparse_sgebsr2gebsc_buffer_size_rank_1_devptr = rocsparse_sgebsr2gebsc_buffer_size_( &
+        handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim, &
+        col_block_dim,p_buffer_size)
     end function
 
 #endif
@@ -49892,6 +50514,28 @@ module hipfort_rocsparse
         col_block_dim,c_loc(p_buffer_size))
     end function
 
+    function rocsparse_dgebsr2gebsc_buffer_size_assumed_rank_devptr(handle,mb,nb,nnzb,bsr_val, &
+        bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2gebsc_buffer_size_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_double),target,contiguous,dimension(..) :: bsr_val
+      integer(c_int),target,contiguous,dimension(..) :: bsr_row_ptr
+      integer(c_int),target,contiguous,dimension(..) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: p_buffer_size
+      !
+      rocsparse_dgebsr2gebsc_buffer_size_assumed_rank_devptr = &
+        rocsparse_dgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr), &
+        c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+    end function
+
 #else
     function rocsparse_dgebsr2gebsc_buffer_size_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
@@ -49915,6 +50559,28 @@ module hipfort_rocsparse
         c_loc(p_buffer_size))
     end function
 
+    function rocsparse_dgebsr2gebsc_buffer_size_rank_0_devptr(handle,mb,nb,nnzb,bsr_val, &
+        bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2gebsc_buffer_size_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_double),target :: bsr_val
+      integer(c_int),target :: bsr_row_ptr
+      integer(c_int),target :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: p_buffer_size
+      !
+      rocsparse_dgebsr2gebsc_buffer_size_rank_0_devptr = rocsparse_dgebsr2gebsc_buffer_size_( &
+        handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim, &
+        col_block_dim,p_buffer_size)
+    end function
+
     function rocsparse_dgebsr2gebsc_buffer_size_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
       use iso_c_binding
@@ -49935,6 +50601,28 @@ module hipfort_rocsparse
       rocsparse_dgebsr2gebsc_buffer_size_rank_1 = rocsparse_dgebsr2gebsc_buffer_size_(handle,mb, &
         nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim, &
         c_loc(p_buffer_size))
+    end function
+
+    function rocsparse_dgebsr2gebsc_buffer_size_rank_1_devptr(handle,mb,nb,nnzb,bsr_val, &
+        bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2gebsc_buffer_size_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_double),target,dimension(:) :: bsr_val
+      integer(c_int),target,dimension(:) :: bsr_row_ptr
+      integer(c_int),target,dimension(:) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: p_buffer_size
+      !
+      rocsparse_dgebsr2gebsc_buffer_size_rank_1_devptr = rocsparse_dgebsr2gebsc_buffer_size_( &
+        handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim, &
+        col_block_dim,p_buffer_size)
     end function
 
 #endif
@@ -49961,6 +50649,28 @@ module hipfort_rocsparse
         col_block_dim,c_loc(p_buffer_size))
     end function
 
+    function rocsparse_cgebsr2gebsc_buffer_size_assumed_rank_devptr(handle,mb,nb,nnzb,bsr_val, &
+        bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2gebsc_buffer_size_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_float_complex),target,contiguous,dimension(..) :: bsr_val
+      integer(c_int),target,contiguous,dimension(..) :: bsr_row_ptr
+      integer(c_int),target,contiguous,dimension(..) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: p_buffer_size
+      !
+      rocsparse_cgebsr2gebsc_buffer_size_assumed_rank_devptr = &
+        rocsparse_cgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr), &
+        c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+    end function
+
 #else
     function rocsparse_cgebsr2gebsc_buffer_size_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
@@ -49984,6 +50694,28 @@ module hipfort_rocsparse
         c_loc(p_buffer_size))
     end function
 
+    function rocsparse_cgebsr2gebsc_buffer_size_rank_0_devptr(handle,mb,nb,nnzb,bsr_val, &
+        bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2gebsc_buffer_size_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_float_complex),target :: bsr_val
+      integer(c_int),target :: bsr_row_ptr
+      integer(c_int),target :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: p_buffer_size
+      !
+      rocsparse_cgebsr2gebsc_buffer_size_rank_0_devptr = rocsparse_cgebsr2gebsc_buffer_size_( &
+        handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim, &
+        col_block_dim,p_buffer_size)
+    end function
+
     function rocsparse_cgebsr2gebsc_buffer_size_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
       use iso_c_binding
@@ -50004,6 +50736,28 @@ module hipfort_rocsparse
       rocsparse_cgebsr2gebsc_buffer_size_rank_1 = rocsparse_cgebsr2gebsc_buffer_size_(handle,mb, &
         nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim, &
         c_loc(p_buffer_size))
+    end function
+
+    function rocsparse_cgebsr2gebsc_buffer_size_rank_1_devptr(handle,mb,nb,nnzb,bsr_val, &
+        bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2gebsc_buffer_size_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_float_complex),target,dimension(:) :: bsr_val
+      integer(c_int),target,dimension(:) :: bsr_row_ptr
+      integer(c_int),target,dimension(:) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: p_buffer_size
+      !
+      rocsparse_cgebsr2gebsc_buffer_size_rank_1_devptr = rocsparse_cgebsr2gebsc_buffer_size_( &
+        handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim, &
+        col_block_dim,p_buffer_size)
     end function
 
 #endif
@@ -50030,6 +50784,28 @@ module hipfort_rocsparse
         col_block_dim,c_loc(p_buffer_size))
     end function
 
+    function rocsparse_zgebsr2gebsc_buffer_size_assumed_rank_devptr(handle,mb,nb,nnzb,bsr_val, &
+        bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2gebsc_buffer_size_assumed_rank_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_double_complex),target,contiguous,dimension(..) :: bsr_val
+      integer(c_int),target,contiguous,dimension(..) :: bsr_row_ptr
+      integer(c_int),target,contiguous,dimension(..) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: p_buffer_size
+      !
+      rocsparse_zgebsr2gebsc_buffer_size_assumed_rank_devptr = &
+        rocsparse_zgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr), &
+        c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+    end function
+
 #else
     function rocsparse_zgebsr2gebsc_buffer_size_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
@@ -50053,6 +50829,28 @@ module hipfort_rocsparse
         c_loc(p_buffer_size))
     end function
 
+    function rocsparse_zgebsr2gebsc_buffer_size_rank_0_devptr(handle,mb,nb,nnzb,bsr_val, &
+        bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2gebsc_buffer_size_rank_0_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_double_complex),target :: bsr_val
+      integer(c_int),target :: bsr_row_ptr
+      integer(c_int),target :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: p_buffer_size
+      !
+      rocsparse_zgebsr2gebsc_buffer_size_rank_0_devptr = rocsparse_zgebsr2gebsc_buffer_size_( &
+        handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim, &
+        col_block_dim,p_buffer_size)
+    end function
+
     function rocsparse_zgebsr2gebsc_buffer_size_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr, &
         bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
       use iso_c_binding
@@ -50073,6 +50871,28 @@ module hipfort_rocsparse
       rocsparse_zgebsr2gebsc_buffer_size_rank_1 = rocsparse_zgebsr2gebsc_buffer_size_(handle,mb, &
         nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim, &
         c_loc(p_buffer_size))
+    end function
+
+    function rocsparse_zgebsr2gebsc_buffer_size_rank_1_devptr(handle,mb,nb,nnzb,bsr_val, &
+        bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2gebsc_buffer_size_rank_1_devptr
+      type(c_ptr) :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_double_complex),target,dimension(:) :: bsr_val
+      integer(c_int),target,dimension(:) :: bsr_row_ptr
+      integer(c_int),target,dimension(:) :: bsr_col_ind
+      integer(c_int) :: row_block_dim
+      integer(c_int) :: col_block_dim
+      type(c_ptr),value :: p_buffer_size
+      !
+      rocsparse_zgebsr2gebsc_buffer_size_rank_1_devptr = rocsparse_zgebsr2gebsc_buffer_size_( &
+        handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim, &
+        col_block_dim,p_buffer_size)
     end function
 
 #endif
@@ -51079,7 +51899,7 @@ module hipfort_rocsparse
       real(c_float),target,contiguous,dimension(..) :: csr_val_A
       integer(c_int),target,contiguous,dimension(..) :: csr_row_ptr_A
       integer(c_int),target,contiguous,dimension(..) :: nnz_per_row
-      integer(c_int),target,contiguous,dimension(..) :: nnz_C
+      integer(c_int),target :: nnz_C
       real(c_float) :: tol
       !
       rocsparse_snnz_compress_assumed_rank = rocsparse_snnz_compress_(handle,m,descr_A, &
@@ -51118,7 +51938,7 @@ module hipfort_rocsparse
       real(c_float),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: nnz_per_row
-      integer(c_int),target,dimension(:) :: nnz_C
+      integer(c_int),target :: nnz_C
       real(c_float) :: tol
       !
       rocsparse_snnz_compress_rank_1 = rocsparse_snnz_compress_(handle,m,descr_A,c_loc(csr_val_A), &
@@ -51139,7 +51959,7 @@ module hipfort_rocsparse
       real(c_double),target,contiguous,dimension(..) :: csr_val_A
       integer(c_int),target,contiguous,dimension(..) :: csr_row_ptr_A
       integer(c_int),target,contiguous,dimension(..) :: nnz_per_row
-      integer(c_int),target,contiguous,dimension(..) :: nnz_C
+      integer(c_int),target :: nnz_C
       real(c_double) :: tol
       !
       rocsparse_dnnz_compress_assumed_rank = rocsparse_dnnz_compress_(handle,m,descr_A, &
@@ -51178,7 +51998,7 @@ module hipfort_rocsparse
       real(c_double),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: nnz_per_row
-      integer(c_int),target,dimension(:) :: nnz_C
+      integer(c_int),target :: nnz_C
       real(c_double) :: tol
       !
       rocsparse_dnnz_compress_rank_1 = rocsparse_dnnz_compress_(handle,m,descr_A,c_loc(csr_val_A), &
@@ -51199,7 +52019,7 @@ module hipfort_rocsparse
       complex(c_float_complex),target,contiguous,dimension(..) :: csr_val_A
       integer(c_int),target,contiguous,dimension(..) :: csr_row_ptr_A
       integer(c_int),target,contiguous,dimension(..) :: nnz_per_row
-      integer(c_int),target,contiguous,dimension(..) :: nnz_C
+      integer(c_int),target :: nnz_C
       complex(c_float_complex) :: tol
       !
       rocsparse_cnnz_compress_assumed_rank = rocsparse_cnnz_compress_(handle,m,descr_A, &
@@ -51238,7 +52058,7 @@ module hipfort_rocsparse
       complex(c_float_complex),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: nnz_per_row
-      integer(c_int),target,dimension(:) :: nnz_C
+      integer(c_int),target :: nnz_C
       complex(c_float_complex) :: tol
       !
       rocsparse_cnnz_compress_rank_1 = rocsparse_cnnz_compress_(handle,m,descr_A,c_loc(csr_val_A), &
@@ -51259,7 +52079,7 @@ module hipfort_rocsparse
       complex(c_double_complex),target,contiguous,dimension(..) :: csr_val_A
       integer(c_int),target,contiguous,dimension(..) :: csr_row_ptr_A
       integer(c_int),target,contiguous,dimension(..) :: nnz_per_row
-      integer(c_int),target,contiguous,dimension(..) :: nnz_C
+      integer(c_int),target :: nnz_C
       complex(c_double_complex) :: tol
       !
       rocsparse_znnz_compress_assumed_rank = rocsparse_znnz_compress_(handle,m,descr_A, &
@@ -51298,7 +52118,7 @@ module hipfort_rocsparse
       complex(c_double_complex),target,dimension(:) :: csr_val_A
       integer(c_int),target,dimension(:) :: csr_row_ptr_A
       integer(c_int),target,dimension(:) :: nnz_per_row
-      integer(c_int),target,dimension(:) :: nnz_C
+      integer(c_int),target :: nnz_C
       complex(c_double_complex) :: tol
       !
       rocsparse_znnz_compress_rank_1 = rocsparse_znnz_compress_(handle,m,descr_A,c_loc(csr_val_A), &
@@ -53496,7 +54316,7 @@ module hipfort_rocsparse
       integer(c_int),target,contiguous,dimension(..) :: csr_col_ind_B
       type(c_ptr) :: descr_C
       integer(c_int),target,contiguous,dimension(..) :: csr_row_ptr_C
-      integer(c_int),target,contiguous,dimension(..) :: nnz_C
+      integer(c_int),target :: nnz_C
       !
       rocsparse_csrgeam_nnz_assumed_rank = rocsparse_csrgeam_nnz_(handle,m,n,descr_A,nnz_A, &
         c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_row_ptr_B), &
@@ -53549,7 +54369,7 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csr_col_ind_B
       type(c_ptr) :: descr_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
-      integer(c_int),target,dimension(:) :: nnz_C
+      integer(c_int),target :: nnz_C
       !
       rocsparse_csrgeam_nnz_rank_1 = rocsparse_csrgeam_nnz_(handle,m,n,descr_A,nnz_A, &
         c_loc(csr_row_ptr_A),c_loc(csr_col_ind_A),descr_B,nnz_B,c_loc(csr_row_ptr_B), &
@@ -54437,7 +55257,7 @@ module hipfort_rocsparse
       integer(c_int),target,contiguous,dimension(..) :: csr_col_ind_D
       type(c_ptr) :: descr_C
       integer(c_int),target,contiguous,dimension(..) :: csr_row_ptr_C
-      integer(c_int),target,contiguous,dimension(..) :: nnz_C
+      integer(c_int),target :: nnz_C
       type(c_ptr) :: info_C
       type(c_ptr) :: temp_buffer
       !
@@ -54512,7 +55332,7 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csr_col_ind_D
       type(c_ptr) :: descr_C
       integer(c_int),target,dimension(:) :: csr_row_ptr_C
-      integer(c_int),target,dimension(:) :: nnz_C
+      integer(c_int),target :: nnz_C
       type(c_ptr) :: info_C
       type(c_ptr) :: temp_buffer
       !
@@ -55302,7 +56122,7 @@ module hipfort_rocsparse
       complex(c_float_complex),target,contiguous,dimension(..) :: x_val
       integer(c_int),target,contiguous,dimension(..) :: x_ind
       complex(c_float_complex),target,contiguous,dimension(..) :: y
-      complex(c_float_complex),target,contiguous,dimension(..) :: myResult
+      complex(c_float_complex),target :: myResult
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_cdotci_assumed_rank = rocsparse_cdotci_(handle,nnz,c_loc(x_val),c_loc(x_ind), &
@@ -55337,7 +56157,7 @@ module hipfort_rocsparse
       complex(c_float_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_float_complex),target,dimension(:) :: y
-      complex(c_float_complex),target,dimension(:) :: myResult
+      complex(c_float_complex),target :: myResult
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_cdotci_rank_1 = rocsparse_cdotci_(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y), &
@@ -55356,7 +56176,7 @@ module hipfort_rocsparse
       complex(c_double_complex),target,contiguous,dimension(..) :: x_val
       integer(c_int),target,contiguous,dimension(..) :: x_ind
       complex(c_double_complex),target,contiguous,dimension(..) :: y
-      complex(c_double_complex),target,contiguous,dimension(..) :: myResult
+      complex(c_double_complex),target :: myResult
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zdotci_assumed_rank = rocsparse_zdotci_(handle,nnz,c_loc(x_val),c_loc(x_ind), &
@@ -55391,7 +56211,7 @@ module hipfort_rocsparse
       complex(c_double_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_double_complex),target,dimension(:) :: y
-      complex(c_double_complex),target,dimension(:) :: myResult
+      complex(c_double_complex),target :: myResult
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zdotci_rank_1 = rocsparse_zdotci_(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y), &
@@ -55410,7 +56230,7 @@ module hipfort_rocsparse
       real(c_float),target,contiguous,dimension(..) :: x_val
       integer(c_int),target,contiguous,dimension(..) :: x_ind
       real(c_float),target,contiguous,dimension(..) :: y
-      real(c_float),target,contiguous,dimension(..) :: myResult
+      real(c_float),target :: myResult
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_sdoti_assumed_rank = rocsparse_sdoti_(handle,nnz,c_loc(x_val),c_loc(x_ind), &
@@ -55445,7 +56265,7 @@ module hipfort_rocsparse
       real(c_float),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_float),target,dimension(:) :: y
-      real(c_float),target,dimension(:) :: myResult
+      real(c_float),target :: myResult
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_sdoti_rank_1 = rocsparse_sdoti_(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y), &
@@ -55464,7 +56284,7 @@ module hipfort_rocsparse
       real(c_double),target,contiguous,dimension(..) :: x_val
       integer(c_int),target,contiguous,dimension(..) :: x_ind
       real(c_double),target,contiguous,dimension(..) :: y
-      real(c_double),target,contiguous,dimension(..) :: myResult
+      real(c_double),target :: myResult
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_ddoti_assumed_rank = rocsparse_ddoti_(handle,nnz,c_loc(x_val),c_loc(x_ind), &
@@ -55499,7 +56319,7 @@ module hipfort_rocsparse
       real(c_double),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       real(c_double),target,dimension(:) :: y
-      real(c_double),target,dimension(:) :: myResult
+      real(c_double),target :: myResult
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_ddoti_rank_1 = rocsparse_ddoti_(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y), &
@@ -55518,7 +56338,7 @@ module hipfort_rocsparse
       complex(c_float_complex),target,contiguous,dimension(..) :: x_val
       integer(c_int),target,contiguous,dimension(..) :: x_ind
       complex(c_float_complex),target,contiguous,dimension(..) :: y
-      complex(c_float_complex),target,contiguous,dimension(..) :: myResult
+      complex(c_float_complex),target :: myResult
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_cdoti_assumed_rank = rocsparse_cdoti_(handle,nnz,c_loc(x_val),c_loc(x_ind), &
@@ -55553,7 +56373,7 @@ module hipfort_rocsparse
       complex(c_float_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_float_complex),target,dimension(:) :: y
-      complex(c_float_complex),target,dimension(:) :: myResult
+      complex(c_float_complex),target :: myResult
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_cdoti_rank_1 = rocsparse_cdoti_(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y), &
@@ -55572,7 +56392,7 @@ module hipfort_rocsparse
       complex(c_double_complex),target,contiguous,dimension(..) :: x_val
       integer(c_int),target,contiguous,dimension(..) :: x_ind
       complex(c_double_complex),target,contiguous,dimension(..) :: y
-      complex(c_double_complex),target,contiguous,dimension(..) :: myResult
+      complex(c_double_complex),target :: myResult
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zdoti_assumed_rank = rocsparse_zdoti_(handle,nnz,c_loc(x_val),c_loc(x_ind), &
@@ -55607,7 +56427,7 @@ module hipfort_rocsparse
       complex(c_double_complex),target,dimension(:) :: x_val
       integer(c_int),target,dimension(:) :: x_ind
       complex(c_double_complex),target,dimension(:) :: y
-      complex(c_double_complex),target,dimension(:) :: myResult
+      complex(c_double_complex),target :: myResult
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       !
       rocsparse_zdoti_rank_1 = rocsparse_zdoti_(handle,nnz,c_loc(x_val),c_loc(x_ind),c_loc(y), &
@@ -71452,8 +72272,8 @@ module hipfort_rocsparse
       integer(c_int),target,contiguous,dimension(..) :: csr_col_ind
       real(c_float),target :: fraction_to_color
       integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
+      integer(c_int),target,contiguous,dimension(..) :: coloring
+      integer(c_int),target,contiguous,dimension(..) :: reordering
       type(c_ptr) :: myInfo
       !
       rocsparse_scsrcolor_assumed_rank = rocsparse_scsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
@@ -71501,8 +72321,8 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target :: fraction_to_color
       integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
+      integer(c_int),target,dimension(:) :: coloring
+      integer(c_int),target,dimension(:) :: reordering
       type(c_ptr) :: myInfo
       !
       rocsparse_scsrcolor_rank_1 = rocsparse_scsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
@@ -71527,8 +72347,8 @@ module hipfort_rocsparse
       integer(c_int),target,contiguous,dimension(..) :: csr_col_ind
       real(c_double),target :: fraction_to_color
       integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
+      integer(c_int),target,contiguous,dimension(..) :: coloring
+      integer(c_int),target,contiguous,dimension(..) :: reordering
       type(c_ptr) :: myInfo
       !
       rocsparse_dcsrcolor_assumed_rank = rocsparse_dcsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
@@ -71576,8 +72396,8 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target :: fraction_to_color
       integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
+      integer(c_int),target,dimension(:) :: coloring
+      integer(c_int),target,dimension(:) :: reordering
       type(c_ptr) :: myInfo
       !
       rocsparse_dcsrcolor_rank_1 = rocsparse_dcsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
@@ -71602,8 +72422,8 @@ module hipfort_rocsparse
       integer(c_int),target,contiguous,dimension(..) :: csr_col_ind
       real(c_float),target :: fraction_to_color
       integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
+      integer(c_int),target,contiguous,dimension(..) :: coloring
+      integer(c_int),target,contiguous,dimension(..) :: reordering
       type(c_ptr) :: myInfo
       !
       rocsparse_ccsrcolor_assumed_rank = rocsparse_ccsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
@@ -71651,8 +72471,8 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_float),target :: fraction_to_color
       integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
+      integer(c_int),target,dimension(:) :: coloring
+      integer(c_int),target,dimension(:) :: reordering
       type(c_ptr) :: myInfo
       !
       rocsparse_ccsrcolor_rank_1 = rocsparse_ccsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
@@ -71677,8 +72497,8 @@ module hipfort_rocsparse
       integer(c_int),target,contiguous,dimension(..) :: csr_col_ind
       real(c_double),target :: fraction_to_color
       integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
+      integer(c_int),target,contiguous,dimension(..) :: coloring
+      integer(c_int),target,contiguous,dimension(..) :: reordering
       type(c_ptr) :: myInfo
       !
       rocsparse_zcsrcolor_assumed_rank = rocsparse_zcsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
@@ -71726,8 +72546,8 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csr_col_ind
       real(c_double),target :: fraction_to_color
       integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
+      integer(c_int),target,dimension(:) :: coloring
+      integer(c_int),target,dimension(:) :: reordering
       type(c_ptr) :: myInfo
       !
       rocsparse_zcsrcolor_rank_1 = rocsparse_zcsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
