@@ -365,7 +365,7 @@ if(HIP_PLATFORM STREQUAL "amd" AND TARGET hipfort-amdgcn)
 
   write_basic_package_version_file(
     ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config-version.cmake
-    VERSION "${HIPFORT_VERSION_MAJOR}.${HIPFORT_VERSION_MINOR}.${HIPFORT_VERSION_PATCH}"
+    VERSION "${PROJECT_VERSION}"
     COMPATIBILITY SameMajorVersion
   )
 
