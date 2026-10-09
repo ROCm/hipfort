@@ -265,7 +265,7 @@ endif()
 # NOTE: rocm-cmake must be included before
 # adding subdirectories.
 INCLUDE(${CMAKE_MODULE_PATH}/rocm-cmake.cmake)
-rocm_setup_version(VERSION ${VERSION})
+rocm_setup_version(VERSION ${PROJECT_VERSION} NO_GIT_TAG_VERSION)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/lib)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/test)
 

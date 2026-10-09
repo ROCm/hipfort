@@ -365,7 +365,7 @@ if(HIP_PLATFORM STREQUAL "amd" AND TARGET hipfort-amdgcn)
 
   write_basic_package_version_file(
     ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config-version.cmake
-    VERSION "${HIPFORT_VERSION_MAJOR}.${HIPFORT_VERSION_MINOR}.${HIPFORT_VERSION_PATCH}"
+    VERSION "${PROJECT_VERSION}"
     COMPATIBILITY SameMajorVersion
   )
 
@@ -405,14 +405,17 @@ if(HIP_PLATFORM STREQUAL "amd" AND TARGET hipfort-amdgcn)
       ${CMAKE_CURRENT_BINARY_DIR}/shim/hipfort-config.cmake
       @ONLY)
     # Plain install() (not rocm_install) because rocm_install does not support
-    # RENAME; the file is still packaged by CPACK.
+    # RENAME. A plain install() lands in the default component, which CPack does
+    # not package, so name the devel component that rocm_install uses.
     install(
       FILES ${CMAKE_CURRENT_BINARY_DIR}/shim/hipfort-config.cmake
       DESTINATION ${HIPFORT_SHIM_DIR}
+      COMPONENT devel
     )
     install(
       FILES ${CMAKE_CURRENT_BINARY_DIR}/hipfort-config-version.cmake
       DESTINATION ${HIPFORT_SHIM_DIR}
+      COMPONENT devel
     )
   endif()
 elseif(CUDAToolkit_FOUND AND TARGET hipfort-nvptx)

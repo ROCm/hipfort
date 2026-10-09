@@ -93,7 +93,8 @@ against the appropriate ROCm libraries. hipFORT provides exported CMake targets 
 
 .. code-block:: cmake
 
-   project(my_app Fortran)
+   # C is required by the CMake package of HIP, which finds Threads.
+   project(my_app LANGUAGES Fortran C)
 
    find_package(hipfort REQUIRED COMPONENTS hip hipblas)
    add_executable(my_app main.f08)
