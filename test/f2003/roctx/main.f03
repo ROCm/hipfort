@@ -40,13 +40,15 @@ program fortran_hip
 
   integer :: i
   integer :: ret
-  ! roctxRangePush takes a const char*, bound as type(c_ptr) like every other
-  ! char* argument in hipfort. c_loc needs a TARGET, and only an array of
-  ! character(kind=c_char) is interoperable, so build the NUL-terminated buffer
-  ! explicitly rather than passing a string expression.
+  integer(c_int64_t) :: id
+  ! roctxRangePush and the other const char* entries take either a type(c_ptr)
+  ! (the C binding) or a character(kind=c_char) string (the _typed form, which
+  ! passes the string's own address, no copy). Either way the caller supplies the
+  ! terminating c_null_char.
   character(kind=c_char), dimension(12), target :: msg = &
       [c_char_"h", c_char_"e", c_char_"l", c_char_"l", c_char_"o", c_char_"_", &
        c_char_"w", c_char_"o", c_char_"r", c_char_"l", c_char_"d", c_null_char]
+  character(kind=c_char, len=*), parameter :: zone = c_char_"zone"//c_null_char
   type(hipDeviceProp_t),target :: props
 
   call hipCheck(hipGetDeviceProperties(props,0))
@@ -59,8 +61,23 @@ program fortran_hip
   end do
   write(*,"(a)",advance="no") " - "
 
+  ret = roctxNameOsThread("main"//c_null_char)
+  call roctxMark("start"//c_null_char)
+  id = roctxRangeStart(zone)
+
+  ! Three nested ranges, one per spelling: a c_ptr, a string literal, a parameter.
   ret = roctxRangePush(c_loc(msg))
   if (ret /= 0) then
+    write (*, *) "ROCTX ERROR: roctxRangePush: Invalid nested range level ", ret
+    call exit(1)
+  end if
+  ret = roctxRangePush("launch"//c_null_char)
+  if (ret /= 1) then
+    write (*, *) "ROCTX ERROR: roctxRangePush: Invalid nested range level ", ret
+    call exit(1)
+  end if
+  ret = roctxRangePush(zone)
+  if (ret /= 2) then
     write (*, *) "ROCTX ERROR: roctxRangePush: Invalid nested range level ", ret
     call exit(1)
   end if
@@ -68,11 +85,14 @@ program fortran_hip
   call launch()
   call hipCheck(hipDeviceSynchronize())
 
-  ret = roctxRangePop()
-  if (ret /= 0) then
-    write (*, *) "ROCTX ERROR: roctxRangePop: Invalid nested range level ", ret
-    call exit(1)
-  end if
+  do i = 2, 0, -1
+    ret = roctxRangePop()
+    if (ret /= i) then
+      write (*, *) "ROCTX ERROR: roctxRangePop: Invalid nested range level ", ret
+      call exit(1)
+    end if
+  end do
+  call roctxRangeStop(id)
 
   write(*,*) "PASSED!"
 
