@@ -922,6 +922,24 @@ module hipfort
     end function
   end interface
 
+  interface hipChooseDeviceR0600
+#ifdef USE_CUDA_NAMES
+    function hipChooseDeviceR0600_(device,prop) bind(c, name="cudaChooseDevice")
+#else
+    function hipChooseDeviceR0600_(device,prop) bind(c, name="hipChooseDeviceR0600")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_int) :: hipChooseDeviceR0600_
+      type(c_ptr),value :: device
+      type(hipDeviceProp_t) :: prop
+    end function
+
+    module procedure hipChooseDeviceR0600_typed
+  end interface
+
   !>  @brief Initialize the specified device to be used for GPU executions.
   !>
   !>  @param [in] device       Ordinal of the device to initialize.
@@ -958,30 +976,6 @@ module hipfort
       integer(c_int),value :: deviceFlags
       integer(c_int),value :: flags
     end function
-  end interface
-
-  !>  @brief Device which matches hipDeviceProp_t is returned
-  !>
-  !>  @param [out] device Pointer of the device
-  !>  @param [in]  prop Pointer of the properties
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipChooseDeviceR0600
-#ifdef USE_CUDA_NAMES
-    function hipChooseDeviceR0600_(device,prop) bind(c, name="cudaChooseDevice")
-#else
-    function hipChooseDeviceR0600_(device,prop) bind(c, name="hipChooseDeviceR0600")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(c_int) :: hipChooseDeviceR0600_
-      type(c_ptr),value :: device
-      type(hipDeviceProp_t) :: prop
-    end function
-
-    module procedure hipChooseDeviceR0600_typed
   end interface
 
   !>  @brief Returns the link type and hop count between two devices
@@ -3321,39 +3315,6 @@ module hipfort
 
   !>  @brief Advise about the usage of a given memory range to HIP.
   !>
-  !>  @param [in] dev_ptr  pointer to memory to set the advice for
-  !>  @param [in] count    size in bytes of the memory range, it should be CPU page size alligned.
-  !>  @param [in] advice   advice to be applied for the specified memory range
-  !>  @param [in] device   device to apply the advice for
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  This HIP API advises about the usage to be applied on unified memory allocation in the
-  !>  range starting from the pointer address devPtr, with the size of count bytes.
-  !>  The memory range must refer to managed memory allocated via the API hipMallocManaged, and the
-  !>  range will be handled with proper round down and round up respectively in the driver to
-  !>  be aligned to CPU page size, the same way as corresponding CUDA API behaves in CUDA version
-  !>  8.0
-  !>  and afterwards.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-#ifndef USE_CUDA_NAMES
-  interface hipMemAdvise
-    function hipMemAdvise_(dev_ptr,count,advice,device) bind(c, name="hipMemAdvise")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(c_int) :: hipMemAdvise_
-      type(c_ptr),value :: dev_ptr
-      integer(c_size_t),value :: count
-      integer(c_int),value :: advice
-      integer(c_int),value :: device
-    end function
-  end interface
-#endif
-
-  !>  @brief Advise about the usage of a given memory range to HIP.
-  !>
   !>  @param [in] dev_ptr    pointer to memory to set the advice for
   !>  @param [in] count      size in bytes of the memory range, it should be CPU page size alligned.
   !>  @param [in] advice     advice to be applied for the specified memory range
@@ -3387,6 +3348,39 @@ module hipfort
       type(hipMemLocation),value :: location
     end function
   end interface
+
+  !>  @brief Advise about the usage of a given memory range to HIP.
+  !>
+  !>  @param [in] dev_ptr  pointer to memory to set the advice for
+  !>  @param [in] count    size in bytes of the memory range, it should be CPU page size alligned.
+  !>  @param [in] advice   advice to be applied for the specified memory range
+  !>  @param [in] device   device to apply the advice for
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  This HIP API advises about the usage to be applied on unified memory allocation in the
+  !>  range starting from the pointer address devPtr, with the size of count bytes.
+  !>  The memory range must refer to managed memory allocated via the API hipMallocManaged, and the
+  !>  range will be handled with proper round down and round up respectively in the driver to
+  !>  be aligned to CPU page size, the same way as corresponding CUDA API behaves in CUDA version
+  !>  8.0
+  !>  and afterwards.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+#ifndef USE_CUDA_NAMES
+  interface hipMemAdvise
+    function hipMemAdvise_(dev_ptr,count,advice,device) bind(c, name="hipMemAdvise")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(c_int) :: hipMemAdvise_
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+      integer(c_int),value :: advice
+      integer(c_int),value :: device
+    end function
+  end interface
+#endif
 
   !>  @brief Query an attribute of a given memory range in HIP.
   !>
@@ -7664,6 +7658,29 @@ module hipfort
     module procedure hipModuleGetFunctionCount_typed
 #endif
   end interface
+
+  !>  @brief Returns the function handles within a module.
+  !>
+  !>  @param [out] functions Buffer where the function handles are returned
+  !>  @param [in] numFunctions Maximum number of function handles to return to the buffer
+  !>  @param [in] mod Module to query from
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`,
+  !>  `hipErrorInvalidContext`, `hipErrorNotInitialized`, `hipErrorNotFound`
+#ifndef USE_CUDA_NAMES
+  interface hipModuleEnumerateFunctions
+    function hipModuleEnumerateFunctions_(functions,numFunctions,mod) &
+        bind(c, name="hipModuleEnumerateFunctions")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(c_int) :: hipModuleEnumerateFunctions_
+      type(c_ptr) :: functions
+      integer(c_int),value :: numFunctions
+      type(c_ptr),value :: mod
+    end function
+  end interface
+#endif
 
   !>  @brief Returns information about a kernel.
   !>
@@ -14461,18 +14478,6 @@ module hipfort
     end function
   end interface
 #endif
-
-  !>  @brief Device which matches hipDeviceProp_t is returned
-  !>
-  !>  @param [out] device Pointer of the device
-  !>  @param [in]  prop Pointer of the properties
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipChooseDevice
-    procedure hipChooseDeviceR0600_
-
-    module procedure hipChooseDeviceR0600_typed
-  end interface
 
 
   contains
