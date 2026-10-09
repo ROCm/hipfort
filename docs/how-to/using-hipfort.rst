@@ -78,7 +78,8 @@ underlying ROCm library it wraps.
 .. code-block:: cmake
 
    cmake_minimum_required(VERSION 3.18)
-   project(my_app Fortran)
+   # C is required by the CMake package of HIP, which finds Threads.
+   project(my_app LANGUAGES Fortran C)
 
    find_package(hipfort REQUIRED COMPONENTS hip rocblas hipblas)
 
@@ -132,7 +133,7 @@ For the FFTW3-compatible interface, see the
 Supported HIP and ROCm APIs
 ---------------------------
 
-The current set of hipFORT interfaces is derived from ROCm 10.0.0. The following tables list the supported APIs:
+The current set of hipFORT interfaces is derived from ROCm 10.1.0. The following tables list the supported APIs:
 
 * :doc:`HIP API <../doxygen/html/md_input_2supported__api__hip>`
 * :doc:`hipBLAS API <../doxygen/html/md_input_2supported__api__hipblas>`
