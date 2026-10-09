@@ -63,9 +63,9 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_generator_
+      integer(c_int) :: rocrand_create_generator_
       type(c_ptr) :: generator
-      integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)),value :: rng_type
+      integer(c_int),value :: rng_type
     end function
   end interface
 
@@ -92,9 +92,9 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_generator_host_
+      integer(c_int) :: rocrand_create_generator_host_
       type(c_ptr) :: generator
-      integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)),value :: rng_type
+      integer(c_int),value :: rng_type
     end function
   end interface
 
@@ -108,9 +108,9 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_generator_host_blocking_
+      integer(c_int) :: rocrand_create_generator_host_blocking_
       type(c_ptr) :: generator
-      integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)),value :: rng_type
+      integer(c_int),value :: rng_type
     end function
   end interface
 
@@ -128,7 +128,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_destroy_generator_
+      integer(c_int) :: rocrand_destroy_generator_
       type(c_ptr),value :: generator
     end function
   end interface
@@ -156,7 +156,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_
+      integer(c_int) :: rocrand_generate_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -198,7 +198,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_
+      integer(c_int) :: rocrand_generate_long_long_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -238,7 +238,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_char_
+      integer(c_int) :: rocrand_generate_char_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -268,7 +268,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_short_
+      integer(c_int) :: rocrand_generate_short_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -299,7 +299,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_
+      integer(c_int) :: rocrand_generate_uniform_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -340,7 +340,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_
+      integer(c_int) :: rocrand_generate_uniform_double_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -381,7 +381,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_half_
+      integer(c_int) :: rocrand_generate_uniform_half_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -411,7 +411,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_
+      integer(c_int) :: rocrand_generate_normal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -453,7 +453,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_
+      integer(c_int) :: rocrand_generate_normal_double_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -495,7 +495,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_half_
+      integer(c_int) :: rocrand_generate_normal_half_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -527,7 +527,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_
+      integer(c_int) :: rocrand_generate_log_normal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -569,7 +569,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_
+      integer(c_int) :: rocrand_generate_log_normal_double_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -611,7 +611,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_half_
+      integer(c_int) :: rocrand_generate_log_normal_half_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -643,7 +643,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_
+      integer(c_int) :: rocrand_generate_poisson_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -681,7 +681,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_initialize_generator_
+      integer(c_int) :: rocrand_initialize_generator_
       type(c_ptr),value :: generator
     end function
   end interface
@@ -702,7 +702,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_stream_
+      integer(c_int) :: rocrand_set_stream_
       type(c_ptr),value :: generator
       type(c_ptr),value :: stream
     end function
@@ -737,7 +737,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_seed_
+      integer(c_int) :: rocrand_set_seed_
       type(c_ptr),value :: generator
       integer(c_int64_t),value :: seed
     end function
@@ -769,7 +769,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       use hipfort_rocrand_types
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_seed_uint4_
+      integer(c_int) :: rocrand_set_seed_uint4_
       type(c_ptr),value :: generator
       type(uint4),value :: seed
     end function
@@ -798,7 +798,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_offset_
+      integer(c_int) :: rocrand_set_offset_
       type(c_ptr),value :: generator
       integer(c_int64_t),value :: offset
     end function
@@ -835,9 +835,9 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_ordering_
+      integer(c_int) :: rocrand_set_ordering_
       type(c_ptr),value :: generator
-      integer(kind(ROCRAND_ORDERING_PSEUDO_BEST)),value :: order
+      integer(c_int),value :: order
     end function
   end interface
 
@@ -863,7 +863,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_quasi_random_generator_dimensions_
+      integer(c_int) :: rocrand_set_quasi_random_generator_dimensions_
       type(c_ptr),value :: generator
       integer(c_int),value :: dimensions
     end function
@@ -884,7 +884,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_version_
+      integer(c_int) :: rocrand_get_version_
       type(c_ptr),value :: version
     end function
 
@@ -909,7 +909,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_poisson_distribution_
+      integer(c_int) :: rocrand_create_poisson_distribution_
       real(c_double),value :: lambda
       type(c_ptr) :: discrete_distribution
     end function
@@ -938,7 +938,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_discrete_distribution_
+      integer(c_int) :: rocrand_create_discrete_distribution_
       type(c_ptr),value :: probabilities
       integer(c_int),value :: mySize
       integer(c_int),value :: offset
@@ -972,7 +972,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_destroy_discrete_distribution_
+      integer(c_int) :: rocrand_destroy_discrete_distribution_
       type(c_ptr),value :: discrete_distribution
     end function
   end interface
@@ -992,9 +992,9 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_direction_vectors32_
+      integer(c_int) :: rocrand_get_direction_vectors32_
       type(c_ptr) :: vectors
-      integer(kind(ROCRAND_DIRECTION_VECTORS_32_JOEKUO6)),value :: set
+      integer(c_int),value :: set
     end function
   end interface
 
@@ -1013,9 +1013,9 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_direction_vectors64_
+      integer(c_int) :: rocrand_get_direction_vectors64_
       type(c_ptr) :: vectors
-      integer(kind(ROCRAND_DIRECTION_VECTORS_32_JOEKUO6)),value :: set
+      integer(c_int),value :: set
     end function
   end interface
 
@@ -1031,7 +1031,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_scramble_constants32_
+      integer(c_int) :: rocrand_get_scramble_constants32_
       type(c_ptr) :: constants
     end function
   end interface
@@ -1048,7 +1048,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_scramble_constants64_
+      integer(c_int) :: rocrand_get_scramble_constants64_
       type(c_ptr) :: constants
     end function
   end interface

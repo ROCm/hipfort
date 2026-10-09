@@ -33,7 +33,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCreate_
+      integer(c_int) :: hipsolverCreate_
       type(c_ptr) :: handle
     end function
   end interface
@@ -45,7 +45,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDestroy_
+      integer(c_int) :: hipsolverDestroy_
       type(c_ptr),value :: handle
     end function
   end interface
@@ -57,7 +57,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSetStream_
+      integer(c_int) :: hipsolverSetStream_
       type(c_ptr),value :: handle
       type(c_ptr),value :: streamId
     end function
@@ -70,7 +70,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverGetStream_
+      integer(c_int) :: hipsolverGetStream_
       type(c_ptr),value :: handle
       type(c_ptr) :: streamId
     end function
@@ -84,9 +84,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSetDeterministicMode_
+      integer(c_int) :: hipsolverSetDeterministicMode_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_DETERMINISTIC_RESULTS)),value :: mode
+      integer(c_int),value :: mode
     end function
   end interface
 #endif
@@ -98,7 +98,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverGetDeterministicMode_
+      integer(c_int) :: hipsolverGetDeterministicMode_
       type(c_ptr),value :: handle
       type(c_ptr),value :: mode
     end function
@@ -116,7 +116,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCreateGesvdjInfo_
+      integer(c_int) :: hipsolverCreateGesvdjInfo_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -130,7 +130,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDestroyGesvdjInfo_
+      integer(c_int) :: hipsolverDestroyGesvdjInfo_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -146,7 +146,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXgesvdjSetMaxSweeps_
+      integer(c_int) :: hipsolverXgesvdjSetMaxSweeps_
       type(c_ptr),value :: myInfo
       integer(c_int),value :: max_sweeps
     end function
@@ -162,7 +162,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXgesvdjSetSortEig_
+      integer(c_int) :: hipsolverXgesvdjSetSortEig_
       type(c_ptr),value :: myInfo
       integer(c_int),value :: sort_eig
     end function
@@ -179,7 +179,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXgesvdjSetTolerance_
+      integer(c_int) :: hipsolverXgesvdjSetTolerance_
       type(c_ptr),value :: myInfo
       real(c_double),value :: tolerance
     end function
@@ -196,7 +196,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXgesvdjGetResidual_
+      integer(c_int) :: hipsolverXgesvdjGetResidual_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: residual
@@ -216,7 +216,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXgesvdjGetSweeps_
+      integer(c_int) :: hipsolverXgesvdjGetSweeps_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: executed_sweeps
@@ -234,7 +234,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCreateSyevjInfo_
+      integer(c_int) :: hipsolverCreateSyevjInfo_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -248,7 +248,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDestroySyevjInfo_
+      integer(c_int) :: hipsolverDestroySyevjInfo_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -264,7 +264,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXsyevjSetMaxSweeps_
+      integer(c_int) :: hipsolverXsyevjSetMaxSweeps_
       type(c_ptr),value :: myInfo
       integer(c_int),value :: max_sweeps
     end function
@@ -279,7 +279,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXsyevjSetSortEig_
+      integer(c_int) :: hipsolverXsyevjSetSortEig_
       type(c_ptr),value :: myInfo
       integer(c_int),value :: sort_eig
     end function
@@ -296,7 +296,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXsyevjSetTolerance_
+      integer(c_int) :: hipsolverXsyevjSetTolerance_
       type(c_ptr),value :: myInfo
       real(c_double),value :: tolerance
     end function
@@ -313,7 +313,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXsyevjGetResidual_
+      integer(c_int) :: hipsolverXsyevjGetResidual_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: residual
@@ -333,7 +333,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXsyevjGetSweeps_
+      integer(c_int) :: hipsolverXsyevjGetSweeps_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: executed_sweeps
@@ -349,9 +349,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_bufferSize_
+      integer(c_int) :: hipsolverSorgbr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -383,9 +383,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_bufferSize_
+      integer(c_int) :: hipsolverDorgbr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -417,9 +417,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_bufferSize_
+      integer(c_int) :: hipsolverCungbr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -451,9 +451,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_bufferSize_
+      integer(c_int) :: hipsolverZungbr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -485,9 +485,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_
+      integer(c_int) :: hipsolverSorgbr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -524,9 +524,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_
+      integer(c_int) :: hipsolverDorgbr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -563,9 +563,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_
+      integer(c_int) :: hipsolverCungbr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -602,9 +602,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_
+      integer(c_int) :: hipsolverZungbr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -641,7 +641,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_bufferSize_
+      integer(c_int) :: hipsolverSorgqr_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -674,7 +674,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_bufferSize_
+      integer(c_int) :: hipsolverDorgqr_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -707,7 +707,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_bufferSize_
+      integer(c_int) :: hipsolverCungqr_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -740,7 +740,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_bufferSize_
+      integer(c_int) :: hipsolverZungqr_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -773,7 +773,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_
+      integer(c_int) :: hipsolverSorgqr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -811,7 +811,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_
+      integer(c_int) :: hipsolverDorgqr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -849,7 +849,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_
+      integer(c_int) :: hipsolverCungqr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -887,7 +887,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_
+      integer(c_int) :: hipsolverZungqr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -925,9 +925,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_bufferSize_
+      integer(c_int) :: hipsolverSorgtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -957,9 +957,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_bufferSize_
+      integer(c_int) :: hipsolverDorgtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -989,9 +989,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_bufferSize_
+      integer(c_int) :: hipsolverCungtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -1021,9 +1021,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_bufferSize_
+      integer(c_int) :: hipsolverZungtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -1053,9 +1053,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_
+      integer(c_int) :: hipsolverSorgtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -1090,9 +1090,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_
+      integer(c_int) :: hipsolverDorgtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -1127,9 +1127,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_
+      integer(c_int) :: hipsolverCungtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -1164,9 +1164,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_
+      integer(c_int) :: hipsolverZungtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -1201,10 +1201,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_bufferSize_
+      integer(c_int) :: hipsolverSormqr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -1238,10 +1238,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_bufferSize_
+      integer(c_int) :: hipsolverDormqr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -1275,10 +1275,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_bufferSize_
+      integer(c_int) :: hipsolverCunmqr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -1312,10 +1312,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_bufferSize_
+      integer(c_int) :: hipsolverZunmqr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -1349,10 +1349,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_
+      integer(c_int) :: hipsolverSormqr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -1391,10 +1391,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_
+      integer(c_int) :: hipsolverDormqr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -1433,10 +1433,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_
+      integer(c_int) :: hipsolverCunmqr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -1475,10 +1475,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_
+      integer(c_int) :: hipsolverZunmqr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -1517,11 +1517,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_bufferSize_
+      integer(c_int) :: hipsolverSormtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -1554,11 +1554,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_bufferSize_
+      integer(c_int) :: hipsolverDormtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -1591,11 +1591,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_bufferSize_
+      integer(c_int) :: hipsolverCunmtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -1628,11 +1628,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_bufferSize_
+      integer(c_int) :: hipsolverZunmtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -1665,11 +1665,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_
+      integer(c_int) :: hipsolverSormtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -1707,11 +1707,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_
+      integer(c_int) :: hipsolverDormtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -1749,11 +1749,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_
+      integer(c_int) :: hipsolverCunmtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -1791,11 +1791,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_
+      integer(c_int) :: hipsolverZunmtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -1833,7 +1833,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_bufferSize_
+      integer(c_int) :: hipsolverSgebrd_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -1851,7 +1851,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_bufferSize_
+      integer(c_int) :: hipsolverDgebrd_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -1869,7 +1869,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_bufferSize_
+      integer(c_int) :: hipsolverCgebrd_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -1887,7 +1887,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_bufferSize_
+      integer(c_int) :: hipsolverZgebrd_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -1905,7 +1905,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_
+      integer(c_int) :: hipsolverSgebrd_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -1945,7 +1945,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_
+      integer(c_int) :: hipsolverDgebrd_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -1985,7 +1985,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_
+      integer(c_int) :: hipsolverCgebrd_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2025,7 +2025,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_
+      integer(c_int) :: hipsolverZgebrd_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2065,7 +2065,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgels_bufferSize_
+      integer(c_int) :: hipsolverSSgels_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2090,7 +2090,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgels_bufferSize_
+      integer(c_int) :: hipsolverDDgels_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2115,7 +2115,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgels_bufferSize_
+      integer(c_int) :: hipsolverCCgels_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2140,7 +2140,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgels_bufferSize_
+      integer(c_int) :: hipsolverZZgels_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2169,7 +2169,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgels_
+      integer(c_int) :: hipsolverSSgels_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2200,7 +2200,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgels_
+      integer(c_int) :: hipsolverDDgels_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2231,7 +2231,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgels_
+      integer(c_int) :: hipsolverCCgels_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2262,7 +2262,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgels_
+      integer(c_int) :: hipsolverZZgels_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2289,7 +2289,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_bufferSize_
+      integer(c_int) :: hipsolverSgeqrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2320,7 +2320,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_bufferSize_
+      integer(c_int) :: hipsolverDgeqrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2351,7 +2351,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_bufferSize_
+      integer(c_int) :: hipsolverCgeqrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2382,7 +2382,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_bufferSize_
+      integer(c_int) :: hipsolverZgeqrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2413,7 +2413,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_
+      integer(c_int) :: hipsolverSgeqrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2450,7 +2450,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_
+      integer(c_int) :: hipsolverDgeqrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2487,7 +2487,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_
+      integer(c_int) :: hipsolverCgeqrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2524,7 +2524,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_
+      integer(c_int) :: hipsolverZgeqrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -2561,7 +2561,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_bufferSize_
+      integer(c_int) :: hipsolverSSgesv_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -2597,7 +2597,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_bufferSize_
+      integer(c_int) :: hipsolverDDgesv_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -2633,7 +2633,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_bufferSize_
+      integer(c_int) :: hipsolverCCgesv_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -2669,7 +2669,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_bufferSize_
+      integer(c_int) :: hipsolverZZgesv_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -2705,7 +2705,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_
+      integer(c_int) :: hipsolverSSgesv_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -2749,7 +2749,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_
+      integer(c_int) :: hipsolverDDgesv_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -2793,7 +2793,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_
+      integer(c_int) :: hipsolverCCgesv_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -2837,7 +2837,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_
+      integer(c_int) :: hipsolverZZgesv_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -2881,7 +2881,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvd_bufferSize_
+      integer(c_int) :: hipsolverSgesvd_bufferSize_
       type(c_ptr),value :: handle
       character(c_char),value :: jobu
       character(c_char),value :: jobv
@@ -2901,7 +2901,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvd_bufferSize_
+      integer(c_int) :: hipsolverDgesvd_bufferSize_
       type(c_ptr),value :: handle
       character(c_char),value :: jobu
       character(c_char),value :: jobv
@@ -2921,7 +2921,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvd_bufferSize_
+      integer(c_int) :: hipsolverCgesvd_bufferSize_
       type(c_ptr),value :: handle
       character(c_char),value :: jobu
       character(c_char),value :: jobv
@@ -2941,7 +2941,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvd_bufferSize_
+      integer(c_int) :: hipsolverZgesvd_bufferSize_
       type(c_ptr),value :: handle
       character(c_char),value :: jobu
       character(c_char),value :: jobv
@@ -2965,7 +2965,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvd_
+      integer(c_int) :: hipsolverSgesvd_
       type(c_ptr),value :: handle
       character(c_char),value :: jobu
       character(c_char),value :: jobv
@@ -2996,7 +2996,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvd_
+      integer(c_int) :: hipsolverDgesvd_
       type(c_ptr),value :: handle
       character(c_char),value :: jobu
       character(c_char),value :: jobv
@@ -3027,7 +3027,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvd_
+      integer(c_int) :: hipsolverCgesvd_
       type(c_ptr),value :: handle
       character(c_char),value :: jobu
       character(c_char),value :: jobv
@@ -3058,7 +3058,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvd_
+      integer(c_int) :: hipsolverZgesvd_
       type(c_ptr),value :: handle
       character(c_char),value :: jobu
       character(c_char),value :: jobv
@@ -3085,9 +3085,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdj_bufferSize_
+      integer(c_int) :: hipsolverSgesvdj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3113,9 +3113,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdj_bufferSize_
+      integer(c_int) :: hipsolverDgesvdj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3141,9 +3141,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdj_bufferSize_
+      integer(c_int) :: hipsolverCgesvdj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3169,9 +3169,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdj_bufferSize_
+      integer(c_int) :: hipsolverZgesvdj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3197,9 +3197,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdj_
+      integer(c_int) :: hipsolverSgesvdj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3225,9 +3225,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdj_
+      integer(c_int) :: hipsolverDgesvdj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3253,9 +3253,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdj_
+      integer(c_int) :: hipsolverCgesvdj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3281,9 +3281,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdj_
+      integer(c_int) :: hipsolverZgesvdj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3310,9 +3310,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdjBatched_bufferSize_
+      integer(c_int) :: hipsolverSgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -3339,9 +3339,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdjBatched_bufferSize_
+      integer(c_int) :: hipsolverDgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -3368,9 +3368,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdjBatched_bufferSize_
+      integer(c_int) :: hipsolverCgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -3397,9 +3397,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdjBatched_bufferSize_
+      integer(c_int) :: hipsolverZgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -3426,9 +3426,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdjBatched_
+      integer(c_int) :: hipsolverSgesvdjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -3455,9 +3455,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdjBatched_
+      integer(c_int) :: hipsolverDgesvdjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -3484,9 +3484,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdjBatched_
+      integer(c_int) :: hipsolverCgesvdjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -3513,9 +3513,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdjBatched_
+      integer(c_int) :: hipsolverZgesvdjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -3541,7 +3541,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_bufferSize_
+      integer(c_int) :: hipsolverSgetrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3572,7 +3572,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_bufferSize_
+      integer(c_int) :: hipsolverDgetrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3603,7 +3603,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_bufferSize_
+      integer(c_int) :: hipsolverCgetrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3634,7 +3634,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_bufferSize_
+      integer(c_int) :: hipsolverZgetrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3665,7 +3665,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_
+      integer(c_int) :: hipsolverSgetrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3702,7 +3702,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_
+      integer(c_int) :: hipsolverDgetrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3739,7 +3739,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_
+      integer(c_int) :: hipsolverCgetrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3776,7 +3776,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_
+      integer(c_int) :: hipsolverZgetrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -3813,9 +3813,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_bufferSize_
+      integer(c_int) :: hipsolverSgetrs_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -3848,9 +3848,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_bufferSize_
+      integer(c_int) :: hipsolverDgetrs_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -3883,9 +3883,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_bufferSize_
+      integer(c_int) :: hipsolverCgetrs_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -3918,9 +3918,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_bufferSize_
+      integer(c_int) :: hipsolverZgetrs_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -3953,9 +3953,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_
+      integer(c_int) :: hipsolverSgetrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -3993,9 +3993,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_
+      integer(c_int) :: hipsolverDgetrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -4033,9 +4033,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_
+      integer(c_int) :: hipsolverCgetrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -4073,9 +4073,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_
+      integer(c_int) :: hipsolverZgetrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -4113,9 +4113,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_bufferSize_
+      integer(c_int) :: hipsolverSpotrf_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4144,9 +4144,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_bufferSize_
+      integer(c_int) :: hipsolverDpotrf_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4175,9 +4175,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_bufferSize_
+      integer(c_int) :: hipsolverCpotrf_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4206,9 +4206,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_bufferSize_
+      integer(c_int) :: hipsolverZpotrf_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4237,9 +4237,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_
+      integer(c_int) :: hipsolverSpotrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4273,9 +4273,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_
+      integer(c_int) :: hipsolverDpotrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4309,9 +4309,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_
+      integer(c_int) :: hipsolverCpotrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4345,9 +4345,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_
+      integer(c_int) :: hipsolverZpotrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4381,9 +4381,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrfBatched_bufferSize_
+      integer(c_int) :: hipsolverSpotrfBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4402,9 +4402,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrfBatched_bufferSize_
+      integer(c_int) :: hipsolverDpotrfBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4423,9 +4423,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrfBatched_bufferSize_
+      integer(c_int) :: hipsolverCpotrfBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4444,9 +4444,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrfBatched_bufferSize_
+      integer(c_int) :: hipsolverZpotrfBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4465,9 +4465,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrfBatched_
+      integer(c_int) :: hipsolverSpotrfBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4486,9 +4486,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrfBatched_
+      integer(c_int) :: hipsolverDpotrfBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4507,9 +4507,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrfBatched_
+      integer(c_int) :: hipsolverCpotrfBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4528,9 +4528,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrfBatched_
+      integer(c_int) :: hipsolverZpotrfBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4549,9 +4549,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_bufferSize_
+      integer(c_int) :: hipsolverSpotri_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4580,9 +4580,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_bufferSize_
+      integer(c_int) :: hipsolverDpotri_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4611,9 +4611,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_bufferSize_
+      integer(c_int) :: hipsolverCpotri_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4642,9 +4642,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_bufferSize_
+      integer(c_int) :: hipsolverZpotri_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4673,9 +4673,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_
+      integer(c_int) :: hipsolverSpotri_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4709,9 +4709,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_
+      integer(c_int) :: hipsolverDpotri_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4745,9 +4745,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_
+      integer(c_int) :: hipsolverCpotri_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4781,9 +4781,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_
+      integer(c_int) :: hipsolverZpotri_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -4817,9 +4817,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_bufferSize_
+      integer(c_int) :: hipsolverSpotrs_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -4851,9 +4851,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_bufferSize_
+      integer(c_int) :: hipsolverDpotrs_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -4885,9 +4885,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_bufferSize_
+      integer(c_int) :: hipsolverCpotrs_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -4919,9 +4919,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_bufferSize_
+      integer(c_int) :: hipsolverZpotrs_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -4953,9 +4953,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_
+      integer(c_int) :: hipsolverSpotrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -4992,9 +4992,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_
+      integer(c_int) :: hipsolverDpotrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -5031,9 +5031,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_
+      integer(c_int) :: hipsolverCpotrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -5070,9 +5070,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_
+      integer(c_int) :: hipsolverZpotrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -5109,9 +5109,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrsBatched_bufferSize_
+      integer(c_int) :: hipsolverSpotrsBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -5133,9 +5133,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrsBatched_bufferSize_
+      integer(c_int) :: hipsolverDpotrsBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -5157,9 +5157,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrsBatched_bufferSize_
+      integer(c_int) :: hipsolverCpotrsBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -5181,9 +5181,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrsBatched_bufferSize_
+      integer(c_int) :: hipsolverZpotrsBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -5206,9 +5206,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrsBatched_
+      integer(c_int) :: hipsolverSpotrsBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -5231,9 +5231,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrsBatched_
+      integer(c_int) :: hipsolverDpotrsBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -5256,9 +5256,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrsBatched_
+      integer(c_int) :: hipsolverCpotrsBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -5281,9 +5281,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrsBatched_
+      integer(c_int) :: hipsolverZpotrsBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -5305,10 +5305,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_bufferSize_
+      integer(c_int) :: hipsolverSsyevd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5338,10 +5338,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_bufferSize_
+      integer(c_int) :: hipsolverDsyevd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5371,10 +5371,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_bufferSize_
+      integer(c_int) :: hipsolverCheevd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5404,10 +5404,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_bufferSize_
+      integer(c_int) :: hipsolverZheevd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5437,10 +5437,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_
+      integer(c_int) :: hipsolverSsyevd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5475,10 +5475,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_
+      integer(c_int) :: hipsolverDsyevd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5513,10 +5513,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_
+      integer(c_int) :: hipsolverCheevd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5551,10 +5551,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_
+      integer(c_int) :: hipsolverZheevd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5589,11 +5589,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevdx_bufferSize_
+      integer(c_int) :: hipsolverSsyevdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5621,11 +5621,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevdx_bufferSize_
+      integer(c_int) :: hipsolverDsyevdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5648,11 +5648,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevdx_bufferSize_
+      integer(c_int) :: hipsolverCheevdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5676,11 +5676,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevdx_bufferSize_
+      integer(c_int) :: hipsolverZheevdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5705,11 +5705,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevdx_
+      integer(c_int) :: hipsolverSsyevdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5741,11 +5741,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevdx_
+      integer(c_int) :: hipsolverDsyevdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5771,11 +5771,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevdx_
+      integer(c_int) :: hipsolverCheevdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5802,11 +5802,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevdx_
+      integer(c_int) :: hipsolverZheevdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5832,10 +5832,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevj_bufferSize_
+      integer(c_int) :: hipsolverSsyevj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5855,10 +5855,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevj_bufferSize_
+      integer(c_int) :: hipsolverDsyevj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5878,10 +5878,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevj_bufferSize_
+      integer(c_int) :: hipsolverCheevj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5901,10 +5901,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevj_bufferSize_
+      integer(c_int) :: hipsolverZheevj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5924,10 +5924,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevj_
+      integer(c_int) :: hipsolverSsyevj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5947,10 +5947,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevj_
+      integer(c_int) :: hipsolverDsyevj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5970,10 +5970,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevj_
+      integer(c_int) :: hipsolverCheevj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -5993,10 +5993,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevj_
+      integer(c_int) :: hipsolverZheevj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6017,10 +6017,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevjBatched_bufferSize_
+      integer(c_int) :: hipsolverSsyevjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6042,10 +6042,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevjBatched_bufferSize_
+      integer(c_int) :: hipsolverDsyevjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6067,10 +6067,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevjBatched_bufferSize_
+      integer(c_int) :: hipsolverCheevjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6092,10 +6092,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevjBatched_bufferSize_
+      integer(c_int) :: hipsolverZheevjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6117,10 +6117,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevjBatched_
+      integer(c_int) :: hipsolverSsyevjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6147,10 +6147,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevjBatched_
+      integer(c_int) :: hipsolverDsyevjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6171,10 +6171,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevjBatched_
+      integer(c_int) :: hipsolverCheevjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6196,10 +6196,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevjBatched_
+      integer(c_int) :: hipsolverZheevjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6220,11 +6220,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_bufferSize_
+      integer(c_int) :: hipsolverSsygvd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6256,11 +6256,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_bufferSize_
+      integer(c_int) :: hipsolverDsygvd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6292,11 +6292,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_bufferSize_
+      integer(c_int) :: hipsolverChegvd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6328,11 +6328,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_bufferSize_
+      integer(c_int) :: hipsolverZhegvd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6364,11 +6364,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_
+      integer(c_int) :: hipsolverSsygvd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6405,11 +6405,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_
+      integer(c_int) :: hipsolverDsygvd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6446,11 +6446,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_
+      integer(c_int) :: hipsolverChegvd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6487,11 +6487,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_
+      integer(c_int) :: hipsolverZhegvd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6529,12 +6529,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvdx_bufferSize_
+      integer(c_int) :: hipsolverSsygvdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6561,12 +6561,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvdx_bufferSize_
+      integer(c_int) :: hipsolverDsygvdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6593,12 +6593,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvdx_bufferSize_
+      integer(c_int) :: hipsolverChegvdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6625,12 +6625,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvdx_bufferSize_
+      integer(c_int) :: hipsolverZhegvdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6657,12 +6657,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvdx_
+      integer(c_int) :: hipsolverSsygvdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6691,12 +6691,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvdx_
+      integer(c_int) :: hipsolverDsygvdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6725,12 +6725,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvdx_
+      integer(c_int) :: hipsolverChegvdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6759,12 +6759,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvdx_
+      integer(c_int) :: hipsolverZhegvdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6792,11 +6792,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvj_bufferSize_
+      integer(c_int) :: hipsolverSsygvj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6818,11 +6818,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvj_bufferSize_
+      integer(c_int) :: hipsolverDsygvj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6844,11 +6844,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvj_bufferSize_
+      integer(c_int) :: hipsolverChegvj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6870,11 +6870,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvj_bufferSize_
+      integer(c_int) :: hipsolverZhegvj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6896,11 +6896,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvj_
+      integer(c_int) :: hipsolverSsygvj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6922,11 +6922,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvj_
+      integer(c_int) :: hipsolverDsygvj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6948,11 +6948,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvj_
+      integer(c_int) :: hipsolverChegvj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -6974,11 +6974,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvj_
+      integer(c_int) :: hipsolverZhegvj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7000,9 +7000,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_bufferSize_
+      integer(c_int) :: hipsolverSsytrd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7034,9 +7034,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_bufferSize_
+      integer(c_int) :: hipsolverDsytrd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7068,9 +7068,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_bufferSize_
+      integer(c_int) :: hipsolverChetrd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7102,9 +7102,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_bufferSize_
+      integer(c_int) :: hipsolverZhetrd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7136,9 +7136,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_
+      integer(c_int) :: hipsolverSsytrd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7175,9 +7175,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_
+      integer(c_int) :: hipsolverDsytrd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7214,9 +7214,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_
+      integer(c_int) :: hipsolverChetrd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7253,9 +7253,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_
+      integer(c_int) :: hipsolverZhetrd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7292,7 +7292,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_bufferSize_
+      integer(c_int) :: hipsolverSsytrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -7322,7 +7322,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_bufferSize_
+      integer(c_int) :: hipsolverDsytrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -7352,7 +7352,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_bufferSize_
+      integer(c_int) :: hipsolverCsytrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -7382,7 +7382,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_bufferSize_
+      integer(c_int) :: hipsolverZsytrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -7412,9 +7412,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_
+      integer(c_int) :: hipsolverSsytrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7449,9 +7449,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_
+      integer(c_int) :: hipsolverDsytrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7486,9 +7486,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_
+      integer(c_int) :: hipsolverCsytrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7523,9 +7523,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_
+      integer(c_int) :: hipsolverZsytrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -7563,7 +7563,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCreate_
+      integer(c_int) :: hipsolverDnCreate_
       type(c_ptr) :: handle
     end function
   end interface
@@ -7578,7 +7578,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDestroy_
+      integer(c_int) :: hipsolverDnDestroy_
       type(c_ptr),value :: handle
     end function
   end interface
@@ -7593,7 +7593,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSetStream_
+      integer(c_int) :: hipsolverDnSetStream_
       type(c_ptr),value :: handle
       type(c_ptr),value :: streamId
     end function
@@ -7609,7 +7609,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnGetStream_
+      integer(c_int) :: hipsolverDnGetStream_
       type(c_ptr),value :: handle
       type(c_ptr) :: streamId
     end function
@@ -7627,9 +7627,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSetDeterministicMode_
+      integer(c_int) :: hipsolverDnSetDeterministicMode_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_DETERMINISTIC_RESULTS)),value :: mode
+      integer(c_int),value :: mode
     end function
   end interface
 
@@ -7645,7 +7645,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnGetDeterministicMode_
+      integer(c_int) :: hipsolverDnGetDeterministicMode_
       type(c_ptr),value :: handle
       type(c_ptr),value :: mode
     end function
@@ -7662,7 +7662,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCreateGesvdjInfo_
+      integer(c_int) :: hipsolverDnCreateGesvdjInfo_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -7676,7 +7676,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDestroyGesvdjInfo_
+      integer(c_int) :: hipsolverDnDestroyGesvdjInfo_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -7692,7 +7692,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgesvdjSetMaxSweeps_
+      integer(c_int) :: hipsolverDnXgesvdjSetMaxSweeps_
       type(c_ptr),value :: myInfo
       integer(c_int),value :: max_sweeps
     end function
@@ -7709,7 +7709,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgesvdjSetSortEig_
+      integer(c_int) :: hipsolverDnXgesvdjSetSortEig_
       type(c_ptr),value :: myInfo
       integer(c_int),value :: sort_eig
     end function
@@ -7726,7 +7726,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgesvdjSetTolerance_
+      integer(c_int) :: hipsolverDnXgesvdjSetTolerance_
       type(c_ptr),value :: myInfo
       real(c_double),value :: tolerance
     end function
@@ -7743,7 +7743,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgesvdjGetResidual_
+      integer(c_int) :: hipsolverDnXgesvdjGetResidual_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: residual
@@ -7763,7 +7763,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgesvdjGetSweeps_
+      integer(c_int) :: hipsolverDnXgesvdjGetSweeps_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: executed_sweeps
@@ -7781,7 +7781,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCreateSyevjInfo_
+      integer(c_int) :: hipsolverDnCreateSyevjInfo_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -7795,7 +7795,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDestroySyevjInfo_
+      integer(c_int) :: hipsolverDnDestroySyevjInfo_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -7811,7 +7811,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevjSetMaxSweeps_
+      integer(c_int) :: hipsolverDnXsyevjSetMaxSweeps_
       type(c_ptr),value :: myInfo
       integer(c_int),value :: max_sweeps
     end function
@@ -7828,7 +7828,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevjSetSortEig_
+      integer(c_int) :: hipsolverDnXsyevjSetSortEig_
       type(c_ptr),value :: myInfo
       integer(c_int),value :: sort_eig
     end function
@@ -7845,7 +7845,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevjSetTolerance_
+      integer(c_int) :: hipsolverDnXsyevjSetTolerance_
       type(c_ptr),value :: myInfo
       real(c_double),value :: tolerance
     end function
@@ -7862,7 +7862,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevjGetResidual_
+      integer(c_int) :: hipsolverDnXsyevjGetResidual_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: residual
@@ -7882,7 +7882,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevjGetSweeps_
+      integer(c_int) :: hipsolverDnXsyevjGetSweeps_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: executed_sweeps
@@ -7902,9 +7902,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSorgbr_bufferSize_
+      integer(c_int) :: hipsolverDnSorgbr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -7928,9 +7928,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDorgbr_bufferSize_
+      integer(c_int) :: hipsolverDnDorgbr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -7954,9 +7954,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCungbr_bufferSize_
+      integer(c_int) :: hipsolverDnCungbr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -7980,9 +7980,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZungbr_bufferSize_
+      integer(c_int) :: hipsolverDnZungbr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8006,9 +8006,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSorgbr_
+      integer(c_int) :: hipsolverDnSorgbr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8032,9 +8032,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDorgbr_
+      integer(c_int) :: hipsolverDnDorgbr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8058,9 +8058,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCungbr_
+      integer(c_int) :: hipsolverDnCungbr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8084,9 +8084,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZungbr_
+      integer(c_int) :: hipsolverDnZungbr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
+      integer(c_int),value :: side
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8110,7 +8110,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSorgqr_bufferSize_
+      integer(c_int) :: hipsolverDnSorgqr_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8135,7 +8135,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDorgqr_bufferSize_
+      integer(c_int) :: hipsolverDnDorgqr_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8160,7 +8160,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCungqr_bufferSize_
+      integer(c_int) :: hipsolverDnCungqr_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8185,7 +8185,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZungqr_bufferSize_
+      integer(c_int) :: hipsolverDnZungqr_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8210,7 +8210,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSorgqr_
+      integer(c_int) :: hipsolverDnSorgqr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8235,7 +8235,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDorgqr_
+      integer(c_int) :: hipsolverDnDorgqr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8260,7 +8260,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCungqr_
+      integer(c_int) :: hipsolverDnCungqr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8285,7 +8285,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZungqr_
+      integer(c_int) :: hipsolverDnZungqr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8310,9 +8310,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSorgtr_bufferSize_
+      integer(c_int) :: hipsolverDnSorgtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -8334,9 +8334,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDorgtr_bufferSize_
+      integer(c_int) :: hipsolverDnDorgtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -8358,9 +8358,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCungtr_bufferSize_
+      integer(c_int) :: hipsolverDnCungtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -8382,9 +8382,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZungtr_bufferSize_
+      integer(c_int) :: hipsolverDnZungtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -8406,9 +8406,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSorgtr_
+      integer(c_int) :: hipsolverDnSorgtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -8430,9 +8430,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDorgtr_
+      integer(c_int) :: hipsolverDnDorgtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -8454,9 +8454,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCungtr_
+      integer(c_int) :: hipsolverDnCungtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -8478,9 +8478,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZungtr_
+      integer(c_int) :: hipsolverDnZungtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -8502,10 +8502,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSormqr_bufferSize_
+      integer(c_int) :: hipsolverDnSormqr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8531,10 +8531,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDormqr_bufferSize_
+      integer(c_int) :: hipsolverDnDormqr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8560,10 +8560,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCunmqr_bufferSize_
+      integer(c_int) :: hipsolverDnCunmqr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8589,10 +8589,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZunmqr_bufferSize_
+      integer(c_int) :: hipsolverDnZunmqr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8618,10 +8618,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSormqr_
+      integer(c_int) :: hipsolverDnSormqr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8647,10 +8647,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDormqr_
+      integer(c_int) :: hipsolverDnDormqr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8676,10 +8676,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCunmqr_
+      integer(c_int) :: hipsolverDnCunmqr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8705,10 +8705,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZunmqr_
+      integer(c_int) :: hipsolverDnZunmqr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8734,11 +8734,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSormtr_bufferSize_
+      integer(c_int) :: hipsolverDnSormtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -8763,11 +8763,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDormtr_bufferSize_
+      integer(c_int) :: hipsolverDnDormtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -8792,11 +8792,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCunmtr_bufferSize_
+      integer(c_int) :: hipsolverDnCunmtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -8821,11 +8821,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZunmtr_bufferSize_
+      integer(c_int) :: hipsolverDnZunmtr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -8850,11 +8850,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSormtr_
+      integer(c_int) :: hipsolverDnSormtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -8879,11 +8879,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDormtr_
+      integer(c_int) :: hipsolverDnDormtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -8908,11 +8908,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCunmtr_
+      integer(c_int) :: hipsolverDnCunmtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -8937,11 +8937,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZunmtr_
+      integer(c_int) :: hipsolverDnZunmtr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_SIDE_LEFT)),value :: side
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: side
+      integer(c_int),value :: uplo
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -8966,7 +8966,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgebrd_bufferSize_
+      integer(c_int) :: hipsolverDnSgebrd_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8987,7 +8987,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgebrd_bufferSize_
+      integer(c_int) :: hipsolverDnDgebrd_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9008,7 +9008,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgebrd_bufferSize_
+      integer(c_int) :: hipsolverDnCgebrd_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9029,7 +9029,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgebrd_bufferSize_
+      integer(c_int) :: hipsolverDnZgebrd_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9050,7 +9050,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgebrd_
+      integer(c_int) :: hipsolverDnSgebrd_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9077,7 +9077,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgebrd_
+      integer(c_int) :: hipsolverDnDgebrd_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9104,7 +9104,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgebrd_
+      integer(c_int) :: hipsolverDnCgebrd_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9131,7 +9131,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgebrd_
+      integer(c_int) :: hipsolverDnZgebrd_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9158,7 +9158,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSSgels_bufferSize_
+      integer(c_int) :: hipsolverDnSSgels_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9187,7 +9187,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDDgels_bufferSize_
+      integer(c_int) :: hipsolverDnDDgels_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9216,7 +9216,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCCgels_bufferSize_
+      integer(c_int) :: hipsolverDnCCgels_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9245,7 +9245,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZZgels_bufferSize_
+      integer(c_int) :: hipsolverDnZZgels_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9274,7 +9274,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSSgels_
+      integer(c_int) :: hipsolverDnSSgels_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9305,7 +9305,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDDgels_
+      integer(c_int) :: hipsolverDnDDgels_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9336,7 +9336,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCCgels_
+      integer(c_int) :: hipsolverDnCCgels_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9367,7 +9367,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZZgels_
+      integer(c_int) :: hipsolverDnZZgels_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9398,7 +9398,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgeqrf_bufferSize_
+      integer(c_int) :: hipsolverDnSgeqrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9421,7 +9421,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgeqrf_bufferSize_
+      integer(c_int) :: hipsolverDnDgeqrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9444,7 +9444,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgeqrf_bufferSize_
+      integer(c_int) :: hipsolverDnCgeqrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9467,7 +9467,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgeqrf_bufferSize_
+      integer(c_int) :: hipsolverDnZgeqrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9490,7 +9490,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgeqrf_
+      integer(c_int) :: hipsolverDnSgeqrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9514,7 +9514,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgeqrf_
+      integer(c_int) :: hipsolverDnDgeqrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9538,7 +9538,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgeqrf_
+      integer(c_int) :: hipsolverDnCgeqrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9562,7 +9562,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgeqrf_
+      integer(c_int) :: hipsolverDnZgeqrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9586,7 +9586,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSSgesv_bufferSize_
+      integer(c_int) :: hipsolverDnSSgesv_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -9615,7 +9615,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDDgesv_bufferSize_
+      integer(c_int) :: hipsolverDnDDgesv_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -9644,7 +9644,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCCgesv_bufferSize_
+      integer(c_int) :: hipsolverDnCCgesv_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -9673,7 +9673,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZZgesv_bufferSize_
+      integer(c_int) :: hipsolverDnZZgesv_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -9702,7 +9702,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSSgesv_
+      integer(c_int) :: hipsolverDnSSgesv_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -9733,7 +9733,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDDgesv_
+      integer(c_int) :: hipsolverDnDDgesv_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -9764,7 +9764,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCCgesv_
+      integer(c_int) :: hipsolverDnCCgesv_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -9795,7 +9795,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZZgesv_
+      integer(c_int) :: hipsolverDnZZgesv_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
@@ -9826,7 +9826,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvd_bufferSize_
+      integer(c_int) :: hipsolverDnSgesvd_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9847,7 +9847,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvd_bufferSize_
+      integer(c_int) :: hipsolverDnDgesvd_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9868,7 +9868,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvd_bufferSize_
+      integer(c_int) :: hipsolverDnCgesvd_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9889,7 +9889,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvd_bufferSize_
+      integer(c_int) :: hipsolverDnZgesvd_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9910,7 +9910,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvd_
+      integer(c_int) :: hipsolverDnSgesvd_
       type(c_ptr),value :: handle
       character(c_char),value :: jobu
       character(c_char),value :: jobv
@@ -9941,7 +9941,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvd_
+      integer(c_int) :: hipsolverDnDgesvd_
       type(c_ptr),value :: handle
       character(c_char),value :: jobu
       character(c_char),value :: jobv
@@ -9972,7 +9972,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvd_
+      integer(c_int) :: hipsolverDnCgesvd_
       type(c_ptr),value :: handle
       character(c_char),value :: jobu
       character(c_char),value :: jobv
@@ -10003,7 +10003,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvd_
+      integer(c_int) :: hipsolverDnZgesvd_
       type(c_ptr),value :: handle
       character(c_char),value :: jobu
       character(c_char),value :: jobv
@@ -10034,9 +10034,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvdj_bufferSize_
+      integer(c_int) :: hipsolverDnSgesvdj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10065,9 +10065,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvdj_bufferSize_
+      integer(c_int) :: hipsolverDnDgesvdj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10096,9 +10096,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvdj_bufferSize_
+      integer(c_int) :: hipsolverDnCgesvdj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10127,9 +10127,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvdj_bufferSize_
+      integer(c_int) :: hipsolverDnZgesvdj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10160,9 +10160,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvdj_
+      integer(c_int) :: hipsolverDnSgesvdj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10193,9 +10193,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvdj_
+      integer(c_int) :: hipsolverDnDgesvdj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10226,9 +10226,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvdj_
+      integer(c_int) :: hipsolverDnCgesvdj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10259,9 +10259,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvdj_
+      integer(c_int) :: hipsolverDnZgesvdj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: econ
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10292,9 +10292,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvdjBatched_bufferSize_
+      integer(c_int) :: hipsolverDnSgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -10325,9 +10325,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvdjBatched_bufferSize_
+      integer(c_int) :: hipsolverDnDgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -10358,9 +10358,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvdjBatched_bufferSize_
+      integer(c_int) :: hipsolverDnCgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -10391,9 +10391,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvdjBatched_bufferSize_
+      integer(c_int) :: hipsolverDnZgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -10424,9 +10424,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvdjBatched_
+      integer(c_int) :: hipsolverDnSgesvdjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -10457,9 +10457,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvdjBatched_
+      integer(c_int) :: hipsolverDnDgesvdjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -10490,9 +10490,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvdjBatched_
+      integer(c_int) :: hipsolverDnCgesvdjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -10523,9 +10523,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvdjBatched_
+      integer(c_int) :: hipsolverDnZgesvdjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -10556,9 +10556,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvdaStridedBatched_bufferSize_
+      integer(c_int) :: hipsolverDnSgesvdaStridedBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: rank
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10593,9 +10593,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvdaStridedBatched_bufferSize_
+      integer(c_int) :: hipsolverDnDgesvdaStridedBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: rank
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10630,9 +10630,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvdaStridedBatched_bufferSize_
+      integer(c_int) :: hipsolverDnCgesvdaStridedBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: rank
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10667,9 +10667,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvdaStridedBatched_bufferSize_
+      integer(c_int) :: hipsolverDnZgesvdaStridedBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: rank
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10704,9 +10704,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvdaStridedBatched_
+      integer(c_int) :: hipsolverDnSgesvdaStridedBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: rank
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10742,9 +10742,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvdaStridedBatched_
+      integer(c_int) :: hipsolverDnDgesvdaStridedBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: rank
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10780,9 +10780,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvdaStridedBatched_
+      integer(c_int) :: hipsolverDnCgesvdaStridedBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: rank
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10818,9 +10818,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvdaStridedBatched_
+      integer(c_int) :: hipsolverDnZgesvdaStridedBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
+      integer(c_int),value :: jobz
       integer(c_int),value :: rank
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10854,7 +10854,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgetrf_bufferSize_
+      integer(c_int) :: hipsolverDnSgetrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10877,7 +10877,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgetrf_bufferSize_
+      integer(c_int) :: hipsolverDnDgetrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10900,7 +10900,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgetrf_bufferSize_
+      integer(c_int) :: hipsolverDnCgetrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10923,7 +10923,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgetrf_bufferSize_
+      integer(c_int) :: hipsolverDnZgetrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10946,7 +10946,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgetrf_
+      integer(c_int) :: hipsolverDnSgetrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10969,7 +10969,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgetrf_
+      integer(c_int) :: hipsolverDnDgetrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10992,7 +10992,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgetrf_
+      integer(c_int) :: hipsolverDnCgetrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11015,7 +11015,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgetrf_
+      integer(c_int) :: hipsolverDnZgetrf_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11038,9 +11038,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgetrs_
+      integer(c_int) :: hipsolverDnSgetrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -11063,9 +11063,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgetrs_
+      integer(c_int) :: hipsolverDnDgetrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -11088,9 +11088,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgetrs_
+      integer(c_int) :: hipsolverDnCgetrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -11113,9 +11113,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgetrs_
+      integer(c_int) :: hipsolverDnZgetrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -11138,9 +11138,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSpotrf_bufferSize_
+      integer(c_int) :: hipsolverDnSpotrf_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11161,9 +11161,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDpotrf_bufferSize_
+      integer(c_int) :: hipsolverDnDpotrf_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11184,9 +11184,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCpotrf_bufferSize_
+      integer(c_int) :: hipsolverDnCpotrf_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11207,9 +11207,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZpotrf_bufferSize_
+      integer(c_int) :: hipsolverDnZpotrf_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11230,9 +11230,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSpotrf_
+      integer(c_int) :: hipsolverDnSpotrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11253,9 +11253,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDpotrf_
+      integer(c_int) :: hipsolverDnDpotrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11276,9 +11276,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCpotrf_
+      integer(c_int) :: hipsolverDnCpotrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11299,9 +11299,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZpotrf_
+      integer(c_int) :: hipsolverDnZpotrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11322,9 +11322,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSpotrfBatched_
+      integer(c_int) :: hipsolverDnSpotrfBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11344,9 +11344,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDpotrfBatched_
+      integer(c_int) :: hipsolverDnDpotrfBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11366,9 +11366,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCpotrfBatched_
+      integer(c_int) :: hipsolverDnCpotrfBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11388,9 +11388,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZpotrfBatched_
+      integer(c_int) :: hipsolverDnZpotrfBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11410,9 +11410,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSpotri_bufferSize_
+      integer(c_int) :: hipsolverDnSpotri_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11433,9 +11433,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDpotri_bufferSize_
+      integer(c_int) :: hipsolverDnDpotri_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11456,9 +11456,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCpotri_bufferSize_
+      integer(c_int) :: hipsolverDnCpotri_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11479,9 +11479,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZpotri_bufferSize_
+      integer(c_int) :: hipsolverDnZpotri_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11502,9 +11502,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSpotri_
+      integer(c_int) :: hipsolverDnSpotri_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11525,9 +11525,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDpotri_
+      integer(c_int) :: hipsolverDnDpotri_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11548,9 +11548,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCpotri_
+      integer(c_int) :: hipsolverDnCpotri_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11571,9 +11571,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZpotri_
+      integer(c_int) :: hipsolverDnZpotri_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11594,9 +11594,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSpotrs_
+      integer(c_int) :: hipsolverDnSpotrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -11618,9 +11618,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDpotrs_
+      integer(c_int) :: hipsolverDnDpotrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -11642,9 +11642,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCpotrs_
+      integer(c_int) :: hipsolverDnCpotrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -11666,9 +11666,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZpotrs_
+      integer(c_int) :: hipsolverDnZpotrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -11690,9 +11690,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSpotrsBatched_
+      integer(c_int) :: hipsolverDnSpotrsBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -11715,9 +11715,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDpotrsBatched_
+      integer(c_int) :: hipsolverDnDpotrsBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -11740,9 +11740,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCpotrsBatched_
+      integer(c_int) :: hipsolverDnCpotrsBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -11765,9 +11765,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZpotrsBatched_
+      integer(c_int) :: hipsolverDnZpotrsBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       integer(c_int),value :: nrhs
       type(c_ptr),value :: A
@@ -11790,10 +11790,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevd_bufferSize_
+      integer(c_int) :: hipsolverDnSsyevd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11815,10 +11815,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevd_bufferSize_
+      integer(c_int) :: hipsolverDnDsyevd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11840,10 +11840,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevd_bufferSize_
+      integer(c_int) :: hipsolverDnCheevd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11865,10 +11865,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevd_bufferSize_
+      integer(c_int) :: hipsolverDnZheevd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11890,10 +11890,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevd_
+      integer(c_int) :: hipsolverDnSsyevd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11915,10 +11915,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevd_
+      integer(c_int) :: hipsolverDnDsyevd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11940,10 +11940,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevd_
+      integer(c_int) :: hipsolverDnCheevd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11965,10 +11965,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevd_
+      integer(c_int) :: hipsolverDnZheevd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -11992,11 +11992,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevdx_bufferSize_
+      integer(c_int) :: hipsolverDnSsyevdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12025,11 +12025,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevdx_bufferSize_
+      integer(c_int) :: hipsolverDnDsyevdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12058,11 +12058,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevdx_bufferSize_
+      integer(c_int) :: hipsolverDnCheevdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12091,11 +12091,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevdx_bufferSize_
+      integer(c_int) :: hipsolverDnZheevdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12124,11 +12124,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevdx_
+      integer(c_int) :: hipsolverDnSsyevdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12159,11 +12159,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevdx_
+      integer(c_int) :: hipsolverDnDsyevdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12194,11 +12194,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevdx_
+      integer(c_int) :: hipsolverDnCheevdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12229,11 +12229,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevdx_
+      integer(c_int) :: hipsolverDnZheevdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12262,10 +12262,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevj_bufferSize_
+      integer(c_int) :: hipsolverDnSsyevj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12288,10 +12288,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevj_bufferSize_
+      integer(c_int) :: hipsolverDnDsyevj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12314,10 +12314,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevj_bufferSize_
+      integer(c_int) :: hipsolverDnCheevj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12340,10 +12340,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevj_bufferSize_
+      integer(c_int) :: hipsolverDnZheevj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12366,10 +12366,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevj_
+      integer(c_int) :: hipsolverDnSsyevj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12392,10 +12392,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevj_
+      integer(c_int) :: hipsolverDnDsyevj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12418,10 +12418,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevj_
+      integer(c_int) :: hipsolverDnCheevj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12444,10 +12444,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevj_
+      integer(c_int) :: hipsolverDnZheevj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12472,10 +12472,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevjBatched_bufferSize_
+      integer(c_int) :: hipsolverDnSsyevjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12501,10 +12501,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevjBatched_bufferSize_
+      integer(c_int) :: hipsolverDnDsyevjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12530,10 +12530,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevjBatched_bufferSize_
+      integer(c_int) :: hipsolverDnCheevjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12559,10 +12559,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevjBatched_bufferSize_
+      integer(c_int) :: hipsolverDnZheevjBatched_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12588,10 +12588,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevjBatched_
+      integer(c_int) :: hipsolverDnSsyevjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12617,10 +12617,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevjBatched_
+      integer(c_int) :: hipsolverDnDsyevjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12646,10 +12646,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevjBatched_
+      integer(c_int) :: hipsolverDnCheevjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12675,10 +12675,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevjBatched_
+      integer(c_int) :: hipsolverDnZheevjBatched_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12702,11 +12702,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvd_bufferSize_
+      integer(c_int) :: hipsolverDnSsygvd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12730,11 +12730,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvd_bufferSize_
+      integer(c_int) :: hipsolverDnDsygvd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12758,11 +12758,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvd_bufferSize_
+      integer(c_int) :: hipsolverDnChegvd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12786,11 +12786,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvd_bufferSize_
+      integer(c_int) :: hipsolverDnZhegvd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12814,11 +12814,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvd_
+      integer(c_int) :: hipsolverDnSsygvd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12842,11 +12842,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvd_
+      integer(c_int) :: hipsolverDnDsygvd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12870,11 +12870,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvd_
+      integer(c_int) :: hipsolverDnChegvd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12898,11 +12898,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvd_
+      integer(c_int) :: hipsolverDnZhegvd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12928,12 +12928,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvdx_bufferSize_
+      integer(c_int) :: hipsolverDnSsygvdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -12964,12 +12964,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvdx_bufferSize_
+      integer(c_int) :: hipsolverDnDsygvdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13000,12 +13000,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvdx_bufferSize_
+      integer(c_int) :: hipsolverDnChegvdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13036,12 +13036,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvdx_bufferSize_
+      integer(c_int) :: hipsolverDnZhegvdx_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13072,12 +13072,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvdx_
+      integer(c_int) :: hipsolverDnSsygvdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13110,12 +13110,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvdx_
+      integer(c_int) :: hipsolverDnDsygvdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13148,12 +13148,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvdx_
+      integer(c_int) :: hipsolverDnChegvdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13186,12 +13186,12 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvdx_
+      integer(c_int) :: hipsolverDnZhegvdx_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_EIG_RANGE_ALL)),value :: range
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: range
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13222,11 +13222,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvj_bufferSize_
+      integer(c_int) :: hipsolverDnSsygvj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13251,11 +13251,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvj_bufferSize_
+      integer(c_int) :: hipsolverDnDsygvj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13280,11 +13280,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvj_bufferSize_
+      integer(c_int) :: hipsolverDnChegvj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13309,11 +13309,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvj_bufferSize_
+      integer(c_int) :: hipsolverDnZhegvj_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13338,11 +13338,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvj_
+      integer(c_int) :: hipsolverDnSsygvj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13367,11 +13367,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvj_
+      integer(c_int) :: hipsolverDnDsygvj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13396,11 +13396,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvj_
+      integer(c_int) :: hipsolverDnChegvj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13425,11 +13425,11 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvj_
+      integer(c_int) :: hipsolverDnZhegvj_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_EIG_TYPE_1)),value :: itype
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: itype
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13454,9 +13454,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsytrd_bufferSize_
+      integer(c_int) :: hipsolverDnSsytrd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13480,9 +13480,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsytrd_bufferSize_
+      integer(c_int) :: hipsolverDnDsytrd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13506,9 +13506,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChetrd_bufferSize_
+      integer(c_int) :: hipsolverDnChetrd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13532,9 +13532,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhetrd_bufferSize_
+      integer(c_int) :: hipsolverDnZhetrd_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13558,9 +13558,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsytrd_
+      integer(c_int) :: hipsolverDnSsytrd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13584,9 +13584,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsytrd_
+      integer(c_int) :: hipsolverDnDsytrd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13610,9 +13610,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChetrd_
+      integer(c_int) :: hipsolverDnChetrd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13636,9 +13636,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhetrd_
+      integer(c_int) :: hipsolverDnZhetrd_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13662,7 +13662,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsytrf_bufferSize_
+      integer(c_int) :: hipsolverDnSsytrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -13684,7 +13684,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsytrf_bufferSize_
+      integer(c_int) :: hipsolverDnDsytrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -13706,7 +13706,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCsytrf_bufferSize_
+      integer(c_int) :: hipsolverDnCsytrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -13728,7 +13728,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZsytrf_bufferSize_
+      integer(c_int) :: hipsolverDnZsytrf_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: A
@@ -13750,9 +13750,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsytrf_
+      integer(c_int) :: hipsolverDnSsytrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13774,9 +13774,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsytrf_
+      integer(c_int) :: hipsolverDnDsytrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13798,9 +13798,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCsytrf_
+      integer(c_int) :: hipsolverDnCsytrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13822,9 +13822,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZsytrf_
+      integer(c_int) :: hipsolverDnZsytrf_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int),value :: n
       type(c_ptr),value :: A
       integer(c_int),value :: lda
@@ -13844,7 +13844,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCreateParams_
+      integer(c_int) :: hipsolverDnCreateParams_
       type(c_ptr) :: params
     end function
   end interface
@@ -13858,7 +13858,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDestroyParams_
+      integer(c_int) :: hipsolverDnDestroyParams_
       type(c_ptr),value :: params
     end function
   end interface
@@ -13872,10 +13872,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSetAdvOptions_
+      integer(c_int) :: hipsolverDnSetAdvOptions_
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVERDN_GETRF)),value :: func
-      integer(kind(HIPSOLVER_ALG_0)),value :: alg
+      integer(c_int),value :: func
+      integer(c_int),value :: alg
     end function
   end interface
 
@@ -13891,26 +13891,25 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgeev_bufferSize_
+      integer(c_int) :: hipsolverDnXgeev_bufferSize_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobvl
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobvr
+      integer(c_int),value :: jobvl
+      integer(c_int),value :: jobvr
       integer(c_int64_t),value :: n
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(kind(HIP_R_32F)),value :: dataTypeW
+      integer(c_int),value :: dataTypeW
       type(c_ptr),value :: W
-      integer(kind(HIP_R_32F)),value :: dataTypeVL
+      integer(c_int),value :: dataTypeVL
       type(c_ptr),value :: VL
       integer(c_int64_t),value :: ldvl
-      integer(kind(HIP_R_32F)),value :: dataTypeVR
+      integer(c_int),value :: dataTypeVR
       type(c_ptr),value :: VR
       integer(c_int64_t),value :: ldvr
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: lworkOnDevice
       type(c_ptr),value :: lworkOnHost
     end function
@@ -13932,26 +13931,25 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgeev_
+      integer(c_int) :: hipsolverDnXgeev_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobvl
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobvr
+      integer(c_int),value :: jobvl
+      integer(c_int),value :: jobvr
       integer(c_int64_t),value :: n
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(kind(HIP_R_32F)),value :: dataTypeW
+      integer(c_int),value :: dataTypeW
       type(c_ptr),value :: W
-      integer(kind(HIP_R_32F)),value :: dataTypeVL
+      integer(c_int),value :: dataTypeVL
       type(c_ptr),value :: VL
       integer(c_int64_t),value :: ldvl
-      integer(kind(HIP_R_32F)),value :: dataTypeVR
+      integer(c_int),value :: dataTypeVR
       type(c_ptr),value :: VR
       integer(c_int64_t),value :: ldvr
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: workOnDevice
       integer(c_size_t),value :: lworkOnDevice
       type(c_ptr),value :: workOnHost
@@ -13972,19 +13970,18 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgeqrf_bufferSize_
+      integer(c_int) :: hipsolverDnXgeqrf_bufferSize_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(kind(HIP_R_32F)),value :: dataTypeTau
+      integer(c_int),value :: dataTypeTau
       type(c_ptr),value :: tau
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: lworkOnDevice
       type(c_ptr),value :: lworkOnHost
     end function
@@ -14004,19 +14001,18 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgeqrf_
+      integer(c_int) :: hipsolverDnXgeqrf_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(kind(HIP_R_32F)),value :: dataTypeTau
+      integer(c_int),value :: dataTypeTau
       type(c_ptr),value :: tau
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: workOnDevice
       integer(c_size_t),value :: lworkOnDevice
       type(c_ptr),value :: workOnHost
@@ -14037,17 +14033,16 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgetrf_bufferSize_
+      integer(c_int) :: hipsolverDnXgetrf_bufferSize_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: lworkOnDevice
       type(c_ptr),value :: lworkOnHost
     end function
@@ -14067,18 +14062,17 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgetrf_
+      integer(c_int) :: hipsolverDnXgetrf_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
       integer(c_int64_t),value :: m
       integer(c_int64_t),value :: n
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: devIpiv
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: workOnDevice
       integer(c_size_t),value :: lworkOnDevice
       type(c_ptr),value :: workOnHost
@@ -14099,19 +14093,18 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgetrs_
+      integer(c_int) :: hipsolverDnXgetrs_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVER_OP_N)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: devIpiv
-      integer(kind(HIP_R_32F)),value :: dataTypeB
+      integer(c_int),value :: dataTypeB
       type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       type(c_ptr),value :: devInfo
@@ -14130,24 +14123,23 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXlarft_bufferSize_
+      integer(c_int) :: hipsolverDnXlarft_bufferSize_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVER_DIRECT_FORWARD)),value :: myDirect
-      integer(kind(HIPSOLVER_STOREV_COLUMNWISE)),value :: storev
+      integer(c_int),value :: myDirect
+      integer(c_int),value :: storev
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      integer(kind(HIP_R_32F)),value :: dataTypeV
+      integer(c_int),value :: dataTypeV
       type(c_ptr),value :: V
       integer(c_int64_t),value :: ldv
-      integer(kind(HIP_R_32F)),value :: dataTypeTau
+      integer(c_int),value :: dataTypeTau
       type(c_ptr),value :: tau
-      integer(kind(HIP_R_32F)),value :: dataTypeT
+      integer(c_int),value :: dataTypeT
       type(c_ptr),value :: T
       integer(c_int64_t),value :: ldt
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: lworkOnDevice
       type(c_ptr),value :: lworkOnHost
     end function
@@ -14167,24 +14159,23 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXlarft_
+      integer(c_int) :: hipsolverDnXlarft_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVER_DIRECT_FORWARD)),value :: myDirect
-      integer(kind(HIPSOLVER_STOREV_COLUMNWISE)),value :: storev
+      integer(c_int),value :: myDirect
+      integer(c_int),value :: storev
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: k
-      integer(kind(HIP_R_32F)),value :: dataTypeV
+      integer(c_int),value :: dataTypeV
       type(c_ptr),value :: V
       integer(c_int64_t),value :: ldv
-      integer(kind(HIP_R_32F)),value :: dataTypeTau
+      integer(c_int),value :: dataTypeTau
       type(c_ptr),value :: tau
-      integer(kind(HIP_R_32F)),value :: dataTypeT
+      integer(c_int),value :: dataTypeT
       type(c_ptr),value :: T
       integer(c_int64_t),value :: ldt
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: workOnDevice
       integer(c_size_t),value :: lworkOnDevice
       type(c_ptr),value :: workOnHost
@@ -14204,17 +14195,16 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXpotrf_bufferSize_
+      integer(c_int) :: hipsolverDnXpotrf_bufferSize_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int64_t),value :: n
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: lworkOnDevice
       type(c_ptr),value :: lworkOnHost
     end function
@@ -14234,17 +14224,16 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXpotrf_
+      integer(c_int) :: hipsolverDnXpotrf_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int64_t),value :: n
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: workOnDevice
       integer(c_size_t),value :: lworkOnDevice
       type(c_ptr),value :: workOnHost
@@ -14263,18 +14252,17 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXpotrs_
+      integer(c_int) :: hipsolverDnXpotrs_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(kind(HIP_R_32F)),value :: dataTypeB
+      integer(c_int),value :: dataTypeB
       type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       type(c_ptr),value :: myInfo
@@ -14293,20 +14281,19 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevd_bufferSize_
+      integer(c_int) :: hipsolverDnXsyevd_bufferSize_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int64_t),value :: n
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(kind(HIP_R_32F)),value :: dataTypeW
+      integer(c_int),value :: dataTypeW
       type(c_ptr),value :: W
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: lworkOnDevice
       type(c_ptr),value :: lworkOnHost
     end function
@@ -14326,20 +14313,19 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevd_
+      integer(c_int) :: hipsolverDnXsyevd_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int64_t),value :: n
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(kind(HIP_R_32F)),value :: dataTypeW
+      integer(c_int),value :: dataTypeW
       type(c_ptr),value :: W
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: workOnDevice
       integer(c_size_t),value :: lworkOnDevice
       type(c_ptr),value :: workOnHost
@@ -14360,20 +14346,19 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevBatched_bufferSize_
+      integer(c_int) :: hipsolverDnXsyevBatched_bufferSize_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int64_t),value :: n
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(kind(HIP_R_32F)),value :: dataTypeW
+      integer(c_int),value :: dataTypeW
       type(c_ptr),value :: W
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: lworkOnDevice
       type(c_ptr),value :: lworkOnHost
       integer(c_int64_t),value :: batchSize
@@ -14394,20 +14379,19 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevBatched_
+      integer(c_int) :: hipsolverDnXsyevBatched_
       type(c_ptr),value :: handle
       type(c_ptr),value :: params
-      integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)),value :: jobz
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: jobz
+      integer(c_int),value :: uplo
       integer(c_int64_t),value :: n
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(kind(HIP_R_32F)),value :: dataTypeW
+      integer(c_int),value :: dataTypeW
       type(c_ptr),value :: W
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: workOnDevice
       integer(c_size_t),value :: lworkOnDevice
       type(c_ptr),value :: workOnHost
@@ -14429,18 +14413,17 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsytrs_bufferSize_
+      integer(c_int) :: hipsolverDnXsytrs_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: devIpiv
-      integer(kind(HIP_R_32F)),value :: dataTypeB
+      integer(c_int),value :: dataTypeB
       type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       type(c_ptr),value :: lworkOnDevice
@@ -14462,18 +14445,17 @@ module hipfort_hipsolver
 #endif
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsytrs_
+      integer(c_int) :: hipsolverDnXsytrs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVER_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int),value :: uplo
       integer(c_int64_t),value :: n
       integer(c_int64_t),value :: nrhs
-      integer(kind(HIP_R_32F)),value :: dataTypeA
+      integer(c_int),value :: dataTypeA
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: devIpiv
-      integer(kind(HIP_R_32F)),value :: dataTypeB
+      integer(c_int),value :: dataTypeB
       type(c_ptr),value :: B
       integer(c_int64_t),value :: ldb
       type(c_ptr),value :: workOnDevice
@@ -14493,7 +14475,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfCreate_
+      integer(c_int) :: hipsolverRfCreate_
       type(c_ptr) :: handle
     end function
   end interface
@@ -14507,7 +14489,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfDestroy_
+      integer(c_int) :: hipsolverRfDestroy_
       type(c_ptr),value :: handle
     end function
   end interface
@@ -14525,7 +14507,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetupDevice_
+      integer(c_int) :: hipsolverRfSetupDevice_
       integer(c_int),value :: n
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrRowPtrA
@@ -14558,7 +14540,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetupHost_
+      integer(c_int) :: hipsolverRfSetupHost_
       integer(c_int),value :: n
       integer(c_int),value :: nnzA
       type(c_ptr),value :: h_csrRowPtrA
@@ -14589,7 +14571,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfAccessBundledFactorsDevice_
+      integer(c_int) :: hipsolverRfAccessBundledFactorsDevice_
       type(c_ptr),value :: handle
       type(c_ptr),value :: nnzM
       type(c_ptr) :: Mp
@@ -14609,7 +14591,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfAnalyze_
+      integer(c_int) :: hipsolverRfAnalyze_
       type(c_ptr),value :: handle
     end function
   end interface
@@ -14625,7 +14607,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfExtractBundledFactorsHost_
+      integer(c_int) :: hipsolverRfExtractBundledFactorsHost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: h_nnzM
       type(c_ptr) :: h_Mp
@@ -14649,7 +14631,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfExtractSplitFactorsHost_
+      integer(c_int) :: hipsolverRfExtractSplitFactorsHost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: h_nnzL
       type(c_ptr) :: h_Lp
@@ -14670,7 +14652,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGet_Algs_
+      integer(c_int) :: hipsolverRfGet_Algs_
       type(c_ptr),value :: handle
       type(c_ptr),value :: fact_alg
       type(c_ptr),value :: solve_alg
@@ -14691,7 +14673,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetMatrixFormat_
+      integer(c_int) :: hipsolverRfGetMatrixFormat_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myFormat
       type(c_ptr),value :: diag
@@ -14711,7 +14693,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetNumericBoostReport_
+      integer(c_int) :: hipsolverRfGetNumericBoostReport_
       type(c_ptr),value :: handle
       type(c_ptr),value :: report
     end function
@@ -14730,7 +14712,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetNumericProperties_
+      integer(c_int) :: hipsolverRfGetNumericProperties_
       type(c_ptr),value :: handle
       type(c_ptr),value :: zero
       type(c_ptr),value :: boost
@@ -14750,7 +14732,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetResetValuesFastMode_
+      integer(c_int) :: hipsolverRfGetResetValuesFastMode_
       type(c_ptr),value :: handle
       type(c_ptr),value :: fastMode
     end function
@@ -14767,7 +14749,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfRefactor_
+      integer(c_int) :: hipsolverRfRefactor_
       type(c_ptr),value :: handle
     end function
   end interface
@@ -14783,7 +14765,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfResetValues_
+      integer(c_int) :: hipsolverRfResetValues_
       integer(c_int),value :: n
       integer(c_int),value :: nnzA
       type(c_ptr),value :: csrRowPtrA
@@ -14804,10 +14786,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetAlgs_
+      integer(c_int) :: hipsolverRfSetAlgs_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVERRF_FACTORIZATION_ALG0)),value :: fact_alg
-      integer(kind(HIPSOLVERRF_TRIANGULAR_SOLVE_ALG1)),value :: solve_alg
+      integer(c_int),value :: fact_alg
+      integer(c_int),value :: solve_alg
     end function
   end interface
 
@@ -14822,10 +14804,10 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetMatrixFormat_
+      integer(c_int) :: hipsolverRfSetMatrixFormat_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVERRF_MATRIX_FORMAT_CSR)),value :: myFormat
-      integer(kind(HIPSOLVERRF_UNIT_DIAGONAL_STORED_L)),value :: diag
+      integer(c_int),value :: myFormat
+      integer(c_int),value :: diag
     end function
   end interface
 
@@ -14840,7 +14822,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetNumericProperties_
+      integer(c_int) :: hipsolverRfSetNumericProperties_
       type(c_ptr),value :: handle
       real(c_double),value :: effective_zero
       real(c_double),value :: boost_val
@@ -14858,9 +14840,9 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSetResetValuesFastMode_
+      integer(c_int) :: hipsolverRfSetResetValuesFastMode_
       type(c_ptr),value :: handle
-      integer(kind(HIPSOLVERRF_RESET_VALUES_FAST_MODE_OFF)),value :: fastMode
+      integer(c_int),value :: fastMode
     end function
   end interface
 
@@ -14873,7 +14855,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfSolve_
+      integer(c_int) :: hipsolverRfSolve_
       type(c_ptr),value :: handle
       type(c_ptr),value :: P
       type(c_ptr),value :: Q
@@ -14900,7 +14882,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchSetupHost_
+      integer(c_int) :: hipsolverRfBatchSetupHost_
       integer(c_int),value :: batchSize
       integer(c_int),value :: n
       integer(c_int),value :: nnzA
@@ -14930,7 +14912,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchAnalyze_
+      integer(c_int) :: hipsolverRfBatchAnalyze_
       type(c_ptr),value :: handle
     end function
   end interface
@@ -14944,7 +14926,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchRefactor_
+      integer(c_int) :: hipsolverRfBatchRefactor_
       type(c_ptr),value :: handle
     end function
   end interface
@@ -14962,7 +14944,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchResetValues_
+      integer(c_int) :: hipsolverRfBatchResetValues_
       integer(c_int),value :: batchSize
       integer(c_int),value :: n
       integer(c_int),value :: nnzA
@@ -14986,7 +14968,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchSolve_
+      integer(c_int) :: hipsolverRfBatchSolve_
       type(c_ptr),value :: handle
       type(c_ptr),value :: P
       type(c_ptr),value :: Q
@@ -15007,7 +14989,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfBatchZeroPivot_
+      integer(c_int) :: hipsolverRfBatchZeroPivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: position
     end function
@@ -15022,7 +15004,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpCreate_
+      integer(c_int) :: hipsolverSpCreate_
       type(c_ptr) :: handle
     end function
   end interface
@@ -15036,7 +15018,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDestroy_
+      integer(c_int) :: hipsolverSpDestroy_
       type(c_ptr),value :: handle
     end function
   end interface
@@ -15050,7 +15032,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpSetStream_
+      integer(c_int) :: hipsolverSpSetStream_
       type(c_ptr),value :: handle
       type(c_ptr),value :: streamId
     end function
@@ -15069,7 +15051,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpScsrlsvchol_
+      integer(c_int) :: hipsolverSpScsrlsvchol_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nnzA
@@ -15100,7 +15082,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDcsrlsvchol_
+      integer(c_int) :: hipsolverSpDcsrlsvchol_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nnzA
@@ -15131,7 +15113,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpScsrlsvcholHost_
+      integer(c_int) :: hipsolverSpScsrlsvcholHost_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nnzA
@@ -15162,7 +15144,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDcsrlsvcholHost_
+      integer(c_int) :: hipsolverSpDcsrlsvcholHost_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nnzA
@@ -15193,7 +15175,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpScsrlsvqr_
+      integer(c_int) :: hipsolverSpScsrlsvqr_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -15224,7 +15206,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDcsrlsvqr_
+      integer(c_int) :: hipsolverSpDcsrlsvqr_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -15255,7 +15237,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpCcsrlsvqr_
+      integer(c_int) :: hipsolverSpCcsrlsvqr_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -15286,7 +15268,7 @@ module hipfort_hipsolver
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpZcsrlsvqr_
+      integer(c_int) :: hipsolverSpZcsrlsvqr_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       integer(c_int),value :: nnz
