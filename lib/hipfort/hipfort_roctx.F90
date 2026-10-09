@@ -36,6 +36,8 @@ module hipfort_roctx
       implicit none
       type(c_ptr),value :: message
     end subroutine
+
+    module procedure roctxMark_typed
   end interface
 
   !>  Start a new nested range.
@@ -53,6 +55,8 @@ module hipfort_roctx
       integer(c_int) :: roctxRangePush_
       type(c_ptr),value :: message
     end function
+
+    module procedure roctxRangePush_typed
   end interface
 
   !>  Stop the current nested range.
@@ -86,6 +90,8 @@ module hipfort_roctx
       integer(c_int64_t) :: roctxRangeStart_
       type(c_ptr),value :: message
     end function
+
+    module procedure roctxRangeStart_typed
   end interface
 
   !>  Stop a process range.
@@ -164,6 +170,8 @@ module hipfort_roctx
       integer(c_int) :: roctxNameOsThread_
       type(c_ptr),value :: name
     end function
+
+    module procedure roctxNameOsThread_typed
   end interface
 
   !>  @brief Indicate to a profiling tool that, where possible, you would like the given HSA agent
@@ -185,6 +193,8 @@ module hipfort_roctx
       type(c_ptr),value :: name
       type(c_ptr),value :: agent
     end function
+
+    module procedure roctxNameHsaAgent_typed
   end interface
 
   !>  @brief Indicate to a profiling tool that, where possible, you would like the given HIP device
@@ -207,6 +217,8 @@ module hipfort_roctx
       type(c_ptr),value :: name
       integer(c_int),value :: device_id
     end function
+
+    module procedure roctxNameHipDevice_typed
   end interface
 
   !>  @brief Indicate to a profiling tool that, where possible, you would like the given HIP stream
@@ -228,6 +240,8 @@ module hipfort_roctx
       type(c_ptr),value :: name
       type(c_ptr),value :: stream
     end function
+
+    module procedure roctxNameHipStream_typed
   end interface
 
   !>  @brief Retrieve a id value for the current thread which will be identical to the id value a
@@ -245,5 +259,73 @@ module hipfort_roctx
       type(c_ptr),value :: tid
     end function
   end interface
+
+
+  contains
+
+    subroutine roctxMark_typed(message)
+      use iso_c_binding
+      implicit none
+      character(kind=c_char,len=*),intent(in),target :: message
+      !
+      call roctxMark_(c_loc(message))
+    end subroutine
+
+    function roctxRangePush_typed(message)
+      use iso_c_binding
+      implicit none
+      integer(c_int) :: roctxRangePush_typed
+      character(kind=c_char,len=*),intent(in),target :: message
+      !
+      roctxRangePush_typed = roctxRangePush_(c_loc(message))
+    end function
+
+    function roctxRangeStart_typed(message)
+      use iso_c_binding
+      implicit none
+      integer(c_int64_t) :: roctxRangeStart_typed
+      character(kind=c_char,len=*),intent(in),target :: message
+      !
+      roctxRangeStart_typed = roctxRangeStart_(c_loc(message))
+    end function
+
+    function roctxNameOsThread_typed(name)
+      use iso_c_binding
+      implicit none
+      integer(c_int) :: roctxNameOsThread_typed
+      character(kind=c_char,len=*),intent(in),target :: name
+      !
+      roctxNameOsThread_typed = roctxNameOsThread_(c_loc(name))
+    end function
+
+    function roctxNameHsaAgent_typed(name,agent)
+      use iso_c_binding
+      implicit none
+      integer(c_int) :: roctxNameHsaAgent_typed
+      character(kind=c_char,len=*),intent(in),target :: name
+      type(c_ptr) :: agent
+      !
+      roctxNameHsaAgent_typed = roctxNameHsaAgent_(c_loc(name),agent)
+    end function
+
+    function roctxNameHipDevice_typed(name,device_id)
+      use iso_c_binding
+      implicit none
+      integer(c_int) :: roctxNameHipDevice_typed
+      character(kind=c_char,len=*),intent(in),target :: name
+      integer(c_int) :: device_id
+      !
+      roctxNameHipDevice_typed = roctxNameHipDevice_(c_loc(name),device_id)
+    end function
+
+    function roctxNameHipStream_typed(name,stream)
+      use iso_c_binding
+      implicit none
+      integer(c_int) :: roctxNameHipStream_typed
+      character(kind=c_char,len=*),intent(in),target :: name
+      type(c_ptr) :: stream
+      !
+      roctxNameHipStream_typed = roctxNameHipStream_(c_loc(name),stream)
+    end function
 
 end module hipfort_roctx
