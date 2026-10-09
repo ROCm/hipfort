@@ -28,10 +28,13 @@
   pass the variable and when its address, the device pointer mode, and
   hipSOLVER's `devInfo`.
 * Test coverage for:
-  * the BLAS `nrm2`, `asum`, `iamax`/`iamin`, `ger`, `syrk`/`herk`,
-    `symm`/`hemm`, `trmm`, `geam` and `gemm_ex` routines in rocBLAS and hipBLAS;
+  * the BLAS `nrm2`, `asum`, `iamax`, `syrk`, `symm`, `geam` and `gemm_ex`
+    routines in rocBLAS and hipBLAS, `iamin`, `ger`, `herk` and `hemm` in
+    rocBLAS, and `trmm` in hipBLAS;
   * every `N`/`T`/`C` combination of `gemm` and `gemv`, on rectangular padded
-    matrices with complex `alpha`/`beta` and non-unit increments;
+    matrices with complex `alpha`/`beta`, and non-unit increments for `gemv`;
+  * the HIP cache configuration, memory pool and stream capture queries,
+    `hipMalloc` with `lbounds=`, and the `<lib>Check` messages;
   * the device pointer mode of the BLAS and sparse libraries;
   * the version, pointer-mode, handle-state and descriptor getters of nine
     libraries;
@@ -44,12 +47,11 @@
 
 ### Changed
 
-* Every pointer-mode scalar and host output now comes in two forms under the
-  same generic.
-  The `bind(C)` specific takes it as `type(c_ptr), value`, the C API's own
-  spelling, and a `<routine>_typed` module procedure takes the Fortran variable
-  (`integer`, `real`, `complex` or the enum kind) and passes its address, so
-  both calls work:
+* A pointer-mode scalar or host output now comes in two forms under the same
+  generic. The `bind(C)` specific takes it as `type(c_ptr), value`, the C API's
+  own spelling, and a `<routine>_typed` module procedure takes the Fortran
+  variable (`integer`, `real`, `complex` or the enum kind) and passes its
+  address, so both calls work:
 
   ```fortran
   st = rocblas_daxpy(handle, n, alpha, dx, incx, dy, incy)
@@ -58,26 +60,31 @@
 
   This covers:
   * the scalars a library reads or writes per its handle's pointer mode:
-    `alpha` and `beta` throughout rocBLAS, hipBLAS, rocSPARSE and hipSPARSE,
+    `alpha` and `beta` throughout rocBLAS, hipBLAS, rocSPARSE and hipSPARSE;
     the `dot`, `nrm2`, `asum` and `iamax`/`iamin` results and the `rot`, `rotg`
-    and `rotmg` scalars of rocBLAS and hipBLAS, the sparse `doti`/`dotci`
+    and `rotmg` scalars of rocBLAS and hipBLAS; the sparse `doti`/`dotci`
     results, `nnzTotalDevHostPtr`, the nnz counts of the `*_nnz` routines and
-    the pivot positions. The `type(c_ptr)` form makes
-    `rocblas_pointer_mode_device` and its equivalents usable from Fortran;
+    the pivot positions. The half-precision routines, the `_ex`/`Ex` and
+    generic sparse routines, whose data type is chosen at run time, and the
+    hipBLAS batched `rot` keep the `type(c_ptr)` form only. The `type(c_ptr)`
+    form makes `rocblas_pointer_mode_device` and its equivalents usable from
+    Fortran;
   * the host outputs: the HIP runtime queries (`hipStreamGetId`,
     `hipStreamGetCaptureInfo`, `hipFuncGetAttribute`,
-    `hipDeviceGetP2PAttribute`, the `hipOccupancy*` and `hipGraph*` counts,
-    ...), the version, pointer-mode, math-mode and handle-state getters of the
-    BLAS, sparse and solver libraries, the hipSPARSE and rocSPARSE descriptor
-    getters, `hipblasGetProperty`, `hipfftGetProperty`, the hipBLAS
-    `getrs`/`geqrf`/`gels` `info`, the hipSOLVER buffer sizes, `*gels`
-    `niters` and `*{sy,he}evdx`/`*{sy,he}gvdx` `nev`, the `csrcolor` color
-    count, `hipChooseDevice`, and `rocfft_cache_serialize`. An output the C
-    API lets the caller skip is `optional` in the `_typed` form; pass
+    `hipDeviceGetP2PAttribute`, the `hipOccupancy*` and `hipGraph*` counts, ...,
+    but not the `_spt` variants), the version, pointer-mode, math-mode and
+    handle-state getters of the BLAS, sparse and solver libraries, the hipSPARSE
+    and rocSPARSE descriptor getters, `hipblasGetProperty`, `hipfftGetProperty`,
+    the hipBLAS `getrs`/`geqrf`/`gels` `info`, the hipSOLVER buffer sizes,
+    `*gels` `niters` and `*{sy,he}evdx`/`*{sy,he}gvdx` `nev`, the `csrcolor`
+    color count, `hipChooseDevice`, and `rocfft_cache_serialize`. An output the
+    C API lets the caller skip is `optional` in the `_typed` form; pass
     `c_null_ptr` to the `type(c_ptr)` one.
 
-  Scalars that only ever live on the device, such as rocSOLVER `info` and
-  hipSOLVER `devInfo`, keep the `type(c_ptr)` form only.
+  Scalars that only ever live on the device, such as rocSOLVER `info`, the
+  `alpha` and `tau` of `rocsolver_?larfg`, the `alpha` of `rocsolver_?larf`, and
+  hipSOLVER `devInfo`, have no `_typed` form. The array overloads take them like
+  the device arrays next to them.
 
   The 28 rocSPARSE and hipSPARSE routines with both kinds (`alpha`/`beta` beside
   a buffer size) also get `<routine>_devptr`, for the device pointer mode: the
@@ -95,30 +102,35 @@
   `type(fftw_iodim)` / `type(fftw_iodim64)` arrays in every precision. The
   `hipfftGetProperty` rank overloads are removed, as its value is a plain
   integer.
-* **Breaking.** Apart from ROCTx (below), six patterns of code written against
-  hipfort 0.9.0 no longer compile:
-  * hipSOLVER, an `integer` `devInfo` passed with `type(c_ptr)` buffers: pass
-    `c_loc(devInfo)`, or the `type(c_ptr)` from `hipMalloc`;
+* **Breaking.** Apart from ROCTx and the preprocessor macros (below), eight
+  patterns of code written against hipfort 0.9.0 no longer compile:
+  * hipSOLVER, an `integer` `devInfo` passed with `type(c_ptr)` buffers: pass a
+    device pointer, such as the `type(c_ptr)` from `hipMalloc`;
   * hipSOLVER array overloads, `tau` passed as an element, `dTau(1)`: pass the
     array;
-  * hipSOLVER `*syevdx_bufferSize`, `*heevdx_bufferSize`, `*sygvdx_bufferSize`
-    and `*hegvdx_bufferSize`, `nev` passed as a `type(c_ptr)` while `lwork` is
-    typed: pass both variables, or both addresses;
+  * `hipsolverDsyevdx_bufferSize`, the host `nev` passed as a `type(c_ptr)`
+    while `lwork` is typed (the other precisions took an integer): pass both
+    variables, or both addresses;
   * `rocsolver_chegvdx` and `rocsolver_zhegvdx`, `nev` passed as an integer: it
-    is a device pointer, as for the rest of the `*gvdx` family, so pass
-    `c_loc(nev)`;
-  * the hipFFTW guru planners, a scalar `dims`: pass an array;
+    is a device pointer, as for the rest of the `*gvdx` family, so pass a
+    device pointer, such as the `type(c_ptr)` from `hipMalloc`;
+  * `rocsolver_?larfg` (`alpha`, `tau`), `rocsolver_?larf` (`alpha`) and their
+    `_64` variants, a variable: pass a device pointer;
+  * the double-precision hipFFTW guru planners, a scalar or an array element
+    as `dims` or `howmany_dims`: pass an array;
   * the single-precision hipFFTW guru planners (`fftwf_plan_guru*`),
-    `c_loc(dims)`: pass the `type(fftw_iodim)` array itself.
+    `c_loc(dims)`: pass the `type(fftw_iodim)` array itself;
+  * `hipfftGetProperty`, a rank-1 array as `value`: pass an integer.
 
   One more change compiles but behaves differently: the array of host pointers
   of `hipsolverRfBatchSetupHost`, `hipsolverRfBatchResetValues` and
   `hipsolverRfBatchSolve` is now `type(c_ptr), value`. Pass `c_loc` of the
   array; code that passed its first element, `arr(1)`, now passes the first
   pointer instead of the address of the array.
-* **Breaking.** `hipfort_roctx` is generated from
+* **Breaking.** `hipfort_roctx` is now generated from
   `rocprofiler-sdk-roctx/roctx.h`, which is the header behind the library that
-  `hipfort::roctx` links, rather than the legacy `roctracer/roctx.h`. Its
+  `hipfort::roctx` links. The hand-written 0.9.0 module followed the legacy
+  `roctracer/roctx.h`. Its
   `const char*` arguments are now `type(c_ptr)`, like every other `char*`
   argument in hipfort. Pass `c_loc` of a NUL-terminated
   `character(kind=c_char)` array instead of a Fortran string:
@@ -141,14 +153,17 @@
   unchanged.
 * hipfort now follows the platform install layout. Libraries and modules go to
   `CMAKE_INSTALL_LIBDIR`/`CMAKE_INSTALL_INCLUDEDIR` as set by `GNUInstallDirs`
-  (`lib64` on Fedora, RHEL and SUSE, `lib/<triplet>` on Debian multiarch)
-  instead of a literal `lib`. A user-supplied `-DCMAKE_INSTALL_LIBDIR` no longer
-  drops the `fortran/<compiler>` subdirectory. The package config shim and the
-  version file are installed beside the config they point to.
+  (`lib64` on Fedora, RHEL and SUSE, `lib/<triplet>` on Debian multiarch when
+  installing to `/usr`) instead of a literal `lib`. A user-supplied
+  `-DCMAKE_INSTALL_LIBDIR` no longer drops the `fortran/<compiler>`
+  subdirectory. The package config shim and its version file go to
+  `<libdir>/cmake/hipfort` instead of a literal `lib/cmake/hipfort`, so
+  `find_package(hipfort)` finds them on these platforms.
 * The package now requires `hip-runtime-amd >= 6.0.0`, the first release that
   exports the `hipGetDevicePropertiesR0600` symbol that hipfort binds.
-* Every source and build file carries the same MIT license header with an
-  `SPDX-License-Identifier` line.
+* Every hipfort source and build file carries the same MIT license header with
+  an `SPDX-License-Identifier` line. The two vendored `cmake/Modules/Set*.cmake`
+  files keep their upstream form.
 
 ### Removed
 
@@ -171,6 +186,10 @@
   arrays of device pointers by reference, so rocBLAS received a host address.
 * `rocsolver_chegvdx` and `rocsolver_zhegvdx` take `nev` as a device pointer,
   like the rest of the `*gvdx` family (see *Changed*).
+* `rocsolver_?larfg`, `rocsolver_?larf` and their `_64` variants take `alpha`
+  (and `tau` for `?larfg`) as a device pointer, `type(c_ptr), value`. They took
+  `real`/`complex` variables, whose host address rocSOLVER dereferenced on the
+  device (see *Changed*).
 * The eight-byte integer overloads of the BLAS `Set`/`Get` `Vector`/`Matrix`
   routines and their `Async` variants declared their arrays `integer(c_long)`,
   which is four bytes on LLP64 targets. They are `integer(c_int64_t)` now.
@@ -178,9 +197,9 @@
   default CMake search prefixes. `ROCM_PATH` is now added to
   `CMAKE_PREFIX_PATH`, so the dependencies of the hipBLAS package resolve as
   well.
-* Release builds passed wrong flags to two compilers: `-ta=host` instead of
-  `-tp=host` to NVHPC/PGI, and the removed `-vec-report0` instead of `-vec` to
-  Intel.
+* Wrong compiler flags: with `-DBUILD_NATIVE=ON`, NVHPC/PGI got `-ta=host`
+  instead of `-tp=host`, and Release builds passed Intel the removed
+  `-vec-report0` instead of `-vec`.
 * Tests can now fail. 413 failure branches ended in a bare `call exit`, which
   returns 0 under gfortran. Fixing this uncovered 27 tests that had been failing
   silently. Several other tests that could not fail, tolerances that did not
@@ -199,7 +218,7 @@
 * Under `USE_CUDA_NAMES`, the compatibility-API `hipsolver?gesvd_bufferSize`
   and `hipsolver??gels_bufferSize` were bound to the `cusolverDn` routines of
   the same name, whose arguments differ. They are now ROCm-only.
-* The modules compile without warnings under gfortran `-Wall`. The bind(C)
+* The modules compile without warnings under gfortran `-Wall`. The `bind(C)`
   interfaces declared enum-valued arguments and results as
   `integer(kind(<enumerator>))`, which gfortran reported about 12,000 times as
   possibly not C interoperable (`-Wc-binding-type`). They are declared
