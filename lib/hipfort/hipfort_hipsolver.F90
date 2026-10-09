@@ -15295,7 +15295,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverGetDeterministicMode_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_DETERMINISTIC_RESULTS)),target :: mode
       !
       hipsolverGetDeterministicMode_typed = hipsolverGetDeterministicMode_(handle,c_loc(mode))
@@ -15307,8 +15307,8 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXgesvdjGetResidual_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: myInfo
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: myInfo
       real(c_double),target :: residual
       !
       hipsolverXgesvdjGetResidual_typed = hipsolverXgesvdjGetResidual_(handle,myInfo, &
@@ -15320,8 +15320,8 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXgesvdjGetSweeps_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: myInfo
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: myInfo
       integer(c_int),target :: executed_sweeps
       !
       hipsolverXgesvdjGetSweeps_typed = hipsolverXgesvdjGetSweeps_(handle,myInfo, &
@@ -15333,8 +15333,8 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXsyevjGetResidual_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: myInfo
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: myInfo
       real(c_double),target :: residual
       !
       hipsolverXsyevjGetResidual_typed = hipsolverXsyevjGetResidual_(handle,myInfo,c_loc(residual))
@@ -15345,8 +15345,8 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXsyevjGetSweeps_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: myInfo
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: myInfo
       integer(c_int),target :: executed_sweeps
       !
       hipsolverXsyevjGetSweeps_typed = hipsolverXsyevjGetSweeps_(handle,myInfo, &
@@ -15359,7 +15359,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -15380,7 +15380,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -15401,7 +15401,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -15422,7 +15422,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -15443,7 +15443,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -15463,7 +15463,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -15483,7 +15483,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -15503,7 +15503,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -15523,7 +15523,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -15542,7 +15542,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -15561,7 +15561,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -15580,7 +15580,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -15599,7 +15599,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -15623,7 +15623,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -15647,7 +15647,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -15671,7 +15671,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -15695,7 +15695,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -15719,7 +15719,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -15743,7 +15743,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -15767,7 +15767,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -15791,7 +15791,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int),target :: lwork
@@ -15806,7 +15806,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int),target :: lwork
@@ -15821,7 +15821,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int),target :: lwork
@@ -15836,7 +15836,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int),target :: lwork
@@ -15851,7 +15851,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgels_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -15874,7 +15874,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgels_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -15897,7 +15897,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgels_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -15920,7 +15920,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgels_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -15942,7 +15942,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgels_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -15952,7 +15952,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr) :: devInfo
@@ -15966,7 +15966,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgels_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -15976,7 +15976,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr) :: devInfo
@@ -15990,7 +15990,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgels_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -16000,7 +16000,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr) :: devInfo
@@ -16014,7 +16014,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgels_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -16024,7 +16024,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr) :: devInfo
@@ -16039,7 +16039,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16056,7 +16056,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16073,7 +16073,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16090,7 +16090,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16107,7 +16107,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -16130,7 +16130,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -16153,7 +16153,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -16176,7 +16176,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -16200,7 +16200,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -16210,7 +16210,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -16227,7 +16227,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -16237,7 +16237,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -16254,7 +16254,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -16264,7 +16264,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -16281,7 +16281,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -16291,7 +16291,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -16307,7 +16307,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       character(c_char), value :: jobu
       character(c_char), value :: jobv
       integer(c_int) :: m
@@ -16325,7 +16325,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       character(c_char), value :: jobu
       character(c_char), value :: jobv
       integer(c_int) :: m
@@ -16343,7 +16343,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       character(c_char), value :: jobu
       character(c_char), value :: jobv
       integer(c_int) :: m
@@ -16361,7 +16361,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       character(c_char), value :: jobu
       character(c_char), value :: jobv
       integer(c_int) :: m
@@ -16380,7 +16380,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: econ
       integer(c_int) :: m
@@ -16393,7 +16393,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverSgesvdj_bufferSize_typed = hipsolverSgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda, &
         S,U,ldu,V,ldv,c_loc(lwork),params)
@@ -16407,7 +16407,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: econ
       integer(c_int) :: m
@@ -16420,7 +16420,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDgesvdj_bufferSize_typed = hipsolverDgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda, &
         S,U,ldu,V,ldv,c_loc(lwork),params)
@@ -16434,7 +16434,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: econ
       integer(c_int) :: m
@@ -16447,7 +16447,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverCgesvdj_bufferSize_typed = hipsolverCgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda, &
         S,U,ldu,V,ldv,c_loc(lwork),params)
@@ -16461,7 +16461,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: econ
       integer(c_int) :: m
@@ -16474,7 +16474,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverZgesvdj_bufferSize_typed = hipsolverZgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda, &
         S,U,ldu,V,ldv,c_loc(lwork),params)
@@ -16488,7 +16488,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: m
       integer(c_int) :: n
@@ -16500,7 +16500,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverSgesvdjBatched_bufferSize_typed = hipsolverSgesvdjBatched_bufferSize_(handle,jobz, &
@@ -16515,7 +16515,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: m
       integer(c_int) :: n
@@ -16527,7 +16527,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverDgesvdjBatched_bufferSize_typed = hipsolverDgesvdjBatched_bufferSize_(handle,jobz, &
@@ -16542,7 +16542,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: m
       integer(c_int) :: n
@@ -16554,7 +16554,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverCgesvdjBatched_bufferSize_typed = hipsolverCgesvdjBatched_bufferSize_(handle,jobz, &
@@ -16569,7 +16569,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: m
       integer(c_int) :: n
@@ -16581,7 +16581,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverZgesvdjBatched_bufferSize_typed = hipsolverZgesvdjBatched_bufferSize_(handle,jobz, &
@@ -16595,7 +16595,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16612,7 +16612,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16629,7 +16629,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16646,7 +16646,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16663,7 +16663,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -16685,7 +16685,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -16707,7 +16707,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -16729,7 +16729,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -16751,7 +16751,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16769,7 +16769,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16787,7 +16787,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16805,7 +16805,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16823,10 +16823,10 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrfBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int),target :: lwork
       integer(c_int) :: batch_count
@@ -16842,10 +16842,10 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrfBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int),target :: lwork
       integer(c_int) :: batch_count
@@ -16861,10 +16861,10 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrfBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int),target :: lwork
       integer(c_int) :: batch_count
@@ -16880,10 +16880,10 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrfBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int),target :: lwork
       integer(c_int) :: batch_count
@@ -16899,7 +16899,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16917,7 +16917,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16935,7 +16935,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16953,7 +16953,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -16971,7 +16971,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -16992,7 +16992,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -17013,7 +17013,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -17034,7 +17034,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -17056,13 +17056,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrsBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int),target :: lwork
       integer(c_int) :: batch_count
@@ -17079,13 +17079,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrsBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int),target :: lwork
       integer(c_int) :: batch_count
@@ -17102,13 +17102,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrsBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int),target :: lwork
       integer(c_int) :: batch_count
@@ -17125,13 +17125,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrsBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int),target :: lwork
       integer(c_int) :: batch_count
@@ -17147,7 +17147,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -17167,7 +17167,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -17187,7 +17187,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -17207,7 +17207,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -17228,7 +17228,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17254,7 +17254,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17280,7 +17280,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17307,7 +17307,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17334,7 +17334,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17347,7 +17347,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -17362,7 +17362,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17375,7 +17375,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -17390,7 +17390,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17403,7 +17403,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -17419,7 +17419,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17432,7 +17432,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -17447,7 +17447,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -17455,7 +17455,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverSsyevj_bufferSize_typed = hipsolverSsyevj_bufferSize_(handle,jobz,uplo,n,A,lda,W, &
         c_loc(lwork),params)
@@ -17468,7 +17468,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -17476,7 +17476,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDsyevj_bufferSize_typed = hipsolverDsyevj_bufferSize_(handle,jobz,uplo,n,A,lda,W, &
         c_loc(lwork),params)
@@ -17489,7 +17489,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -17497,7 +17497,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverCheevj_bufferSize_typed = hipsolverCheevj_bufferSize_(handle,jobz,uplo,n,A,lda,W, &
         c_loc(lwork),params)
@@ -17510,7 +17510,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -17518,7 +17518,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverZheevj_bufferSize_typed = hipsolverZheevj_bufferSize_(handle,jobz,uplo,n,A,lda,W, &
         c_loc(lwork),params)
@@ -17532,7 +17532,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -17540,7 +17540,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverSsyevjBatched_bufferSize_typed = hipsolverSsyevjBatched_bufferSize_(handle,jobz, &
@@ -17555,7 +17555,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -17563,7 +17563,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverDsyevjBatched_bufferSize_typed = hipsolverDsyevjBatched_bufferSize_(handle,jobz, &
@@ -17578,7 +17578,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -17586,7 +17586,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverCheevjBatched_bufferSize_typed = hipsolverCheevjBatched_bufferSize_(handle,jobz, &
@@ -17601,7 +17601,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -17609,7 +17609,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverZheevjBatched_bufferSize_typed = hipsolverZheevjBatched_bufferSize_(handle,jobz, &
@@ -17623,7 +17623,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17646,7 +17646,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17669,7 +17669,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17692,7 +17692,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17716,7 +17716,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -17746,7 +17746,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -17776,7 +17776,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -17806,7 +17806,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -17836,7 +17836,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -17852,7 +17852,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -17868,7 +17868,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -17884,7 +17884,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -17900,7 +17900,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -17916,7 +17916,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -17932,7 +17932,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -17948,7 +17948,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -17963,7 +17963,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17974,7 +17974,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverSsygvj_bufferSize_typed = hipsolverSsygvj_bufferSize_(handle,itype,jobz,uplo,n,A, &
         lda,B,ldb,W,c_loc(lwork),params)
@@ -17987,7 +17987,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -17998,7 +17998,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDsygvj_bufferSize_typed = hipsolverDsygvj_bufferSize_(handle,itype,jobz,uplo,n,A, &
         lda,B,ldb,W,c_loc(lwork),params)
@@ -18011,7 +18011,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -18022,7 +18022,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverChegvj_bufferSize_typed = hipsolverChegvj_bufferSize_(handle,itype,jobz,uplo,n,A, &
         lda,B,ldb,W,c_loc(lwork),params)
@@ -18035,7 +18035,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -18046,7 +18046,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverZhegvj_bufferSize_typed = hipsolverZhegvj_bufferSize_(handle,itype,jobz,uplo,n,A, &
         lda,B,ldb,W,c_loc(lwork),params)
@@ -18059,7 +18059,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -18080,7 +18080,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -18101,7 +18101,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -18122,7 +18122,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -18143,7 +18143,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: A
       integer(c_int) :: lda
@@ -18159,7 +18159,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: A
       integer(c_int) :: lda
@@ -18175,7 +18175,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: A
       integer(c_int) :: lda
@@ -18191,7 +18191,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: A
       integer(c_int) :: lda
@@ -18206,7 +18206,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnGetDeterministicMode_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_DETERMINISTIC_RESULTS)),target :: mode
       !
       hipsolverDnGetDeterministicMode_typed = hipsolverDnGetDeterministicMode_(handle,c_loc(mode))
@@ -18217,8 +18217,8 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgesvdjGetResidual_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: myInfo
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: myInfo
       real(c_double),target :: residual
       !
       hipsolverDnXgesvdjGetResidual_typed = hipsolverDnXgesvdjGetResidual_(handle,myInfo, &
@@ -18230,8 +18230,8 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgesvdjGetSweeps_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: myInfo
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: myInfo
       integer(c_int),target :: executed_sweeps
       !
       hipsolverDnXgesvdjGetSweeps_typed = hipsolverDnXgesvdjGetSweeps_(handle,myInfo, &
@@ -18243,8 +18243,8 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevjGetResidual_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: myInfo
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: myInfo
       real(c_double),target :: residual
       !
       hipsolverDnXsyevjGetResidual_typed = hipsolverDnXsyevjGetResidual_(handle,myInfo, &
@@ -18256,8 +18256,8 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevjGetSweeps_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: myInfo
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: myInfo
       integer(c_int),target :: executed_sweeps
       !
       hipsolverDnXsyevjGetSweeps_typed = hipsolverDnXsyevjGetSweeps_(handle,myInfo, &
@@ -18269,7 +18269,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSorgbr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -18288,7 +18288,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDorgbr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -18307,7 +18307,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCungbr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -18326,7 +18326,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZungbr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -18345,7 +18345,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSorgqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -18363,7 +18363,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDorgqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -18381,7 +18381,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCungqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -18399,7 +18399,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZungqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -18417,7 +18417,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSorgtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -18434,7 +18434,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDorgtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -18451,7 +18451,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCungtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -18468,7 +18468,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZungtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -18485,7 +18485,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSormqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -18507,7 +18507,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDormqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -18529,7 +18529,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCunmqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -18551,7 +18551,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZunmqr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -18573,7 +18573,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSormtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -18595,7 +18595,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDormtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -18617,7 +18617,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCunmtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -18639,7 +18639,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZunmtr_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -18661,7 +18661,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgebrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int),target :: lwork
@@ -18674,7 +18674,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgebrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int),target :: lwork
@@ -18687,7 +18687,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgebrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int),target :: lwork
@@ -18700,7 +18700,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgebrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int),target :: lwork
@@ -18713,7 +18713,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSSgels_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -18723,7 +18723,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t),target :: lwork
       !
       hipsolverDnSSgels_bufferSize_typed = hipsolverDnSSgels_bufferSize_(handle,m,n,nrhs,A,lda,B, &
@@ -18735,7 +18735,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDDgels_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -18745,7 +18745,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t),target :: lwork
       !
       hipsolverDnDDgels_bufferSize_typed = hipsolverDnDDgels_bufferSize_(handle,m,n,nrhs,A,lda,B, &
@@ -18757,7 +18757,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCCgels_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -18767,7 +18767,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t),target :: lwork
       !
       hipsolverDnCCgels_bufferSize_typed = hipsolverDnCCgels_bufferSize_(handle,m,n,nrhs,A,lda,B, &
@@ -18779,7 +18779,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZZgels_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -18789,7 +18789,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t),target :: lwork
       !
       hipsolverDnZZgels_bufferSize_typed = hipsolverDnZZgels_bufferSize_(handle,m,n,nrhs,A,lda,B, &
@@ -18801,7 +18801,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSSgels_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -18811,7 +18811,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr) :: devInfo
@@ -18825,7 +18825,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDDgels_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -18835,7 +18835,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr) :: devInfo
@@ -18849,7 +18849,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCCgels_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -18859,7 +18859,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr) :: devInfo
@@ -18873,7 +18873,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZZgels_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -18883,7 +18883,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr) :: devInfo
@@ -18897,7 +18897,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgeqrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -18913,7 +18913,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgeqrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -18929,7 +18929,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgeqrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -18945,7 +18945,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgeqrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -18961,7 +18961,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSSgesv_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -18971,7 +18971,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t),target :: lwork
       !
       hipsolverDnSSgesv_bufferSize_typed = hipsolverDnSSgesv_bufferSize_(handle,n,nrhs,A,lda, &
@@ -18983,7 +18983,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDDgesv_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -18993,7 +18993,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t),target :: lwork
       !
       hipsolverDnDDgesv_bufferSize_typed = hipsolverDnDDgesv_bufferSize_(handle,n,nrhs,A,lda, &
@@ -19005,7 +19005,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCCgesv_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -19015,7 +19015,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t),target :: lwork
       !
       hipsolverDnCCgesv_bufferSize_typed = hipsolverDnCCgesv_bufferSize_(handle,n,nrhs,A,lda, &
@@ -19027,7 +19027,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZZgesv_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -19037,7 +19037,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t),target :: lwork
       !
       hipsolverDnZZgesv_bufferSize_typed = hipsolverDnZZgesv_bufferSize_(handle,n,nrhs,A,lda, &
@@ -19050,7 +19050,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSSgesv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -19060,7 +19060,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr) :: devInfo
@@ -19075,7 +19075,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDDgesv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -19085,7 +19085,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr) :: devInfo
@@ -19100,7 +19100,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCCgesv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -19110,7 +19110,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr) :: devInfo
@@ -19125,7 +19125,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZZgesv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       type(c_ptr) :: A
@@ -19135,7 +19135,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr) :: devInfo
@@ -19149,7 +19149,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int),target :: lwork
@@ -19162,7 +19162,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int),target :: lwork
@@ -19175,7 +19175,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int),target :: lwork
@@ -19188,7 +19188,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int),target :: lwork
@@ -19202,7 +19202,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvdj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: econ
       integer(c_int) :: m
@@ -19215,7 +19215,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDnSgesvdj_bufferSize_typed = hipsolverDnSgesvdj_bufferSize_(handle,jobz,econ,m,n,A, &
         lda,S,U,ldu,V,ldv,c_loc(lwork),params)
@@ -19227,7 +19227,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvdj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: econ
       integer(c_int) :: m
@@ -19240,7 +19240,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDnDgesvdj_bufferSize_typed = hipsolverDnDgesvdj_bufferSize_(handle,jobz,econ,m,n,A, &
         lda,S,U,ldu,V,ldv,c_loc(lwork),params)
@@ -19252,7 +19252,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvdj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: econ
       integer(c_int) :: m
@@ -19265,7 +19265,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDnCgesvdj_bufferSize_typed = hipsolverDnCgesvdj_bufferSize_(handle,jobz,econ,m,n,A, &
         lda,S,U,ldu,V,ldv,c_loc(lwork),params)
@@ -19277,7 +19277,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvdj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: econ
       integer(c_int) :: m
@@ -19290,7 +19290,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDnZgesvdj_bufferSize_typed = hipsolverDnZgesvdj_bufferSize_(handle,jobz,econ,m,n,A, &
         lda,S,U,ldu,V,ldv,c_loc(lwork),params)
@@ -19302,7 +19302,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvdjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: m
       integer(c_int) :: n
@@ -19314,7 +19314,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverDnSgesvdjBatched_bufferSize_typed = hipsolverDnSgesvdjBatched_bufferSize_(handle, &
@@ -19327,7 +19327,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvdjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: m
       integer(c_int) :: n
@@ -19339,7 +19339,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverDnDgesvdjBatched_bufferSize_typed = hipsolverDnDgesvdjBatched_bufferSize_(handle, &
@@ -19352,7 +19352,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvdjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: m
       integer(c_int) :: n
@@ -19364,7 +19364,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverDnCgesvdjBatched_bufferSize_typed = hipsolverDnCgesvdjBatched_bufferSize_(handle, &
@@ -19377,7 +19377,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvdjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: m
       integer(c_int) :: n
@@ -19389,7 +19389,7 @@ module hipfort_hipsolver
       type(c_ptr) :: V
       integer(c_int) :: ldv
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverDnZgesvdjBatched_bufferSize_typed = hipsolverDnZgesvdjBatched_bufferSize_(handle, &
@@ -19402,7 +19402,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvdaStridedBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: rank
       integer(c_int) :: m
@@ -19432,7 +19432,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvdaStridedBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: rank
       integer(c_int) :: m
@@ -19462,7 +19462,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvdaStridedBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: rank
       integer(c_int) :: m
@@ -19492,7 +19492,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvdaStridedBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(c_int) :: rank
       integer(c_int) :: m
@@ -19521,7 +19521,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgetrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -19537,7 +19537,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgetrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -19553,7 +19553,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgetrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -19569,7 +19569,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgetrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -19585,7 +19585,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSpotrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -19601,7 +19601,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDpotrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -19617,7 +19617,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCpotrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -19633,7 +19633,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZpotrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -19649,7 +19649,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSpotri_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -19665,7 +19665,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDpotri_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -19681,7 +19681,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCpotri_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -19697,7 +19697,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZpotri_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -19713,7 +19713,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -19731,7 +19731,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -19749,7 +19749,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -19767,7 +19767,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -19786,7 +19786,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -19811,7 +19811,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -19836,7 +19836,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -19861,7 +19861,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -19886,7 +19886,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -19899,7 +19899,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -19913,7 +19913,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -19926,7 +19926,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -19940,7 +19940,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -19953,7 +19953,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -19967,7 +19967,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -19980,7 +19980,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -19993,7 +19993,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -20001,7 +20001,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDnSsyevj_bufferSize_typed = hipsolverDnSsyevj_bufferSize_(handle,jobz,uplo,n,A,lda, &
         W,c_loc(lwork),params)
@@ -20012,7 +20012,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -20020,7 +20020,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDnDsyevj_bufferSize_typed = hipsolverDnDsyevj_bufferSize_(handle,jobz,uplo,n,A,lda, &
         W,c_loc(lwork),params)
@@ -20031,7 +20031,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -20039,7 +20039,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDnCheevj_bufferSize_typed = hipsolverDnCheevj_bufferSize_(handle,jobz,uplo,n,A,lda, &
         W,c_loc(lwork),params)
@@ -20050,7 +20050,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -20058,7 +20058,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDnZheevj_bufferSize_typed = hipsolverDnZheevj_bufferSize_(handle,jobz,uplo,n,A,lda, &
         W,c_loc(lwork),params)
@@ -20070,7 +20070,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -20078,7 +20078,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverDnSsyevjBatched_bufferSize_typed = hipsolverDnSsyevjBatched_bufferSize_(handle, &
@@ -20091,7 +20091,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -20099,7 +20099,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverDnDsyevjBatched_bufferSize_typed = hipsolverDnDsyevjBatched_bufferSize_(handle, &
@@ -20112,7 +20112,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -20120,7 +20120,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverDnCheevjBatched_bufferSize_typed = hipsolverDnCheevjBatched_bufferSize_(handle, &
@@ -20133,7 +20133,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevjBatched_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -20141,7 +20141,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       integer(c_int) :: batch_count
       !
       hipsolverDnZheevjBatched_bufferSize_typed = hipsolverDnZheevjBatched_bufferSize_(handle, &
@@ -20153,7 +20153,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -20174,7 +20174,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -20195,7 +20195,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -20216,7 +20216,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -20238,7 +20238,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -20266,7 +20266,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -20294,7 +20294,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -20322,7 +20322,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvdx_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -20350,7 +20350,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -20366,7 +20366,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -20380,7 +20380,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -20396,7 +20396,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -20410,7 +20410,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -20426,7 +20426,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -20440,7 +20440,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvdx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_EIG_RANGE_ALL)) :: range
@@ -20456,7 +20456,7 @@ module hipfort_hipsolver
       integer(c_int) :: iu
       integer(c_int),target :: nev
       type(c_ptr) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -20469,7 +20469,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -20480,7 +20480,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDnSsygvj_bufferSize_typed = hipsolverDnSsygvj_bufferSize_(handle,itype,jobz,uplo,n, &
         A,lda,B,ldb,W,c_loc(lwork),params)
@@ -20491,7 +20491,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -20502,7 +20502,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDnDsygvj_bufferSize_typed = hipsolverDnDsygvj_bufferSize_(handle,itype,jobz,uplo,n, &
         A,lda,B,ldb,W,c_loc(lwork),params)
@@ -20513,7 +20513,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -20524,7 +20524,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDnChegvj_bufferSize_typed = hipsolverDnChegvj_bufferSize_(handle,itype,jobz,uplo,n, &
         A,lda,B,ldb,W,c_loc(lwork),params)
@@ -20535,7 +20535,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvj_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -20546,7 +20546,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       type(c_ptr) :: W
       integer(c_int),target :: lwork
-      type(c_ptr) :: params
+      type(c_ptr), value :: params
       !
       hipsolverDnZhegvj_bufferSize_typed = hipsolverDnZhegvj_bufferSize_(handle,itype,jobz,uplo,n, &
         A,lda,B,ldb,W,c_loc(lwork),params)
@@ -20557,7 +20557,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsytrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -20576,7 +20576,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsytrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -20595,7 +20595,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChetrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -20614,7 +20614,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhetrd_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -20633,7 +20633,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsytrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: A
       integer(c_int) :: lda
@@ -20648,7 +20648,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsytrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: A
       integer(c_int) :: lda
@@ -20663,7 +20663,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCsytrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: A
       integer(c_int) :: lda
@@ -20678,7 +20678,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZsytrf_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: A
       integer(c_int) :: lda
@@ -20695,21 +20695,21 @@ module hipfort_hipsolver
       use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgeev_bufferSize_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: params
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: params
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobvl
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobvr
       integer(c_int64_t) :: n
       integer(kind(HIP_R_32F)) :: dataTypeA
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(kind(HIP_R_32F)) :: dataTypeW
-      type(c_ptr) :: W
+      type(c_ptr), value :: W
       integer(kind(HIP_R_32F)) :: dataTypeVL
-      type(c_ptr) :: VL
+      type(c_ptr), value :: VL
       integer(c_int64_t) :: ldvl
       integer(kind(HIP_R_32F)) :: dataTypeVR
-      type(c_ptr) :: VR
+      type(c_ptr), value :: VR
       integer(c_int64_t) :: ldvr
       integer(kind(HIP_R_32F)) :: computeType
       integer(c_size_t),target :: lworkOnDevice
@@ -20727,15 +20727,15 @@ module hipfort_hipsolver
       use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgeqrf_bufferSize_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: params
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: params
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(kind(HIP_R_32F)) :: dataTypeA
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(kind(HIP_R_32F)) :: dataTypeTau
-      type(c_ptr) :: tau
+      type(c_ptr), value :: tau
       integer(kind(HIP_R_32F)) :: computeType
       integer(c_size_t),target :: lworkOnDevice
       integer(c_size_t),target :: lworkOnHost
@@ -20751,12 +20751,12 @@ module hipfort_hipsolver
       use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgetrf_bufferSize_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: params
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: params
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(kind(HIP_R_32F)) :: dataTypeA
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(kind(HIP_R_32F)) :: computeType
       integer(c_size_t),target :: lworkOnDevice
@@ -20773,19 +20773,19 @@ module hipfort_hipsolver
       use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXlarft_bufferSize_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: params
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: params
       integer(kind(HIPSOLVER_DIRECT_FORWARD)) :: myDirect
       integer(kind(HIPSOLVER_STOREV_COLUMNWISE)) :: storev
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       integer(kind(HIP_R_32F)) :: dataTypeV
-      type(c_ptr) :: V
+      type(c_ptr), value :: V
       integer(c_int64_t) :: ldv
       integer(kind(HIP_R_32F)) :: dataTypeTau
-      type(c_ptr) :: tau
+      type(c_ptr), value :: tau
       integer(kind(HIP_R_32F)) :: dataTypeT
-      type(c_ptr) :: T
+      type(c_ptr), value :: T
       integer(c_int64_t) :: ldt
       integer(kind(HIP_R_32F)) :: computeType
       integer(c_size_t),target :: lworkOnDevice
@@ -20803,12 +20803,12 @@ module hipfort_hipsolver
       use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXpotrf_bufferSize_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: params
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: params
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(kind(HIP_R_32F)) :: dataTypeA
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(kind(HIP_R_32F)) :: computeType
       integer(c_size_t),target :: lworkOnDevice
@@ -20825,16 +20825,16 @@ module hipfort_hipsolver
       use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevd_bufferSize_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: params
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: params
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(kind(HIP_R_32F)) :: dataTypeA
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(kind(HIP_R_32F)) :: dataTypeW
-      type(c_ptr) :: W
+      type(c_ptr), value :: W
       integer(kind(HIP_R_32F)) :: computeType
       integer(c_size_t),target :: lworkOnDevice
       integer(c_size_t),target :: lworkOnHost
@@ -20850,16 +20850,16 @@ module hipfort_hipsolver
       use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevBatched_bufferSize_typed
-      type(c_ptr) :: handle
-      type(c_ptr) :: params
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: params
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(kind(HIP_R_32F)) :: dataTypeA
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(kind(HIP_R_32F)) :: dataTypeW
-      type(c_ptr) :: W
+      type(c_ptr), value :: W
       integer(kind(HIP_R_32F)) :: computeType
       integer(c_size_t),target :: lworkOnDevice
       integer(c_size_t),target :: lworkOnHost
@@ -20877,16 +20877,16 @@ module hipfort_hipsolver
       use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsytrs_bufferSize_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: nrhs
       integer(kind(HIP_R_32F)) :: dataTypeA
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       type(c_ptr) :: devIpiv
       integer(kind(HIP_R_32F)) :: dataTypeB
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       integer(c_size_t),target :: lworkOnDevice
       integer(c_size_t),target :: lworkOnHost
@@ -20900,7 +20900,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfAccessBundledFactorsDevice_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int),target :: nnzM
       type(c_ptr) :: Mp
       type(c_ptr) :: Mi
@@ -20915,7 +20915,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfExtractBundledFactorsHost_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int),target :: h_nnzM
       type(c_ptr) :: h_Mp
       type(c_ptr) :: h_Mi
@@ -20931,7 +20931,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfExtractSplitFactorsHost_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int),target :: h_nnzL
       type(c_ptr) :: h_Lp
       type(c_ptr) :: h_Li
@@ -20951,7 +20951,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGet_Algs_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVERRF_FACTORIZATION_ALG0)),target :: fact_alg
       integer(kind(HIPSOLVERRF_TRIANGULAR_SOLVE_ALG1)),target :: solve_alg
       !
@@ -20964,7 +20964,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetMatrixFormat_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVERRF_MATRIX_FORMAT_CSR)),target :: myFormat
       integer(kind(HIPSOLVERRF_UNIT_DIAGONAL_STORED_L)),target :: diag
       !
@@ -20977,7 +20977,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetNumericBoostReport_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVERRF_NUMERIC_BOOST_NOT_USED)),target :: report
       !
       hipsolverRfGetNumericBoostReport_typed = hipsolverRfGetNumericBoostReport_(handle, &
@@ -20989,7 +20989,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetNumericProperties_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_double),target :: zero
       real(c_double),target :: boost
       !
@@ -21002,7 +21002,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetResetValuesFastMode_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVERRF_RESET_VALUES_FAST_MODE_OFF)),target :: fastMode
       !
       hipsolverRfGetResetValuesFastMode_typed = hipsolverRfGetResetValuesFastMode_(handle, &
@@ -21015,10 +21015,10 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpScsrlsvchol_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nnzA
-      type(c_ptr) :: descrA
+      type(c_ptr), value :: descrA
       type(c_ptr) :: csrVal
       type(c_ptr) :: csrRowPtr
       type(c_ptr) :: csrColInd
@@ -21038,10 +21038,10 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDcsrlsvchol_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nnzA
-      type(c_ptr) :: descrA
+      type(c_ptr), value :: descrA
       type(c_ptr) :: csrVal
       type(c_ptr) :: csrRowPtr
       type(c_ptr) :: csrColInd
@@ -21061,10 +21061,10 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpScsrlsvcholHost_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nnzA
-      type(c_ptr) :: descrA
+      type(c_ptr), value :: descrA
       type(c_ptr) :: csrVal
       type(c_ptr) :: csrRowPtr
       type(c_ptr) :: csrColInd
@@ -21084,10 +21084,10 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDcsrlsvcholHost_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nnzA
-      type(c_ptr) :: descrA
+      type(c_ptr), value :: descrA
       type(c_ptr) :: csrVal
       type(c_ptr) :: csrRowPtr
       type(c_ptr) :: csrColInd
@@ -21107,10 +21107,10 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpScsrlsvqr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nnz
-      type(c_ptr) :: descrA
+      type(c_ptr), value :: descrA
       type(c_ptr) :: csrVal
       type(c_ptr) :: csrRowPts
       type(c_ptr) :: csrColInd
@@ -21130,10 +21130,10 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDcsrlsvqr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nnz
-      type(c_ptr) :: descrA
+      type(c_ptr), value :: descrA
       type(c_ptr) :: csrVal
       type(c_ptr) :: csrRowPts
       type(c_ptr) :: csrColInd
@@ -21153,10 +21153,10 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpCcsrlsvqr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nnz
-      type(c_ptr) :: descrA
+      type(c_ptr), value :: descrA
       type(c_ptr) :: csrVal
       type(c_ptr) :: csrRowPts
       type(c_ptr) :: csrColInd
@@ -21176,10 +21176,10 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpZcsrlsvqr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nnz
-      type(c_ptr) :: descrA
+      type(c_ptr), value :: descrA
       type(c_ptr) :: csrVal
       type(c_ptr) :: csrRowPts
       type(c_ptr) :: csrColInd
@@ -21203,7 +21203,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21223,7 +21223,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21242,7 +21242,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21261,7 +21261,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21284,7 +21284,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21304,7 +21304,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21323,7 +21323,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21342,7 +21342,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21365,7 +21365,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21385,7 +21385,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21404,7 +21404,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21423,7 +21423,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21446,7 +21446,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21466,7 +21466,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21485,7 +21485,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21504,7 +21504,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21527,7 +21527,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21535,7 +21535,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -21548,7 +21548,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21556,7 +21556,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -21570,7 +21570,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21578,7 +21578,7 @@ module hipfort_hipsolver
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -21591,7 +21591,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21599,7 +21599,7 @@ module hipfort_hipsolver
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -21612,7 +21612,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21620,7 +21620,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -21633,7 +21633,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21641,7 +21641,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -21654,7 +21654,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21662,7 +21662,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -21675,7 +21675,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21683,7 +21683,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -21700,7 +21700,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21708,7 +21708,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -21721,7 +21721,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21729,7 +21729,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -21743,7 +21743,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21751,7 +21751,7 @@ module hipfort_hipsolver
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -21764,7 +21764,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21772,7 +21772,7 @@ module hipfort_hipsolver
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -21785,7 +21785,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21793,7 +21793,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -21806,7 +21806,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21814,7 +21814,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -21827,7 +21827,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21835,7 +21835,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -21848,7 +21848,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21856,7 +21856,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -21873,7 +21873,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21881,7 +21881,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -21894,7 +21894,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21902,7 +21902,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -21916,7 +21916,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21924,7 +21924,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -21937,7 +21937,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21945,7 +21945,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -21958,7 +21958,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21966,7 +21966,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -21979,7 +21979,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -21987,7 +21987,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22000,7 +22000,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -22008,7 +22008,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22021,7 +22021,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -22029,7 +22029,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22046,7 +22046,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -22054,7 +22054,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22067,7 +22067,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -22075,7 +22075,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22089,7 +22089,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -22097,7 +22097,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22110,7 +22110,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -22118,7 +22118,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22131,7 +22131,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -22139,7 +22139,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22152,7 +22152,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -22160,7 +22160,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22173,7 +22173,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -22181,7 +22181,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22194,7 +22194,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -22202,7 +22202,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22219,7 +22219,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22238,7 +22238,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22256,7 +22256,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22274,7 +22274,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22296,7 +22296,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22315,7 +22315,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22333,7 +22333,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22351,7 +22351,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22373,7 +22373,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22392,7 +22392,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22410,7 +22410,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22428,7 +22428,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22450,7 +22450,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22469,7 +22469,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22487,7 +22487,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22505,7 +22505,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
@@ -22527,14 +22527,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22547,14 +22547,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22568,14 +22568,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22588,14 +22588,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22608,14 +22608,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22628,14 +22628,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22648,14 +22648,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22668,14 +22668,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22692,14 +22692,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22712,14 +22712,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22733,14 +22733,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22753,14 +22753,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22773,14 +22773,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22793,14 +22793,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22813,14 +22813,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22833,14 +22833,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22857,14 +22857,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22877,14 +22877,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22898,14 +22898,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22918,14 +22918,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22938,14 +22938,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22958,14 +22958,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -22978,14 +22978,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -22998,14 +22998,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23022,14 +23022,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23042,14 +23042,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23063,14 +23063,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23083,14 +23083,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23103,14 +23103,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23123,14 +23123,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23143,14 +23143,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23163,14 +23163,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23187,7 +23187,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -23205,7 +23205,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
@@ -23222,7 +23222,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -23239,7 +23239,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -23260,7 +23260,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -23278,7 +23278,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
@@ -23295,7 +23295,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -23312,7 +23312,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -23333,7 +23333,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -23351,7 +23351,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -23368,7 +23368,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -23385,7 +23385,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -23406,7 +23406,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -23424,7 +23424,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -23441,7 +23441,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -23458,7 +23458,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -23479,13 +23479,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23498,13 +23498,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23518,13 +23518,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23537,13 +23537,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23556,13 +23556,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23575,13 +23575,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23594,13 +23594,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23613,13 +23613,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23636,13 +23636,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23655,13 +23655,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23675,13 +23675,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23694,13 +23694,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23713,13 +23713,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23732,13 +23732,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23751,13 +23751,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23770,13 +23770,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23793,13 +23793,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23812,13 +23812,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23832,13 +23832,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23851,13 +23851,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23870,13 +23870,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23889,13 +23889,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23908,13 +23908,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23927,13 +23927,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23950,13 +23950,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -23969,13 +23969,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -23989,13 +23989,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24008,13 +24008,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24027,13 +24027,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24046,13 +24046,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24065,13 +24065,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24084,13 +24084,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24107,7 +24107,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24130,7 +24130,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24152,7 +24152,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24174,7 +24174,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24200,7 +24200,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24223,7 +24223,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24245,7 +24245,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24267,7 +24267,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24293,7 +24293,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24316,7 +24316,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24338,7 +24338,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24360,7 +24360,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24386,7 +24386,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24409,7 +24409,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24431,7 +24431,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24453,7 +24453,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24480,7 +24480,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24491,7 +24491,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: tau
       real(c_float),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24505,7 +24505,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24516,7 +24516,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: tau
       real(c_float),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24530,7 +24530,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24541,7 +24541,7 @@ module hipfort_hipsolver
       real(c_float),target :: tau
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24555,7 +24555,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24566,7 +24566,7 @@ module hipfort_hipsolver
       real(c_float),target :: tau
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24579,7 +24579,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24590,7 +24590,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: tau
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24604,7 +24604,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24615,7 +24615,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: tau
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24628,7 +24628,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24639,7 +24639,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: tau
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24653,7 +24653,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24664,7 +24664,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: tau
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24682,7 +24682,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24693,7 +24693,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: tau
       real(c_double),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24707,7 +24707,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24718,7 +24718,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: tau
       real(c_double),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24732,7 +24732,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24743,7 +24743,7 @@ module hipfort_hipsolver
       real(c_double),target :: tau
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24757,7 +24757,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24768,7 +24768,7 @@ module hipfort_hipsolver
       real(c_double),target :: tau
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24781,7 +24781,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24792,7 +24792,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: tau
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24806,7 +24806,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24817,7 +24817,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: tau
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24830,7 +24830,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24841,7 +24841,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: tau
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24855,7 +24855,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24866,7 +24866,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: tau
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24884,7 +24884,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24895,7 +24895,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
       complex(c_float_complex),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24909,7 +24909,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24920,7 +24920,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
       complex(c_float_complex),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24934,7 +24934,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24945,7 +24945,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target :: tau
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -24959,7 +24959,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24970,7 +24970,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target :: tau
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -24983,7 +24983,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -24994,7 +24994,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:) :: tau
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25008,7 +25008,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -25019,7 +25019,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:) :: tau
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -25032,7 +25032,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -25043,7 +25043,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:) :: tau
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25057,7 +25057,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -25068,7 +25068,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:) :: tau
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -25086,7 +25086,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -25097,7 +25097,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
       complex(c_double_complex),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25111,7 +25111,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -25122,7 +25122,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
       complex(c_double_complex),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -25136,7 +25136,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -25147,7 +25147,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target :: tau
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25161,7 +25161,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -25172,7 +25172,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target :: tau
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -25185,7 +25185,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -25196,7 +25196,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:) :: tau
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25210,7 +25210,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -25221,7 +25221,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:) :: tau
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -25234,7 +25234,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -25245,7 +25245,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:) :: tau
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25259,7 +25259,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: m
@@ -25270,7 +25270,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:) :: tau
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -25288,7 +25288,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25311,7 +25311,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25333,7 +25333,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25355,7 +25355,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25382,7 +25382,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25405,7 +25405,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25427,7 +25427,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25449,7 +25449,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25476,7 +25476,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25499,7 +25499,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25521,7 +25521,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25543,7 +25543,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25570,7 +25570,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25593,7 +25593,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25615,7 +25615,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25637,7 +25637,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25664,7 +25664,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25675,7 +25675,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: tau
       real(c_float),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25689,7 +25689,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25700,7 +25700,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: tau
       real(c_float),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -25714,7 +25714,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25725,7 +25725,7 @@ module hipfort_hipsolver
       real(c_float),target :: tau
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25739,7 +25739,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25750,7 +25750,7 @@ module hipfort_hipsolver
       real(c_float),target :: tau
       real(c_float),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -25763,7 +25763,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25774,7 +25774,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: tau
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25788,7 +25788,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25799,7 +25799,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: tau
       real(c_float),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -25813,7 +25813,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25824,7 +25824,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: tau
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25838,7 +25838,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25849,7 +25849,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: tau
       real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -25867,7 +25867,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25878,7 +25878,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: tau
       real(c_double),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25892,7 +25892,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25903,7 +25903,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: tau
       real(c_double),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -25917,7 +25917,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25928,7 +25928,7 @@ module hipfort_hipsolver
       real(c_double),target :: tau
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25942,7 +25942,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25953,7 +25953,7 @@ module hipfort_hipsolver
       real(c_double),target :: tau
       real(c_double),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -25966,7 +25966,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -25977,7 +25977,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: tau
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -25991,7 +25991,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26002,7 +26002,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: tau
       real(c_double),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26016,7 +26016,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26027,7 +26027,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: tau
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26041,7 +26041,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26052,7 +26052,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: tau
       real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26070,7 +26070,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26081,7 +26081,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
       complex(c_float_complex),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26095,7 +26095,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26106,7 +26106,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
       complex(c_float_complex),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26120,7 +26120,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26131,7 +26131,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target :: tau
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26145,7 +26145,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26156,7 +26156,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target :: tau
       complex(c_float_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26169,7 +26169,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26180,7 +26180,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:) :: tau
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26194,7 +26194,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26205,7 +26205,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:) :: tau
       complex(c_float_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26219,7 +26219,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26230,7 +26230,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:) :: tau
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26244,7 +26244,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26255,7 +26255,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:) :: tau
       complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26273,7 +26273,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26284,7 +26284,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
       complex(c_double_complex),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26298,7 +26298,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26309,7 +26309,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
       complex(c_double_complex),target,contiguous,dimension(..) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26323,7 +26323,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26334,7 +26334,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target :: tau
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26348,7 +26348,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26359,7 +26359,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target :: tau
       complex(c_double_complex),target :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26372,7 +26372,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26383,7 +26383,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:) :: tau
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26397,7 +26397,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26408,7 +26408,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:) :: tau
       complex(c_double_complex),target,dimension(:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26422,7 +26422,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26433,7 +26433,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:) :: tau
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26447,7 +26447,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_SIDE_LEFT)) :: side
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPSOLVER_OP_N)) :: trans
@@ -26458,7 +26458,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:) :: tau
       complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26475,7 +26475,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -26484,7 +26484,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: E
       real(c_float),target,contiguous,dimension(..) :: tauq
       real(c_float),target,contiguous,dimension(..) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26497,7 +26497,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -26506,7 +26506,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: E
       real(c_float),target,contiguous,dimension(..) :: tauq
       real(c_float),target,contiguous,dimension(..) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26520,7 +26520,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: A
@@ -26529,7 +26529,7 @@ module hipfort_hipsolver
       real(c_float),target :: E
       real(c_float),target :: tauq
       real(c_float),target :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26542,7 +26542,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: A
@@ -26551,7 +26551,7 @@ module hipfort_hipsolver
       real(c_float),target :: E
       real(c_float),target :: tauq
       real(c_float),target :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26564,7 +26564,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -26573,7 +26573,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: E
       real(c_float),target,dimension(:) :: tauq
       real(c_float),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26586,7 +26586,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -26595,7 +26595,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: E
       real(c_float),target,dimension(:) :: tauq
       real(c_float),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26608,7 +26608,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -26617,7 +26617,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: E
       real(c_float),target,dimension(:) :: tauq
       real(c_float),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26630,7 +26630,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -26639,7 +26639,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: E
       real(c_float),target,dimension(:) :: tauq
       real(c_float),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26656,7 +26656,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -26665,7 +26665,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: E
       real(c_double),target,contiguous,dimension(..) :: tauq
       real(c_double),target,contiguous,dimension(..) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26678,7 +26678,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -26687,7 +26687,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: E
       real(c_double),target,contiguous,dimension(..) :: tauq
       real(c_double),target,contiguous,dimension(..) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26701,7 +26701,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: A
@@ -26710,7 +26710,7 @@ module hipfort_hipsolver
       real(c_double),target :: E
       real(c_double),target :: tauq
       real(c_double),target :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26723,7 +26723,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: A
@@ -26732,7 +26732,7 @@ module hipfort_hipsolver
       real(c_double),target :: E
       real(c_double),target :: tauq
       real(c_double),target :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26745,7 +26745,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -26754,7 +26754,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: E
       real(c_double),target,dimension(:) :: tauq
       real(c_double),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26767,7 +26767,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -26776,7 +26776,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: E
       real(c_double),target,dimension(:) :: tauq
       real(c_double),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26789,7 +26789,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -26798,7 +26798,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: E
       real(c_double),target,dimension(:) :: tauq
       real(c_double),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26811,7 +26811,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -26820,7 +26820,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: E
       real(c_double),target,dimension(:) :: tauq
       real(c_double),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26837,7 +26837,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -26846,7 +26846,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: E
       complex(c_float_complex),target,contiguous,dimension(..) :: tauq
       complex(c_float_complex),target,contiguous,dimension(..) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26859,7 +26859,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -26868,7 +26868,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: E
       complex(c_float_complex),target,contiguous,dimension(..) :: tauq
       complex(c_float_complex),target,contiguous,dimension(..) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26882,7 +26882,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -26891,7 +26891,7 @@ module hipfort_hipsolver
       real(c_float),target :: E
       complex(c_float_complex),target :: tauq
       complex(c_float_complex),target :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26904,7 +26904,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -26913,7 +26913,7 @@ module hipfort_hipsolver
       real(c_float),target :: E
       complex(c_float_complex),target :: tauq
       complex(c_float_complex),target :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26926,7 +26926,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -26935,7 +26935,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex),target,dimension(:) :: tauq
       complex(c_float_complex),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26948,7 +26948,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -26957,7 +26957,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex),target,dimension(:) :: tauq
       complex(c_float_complex),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -26970,7 +26970,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -26979,7 +26979,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex),target,dimension(:) :: tauq
       complex(c_float_complex),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -26992,7 +26992,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -27001,7 +27001,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex),target,dimension(:) :: tauq
       complex(c_float_complex),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27018,7 +27018,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -27027,7 +27027,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: E
       complex(c_double_complex),target,contiguous,dimension(..) :: tauq
       complex(c_double_complex),target,contiguous,dimension(..) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27040,7 +27040,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -27049,7 +27049,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: E
       complex(c_double_complex),target,contiguous,dimension(..) :: tauq
       complex(c_double_complex),target,contiguous,dimension(..) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27063,7 +27063,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -27072,7 +27072,7 @@ module hipfort_hipsolver
       real(c_double),target :: E
       complex(c_double_complex),target :: tauq
       complex(c_double_complex),target :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27085,7 +27085,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -27094,7 +27094,7 @@ module hipfort_hipsolver
       real(c_double),target :: E
       complex(c_double_complex),target :: tauq
       complex(c_double_complex),target :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27107,7 +27107,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -27116,7 +27116,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex),target,dimension(:) :: tauq
       complex(c_double_complex),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27129,7 +27129,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -27138,7 +27138,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex),target,dimension(:) :: tauq
       complex(c_double_complex),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27151,7 +27151,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -27160,7 +27160,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex),target,dimension(:) :: tauq
       complex(c_double_complex),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27173,7 +27173,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -27182,7 +27182,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex),target,dimension(:) :: tauq
       complex(c_double_complex),target,dimension(:) :: taup
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27199,7 +27199,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -27216,7 +27216,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: A
@@ -27232,7 +27232,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -27248,7 +27248,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -27268,7 +27268,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -27285,7 +27285,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: A
@@ -27301,7 +27301,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -27317,7 +27317,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -27337,7 +27337,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -27354,7 +27354,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -27370,7 +27370,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -27386,7 +27386,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -27406,7 +27406,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -27423,7 +27423,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -27439,7 +27439,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -27455,7 +27455,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -27475,13 +27475,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27494,13 +27494,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27514,13 +27514,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27533,13 +27533,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27552,13 +27552,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27571,13 +27571,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27590,13 +27590,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27609,13 +27609,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27632,13 +27632,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27651,13 +27651,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27671,13 +27671,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27690,13 +27690,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27709,13 +27709,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27728,13 +27728,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27747,13 +27747,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27766,13 +27766,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27789,13 +27789,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27808,13 +27808,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27828,13 +27828,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27847,13 +27847,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27866,13 +27866,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27885,13 +27885,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27904,13 +27904,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27923,13 +27923,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27946,13 +27946,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -27965,13 +27965,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -27985,13 +27985,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -28004,13 +28004,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -28023,13 +28023,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -28042,13 +28042,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -28061,13 +28061,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -28080,13 +28080,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -28103,7 +28103,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_float),target,contiguous,dimension(..) :: A
@@ -28125,7 +28125,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_float),target :: A
@@ -28146,7 +28146,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_float),target,dimension(:) :: A
@@ -28167,7 +28167,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_float),target,dimension(:,:) :: A
@@ -28192,7 +28192,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_double),target,contiguous,dimension(..) :: A
@@ -28214,7 +28214,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_double),target :: A
@@ -28235,7 +28235,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_double),target,dimension(:) :: A
@@ -28256,7 +28256,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_double),target,dimension(:,:) :: A
@@ -28281,7 +28281,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -28303,7 +28303,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_float_complex),target :: A
@@ -28324,7 +28324,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_float_complex),target,dimension(:) :: A
@@ -28345,7 +28345,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -28370,7 +28370,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -28392,7 +28392,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_double_complex),target :: A
@@ -28413,7 +28413,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_double_complex),target,dimension(:) :: A
@@ -28434,7 +28434,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -28460,7 +28460,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_float),target,contiguous,dimension(..) :: A
@@ -28470,7 +28470,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_float),target,contiguous,dimension(..) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -28485,7 +28485,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_float),target,contiguous,dimension(..) :: A
@@ -28495,7 +28495,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_float),target,contiguous,dimension(..) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -28511,7 +28511,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_float),target :: A
@@ -28521,7 +28521,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_float),target :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -28536,7 +28536,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_float),target :: A
@@ -28546,7 +28546,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_float),target :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -28561,7 +28561,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_float),target,dimension(:) :: A
@@ -28571,7 +28571,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -28586,7 +28586,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_float),target,dimension(:) :: A
@@ -28596,7 +28596,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -28611,7 +28611,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_float),target,dimension(:,:) :: A
@@ -28621,7 +28621,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_float),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -28636,7 +28636,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_float),target,dimension(:,:) :: A
@@ -28646,7 +28646,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_float),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -28665,7 +28665,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_double),target,contiguous,dimension(..) :: A
@@ -28675,7 +28675,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_double),target,contiguous,dimension(..) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -28690,7 +28690,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_double),target,contiguous,dimension(..) :: A
@@ -28700,7 +28700,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_double),target,contiguous,dimension(..) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -28716,7 +28716,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_double),target :: A
@@ -28726,7 +28726,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_double),target :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -28741,7 +28741,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_double),target :: A
@@ -28751,7 +28751,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_double),target :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -28766,7 +28766,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_double),target,dimension(:) :: A
@@ -28776,7 +28776,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -28791,7 +28791,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_double),target,dimension(:) :: A
@@ -28801,7 +28801,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -28816,7 +28816,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_double),target,dimension(:,:) :: A
@@ -28826,7 +28826,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_double),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -28841,7 +28841,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       real(c_double),target,dimension(:,:) :: A
@@ -28851,7 +28851,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       real(c_double),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -28870,7 +28870,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -28880,7 +28880,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_float_complex),target,contiguous,dimension(..) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -28895,7 +28895,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -28905,7 +28905,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_float_complex),target,contiguous,dimension(..) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -28921,7 +28921,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_float_complex),target :: A
@@ -28931,7 +28931,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_float_complex),target :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -28946,7 +28946,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_float_complex),target :: A
@@ -28956,7 +28956,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_float_complex),target :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -28971,7 +28971,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_float_complex),target,dimension(:) :: A
@@ -28981,7 +28981,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_float_complex),target,dimension(:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -28996,7 +28996,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_float_complex),target,dimension(:) :: A
@@ -29006,7 +29006,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_float_complex),target,dimension(:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -29021,7 +29021,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -29031,7 +29031,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_float_complex),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -29046,7 +29046,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -29056,7 +29056,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_float_complex),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -29075,7 +29075,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -29085,7 +29085,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_double_complex),target,contiguous,dimension(..) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -29100,7 +29100,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -29110,7 +29110,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_double_complex),target,contiguous,dimension(..) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -29126,7 +29126,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_double_complex),target :: A
@@ -29136,7 +29136,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_double_complex),target :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -29151,7 +29151,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_double_complex),target :: A
@@ -29161,7 +29161,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_double_complex),target :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -29176,7 +29176,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_double_complex),target,dimension(:) :: A
@@ -29186,7 +29186,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_double_complex),target,dimension(:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -29201,7 +29201,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_double_complex),target,dimension(:) :: A
@@ -29211,7 +29211,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_double_complex),target,dimension(:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -29226,7 +29226,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -29236,7 +29236,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_double_complex),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       integer(c_int),target :: devInfo
@@ -29251,7 +29251,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_int) :: nrhs
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -29261,7 +29261,7 @@ module hipfort_hipsolver
       integer(c_int) :: ldb
       complex(c_double_complex),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: niters
       type(c_ptr),value :: devInfo
@@ -29279,7 +29279,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -29296,7 +29296,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: A
@@ -29312,7 +29312,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -29328,7 +29328,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -29348,7 +29348,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -29365,7 +29365,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: A
@@ -29381,7 +29381,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -29397,7 +29397,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -29417,7 +29417,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -29434,7 +29434,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -29450,7 +29450,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -29466,7 +29466,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -29486,7 +29486,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -29503,7 +29503,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -29519,7 +29519,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -29535,7 +29535,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -29555,12 +29555,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       integer(c_int),target :: devInfo
@@ -29574,12 +29574,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       type(c_ptr),value :: devInfo
@@ -29594,12 +29594,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devIpiv
       integer(c_int),target :: devInfo
@@ -29613,12 +29613,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devIpiv
       type(c_ptr),value :: devInfo
@@ -29632,12 +29632,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       integer(c_int),target :: devInfo
@@ -29651,12 +29651,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       type(c_ptr),value :: devInfo
@@ -29670,12 +29670,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       integer(c_int),target :: devInfo
@@ -29689,12 +29689,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       type(c_ptr),value :: devInfo
@@ -29712,12 +29712,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       integer(c_int),target :: devInfo
@@ -29731,12 +29731,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       type(c_ptr),value :: devInfo
@@ -29751,12 +29751,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devIpiv
       integer(c_int),target :: devInfo
@@ -29770,12 +29770,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devIpiv
       type(c_ptr),value :: devInfo
@@ -29789,12 +29789,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       integer(c_int),target :: devInfo
@@ -29808,12 +29808,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       type(c_ptr),value :: devInfo
@@ -29827,12 +29827,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       integer(c_int),target :: devInfo
@@ -29846,12 +29846,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       type(c_ptr),value :: devInfo
@@ -29869,12 +29869,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       integer(c_int),target :: devInfo
@@ -29888,12 +29888,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       type(c_ptr),value :: devInfo
@@ -29908,12 +29908,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devIpiv
       integer(c_int),target :: devInfo
@@ -29927,12 +29927,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devIpiv
       type(c_ptr),value :: devInfo
@@ -29946,12 +29946,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       integer(c_int),target :: devInfo
@@ -29965,12 +29965,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       type(c_ptr),value :: devInfo
@@ -29984,12 +29984,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       integer(c_int),target :: devInfo
@@ -30003,12 +30003,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       type(c_ptr),value :: devInfo
@@ -30026,12 +30026,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       integer(c_int),target :: devInfo
@@ -30045,12 +30045,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       type(c_ptr),value :: devInfo
@@ -30065,12 +30065,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devIpiv
       integer(c_int),target :: devInfo
@@ -30084,12 +30084,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devIpiv
       type(c_ptr),value :: devInfo
@@ -30103,12 +30103,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       integer(c_int),target :: devInfo
@@ -30122,12 +30122,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       type(c_ptr),value :: devInfo
@@ -30141,12 +30141,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       integer(c_int),target :: devInfo
@@ -30160,12 +30160,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       type(c_ptr),value :: devInfo
@@ -30183,7 +30183,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30204,7 +30204,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30224,7 +30224,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30244,7 +30244,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30268,7 +30268,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30289,7 +30289,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30309,7 +30309,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30329,7 +30329,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30353,7 +30353,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30374,7 +30374,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30394,7 +30394,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30414,7 +30414,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30438,7 +30438,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30459,7 +30459,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30479,7 +30479,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30499,7 +30499,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30524,7 +30524,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30533,7 +30533,7 @@ module hipfort_hipsolver
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       real(c_float),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -30547,7 +30547,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30556,7 +30556,7 @@ module hipfort_hipsolver
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       real(c_float),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -30570,7 +30570,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30579,7 +30579,7 @@ module hipfort_hipsolver
       integer(c_int),target :: devIpiv
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -30593,7 +30593,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30602,7 +30602,7 @@ module hipfort_hipsolver
       integer(c_int),target :: devIpiv
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -30615,7 +30615,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30624,7 +30624,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -30638,7 +30638,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30647,7 +30647,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -30660,7 +30660,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30669,7 +30669,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -30683,7 +30683,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30692,7 +30692,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -30710,7 +30710,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30719,7 +30719,7 @@ module hipfort_hipsolver
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       real(c_double),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -30733,7 +30733,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30742,7 +30742,7 @@ module hipfort_hipsolver
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       real(c_double),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -30756,7 +30756,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30765,7 +30765,7 @@ module hipfort_hipsolver
       integer(c_int),target :: devIpiv
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -30779,7 +30779,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30788,7 +30788,7 @@ module hipfort_hipsolver
       integer(c_int),target :: devIpiv
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -30801,7 +30801,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30810,7 +30810,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -30824,7 +30824,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30833,7 +30833,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -30846,7 +30846,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30855,7 +30855,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -30869,7 +30869,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30878,7 +30878,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -30896,7 +30896,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30905,7 +30905,7 @@ module hipfort_hipsolver
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       complex(c_float_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -30919,7 +30919,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30928,7 +30928,7 @@ module hipfort_hipsolver
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       complex(c_float_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -30942,7 +30942,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30951,7 +30951,7 @@ module hipfort_hipsolver
       integer(c_int),target :: devIpiv
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -30965,7 +30965,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30974,7 +30974,7 @@ module hipfort_hipsolver
       integer(c_int),target :: devIpiv
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -30987,7 +30987,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -30996,7 +30996,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31010,7 +31010,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -31019,7 +31019,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31032,7 +31032,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -31041,7 +31041,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31055,7 +31055,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -31064,7 +31064,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31082,7 +31082,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -31091,7 +31091,7 @@ module hipfort_hipsolver
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       complex(c_double_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31105,7 +31105,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -31114,7 +31114,7 @@ module hipfort_hipsolver
       integer(c_int),target,contiguous,dimension(..) :: devIpiv
       complex(c_double_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31128,7 +31128,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -31137,7 +31137,7 @@ module hipfort_hipsolver
       integer(c_int),target :: devIpiv
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31151,7 +31151,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -31160,7 +31160,7 @@ module hipfort_hipsolver
       integer(c_int),target :: devIpiv
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31173,7 +31173,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -31182,7 +31182,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31196,7 +31196,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -31205,7 +31205,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31218,7 +31218,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -31227,7 +31227,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31241,7 +31241,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -31250,7 +31250,7 @@ module hipfort_hipsolver
       integer(c_int),target,dimension(:) :: devIpiv
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31267,7 +31267,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -31284,7 +31284,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
@@ -31300,7 +31300,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -31316,7 +31316,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -31336,7 +31336,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -31353,7 +31353,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
@@ -31369,7 +31369,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -31385,7 +31385,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -31405,7 +31405,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -31422,7 +31422,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -31438,7 +31438,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -31454,7 +31454,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -31474,7 +31474,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -31491,7 +31491,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -31507,7 +31507,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -31523,7 +31523,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -31543,12 +31543,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31561,12 +31561,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31580,12 +31580,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31598,12 +31598,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31616,12 +31616,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31634,12 +31634,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31652,12 +31652,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31670,12 +31670,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31692,12 +31692,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31710,12 +31710,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31729,12 +31729,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31747,12 +31747,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31765,12 +31765,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31783,12 +31783,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31801,12 +31801,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31819,12 +31819,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31841,12 +31841,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31859,12 +31859,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31878,12 +31878,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31896,12 +31896,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31914,12 +31914,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31932,12 +31932,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31950,12 +31950,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -31968,12 +31968,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -31990,12 +31990,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32008,12 +32008,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32027,12 +32027,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32045,12 +32045,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32063,12 +32063,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32081,12 +32081,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32099,12 +32099,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32117,12 +32117,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32139,7 +32139,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -32156,7 +32156,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
@@ -32172,7 +32172,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -32188,7 +32188,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -32208,7 +32208,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -32225,7 +32225,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
@@ -32241,7 +32241,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -32257,7 +32257,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -32277,7 +32277,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -32294,7 +32294,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -32310,7 +32310,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -32326,7 +32326,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -32346,7 +32346,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -32363,7 +32363,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -32379,7 +32379,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -32395,7 +32395,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -32415,12 +32415,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32433,12 +32433,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32452,12 +32452,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32470,12 +32470,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32488,12 +32488,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32506,12 +32506,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32524,12 +32524,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32542,12 +32542,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32564,12 +32564,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32582,12 +32582,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32601,12 +32601,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32619,12 +32619,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32637,12 +32637,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32655,12 +32655,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32673,12 +32673,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32691,12 +32691,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32713,12 +32713,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32731,12 +32731,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32750,12 +32750,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32768,12 +32768,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32786,12 +32786,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32804,12 +32804,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32822,12 +32822,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32840,12 +32840,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32862,12 +32862,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32880,12 +32880,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32899,12 +32899,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32917,12 +32917,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32935,12 +32935,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32953,12 +32953,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -32971,12 +32971,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -32989,12 +32989,12 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33011,7 +33011,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33031,7 +33031,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33050,7 +33050,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33069,7 +33069,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33092,7 +33092,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33112,7 +33112,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33131,7 +33131,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33150,7 +33150,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33173,7 +33173,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33193,7 +33193,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33212,7 +33212,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33231,7 +33231,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33254,7 +33254,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33274,7 +33274,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33293,7 +33293,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33312,7 +33312,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33335,7 +33335,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33343,7 +33343,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33356,7 +33356,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33364,7 +33364,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33378,7 +33378,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33386,7 +33386,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33399,7 +33399,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33407,7 +33407,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_float),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33420,7 +33420,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33428,7 +33428,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33441,7 +33441,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33449,7 +33449,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33462,7 +33462,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33470,7 +33470,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33483,7 +33483,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33491,7 +33491,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33508,7 +33508,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33516,7 +33516,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33529,7 +33529,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33537,7 +33537,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33551,7 +33551,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33559,7 +33559,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33572,7 +33572,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33580,7 +33580,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_double),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33593,7 +33593,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33601,7 +33601,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33614,7 +33614,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33622,7 +33622,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33635,7 +33635,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33643,7 +33643,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33656,7 +33656,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33664,7 +33664,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33681,7 +33681,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33689,7 +33689,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_float_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33702,7 +33702,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33710,7 +33710,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_float_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33724,7 +33724,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33732,7 +33732,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33745,7 +33745,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33753,7 +33753,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33766,7 +33766,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33774,7 +33774,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33787,7 +33787,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33795,7 +33795,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33808,7 +33808,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33816,7 +33816,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33829,7 +33829,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33837,7 +33837,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33854,7 +33854,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33862,7 +33862,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_double_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33875,7 +33875,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33883,7 +33883,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_double_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33897,7 +33897,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33905,7 +33905,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33918,7 +33918,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33926,7 +33926,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33939,7 +33939,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33947,7 +33947,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -33960,7 +33960,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33968,7 +33968,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -33981,7 +33981,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -33989,7 +33989,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34002,7 +34002,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -34010,7 +34010,7 @@ module hipfort_hipsolver
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34027,7 +34027,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34046,7 +34046,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34064,7 +34064,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34082,7 +34082,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34104,7 +34104,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34123,7 +34123,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34141,7 +34141,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34159,7 +34159,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34181,7 +34181,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34200,7 +34200,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34218,7 +34218,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34236,7 +34236,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34258,7 +34258,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34277,7 +34277,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34295,7 +34295,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34313,7 +34313,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -34335,14 +34335,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34355,14 +34355,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34376,14 +34376,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34396,14 +34396,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
       real(c_float),target :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34416,14 +34416,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34436,14 +34436,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34456,14 +34456,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34476,14 +34476,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34500,14 +34500,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34520,14 +34520,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34541,14 +34541,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34561,14 +34561,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
       real(c_double),target :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34581,14 +34581,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34601,14 +34601,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34621,14 +34621,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34641,14 +34641,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34665,14 +34665,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34685,14 +34685,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target,contiguous,dimension(..) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34706,14 +34706,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       real(c_float),target :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34726,14 +34726,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       real(c_float),target :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34746,14 +34746,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34766,14 +34766,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34786,14 +34786,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34806,14 +34806,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34830,14 +34830,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34850,14 +34850,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target,contiguous,dimension(..) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34871,14 +34871,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       real(c_double),target :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34891,14 +34891,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       real(c_double),target :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34911,14 +34911,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34931,14 +34931,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34951,14 +34951,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -34971,14 +34971,14 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: D
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -34995,7 +34995,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35017,7 +35017,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35038,7 +35038,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35059,7 +35059,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35084,7 +35084,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35106,7 +35106,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35127,7 +35127,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35148,7 +35148,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35173,7 +35173,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35195,7 +35195,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35216,7 +35216,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35237,7 +35237,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35262,7 +35262,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35284,7 +35284,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35305,7 +35305,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35326,7 +35326,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35351,7 +35351,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35361,7 +35361,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_float),target,contiguous,dimension(..) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35375,7 +35375,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35385,7 +35385,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_float),target,contiguous,dimension(..) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35399,7 +35399,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35409,7 +35409,7 @@ module hipfort_hipsolver
       real(c_float),target :: B
       integer(c_int) :: ldb
       real(c_float),target :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35423,7 +35423,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35433,7 +35433,7 @@ module hipfort_hipsolver
       real(c_float),target :: B
       integer(c_int) :: ldb
       real(c_float),target :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35446,7 +35446,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35456,7 +35456,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35470,7 +35470,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35480,7 +35480,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35493,7 +35493,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35503,7 +35503,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35517,7 +35517,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35527,7 +35527,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35544,7 +35544,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35554,7 +35554,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_double),target,contiguous,dimension(..) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35568,7 +35568,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35578,7 +35578,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_double),target,contiguous,dimension(..) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35592,7 +35592,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35602,7 +35602,7 @@ module hipfort_hipsolver
       real(c_double),target :: B
       integer(c_int) :: ldb
       real(c_double),target :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35616,7 +35616,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35626,7 +35626,7 @@ module hipfort_hipsolver
       real(c_double),target :: B
       integer(c_int) :: ldb
       real(c_double),target :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35639,7 +35639,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35649,7 +35649,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35663,7 +35663,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35673,7 +35673,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35686,7 +35686,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35696,7 +35696,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35710,7 +35710,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35720,7 +35720,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35737,7 +35737,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35747,7 +35747,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_float),target,contiguous,dimension(..) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35761,7 +35761,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35771,7 +35771,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_float),target,contiguous,dimension(..) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35785,7 +35785,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35795,7 +35795,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       real(c_float),target :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35809,7 +35809,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35819,7 +35819,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
       real(c_float),target :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35832,7 +35832,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35842,7 +35842,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35856,7 +35856,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35866,7 +35866,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35879,7 +35879,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35889,7 +35889,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35903,7 +35903,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35913,7 +35913,7 @@ module hipfort_hipsolver
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_float),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35930,7 +35930,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35940,7 +35940,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_double),target,contiguous,dimension(..) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -35954,7 +35954,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35964,7 +35964,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,contiguous,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_double),target,contiguous,dimension(..) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -35978,7 +35978,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -35988,7 +35988,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       real(c_double),target :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36002,7 +36002,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -36012,7 +36012,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
       real(c_double),target :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36025,7 +36025,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -36035,7 +36035,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36049,7 +36049,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -36059,7 +36059,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36072,7 +36072,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -36082,7 +36082,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36096,7 +36096,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_EIG_TYPE_1)) :: itype
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
@@ -36106,7 +36106,7 @@ module hipfort_hipsolver
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
       real(c_double),target,dimension(:) :: W
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36123,7 +36123,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -36143,7 +36143,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
@@ -36162,7 +36162,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -36181,7 +36181,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -36204,7 +36204,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -36224,7 +36224,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
@@ -36243,7 +36243,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -36262,7 +36262,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -36285,7 +36285,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -36305,7 +36305,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -36324,7 +36324,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -36343,7 +36343,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -36366,7 +36366,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -36386,7 +36386,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -36405,7 +36405,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -36424,7 +36424,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -36447,7 +36447,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -36455,7 +36455,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: D
       real(c_float),target,contiguous,dimension(..) :: E
       real(c_float),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36468,7 +36468,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -36476,7 +36476,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: D
       real(c_float),target,contiguous,dimension(..) :: E
       real(c_float),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36490,7 +36490,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
@@ -36498,7 +36498,7 @@ module hipfort_hipsolver
       real(c_float),target :: D
       real(c_float),target :: E
       real(c_float),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36511,7 +36511,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
@@ -36519,7 +36519,7 @@ module hipfort_hipsolver
       real(c_float),target :: D
       real(c_float),target :: E
       real(c_float),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36532,7 +36532,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -36540,7 +36540,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36553,7 +36553,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -36561,7 +36561,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36574,7 +36574,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -36582,7 +36582,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36595,7 +36595,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -36603,7 +36603,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
       real(c_float),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36620,7 +36620,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -36628,7 +36628,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: D
       real(c_double),target,contiguous,dimension(..) :: E
       real(c_double),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36641,7 +36641,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -36649,7 +36649,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: D
       real(c_double),target,contiguous,dimension(..) :: E
       real(c_double),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36663,7 +36663,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
@@ -36671,7 +36671,7 @@ module hipfort_hipsolver
       real(c_double),target :: D
       real(c_double),target :: E
       real(c_double),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36684,7 +36684,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
@@ -36692,7 +36692,7 @@ module hipfort_hipsolver
       real(c_double),target :: D
       real(c_double),target :: E
       real(c_double),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36705,7 +36705,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -36713,7 +36713,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36726,7 +36726,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -36734,7 +36734,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36747,7 +36747,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -36755,7 +36755,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36768,7 +36768,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -36776,7 +36776,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
       real(c_double),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36793,7 +36793,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -36801,7 +36801,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: D
       real(c_float),target,contiguous,dimension(..) :: E
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36814,7 +36814,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -36822,7 +36822,7 @@ module hipfort_hipsolver
       real(c_float),target,contiguous,dimension(..) :: D
       real(c_float),target,contiguous,dimension(..) :: E
       complex(c_float_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36836,7 +36836,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -36844,7 +36844,7 @@ module hipfort_hipsolver
       real(c_float),target :: D
       real(c_float),target :: E
       complex(c_float_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36857,7 +36857,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -36865,7 +36865,7 @@ module hipfort_hipsolver
       real(c_float),target :: D
       real(c_float),target :: E
       complex(c_float_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36878,7 +36878,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -36886,7 +36886,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36899,7 +36899,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -36907,7 +36907,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36920,7 +36920,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -36928,7 +36928,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36941,7 +36941,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -36949,7 +36949,7 @@ module hipfort_hipsolver
       real(c_float),target,dimension(:) :: D
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -36966,7 +36966,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -36974,7 +36974,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: D
       real(c_double),target,contiguous,dimension(..) :: E
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -36987,7 +36987,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -36995,7 +36995,7 @@ module hipfort_hipsolver
       real(c_double),target,contiguous,dimension(..) :: D
       real(c_double),target,contiguous,dimension(..) :: E
       complex(c_double_complex),target,contiguous,dimension(..) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37009,7 +37009,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -37017,7 +37017,7 @@ module hipfort_hipsolver
       real(c_double),target :: D
       real(c_double),target :: E
       complex(c_double_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37030,7 +37030,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -37038,7 +37038,7 @@ module hipfort_hipsolver
       real(c_double),target :: D
       real(c_double),target :: E
       complex(c_double_complex),target :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37051,7 +37051,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -37059,7 +37059,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37072,7 +37072,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -37080,7 +37080,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37093,7 +37093,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -37101,7 +37101,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37114,7 +37114,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -37122,7 +37122,7 @@ module hipfort_hipsolver
       real(c_double),target,dimension(:) :: D
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex),target,dimension(:) :: tau
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37139,7 +37139,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
@@ -37155,7 +37155,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
@@ -37170,7 +37170,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -37185,7 +37185,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
@@ -37204,7 +37204,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
@@ -37220,7 +37220,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
@@ -37235,7 +37235,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -37250,7 +37250,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
@@ -37269,7 +37269,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
@@ -37285,7 +37285,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
@@ -37300,7 +37300,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -37315,7 +37315,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
@@ -37334,7 +37334,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_bufferSize_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
@@ -37350,7 +37350,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_bufferSize_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
@@ -37365,7 +37365,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_bufferSize_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -37380,7 +37380,7 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_bufferSize_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
@@ -37399,13 +37399,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int),target,contiguous,dimension(..) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37418,13 +37418,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int),target,contiguous,dimension(..) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37438,13 +37438,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37457,13 +37457,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37476,13 +37476,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37495,13 +37495,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37514,13 +37514,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37533,13 +37533,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37556,13 +37556,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int),target,contiguous,dimension(..) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37575,13 +37575,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int),target,contiguous,dimension(..) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37595,13 +37595,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37614,13 +37614,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37633,13 +37633,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37652,13 +37652,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37671,13 +37671,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37690,13 +37690,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37713,13 +37713,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int),target,contiguous,dimension(..) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37732,13 +37732,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int),target,contiguous,dimension(..) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37752,13 +37752,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37771,13 +37771,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37790,13 +37790,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37809,13 +37809,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37828,13 +37828,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37847,13 +37847,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37870,13 +37870,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int),target,contiguous,dimension(..) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37889,13 +37889,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int),target,contiguous,dimension(..) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37909,13 +37909,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37928,13 +37928,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37947,13 +37947,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -37966,13 +37966,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !
@@ -37985,13 +37985,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       integer(c_int),target :: devInfo
       !
@@ -38004,13 +38004,13 @@ module hipfort_hipsolver
       use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr) :: work
+      type(c_ptr), value :: work
       integer(c_int) :: lwork
       type(c_ptr),value :: devInfo
       !

@@ -303,7 +303,7 @@ module hipfort_roctx
       implicit none
       integer(c_int) :: roctxNameHsaAgent_typed
       character(kind=c_char,len=*),intent(in),target :: name
-      type(c_ptr) :: agent
+      type(c_ptr), value :: agent
       !
       roctxNameHsaAgent_typed = roctxNameHsaAgent_(c_loc(name),agent)
     end function
@@ -323,7 +323,7 @@ module hipfort_roctx
       implicit none
       integer(c_int) :: roctxNameHipStream_typed
       character(kind=c_char,len=*),intent(in),target :: name
-      type(c_ptr) :: stream
+      type(c_ptr), value :: stream
       !
       roctxNameHipStream_typed = roctxNameHipStream_(c_loc(name),stream)
     end function

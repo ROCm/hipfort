@@ -1143,7 +1143,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan1d_typed
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: nx
       integer(kind(HIPFFT_R2C)) :: myType
       integer(c_int) :: batch
@@ -1157,7 +1157,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan2d_typed
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: nx
       integer(c_int) :: ny
       integer(kind(HIPFFT_R2C)) :: myType
@@ -1171,7 +1171,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan3d_typed
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: nx
       integer(c_int) :: ny
       integer(c_int) :: nz
@@ -1187,7 +1187,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_typed
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       type(c_ptr) :: n
       type(c_ptr) :: inembed
@@ -1210,7 +1210,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_typed
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       type(c_ptr) :: n
       type(c_ptr) :: inembed
@@ -1294,7 +1294,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize1d_typed
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: nx
       integer(kind(HIPFFT_R2C)) :: myType
       integer(c_int) :: batch
@@ -1308,7 +1308,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize2d_typed
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: nx
       integer(c_int) :: ny
       integer(kind(HIPFFT_R2C)) :: myType
@@ -1322,7 +1322,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize3d_typed
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: nx
       integer(c_int) :: ny
       integer(c_int) :: nz
@@ -1338,7 +1338,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_typed
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       type(c_ptr) :: n
       type(c_ptr) :: inembed
@@ -1361,7 +1361,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_typed
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       type(c_ptr) :: n
       type(c_ptr) :: inembed
@@ -1383,7 +1383,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize_typed
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_size_t),target :: workSize
       !
       hipfftGetSize_typed = hipfftGetSize_(plan,c_loc(workSize))
@@ -1489,7 +1489,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_assumed_rank
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       integer(c_int),target,contiguous,dimension(..) :: n
       integer(c_int),target,contiguous,dimension(..) :: inembed
@@ -1513,7 +1513,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_rank_0
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       integer(c_int),target :: n
       integer(c_int),target :: inembed
@@ -1536,7 +1536,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_rank_1
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       integer(c_int),target,dimension(:) :: n
       integer(c_int),target,dimension(:) :: inembed
@@ -1561,7 +1561,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_assumed_rank
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       integer(c_int64_t),target,contiguous,dimension(..) :: n
       integer(c_int64_t),target,contiguous,dimension(..) :: inembed
@@ -1585,7 +1585,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_rank_0
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       integer(c_int64_t),target :: n
       integer(c_int64_t),target :: inembed
@@ -1608,7 +1608,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_rank_1
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       integer(c_int64_t),target,dimension(:) :: n
       integer(c_int64_t),target,dimension(:) :: inembed
@@ -1702,7 +1702,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_assumed_rank
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       integer(c_int),target,contiguous,dimension(..) :: n
       integer(c_int),target,contiguous,dimension(..) :: inembed
@@ -1726,7 +1726,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_rank_0
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       integer(c_int),target :: n
       integer(c_int),target :: inembed
@@ -1749,7 +1749,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_rank_1
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       integer(c_int),target,dimension(:) :: n
       integer(c_int),target,dimension(:) :: inembed
@@ -1774,7 +1774,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_assumed_rank
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       integer(c_int64_t),target,contiguous,dimension(..) :: n
       integer(c_int64_t),target,contiguous,dimension(..) :: inembed
@@ -1798,7 +1798,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_rank_0
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       integer(c_int64_t),target :: n
       integer(c_int64_t),target :: inembed
@@ -1821,7 +1821,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_rank_1
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_int) :: rank
       integer(c_int64_t),target,dimension(:) :: n
       integer(c_int64_t),target,dimension(:) :: inembed
@@ -1845,7 +1845,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_assumed_rank
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_float_complex),target,contiguous,dimension(..) :: idata
       complex(c_float_complex),target,contiguous,dimension(..) :: odata
       integer(c_int) :: direction
@@ -1859,7 +1859,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_rank_0
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_float_complex),target :: idata
       complex(c_float_complex),target :: odata
       integer(c_int) :: direction
@@ -1872,7 +1872,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_rank_1
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_float_complex),target,dimension(:) :: idata
       complex(c_float_complex),target,dimension(:) :: odata
       integer(c_int) :: direction
@@ -1885,7 +1885,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_rank_2
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_float_complex),target,dimension(:,:) :: idata
       complex(c_float_complex),target,dimension(:,:) :: odata
       integer(c_int) :: direction
@@ -1898,7 +1898,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_rank_3
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_float_complex),target,dimension(:,:,:) :: idata
       complex(c_float_complex),target,dimension(:,:,:) :: odata
       integer(c_int) :: direction
@@ -1913,7 +1913,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_assumed_rank
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       real(c_float),target,contiguous,dimension(..) :: idata
       complex(c_float_complex),target,contiguous,dimension(..) :: odata
       !
@@ -1926,7 +1926,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_rank_0
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       real(c_float),target :: idata
       complex(c_float_complex),target :: odata
       !
@@ -1938,7 +1938,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_rank_1
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       real(c_float),target,dimension(:) :: idata
       complex(c_float_complex),target,dimension(:) :: odata
       !
@@ -1950,7 +1950,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_rank_2
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       real(c_float),target,dimension(:,:) :: idata
       complex(c_float_complex),target,dimension(:,:) :: odata
       !
@@ -1962,7 +1962,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_rank_3
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       real(c_float),target,dimension(:,:,:) :: idata
       complex(c_float_complex),target,dimension(:,:,:) :: odata
       !
@@ -1976,7 +1976,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_assumed_rank
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_float_complex),target,contiguous,dimension(..) :: idata
       real(c_float),target,contiguous,dimension(..) :: odata
       !
@@ -1989,7 +1989,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_rank_0
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_float_complex),target :: idata
       real(c_float),target :: odata
       !
@@ -2001,7 +2001,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_rank_1
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_float_complex),target,dimension(:) :: idata
       real(c_float),target,dimension(:) :: odata
       !
@@ -2013,7 +2013,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_rank_2
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_float_complex),target,dimension(:,:) :: idata
       real(c_float),target,dimension(:,:) :: odata
       !
@@ -2025,7 +2025,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_rank_3
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_float_complex),target,dimension(:,:,:) :: idata
       real(c_float),target,dimension(:,:,:) :: odata
       !
@@ -2039,7 +2039,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_assumed_rank
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_double_complex),target,contiguous,dimension(..) :: idata
       complex(c_double_complex),target,contiguous,dimension(..) :: odata
       integer(c_int) :: direction
@@ -2053,7 +2053,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_rank_0
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_double_complex),target :: idata
       complex(c_double_complex),target :: odata
       integer(c_int) :: direction
@@ -2066,7 +2066,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_rank_1
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_double_complex),target,dimension(:) :: idata
       complex(c_double_complex),target,dimension(:) :: odata
       integer(c_int) :: direction
@@ -2079,7 +2079,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_rank_2
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_double_complex),target,dimension(:,:) :: idata
       complex(c_double_complex),target,dimension(:,:) :: odata
       integer(c_int) :: direction
@@ -2092,7 +2092,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_rank_3
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_double_complex),target,dimension(:,:,:) :: idata
       complex(c_double_complex),target,dimension(:,:,:) :: odata
       integer(c_int) :: direction
@@ -2107,7 +2107,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_assumed_rank
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       real(c_double),target,contiguous,dimension(..) :: idata
       complex(c_double_complex),target,contiguous,dimension(..) :: odata
       !
@@ -2120,7 +2120,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_rank_0
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       real(c_double),target :: idata
       complex(c_double_complex),target :: odata
       !
@@ -2132,7 +2132,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_rank_1
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       real(c_double),target,dimension(:) :: idata
       complex(c_double_complex),target,dimension(:) :: odata
       !
@@ -2144,7 +2144,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_rank_2
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       real(c_double),target,dimension(:,:) :: idata
       complex(c_double_complex),target,dimension(:,:) :: odata
       !
@@ -2156,7 +2156,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_rank_3
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       real(c_double),target,dimension(:,:,:) :: idata
       complex(c_double_complex),target,dimension(:,:,:) :: odata
       !
@@ -2170,7 +2170,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_assumed_rank
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_double_complex),target,contiguous,dimension(..) :: idata
       real(c_double),target,contiguous,dimension(..) :: odata
       !
@@ -2183,7 +2183,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_rank_0
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_double_complex),target :: idata
       real(c_double),target :: odata
       !
@@ -2195,7 +2195,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_rank_1
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_double_complex),target,dimension(:) :: idata
       real(c_double),target,dimension(:) :: odata
       !
@@ -2207,7 +2207,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_rank_2
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_double_complex),target,dimension(:,:) :: idata
       real(c_double),target,dimension(:,:) :: odata
       !
@@ -2219,7 +2219,7 @@ module hipfort_hipfft
       use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_rank_3
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       complex(c_double_complex),target,dimension(:,:,:) :: idata
       real(c_double),target,dimension(:,:,:) :: odata
       !

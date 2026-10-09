@@ -60,6 +60,8 @@ program cooperative_launch
   type(c_ptr), target :: args(4)
   integer(c_int), target :: nn, nblocks
   integer(c_int) :: coop, ncu, i
+  type(c_funptr) :: kfun
+  type(c_ptr)    :: kernel
   integer(kind(hipSuccess)) :: stat
   integer(c_size_t) :: nbytes
   type(dim3) :: grid, block
@@ -102,7 +104,13 @@ program cooperative_launch
 
   grid = dim3(nblocks * ncu, 1, 1)
   block = dim3(blocksize, 1, 1)
-  call hipCheck(hipLaunchCooperativeKernel(transfer(c_funloc(vector_add), c_null_ptr), &
+
+  ! hipLaunchCooperativeKernel takes the stub as a type(c_ptr). Convert through a
+  ! variable: transfer() of the constant c_funloc(vector_add) is itself a
+  ! .rodata constant holding an absolute address (ld: DT_TEXTREL in a PIE).
+  kfun = c_funloc(vector_add)
+  kernel = transfer(kfun, kernel)
+  call hipCheck(hipLaunchCooperativeKernel(kernel, &
                                            grid, block, args(1), 0, c_null_ptr))
   call hipCheck(hipDeviceSynchronize())
 
@@ -116,7 +124,7 @@ program cooperative_launch
 
   ! More blocks than can be resident at once cannot be launched cooperatively.
   grid = dim3(nblocks * ncu * 64, 1, 1)
-  stat = hipLaunchCooperativeKernel(transfer(c_funloc(vector_add), c_null_ptr), &
+  stat = hipLaunchCooperativeKernel(kernel, &
                                     grid, block, args(1), 0, c_null_ptr)
   if (stat /= hipErrorCooperativeLaunchTooLarge) then
      write(*,*) "FAILED! oversized cooperative launch returned", stat, &
