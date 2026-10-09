@@ -42,14 +42,12 @@ program test_hipsolver
   ! call is compiled and linked yet never run (no null-pointer segfaults).
   never = command_argument_count() > 1000000
 
-#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverCreate_(v0)
     if (never) v1 = hipsolverDestroy_(v0)
     if (never) v1 = hipsolverSetStream_(v0, v0)
     if (never) v1 = hipsolverGetStream_(v0, v0)
     if (never) v1 = hipsolverSetDeterministicMode_(v0, v1)
     if (never) v1 = hipsolverGetDeterministicMode_(v0, v0)
-#endif
     if (never) v1 = hipsolverCreateGesvdjInfo_(v0)
     if (never) v1 = hipsolverDestroyGesvdjInfo_(v0)
     if (never) v1 = hipsolverXgesvdjSetMaxSweeps_(v0, v1)
@@ -64,7 +62,6 @@ program test_hipsolver
     if (never) v1 = hipsolverXsyevjSetTolerance_(v0, v2)
     if (never) v1 = hipsolverXsyevjGetResidual_(v0, v0, v0)
     if (never) v1 = hipsolverXsyevjGetSweeps_(v0, v0, v0)
-#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverSorgbr_bufferSize_(v0, v1, v1, v1, v1, v0, v1, v0, v0)
     if (never) v1 = hipsolverDorgbr_bufferSize_(v0, v1, v1, v1, v1, v0, v1, v0, v0)
     if (never) v1 = hipsolverCungbr_bufferSize_(v0, v1, v1, v1, v1, v0, v1, v0, v0)
@@ -113,6 +110,7 @@ program test_hipsolver
     if (never) v1 = hipsolverDgebrd_(v0, v1, v1, v0, v1, v0, v0, v0, v0, v0, v1, v0)
     if (never) v1 = hipsolverCgebrd_(v0, v1, v1, v0, v1, v0, v0, v0, v0, v0, v1, v0)
     if (never) v1 = hipsolverZgebrd_(v0, v1, v1, v0, v1, v0, v0, v0, v0, v0, v1, v0)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverSSgels_bufferSize_(v0, v1, v1, v1, v0, v1, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverDDgels_bufferSize_(v0, v1, v1, v1, v0, v1, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverCCgels_bufferSize_(v0, v1, v1, v1, v0, v1, v0, v1, v0, v1, v0)
@@ -122,7 +120,6 @@ program test_hipsolver
     if (never) v1 = hipsolverDDgels_(v0, v1, v1, v1, v0, v1, v0, v1, v0, v1, v0, v3, v0, v0)
     if (never) v1 = hipsolverCCgels_(v0, v1, v1, v1, v0, v1, v0, v1, v0, v1, v0, v3, v0, v0)
     if (never) v1 = hipsolverZZgels_(v0, v1, v1, v1, v0, v1, v0, v1, v0, v1, v0, v3, v0, v0)
-#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverSgeqrf_bufferSize_(v0, v1, v1, v0, v1, v0)
     if (never) v1 = hipsolverDgeqrf_bufferSize_(v0, v1, v1, v0, v1, v0)
     if (never) v1 = hipsolverCgeqrf_bufferSize_(v0, v1, v1, v0, v1, v0)
@@ -131,14 +128,17 @@ program test_hipsolver
     if (never) v1 = hipsolverDgeqrf_(v0, v1, v1, v0, v1, v0, v0, v1, v0)
     if (never) v1 = hipsolverCgeqrf_(v0, v1, v1, v0, v1, v0, v0, v1, v0)
     if (never) v1 = hipsolverZgeqrf_(v0, v1, v1, v0, v1, v0, v0, v1, v0)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverSSgesv_bufferSize_(v0, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverDDgesv_bufferSize_(v0, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverCCgesv_bufferSize_(v0, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverZZgesv_bufferSize_(v0, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0)
+#endif
     if (never) v1 = hipsolverSSgesv_(v0, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v3, v0, v0)
     if (never) v1 = hipsolverDDgesv_(v0, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v3, v0, v0)
     if (never) v1 = hipsolverCCgesv_(v0, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v3, v0, v0)
     if (never) v1 = hipsolverZZgesv_(v0, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v3, v0, v0)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverSgesvd_bufferSize_(v0, v4, v4, v1, v1, v0)
     if (never) v1 = hipsolverDgesvd_bufferSize_(v0, v4, v4, v1, v1, v0)
     if (never) v1 = hipsolverCgesvd_bufferSize_(v0, v4, v4, v1, v1, v0)
@@ -148,7 +148,6 @@ program test_hipsolver
     if (never) v1 = hipsolverDgesvd_(v0, v4, v4, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v1, v0, v0)
     if (never) v1 = hipsolverCgesvd_(v0, v4, v4, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v1, v0, v0)
     if (never) v1 = hipsolverZgesvd_(v0, v4, v4, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v1, v0, v0)
-#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverSgesvdj_bufferSize_(v0, v1, v1, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v0)
     if (never) v1 = hipsolverDgesvdj_bufferSize_(v0, v1, v1, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v0)
     if (never) v1 = hipsolverCgesvdj_bufferSize_(v0, v1, v1, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v0)
@@ -165,6 +164,7 @@ program test_hipsolver
     if (never) v1 = hipsolverDgesvdjBatched_(v0, v1, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v1, v0, v0, v1)
     if (never) v1 = hipsolverCgesvdjBatched_(v0, v1, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v1, v0, v0, v1)
     if (never) v1 = hipsolverZgesvdjBatched_(v0, v1, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0, v1, v0, v0, v1)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverSgetrf_bufferSize_(v0, v1, v1, v0, v1, v0)
     if (never) v1 = hipsolverDgetrf_bufferSize_(v0, v1, v1, v0, v1, v0)
     if (never) v1 = hipsolverCgetrf_bufferSize_(v0, v1, v1, v0, v1, v0)
@@ -181,6 +181,7 @@ program test_hipsolver
     if (never) v1 = hipsolverDgetrs_(v0, v1, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverCgetrs_(v0, v1, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverZgetrs_(v0, v1, v1, v1, v0, v1, v0, v0, v1, v0, v1, v0)
+#endif
     if (never) v1 = hipsolverSpotrf_bufferSize_(v0, v1, v1, v0, v1, v0)
     if (never) v1 = hipsolverDpotrf_bufferSize_(v0, v1, v1, v0, v1, v0)
     if (never) v1 = hipsolverCpotrf_bufferSize_(v0, v1, v1, v0, v1, v0)
@@ -189,6 +190,7 @@ program test_hipsolver
     if (never) v1 = hipsolverDpotrf_(v0, v1, v1, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverCpotrf_(v0, v1, v1, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverZpotrf_(v0, v1, v1, v0, v1, v0, v1, v0)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverSpotrfBatched_bufferSize_(v0, v1, v1, v0, v1, v0, v1)
     if (never) v1 = hipsolverDpotrfBatched_bufferSize_(v0, v1, v1, v0, v1, v0, v1)
     if (never) v1 = hipsolverCpotrfBatched_bufferSize_(v0, v1, v1, v0, v1, v0, v1)
@@ -197,6 +199,7 @@ program test_hipsolver
     if (never) v1 = hipsolverDpotrfBatched_(v0, v1, v1, v0, v1, v0, v1, v0, v1)
     if (never) v1 = hipsolverCpotrfBatched_(v0, v1, v1, v0, v1, v0, v1, v0, v1)
     if (never) v1 = hipsolverZpotrfBatched_(v0, v1, v1, v0, v1, v0, v1, v0, v1)
+#endif
     if (never) v1 = hipsolverSpotri_bufferSize_(v0, v1, v1, v0, v1, v0)
     if (never) v1 = hipsolverDpotri_bufferSize_(v0, v1, v1, v0, v1, v0)
     if (never) v1 = hipsolverCpotri_bufferSize_(v0, v1, v1, v0, v1, v0)
@@ -205,6 +208,7 @@ program test_hipsolver
     if (never) v1 = hipsolverDpotri_(v0, v1, v1, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverCpotri_(v0, v1, v1, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverZpotri_(v0, v1, v1, v0, v1, v0, v1, v0)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverSpotrs_bufferSize_(v0, v1, v1, v1, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverDpotrs_bufferSize_(v0, v1, v1, v1, v0, v1, v0, v1, v0)
     if (never) v1 = hipsolverCpotrs_bufferSize_(v0, v1, v1, v1, v0, v1, v0, v1, v0)
@@ -221,6 +225,7 @@ program test_hipsolver
     if (never) v1 = hipsolverDpotrsBatched_(v0, v1, v1, v1, v0, v1, v0, v1, v0, v1, v0, v1)
     if (never) v1 = hipsolverCpotrsBatched_(v0, v1, v1, v1, v0, v1, v0, v1, v0, v1, v0, v1)
     if (never) v1 = hipsolverZpotrsBatched_(v0, v1, v1, v1, v0, v1, v0, v1, v0, v1, v0, v1)
+#endif
     if (never) v1 = hipsolverSsyevd_bufferSize_(v0, v1, v1, v1, v0, v1, v0, v0)
     if (never) v1 = hipsolverDsyevd_bufferSize_(v0, v1, v1, v1, v0, v1, v0, v0)
     if (never) v1 = hipsolverCheevd_bufferSize_(v0, v1, v1, v1, v0, v1, v0, v0)
@@ -230,15 +235,11 @@ program test_hipsolver
     if (never) v1 = hipsolverCheevd_(v0, v1, v1, v1, v0, v1, v0, v0, v1, v0)
     if (never) v1 = hipsolverZheevd_(v0, v1, v1, v1, v0, v1, v0, v0, v1, v0)
     if (never) v1 = hipsolverSsyevdx_bufferSize_(v0, v1, v1, v1, v1, v0, v1, v5, v5, v1, v1, v0, v0, v0)
-#endif
     if (never) v1 = hipsolverDsyevdx_bufferSize_(v0, v1, v1, v1, v1, v0, v1, v2, v2, v1, v1, v0, v0, v0)
-#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverCheevdx_bufferSize_(v0, v1, v1, v1, v1, v0, v1, v5, v5, v1, v1, v0, v0, v0)
     if (never) v1 = hipsolverZheevdx_bufferSize_(v0, v1, v1, v1, v1, v0, v1, v2, v2, v1, v1, v0, v0, v0)
     if (never) v1 = hipsolverSsyevdx_(v0, v1, v1, v1, v1, v0, v1, v5, v5, v1, v1, v0, v0, v0, v1, v0)
-#endif
     if (never) v1 = hipsolverDsyevdx_(v0, v1, v1, v1, v1, v0, v1, v2, v2, v1, v1, v0, v0, v0, v1, v0)
-#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverCheevdx_(v0, v1, v1, v1, v1, v0, v1, v5, v5, v1, v1, v0, v0, v0, v1, v0)
     if (never) v1 = hipsolverZheevdx_(v0, v1, v1, v1, v1, v0, v1, v2, v2, v1, v1, v0, v0, v0, v1, v0)
     if (never) v1 = hipsolverSsyevj_bufferSize_(v0, v1, v1, v1, v0, v1, v0, v0, v0)
@@ -254,9 +255,7 @@ program test_hipsolver
     if (never) v1 = hipsolverCheevjBatched_bufferSize_(v0, v1, v1, v1, v0, v1, v0, v0, v0, v1)
     if (never) v1 = hipsolverZheevjBatched_bufferSize_(v0, v1, v1, v1, v0, v1, v0, v0, v0, v1)
     if (never) v1 = hipsolverSsyevjBatched_(v0, v1, v1, v1, v0, v1, v0, v0, v1, v0, v0, v1)
-#endif
     if (never) v1 = hipsolverDsyevjBatched_(v0, v1, v1, v1, v0, v1, v0, v0, v1, v0, v0, v1)
-#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverCheevjBatched_(v0, v1, v1, v1, v0, v1, v0, v0, v1, v0, v0, v1)
     if (never) v1 = hipsolverZheevjBatched_(v0, v1, v1, v1, v0, v1, v0, v0, v1, v0, v0, v1)
     if (never) v1 = hipsolverSsygvd_bufferSize_(v0, v1, v1, v1, v1, v0, v1, v0, v1, v0, v0)
@@ -299,7 +298,6 @@ program test_hipsolver
     if (never) v1 = hipsolverDsytrf_(v0, v1, v1, v0, v1, v0, v0, v1, v0)
     if (never) v1 = hipsolverCsytrf_(v0, v1, v1, v0, v1, v0, v0, v1, v0)
     if (never) v1 = hipsolverZsytrf_(v0, v1, v1, v0, v1, v0, v0, v1, v0)
-#endif
     if (never) v1 = hipsolverDnCreate_(v0)
     if (never) v1 = hipsolverDnDestroy_(v0)
     if (never) v1 = hipsolverDnSetStream_(v0, v0)
