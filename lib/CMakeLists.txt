@@ -39,11 +39,8 @@ set(HIPFORT_SRC_HIP ${HIPFORT_SRC_HIP_F90} ${HIPFORT_SRC_HIP_F90_UPPER})
 #     -> nvptx only. On amdgcn every `use hipfort_cuda_errors` is #ifdef'd out.
 # Everything else is common to both backends.
 set(HIPFORT_SRC_ROC "")
-# roctx joins the AMD-only list. It was absent while hipfort_roctx was
-# interface-only: an interface nobody calls emits no relocation, so carrying it
-# in the nvptx archive cost nothing. The generated module has a CONTAINS block
-# whose _cstr wrappers CALL roctxMarkA/RangePushA/RangeStartA, which do not exist
-# on a CUDA system, and hipfort_shared_link_nvptx fails on exactly those.
+# roctx is AMD-only: its entry points exist only in ROCm's
+# rocprofiler-sdk-roctx, with no CUDA counterpart.
 foreach(_roclib rocblas rocsolver rocsparse rocfft rocrand roctx)
   file(GLOB _rocfiles "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/hipfort_${_roclib}.[fF]90")  # API module only, not *_enums
   list(APPEND HIPFORT_SRC_ROC ${_rocfiles})
@@ -462,9 +459,7 @@ if(HIPFORT_EXTENDED_TESTS)
       set(_amd_dir "${ROCM_PATH}/lib")
     endif()
     # NB: the HIP runtime is libamdhip64, not "libhip".
-    # rocTX is in this list now: the generated hipfort_roctx references
-    # roctxMarkA/RangePushA/RangeStartA from its cstr wrappers. It ships under two
-    # names and they are NOT interchangeable -- librocprofiler-sdk-roctx exports
+    # rocTX ships under two names and they are NOT interchangeable -- librocprofiler-sdk-roctx exports
     # the plain symbols and is what hipfort::roctx links, while the legacy
     # libroctx64 exports them versioned (roctxMarkA@@ROCTX_4.1) -- so resolve the
     # same one the component does, falling back to the legacy name.

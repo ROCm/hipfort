@@ -954,8 +954,6 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: tau
     end function
-
-    module procedure rocsolver_slarfg_64_typed
   end interface
 
   interface rocsolver_dlarfg_64
@@ -971,8 +969,6 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: tau
     end function
-
-    module procedure rocsolver_dlarfg_64_typed
   end interface
 
   interface rocsolver_clarfg_64
@@ -988,8 +984,6 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: tau
     end function
-
-    module procedure rocsolver_clarfg_64_typed
   end interface
 
   interface rocsolver_zlarfg_64
@@ -1005,8 +999,6 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: incx
       type(c_ptr),value :: tau
     end function
-
-    module procedure rocsolver_zlarfg_64_typed
   end interface
 
   !>     \brief The LARFT functions generate the triangular factor ``T`` of a block reflector H of
@@ -1455,8 +1447,6 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
     end function
-
-    module procedure rocsolver_slarf_64_typed
   end interface
 
   interface rocsolver_dlarf_64
@@ -1476,8 +1466,6 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
     end function
-
-    module procedure rocsolver_dlarf_64_typed
   end interface
 
   interface rocsolver_clarf_64
@@ -1497,8 +1485,6 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
     end function
-
-    module procedure rocsolver_clarf_64_typed
   end interface
 
   interface rocsolver_zlarf_64
@@ -1518,8 +1504,6 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
     end function
-
-    module procedure rocsolver_zlarf_64_typed
   end interface
 
   !>     \brief The LARFB functions apply a block reflector ``H`` to a general ``m`` -by-``n``
@@ -44835,146 +44819,6 @@ module hipfort_rocsolver
       integer(kind(rocsolver_alg_mode_gpu)),target :: mode
       !
       rocsolver_get_alg_mode_typed = rocsolver_get_alg_mode_(handle,func,c_loc(mode))
-    end function
-
-    function rocsolver_slarfg_64_typed(handle,n,alpha,x,incx,tau)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_slarfg_64_typed
-      type(c_ptr) :: handle
-      integer(c_int64_t) :: n
-      real(c_float),target :: alpha
-      type(c_ptr) :: x
-      integer(c_int64_t) :: incx
-      real(c_float),target :: tau
-      !
-      rocsolver_slarfg_64_typed = rocsolver_slarfg_64_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
-    end function
-
-    function rocsolver_dlarfg_64_typed(handle,n,alpha,x,incx,tau)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dlarfg_64_typed
-      type(c_ptr) :: handle
-      integer(c_int64_t) :: n
-      real(c_double),target :: alpha
-      type(c_ptr) :: x
-      integer(c_int64_t) :: incx
-      real(c_double),target :: tau
-      !
-      rocsolver_dlarfg_64_typed = rocsolver_dlarfg_64_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
-    end function
-
-    function rocsolver_clarfg_64_typed(handle,n,alpha,x,incx,tau)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_clarfg_64_typed
-      type(c_ptr) :: handle
-      integer(c_int64_t) :: n
-      complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
-      integer(c_int64_t) :: incx
-      complex(c_float_complex),target :: tau
-      !
-      rocsolver_clarfg_64_typed = rocsolver_clarfg_64_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
-    end function
-
-    function rocsolver_zlarfg_64_typed(handle,n,alpha,x,incx,tau)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zlarfg_64_typed
-      type(c_ptr) :: handle
-      integer(c_int64_t) :: n
-      complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
-      integer(c_int64_t) :: incx
-      complex(c_double_complex),target :: tau
-      !
-      rocsolver_zlarfg_64_typed = rocsolver_zlarfg_64_(handle,n,c_loc(alpha),x,incx,c_loc(tau))
-    end function
-
-    function rocsolver_slarf_64_typed(handle,side,m,n,x,incx,alpha,A,lda)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_slarf_64_typed
-      type(c_ptr) :: handle
-      integer(kind(rocblas_side_left)) :: side
-      integer(c_int64_t) :: m
-      integer(c_int64_t) :: n
-      type(c_ptr) :: x
-      integer(c_int64_t) :: incx
-      real(c_float),target :: alpha
-      type(c_ptr) :: A
-      integer(c_int64_t) :: lda
-      !
-      rocsolver_slarf_64_typed = rocsolver_slarf_64_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
-    end function
-
-    function rocsolver_dlarf_64_typed(handle,side,m,n,x,incx,alpha,A,lda)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_64_typed
-      type(c_ptr) :: handle
-      integer(kind(rocblas_side_left)) :: side
-      integer(c_int64_t) :: m
-      integer(c_int64_t) :: n
-      type(c_ptr) :: x
-      integer(c_int64_t) :: incx
-      real(c_double),target :: alpha
-      type(c_ptr) :: A
-      integer(c_int64_t) :: lda
-      !
-      rocsolver_dlarf_64_typed = rocsolver_dlarf_64_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
-    end function
-
-    function rocsolver_clarf_64_typed(handle,side,m,n,x,incx,alpha,A,lda)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_clarf_64_typed
-      type(c_ptr) :: handle
-      integer(kind(rocblas_side_left)) :: side
-      integer(c_int64_t) :: m
-      integer(c_int64_t) :: n
-      type(c_ptr) :: x
-      integer(c_int64_t) :: incx
-      complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
-      integer(c_int64_t) :: lda
-      !
-      rocsolver_clarf_64_typed = rocsolver_clarf_64_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
-    end function
-
-    function rocsolver_zlarf_64_typed(handle,side,m,n,x,incx,alpha,A,lda)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_64_typed
-      type(c_ptr) :: handle
-      integer(kind(rocblas_side_left)) :: side
-      integer(c_int64_t) :: m
-      integer(c_int64_t) :: n
-      type(c_ptr) :: x
-      integer(c_int64_t) :: incx
-      complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
-      integer(c_int64_t) :: lda
-      !
-      rocsolver_zlarf_64_typed = rocsolver_zlarf_64_(handle,side,m,n,x,incx,c_loc(alpha),A,lda)
     end function
 
     function rocsolver_get_rfinfo_mode_typed(rfinfo,mode)
