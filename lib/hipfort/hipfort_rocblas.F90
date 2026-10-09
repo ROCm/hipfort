@@ -39770,7 +39770,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_pointer_mode_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_pointer_mode_host)),target :: pointer_mode
       !
       rocblas_get_pointer_mode_typed = rocblas_get_pointer_mode_(handle,c_loc(pointer_mode))
@@ -39781,7 +39781,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_atomics_mode_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_atomics_not_allowed)),target :: atomics_mode
       !
       rocblas_get_atomics_mode_typed = rocblas_get_atomics_mode_(handle,c_loc(atomics_mode))
@@ -39792,7 +39792,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_batch_alpha_stride_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t),target :: alpha_stride
       !
       rocblas_get_batch_alpha_stride_typed = rocblas_get_batch_alpha_stride_(handle, &
@@ -39804,7 +39804,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_batch_beta_stride_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t),target :: beta_stride
       !
       rocblas_get_batch_beta_stride_typed = rocblas_get_batch_beta_stride_(handle, &
@@ -39816,7 +39816,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_math_mode_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_default_math)),target :: math_mode
       !
       rocblas_get_math_mode_typed = rocblas_get_math_mode_(handle,c_loc(math_mode))
@@ -39827,7 +39827,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_performance_metric_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_default_performance_metric)),target :: metric
       !
       rocblas_get_performance_metric_typed = rocblas_get_performance_metric_(handle,c_loc(metric))
@@ -39838,7 +39838,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sscal_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -39852,7 +39852,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dscal_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -39866,7 +39866,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cscal_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -39880,7 +39880,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zscal_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -39894,7 +39894,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csscal_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -39908,7 +39908,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdscal_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -39922,7 +39922,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sscal_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -39936,7 +39936,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dscal_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -39950,7 +39950,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cscal_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -39964,7 +39964,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zscal_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -39978,7 +39978,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csscal_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -39992,7 +39992,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdscal_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -40006,10 +40006,10 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sscal_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       integer(c_int) :: batch_count
       !
@@ -40021,10 +40021,10 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dscal_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       integer(c_int) :: batch_count
       !
@@ -40036,10 +40036,10 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cscal_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       integer(c_int) :: batch_count
       !
@@ -40051,10 +40051,10 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zscal_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       integer(c_int) :: batch_count
       !
@@ -40066,10 +40066,10 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csscal_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       integer(c_int) :: batch_count
       !
@@ -40082,10 +40082,10 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdscal_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       integer(c_int) :: batch_count
       !
@@ -40098,10 +40098,10 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sscal_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: batch_count
       !
@@ -40114,10 +40114,10 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dscal_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: batch_count
       !
@@ -40130,10 +40130,10 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cscal_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: batch_count
       !
@@ -40146,10 +40146,10 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zscal_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: batch_count
       !
@@ -40162,10 +40162,10 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csscal_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: batch_count
       !
@@ -40178,10 +40178,10 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdscal_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: batch_count
       !
@@ -40194,7 +40194,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sscal_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -40211,7 +40211,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dscal_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -40228,7 +40228,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cscal_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -40245,7 +40245,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zscal_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -40262,7 +40262,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csscal_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -40279,7 +40279,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdscal_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -40296,7 +40296,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sscal_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -40313,7 +40313,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dscal_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -40330,7 +40330,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cscal_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -40347,7 +40347,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zscal_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -40364,7 +40364,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csscal_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -40381,7 +40381,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdscal_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -40398,7 +40398,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -40414,7 +40414,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -40430,7 +40430,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -40446,7 +40446,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -40462,7 +40462,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -40478,7 +40478,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -40494,7 +40494,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -40510,7 +40510,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -40526,7 +40526,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -40542,7 +40542,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -40558,7 +40558,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -40574,7 +40574,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -40590,7 +40590,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_haxpy_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_short),target :: alpha
       type(c_ptr) :: x
@@ -40606,7 +40606,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_saxpy_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -40622,7 +40622,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_daxpy_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -40638,7 +40638,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_caxpy_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -40654,7 +40654,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zaxpy_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -40670,7 +40670,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_haxpy_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       integer(c_short),target :: alpha
       type(c_ptr) :: x
@@ -40686,7 +40686,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_saxpy_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -40702,7 +40702,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_daxpy_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -40718,7 +40718,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_caxpy_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -40734,7 +40734,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zaxpy_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -40750,12 +40750,12 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_haxpy_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_short),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -40768,12 +40768,12 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_saxpy_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -40786,12 +40786,12 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_daxpy_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -40804,12 +40804,12 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_caxpy_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -40822,12 +40822,12 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zaxpy_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -40840,12 +40840,12 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_haxpy_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       integer(c_short),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -40858,12 +40858,12 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_saxpy_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -40876,12 +40876,12 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_daxpy_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -40894,12 +40894,12 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_caxpy_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -40912,12 +40912,12 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zaxpy_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -40931,7 +40931,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_haxpy_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       integer(c_short),target :: alpha
       type(c_ptr) :: x
@@ -40952,7 +40952,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_saxpy_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -40973,7 +40973,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_daxpy_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -40994,7 +40994,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_caxpy_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -41015,7 +41015,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zaxpy_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -41036,7 +41036,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_haxpy_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       integer(c_short),target :: alpha
       type(c_ptr) :: x
@@ -41057,7 +41057,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_saxpy_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -41078,7 +41078,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_daxpy_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -41099,7 +41099,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_caxpy_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -41120,7 +41120,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zaxpy_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -41140,7 +41140,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sasum_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41154,7 +41154,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dasum_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41168,7 +41168,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scasum_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41182,7 +41182,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41196,7 +41196,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sasum_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41210,7 +41210,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dasum_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41224,7 +41224,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scasum_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41238,7 +41238,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41252,7 +41252,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_snrm2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41266,7 +41266,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dnrm2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41280,7 +41280,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41294,7 +41294,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41308,7 +41308,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_snrm2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41322,7 +41322,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dnrm2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41336,7 +41336,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41350,7 +41350,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41364,7 +41364,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_isamax_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41378,7 +41378,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_idamax_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41392,7 +41392,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamax_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41406,7 +41406,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamax_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41420,7 +41420,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_isamax_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41434,7 +41434,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_idamax_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41448,7 +41448,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamax_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41462,7 +41462,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamax_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41476,7 +41476,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_isamin_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41490,7 +41490,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_idamin_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41504,7 +41504,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamin_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41518,7 +41518,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamin_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41532,7 +41532,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_isamin_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41546,7 +41546,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_idamin_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41560,7 +41560,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamin_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41574,7 +41574,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamin_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41588,7 +41588,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41605,7 +41605,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41622,7 +41622,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41639,7 +41639,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41656,7 +41656,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41673,7 +41673,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -41690,7 +41690,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41707,7 +41707,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41724,7 +41724,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41741,7 +41741,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41758,7 +41758,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41775,7 +41775,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -41792,11 +41792,11 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       real(c_float),target :: c
       real(c_float),target :: s
@@ -41811,11 +41811,11 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       real(c_double),target :: c
       real(c_double),target :: s
@@ -41830,11 +41830,11 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       real(c_float),target :: c
       complex(c_float_complex),target :: s
@@ -41849,11 +41849,11 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       real(c_float),target :: c
       real(c_float),target :: s
@@ -41868,11 +41868,11 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       real(c_double),target :: c
       complex(c_double_complex),target :: s
@@ -41887,11 +41887,11 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       real(c_double),target :: c
       real(c_double),target :: s
@@ -41906,11 +41906,11 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       real(c_float),target :: c
       real(c_float),target :: s
@@ -41925,11 +41925,11 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       real(c_double),target :: c
       real(c_double),target :: s
@@ -41944,11 +41944,11 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       real(c_float),target :: c
       complex(c_float_complex),target :: s
@@ -41963,11 +41963,11 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       real(c_float),target :: c
       real(c_float),target :: s
@@ -41982,11 +41982,11 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       real(c_double),target :: c
       complex(c_double_complex),target :: s
@@ -42001,11 +42001,11 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       real(c_double),target :: c
       real(c_double),target :: s
@@ -42021,7 +42021,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -42043,7 +42043,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -42065,7 +42065,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -42087,7 +42087,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -42109,7 +42109,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -42131,7 +42131,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -42153,7 +42153,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -42175,7 +42175,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -42197,7 +42197,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -42219,7 +42219,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -42241,7 +42241,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -42263,7 +42263,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -42284,7 +42284,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotg_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_float),target :: a
       real(c_float),target :: b
       real(c_float),target :: c
@@ -42298,7 +42298,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotg_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_double),target :: a
       real(c_double),target :: b
       real(c_double),target :: c
@@ -42312,7 +42312,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crotg_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       complex(c_float_complex),target :: a
       complex(c_float_complex),target :: b
       real(c_float),target :: c
@@ -42326,7 +42326,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrotg_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       complex(c_double_complex),target :: a
       complex(c_double_complex),target :: b
       real(c_double),target :: c
@@ -42340,7 +42340,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotg_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_float),target :: a
       real(c_float),target :: b
       real(c_float),target :: c
@@ -42354,7 +42354,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotg_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_double),target :: a
       real(c_double),target :: b
       real(c_double),target :: c
@@ -42368,7 +42368,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crotg_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       complex(c_float_complex),target :: a
       complex(c_float_complex),target :: b
       real(c_float),target :: c
@@ -42382,7 +42382,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrotg_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       complex(c_double_complex),target :: a
       complex(c_double_complex),target :: b
       real(c_double),target :: c
@@ -42396,7 +42396,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotmg_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_float),target :: d1
       real(c_float),target :: d2
       real(c_float),target :: x1
@@ -42411,7 +42411,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotmg_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_double),target :: d1
       real(c_double),target :: d2
       real(c_double),target :: x1
@@ -42426,7 +42426,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotmg_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_float),target :: d1
       real(c_float),target :: d2
       real(c_float),target :: x1
@@ -42442,7 +42442,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotmg_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_double),target :: d1
       real(c_double),target :: d2
       real(c_double),target :: x1
@@ -42458,7 +42458,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -42482,7 +42482,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -42506,7 +42506,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -42530,7 +42530,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -42554,7 +42554,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -42578,7 +42578,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -42602,7 +42602,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -42626,7 +42626,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -42651,19 +42651,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: kl
       integer(c_int) :: ku
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -42677,19 +42677,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: kl
       integer(c_int) :: ku
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -42703,19 +42703,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: kl
       integer(c_int) :: ku
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -42729,19 +42729,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: kl
       integer(c_int) :: ku
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -42755,19 +42755,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -42781,19 +42781,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -42807,19 +42807,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -42833,19 +42833,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -42859,7 +42859,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -42888,7 +42888,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -42917,7 +42917,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -42946,7 +42946,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -42975,7 +42975,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -43004,7 +43004,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -43033,7 +43033,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -43062,7 +43062,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -43090,7 +43090,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -43112,7 +43112,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -43134,7 +43134,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -43156,7 +43156,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -43178,7 +43178,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -43200,7 +43200,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -43222,7 +43222,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -43244,7 +43244,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -43267,17 +43267,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -43291,17 +43291,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -43315,17 +43315,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -43339,17 +43339,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -43363,17 +43363,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hshgemv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -43387,17 +43387,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hssgemv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -43411,17 +43411,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_tstgemv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -43435,17 +43435,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_tssgemv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -43459,17 +43459,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -43483,17 +43483,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -43507,17 +43507,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -43531,17 +43531,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -43555,17 +43555,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hshgemv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -43579,17 +43579,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hssgemv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -43603,17 +43603,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_tstgemv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -43627,17 +43627,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_tssgemv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -43651,7 +43651,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -43678,7 +43678,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -43705,7 +43705,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -43732,7 +43732,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -43759,7 +43759,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hshgemv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -43786,7 +43786,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hssgemv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -43813,7 +43813,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_tstgemv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -43840,7 +43840,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_tssgemv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -43867,7 +43867,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -43894,7 +43894,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -43921,7 +43921,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -43948,7 +43948,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -43975,7 +43975,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hshgemv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -44002,7 +44002,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hssgemv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -44029,7 +44029,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_tstgemv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -44056,7 +44056,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_tssgemv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -44082,7 +44082,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -44104,7 +44104,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -44126,7 +44126,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -44148,7 +44148,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -44170,17 +44170,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -44193,17 +44193,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -44217,17 +44217,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -44241,17 +44241,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -44265,7 +44265,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -44292,7 +44292,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -44319,7 +44319,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -44346,7 +44346,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -44372,7 +44372,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -44393,7 +44393,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -44414,7 +44414,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -44435,7 +44435,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -44456,16 +44456,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -44478,16 +44478,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -44501,16 +44501,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -44524,16 +44524,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -44547,7 +44547,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -44573,7 +44573,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -44599,7 +44599,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -44625,7 +44625,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -44650,7 +44650,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -44667,7 +44667,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -44684,7 +44684,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -44701,7 +44701,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -44718,13 +44718,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -44737,13 +44737,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -44756,13 +44756,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -44775,13 +44775,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -44795,7 +44795,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -44817,7 +44817,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -44839,7 +44839,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -44861,7 +44861,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -44882,7 +44882,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -44901,7 +44901,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -44920,7 +44920,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -44939,7 +44939,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -44958,15 +44958,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -44979,15 +44979,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -45000,15 +45000,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -45021,15 +45021,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -45043,7 +45043,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -45068,7 +45068,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -45093,7 +45093,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -45118,7 +45118,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -45142,7 +45142,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -45161,7 +45161,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -45180,7 +45180,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -45200,7 +45200,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -45220,15 +45220,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpmv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr), value :: AP
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -45241,15 +45241,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpmv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr), value :: AP
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -45262,15 +45262,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpmv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr), value :: AP
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -45283,15 +45283,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpmv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr), value :: AP
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -45305,7 +45305,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpmv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -45330,7 +45330,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpmv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -45355,7 +45355,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpmv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -45380,7 +45380,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpmv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -45404,7 +45404,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -45420,7 +45420,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -45436,7 +45436,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -45452,7 +45452,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -45468,13 +45468,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batch_count
       !
       rocblas_chpr_batched_typed = rocblas_chpr_batched_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -45486,13 +45486,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batch_count
       !
       rocblas_zhpr_batched_typed = rocblas_zhpr_batched_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -45504,13 +45504,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batch_count
       !
       rocblas_chpr_batched_64_typed = rocblas_chpr_batched_64_(handle,uplo,n,c_loc(alpha),x,incx, &
@@ -45522,13 +45522,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batch_count
       !
       rocblas_zhpr_batched_64_typed = rocblas_zhpr_batched_64_(handle,uplo,n,c_loc(alpha),x,incx, &
@@ -45541,7 +45541,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -45562,7 +45562,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -45583,7 +45583,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -45604,7 +45604,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -45624,7 +45624,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -45642,7 +45642,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -45660,7 +45660,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -45678,7 +45678,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -45696,15 +45696,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr2_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batch_count
       !
       rocblas_chpr2_batched_typed = rocblas_chpr2_batched_(handle,uplo,n,c_loc(alpha),x,incx,y, &
@@ -45716,15 +45716,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr2_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batch_count
       !
       rocblas_zhpr2_batched_typed = rocblas_zhpr2_batched_(handle,uplo,n,c_loc(alpha),x,incx,y, &
@@ -45736,15 +45736,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr2_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batch_count
       !
       rocblas_chpr2_batched_64_typed = rocblas_chpr2_batched_64_(handle,uplo,n,c_loc(alpha),x, &
@@ -45756,15 +45756,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr2_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batch_count
       !
       rocblas_zhpr2_batched_64_typed = rocblas_zhpr2_batched_64_(handle,uplo,n,c_loc(alpha),x, &
@@ -45777,7 +45777,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr2_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -45801,7 +45801,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr2_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -45825,7 +45825,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr2_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -45849,7 +45849,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr2_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -45872,7 +45872,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -45893,7 +45893,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -45914,7 +45914,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -45935,7 +45935,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -45956,7 +45956,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -45977,7 +45977,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -45998,7 +45998,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -46019,7 +46019,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -46040,16 +46040,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -46062,16 +46062,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -46084,16 +46084,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -46106,16 +46106,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -46129,16 +46129,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -46152,16 +46152,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -46175,16 +46175,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -46198,16 +46198,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -46221,7 +46221,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -46247,7 +46247,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -46273,7 +46273,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -46299,7 +46299,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -46325,7 +46325,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -46351,7 +46351,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -46377,7 +46377,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -46403,7 +46403,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -46428,7 +46428,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -46447,7 +46447,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -46466,7 +46466,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -46486,7 +46486,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -46506,15 +46506,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspmv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr), value :: A
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -46527,15 +46527,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspmv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr), value :: A
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -46548,15 +46548,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspmv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr), value :: A
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -46569,15 +46569,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspmv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
-      type(c_ptr) :: x
+      type(c_ptr), value :: A
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -46591,7 +46591,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspmv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -46616,7 +46616,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspmv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -46641,7 +46641,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspmv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -46666,7 +46666,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspmv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -46690,7 +46690,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -46712,7 +46712,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -46734,7 +46734,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -46756,7 +46756,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -46778,17 +46778,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -46801,17 +46801,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batch_count
       !
@@ -46825,17 +46825,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -46849,17 +46849,17 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batch_count
       !
@@ -46873,7 +46873,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -46900,7 +46900,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -46927,7 +46927,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -46954,7 +46954,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -46980,7 +46980,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -46999,7 +46999,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -47018,7 +47018,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -47037,7 +47037,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -47056,7 +47056,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -47075,7 +47075,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -47094,7 +47094,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -47113,7 +47113,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -47132,7 +47132,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -47151,7 +47151,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -47170,7 +47170,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -47189,7 +47189,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -47208,15 +47208,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -47229,15 +47229,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -47250,15 +47250,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -47271,15 +47271,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -47292,15 +47292,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -47313,15 +47313,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -47334,15 +47334,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -47355,15 +47355,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -47376,15 +47376,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -47397,15 +47397,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -47418,15 +47418,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -47439,15 +47439,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -47461,7 +47461,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -47486,7 +47486,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -47511,7 +47511,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -47536,7 +47536,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -47561,7 +47561,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -47586,7 +47586,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -47611,7 +47611,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -47636,7 +47636,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -47661,7 +47661,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -47686,7 +47686,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -47711,7 +47711,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -47736,7 +47736,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -47760,7 +47760,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -47776,7 +47776,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -47792,7 +47792,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cspr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -47808,7 +47808,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zspr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -47824,7 +47824,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -47840,7 +47840,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -47856,7 +47856,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cspr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -47872,7 +47872,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zspr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -47888,13 +47888,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batch_count
       !
       rocblas_sspr_batched_typed = rocblas_sspr_batched_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -47906,13 +47906,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batch_count
       !
       rocblas_dspr_batched_typed = rocblas_dspr_batched_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -47924,13 +47924,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cspr_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batch_count
       !
       rocblas_cspr_batched_typed = rocblas_cspr_batched_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -47942,13 +47942,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zspr_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batch_count
       !
       rocblas_zspr_batched_typed = rocblas_zspr_batched_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -47960,13 +47960,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batch_count
       !
       rocblas_sspr_batched_64_typed = rocblas_sspr_batched_64_(handle,uplo,n,c_loc(alpha),x,incx, &
@@ -47978,13 +47978,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batch_count
       !
       rocblas_dspr_batched_64_typed = rocblas_dspr_batched_64_(handle,uplo,n,c_loc(alpha),x,incx, &
@@ -47996,13 +47996,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cspr_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batch_count
       !
       rocblas_cspr_batched_64_typed = rocblas_cspr_batched_64_(handle,uplo,n,c_loc(alpha),x,incx, &
@@ -48014,13 +48014,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zspr_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batch_count
       !
       rocblas_zspr_batched_64_typed = rocblas_zspr_batched_64_(handle,uplo,n,c_loc(alpha),x,incx, &
@@ -48033,7 +48033,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -48054,7 +48054,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -48075,7 +48075,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cspr_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -48096,7 +48096,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zspr_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -48117,7 +48117,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -48138,7 +48138,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -48159,7 +48159,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cspr_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -48180,7 +48180,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zspr_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -48200,7 +48200,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -48218,7 +48218,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -48236,7 +48236,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -48254,7 +48254,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -48272,15 +48272,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr2_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batch_count
       !
       rocblas_sspr2_batched_typed = rocblas_sspr2_batched_(handle,uplo,n,c_loc(alpha),x,incx,y, &
@@ -48292,15 +48292,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr2_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batch_count
       !
       rocblas_dspr2_batched_typed = rocblas_dspr2_batched_(handle,uplo,n,c_loc(alpha),x,incx,y, &
@@ -48312,15 +48312,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr2_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batch_count
       !
       rocblas_sspr2_batched_64_typed = rocblas_sspr2_batched_64_(handle,uplo,n,c_loc(alpha),x, &
@@ -48332,15 +48332,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr2_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batch_count
       !
       rocblas_dspr2_batched_64_typed = rocblas_dspr2_batched_64_(handle,uplo,n,c_loc(alpha),x, &
@@ -48353,7 +48353,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr2_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -48377,7 +48377,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr2_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -48401,7 +48401,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr2_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -48425,7 +48425,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr2_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -48448,7 +48448,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -48465,7 +48465,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -48482,7 +48482,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -48499,7 +48499,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -48516,7 +48516,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -48533,7 +48533,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -48550,7 +48550,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -48567,7 +48567,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -48584,13 +48584,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -48603,13 +48603,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -48622,13 +48622,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -48641,13 +48641,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -48660,13 +48660,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -48679,13 +48679,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -48698,13 +48698,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -48717,13 +48717,13 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -48737,7 +48737,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -48759,7 +48759,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -48781,7 +48781,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -48803,7 +48803,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -48825,7 +48825,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -48847,7 +48847,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -48869,7 +48869,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -48891,7 +48891,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -48912,7 +48912,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -48931,7 +48931,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -48950,7 +48950,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -48969,7 +48969,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -48988,7 +48988,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -49007,7 +49007,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -49026,7 +49026,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -49045,7 +49045,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -49064,15 +49064,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -49085,15 +49085,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -49106,15 +49106,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -49127,15 +49127,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       integer(c_int) :: batch_count
       !
@@ -49148,15 +49148,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -49169,15 +49169,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -49190,15 +49190,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -49211,15 +49211,15 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batch_count
       !
@@ -49233,7 +49233,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -49258,7 +49258,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -49283,7 +49283,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -49308,7 +49308,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -49333,7 +49333,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -49358,7 +49358,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -49383,7 +49383,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -49408,7 +49408,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -49432,7 +49432,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -49455,7 +49455,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -49478,7 +49478,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
@@ -49501,7 +49501,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
@@ -49525,18 +49525,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -49550,18 +49550,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -49575,18 +49575,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -49600,18 +49600,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -49625,7 +49625,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -49653,7 +49653,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -49681,7 +49681,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
@@ -49709,7 +49709,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
@@ -49736,7 +49736,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -49757,7 +49757,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -49778,7 +49778,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
@@ -49799,7 +49799,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
@@ -49820,16 +49820,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -49842,16 +49842,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -49865,16 +49865,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -49888,16 +49888,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -49911,7 +49911,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -49936,7 +49936,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -49961,7 +49961,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
@@ -49986,7 +49986,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
@@ -50010,7 +50010,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -50033,7 +50033,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -50056,7 +50056,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -50079,7 +50079,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -50103,18 +50103,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -50128,18 +50128,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -50153,18 +50153,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -50178,18 +50178,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -50203,7 +50203,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -50231,7 +50231,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -50259,7 +50259,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -50287,7 +50287,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -50314,7 +50314,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -50337,7 +50337,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -50360,7 +50360,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -50383,7 +50383,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -50407,18 +50407,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -50432,18 +50432,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -50457,18 +50457,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -50482,18 +50482,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -50507,7 +50507,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -50535,7 +50535,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -50563,7 +50563,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -50591,7 +50591,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -50618,7 +50618,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -50641,7 +50641,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -50664,7 +50664,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -50687,7 +50687,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -50710,7 +50710,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
@@ -50733,7 +50733,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
@@ -50756,7 +50756,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
@@ -50779,7 +50779,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
@@ -50803,18 +50803,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -50828,18 +50828,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -50853,18 +50853,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -50878,18 +50878,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -50903,18 +50903,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -50928,18 +50928,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -50953,18 +50953,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -50978,18 +50978,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -51003,7 +51003,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -51031,7 +51031,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -51059,7 +51059,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -51087,7 +51087,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -51115,7 +51115,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
@@ -51143,7 +51143,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
@@ -51171,7 +51171,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
@@ -51199,7 +51199,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: m
@@ -51226,7 +51226,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -51247,7 +51247,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -51268,7 +51268,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -51289,7 +51289,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -51310,7 +51310,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
@@ -51331,7 +51331,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
@@ -51352,7 +51352,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
@@ -51373,7 +51373,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
@@ -51394,16 +51394,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -51416,16 +51416,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -51438,16 +51438,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -51460,16 +51460,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -51483,16 +51483,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -51506,16 +51506,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -51529,16 +51529,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -51552,16 +51552,16 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -51575,7 +51575,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -51600,7 +51600,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -51625,7 +51625,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -51650,7 +51650,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -51675,7 +51675,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
@@ -51700,7 +51700,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
@@ -51725,7 +51725,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
@@ -51750,7 +51750,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int64_t) :: n
@@ -51774,7 +51774,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -51797,7 +51797,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -51820,7 +51820,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -51843,7 +51843,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -51866,7 +51866,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -51889,7 +51889,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -51912,7 +51912,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -51935,7 +51935,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -51959,18 +51959,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -51984,18 +51984,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -52009,18 +52009,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -52034,18 +52034,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -52059,18 +52059,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -52084,18 +52084,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -52109,18 +52109,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -52134,18 +52134,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -52159,7 +52159,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -52187,7 +52187,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -52215,7 +52215,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -52243,7 +52243,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -52271,7 +52271,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -52299,7 +52299,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -52327,7 +52327,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -52355,7 +52355,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -52382,7 +52382,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -52405,7 +52405,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -52428,7 +52428,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -52451,7 +52451,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -52474,7 +52474,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -52497,7 +52497,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -52520,7 +52520,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -52543,7 +52543,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -52567,18 +52567,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -52592,18 +52592,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -52617,18 +52617,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -52642,18 +52642,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -52667,18 +52667,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -52692,18 +52692,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -52717,18 +52717,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -52742,18 +52742,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -52767,7 +52767,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -52795,7 +52795,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -52823,7 +52823,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -52851,7 +52851,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -52879,7 +52879,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -52907,7 +52907,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -52935,7 +52935,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -52963,7 +52963,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int64_t) :: n
@@ -52990,7 +52990,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53014,7 +53014,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53038,7 +53038,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53062,7 +53062,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53086,7 +53086,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53110,7 +53110,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53134,7 +53134,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53158,7 +53158,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53183,7 +53183,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53191,11 +53191,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -53209,7 +53209,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53217,11 +53217,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -53235,7 +53235,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53243,11 +53243,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -53261,7 +53261,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53269,11 +53269,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -53287,7 +53287,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53295,11 +53295,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -53313,7 +53313,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53321,11 +53321,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -53339,7 +53339,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53347,11 +53347,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -53365,7 +53365,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53373,11 +53373,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -53391,7 +53391,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53420,7 +53420,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53449,7 +53449,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53478,7 +53478,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53507,7 +53507,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53536,7 +53536,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53565,7 +53565,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53594,7 +53594,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53622,7 +53622,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53644,7 +53644,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53666,7 +53666,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53688,7 +53688,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53710,7 +53710,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53732,7 +53732,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53754,7 +53754,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53776,7 +53776,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53799,7 +53799,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53807,9 +53807,9 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int) :: batch_count
       !
@@ -53823,7 +53823,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53831,9 +53831,9 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int) :: batch_count
       !
@@ -53847,7 +53847,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53855,9 +53855,9 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int) :: batch_count
       !
@@ -53871,7 +53871,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53879,9 +53879,9 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int) :: batch_count
       !
@@ -53895,7 +53895,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53903,9 +53903,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: batch_count
       !
@@ -53919,7 +53919,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53927,9 +53927,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: batch_count
       !
@@ -53943,7 +53943,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53951,9 +53951,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: batch_count
       !
@@ -53967,7 +53967,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -53975,9 +53975,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: batch_count
       !
@@ -53991,7 +53991,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -54017,7 +54017,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -54043,7 +54043,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -54069,7 +54069,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -54095,7 +54095,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -54121,7 +54121,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -54147,7 +54147,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -54173,7 +54173,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -54198,7 +54198,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -54222,7 +54222,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -54246,7 +54246,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hgemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -54270,7 +54270,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -54294,7 +54294,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -54318,7 +54318,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -54342,7 +54342,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -54366,7 +54366,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hgemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -54390,7 +54390,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -54414,7 +54414,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -54439,19 +54439,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -54465,19 +54465,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -54491,19 +54491,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hgemm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       integer(c_short),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_short),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -54517,19 +54517,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -54543,19 +54543,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -54569,19 +54569,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -54595,19 +54595,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -54621,19 +54621,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hgemm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       integer(c_short),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       integer(c_short),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -54647,19 +54647,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -54673,19 +54673,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -54699,7 +54699,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -54728,7 +54728,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -54757,7 +54757,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hgemm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -54786,7 +54786,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -54815,7 +54815,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -54844,7 +54844,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -54874,7 +54874,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -54904,7 +54904,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_hgemm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -54934,7 +54934,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -54964,7 +54964,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -54993,7 +54993,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -55016,7 +55016,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -55039,7 +55039,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -55062,7 +55062,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -55085,7 +55085,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -55108,7 +55108,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -55131,7 +55131,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -55154,7 +55154,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -55178,18 +55178,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       real(c_float),target :: beta
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -55203,18 +55203,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       real(c_double),target :: beta
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -55228,18 +55228,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -55253,18 +55253,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -55278,18 +55278,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       real(c_float),target :: beta
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -55303,18 +55303,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       real(c_double),target :: beta
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -55328,18 +55328,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -55353,18 +55353,18 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -55378,7 +55378,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -55406,7 +55406,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -55434,7 +55434,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -55462,7 +55462,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -55490,7 +55490,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -55519,7 +55519,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -55548,7 +55548,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -55577,7 +55577,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: m
@@ -55605,7 +55605,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemmt_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -55629,7 +55629,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemmt_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -55653,7 +55653,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemmt_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -55677,7 +55677,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemmt_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -55701,7 +55701,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemmt_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -55725,7 +55725,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemmt_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -55749,7 +55749,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemmt_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -55773,7 +55773,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemmt_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -55798,19 +55798,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemmt_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -55824,19 +55824,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemmt_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -55850,19 +55850,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemmt_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -55876,19 +55876,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemmt_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batch_count
       !
@@ -55902,19 +55902,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemmt_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -55928,19 +55928,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemmt_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -55954,19 +55954,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemmt_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -55980,19 +55980,19 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemmt_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batch_count
       !
@@ -56006,7 +56006,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemmt_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -56036,7 +56036,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemmt_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -56066,7 +56066,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemmt_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -56096,7 +56096,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemmt_strided_batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -56126,7 +56126,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemmt_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -56156,7 +56156,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemmt_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -56186,7 +56186,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemmt_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -56216,7 +56216,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemmt_strided_batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
@@ -56265,7 +56265,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stop_device_memory_size_query_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_size_t),target :: mySize
       !
       rocblas_stop_device_memory_size_query_typed = rocblas_stop_device_memory_size_query_(handle, &
@@ -56277,7 +56277,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_get_device_memory_size_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_size_t),target :: mySize
       !
       rocblas_get_device_memory_size_typed = rocblas_get_device_memory_size_(handle,c_loc(mySize))
@@ -56292,7 +56292,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sscal_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,contiguous,dimension(..) :: x
@@ -56307,7 +56307,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sscal_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target :: x
@@ -56321,7 +56321,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sscal_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,dimension(:) :: x
@@ -56337,7 +56337,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dscal_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,contiguous,dimension(..) :: x
@@ -56352,7 +56352,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dscal_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target :: x
@@ -56366,7 +56366,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dscal_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,dimension(:) :: x
@@ -56382,7 +56382,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cscal_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,contiguous,dimension(..) :: x
@@ -56397,7 +56397,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cscal_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target :: x
@@ -56411,7 +56411,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cscal_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,dimension(:) :: x
@@ -56427,7 +56427,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zscal_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,contiguous,dimension(..) :: x
@@ -56442,7 +56442,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zscal_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target :: x
@@ -56456,7 +56456,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zscal_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,dimension(:) :: x
@@ -56472,7 +56472,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csscal_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       complex(c_float_complex),target,contiguous,dimension(..) :: x
@@ -56487,7 +56487,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csscal_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       complex(c_float_complex),target :: x
@@ -56501,7 +56501,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csscal_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       complex(c_float_complex),target,dimension(:) :: x
@@ -56517,7 +56517,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdscal_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       complex(c_double_complex),target,contiguous,dimension(..) :: x
@@ -56532,7 +56532,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdscal_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       complex(c_double_complex),target :: x
@@ -56546,7 +56546,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdscal_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       complex(c_double_complex),target,dimension(:) :: x
@@ -56562,7 +56562,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sscal_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,contiguous,dimension(..) :: x
@@ -56580,7 +56580,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sscal_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target :: x
@@ -56597,7 +56597,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sscal_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,dimension(:) :: x
@@ -56616,7 +56616,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dscal_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,contiguous,dimension(..) :: x
@@ -56634,7 +56634,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dscal_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target :: x
@@ -56651,7 +56651,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dscal_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,dimension(:) :: x
@@ -56670,7 +56670,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cscal_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,contiguous,dimension(..) :: x
@@ -56688,7 +56688,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cscal_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target :: x
@@ -56705,7 +56705,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cscal_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,dimension(:) :: x
@@ -56724,7 +56724,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zscal_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,contiguous,dimension(..) :: x
@@ -56742,7 +56742,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zscal_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target :: x
@@ -56759,7 +56759,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zscal_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,dimension(:) :: x
@@ -56778,7 +56778,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csscal_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       complex(c_float_complex),target,contiguous,dimension(..) :: x
@@ -56796,7 +56796,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csscal_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       complex(c_float_complex),target :: x
@@ -56813,7 +56813,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csscal_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       complex(c_float_complex),target,dimension(:) :: x
@@ -56832,7 +56832,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdscal_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       complex(c_double_complex),target,contiguous,dimension(..) :: x
@@ -56850,7 +56850,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdscal_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       complex(c_double_complex),target :: x
@@ -56867,7 +56867,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdscal_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       complex(c_double_complex),target,dimension(:) :: x
@@ -56886,7 +56886,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scopy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -56902,7 +56902,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scopy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -56917,7 +56917,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scopy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -56934,7 +56934,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dcopy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -56950,7 +56950,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dcopy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -56965,7 +56965,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dcopy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -56982,7 +56982,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ccopy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -56998,7 +56998,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ccopy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -57013,7 +57013,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ccopy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57030,7 +57030,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zcopy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57046,7 +57046,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zcopy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -57061,7 +57061,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zcopy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57079,7 +57079,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scopy_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57100,7 +57100,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scopy_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -57120,7 +57120,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scopy_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57142,7 +57142,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dcopy_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57163,7 +57163,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dcopy_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -57183,7 +57183,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dcopy_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57205,7 +57205,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ccopy_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57226,7 +57226,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ccopy_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -57246,7 +57246,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ccopy_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57268,7 +57268,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zcopy_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57289,7 +57289,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zcopy_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -57309,7 +57309,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zcopy_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57330,7 +57330,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57347,7 +57347,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57365,7 +57365,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -57381,7 +57381,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -57397,7 +57397,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57413,7 +57413,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57431,7 +57431,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57448,7 +57448,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57466,7 +57466,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -57482,7 +57482,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -57498,7 +57498,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57514,7 +57514,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57532,7 +57532,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57549,7 +57549,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57567,7 +57567,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -57583,7 +57583,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -57599,7 +57599,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57615,7 +57615,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57633,7 +57633,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57650,7 +57650,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57668,7 +57668,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -57684,7 +57684,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -57700,7 +57700,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57716,7 +57716,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57734,7 +57734,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57751,7 +57751,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57769,7 +57769,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -57785,7 +57785,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -57801,7 +57801,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57817,7 +57817,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57835,7 +57835,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57852,7 +57852,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57870,7 +57870,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -57886,7 +57886,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -57902,7 +57902,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57918,7 +57918,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -57937,7 +57937,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdot_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -57959,7 +57959,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdot_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -57980,7 +57980,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdot_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -58003,7 +58003,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddot_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -58025,7 +58025,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddot_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -58046,7 +58046,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddot_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -58069,7 +58069,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -58091,7 +58091,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -58112,7 +58112,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -58135,7 +58135,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -58157,7 +58157,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -58178,7 +58178,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -58201,7 +58201,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -58223,7 +58223,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -58244,7 +58244,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -58267,7 +58267,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -58289,7 +58289,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -58310,7 +58310,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -58332,7 +58332,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cswap_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -58348,7 +58348,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cswap_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -58363,7 +58363,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cswap_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -58380,7 +58380,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zswap_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -58396,7 +58396,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zswap_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -58411,7 +58411,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zswap_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -58429,7 +58429,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sswap_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -58450,7 +58450,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sswap_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -58470,7 +58470,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sswap_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -58492,7 +58492,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dswap_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -58513,7 +58513,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dswap_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -58533,7 +58533,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dswap_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -58555,7 +58555,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cswap_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -58576,7 +58576,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cswap_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -58596,7 +58596,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cswap_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -58618,7 +58618,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zswap_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -58639,7 +58639,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zswap_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -58659,7 +58659,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zswap_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -58680,7 +58680,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_saxpy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,contiguous,dimension(..) :: x
@@ -58697,7 +58697,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_saxpy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target :: x
@@ -58713,7 +58713,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_saxpy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,dimension(:) :: x
@@ -58731,7 +58731,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_daxpy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,contiguous,dimension(..) :: x
@@ -58748,7 +58748,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_daxpy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target :: x
@@ -58764,7 +58764,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_daxpy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,dimension(:) :: x
@@ -58782,7 +58782,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_caxpy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,contiguous,dimension(..) :: x
@@ -58799,7 +58799,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_caxpy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target :: x
@@ -58815,7 +58815,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_caxpy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,dimension(:) :: x
@@ -58833,7 +58833,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zaxpy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,contiguous,dimension(..) :: x
@@ -58850,7 +58850,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zaxpy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target :: x
@@ -58866,7 +58866,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zaxpy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,dimension(:) :: x
@@ -58885,7 +58885,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_saxpy_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,contiguous,dimension(..) :: x
@@ -58907,7 +58907,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_saxpy_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target :: x
@@ -58928,7 +58928,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_saxpy_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,dimension(:) :: x
@@ -58951,7 +58951,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_daxpy_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,contiguous,dimension(..) :: x
@@ -58973,7 +58973,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_daxpy_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target :: x
@@ -58994,7 +58994,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_daxpy_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,dimension(:) :: x
@@ -59017,7 +59017,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_caxpy_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,contiguous,dimension(..) :: x
@@ -59039,7 +59039,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_caxpy_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target :: x
@@ -59060,7 +59060,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_caxpy_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,dimension(:) :: x
@@ -59083,7 +59083,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zaxpy_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,contiguous,dimension(..) :: x
@@ -59105,7 +59105,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zaxpy_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target :: x
@@ -59126,7 +59126,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zaxpy_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,dimension(:) :: x
@@ -59148,7 +59148,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scasum_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59162,7 +59162,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scasum_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59177,7 +59177,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scasum_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -59191,7 +59191,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scasum_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -59205,7 +59205,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scasum_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59219,7 +59219,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scasum_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59235,7 +59235,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59249,7 +59249,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59264,7 +59264,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -59278,7 +59278,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -59292,7 +59292,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59306,7 +59306,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59322,7 +59322,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sasum_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59340,7 +59340,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sasum_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -59357,7 +59357,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sasum_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59376,7 +59376,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dasum_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59394,7 +59394,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dasum_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -59411,7 +59411,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dasum_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59431,7 +59431,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scasum_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59449,7 +59449,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scasum_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -59466,7 +59466,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scasum_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59486,7 +59486,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59504,7 +59504,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -59521,7 +59521,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59540,7 +59540,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59554,7 +59554,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59569,7 +59569,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -59583,7 +59583,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -59597,7 +59597,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59611,7 +59611,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59627,7 +59627,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59641,7 +59641,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59656,7 +59656,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -59670,7 +59670,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -59684,7 +59684,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59698,7 +59698,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59714,7 +59714,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_snrm2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59732,7 +59732,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_snrm2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -59749,7 +59749,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_snrm2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59768,7 +59768,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dnrm2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59786,7 +59786,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dnrm2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -59803,7 +59803,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dnrm2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59823,7 +59823,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59841,7 +59841,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -59858,7 +59858,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59878,7 +59878,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59896,7 +59896,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -59913,7 +59913,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -59932,7 +59932,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamax_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59946,7 +59946,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamax_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -59961,7 +59961,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamax_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -59975,7 +59975,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamax_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -59989,7 +59989,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamax_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60003,7 +60003,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamax_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60019,7 +60019,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamax_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60033,7 +60033,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamax_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60048,7 +60048,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamax_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -60062,7 +60062,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamax_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -60076,7 +60076,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamax_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60090,7 +60090,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamax_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60107,7 +60107,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_isamax_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60125,7 +60125,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_isamax_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -60142,7 +60142,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_isamax_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60162,7 +60162,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_idamax_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60180,7 +60180,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_idamax_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -60197,7 +60197,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_idamax_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60217,7 +60217,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamax_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60235,7 +60235,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamax_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -60252,7 +60252,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamax_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60272,7 +60272,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamax_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60290,7 +60290,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamax_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -60307,7 +60307,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamax_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60326,7 +60326,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamin_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60340,7 +60340,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamin_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60355,7 +60355,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamin_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -60369,7 +60369,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamin_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -60383,7 +60383,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamin_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60397,7 +60397,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamin_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60413,7 +60413,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamin_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60427,7 +60427,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamin_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60442,7 +60442,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamin_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -60456,7 +60456,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamin_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -60470,7 +60470,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamin_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60484,7 +60484,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamin_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60501,7 +60501,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_isamin_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60519,7 +60519,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_isamin_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -60536,7 +60536,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_isamin_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60556,7 +60556,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_idamin_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60574,7 +60574,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_idamin_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -60591,7 +60591,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_idamin_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60611,7 +60611,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamin_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60629,7 +60629,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamin_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -60646,7 +60646,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_icamin_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60666,7 +60666,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamin_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60684,7 +60684,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamin_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -60701,7 +60701,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_izamin_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60720,7 +60720,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60738,7 +60738,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60756,7 +60756,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -60773,7 +60773,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -60790,7 +60790,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60807,7 +60807,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60826,7 +60826,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60844,7 +60844,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60862,7 +60862,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -60879,7 +60879,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -60896,7 +60896,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60913,7 +60913,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60932,7 +60932,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60950,7 +60950,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60968,7 +60968,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -60985,7 +60985,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -61002,7 +61002,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61019,7 +61019,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61038,7 +61038,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61056,7 +61056,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61074,7 +61074,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -61091,7 +61091,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -61108,7 +61108,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61125,7 +61125,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61144,7 +61144,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61162,7 +61162,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61180,7 +61180,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -61197,7 +61197,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -61214,7 +61214,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61231,7 +61231,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61250,7 +61250,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61268,7 +61268,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61286,7 +61286,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -61303,7 +61303,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -61320,7 +61320,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61337,7 +61337,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61357,7 +61357,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61379,7 +61379,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61402,7 +61402,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -61424,7 +61424,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -61446,7 +61446,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61468,7 +61468,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61492,7 +61492,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61514,7 +61514,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61537,7 +61537,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -61559,7 +61559,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -61581,7 +61581,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61603,7 +61603,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61627,7 +61627,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61649,7 +61649,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61672,7 +61672,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -61694,7 +61694,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -61716,7 +61716,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61738,7 +61738,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61762,7 +61762,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61784,7 +61784,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61807,7 +61807,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -61829,7 +61829,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -61851,7 +61851,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61873,7 +61873,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61897,7 +61897,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61919,7 +61919,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61942,7 +61942,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -61964,7 +61964,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -61986,7 +61986,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62008,7 +62008,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62032,7 +62032,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62054,7 +62054,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62077,7 +62077,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -62099,7 +62099,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -62121,7 +62121,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62143,7 +62143,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62166,7 +62166,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62183,7 +62183,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -62199,7 +62199,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62217,7 +62217,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62234,7 +62234,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -62250,7 +62250,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62269,7 +62269,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62292,7 +62292,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -62314,7 +62314,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_srotm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62338,7 +62338,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62361,7 +62361,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -62383,7 +62383,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_drotm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62406,7 +62406,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62431,7 +62431,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62455,7 +62455,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62479,7 +62479,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62505,7 +62505,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62530,7 +62530,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62554,7 +62554,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62578,7 +62578,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62604,7 +62604,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62629,7 +62629,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62653,7 +62653,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62677,7 +62677,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62703,7 +62703,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62728,7 +62728,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62752,7 +62752,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62776,7 +62776,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62803,7 +62803,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62834,7 +62834,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62864,7 +62864,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62894,7 +62894,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62926,7 +62926,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62957,7 +62957,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -62987,7 +62987,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63017,7 +63017,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63049,7 +63049,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63080,7 +63080,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63110,7 +63110,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63140,7 +63140,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63172,7 +63172,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63203,7 +63203,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63233,7 +63233,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63263,7 +63263,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63294,7 +63294,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63317,7 +63317,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63339,7 +63339,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63361,7 +63361,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63385,7 +63385,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63408,7 +63408,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63430,7 +63430,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63452,7 +63452,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63476,7 +63476,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63499,7 +63499,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63521,7 +63521,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63543,7 +63543,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63567,7 +63567,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63590,7 +63590,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63612,7 +63612,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63634,7 +63634,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63659,7 +63659,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63688,7 +63688,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63716,7 +63716,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63744,7 +63744,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63774,7 +63774,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63803,7 +63803,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63831,7 +63831,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63859,7 +63859,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63889,7 +63889,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63918,7 +63918,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63946,7 +63946,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -63974,7 +63974,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -64004,7 +64004,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -64033,7 +64033,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -64061,7 +64061,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -64089,7 +64089,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -64118,7 +64118,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64141,7 +64141,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64163,7 +64163,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64185,7 +64185,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64209,7 +64209,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64232,7 +64232,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64254,7 +64254,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64276,7 +64276,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64301,7 +64301,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64330,7 +64330,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64358,7 +64358,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64386,7 +64386,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64416,7 +64416,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64445,7 +64445,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64473,7 +64473,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64501,7 +64501,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -64530,7 +64530,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -64552,7 +64552,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -64573,7 +64573,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -64594,7 +64594,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -64617,7 +64617,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -64639,7 +64639,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -64660,7 +64660,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -64681,7 +64681,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -64705,7 +64705,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -64733,7 +64733,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -64760,7 +64760,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -64787,7 +64787,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -64816,7 +64816,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -64844,7 +64844,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -64871,7 +64871,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -64898,7 +64898,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -64926,7 +64926,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -64945,7 +64945,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -64962,7 +64962,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -64979,7 +64979,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -64998,7 +64998,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -65017,7 +65017,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -65034,7 +65034,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -65051,7 +65051,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -65071,7 +65071,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -65094,7 +65094,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -65116,7 +65116,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -65138,7 +65138,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -65162,7 +65162,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -65185,7 +65185,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -65207,7 +65207,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -65229,7 +65229,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -65252,7 +65252,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65273,7 +65273,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65293,7 +65293,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65313,7 +65313,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65335,7 +65335,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65356,7 +65356,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65376,7 +65376,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65396,7 +65396,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65419,7 +65419,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65446,7 +65446,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65472,7 +65472,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65498,7 +65498,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65526,7 +65526,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65553,7 +65553,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65579,7 +65579,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65605,7 +65605,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65632,7 +65632,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65653,7 +65653,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65673,7 +65673,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65695,7 +65695,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65716,7 +65716,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65736,7 +65736,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65759,7 +65759,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65786,7 +65786,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65812,7 +65812,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -65840,7 +65840,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65867,7 +65867,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65893,7 +65893,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -65920,7 +65920,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -65937,7 +65937,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -65953,7 +65953,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -65971,7 +65971,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -65988,7 +65988,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -66004,7 +66004,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -66023,7 +66023,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -66045,7 +66045,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -66066,7 +66066,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -66089,7 +66089,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -66111,7 +66111,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -66132,7 +66132,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -66154,7 +66154,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -66174,7 +66174,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -66193,7 +66193,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -66214,7 +66214,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -66234,7 +66234,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -66253,7 +66253,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -66275,7 +66275,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -66300,7 +66300,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -66324,7 +66324,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chpr2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -66350,7 +66350,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -66375,7 +66375,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -66399,7 +66399,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhpr2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -66424,7 +66424,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66444,7 +66444,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66462,7 +66462,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66480,7 +66480,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66500,7 +66500,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66520,7 +66520,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66538,7 +66538,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66556,7 +66556,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66576,7 +66576,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66596,7 +66596,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66614,7 +66614,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66632,7 +66632,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66652,7 +66652,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66672,7 +66672,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66690,7 +66690,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66708,7 +66708,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66729,7 +66729,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66753,7 +66753,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66776,7 +66776,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66799,7 +66799,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66824,7 +66824,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66848,7 +66848,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66871,7 +66871,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66894,7 +66894,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66919,7 +66919,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66943,7 +66943,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66966,7 +66966,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -66989,7 +66989,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67014,7 +67014,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67038,7 +67038,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67061,7 +67061,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67084,7 +67084,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67108,7 +67108,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stpmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67126,7 +67126,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stpmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67143,7 +67143,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stpmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67162,7 +67162,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtpmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67180,7 +67180,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtpmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67197,7 +67197,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtpmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67216,7 +67216,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctpmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67234,7 +67234,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctpmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67251,7 +67251,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctpmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67270,7 +67270,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztpmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67288,7 +67288,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztpmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67305,7 +67305,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztpmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67325,7 +67325,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stpmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67348,7 +67348,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stpmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67370,7 +67370,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stpmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67394,7 +67394,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtpmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67417,7 +67417,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtpmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67439,7 +67439,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtpmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67463,7 +67463,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctpmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67486,7 +67486,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctpmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67508,7 +67508,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctpmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67532,7 +67532,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztpmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67555,7 +67555,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztpmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67577,7 +67577,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztpmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67600,7 +67600,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67621,7 +67621,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67640,7 +67640,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67659,7 +67659,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67681,7 +67681,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67702,7 +67702,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67721,7 +67721,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67740,7 +67740,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67762,7 +67762,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67783,7 +67783,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67802,7 +67802,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67821,7 +67821,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67843,7 +67843,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67864,7 +67864,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67883,7 +67883,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67902,7 +67902,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67925,7 +67925,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67950,7 +67950,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67974,7 +67974,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -67998,7 +67998,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68024,7 +68024,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68049,7 +68049,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68073,7 +68073,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68097,7 +68097,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68123,7 +68123,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68148,7 +68148,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68172,7 +68172,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68196,7 +68196,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68222,7 +68222,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68247,7 +68247,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68271,7 +68271,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68295,7 +68295,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68320,7 +68320,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68341,7 +68341,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68360,7 +68360,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68379,7 +68379,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68401,7 +68401,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68422,7 +68422,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68441,7 +68441,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68460,7 +68460,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68482,7 +68482,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68503,7 +68503,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68522,7 +68522,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68541,7 +68541,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68563,7 +68563,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68584,7 +68584,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68603,7 +68603,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68622,7 +68622,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68645,7 +68645,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbsv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68670,7 +68670,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbsv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68694,7 +68694,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbsv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68718,7 +68718,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbsv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68744,7 +68744,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbsv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68769,7 +68769,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbsv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68793,7 +68793,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbsv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68817,7 +68817,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbsv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68843,7 +68843,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbsv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68868,7 +68868,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbsv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68892,7 +68892,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbsv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68916,7 +68916,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbsv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68942,7 +68942,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbsv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68967,7 +68967,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbsv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -68991,7 +68991,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbsv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69015,7 +69015,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbsv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69040,7 +69040,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69060,7 +69060,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69078,7 +69078,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69096,7 +69096,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69116,7 +69116,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69136,7 +69136,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69154,7 +69154,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69172,7 +69172,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69192,7 +69192,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69212,7 +69212,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69230,7 +69230,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69248,7 +69248,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69268,7 +69268,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69288,7 +69288,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69306,7 +69306,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69324,7 +69324,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69345,7 +69345,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69369,7 +69369,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69392,7 +69392,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69415,7 +69415,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69440,7 +69440,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69464,7 +69464,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69487,7 +69487,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69510,7 +69510,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69535,7 +69535,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69559,7 +69559,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69582,7 +69582,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69605,7 +69605,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69630,7 +69630,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69654,7 +69654,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69677,7 +69677,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69700,7 +69700,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69724,7 +69724,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stpsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69742,7 +69742,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stpsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69759,7 +69759,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stpsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69778,7 +69778,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtpsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69796,7 +69796,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtpsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69813,7 +69813,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtpsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69832,7 +69832,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctpsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69850,7 +69850,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctpsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69867,7 +69867,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctpsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69886,7 +69886,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztpsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69904,7 +69904,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztpsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69921,7 +69921,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztpsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69941,7 +69941,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stpsv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69964,7 +69964,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stpsv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -69986,7 +69986,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stpsv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -70010,7 +70010,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtpsv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -70033,7 +70033,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtpsv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -70055,7 +70055,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtpsv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -70079,7 +70079,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctpsv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -70102,7 +70102,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctpsv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -70124,7 +70124,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctpsv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -70148,7 +70148,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztpsv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -70171,7 +70171,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztpsv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -70193,7 +70193,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztpsv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
@@ -70216,7 +70216,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70238,7 +70238,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70259,7 +70259,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70280,7 +70280,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70303,7 +70303,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70325,7 +70325,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70346,7 +70346,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70367,7 +70367,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70390,7 +70390,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70412,7 +70412,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70433,7 +70433,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70454,7 +70454,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70477,7 +70477,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70499,7 +70499,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70520,7 +70520,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70541,7 +70541,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70565,7 +70565,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70593,7 +70593,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70620,7 +70620,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70647,7 +70647,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70676,7 +70676,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70704,7 +70704,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70731,7 +70731,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70758,7 +70758,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70787,7 +70787,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70815,7 +70815,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70842,7 +70842,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70869,7 +70869,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70898,7 +70898,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70926,7 +70926,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70953,7 +70953,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70980,7 +70980,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71008,7 +71008,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71029,7 +71029,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71049,7 +71049,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71071,7 +71071,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71092,7 +71092,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71112,7 +71112,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71135,7 +71135,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71162,7 +71162,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71188,7 +71188,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71216,7 +71216,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71243,7 +71243,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71269,7 +71269,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71296,7 +71296,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71319,7 +71319,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71341,7 +71341,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71363,7 +71363,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71387,7 +71387,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71410,7 +71410,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71432,7 +71432,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71454,7 +71454,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71479,7 +71479,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71508,7 +71508,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71536,7 +71536,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71564,7 +71564,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71594,7 +71594,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71623,7 +71623,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71651,7 +71651,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71679,7 +71679,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71708,7 +71708,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71729,7 +71729,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71749,7 +71749,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71769,7 +71769,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71791,7 +71791,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71812,7 +71812,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71832,7 +71832,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71852,7 +71852,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71874,7 +71874,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71895,7 +71895,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71915,7 +71915,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71935,7 +71935,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71957,7 +71957,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71978,7 +71978,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71998,7 +71998,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72018,7 +72018,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72040,7 +72040,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72061,7 +72061,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72081,7 +72081,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72101,7 +72101,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72123,7 +72123,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72144,7 +72144,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72164,7 +72164,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72184,7 +72184,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72207,7 +72207,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72233,7 +72233,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72258,7 +72258,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72283,7 +72283,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72310,7 +72310,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72336,7 +72336,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72361,7 +72361,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72386,7 +72386,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72413,7 +72413,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72439,7 +72439,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72464,7 +72464,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72489,7 +72489,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72516,7 +72516,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72542,7 +72542,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72567,7 +72567,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72592,7 +72592,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72619,7 +72619,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72645,7 +72645,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72670,7 +72670,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72695,7 +72695,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72722,7 +72722,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72748,7 +72748,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72773,7 +72773,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72798,7 +72798,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72824,7 +72824,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72841,7 +72841,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72857,7 +72857,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72875,7 +72875,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72892,7 +72892,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72908,7 +72908,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72926,7 +72926,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cspr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72943,7 +72943,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cspr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72959,7 +72959,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cspr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72977,7 +72977,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zspr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72994,7 +72994,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zspr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73010,7 +73010,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zspr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73029,7 +73029,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73051,7 +73051,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73072,7 +73072,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73095,7 +73095,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73117,7 +73117,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73138,7 +73138,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73161,7 +73161,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cspr_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73183,7 +73183,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cspr_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73204,7 +73204,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cspr_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73227,7 +73227,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zspr_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73249,7 +73249,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zspr_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73270,7 +73270,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zspr_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73292,7 +73292,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73312,7 +73312,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73331,7 +73331,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73352,7 +73352,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73372,7 +73372,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73391,7 +73391,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73413,7 +73413,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73438,7 +73438,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73462,7 +73462,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sspr2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73488,7 +73488,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73513,7 +73513,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73537,7 +73537,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dspr2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73562,7 +73562,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73581,7 +73581,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73598,7 +73598,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73615,7 +73615,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73634,7 +73634,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73653,7 +73653,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73670,7 +73670,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73687,7 +73687,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73706,7 +73706,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73725,7 +73725,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73742,7 +73742,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73759,7 +73759,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73778,7 +73778,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73797,7 +73797,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73814,7 +73814,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73831,7 +73831,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73851,7 +73851,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73874,7 +73874,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73896,7 +73896,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73918,7 +73918,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73942,7 +73942,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73965,7 +73965,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73987,7 +73987,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74009,7 +74009,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74033,7 +74033,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74056,7 +74056,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74078,7 +74078,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74100,7 +74100,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74124,7 +74124,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74147,7 +74147,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74169,7 +74169,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74191,7 +74191,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74214,7 +74214,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74235,7 +74235,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74255,7 +74255,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74275,7 +74275,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74297,7 +74297,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74318,7 +74318,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74338,7 +74338,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74358,7 +74358,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74380,7 +74380,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74401,7 +74401,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74421,7 +74421,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74441,7 +74441,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74463,7 +74463,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74484,7 +74484,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74504,7 +74504,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74524,7 +74524,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74547,7 +74547,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74573,7 +74573,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74598,7 +74598,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74623,7 +74623,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74650,7 +74650,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74676,7 +74676,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74701,7 +74701,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74726,7 +74726,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74753,7 +74753,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74779,7 +74779,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74804,7 +74804,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74829,7 +74829,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74856,7 +74856,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74882,7 +74882,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74907,7 +74907,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74932,7 +74932,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74958,7 +74958,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -74982,7 +74982,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75005,7 +75005,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75028,7 +75028,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75053,7 +75053,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75077,7 +75077,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75100,7 +75100,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75123,7 +75123,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75149,7 +75149,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75179,7 +75179,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75208,7 +75208,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75237,7 +75237,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75268,7 +75268,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75298,7 +75298,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75327,7 +75327,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75356,7 +75356,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -75386,7 +75386,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75408,7 +75408,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75429,7 +75429,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75450,7 +75450,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75473,7 +75473,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75495,7 +75495,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75516,7 +75516,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75537,7 +75537,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75561,7 +75561,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75587,7 +75587,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75612,7 +75612,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75637,7 +75637,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75664,7 +75664,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75690,7 +75690,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75715,7 +75715,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75740,7 +75740,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -75766,7 +75766,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -75790,7 +75790,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -75813,7 +75813,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -75836,7 +75836,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -75861,7 +75861,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -75885,7 +75885,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -75908,7 +75908,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -75931,7 +75931,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -75957,7 +75957,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -75987,7 +75987,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76016,7 +76016,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76045,7 +76045,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76076,7 +76076,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76106,7 +76106,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76135,7 +76135,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76164,7 +76164,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76194,7 +76194,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76218,7 +76218,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76241,7 +76241,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76264,7 +76264,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76289,7 +76289,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76313,7 +76313,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76336,7 +76336,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76359,7 +76359,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76385,7 +76385,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76415,7 +76415,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76444,7 +76444,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76473,7 +76473,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76504,7 +76504,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76534,7 +76534,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76563,7 +76563,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76592,7 +76592,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -76622,7 +76622,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76646,7 +76646,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76669,7 +76669,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76692,7 +76692,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76717,7 +76717,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76741,7 +76741,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76764,7 +76764,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76787,7 +76787,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76812,7 +76812,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76836,7 +76836,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76859,7 +76859,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76882,7 +76882,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76907,7 +76907,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76931,7 +76931,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76954,7 +76954,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -76977,7 +76977,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77003,7 +77003,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77033,7 +77033,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77062,7 +77062,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77091,7 +77091,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77122,7 +77122,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77152,7 +77152,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77181,7 +77181,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77210,7 +77210,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77241,7 +77241,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77271,7 +77271,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77300,7 +77300,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77329,7 +77329,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77360,7 +77360,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77390,7 +77390,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77419,7 +77419,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77448,7 +77448,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: m
@@ -77478,7 +77478,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77500,7 +77500,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77521,7 +77521,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77542,7 +77542,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77565,7 +77565,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77587,7 +77587,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77608,7 +77608,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77629,7 +77629,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77652,7 +77652,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77674,7 +77674,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77695,7 +77695,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77716,7 +77716,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77739,7 +77739,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77761,7 +77761,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77782,7 +77782,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77803,7 +77803,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77827,7 +77827,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77853,7 +77853,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77878,7 +77878,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77903,7 +77903,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77930,7 +77930,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77956,7 +77956,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -77981,7 +77981,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -78006,7 +78006,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -78033,7 +78033,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -78059,7 +78059,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -78084,7 +78084,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -78109,7 +78109,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -78136,7 +78136,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -78162,7 +78162,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -78187,7 +78187,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -78212,7 +78212,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
       integer(c_int) :: n
@@ -78238,7 +78238,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78262,7 +78262,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78285,7 +78285,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78308,7 +78308,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78333,7 +78333,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78357,7 +78357,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78380,7 +78380,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78403,7 +78403,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78428,7 +78428,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78452,7 +78452,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78475,7 +78475,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78498,7 +78498,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78523,7 +78523,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78547,7 +78547,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78570,7 +78570,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78593,7 +78593,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78619,7 +78619,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78649,7 +78649,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78678,7 +78678,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78707,7 +78707,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78738,7 +78738,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78768,7 +78768,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78797,7 +78797,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78826,7 +78826,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78857,7 +78857,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78887,7 +78887,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78916,7 +78916,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78945,7 +78945,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -78976,7 +78976,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79006,7 +79006,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79035,7 +79035,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79064,7 +79064,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79094,7 +79094,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79118,7 +79118,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79141,7 +79141,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79164,7 +79164,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79189,7 +79189,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79213,7 +79213,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79236,7 +79236,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79259,7 +79259,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79284,7 +79284,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79308,7 +79308,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79331,7 +79331,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79354,7 +79354,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79379,7 +79379,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79403,7 +79403,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79426,7 +79426,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79449,7 +79449,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79475,7 +79475,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79505,7 +79505,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79534,7 +79534,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79563,7 +79563,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79594,7 +79594,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79624,7 +79624,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79653,7 +79653,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79682,7 +79682,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79713,7 +79713,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79743,7 +79743,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79772,7 +79772,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79801,7 +79801,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79832,7 +79832,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79862,7 +79862,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79891,7 +79891,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79920,7 +79920,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: n
@@ -79950,7 +79950,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -79975,7 +79975,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -79999,7 +79999,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80023,7 +80023,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80049,7 +80049,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80074,7 +80074,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80098,7 +80098,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80122,7 +80122,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80148,7 +80148,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80173,7 +80173,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80197,7 +80197,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80221,7 +80221,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80247,7 +80247,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80272,7 +80272,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80296,7 +80296,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80320,7 +80320,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -80346,7 +80346,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strtri_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80365,7 +80365,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strtri_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80382,7 +80382,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strtri_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80399,7 +80399,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strtri_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80418,7 +80418,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrtri_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80437,7 +80437,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrtri_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80454,7 +80454,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrtri_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80471,7 +80471,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrtri_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80490,7 +80490,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrtri_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80509,7 +80509,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrtri_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80526,7 +80526,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrtri_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80543,7 +80543,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrtri_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80562,7 +80562,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrtri_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80581,7 +80581,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrtri_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80598,7 +80598,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrtri_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80615,7 +80615,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrtri_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80635,7 +80635,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strtri_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80658,7 +80658,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strtri_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80680,7 +80680,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strtri_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80702,7 +80702,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strtri_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80726,7 +80726,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrtri_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80749,7 +80749,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrtri_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80771,7 +80771,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrtri_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80793,7 +80793,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrtri_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80817,7 +80817,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrtri_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80840,7 +80840,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrtri_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80862,7 +80862,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrtri_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80884,7 +80884,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrtri_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80908,7 +80908,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrtri_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80931,7 +80931,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrtri_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80953,7 +80953,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrtri_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80975,7 +80975,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrtri_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
@@ -80998,7 +80998,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81021,7 +81021,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81043,7 +81043,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81065,7 +81065,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81089,7 +81089,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81112,7 +81112,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81134,7 +81134,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81156,7 +81156,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81180,7 +81180,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81203,7 +81203,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81225,7 +81225,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81247,7 +81247,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81271,7 +81271,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81294,7 +81294,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81316,7 +81316,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81338,7 +81338,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81363,7 +81363,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81390,7 +81390,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81416,7 +81416,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81442,7 +81442,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81470,7 +81470,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81497,7 +81497,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81523,7 +81523,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81549,7 +81549,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81577,7 +81577,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81604,7 +81604,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81630,7 +81630,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81656,7 +81656,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81684,7 +81684,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81711,7 +81711,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81737,7 +81737,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81763,7 +81763,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_operation_none)) :: transA
@@ -81790,7 +81790,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -81815,7 +81815,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -81839,7 +81839,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -81863,7 +81863,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -81889,7 +81889,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -81914,7 +81914,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -81938,7 +81938,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -81962,7 +81962,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -81988,7 +81988,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82013,7 +82013,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82037,7 +82037,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82061,7 +82061,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82087,7 +82087,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82112,7 +82112,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82136,7 +82136,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82160,7 +82160,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82187,7 +82187,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82218,7 +82218,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82248,7 +82248,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82278,7 +82278,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82310,7 +82310,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82341,7 +82341,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82371,7 +82371,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82401,7 +82401,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82433,7 +82433,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82464,7 +82464,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82494,7 +82494,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82524,7 +82524,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82556,7 +82556,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82587,7 +82587,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82617,7 +82617,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82647,7 +82647,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -82678,7 +82678,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdgmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82699,7 +82699,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdgmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82718,7 +82718,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdgmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82737,7 +82737,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdgmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82759,7 +82759,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddgmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82780,7 +82780,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddgmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82799,7 +82799,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddgmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82818,7 +82818,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddgmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82840,7 +82840,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdgmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82861,7 +82861,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdgmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82880,7 +82880,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdgmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82899,7 +82899,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdgmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82921,7 +82921,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdgmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82942,7 +82942,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdgmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82961,7 +82961,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdgmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -82980,7 +82980,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdgmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83003,7 +83003,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdgmm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83029,7 +83029,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdgmm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83054,7 +83054,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdgmm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83079,7 +83079,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdgmm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83106,7 +83106,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddgmm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83132,7 +83132,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddgmm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83157,7 +83157,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddgmm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83182,7 +83182,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddgmm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83209,7 +83209,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdgmm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83235,7 +83235,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdgmm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83260,7 +83260,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdgmm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83285,7 +83285,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdgmm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83312,7 +83312,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdgmm_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83338,7 +83338,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdgmm_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83363,7 +83363,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdgmm_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83388,7 +83388,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdgmm_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -83414,7 +83414,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83438,7 +83438,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83461,7 +83461,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83484,7 +83484,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83509,7 +83509,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83533,7 +83533,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83556,7 +83556,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83579,7 +83579,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83604,7 +83604,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83628,7 +83628,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83651,7 +83651,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83674,7 +83674,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83699,7 +83699,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83723,7 +83723,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83746,7 +83746,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83769,7 +83769,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83795,7 +83795,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83825,7 +83825,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83854,7 +83854,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83883,7 +83883,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83914,7 +83914,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83944,7 +83944,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -83973,7 +83973,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -84002,7 +84002,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -84033,7 +84033,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -84063,7 +84063,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -84092,7 +84092,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -84121,7 +84121,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -84152,7 +84152,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_strided_batched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -84182,7 +84182,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_strided_batched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -84211,7 +84211,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_strided_batched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m
@@ -84240,7 +84240,7 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_strided_batched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_operation_none)) :: transB
       integer(c_int) :: m

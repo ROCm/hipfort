@@ -1001,7 +1001,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size_typed
-      type(c_ptr) :: plan
+      type(c_ptr), value :: plan
       integer(c_size_t),target :: size_in_bytes
       !
       rocfft_plan_get_work_buffer_size_typed = rocfft_plan_get_work_buffer_size_(plan, &
@@ -1036,7 +1036,7 @@ module hipfort_rocfft
       integer(c_size_t) :: dimensions
       integer(c_size_t),target,contiguous,dimension(..) :: lengths
       integer(c_size_t) :: number_of_transforms
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       !
       rocfft_plan_create_assumed_rank = rocfft_plan_create_(plan,placement,transform_type, &
         myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
@@ -1056,7 +1056,7 @@ module hipfort_rocfft
       integer(c_size_t) :: dimensions
       integer(c_size_t),target :: lengths
       integer(c_size_t) :: number_of_transforms
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       !
       rocfft_plan_create_rank_0 = rocfft_plan_create_(plan,placement,transform_type,myPrecision, &
         dimensions,c_loc(lengths),number_of_transforms,description)
@@ -1075,7 +1075,7 @@ module hipfort_rocfft
       integer(c_size_t) :: dimensions
       integer(c_size_t),target,dimension(:) :: lengths
       integer(c_size_t) :: number_of_transforms
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       !
       rocfft_plan_create_rank_1 = rocfft_plan_create_(plan,placement,transform_type,myPrecision, &
         dimensions,c_loc(lengths),number_of_transforms,description)
@@ -1090,7 +1090,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_assumed_rank
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
       integer(c_size_t),target,contiguous,dimension(..) :: in_offsets
@@ -1116,7 +1116,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_rank_0
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
       integer(c_size_t),target :: in_offsets
@@ -1141,7 +1141,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_rank_1
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
       integer(c_size_t),target,dimension(:) :: in_offsets

@@ -1075,7 +1075,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -1088,7 +1088,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target :: output_data
       integer(c_size_t) :: n
       !
@@ -1100,7 +1100,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -1114,7 +1114,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -1128,7 +1128,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target :: output_data
       integer(c_size_t) :: n
       !
@@ -1141,7 +1141,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -1156,7 +1156,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -1170,7 +1170,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       !
@@ -1182,7 +1182,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -1196,7 +1196,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -1210,7 +1210,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       !
@@ -1223,7 +1223,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -1238,7 +1238,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1254,7 +1254,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1269,7 +1269,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1286,7 +1286,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1302,7 +1302,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1317,7 +1317,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1334,7 +1334,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1350,7 +1350,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1365,7 +1365,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1382,7 +1382,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1398,7 +1398,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1413,7 +1413,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1430,7 +1430,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda
@@ -1445,7 +1445,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda
@@ -1459,7 +1459,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda

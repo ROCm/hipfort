@@ -1112,7 +1112,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -1125,7 +1125,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target :: output_data
       integer(c_size_t) :: n
       !
@@ -1137,7 +1137,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -1151,7 +1151,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -1165,7 +1165,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target :: output_data
       integer(c_size_t) :: n
       !
@@ -1177,7 +1177,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -1191,7 +1191,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -1204,7 +1204,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       !
@@ -1216,7 +1216,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -1230,7 +1230,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -1244,7 +1244,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       !
@@ -1257,7 +1257,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -1272,7 +1272,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1288,7 +1288,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1303,7 +1303,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1320,7 +1320,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1336,7 +1336,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1351,7 +1351,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1368,7 +1368,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1384,7 +1384,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1399,7 +1399,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1416,7 +1416,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1432,7 +1432,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1447,7 +1447,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1464,7 +1464,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda
@@ -1479,7 +1479,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda
@@ -1492,7 +1492,7 @@ module hipfort_hiprand
       use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda

@@ -43885,7 +43885,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetVersion_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int),target :: version
       !
       hipblasGetVersion_typed = hipblasGetVersion_(handle,c_loc(version))
@@ -43907,7 +43907,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetPointerMode_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_POINTER_MODE_HOST)),target :: mode
       !
       hipblasGetPointerMode_typed = hipblasGetPointerMode_(handle,c_loc(mode))
@@ -43918,7 +43918,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetMathMode_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_DEFAULT_MATH)),target :: mode
       !
       hipblasGetMathMode_typed = hipblasGetMathMode_(handle,c_loc(mode))
@@ -43929,7 +43929,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetAtomicsMode_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_ATOMICS_NOT_ALLOWED)),target :: atomics_mode
       !
       hipblasGetAtomicsMode_typed = hipblasGetAtomicsMode_(handle,c_loc(atomics_mode))
@@ -43941,7 +43941,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetBatchAlphaStride_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t),target :: alpha_stride
       !
       hipblasGetBatchAlphaStride_typed = hipblasGetBatchAlphaStride_(handle,c_loc(alpha_stride))
@@ -43954,7 +43954,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetBatchBetaStride_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t),target :: beta_stride
       !
       hipblasGetBatchBetaStride_typed = hipblasGetBatchBetaStride_(handle,c_loc(beta_stride))
@@ -43966,7 +43966,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -43980,7 +43980,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -43994,7 +43994,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44008,7 +44008,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44022,7 +44022,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44036,7 +44036,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44050,7 +44050,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44064,7 +44064,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44078,7 +44078,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44092,7 +44092,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44106,7 +44106,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44120,7 +44120,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44134,7 +44134,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44148,7 +44148,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44162,7 +44162,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44176,7 +44176,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44190,7 +44190,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44204,7 +44204,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44218,7 +44218,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44232,7 +44232,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44246,7 +44246,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44260,7 +44260,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44274,7 +44274,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44288,7 +44288,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44302,7 +44302,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpy_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -44318,7 +44318,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpy_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -44334,7 +44334,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpy_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -44350,7 +44350,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpy_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -44366,7 +44366,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpy_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -44382,7 +44382,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpy_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -44398,7 +44398,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpy_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -44414,7 +44414,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpy_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -44431,12 +44431,12 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpyBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -44451,12 +44451,12 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpyBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -44471,12 +44471,12 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpyBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -44491,12 +44491,12 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpyBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -44511,12 +44511,12 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpyBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -44531,12 +44531,12 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpyBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -44551,12 +44551,12 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpyBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -44571,12 +44571,12 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpyBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -44592,7 +44592,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpyStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -44615,7 +44615,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpyStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -44638,7 +44638,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpyStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -44661,7 +44661,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpyStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -44684,7 +44684,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpyStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -44707,7 +44707,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpyStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -44730,7 +44730,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpyStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -44753,7 +44753,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpyStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -44774,7 +44774,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44790,7 +44790,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44806,7 +44806,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44822,7 +44822,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44838,7 +44838,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44854,7 +44854,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44870,7 +44870,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44886,7 +44886,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44902,7 +44902,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44918,7 +44918,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44934,7 +44934,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44950,7 +44950,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -44966,7 +44966,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44980,7 +44980,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -44994,7 +44994,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -45008,7 +45008,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -45022,7 +45022,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -45036,7 +45036,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -45050,7 +45050,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -45064,7 +45064,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -45078,7 +45078,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -45095,7 +45095,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -45112,7 +45112,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -45129,7 +45129,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -45146,7 +45146,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -45163,7 +45163,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       type(c_ptr) :: x
       integer(c_int) :: incx
@@ -45180,7 +45180,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -45197,7 +45197,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -45214,7 +45214,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -45231,7 +45231,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -45248,7 +45248,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -45265,7 +45265,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       type(c_ptr) :: x
       integer(c_int64_t) :: incx
@@ -45282,7 +45282,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotg_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_float),target :: a
       real(c_float),target :: b
       real(c_float),target :: c
@@ -45296,7 +45296,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotg_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_double),target :: a
       real(c_double),target :: b
       real(c_double),target :: c
@@ -45310,7 +45310,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotg_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       complex(c_float_complex),target :: a
       complex(c_float_complex),target :: b
       real(c_float),target :: c
@@ -45324,7 +45324,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotg_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       complex(c_double_complex),target :: a
       complex(c_double_complex),target :: b
       real(c_double),target :: c
@@ -45339,7 +45339,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotg_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_float),target :: a
       real(c_float),target :: b
       real(c_float),target :: c
@@ -45355,7 +45355,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotg_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_double),target :: a
       real(c_double),target :: b
       real(c_double),target :: c
@@ -45371,7 +45371,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotg_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       complex(c_float_complex),target :: a
       complex(c_float_complex),target :: b
       real(c_float),target :: c
@@ -45387,7 +45387,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotg_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       complex(c_double_complex),target :: a
       complex(c_double_complex),target :: b
       real(c_double),target :: c
@@ -45402,7 +45402,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmg_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_float),target :: d1
       real(c_float),target :: d2
       real(c_float),target :: x1
@@ -45417,7 +45417,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmg_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_double),target :: d1
       real(c_double),target :: d2
       real(c_double),target :: x1
@@ -45433,7 +45433,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmg_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_float),target :: d1
       real(c_float),target :: d2
       real(c_float),target :: x1
@@ -45451,7 +45451,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmg_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       real(c_double),target :: d1
       real(c_double),target :: d2
       real(c_double),target :: x1
@@ -45468,7 +45468,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscal_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -45482,7 +45482,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscal_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -45496,7 +45496,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscal_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -45510,7 +45510,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscal_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -45524,7 +45524,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscal_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -45538,7 +45538,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscal_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -45552,7 +45552,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscal_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -45566,7 +45566,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscal_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -45580,7 +45580,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscal_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -45594,7 +45594,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscal_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -45608,7 +45608,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscal_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -45622,7 +45622,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscal_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -45637,10 +45637,10 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscalBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       integer(c_int) :: batchCount
       !
@@ -45654,10 +45654,10 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscalBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       integer(c_int) :: batchCount
       !
@@ -45671,10 +45671,10 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscalBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       integer(c_int) :: batchCount
       !
@@ -45688,10 +45688,10 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscalBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       integer(c_int) :: batchCount
       !
@@ -45705,10 +45705,10 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscalBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       integer(c_int) :: batchCount
       !
@@ -45722,10 +45722,10 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscalBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       integer(c_int) :: batchCount
       !
@@ -45739,10 +45739,10 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscalBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: batchCount
       !
@@ -45757,10 +45757,10 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscalBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: batchCount
       !
@@ -45775,10 +45775,10 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscalBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: batchCount
       !
@@ -45793,10 +45793,10 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscalBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: batchCount
       !
@@ -45811,10 +45811,10 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscalBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: batchCount
       !
@@ -45829,10 +45829,10 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscalBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: batchCount
       !
@@ -45847,7 +45847,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscalStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -45866,7 +45866,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscalStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -45885,7 +45885,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscalStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -45904,7 +45904,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscalStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -45923,7 +45923,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscalStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -45942,7 +45942,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscalStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -45961,7 +45961,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscalStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -45980,7 +45980,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscalStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -45999,7 +45999,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscalStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
       type(c_ptr) :: x
@@ -46018,7 +46018,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscalStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
       type(c_ptr) :: x
@@ -46037,7 +46037,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscalStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
       type(c_ptr) :: x
@@ -46056,7 +46056,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscalStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
       type(c_ptr) :: x
@@ -46074,7 +46074,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -46098,7 +46098,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -46122,7 +46122,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -46146,7 +46146,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -46170,7 +46170,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -46194,7 +46194,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -46218,7 +46218,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -46242,7 +46242,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -46268,19 +46268,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: kl
       integer(c_int) :: ku
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -46296,19 +46296,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: kl
       integer(c_int) :: ku
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -46324,19 +46324,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: kl
       integer(c_int) :: ku
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -46352,19 +46352,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: kl
       integer(c_int) :: ku
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -46380,19 +46380,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -46408,19 +46408,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -46436,19 +46436,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -46464,19 +46464,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -46492,7 +46492,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -46523,7 +46523,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -46554,7 +46554,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -46585,7 +46585,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -46616,7 +46616,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -46647,7 +46647,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -46678,7 +46678,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -46709,7 +46709,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -46738,7 +46738,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -46760,7 +46760,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -46782,7 +46782,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -46804,7 +46804,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -46826,7 +46826,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -46848,7 +46848,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -46870,7 +46870,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -46892,7 +46892,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -46914,17 +46914,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -46937,17 +46937,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -46960,17 +46960,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -46983,17 +46983,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -47007,17 +47007,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -47031,17 +47031,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -47055,17 +47055,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -47079,17 +47079,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -47103,7 +47103,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -47130,7 +47130,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -47157,7 +47157,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -47184,7 +47184,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -47211,7 +47211,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -47238,7 +47238,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -47265,7 +47265,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -47292,7 +47292,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
@@ -47318,7 +47318,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSger_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -47337,7 +47337,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDger_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -47356,7 +47356,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeru_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -47375,7 +47375,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgerc_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -47394,7 +47394,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeru_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -47413,7 +47413,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgerc_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -47432,7 +47432,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSger_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -47451,7 +47451,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDger_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -47470,7 +47470,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeru_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -47489,7 +47489,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgerc_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -47508,7 +47508,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeru_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -47527,7 +47527,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgerc_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -47547,15 +47547,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgerBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -47570,15 +47570,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgerBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -47593,15 +47593,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeruBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -47616,15 +47616,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgercBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -47639,15 +47639,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeruBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -47662,15 +47662,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgercBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -47685,15 +47685,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgerBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -47708,15 +47708,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgerBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -47731,15 +47731,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeruBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -47754,15 +47754,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgercBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -47777,15 +47777,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeruBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -47800,15 +47800,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgercBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -47824,7 +47824,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgerStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -47851,7 +47851,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgerStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -47878,7 +47878,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeruStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -47905,7 +47905,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgercStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -47932,7 +47932,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeruStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -47959,7 +47959,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgercStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -47986,7 +47986,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgerStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -48013,7 +48013,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgerStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -48040,7 +48040,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeruStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -48067,7 +48067,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgercStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -48094,7 +48094,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeruStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -48121,7 +48121,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgercStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -48146,7 +48146,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -48168,7 +48168,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -48190,7 +48190,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -48212,7 +48212,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -48235,17 +48235,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -48260,17 +48260,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -48286,17 +48286,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -48312,17 +48312,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -48338,7 +48338,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -48367,7 +48367,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -48396,7 +48396,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -48425,7 +48425,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -48452,7 +48452,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -48473,7 +48473,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -48494,7 +48494,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -48515,7 +48515,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -48537,16 +48537,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -48561,16 +48561,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -48585,16 +48585,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -48609,16 +48609,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -48634,7 +48634,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -48662,7 +48662,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -48690,7 +48690,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -48718,7 +48718,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -48744,7 +48744,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -48761,7 +48761,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -48778,7 +48778,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -48795,7 +48795,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -48813,13 +48813,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -48834,13 +48834,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -48855,13 +48855,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -48876,13 +48876,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -48898,7 +48898,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -48922,7 +48922,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -48946,7 +48946,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -48970,7 +48970,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -48992,7 +48992,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -49011,7 +49011,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -49030,7 +49030,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -49049,7 +49049,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -49069,15 +49069,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2Batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -49092,15 +49092,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2Batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -49115,15 +49115,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2Batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -49138,15 +49138,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2Batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -49162,7 +49162,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2StridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -49189,7 +49189,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2StridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -49216,7 +49216,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2StridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -49243,7 +49243,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2StridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -49268,7 +49268,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -49287,7 +49287,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -49306,7 +49306,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -49326,7 +49326,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -49347,15 +49347,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr), value :: AP
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -49370,15 +49370,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr), value :: AP
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -49393,15 +49393,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr), value :: AP
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -49416,15 +49416,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr), value :: AP
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -49440,7 +49440,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -49467,7 +49467,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -49494,7 +49494,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -49521,7 +49521,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -49546,7 +49546,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -49562,7 +49562,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -49578,7 +49578,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -49594,7 +49594,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -49611,13 +49611,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChprBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batchCount
       !
       hipblasChprBatched_typed = hipblasChprBatched_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -49631,13 +49631,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhprBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batchCount
       !
       hipblasZhprBatched_typed = hipblasZhprBatched_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -49651,13 +49651,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChprBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batchCount
       !
       hipblasChprBatched_64_typed = hipblasChprBatched_64_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -49671,13 +49671,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhprBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batchCount
       !
       hipblasZhprBatched_64_typed = hipblasZhprBatched_64_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -49692,7 +49692,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChprStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -49715,7 +49715,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhprStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -49738,7 +49738,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChprStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -49761,7 +49761,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhprStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -49782,7 +49782,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -49800,7 +49800,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -49818,7 +49818,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -49836,7 +49836,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -49855,15 +49855,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2Batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batchCount
       !
       hipblasChpr2Batched_typed = hipblasChpr2Batched_(handle,uplo,n,c_loc(alpha),x,incx,y,incy, &
@@ -49877,15 +49877,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2Batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batchCount
       !
       hipblasZhpr2Batched_typed = hipblasZhpr2Batched_(handle,uplo,n,c_loc(alpha),x,incx,y,incy, &
@@ -49899,15 +49899,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2Batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batchCount
       !
       hipblasChpr2Batched_64_typed = hipblasChpr2Batched_64_(handle,uplo,n,c_loc(alpha),x,incx,y, &
@@ -49921,15 +49921,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2Batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batchCount
       !
       hipblasZhpr2Batched_64_typed = hipblasZhpr2Batched_64_(handle,uplo,n,c_loc(alpha),x,incx,y, &
@@ -49944,7 +49944,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2StridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -49970,7 +49970,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2StridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -49996,7 +49996,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2StridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -50022,7 +50022,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2StridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -50046,7 +50046,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -50068,7 +50068,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -50090,7 +50090,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -50112,7 +50112,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -50135,17 +50135,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -50160,17 +50160,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -50186,17 +50186,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -50212,17 +50212,17 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -50238,7 +50238,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -50267,7 +50267,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -50296,7 +50296,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -50325,7 +50325,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
@@ -50352,7 +50352,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -50371,7 +50371,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -50390,7 +50390,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -50410,7 +50410,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -50431,15 +50431,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr), value :: AP
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -50454,15 +50454,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr), value :: AP
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -50477,15 +50477,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr), value :: AP
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -50500,15 +50500,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
-      type(c_ptr) :: x
+      type(c_ptr), value :: AP
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -50524,7 +50524,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -50551,7 +50551,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -50578,7 +50578,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -50605,7 +50605,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -50630,7 +50630,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -50646,7 +50646,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -50663,7 +50663,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCspr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -50681,7 +50681,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZspr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -50698,7 +50698,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -50714,7 +50714,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -50731,7 +50731,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCspr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -50749,7 +50749,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZspr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -50767,13 +50767,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsprBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batchCount
       !
       hipblasSsprBatched_typed = hipblasSsprBatched_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -50787,13 +50787,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsprBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batchCount
       !
       hipblasDsprBatched_typed = hipblasDsprBatched_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -50807,13 +50807,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsprBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batchCount
       !
       hipblasCsprBatched_typed = hipblasCsprBatched_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -50827,13 +50827,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsprBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batchCount
       !
       hipblasZsprBatched_typed = hipblasZsprBatched_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -50847,13 +50847,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsprBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batchCount
       !
       hipblasSsprBatched_64_typed = hipblasSsprBatched_64_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -50867,13 +50867,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsprBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batchCount
       !
       hipblasDsprBatched_64_typed = hipblasDsprBatched_64_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -50887,13 +50887,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsprBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batchCount
       !
       hipblasCsprBatched_64_typed = hipblasCsprBatched_64_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -50907,13 +50907,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsprBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batchCount
       !
       hipblasZsprBatched_64_typed = hipblasZsprBatched_64_(handle,uplo,n,c_loc(alpha),x,incx,AP, &
@@ -50928,7 +50928,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsprStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -50951,7 +50951,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsprStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -50974,7 +50974,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsprStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -50997,7 +50997,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsprStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -51020,7 +51020,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsprStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -51043,7 +51043,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsprStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -51066,7 +51066,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsprStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -51089,7 +51089,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsprStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -51110,7 +51110,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -51128,7 +51128,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -51146,7 +51146,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -51164,7 +51164,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -51183,15 +51183,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2Batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batchCount
       !
       hipblasSspr2Batched_typed = hipblasSspr2Batched_(handle,uplo,n,c_loc(alpha),x,incx,y,incy, &
@@ -51205,15 +51205,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2Batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: batchCount
       !
       hipblasDspr2Batched_typed = hipblasDspr2Batched_(handle,uplo,n,c_loc(alpha),x,incx,y,incy, &
@@ -51227,15 +51227,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2Batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batchCount
       !
       hipblasSspr2Batched_64_typed = hipblasSspr2Batched_64_(handle,uplo,n,c_loc(alpha),x,incx,y, &
@@ -51249,15 +51249,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2Batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: batchCount
       !
       hipblasDspr2Batched_64_typed = hipblasDspr2Batched_64_(handle,uplo,n,c_loc(alpha),x,incx,y, &
@@ -51272,7 +51272,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2StridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -51298,7 +51298,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2StridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -51324,7 +51324,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2StridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -51350,7 +51350,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2StridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -51374,7 +51374,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -51395,7 +51395,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -51416,7 +51416,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -51437,7 +51437,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymv_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -51458,7 +51458,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -51479,7 +51479,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -51500,7 +51500,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -51521,7 +51521,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymv_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -51543,16 +51543,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -51567,16 +51567,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -51591,16 +51591,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -51615,16 +51615,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymvBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
       integer(c_int) :: batchCount
       !
@@ -51639,16 +51639,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -51663,16 +51663,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -51687,16 +51687,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -51711,16 +51711,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymvBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: batchCount
       !
@@ -51736,7 +51736,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -51764,7 +51764,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -51792,7 +51792,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -51820,7 +51820,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymvStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -51848,7 +51848,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -51876,7 +51876,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -51904,7 +51904,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -51932,7 +51932,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymvStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -51958,7 +51958,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -51975,7 +51975,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -51992,7 +51992,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -52009,7 +52009,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -52026,7 +52026,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -52043,7 +52043,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -52060,7 +52060,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -52077,7 +52077,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -52095,13 +52095,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -52116,13 +52116,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -52137,13 +52137,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -52158,13 +52158,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -52179,13 +52179,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -52200,13 +52200,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -52221,13 +52221,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -52242,13 +52242,13 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -52264,7 +52264,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -52288,7 +52288,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -52312,7 +52312,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -52336,7 +52336,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -52360,7 +52360,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -52384,7 +52384,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -52408,7 +52408,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -52432,7 +52432,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -52454,7 +52454,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -52473,7 +52473,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -52492,7 +52492,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -52511,7 +52511,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -52530,7 +52530,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -52549,7 +52549,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -52568,7 +52568,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -52587,7 +52587,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -52607,15 +52607,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2Batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -52630,15 +52630,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2Batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -52653,15 +52653,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2Batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -52676,15 +52676,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2Batched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       integer(c_int) :: batchCount
       !
@@ -52699,15 +52699,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2Batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -52722,15 +52722,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2Batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -52745,15 +52745,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2Batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -52768,15 +52768,15 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2Batched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: x
+      type(c_ptr), value :: x
       integer(c_int64_t) :: incx
-      type(c_ptr) :: y
+      type(c_ptr), value :: y
       integer(c_int64_t) :: incy
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: batchCount
       !
@@ -52792,7 +52792,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2StridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -52819,7 +52819,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2StridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -52846,7 +52846,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2StridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -52873,7 +52873,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2StridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -52900,7 +52900,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2StridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
@@ -52927,7 +52927,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2StridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
@@ -52954,7 +52954,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2StridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
@@ -52981,7 +52981,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2StridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
@@ -53006,7 +53006,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -53030,7 +53030,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -53054,7 +53054,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -53078,7 +53078,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -53102,7 +53102,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -53126,7 +53126,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -53150,7 +53150,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -53174,7 +53174,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -53199,19 +53199,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -53225,19 +53225,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -53251,19 +53251,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -53277,19 +53277,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -53303,19 +53303,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -53329,19 +53329,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -53355,19 +53355,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -53381,19 +53381,19 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -53407,7 +53407,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -53436,7 +53436,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -53465,7 +53465,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -53494,7 +53494,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -53523,7 +53523,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -53552,7 +53552,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -53581,7 +53581,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -53610,7 +53610,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -53638,7 +53638,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherk_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -53659,7 +53659,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherk_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -53680,7 +53680,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherk_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -53701,7 +53701,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherk_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -53723,16 +53723,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -53747,16 +53747,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -53772,16 +53772,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -53797,16 +53797,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -53822,7 +53822,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -53849,7 +53849,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -53876,7 +53876,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -53903,7 +53903,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -53928,7 +53928,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -53951,7 +53951,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -53974,7 +53974,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkx_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -53997,7 +53997,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkx_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -54022,18 +54022,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkxBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -54049,18 +54049,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkxBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -54076,18 +54076,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkxBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -54103,18 +54103,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkxBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -54130,7 +54130,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkxStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -54160,7 +54160,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkxStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -54190,7 +54190,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkxStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -54220,7 +54220,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkxStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -54248,7 +54248,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2k_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -54271,7 +54271,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2k_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -54294,7 +54294,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2k_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -54317,7 +54317,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2k_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -54342,18 +54342,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2kBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -54369,18 +54369,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2kBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -54396,18 +54396,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2kBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -54423,18 +54423,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2kBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -54450,7 +54450,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2kStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -54480,7 +54480,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2kStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -54510,7 +54510,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2kStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -54540,7 +54540,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2kStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -54568,7 +54568,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -54591,7 +54591,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -54614,7 +54614,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -54637,7 +54637,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -54660,7 +54660,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: m
@@ -54683,7 +54683,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: m
@@ -54706,7 +54706,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: m
@@ -54729,7 +54729,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: m
@@ -54754,18 +54754,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -54781,18 +54781,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -54808,18 +54808,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -54835,18 +54835,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -54862,18 +54862,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -54889,18 +54889,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -54916,18 +54916,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -54943,18 +54943,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -54970,7 +54970,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -55000,7 +55000,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -55030,7 +55030,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -55060,7 +55060,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -55090,7 +55090,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: m
@@ -55120,7 +55120,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: m
@@ -55150,7 +55150,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: m
@@ -55180,7 +55180,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: m
@@ -55208,7 +55208,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrk_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -55229,7 +55229,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrk_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -55250,7 +55250,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrk_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -55271,7 +55271,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrk_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -55292,7 +55292,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrk_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -55313,7 +55313,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrk_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -55334,7 +55334,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrk_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -55355,7 +55355,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrk_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -55377,16 +55377,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -55401,16 +55401,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -55425,16 +55425,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -55449,16 +55449,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -55474,16 +55474,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -55499,16 +55499,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -55524,16 +55524,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -55549,16 +55549,16 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -55574,7 +55574,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -55601,7 +55601,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -55628,7 +55628,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -55655,7 +55655,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -55682,7 +55682,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -55709,7 +55709,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -55736,7 +55736,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -55763,7 +55763,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -55788,7 +55788,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2k_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -55811,7 +55811,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2k_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -55834,7 +55834,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2k_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -55857,7 +55857,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2k_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -55880,7 +55880,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2k_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -55903,7 +55903,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2k_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -55926,7 +55926,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2k_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -55949,7 +55949,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2k_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -55974,18 +55974,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -56001,18 +56001,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -56028,18 +56028,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -56055,18 +56055,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -56082,18 +56082,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -56109,18 +56109,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -56136,18 +56136,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -56163,18 +56163,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -56190,7 +56190,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -56220,7 +56220,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -56250,7 +56250,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -56280,7 +56280,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -56310,7 +56310,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -56340,7 +56340,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -56370,7 +56370,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -56400,7 +56400,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -56428,7 +56428,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -56451,7 +56451,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -56474,7 +56474,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -56497,7 +56497,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkx_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -56520,7 +56520,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkx_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -56543,7 +56543,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkx_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -56566,7 +56566,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkx_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -56589,7 +56589,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkx_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -56614,18 +56614,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -56641,18 +56641,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -56668,18 +56668,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -56695,18 +56695,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -56722,18 +56722,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -56749,18 +56749,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -56776,18 +56776,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -56803,18 +56803,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -56830,7 +56830,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -56860,7 +56860,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -56890,7 +56890,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -56920,7 +56920,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -56950,7 +56950,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -56980,7 +56980,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -57010,7 +57010,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -57040,7 +57040,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int64_t) :: n
@@ -57068,7 +57068,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -57091,7 +57091,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -57114,7 +57114,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -57137,7 +57137,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -57160,7 +57160,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -57183,7 +57183,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -57206,7 +57206,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -57229,7 +57229,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -57254,18 +57254,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       real(c_float),target :: beta
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -57281,18 +57281,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       real(c_double),target :: beta
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -57308,18 +57308,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -57335,18 +57335,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -57362,18 +57362,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       real(c_float),target :: beta
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -57389,18 +57389,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       real(c_double),target :: beta
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -57416,18 +57416,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -57443,18 +57443,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -57470,7 +57470,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -57500,7 +57500,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -57530,7 +57530,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -57560,7 +57560,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -57590,7 +57590,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -57620,7 +57620,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -57650,7 +57650,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -57680,7 +57680,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int64_t) :: m
@@ -57708,7 +57708,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -57731,7 +57731,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -57754,7 +57754,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
@@ -57777,7 +57777,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
@@ -57802,18 +57802,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -57829,18 +57829,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -57856,18 +57856,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -57883,18 +57883,18 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      type(c_ptr) :: CP
+      type(c_ptr), value :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -57910,7 +57910,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -57940,7 +57940,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -57970,7 +57970,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
@@ -58000,7 +58000,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
@@ -58028,7 +58028,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58052,7 +58052,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58076,7 +58076,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58100,7 +58100,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58124,7 +58124,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58148,7 +58148,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58172,7 +58172,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58196,7 +58196,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58222,7 +58222,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58230,11 +58230,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -58250,7 +58250,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58258,11 +58258,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -58278,7 +58278,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58286,11 +58286,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -58306,7 +58306,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58314,11 +58314,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int) :: ldc
       integer(c_int) :: batchCount
       !
@@ -58334,7 +58334,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58342,11 +58342,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -58362,7 +58362,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58370,11 +58370,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -58390,7 +58390,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58398,11 +58398,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -58418,7 +58418,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58426,11 +58426,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
-      type(c_ptr) :: C
+      type(c_ptr), value :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: batchCount
       !
@@ -58446,7 +58446,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58477,7 +58477,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58508,7 +58508,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58539,7 +58539,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58570,7 +58570,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58601,7 +58601,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58632,7 +58632,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58663,7 +58663,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58692,7 +58692,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58714,7 +58714,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58736,7 +58736,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58758,7 +58758,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsm_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58780,7 +58780,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58802,7 +58802,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58824,7 +58824,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58846,7 +58846,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsm_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58869,7 +58869,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58877,9 +58877,9 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       integer(c_int) :: batchCount
       !
@@ -58893,7 +58893,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58901,9 +58901,9 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       integer(c_int) :: batchCount
       !
@@ -58917,7 +58917,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58925,9 +58925,9 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       integer(c_int) :: batchCount
       !
@@ -58941,7 +58941,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsmBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58949,9 +58949,9 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int) :: ldb
       integer(c_int) :: batchCount
       !
@@ -58965,7 +58965,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58973,9 +58973,9 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: batchCount
       !
@@ -58989,7 +58989,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -58997,9 +58997,9 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: batchCount
       !
@@ -59013,7 +59013,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -59021,9 +59021,9 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: batchCount
       !
@@ -59037,7 +59037,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsmBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -59045,9 +59045,9 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      type(c_ptr) :: AP
+      type(c_ptr), value :: AP
       integer(c_int64_t) :: lda
-      type(c_ptr) :: BP
+      type(c_ptr), value :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: batchCount
       !
@@ -59062,7 +59062,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -59090,7 +59090,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -59118,7 +59118,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -59146,7 +59146,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsmStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -59174,7 +59174,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -59202,7 +59202,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -59230,7 +59230,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -59258,7 +59258,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsmStridedBatched_64_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -59285,7 +59285,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -59306,7 +59306,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -59327,7 +59327,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -59348,7 +59348,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -59368,14 +59368,14 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
@@ -59389,14 +59389,14 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
@@ -59410,14 +59410,14 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
@@ -59431,14 +59431,14 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
       type(c_ptr) :: ipiv
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
@@ -59454,7 +59454,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -59481,7 +59481,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -59508,7 +59508,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -59535,7 +59535,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -59561,7 +59561,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgels_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -59583,7 +59583,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgels_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -59605,7 +59605,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgels_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -59627,7 +59627,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgels_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -59649,14 +59649,14 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgelsBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int),target :: myInfo
       type(c_ptr) :: deviceInfo
@@ -59672,14 +59672,14 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgelsBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int),target :: myInfo
       type(c_ptr) :: deviceInfo
@@ -59695,14 +59695,14 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgelsBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int),target :: myInfo
       type(c_ptr) :: deviceInfo
@@ -59718,14 +59718,14 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgelsBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: B
+      type(c_ptr), value :: B
       integer(c_int) :: ldb
       integer(c_int),target :: myInfo
       type(c_ptr) :: deviceInfo
@@ -59742,7 +59742,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgelsStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -59769,7 +59769,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgelsStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -59796,7 +59796,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgelsStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -59823,7 +59823,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgelsStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -59849,7 +59849,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -59867,7 +59867,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -59885,7 +59885,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -59903,7 +59903,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -59920,12 +59920,12 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      type(c_ptr), value :: ipiv
       integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
@@ -59938,12 +59938,12 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      type(c_ptr), value :: ipiv
       integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
@@ -59956,12 +59956,12 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      type(c_ptr), value :: ipiv
       integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
@@ -59974,12 +59974,12 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      type(c_ptr) :: A
+      type(c_ptr), value :: A
       integer(c_int) :: lda
-      type(c_ptr) :: ipiv
+      type(c_ptr), value :: ipiv
       integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
       !
@@ -59994,7 +59994,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -60017,7 +60017,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -60040,7 +60040,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -60063,7 +60063,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_typed
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: A
@@ -60088,7 +60088,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60102,7 +60102,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60117,7 +60117,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -60131,7 +60131,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -60145,7 +60145,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60159,7 +60159,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60175,7 +60175,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60189,7 +60189,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60204,7 +60204,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -60218,7 +60218,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -60232,7 +60232,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60246,7 +60246,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60262,7 +60262,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60276,7 +60276,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60291,7 +60291,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -60305,7 +60305,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -60319,7 +60319,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60333,7 +60333,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60349,7 +60349,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60363,7 +60363,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60378,7 +60378,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -60392,7 +60392,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -60406,7 +60406,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60420,7 +60420,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60437,7 +60437,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamaxStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60455,7 +60455,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamaxStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -60472,7 +60472,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamaxStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60493,7 +60493,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamaxStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60511,7 +60511,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamaxStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -60528,7 +60528,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamaxStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60549,7 +60549,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamaxStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60567,7 +60567,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamaxStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -60584,7 +60584,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamaxStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60605,7 +60605,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamaxStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60623,7 +60623,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamaxStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -60640,7 +60640,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamaxStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60660,7 +60660,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60674,7 +60674,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60689,7 +60689,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -60703,7 +60703,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -60717,7 +60717,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60731,7 +60731,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60747,7 +60747,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60761,7 +60761,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60776,7 +60776,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -60790,7 +60790,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -60804,7 +60804,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60818,7 +60818,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60834,7 +60834,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60848,7 +60848,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60863,7 +60863,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -60877,7 +60877,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -60891,7 +60891,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60905,7 +60905,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60921,7 +60921,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60935,7 +60935,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -60950,7 +60950,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -60964,7 +60964,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -60978,7 +60978,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -60992,7 +60992,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61009,7 +61009,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsaminStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61027,7 +61027,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsaminStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -61044,7 +61044,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsaminStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61065,7 +61065,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdaminStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61083,7 +61083,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdaminStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -61100,7 +61100,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdaminStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61121,7 +61121,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcaminStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61139,7 +61139,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcaminStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -61156,7 +61156,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcaminStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61177,7 +61177,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzaminStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61195,7 +61195,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzaminStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -61212,7 +61212,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzaminStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61232,7 +61232,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61246,7 +61246,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61261,7 +61261,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -61275,7 +61275,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -61289,7 +61289,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61303,7 +61303,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61319,7 +61319,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61333,7 +61333,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61348,7 +61348,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -61362,7 +61362,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -61376,7 +61376,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61390,7 +61390,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61406,7 +61406,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61420,7 +61420,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61435,7 +61435,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -61449,7 +61449,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -61463,7 +61463,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61477,7 +61477,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61493,7 +61493,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61507,7 +61507,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61522,7 +61522,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -61536,7 +61536,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -61550,7 +61550,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61564,7 +61564,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61581,7 +61581,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasumStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61599,7 +61599,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasumStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -61616,7 +61616,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasumStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61637,7 +61637,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasumStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61655,7 +61655,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasumStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -61672,7 +61672,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasumStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61693,7 +61693,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasumStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61711,7 +61711,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasumStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -61728,7 +61728,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasumStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61749,7 +61749,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasumStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -61767,7 +61767,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasumStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -61784,7 +61784,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasumStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -61804,7 +61804,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,contiguous,dimension(..) :: x
@@ -61821,7 +61821,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target :: x
@@ -61837,7 +61837,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,dimension(:) :: x
@@ -61855,7 +61855,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,contiguous,dimension(..) :: x
@@ -61872,7 +61872,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target :: x
@@ -61888,7 +61888,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,dimension(:) :: x
@@ -61906,7 +61906,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,contiguous,dimension(..) :: x
@@ -61923,7 +61923,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target :: x
@@ -61939,7 +61939,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,dimension(:) :: x
@@ -61957,7 +61957,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,contiguous,dimension(..) :: x
@@ -61974,7 +61974,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target :: x
@@ -61990,7 +61990,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,dimension(:) :: x
@@ -62010,7 +62010,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpyStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,contiguous,dimension(..) :: x
@@ -62032,7 +62032,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpyStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target :: x
@@ -62053,7 +62053,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpyStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,dimension(:) :: x
@@ -62078,7 +62078,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpyStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,contiguous,dimension(..) :: x
@@ -62100,7 +62100,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpyStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target :: x
@@ -62121,7 +62121,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpyStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,dimension(:) :: x
@@ -62146,7 +62146,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpyStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,contiguous,dimension(..) :: x
@@ -62168,7 +62168,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpyStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target :: x
@@ -62189,7 +62189,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpyStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,dimension(:) :: x
@@ -62214,7 +62214,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpyStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,contiguous,dimension(..) :: x
@@ -62236,7 +62236,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpyStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target :: x
@@ -62257,7 +62257,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpyStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,dimension(:) :: x
@@ -62280,7 +62280,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62296,7 +62296,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -62311,7 +62311,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62328,7 +62328,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62344,7 +62344,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -62359,7 +62359,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62376,7 +62376,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62392,7 +62392,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -62407,7 +62407,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62424,7 +62424,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopy_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62440,7 +62440,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopy_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -62455,7 +62455,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopy_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62474,7 +62474,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopyStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62494,7 +62494,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopyStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -62513,7 +62513,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopyStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62537,7 +62537,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopyStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62557,7 +62557,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopyStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -62576,7 +62576,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopyStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62600,7 +62600,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopyStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62620,7 +62620,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopyStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -62639,7 +62639,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopyStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62663,7 +62663,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopyStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62683,7 +62683,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopyStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -62702,7 +62702,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopyStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62724,7 +62724,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62740,7 +62740,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62757,7 +62757,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -62773,7 +62773,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -62789,7 +62789,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62805,7 +62805,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62823,7 +62823,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62839,7 +62839,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62856,7 +62856,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -62872,7 +62872,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -62888,7 +62888,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62904,7 +62904,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -62922,7 +62922,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62939,7 +62939,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -62957,7 +62957,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -62973,7 +62973,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -62989,7 +62989,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63005,7 +63005,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63023,7 +63023,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63040,7 +63040,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63058,7 +63058,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -63074,7 +63074,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -63090,7 +63090,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63106,7 +63106,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63124,7 +63124,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63141,7 +63141,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63159,7 +63159,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -63175,7 +63175,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -63191,7 +63191,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63207,7 +63207,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63225,7 +63225,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63242,7 +63242,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63260,7 +63260,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -63276,7 +63276,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -63292,7 +63292,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63308,7 +63308,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63328,7 +63328,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdotStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63350,7 +63350,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdotStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -63371,7 +63371,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdotStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63396,7 +63396,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdotStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63418,7 +63418,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdotStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -63439,7 +63439,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdotStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63464,7 +63464,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotcStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63486,7 +63486,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotcStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -63507,7 +63507,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotcStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63532,7 +63532,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotuStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63554,7 +63554,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotuStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -63575,7 +63575,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotuStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63600,7 +63600,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotcStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63622,7 +63622,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotcStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -63643,7 +63643,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotcStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63668,7 +63668,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotuStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63690,7 +63690,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotuStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -63711,7 +63711,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotuStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63734,7 +63734,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63748,7 +63748,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63763,7 +63763,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -63777,7 +63777,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -63791,7 +63791,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63805,7 +63805,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63821,7 +63821,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63835,7 +63835,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63850,7 +63850,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -63864,7 +63864,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -63878,7 +63878,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63892,7 +63892,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63908,7 +63908,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63922,7 +63922,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -63937,7 +63937,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -63951,7 +63951,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -63965,7 +63965,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63979,7 +63979,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -63995,7 +63995,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64009,7 +64009,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64024,7 +64024,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -64038,7 +64038,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -64052,7 +64052,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64066,7 +64066,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64083,7 +64083,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64101,7 +64101,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -64118,7 +64118,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64139,7 +64139,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64157,7 +64157,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -64174,7 +64174,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64195,7 +64195,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64213,7 +64213,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -64230,7 +64230,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64251,7 +64251,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64269,7 +64269,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -64286,7 +64286,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64306,7 +64306,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64324,7 +64324,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64342,7 +64342,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -64359,7 +64359,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -64376,7 +64376,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64393,7 +64393,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64412,7 +64412,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64430,7 +64430,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64448,7 +64448,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -64465,7 +64465,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -64482,7 +64482,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64499,7 +64499,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64518,7 +64518,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64536,7 +64536,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64554,7 +64554,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -64571,7 +64571,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -64588,7 +64588,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64605,7 +64605,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64624,7 +64624,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64642,7 +64642,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64660,7 +64660,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -64677,7 +64677,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -64694,7 +64694,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64711,7 +64711,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64730,7 +64730,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64748,7 +64748,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64766,7 +64766,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -64783,7 +64783,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -64800,7 +64800,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64817,7 +64817,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64836,7 +64836,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64854,7 +64854,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64872,7 +64872,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -64889,7 +64889,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -64906,7 +64906,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64923,7 +64923,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -64944,7 +64944,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -64966,7 +64966,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -64987,7 +64987,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -65013,7 +65013,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -65035,7 +65035,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -65056,7 +65056,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -65082,7 +65082,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -65104,7 +65104,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -65125,7 +65125,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -65151,7 +65151,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrotStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -65174,7 +65174,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrotStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -65196,7 +65196,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrotStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -65222,7 +65222,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -65244,7 +65244,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -65265,7 +65265,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -65291,7 +65291,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrotStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -65314,7 +65314,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrotStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -65336,7 +65336,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrotStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -65360,7 +65360,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -65377,7 +65377,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -65393,7 +65393,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -65411,7 +65411,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -65428,7 +65428,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -65444,7 +65444,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -65464,7 +65464,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -65487,7 +65487,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -65509,7 +65509,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -65535,7 +65535,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -65558,7 +65558,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -65580,7 +65580,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -65604,7 +65604,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscal_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,contiguous,dimension(..) :: x
@@ -65619,7 +65619,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscal_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target :: x
@@ -65633,7 +65633,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscal_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,dimension(:) :: x
@@ -65649,7 +65649,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscal_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,contiguous,dimension(..) :: x
@@ -65664,7 +65664,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscal_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target :: x
@@ -65678,7 +65678,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscal_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,dimension(:) :: x
@@ -65694,7 +65694,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscal_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,contiguous,dimension(..) :: x
@@ -65709,7 +65709,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscal_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target :: x
@@ -65723,7 +65723,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscal_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,dimension(:) :: x
@@ -65739,7 +65739,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscal_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       complex(c_float_complex),target,contiguous,dimension(..) :: x
@@ -65754,7 +65754,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscal_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       complex(c_float_complex),target :: x
@@ -65768,7 +65768,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscal_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       complex(c_float_complex),target,dimension(:) :: x
@@ -65784,7 +65784,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscal_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,contiguous,dimension(..) :: x
@@ -65799,7 +65799,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscal_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target :: x
@@ -65813,7 +65813,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscal_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,dimension(:) :: x
@@ -65829,7 +65829,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscal_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       complex(c_double_complex),target,contiguous,dimension(..) :: x
@@ -65844,7 +65844,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscal_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       complex(c_double_complex),target :: x
@@ -65858,7 +65858,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscal_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       complex(c_double_complex),target,dimension(:) :: x
@@ -65875,7 +65875,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscalStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,contiguous,dimension(..) :: x
@@ -65893,7 +65893,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscalStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target :: x
@@ -65910,7 +65910,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscalStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       real(c_float),target,dimension(:) :: x
@@ -65931,7 +65931,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscalStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,contiguous,dimension(..) :: x
@@ -65949,7 +65949,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscalStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target :: x
@@ -65966,7 +65966,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscalStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       real(c_double),target,dimension(:) :: x
@@ -65987,7 +65987,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscalStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,contiguous,dimension(..) :: x
@@ -66005,7 +66005,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscalStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target :: x
@@ -66022,7 +66022,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscalStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
       complex(c_float_complex),target,dimension(:) :: x
@@ -66043,7 +66043,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscalStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,contiguous,dimension(..) :: x
@@ -66061,7 +66061,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscalStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target :: x
@@ -66078,7 +66078,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscalStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
       complex(c_double_complex),target,dimension(:) :: x
@@ -66099,7 +66099,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscalStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       complex(c_float_complex),target,contiguous,dimension(..) :: x
@@ -66117,7 +66117,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscalStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       complex(c_float_complex),target :: x
@@ -66134,7 +66134,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscalStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
       complex(c_float_complex),target,dimension(:) :: x
@@ -66155,7 +66155,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscalStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       complex(c_double_complex),target,contiguous,dimension(..) :: x
@@ -66173,7 +66173,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscalStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       complex(c_double_complex),target :: x
@@ -66190,7 +66190,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscalStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
       complex(c_double_complex),target,dimension(:) :: x
@@ -66210,7 +66210,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswap_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -66226,7 +66226,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswap_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -66241,7 +66241,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswap_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -66258,7 +66258,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswap_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -66274,7 +66274,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswap_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -66289,7 +66289,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswap_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -66306,7 +66306,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswap_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -66322,7 +66322,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswap_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -66337,7 +66337,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswap_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -66354,7 +66354,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswap_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -66370,7 +66370,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswap_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -66385,7 +66385,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswap_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -66404,7 +66404,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswapStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -66424,7 +66424,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswapStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: x
       integer(c_int) :: incx
@@ -66443,7 +66443,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswapStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -66467,7 +66467,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswapStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -66487,7 +66487,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswapStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: x
       integer(c_int) :: incx
@@ -66506,7 +66506,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswapStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -66530,7 +66530,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswapStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -66550,7 +66550,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswapStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: x
       integer(c_int) :: incx
@@ -66569,7 +66569,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswapStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -66593,7 +66593,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswapStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: x
       integer(c_int) :: incx
@@ -66613,7 +66613,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswapStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: x
       integer(c_int) :: incx
@@ -66632,7 +66632,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswapStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: x
       integer(c_int) :: incx
@@ -66654,7 +66654,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66679,7 +66679,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66703,7 +66703,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66727,7 +66727,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66753,7 +66753,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66778,7 +66778,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66802,7 +66802,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66826,7 +66826,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66852,7 +66852,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66877,7 +66877,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66901,7 +66901,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66925,7 +66925,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66951,7 +66951,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -66976,7 +66976,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67000,7 +67000,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67024,7 +67024,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67052,7 +67052,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67083,7 +67083,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67113,7 +67113,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67143,7 +67143,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67177,7 +67177,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67208,7 +67208,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67238,7 +67238,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67268,7 +67268,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67302,7 +67302,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67333,7 +67333,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67363,7 +67363,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67393,7 +67393,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67427,7 +67427,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67458,7 +67458,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67488,7 +67488,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67518,7 +67518,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67550,7 +67550,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67573,7 +67573,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67595,7 +67595,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67617,7 +67617,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67641,7 +67641,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67664,7 +67664,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67686,7 +67686,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67708,7 +67708,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67732,7 +67732,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67755,7 +67755,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67777,7 +67777,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67799,7 +67799,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67823,7 +67823,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67846,7 +67846,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67868,7 +67868,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67890,7 +67890,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67915,7 +67915,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67944,7 +67944,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -67972,7 +67972,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68000,7 +68000,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68030,7 +68030,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68059,7 +68059,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68087,7 +68087,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68115,7 +68115,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68145,7 +68145,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68174,7 +68174,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68202,7 +68202,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68230,7 +68230,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68260,7 +68260,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68289,7 +68289,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68317,7 +68317,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68345,7 +68345,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: m
       integer(c_int) :: n
@@ -68374,7 +68374,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSger_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -68395,7 +68395,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSger_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -68415,7 +68415,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSger_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -68435,7 +68435,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSger_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -68457,7 +68457,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDger_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -68478,7 +68478,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDger_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -68498,7 +68498,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDger_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -68518,7 +68518,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDger_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -68540,7 +68540,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeru_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -68561,7 +68561,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeru_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -68581,7 +68581,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeru_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -68601,7 +68601,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeru_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -68623,7 +68623,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgerc_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -68644,7 +68644,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgerc_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -68664,7 +68664,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgerc_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -68684,7 +68684,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgerc_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -68706,7 +68706,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeru_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -68727,7 +68727,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeru_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -68747,7 +68747,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeru_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -68767,7 +68767,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeru_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -68789,7 +68789,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgerc_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -68810,7 +68810,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgerc_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -68830,7 +68830,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgerc_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -68850,7 +68850,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgerc_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -68874,7 +68874,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgerStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -68900,7 +68900,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgerStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -68925,7 +68925,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgerStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -68950,7 +68950,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgerStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -68979,7 +68979,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgerStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -69005,7 +69005,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgerStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -69030,7 +69030,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgerStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -69055,7 +69055,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgerStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -69084,7 +69084,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeruStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -69110,7 +69110,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeruStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -69135,7 +69135,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeruStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -69160,7 +69160,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeruStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -69189,7 +69189,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgercStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -69215,7 +69215,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgercStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -69240,7 +69240,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgercStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -69265,7 +69265,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgercStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -69294,7 +69294,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeruStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -69320,7 +69320,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeruStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -69345,7 +69345,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeruStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -69370,7 +69370,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeruStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -69399,7 +69399,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgercStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -69425,7 +69425,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgercStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -69450,7 +69450,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgercStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -69475,7 +69475,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgercStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -69502,7 +69502,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69525,7 +69525,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69547,7 +69547,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69569,7 +69569,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69593,7 +69593,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69616,7 +69616,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69638,7 +69638,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69660,7 +69660,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69686,7 +69686,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69715,7 +69715,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69743,7 +69743,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69771,7 +69771,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69803,7 +69803,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69832,7 +69832,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69860,7 +69860,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69888,7 +69888,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -69918,7 +69918,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -69940,7 +69940,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -69961,7 +69961,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -69982,7 +69982,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70005,7 +70005,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70027,7 +70027,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70048,7 +70048,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70069,7 +70069,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70094,7 +70094,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70122,7 +70122,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70148,7 +70148,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70174,7 +70174,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70205,7 +70205,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70233,7 +70233,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70259,7 +70259,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70285,7 +70285,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70314,7 +70314,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70333,7 +70333,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70350,7 +70350,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70367,7 +70367,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70386,7 +70386,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70405,7 +70405,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70422,7 +70422,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70439,7 +70439,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70460,7 +70460,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70483,7 +70483,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70505,7 +70505,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70527,7 +70527,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -70553,7 +70553,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70576,7 +70576,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70598,7 +70598,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70620,7 +70620,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -70644,7 +70644,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70665,7 +70665,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70685,7 +70685,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70705,7 +70705,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70727,7 +70727,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70748,7 +70748,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70768,7 +70768,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70788,7 +70788,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70812,7 +70812,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70838,7 +70838,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70863,7 +70863,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70888,7 +70888,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2StridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -70917,7 +70917,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70943,7 +70943,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70968,7 +70968,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -70993,7 +70993,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2StridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71020,7 +71020,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71041,7 +71041,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71061,7 +71061,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71083,7 +71083,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71104,7 +71104,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71124,7 +71124,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71148,7 +71148,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71175,7 +71175,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71200,7 +71200,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71229,7 +71229,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71256,7 +71256,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71281,7 +71281,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71308,7 +71308,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71325,7 +71325,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71341,7 +71341,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71359,7 +71359,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71376,7 +71376,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71392,7 +71392,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71412,7 +71412,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChprStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71434,7 +71434,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChprStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71455,7 +71455,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChprStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -71480,7 +71480,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhprStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71502,7 +71502,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhprStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71523,7 +71523,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhprStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -71546,7 +71546,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71566,7 +71566,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71585,7 +71585,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71606,7 +71606,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71626,7 +71626,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71645,7 +71645,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71668,7 +71668,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71693,7 +71693,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71717,7 +71717,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -71745,7 +71745,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71770,7 +71770,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71794,7 +71794,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -71820,7 +71820,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71843,7 +71843,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71865,7 +71865,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71887,7 +71887,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71911,7 +71911,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71934,7 +71934,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71956,7 +71956,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -71978,7 +71978,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -72004,7 +72004,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -72033,7 +72033,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -72061,7 +72061,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -72089,7 +72089,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -72121,7 +72121,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -72150,7 +72150,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -72178,7 +72178,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -72206,7 +72206,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
@@ -72236,7 +72236,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72257,7 +72257,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72277,7 +72277,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72299,7 +72299,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72320,7 +72320,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72340,7 +72340,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72364,7 +72364,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72391,7 +72391,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72416,7 +72416,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72445,7 +72445,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72472,7 +72472,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72497,7 +72497,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72524,7 +72524,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72541,7 +72541,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72557,7 +72557,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72575,7 +72575,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72592,7 +72592,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72608,7 +72608,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72627,7 +72627,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCspr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72644,7 +72644,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCspr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72660,7 +72660,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCspr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72680,7 +72680,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZspr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72697,7 +72697,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZspr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72713,7 +72713,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZspr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72734,7 +72734,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsprStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72756,7 +72756,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsprStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72777,7 +72777,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsprStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -72802,7 +72802,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsprStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72824,7 +72824,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsprStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72845,7 +72845,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsprStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -72870,7 +72870,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsprStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72892,7 +72892,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsprStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72913,7 +72913,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsprStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -72938,7 +72938,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsprStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72960,7 +72960,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsprStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -72981,7 +72981,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsprStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73004,7 +73004,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73024,7 +73024,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73043,7 +73043,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73064,7 +73064,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73084,7 +73084,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73103,7 +73103,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73126,7 +73126,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73151,7 +73151,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73175,7 +73175,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73203,7 +73203,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73228,7 +73228,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73252,7 +73252,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73278,7 +73278,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73300,7 +73300,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73321,7 +73321,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73342,7 +73342,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73365,7 +73365,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73387,7 +73387,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73408,7 +73408,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73429,7 +73429,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73452,7 +73452,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73474,7 +73474,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73495,7 +73495,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73516,7 +73516,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73539,7 +73539,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73561,7 +73561,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73582,7 +73582,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73603,7 +73603,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73628,7 +73628,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73656,7 +73656,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73682,7 +73682,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73708,7 +73708,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -73739,7 +73739,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73767,7 +73767,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73793,7 +73793,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73819,7 +73819,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -73850,7 +73850,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73878,7 +73878,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73904,7 +73904,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73930,7 +73930,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -73961,7 +73961,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -73989,7 +73989,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74015,7 +74015,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74041,7 +74041,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74070,7 +74070,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74089,7 +74089,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74106,7 +74106,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74123,7 +74123,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74142,7 +74142,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74161,7 +74161,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74178,7 +74178,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74195,7 +74195,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74214,7 +74214,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74233,7 +74233,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74250,7 +74250,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74267,7 +74267,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74286,7 +74286,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74305,7 +74305,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74322,7 +74322,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74339,7 +74339,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74360,7 +74360,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74383,7 +74383,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74405,7 +74405,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74427,7 +74427,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74453,7 +74453,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74476,7 +74476,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74498,7 +74498,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74520,7 +74520,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74546,7 +74546,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74569,7 +74569,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74591,7 +74591,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74613,7 +74613,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74639,7 +74639,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74662,7 +74662,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74684,7 +74684,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74706,7 +74706,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -74730,7 +74730,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74751,7 +74751,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74771,7 +74771,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74791,7 +74791,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -74813,7 +74813,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74834,7 +74834,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74854,7 +74854,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74874,7 +74874,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -74896,7 +74896,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74917,7 +74917,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74937,7 +74937,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74957,7 +74957,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -74979,7 +74979,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -75000,7 +75000,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -75020,7 +75020,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -75040,7 +75040,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -75064,7 +75064,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -75090,7 +75090,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -75115,7 +75115,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -75140,7 +75140,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2StridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
@@ -75169,7 +75169,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -75195,7 +75195,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -75220,7 +75220,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -75245,7 +75245,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2StridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
@@ -75274,7 +75274,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -75300,7 +75300,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -75325,7 +75325,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -75350,7 +75350,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2StridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
@@ -75379,7 +75379,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2StridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -75405,7 +75405,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2StridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -75430,7 +75430,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2StridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -75455,7 +75455,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2StridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
@@ -75482,7 +75482,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75503,7 +75503,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75522,7 +75522,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75541,7 +75541,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75563,7 +75563,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75584,7 +75584,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75603,7 +75603,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75622,7 +75622,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75644,7 +75644,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75665,7 +75665,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75684,7 +75684,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75703,7 +75703,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75725,7 +75725,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75746,7 +75746,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75765,7 +75765,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75784,7 +75784,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75808,7 +75808,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75833,7 +75833,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75857,7 +75857,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75881,7 +75881,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75909,7 +75909,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75934,7 +75934,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75958,7 +75958,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -75982,7 +75982,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76010,7 +76010,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76035,7 +76035,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76059,7 +76059,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76083,7 +76083,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76111,7 +76111,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76136,7 +76136,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76160,7 +76160,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76184,7 +76184,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76210,7 +76210,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76231,7 +76231,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76250,7 +76250,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76269,7 +76269,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76291,7 +76291,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76312,7 +76312,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76331,7 +76331,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76350,7 +76350,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76372,7 +76372,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76393,7 +76393,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76412,7 +76412,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76431,7 +76431,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76453,7 +76453,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76474,7 +76474,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76493,7 +76493,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76512,7 +76512,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76536,7 +76536,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76561,7 +76561,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76585,7 +76585,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76609,7 +76609,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76637,7 +76637,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76662,7 +76662,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76686,7 +76686,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76710,7 +76710,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76738,7 +76738,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76763,7 +76763,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76787,7 +76787,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76811,7 +76811,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76839,7 +76839,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76864,7 +76864,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76888,7 +76888,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76912,7 +76912,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76938,7 +76938,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76956,7 +76956,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76973,7 +76973,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -76992,7 +76992,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77010,7 +77010,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77027,7 +77027,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77046,7 +77046,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77064,7 +77064,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77081,7 +77081,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77100,7 +77100,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77118,7 +77118,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77135,7 +77135,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77156,7 +77156,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77179,7 +77179,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77201,7 +77201,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77227,7 +77227,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77250,7 +77250,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77272,7 +77272,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77298,7 +77298,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77321,7 +77321,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77343,7 +77343,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77369,7 +77369,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77392,7 +77392,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77414,7 +77414,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77438,7 +77438,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77456,7 +77456,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77473,7 +77473,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77492,7 +77492,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77510,7 +77510,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77527,7 +77527,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77546,7 +77546,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77564,7 +77564,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77581,7 +77581,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77600,7 +77600,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77618,7 +77618,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77635,7 +77635,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77656,7 +77656,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpsvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77679,7 +77679,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpsvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77701,7 +77701,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpsvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77727,7 +77727,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpsvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77750,7 +77750,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpsvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77772,7 +77772,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpsvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77798,7 +77798,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpsvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77821,7 +77821,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpsvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77843,7 +77843,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpsvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77869,7 +77869,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpsvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77892,7 +77892,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpsvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77914,7 +77914,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpsvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77938,7 +77938,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77958,7 +77958,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77976,7 +77976,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -77994,7 +77994,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78014,7 +78014,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78034,7 +78034,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78052,7 +78052,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78070,7 +78070,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78090,7 +78090,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78110,7 +78110,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78128,7 +78128,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78146,7 +78146,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78166,7 +78166,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78186,7 +78186,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78204,7 +78204,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78222,7 +78222,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78244,7 +78244,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78268,7 +78268,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78291,7 +78291,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78314,7 +78314,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78341,7 +78341,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78365,7 +78365,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78388,7 +78388,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78411,7 +78411,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78438,7 +78438,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78462,7 +78462,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78485,7 +78485,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78508,7 +78508,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78535,7 +78535,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78559,7 +78559,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78582,7 +78582,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78605,7 +78605,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78630,7 +78630,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78650,7 +78650,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78668,7 +78668,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78686,7 +78686,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78706,7 +78706,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78726,7 +78726,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78744,7 +78744,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78762,7 +78762,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78782,7 +78782,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78802,7 +78802,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78820,7 +78820,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78838,7 +78838,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78858,7 +78858,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsv_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78878,7 +78878,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsv_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78896,7 +78896,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsv_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78914,7 +78914,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsv_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78936,7 +78936,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78960,7 +78960,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -78983,7 +78983,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79006,7 +79006,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79033,7 +79033,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79057,7 +79057,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79080,7 +79080,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79103,7 +79103,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79130,7 +79130,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79154,7 +79154,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79177,7 +79177,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79200,7 +79200,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79227,7 +79227,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsvStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79251,7 +79251,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsvStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79274,7 +79274,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsvStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79297,7 +79297,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsvStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
@@ -79322,7 +79322,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79347,7 +79347,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79371,7 +79371,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79395,7 +79395,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79421,7 +79421,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79446,7 +79446,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79470,7 +79470,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79494,7 +79494,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79520,7 +79520,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79545,7 +79545,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79569,7 +79569,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79593,7 +79593,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79619,7 +79619,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79644,7 +79644,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79668,7 +79668,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79692,7 +79692,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79719,7 +79719,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79750,7 +79750,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79780,7 +79780,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79810,7 +79810,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79842,7 +79842,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79873,7 +79873,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79903,7 +79903,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79933,7 +79933,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79965,7 +79965,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -79996,7 +79996,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -80026,7 +80026,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -80056,7 +80056,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -80088,7 +80088,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -80119,7 +80119,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -80149,7 +80149,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -80179,7 +80179,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -80210,7 +80210,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherk_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80232,7 +80232,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherk_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80253,7 +80253,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherk_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80274,7 +80274,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherk_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80297,7 +80297,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherk_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80319,7 +80319,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherk_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80340,7 +80340,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherk_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80361,7 +80361,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherk_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80386,7 +80386,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80412,7 +80412,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80437,7 +80437,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80462,7 +80462,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80491,7 +80491,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80517,7 +80517,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80542,7 +80542,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80567,7 +80567,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80594,7 +80594,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkx_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80618,7 +80618,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkx_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80641,7 +80641,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkx_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80664,7 +80664,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkx_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80689,7 +80689,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkx_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80713,7 +80713,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkx_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80736,7 +80736,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkx_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80759,7 +80759,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkx_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80786,7 +80786,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkxStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80816,7 +80816,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkxStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80845,7 +80845,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkxStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80874,7 +80874,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkxStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80907,7 +80907,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkxStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80937,7 +80937,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkxStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80966,7 +80966,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkxStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -80995,7 +80995,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkxStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81026,7 +81026,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2k_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81050,7 +81050,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2k_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81073,7 +81073,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2k_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81096,7 +81096,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2k_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81121,7 +81121,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2k_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81145,7 +81145,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2k_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81168,7 +81168,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2k_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81191,7 +81191,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2k_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81218,7 +81218,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2kStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81248,7 +81248,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2kStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81277,7 +81277,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2kStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81306,7 +81306,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2kStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81339,7 +81339,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2kStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81369,7 +81369,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2kStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81398,7 +81398,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2kStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81427,7 +81427,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2kStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -81458,7 +81458,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81482,7 +81482,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81505,7 +81505,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81528,7 +81528,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81553,7 +81553,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81577,7 +81577,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81600,7 +81600,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81623,7 +81623,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81648,7 +81648,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81672,7 +81672,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81695,7 +81695,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81718,7 +81718,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81743,7 +81743,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81767,7 +81767,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81790,7 +81790,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81813,7 +81813,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81840,7 +81840,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81870,7 +81870,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81899,7 +81899,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81928,7 +81928,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81961,7 +81961,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -81991,7 +81991,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -82020,7 +82020,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -82049,7 +82049,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -82082,7 +82082,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -82112,7 +82112,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -82141,7 +82141,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -82170,7 +82170,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -82203,7 +82203,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -82233,7 +82233,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -82262,7 +82262,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -82291,7 +82291,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: m
@@ -82322,7 +82322,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrk_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82344,7 +82344,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrk_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82365,7 +82365,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrk_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82386,7 +82386,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrk_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82409,7 +82409,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrk_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82431,7 +82431,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrk_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82452,7 +82452,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrk_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82473,7 +82473,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrk_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82496,7 +82496,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrk_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82518,7 +82518,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrk_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82539,7 +82539,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrk_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82560,7 +82560,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrk_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82583,7 +82583,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrk_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82605,7 +82605,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrk_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82626,7 +82626,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrk_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82647,7 +82647,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrk_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82672,7 +82672,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82698,7 +82698,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82723,7 +82723,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82748,7 +82748,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82777,7 +82777,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82803,7 +82803,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82828,7 +82828,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82853,7 +82853,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82882,7 +82882,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82908,7 +82908,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82933,7 +82933,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82958,7 +82958,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -82987,7 +82987,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83013,7 +83013,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83038,7 +83038,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83063,7 +83063,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83090,7 +83090,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2k_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83114,7 +83114,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2k_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83137,7 +83137,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2k_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83160,7 +83160,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2k_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83185,7 +83185,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2k_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83209,7 +83209,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2k_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83232,7 +83232,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2k_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83255,7 +83255,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2k_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83280,7 +83280,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2k_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83304,7 +83304,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2k_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83327,7 +83327,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2k_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83350,7 +83350,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2k_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83375,7 +83375,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2k_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83399,7 +83399,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2k_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83422,7 +83422,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2k_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83445,7 +83445,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2k_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83472,7 +83472,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83502,7 +83502,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83531,7 +83531,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83560,7 +83560,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83593,7 +83593,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83623,7 +83623,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83652,7 +83652,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83681,7 +83681,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83714,7 +83714,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83744,7 +83744,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83773,7 +83773,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83802,7 +83802,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83835,7 +83835,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83865,7 +83865,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83894,7 +83894,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83923,7 +83923,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83954,7 +83954,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkx_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -83978,7 +83978,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkx_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84001,7 +84001,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkx_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84024,7 +84024,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkx_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84049,7 +84049,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkx_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84073,7 +84073,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkx_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84096,7 +84096,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkx_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84119,7 +84119,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkx_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84144,7 +84144,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkx_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84168,7 +84168,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkx_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84191,7 +84191,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkx_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84214,7 +84214,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkx_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84239,7 +84239,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkx_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84263,7 +84263,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkx_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84286,7 +84286,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkx_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84309,7 +84309,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkx_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84336,7 +84336,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84366,7 +84366,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84395,7 +84395,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84424,7 +84424,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84457,7 +84457,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84487,7 +84487,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84516,7 +84516,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84545,7 +84545,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84578,7 +84578,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84608,7 +84608,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84637,7 +84637,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84666,7 +84666,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84699,7 +84699,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84729,7 +84729,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84758,7 +84758,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84787,7 +84787,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(c_int) :: n
@@ -84818,7 +84818,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -84842,7 +84842,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -84865,7 +84865,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -84888,7 +84888,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -84913,7 +84913,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -84937,7 +84937,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -84960,7 +84960,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -84983,7 +84983,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85008,7 +85008,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85032,7 +85032,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85055,7 +85055,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85078,7 +85078,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85103,7 +85103,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85127,7 +85127,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85150,7 +85150,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85173,7 +85173,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85200,7 +85200,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85230,7 +85230,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85259,7 +85259,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85288,7 +85288,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85321,7 +85321,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85351,7 +85351,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85380,7 +85380,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85409,7 +85409,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85442,7 +85442,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85472,7 +85472,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85501,7 +85501,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85530,7 +85530,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85563,7 +85563,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85593,7 +85593,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85622,7 +85622,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85651,7 +85651,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_OP_N)) :: transB
       integer(c_int) :: m
@@ -85682,7 +85682,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -85706,7 +85706,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -85729,7 +85729,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -85752,7 +85752,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -85777,7 +85777,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -85801,7 +85801,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -85824,7 +85824,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -85847,7 +85847,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -85874,7 +85874,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -85904,7 +85904,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -85933,7 +85933,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -85962,7 +85962,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -85995,7 +85995,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -86025,7 +86025,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -86054,7 +86054,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -86083,7 +86083,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
@@ -86114,7 +86114,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86139,7 +86139,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86163,7 +86163,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86187,7 +86187,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86213,7 +86213,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86238,7 +86238,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86262,7 +86262,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86286,7 +86286,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86312,7 +86312,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86337,7 +86337,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86361,7 +86361,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86385,7 +86385,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86411,7 +86411,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86436,7 +86436,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86460,7 +86460,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86484,7 +86484,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86512,7 +86512,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86543,7 +86543,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86573,7 +86573,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86603,7 +86603,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86637,7 +86637,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86668,7 +86668,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86698,7 +86698,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86728,7 +86728,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86762,7 +86762,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86793,7 +86793,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86823,7 +86823,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86853,7 +86853,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86887,7 +86887,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86918,7 +86918,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86948,7 +86948,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -86978,7 +86978,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87010,7 +87010,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87033,7 +87033,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87055,7 +87055,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87077,7 +87077,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87101,7 +87101,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87124,7 +87124,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87146,7 +87146,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87168,7 +87168,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87192,7 +87192,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87215,7 +87215,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87237,7 +87237,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87259,7 +87259,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87283,7 +87283,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87306,7 +87306,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87328,7 +87328,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87350,7 +87350,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87376,7 +87376,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87403,7 +87403,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87429,7 +87429,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87455,7 +87455,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87485,7 +87485,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87512,7 +87512,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87538,7 +87538,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87564,7 +87564,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87594,7 +87594,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87621,7 +87621,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87647,7 +87647,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87673,7 +87673,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87703,7 +87703,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87730,7 +87730,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87756,7 +87756,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87782,7 +87782,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_OP_N)) :: transA
@@ -87811,7 +87811,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrtri_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -87830,7 +87830,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrtri_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -87847,7 +87847,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrtri_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -87864,7 +87864,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrtri_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -87885,7 +87885,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrtri_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -87904,7 +87904,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrtri_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -87921,7 +87921,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrtri_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -87938,7 +87938,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrtri_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -87959,7 +87959,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrtri_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -87978,7 +87978,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrtri_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -87995,7 +87995,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrtri_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88012,7 +88012,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrtri_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88033,7 +88033,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrtri_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88052,7 +88052,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrtri_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88069,7 +88069,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrtri_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88086,7 +88086,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrtri_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88108,7 +88108,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrtriStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88131,7 +88131,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrtriStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88153,7 +88153,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrtriStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88175,7 +88175,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrtriStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88201,7 +88201,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrtriStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88224,7 +88224,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrtriStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88246,7 +88246,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrtriStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88268,7 +88268,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrtriStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88294,7 +88294,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrtriStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88317,7 +88317,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrtriStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88339,7 +88339,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrtriStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88361,7 +88361,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrtriStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88387,7 +88387,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrtriStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88410,7 +88410,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrtriStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88432,7 +88432,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrtriStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88454,7 +88454,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrtriStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
@@ -88478,7 +88478,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88499,7 +88499,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88518,7 +88518,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88537,7 +88537,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88559,7 +88559,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88580,7 +88580,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88599,7 +88599,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88618,7 +88618,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88640,7 +88640,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88661,7 +88661,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88680,7 +88680,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88699,7 +88699,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88721,7 +88721,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmm_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88742,7 +88742,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmm_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88761,7 +88761,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmm_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88780,7 +88780,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmm_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88804,7 +88804,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88830,7 +88830,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88855,7 +88855,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88880,7 +88880,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88909,7 +88909,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88935,7 +88935,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88960,7 +88960,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -88985,7 +88985,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -89014,7 +89014,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -89040,7 +89040,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -89065,7 +89065,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -89090,7 +89090,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -89119,7 +89119,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmmStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -89145,7 +89145,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmmStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -89170,7 +89170,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmmStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -89195,7 +89195,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmmStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
@@ -89223,7 +89223,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
@@ -89239,7 +89239,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
@@ -89254,7 +89254,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -89269,7 +89269,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
@@ -89288,7 +89288,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
@@ -89304,7 +89304,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
@@ -89319,7 +89319,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -89334,7 +89334,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
@@ -89353,7 +89353,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
@@ -89369,7 +89369,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
@@ -89384,7 +89384,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -89399,7 +89399,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
@@ -89418,7 +89418,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
@@ -89434,7 +89434,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
@@ -89449,7 +89449,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -89464,7 +89464,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
@@ -89484,7 +89484,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrfStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
@@ -89505,7 +89505,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrfStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: A
       integer(c_int) :: lda
@@ -89525,7 +89525,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrfStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -89545,7 +89545,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrfStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
@@ -89569,7 +89569,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrfStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
@@ -89590,7 +89590,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrfStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: A
       integer(c_int) :: lda
@@ -89610,7 +89610,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrfStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -89630,7 +89630,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrfStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
@@ -89654,7 +89654,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrfStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
@@ -89675,7 +89675,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrfStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
@@ -89695,7 +89695,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrfStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -89715,7 +89715,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrfStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
@@ -89739,7 +89739,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrfStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
       integer(c_int) :: lda
@@ -89760,7 +89760,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrfStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
@@ -89780,7 +89780,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrfStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
@@ -89800,7 +89800,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrfStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
@@ -89823,7 +89823,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -89843,7 +89843,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -89864,7 +89864,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -89884,7 +89884,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -89904,7 +89904,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -89924,7 +89924,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -89944,7 +89944,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -89964,7 +89964,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrs_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -89988,7 +89988,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90008,7 +90008,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90029,7 +90029,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90049,7 +90049,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90069,7 +90069,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90089,7 +90089,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90109,7 +90109,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90129,7 +90129,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrs_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90153,7 +90153,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90173,7 +90173,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90194,7 +90194,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90214,7 +90214,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90234,7 +90234,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90254,7 +90254,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90274,7 +90274,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90294,7 +90294,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrs_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90318,7 +90318,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90338,7 +90338,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90359,7 +90359,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90379,7 +90379,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90399,7 +90399,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90419,7 +90419,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90439,7 +90439,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90459,7 +90459,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrs_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90484,7 +90484,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90509,7 +90509,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90535,7 +90535,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90560,7 +90560,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90585,7 +90585,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90610,7 +90610,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90635,7 +90635,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90660,7 +90660,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrsStridedBatched_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90689,7 +90689,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90714,7 +90714,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90740,7 +90740,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90765,7 +90765,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90790,7 +90790,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90815,7 +90815,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90840,7 +90840,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90865,7 +90865,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrsStridedBatched_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90894,7 +90894,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90919,7 +90919,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90945,7 +90945,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90970,7 +90970,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -90995,7 +90995,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -91020,7 +91020,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -91045,7 +91045,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -91070,7 +91070,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrsStridedBatched_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -91099,7 +91099,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -91124,7 +91124,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -91150,7 +91150,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -91175,7 +91175,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -91200,7 +91200,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -91225,7 +91225,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -91250,7 +91250,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -91275,7 +91275,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrsStridedBatched_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
@@ -91303,7 +91303,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -91319,7 +91319,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -91336,7 +91336,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: A
@@ -91352,7 +91352,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: A
@@ -91368,7 +91368,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -91384,7 +91384,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -91400,7 +91400,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -91416,7 +91416,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -91436,7 +91436,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -91452,7 +91452,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -91469,7 +91469,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: A
@@ -91485,7 +91485,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: A
@@ -91501,7 +91501,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -91517,7 +91517,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -91533,7 +91533,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -91549,7 +91549,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -91569,7 +91569,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -91585,7 +91585,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -91602,7 +91602,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -91618,7 +91618,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -91634,7 +91634,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -91650,7 +91650,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -91666,7 +91666,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -91682,7 +91682,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -91702,7 +91702,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -91718,7 +91718,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -91735,7 +91735,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -91751,7 +91751,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -91767,7 +91767,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -91783,7 +91783,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -91799,7 +91799,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -91815,7 +91815,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrf_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -91836,7 +91836,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -91857,7 +91857,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,contiguous,dimension(..) :: A
@@ -91879,7 +91879,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: A
@@ -91900,7 +91900,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: A
@@ -91921,7 +91921,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -91942,7 +91942,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
@@ -91963,7 +91963,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -91984,7 +91984,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeqrfStridedBatched_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
@@ -92009,7 +92009,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -92030,7 +92030,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,contiguous,dimension(..) :: A
@@ -92052,7 +92052,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: A
@@ -92073,7 +92073,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: A
@@ -92094,7 +92094,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -92115,7 +92115,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
@@ -92136,7 +92136,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -92157,7 +92157,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeqrfStridedBatched_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
@@ -92182,7 +92182,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -92203,7 +92203,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,contiguous,dimension(..) :: A
@@ -92225,7 +92225,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -92246,7 +92246,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: A
@@ -92267,7 +92267,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -92288,7 +92288,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:) :: A
@@ -92309,7 +92309,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -92330,7 +92330,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeqrfStridedBatched_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target,dimension(:,:) :: A
@@ -92355,7 +92355,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_assumed_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -92376,7 +92376,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_assumed_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,contiguous,dimension(..) :: A
@@ -92398,7 +92398,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_rank_0
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -92419,7 +92419,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_rank_0_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: A
@@ -92440,7 +92440,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_rank_1
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -92461,7 +92461,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_rank_1_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:) :: A
@@ -92482,7 +92482,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_full_rank
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
@@ -92503,7 +92503,7 @@ module hipfort_hipblas
       use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeqrfStridedBatched_full_rank_devptr
-      type(c_ptr) :: handle
+      type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target,dimension(:,:) :: A
