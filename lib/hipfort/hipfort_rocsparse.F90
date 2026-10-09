@@ -46,7 +46,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_handle_
+      integer(c_int) :: rocsparse_create_handle_
       type(c_ptr) :: handle
     end function
   end interface
@@ -90,7 +90,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_handle_create_
+      integer(c_int) :: rocsparse_handle_create_
       type(c_ptr) :: handle
       type(c_ptr),value :: stream
       type(c_ptr), optional :: p_error
@@ -114,7 +114,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_handle_
+      integer(c_int) :: rocsparse_destroy_handle_
       type(c_ptr),value :: handle
     end function
   end interface
@@ -138,7 +138,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_handle_destroy_
+      integer(c_int) :: rocsparse_handle_destroy_
       type(c_ptr),value :: handle
       type(c_ptr), optional :: p_error
     end function
@@ -160,7 +160,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_error_
+      integer(c_int) :: rocsparse_destroy_error_
       type(c_ptr),value :: error
     end function
   end interface
@@ -203,7 +203,7 @@ module hipfort_rocsparse
       use hipfort_rocsparse_enums
       implicit none
       type(c_ptr) :: rocsparse_get_status_name_
-      integer(kind(rocsparse_status_success)),value :: status
+      integer(c_int),value :: status
     end function
   end interface
 
@@ -225,7 +225,7 @@ module hipfort_rocsparse
       use hipfort_rocsparse_enums
       implicit none
       type(c_ptr) :: rocsparse_get_status_description_
-      integer(kind(rocsparse_status_success)),value :: status
+      integer(c_int),value :: status
     end function
   end interface
 
@@ -268,7 +268,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_set_stream_
+      integer(c_int) :: rocsparse_set_stream_
       type(c_ptr),value :: handle
       type(c_ptr),value :: stream
     end function
@@ -291,7 +291,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_get_stream_
+      integer(c_int) :: rocsparse_get_stream_
       type(c_ptr),value :: handle
       type(c_ptr) :: stream
     end function
@@ -320,9 +320,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_set_pointer_mode_
+      integer(c_int) :: rocsparse_set_pointer_mode_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_pointer_mode_host)),value :: pointer_mode
+      integer(c_int),value :: pointer_mode
     end function
   end interface
 
@@ -345,7 +345,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_get_pointer_mode_
+      integer(c_int) :: rocsparse_get_pointer_mode_
       type(c_ptr),value :: handle
       type(c_ptr),value :: pointer_mode
     end function
@@ -379,7 +379,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_get_version_
+      integer(c_int) :: rocsparse_get_version_
       type(c_ptr),value :: handle
       type(c_ptr),value :: version
     end function
@@ -410,7 +410,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_get_git_rev_
+      integer(c_int) :: rocsparse_get_git_rev_
       type(c_ptr),value :: handle
       type(c_ptr),value :: rev
     end function
@@ -439,7 +439,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_mat_descr_
+      integer(c_int) :: rocsparse_create_mat_descr_
       type(c_ptr) :: descr
     end function
   end interface
@@ -460,7 +460,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_copy_mat_descr_
+      integer(c_int) :: rocsparse_copy_mat_descr_
       type(c_ptr),value :: dest
       type(c_ptr),value :: src
     end function
@@ -482,7 +482,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_mat_descr_
+      integer(c_int) :: rocsparse_destroy_mat_descr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -505,9 +505,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_set_mat_index_base_
+      integer(c_int) :: rocsparse_set_mat_index_base_
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_index_base_zero)),value :: base
+      integer(c_int),value :: base
     end function
   end interface
 
@@ -525,7 +525,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_index_base_zero)) :: rocsparse_get_mat_index_base_
+      integer(c_int) :: rocsparse_get_mat_index_base_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -552,9 +552,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_set_mat_type_
+      integer(c_int) :: rocsparse_set_mat_type_
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_matrix_type_general)),value :: myType
+      integer(c_int),value :: myType
     end function
   end interface
 
@@ -574,7 +574,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_matrix_type_general)) :: rocsparse_get_mat_type_
+      integer(c_int) :: rocsparse_get_mat_type_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -599,9 +599,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_set_mat_fill_mode_
+      integer(c_int) :: rocsparse_set_mat_fill_mode_
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_fill_mode_lower)),value :: fill_mode
+      integer(c_int),value :: fill_mode
     end function
   end interface
 
@@ -619,7 +619,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_fill_mode_lower)) :: rocsparse_get_mat_fill_mode_
+      integer(c_int) :: rocsparse_get_mat_fill_mode_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -644,9 +644,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_set_mat_diag_type_
+      integer(c_int) :: rocsparse_set_mat_diag_type_
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_diag_type_non_unit)),value :: diag_type
+      integer(c_int),value :: diag_type
     end function
   end interface
 
@@ -665,7 +665,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_diag_type_non_unit)) :: rocsparse_get_mat_diag_type_
+      integer(c_int) :: rocsparse_get_mat_diag_type_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -691,9 +691,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_set_mat_storage_mode_
+      integer(c_int) :: rocsparse_set_mat_storage_mode_
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage_mode
+      integer(c_int),value :: storage_mode
     end function
   end interface
 
@@ -711,7 +711,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_storage_mode_sorted)) :: rocsparse_get_mat_storage_mode_
+      integer(c_int) :: rocsparse_get_mat_storage_mode_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -732,7 +732,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_hyb_mat_
+      integer(c_int) :: rocsparse_create_hyb_mat_
       type(c_ptr) :: hyb
     end function
   end interface
@@ -754,7 +754,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_copy_hyb_mat_
+      integer(c_int) :: rocsparse_copy_hyb_mat_
       type(c_ptr),value :: dest
       type(c_ptr),value :: src
     end function
@@ -776,7 +776,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_hyb_mat_
+      integer(c_int) :: rocsparse_destroy_hyb_mat_
       type(c_ptr),value :: hyb
     end function
   end interface
@@ -798,7 +798,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_mat_info_
+      integer(c_int) :: rocsparse_create_mat_info_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -819,7 +819,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_copy_mat_info_
+      integer(c_int) :: rocsparse_copy_mat_info_
       type(c_ptr),value :: dest
       type(c_ptr),value :: src
     end function
@@ -841,7 +841,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_mat_info_
+      integer(c_int) :: rocsparse_destroy_mat_info_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -863,7 +863,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_color_info_
+      integer(c_int) :: rocsparse_create_color_info_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -884,7 +884,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_copy_color_info_
+      integer(c_int) :: rocsparse_copy_color_info_
       type(c_ptr),value :: dest
       type(c_ptr),value :: src
     end function
@@ -906,7 +906,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_color_info_
+      integer(c_int) :: rocsparse_destroy_color_info_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -940,15 +940,15 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_spvec_descr_
+      integer(c_int) :: rocsparse_create_spvec_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: mySize
       integer(c_int64_t),value :: nnz
       type(c_ptr),value :: indices
       type(c_ptr),value :: values
-      integer(kind(rocsparse_indextype_i32)),value :: idx_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: idx_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -959,15 +959,15 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_const_spvec_descr_
+      integer(c_int) :: rocsparse_create_const_spvec_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: mySize
       integer(c_int64_t),value :: nnz
       type(c_ptr),value :: indices
       type(c_ptr),value :: values
-      integer(kind(rocsparse_indextype_i32)),value :: idx_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: idx_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -987,7 +987,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_spvec_descr_
+      integer(c_int) :: rocsparse_destroy_spvec_descr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -1019,7 +1019,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spvec_get_
+      integer(c_int) :: rocsparse_spvec_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: mySize
       type(c_ptr),value :: nnz
@@ -1040,7 +1040,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_spvec_get_
+      integer(c_int) :: rocsparse_const_spvec_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: mySize
       type(c_ptr),value :: nnz
@@ -1069,7 +1069,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spvec_get_index_base_
+      integer(c_int) :: rocsparse_spvec_get_index_base_
       type(c_ptr),value :: descr
       type(c_ptr),value :: idx_base
     end function
@@ -1090,7 +1090,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spvec_get_values_
+      integer(c_int) :: rocsparse_spvec_get_values_
       type(c_ptr),value :: descr
       type(c_ptr) :: values
     end function
@@ -1102,7 +1102,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_spvec_get_values_
+      integer(c_int) :: rocsparse_const_spvec_get_values_
       type(c_ptr),value :: descr
       type(c_ptr) :: values
     end function
@@ -1121,7 +1121,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spvec_set_values_
+      integer(c_int) :: rocsparse_spvec_set_values_
       type(c_ptr),value :: descr
       type(c_ptr),value :: values
     end function
@@ -1158,7 +1158,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_coo_descr_
+      integer(c_int) :: rocsparse_create_coo_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -1166,9 +1166,9 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
       type(c_ptr),value :: coo_val
-      integer(kind(rocsparse_indextype_i32)),value :: idx_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: idx_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1179,7 +1179,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_const_coo_descr_
+      integer(c_int) :: rocsparse_create_const_coo_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -1187,9 +1187,9 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
       type(c_ptr),value :: coo_val
-      integer(kind(rocsparse_indextype_i32)),value :: idx_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: idx_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1223,16 +1223,16 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_coo_aos_descr_
+      integer(c_int) :: rocsparse_create_coo_aos_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
       integer(c_int64_t),value :: nnz
       type(c_ptr),value :: coo_ind
       type(c_ptr),value :: coo_val
-      integer(kind(rocsparse_indextype_i32)),value :: idx_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: idx_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1272,20 +1272,20 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_bsr_descr_
+      integer(c_int) :: rocsparse_create_bsr_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: brows
       integer(c_int64_t),value :: bcols
       integer(c_int64_t),value :: bnnz
-      integer(kind(rocsparse_direction_row)),value :: block_dir
+      integer(c_int),value :: block_dir
       integer(c_int64_t),value :: block_dim
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
       type(c_ptr),value :: bsr_val
-      integer(kind(rocsparse_indextype_i32)),value :: row_ptr_type
-      integer(kind(rocsparse_indextype_i32)),value :: col_ind_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: row_ptr_type
+      integer(c_int),value :: col_ind_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1296,20 +1296,20 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_const_bsr_descr_
+      integer(c_int) :: rocsparse_create_const_bsr_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: brows
       integer(c_int64_t),value :: bcols
       integer(c_int64_t),value :: bnnz
-      integer(kind(rocsparse_direction_row)),value :: block_dir
+      integer(c_int),value :: block_dir
       integer(c_int64_t),value :: block_dim
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
       type(c_ptr),value :: bsr_val
-      integer(kind(rocsparse_indextype_i32)),value :: row_ptr_type
-      integer(kind(rocsparse_indextype_i32)),value :: col_ind_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: row_ptr_type
+      integer(c_int),value :: col_ind_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1345,7 +1345,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_csr_descr_
+      integer(c_int) :: rocsparse_create_csr_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -1353,10 +1353,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
-      integer(kind(rocsparse_indextype_i32)),value :: row_ptr_type
-      integer(kind(rocsparse_indextype_i32)),value :: col_ind_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: row_ptr_type
+      integer(c_int),value :: col_ind_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1367,7 +1367,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_const_csr_descr_
+      integer(c_int) :: rocsparse_create_const_csr_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -1375,10 +1375,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
-      integer(kind(rocsparse_indextype_i32)),value :: row_ptr_type
-      integer(kind(rocsparse_indextype_i32)),value :: col_ind_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: row_ptr_type
+      integer(c_int),value :: col_ind_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1415,7 +1415,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_csc_descr_
+      integer(c_int) :: rocsparse_create_csc_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -1423,10 +1423,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
       type(c_ptr),value :: csc_val
-      integer(kind(rocsparse_indextype_i32)),value :: col_ptr_type
-      integer(kind(rocsparse_indextype_i32)),value :: row_ind_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: col_ptr_type
+      integer(c_int),value :: row_ind_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1437,7 +1437,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_const_csc_descr_
+      integer(c_int) :: rocsparse_create_const_csc_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -1445,10 +1445,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
       type(c_ptr),value :: csc_val
-      integer(kind(rocsparse_indextype_i32)),value :: col_ptr_type
-      integer(kind(rocsparse_indextype_i32)),value :: row_ind_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: col_ptr_type
+      integer(c_int),value :: row_ind_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1483,16 +1483,16 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_ell_descr_
+      integer(c_int) :: rocsparse_create_ell_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
       type(c_ptr),value :: ell_col_ind
       type(c_ptr),value :: ell_val
       integer(c_int64_t),value :: ell_width
-      integer(kind(rocsparse_indextype_i32)),value :: idx_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: idx_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1533,18 +1533,18 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_bell_descr_
+      integer(c_int) :: rocsparse_create_bell_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
-      integer(kind(rocsparse_direction_row)),value :: ell_block_dir
+      integer(c_int),value :: ell_block_dir
       integer(c_int64_t),value :: ell_block_dim
       integer(c_int64_t),value :: ell_cols
       type(c_ptr),value :: ell_col_ind
       type(c_ptr),value :: ell_val
-      integer(kind(rocsparse_indextype_i32)),value :: idx_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: idx_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1555,18 +1555,18 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_const_bell_descr_
+      integer(c_int) :: rocsparse_create_const_bell_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
-      integer(kind(rocsparse_direction_row)),value :: ell_block_dir
+      integer(c_int),value :: ell_block_dir
       integer(c_int64_t),value :: ell_block_dim
       integer(c_int64_t),value :: ell_cols
       type(c_ptr),value :: ell_col_ind
       type(c_ptr),value :: ell_val
-      integer(kind(rocsparse_indextype_i32)),value :: idx_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: idx_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1611,7 +1611,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_sell_descr_
+      integer(c_int) :: rocsparse_create_sell_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -1621,10 +1621,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: sell_slice_offsets
       type(c_ptr),value :: sell_col_ind
       type(c_ptr),value :: sell_val
-      integer(kind(rocsparse_indextype_i32)),value :: sell_slice_offsets_type
-      integer(kind(rocsparse_indextype_i32)),value :: sell_col_ind_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: sell_slice_offsets_type
+      integer(c_int),value :: sell_col_ind_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1636,7 +1636,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_const_sell_descr_
+      integer(c_int) :: rocsparse_create_const_sell_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -1646,10 +1646,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: sell_slice_offsets
       type(c_ptr),value :: sell_col_ind
       type(c_ptr),value :: sell_val
-      integer(kind(rocsparse_indextype_i32)),value :: sell_slice_offsets_type
-      integer(kind(rocsparse_indextype_i32)),value :: sell_col_ind_type
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: sell_slice_offsets_type
+      integer(c_int),value :: sell_col_ind_type
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -1671,7 +1671,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_spmat_descr_
+      integer(c_int) :: rocsparse_destroy_spmat_descr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -1698,11 +1698,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_sparse_to_sparse_descr_
+      integer(c_int) :: rocsparse_create_sparse_to_sparse_descr_
       type(c_ptr) :: descr
       type(c_ptr),value :: source
       type(c_ptr),value :: target
-      integer(kind(rocsparse_sparse_to_sparse_alg_default)),value :: alg
+      integer(c_int),value :: alg
     end function
   end interface
 
@@ -1721,7 +1721,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sparse_to_sparse_permissive_
+      integer(c_int) :: rocsparse_sparse_to_sparse_permissive_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -1741,7 +1741,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_sparse_to_sparse_descr_
+      integer(c_int) :: rocsparse_destroy_sparse_to_sparse_descr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -1767,11 +1767,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_extract_descr_
+      integer(c_int) :: rocsparse_create_extract_descr_
       type(c_ptr) :: descr
       type(c_ptr),value :: source
       type(c_ptr),value :: target
-      integer(kind(rocsparse_extract_alg_default)),value :: alg
+      integer(c_int),value :: alg
     end function
   end interface
 
@@ -1789,7 +1789,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_extract_descr_
+      integer(c_int) :: rocsparse_destroy_extract_descr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -1811,7 +1811,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_spgeam_descr_
+      integer(c_int) :: rocsparse_create_spgeam_descr_
       type(c_ptr) :: descr
     end function
   end interface
@@ -1831,7 +1831,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_spgeam_descr_
+      integer(c_int) :: rocsparse_destroy_spgeam_descr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -1858,10 +1858,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spgeam_set_input_
+      integer(c_int) :: rocsparse_spgeam_set_input_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_spgeam_input_alg)),value :: input
+      integer(c_int),value :: input
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size_in_bytes
       type(c_ptr), optional :: p_error
@@ -1890,10 +1890,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spgeam_get_output_
+      integer(c_int) :: rocsparse_spgeam_get_output_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_spgeam_output_nnz)),value :: output
+      integer(c_int),value :: output
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size_in_bytes
       type(c_ptr), optional :: error
@@ -1917,7 +1917,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_spmv_descr_
+      integer(c_int) :: rocsparse_create_spmv_descr_
       type(c_ptr) :: descr
     end function
   end interface
@@ -1937,7 +1937,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_spmv_descr_
+      integer(c_int) :: rocsparse_destroy_spmv_descr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -1964,10 +1964,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmv_set_input_
+      integer(c_int) :: rocsparse_spmv_set_input_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_spmv_input_alg)),value :: input
+      integer(c_int),value :: input
       type(c_ptr),value :: in
       integer(c_size_t),value :: size_in_bytes
       type(c_ptr), optional :: error
@@ -1997,7 +1997,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsv_descr_create_
+      integer(c_int) :: rocsparse_sptrsv_descr_create_
       type(c_ptr),value :: handle
       type(c_ptr) :: p_sptrsv_descr
       type(c_ptr), optional :: p_error
@@ -2026,7 +2026,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsv_descr_destroy_
+      integer(c_int) :: rocsparse_sptrsv_descr_destroy_
       type(c_ptr),value :: handle
       type(c_ptr),value :: sptrsv_descr
       type(c_ptr), optional :: p_error
@@ -2050,7 +2050,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_sptrsv_descr_
+      integer(c_int) :: rocsparse_create_sptrsv_descr_
       type(c_ptr) :: descr
     end function
   end interface
@@ -2070,7 +2070,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_sptrsv_descr_
+      integer(c_int) :: rocsparse_destroy_sptrsv_descr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -2098,10 +2098,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsv_set_input_
+      integer(c_int) :: rocsparse_sptrsv_set_input_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_sptrsv_input_alg)),value :: input
+      integer(c_int),value :: input
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size_in_bytes
       type(c_ptr), optional :: p_error
@@ -2130,10 +2130,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsv_get_output_
+      integer(c_int) :: rocsparse_sptrsv_get_output_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_sptrsv_output_zero_pivot_position)),value :: output
+      integer(c_int),value :: output
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size_in_bytes
       type(c_ptr), optional :: p_error
@@ -2157,7 +2157,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_sptrsm_descr_
+      integer(c_int) :: rocsparse_create_sptrsm_descr_
       type(c_ptr) :: descr
     end function
   end interface
@@ -2177,7 +2177,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_sptrsm_descr_
+      integer(c_int) :: rocsparse_destroy_sptrsm_descr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -2204,10 +2204,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsm_set_input_
+      integer(c_int) :: rocsparse_sptrsm_set_input_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_sptrsm_input_alg)),value :: input
+      integer(c_int),value :: input
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size
       type(c_ptr), optional :: p_error
@@ -2236,10 +2236,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsm_get_output_
+      integer(c_int) :: rocsparse_sptrsm_get_output_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_sptrsm_output_zero_pivot_position)),value :: output
+      integer(c_int),value :: output
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size_in_bytes
       type(c_ptr), optional :: p_error
@@ -2267,7 +2267,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spic0_descr_create_
+      integer(c_int) :: rocsparse_spic0_descr_create_
       type(c_ptr),value :: handle
       type(c_ptr) :: p_spic0_descr
       type(c_ptr), optional :: p_error
@@ -2294,7 +2294,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spic0_descr_destroy_
+      integer(c_int) :: rocsparse_spic0_descr_destroy_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spic0_descr
       type(c_ptr), optional :: p_error
@@ -2340,10 +2340,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spic0_set_input_
+      integer(c_int) :: rocsparse_spic0_set_input_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spic0_descr
-      integer(kind(rocsparse_spic0_input_alg)),value :: spic0_input
+      integer(c_int),value :: spic0_input
       type(c_ptr),value :: input
       integer(c_size_t),value :: input_size_in_bytes
       type(c_ptr), optional :: p_error
@@ -2377,10 +2377,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spic0_get_output_
+      integer(c_int) :: rocsparse_spic0_get_output_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spic0_descr
-      integer(kind(rocsparse_spic0_output_singularity)),value :: spic0_output
+      integer(c_int),value :: spic0_output
       type(c_ptr),value :: output
       integer(c_size_t),value :: output_size_in_bytes
       type(c_ptr), optional :: p_error
@@ -2409,7 +2409,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spilu0_descr_create_
+      integer(c_int) :: rocsparse_spilu0_descr_create_
       type(c_ptr),value :: handle
       type(c_ptr) :: p_spilu0_descr
       type(c_ptr), optional :: p_error
@@ -2436,7 +2436,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spilu0_descr_destroy_
+      integer(c_int) :: rocsparse_spilu0_descr_destroy_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spilu0_descr
       type(c_ptr), optional :: p_error
@@ -2484,10 +2484,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spilu0_set_input_
+      integer(c_int) :: rocsparse_spilu0_set_input_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spilu0_descr
-      integer(kind(rocsparse_spilu0_input_alg)),value :: spilu0_input
+      integer(c_int),value :: spilu0_input
       type(c_ptr),value :: input
       integer(c_size_t),value :: input_size_in_bytes
       type(c_ptr), optional :: p_error
@@ -2521,10 +2521,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spilu0_get_output_
+      integer(c_int) :: rocsparse_spilu0_get_output_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spilu0_descr
-      integer(kind(rocsparse_spilu0_output_singularity)),value :: spilu0_output
+      integer(c_int),value :: spilu0_output
       type(c_ptr),value :: output
       integer(c_size_t),value :: output_size_in_bytes
       type(c_ptr), optional :: p_error
@@ -2552,7 +2552,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_descr_create_
+      integer(c_int) :: rocsparse_spildlt0_descr_create_
       type(c_ptr),value :: handle
       type(c_ptr) :: p_spildlt0_descr
       type(c_ptr), optional :: p_error
@@ -2579,7 +2579,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_descr_destroy_
+      integer(c_int) :: rocsparse_spildlt0_descr_destroy_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spildlt0_descr
       type(c_ptr), optional :: p_error
@@ -2634,10 +2634,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_set_input_
+      integer(c_int) :: rocsparse_spildlt0_set_input_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spildlt0_descr
-      integer(kind(rocsparse_spildlt0_input_alg)),value :: spildlt0_input
+      integer(c_int),value :: spildlt0_input
       type(c_ptr),value :: input
       integer(c_size_t),value :: input_size_in_bytes
       type(c_ptr), optional :: p_error
@@ -2669,10 +2669,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_get_output_
+      integer(c_int) :: rocsparse_spildlt0_get_output_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spildlt0_descr
-      integer(kind(rocsparse_spildlt0_output_singularity)),value :: spildlt0_output
+      integer(c_int),value :: spildlt0_output
       type(c_ptr),value :: output
       integer(c_size_t),value :: output_size_in_bytes
       type(c_ptr), optional :: p_error
@@ -2710,7 +2710,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_coo_get_
+      integer(c_int) :: rocsparse_coo_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -2733,7 +2733,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_coo_get_
+      integer(c_int) :: rocsparse_const_coo_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -2778,7 +2778,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_coo_aos_get_
+      integer(c_int) :: rocsparse_coo_aos_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -2800,7 +2800,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_coo_aos_get_
+      integer(c_int) :: rocsparse_const_coo_aos_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -2848,7 +2848,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csr_get_
+      integer(c_int) :: rocsparse_csr_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -2872,7 +2872,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_csr_get_
+      integer(c_int) :: rocsparse_const_csr_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -2921,7 +2921,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csc_get_
+      integer(c_int) :: rocsparse_csc_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -2945,7 +2945,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_csc_get_
+      integer(c_int) :: rocsparse_const_csc_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -2992,7 +2992,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ell_get_
+      integer(c_int) :: rocsparse_ell_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -3014,7 +3014,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_ell_get_
+      integer(c_int) :: rocsparse_const_ell_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -3063,7 +3063,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bell_get_
+      integer(c_int) :: rocsparse_bell_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -3087,7 +3087,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_bell_get_
+      integer(c_int) :: rocsparse_const_bell_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -3143,7 +3143,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sell_get_
+      integer(c_int) :: rocsparse_sell_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -3170,7 +3170,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_sell_get_
+      integer(c_int) :: rocsparse_const_sell_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -3224,7 +3224,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsr_get_
+      integer(c_int) :: rocsparse_bsr_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: brows
       type(c_ptr),value :: bcols
@@ -3250,7 +3250,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_bsr_get_
+      integer(c_int) :: rocsparse_const_bsr_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: brows
       type(c_ptr),value :: bcols
@@ -3287,7 +3287,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_coo_set_pointers_
+      integer(c_int) :: rocsparse_coo_set_pointers_
       type(c_ptr),value :: descr
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
@@ -3312,7 +3312,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_coo_aos_set_pointers_
+      integer(c_int) :: rocsparse_coo_aos_set_pointers_
       type(c_ptr),value :: descr
       type(c_ptr),value :: coo_ind
       type(c_ptr),value :: coo_val
@@ -3336,7 +3336,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csr_set_pointers_
+      integer(c_int) :: rocsparse_csr_set_pointers_
       type(c_ptr),value :: descr
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
@@ -3363,7 +3363,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csc_set_pointers_
+      integer(c_int) :: rocsparse_csc_set_pointers_
       type(c_ptr),value :: descr
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
@@ -3388,7 +3388,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ell_set_pointers_
+      integer(c_int) :: rocsparse_ell_set_pointers_
       type(c_ptr),value :: descr
       type(c_ptr),value :: ell_col_ind
       type(c_ptr),value :: ell_val
@@ -3415,7 +3415,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsr_set_pointers_
+      integer(c_int) :: rocsparse_bsr_set_pointers_
       type(c_ptr),value :: descr
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
@@ -3441,7 +3441,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bell_set_pointers_
+      integer(c_int) :: rocsparse_bell_set_pointers_
       type(c_ptr),value :: descr
       type(c_ptr),value :: bell_col_ind
       type(c_ptr),value :: bell_val
@@ -3464,7 +3464,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_get_size_
+      integer(c_int) :: rocsparse_spmat_get_size_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -3490,7 +3490,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_get_format_
+      integer(c_int) :: rocsparse_spmat_get_format_
       type(c_ptr),value :: descr
       type(c_ptr),value :: myFormat
     end function
@@ -3513,7 +3513,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_get_index_base_
+      integer(c_int) :: rocsparse_spmat_get_index_base_
       type(c_ptr),value :: descr
       type(c_ptr),value :: idx_base
     end function
@@ -3534,7 +3534,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_get_values_
+      integer(c_int) :: rocsparse_spmat_get_values_
       type(c_ptr),value :: descr
       type(c_ptr) :: values
     end function
@@ -3546,7 +3546,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_spmat_get_values_
+      integer(c_int) :: rocsparse_const_spmat_get_values_
       type(c_ptr),value :: descr
       type(c_ptr) :: values
     end function
@@ -3565,7 +3565,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_set_values_
+      integer(c_int) :: rocsparse_spmat_set_values_
       type(c_ptr),value :: descr
       type(c_ptr),value :: values
     end function
@@ -3587,7 +3587,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_get_nnz_
+      integer(c_int) :: rocsparse_spmat_get_nnz_
       type(c_ptr),value :: descr
       type(c_ptr),value :: nnz
     end function
@@ -3616,7 +3616,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_set_nnz_
+      integer(c_int) :: rocsparse_spmat_set_nnz_
       type(c_ptr),value :: descr
       integer(c_int64_t),value :: nnz
     end function
@@ -3637,7 +3637,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_get_strided_batch_
+      integer(c_int) :: rocsparse_spmat_get_strided_batch_
       type(c_ptr),value :: descr
       type(c_ptr),value :: batch_count
     end function
@@ -3660,7 +3660,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_set_strided_batch_
+      integer(c_int) :: rocsparse_spmat_set_strided_batch_
       type(c_ptr),value :: descr
       integer(c_int),value :: batch_count
     end function
@@ -3697,7 +3697,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_coo_set_strided_batch_
+      integer(c_int) :: rocsparse_coo_set_strided_batch_
       type(c_ptr),value :: descr
       integer(c_int),value :: batch_count
       integer(c_int64_t),value :: batch_stride
@@ -3725,7 +3725,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csr_set_strided_batch_
+      integer(c_int) :: rocsparse_csr_set_strided_batch_
       type(c_ptr),value :: descr
       integer(c_int),value :: batch_count
       integer(c_int64_t),value :: offsets_batch_stride
@@ -3753,7 +3753,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csc_set_strided_batch_
+      integer(c_int) :: rocsparse_csc_set_strided_batch_
       type(c_ptr),value :: descr
       integer(c_int),value :: batch_count
       integer(c_int64_t),value :: offsets_batch_stride
@@ -3778,7 +3778,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ell_set_strided_batch_
+      integer(c_int) :: rocsparse_ell_set_strided_batch_
       type(c_ptr),value :: descr
       integer(c_int),value :: batch_count
       integer(c_int64_t),value :: batch_stride
@@ -3804,9 +3804,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_get_attribute_
+      integer(c_int) :: rocsparse_spmat_get_attribute_
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_spmat_fill_mode)),value :: attribute
+      integer(c_int),value :: attribute
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size
     end function
@@ -3831,9 +3831,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_set_attribute_
+      integer(c_int) :: rocsparse_spmat_set_attribute_
       type(c_ptr),value :: descr
-      integer(kind(rocsparse_spmat_fill_mode)),value :: attribute
+      integer(c_int),value :: attribute
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size
     end function
@@ -3861,11 +3861,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_dnvec_descr_
+      integer(c_int) :: rocsparse_create_dnvec_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: mySize
       type(c_ptr),value :: values
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -3875,11 +3875,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_const_dnvec_descr_
+      integer(c_int) :: rocsparse_create_const_dnvec_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: mySize
       type(c_ptr),value :: values
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: data_type
     end function
   end interface
 
@@ -3890,11 +3890,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnvec_descr_create_scalar_
+      integer(c_int) :: rocsparse_dnvec_descr_create_scalar_
       type(c_ptr),value :: handle
       type(c_ptr) :: descr
-      integer(kind(rocsparse_pointer_mode_host)),value :: pointer_mode
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
+      integer(c_int),value :: pointer_mode
+      integer(c_int),value :: data_type
       type(c_ptr),value :: const_values
       type(c_ptr),value :: values
       type(c_ptr), optional :: p_error
@@ -3917,7 +3917,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_dnvec_descr_
+      integer(c_int) :: rocsparse_destroy_dnvec_descr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -3942,7 +3942,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnvec_get_
+      integer(c_int) :: rocsparse_dnvec_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: mySize
       type(c_ptr) :: values
@@ -3958,7 +3958,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_dnvec_get_
+      integer(c_int) :: rocsparse_const_dnvec_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: mySize
       type(c_ptr) :: values
@@ -3981,7 +3981,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnvec_get_values_
+      integer(c_int) :: rocsparse_dnvec_get_values_
       type(c_ptr),value :: descr
       type(c_ptr) :: values
     end function
@@ -3993,7 +3993,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_dnvec_get_values_
+      integer(c_int) :: rocsparse_const_dnvec_get_values_
       type(c_ptr),value :: descr
       type(c_ptr) :: values
     end function
@@ -4012,7 +4012,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnvec_set_values_
+      integer(c_int) :: rocsparse_dnvec_set_values_
       type(c_ptr),value :: descr
       type(c_ptr),value :: values
     end function
@@ -4045,14 +4045,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_dnmat_descr_
+      integer(c_int) :: rocsparse_create_dnmat_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
       integer(c_int64_t),value :: ld
       type(c_ptr),value :: values
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
-      integer(kind(rocsparse_order_row)),value :: order
+      integer(c_int),value :: data_type
+      integer(c_int),value :: order
     end function
   end interface
 
@@ -4062,14 +4062,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_const_dnmat_descr_
+      integer(c_int) :: rocsparse_create_const_dnmat_descr_
       type(c_ptr) :: descr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
       integer(c_int64_t),value :: ld
       type(c_ptr),value :: values
-      integer(kind(rocsparse_datatype_f16_r)),value :: data_type
-      integer(kind(rocsparse_order_row)),value :: order
+      integer(c_int),value :: data_type
+      integer(c_int),value :: order
     end function
   end interface
 
@@ -4089,7 +4089,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_destroy_dnmat_descr_
+      integer(c_int) :: rocsparse_destroy_dnmat_descr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -4118,7 +4118,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnmat_get_
+      integer(c_int) :: rocsparse_dnmat_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -4137,7 +4137,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_dnmat_get_
+      integer(c_int) :: rocsparse_const_dnmat_get_
       type(c_ptr),value :: descr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -4165,7 +4165,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnmat_get_values_
+      integer(c_int) :: rocsparse_dnmat_get_values_
       type(c_ptr),value :: descr
       type(c_ptr) :: values
     end function
@@ -4177,7 +4177,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_const_dnmat_get_values_
+      integer(c_int) :: rocsparse_const_dnmat_get_values_
       type(c_ptr),value :: descr
       type(c_ptr) :: values
     end function
@@ -4198,7 +4198,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnmat_set_values_
+      integer(c_int) :: rocsparse_dnmat_set_values_
       type(c_ptr),value :: descr
       type(c_ptr),value :: values
     end function
@@ -4220,7 +4220,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnmat_get_strided_batch_
+      integer(c_int) :: rocsparse_dnmat_get_strided_batch_
       type(c_ptr),value :: descr
       type(c_ptr),value :: batch_count
       type(c_ptr),value :: batch_stride
@@ -4245,7 +4245,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnmat_set_strided_batch_
+      integer(c_int) :: rocsparse_dnmat_set_strided_batch_
       type(c_ptr),value :: descr
       integer(c_int),value :: batch_count
       integer(c_int64_t),value :: batch_stride
@@ -4268,7 +4268,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnvec_get_strided_batch_
+      integer(c_int) :: rocsparse_dnvec_get_strided_batch_
       type(c_ptr),value :: descr
       type(c_ptr),value :: batch_count
       type(c_ptr),value :: batch_stride
@@ -4293,7 +4293,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnvec_set_strided_batch_
+      integer(c_int) :: rocsparse_dnvec_set_strided_batch_
       type(c_ptr),value :: descr
       integer(c_int),value :: batch_count
       integer(c_int64_t),value :: batch_stride
@@ -4634,9 +4634,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsr2csr_
+      integer(c_int) :: rocsparse_sbsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: bsr_descr
@@ -4668,9 +4668,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsr2csr_
+      integer(c_int) :: rocsparse_dbsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: bsr_descr
@@ -4702,9 +4702,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsr2csr_
+      integer(c_int) :: rocsparse_cbsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: bsr_descr
@@ -4736,9 +4736,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsr2csr_
+      integer(c_int) :: rocsparse_zbsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: bsr_descr
@@ -4813,7 +4813,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrpad_value_
+      integer(c_int) :: rocsparse_sbsrpad_value_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: mb
@@ -4834,7 +4834,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrpad_value_
+      integer(c_int) :: rocsparse_dbsrpad_value_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: mb
@@ -4855,7 +4855,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrpad_value_
+      integer(c_int) :: rocsparse_cbsrpad_value_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: mb
@@ -4876,7 +4876,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrpad_value_
+      integer(c_int) :: rocsparse_zbsrpad_value_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: mb
@@ -4934,13 +4934,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_coo2csr_
+      integer(c_int) :: rocsparse_coo2csr_
       type(c_ptr),value :: handle
       type(c_ptr),value :: coo_row_ind
       integer(c_int),value :: nnz
       integer(c_int),value :: m
       type(c_ptr),value :: csr_row_ptr
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -4995,7 +4995,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scoo2dense_
+      integer(c_int) :: rocsparse_scoo2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5026,7 +5026,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcoo2dense_
+      integer(c_int) :: rocsparse_dcoo2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5057,7 +5057,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccoo2dense_
+      integer(c_int) :: rocsparse_ccoo2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5088,7 +5088,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcoo2dense_
+      integer(c_int) :: rocsparse_zcoo2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5149,7 +5149,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_coosort_buffer_size_
+      integer(c_int) :: rocsparse_coosort_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5226,7 +5226,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_coosort_by_row_
+      integer(c_int) :: rocsparse_coosort_by_row_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5302,7 +5302,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_coosort_by_column_
+      integer(c_int) :: rocsparse_coosort_by_column_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5366,7 +5366,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsc2dense_
+      integer(c_int) :: rocsparse_scsc2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5396,7 +5396,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsc2dense_
+      integer(c_int) :: rocsparse_dcsc2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5426,7 +5426,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsc2dense_
+      integer(c_int) :: rocsparse_ccsc2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5456,7 +5456,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsc2dense_
+      integer(c_int) :: rocsparse_zcsc2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5515,7 +5515,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cscsort_buffer_size_
+      integer(c_int) :: rocsparse_cscsort_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5594,7 +5594,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cscsort_
+      integer(c_int) :: rocsparse_cscsort_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -5673,9 +5673,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csr2bsr_nnz_
+      integer(c_int) :: rocsparse_csr2bsr_nnz_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -5772,9 +5772,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsr2bsr_
+      integer(c_int) :: rocsparse_scsr2bsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -5806,9 +5806,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2bsr_
+      integer(c_int) :: rocsparse_dcsr2bsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -5840,9 +5840,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2bsr_
+      integer(c_int) :: rocsparse_ccsr2bsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -5874,9 +5874,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2bsr_
+      integer(c_int) :: rocsparse_zcsr2bsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -5943,13 +5943,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csr2coo_
+      integer(c_int) :: rocsparse_csr2coo_
       type(c_ptr),value :: handle
       type(c_ptr),value :: csr_row_ptr
       integer(c_int),value :: nnz
       integer(c_int),value :: m
       type(c_ptr),value :: coo_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -6000,14 +6000,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csr2csc_buffer_size_
+      integer(c_int) :: rocsparse_csr2csc_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
+      integer(c_int),value :: copy_values
       type(c_ptr),value :: buffer_size
     end function
 
@@ -6153,7 +6153,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsr2csc_
+      integer(c_int) :: rocsparse_scsr2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -6164,8 +6164,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_val
       type(c_ptr),value :: csc_row_ind
       type(c_ptr),value :: csc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: copy_values
+      integer(c_int),value :: idx_base
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -6187,7 +6187,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2csc_
+      integer(c_int) :: rocsparse_dcsr2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -6198,8 +6198,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_val
       type(c_ptr),value :: csc_row_ind
       type(c_ptr),value :: csc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: copy_values
+      integer(c_int),value :: idx_base
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -6221,7 +6221,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2csc_
+      integer(c_int) :: rocsparse_ccsr2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -6232,8 +6232,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_val
       type(c_ptr),value :: csc_row_ind
       type(c_ptr),value :: csc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: copy_values
+      integer(c_int),value :: idx_base
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -6255,7 +6255,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2csc_
+      integer(c_int) :: rocsparse_zcsr2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -6266,8 +6266,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_val
       type(c_ptr),value :: csc_row_ind
       type(c_ptr),value :: csc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: copy_values
+      integer(c_int),value :: idx_base
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -6351,7 +6351,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsr2csr_compress_
+      integer(c_int) :: rocsparse_scsr2csr_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -6385,7 +6385,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2csr_compress_
+      integer(c_int) :: rocsparse_dcsr2csr_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -6419,7 +6419,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2csr_compress_
+      integer(c_int) :: rocsparse_ccsr2csr_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -6453,7 +6453,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2csr_compress_
+      integer(c_int) :: rocsparse_zcsr2csr_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -6522,7 +6522,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsr2dense_
+      integer(c_int) :: rocsparse_scsr2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -6552,7 +6552,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2dense_
+      integer(c_int) :: rocsparse_dcsr2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -6582,7 +6582,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2dense_
+      integer(c_int) :: rocsparse_ccsr2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -6612,7 +6612,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2dense_
+      integer(c_int) :: rocsparse_zcsr2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -6673,7 +6673,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csr2ell_width_
+      integer(c_int) :: rocsparse_csr2ell_width_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: csr_descr
@@ -6746,7 +6746,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsr2ell_
+      integer(c_int) :: rocsparse_scsr2ell_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: csr_descr
@@ -6777,7 +6777,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2ell_
+      integer(c_int) :: rocsparse_dcsr2ell_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: csr_descr
@@ -6808,7 +6808,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2ell_
+      integer(c_int) :: rocsparse_ccsr2ell_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: csr_descr
@@ -6839,7 +6839,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2ell_
+      integer(c_int) :: rocsparse_zcsr2ell_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: csr_descr
@@ -6921,9 +6921,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsr2gebsr_buffer_size_
+      integer(c_int) :: rocsparse_scsr2gebsr_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -6955,9 +6955,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2gebsr_buffer_size_
+      integer(c_int) :: rocsparse_dcsr2gebsr_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -6989,9 +6989,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2gebsr_buffer_size_
+      integer(c_int) :: rocsparse_ccsr2gebsr_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -7023,9 +7023,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2gebsr_buffer_size_
+      integer(c_int) :: rocsparse_zcsr2gebsr_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -7112,9 +7112,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csr2gebsr_nnz_
+      integer(c_int) :: rocsparse_csr2gebsr_nnz_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -7223,9 +7223,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsr2gebsr_
+      integer(c_int) :: rocsparse_scsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -7259,9 +7259,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2gebsr_
+      integer(c_int) :: rocsparse_dcsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -7295,9 +7295,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2gebsr_
+      integer(c_int) :: rocsparse_ccsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -7331,9 +7331,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2gebsr_
+      integer(c_int) :: rocsparse_zcsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -7414,7 +7414,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsr2hyb_
+      integer(c_int) :: rocsparse_scsr2hyb_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7424,7 +7424,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: hyb
       integer(c_int),value :: user_ell_width
-      integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
+      integer(c_int),value :: partition_type
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -7445,7 +7445,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2hyb_
+      integer(c_int) :: rocsparse_dcsr2hyb_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7455,7 +7455,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: hyb
       integer(c_int),value :: user_ell_width
-      integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
+      integer(c_int),value :: partition_type
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -7476,7 +7476,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2hyb_
+      integer(c_int) :: rocsparse_ccsr2hyb_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7486,7 +7486,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: hyb
       integer(c_int),value :: user_ell_width
-      integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
+      integer(c_int),value :: partition_type
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -7507,7 +7507,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2hyb_
+      integer(c_int) :: rocsparse_zcsr2hyb_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7517,7 +7517,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: hyb
       integer(c_int),value :: user_ell_width
-      integer(kind(rocsparse_hyb_partition_auto)),value :: partition_type
+      integer(c_int),value :: partition_type
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -7566,7 +7566,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrsort_buffer_size_
+      integer(c_int) :: rocsparse_csrsort_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7646,7 +7646,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrsort_
+      integer(c_int) :: rocsparse_csrsort_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7716,7 +7716,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sdense2coo_
+      integer(c_int) :: rocsparse_sdense2coo_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7748,7 +7748,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ddense2coo_
+      integer(c_int) :: rocsparse_ddense2coo_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7780,7 +7780,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cdense2coo_
+      integer(c_int) :: rocsparse_cdense2coo_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7812,7 +7812,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zdense2coo_
+      integer(c_int) :: rocsparse_zdense2coo_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7887,7 +7887,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sdense2csc_
+      integer(c_int) :: rocsparse_sdense2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7919,7 +7919,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ddense2csc_
+      integer(c_int) :: rocsparse_ddense2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7951,7 +7951,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cdense2csc_
+      integer(c_int) :: rocsparse_cdense2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7983,7 +7983,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zdense2csc_
+      integer(c_int) :: rocsparse_zdense2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8055,7 +8055,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sdense2csr_
+      integer(c_int) :: rocsparse_sdense2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8087,7 +8087,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ddense2csr_
+      integer(c_int) :: rocsparse_ddense2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8119,7 +8119,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cdense2csr_
+      integer(c_int) :: rocsparse_cdense2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8151,7 +8151,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zdense2csr_
+      integer(c_int) :: rocsparse_zdense2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8225,7 +8225,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ell2csr_nnz_
+      integer(c_int) :: rocsparse_ell2csr_nnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8302,7 +8302,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sell2csr_
+      integer(c_int) :: rocsparse_sell2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8334,7 +8334,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dell2csr_
+      integer(c_int) :: rocsparse_dell2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8366,7 +8366,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cell2csr_
+      integer(c_int) :: rocsparse_cell2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8398,7 +8398,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zell2csr_
+      integer(c_int) :: rocsparse_zell2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8489,9 +8489,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2csr_
+      integer(c_int) :: rocsparse_sgebsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: bsr_descr
@@ -8524,9 +8524,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2csr_
+      integer(c_int) :: rocsparse_dgebsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: bsr_descr
@@ -8559,9 +8559,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2csr_
+      integer(c_int) :: rocsparse_cgebsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: bsr_descr
@@ -8594,9 +8594,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2csr_
+      integer(c_int) :: rocsparse_zgebsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: bsr_descr
@@ -8666,7 +8666,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2gebsc_buffer_size_
+      integer(c_int) :: rocsparse_sgebsr2gebsc_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -8703,7 +8703,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2gebsc_buffer_size_
+      integer(c_int) :: rocsparse_dgebsr2gebsc_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -8740,7 +8740,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2gebsc_buffer_size_
+      integer(c_int) :: rocsparse_cgebsr2gebsc_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -8777,7 +8777,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2gebsc_buffer_size_
+      integer(c_int) :: rocsparse_zgebsr2gebsc_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -8890,7 +8890,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2gebsc_
+      integer(c_int) :: rocsparse_sgebsr2gebsc_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -8903,8 +8903,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsc_val
       type(c_ptr),value :: bsc_row_ind
       type(c_ptr),value :: bsc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: copy_values
+      integer(c_int),value :: idx_base
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -8927,7 +8927,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2gebsc_
+      integer(c_int) :: rocsparse_dgebsr2gebsc_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -8940,8 +8940,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsc_val
       type(c_ptr),value :: bsc_row_ind
       type(c_ptr),value :: bsc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: copy_values
+      integer(c_int),value :: idx_base
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -8964,7 +8964,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2gebsc_
+      integer(c_int) :: rocsparse_cgebsr2gebsc_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -8977,8 +8977,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsc_val
       type(c_ptr),value :: bsc_row_ind
       type(c_ptr),value :: bsc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: copy_values
+      integer(c_int),value :: idx_base
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -9001,7 +9001,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2gebsc_
+      integer(c_int) :: rocsparse_zgebsr2gebsc_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -9014,8 +9014,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsc_val
       type(c_ptr),value :: bsc_row_ind
       type(c_ptr),value :: bsc_col_ptr
-      integer(kind(rocsparse_action_symbolic)),value :: copy_values
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: copy_values
+      integer(c_int),value :: idx_base
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -9087,9 +9087,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2gebsr_buffer_size_
+      integer(c_int) :: rocsparse_sgebsr2gebsr_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -9115,9 +9115,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2gebsr_buffer_size_
+      integer(c_int) :: rocsparse_dgebsr2gebsr_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -9143,9 +9143,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2gebsr_buffer_size_
+      integer(c_int) :: rocsparse_cgebsr2gebsr_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -9171,9 +9171,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2gebsr_buffer_size_
+      integer(c_int) :: rocsparse_zgebsr2gebsr_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -9263,9 +9263,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_gebsr2gebsr_nnz_
+      integer(c_int) :: rocsparse_gebsr2gebsr_nnz_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -9393,9 +9393,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsr2gebsr_
+      integer(c_int) :: rocsparse_sgebsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -9423,9 +9423,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsr2gebsr_
+      integer(c_int) :: rocsparse_dgebsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -9453,9 +9453,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsr2gebsr_
+      integer(c_int) :: rocsparse_cgebsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -9483,9 +9483,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsr2gebsr_
+      integer(c_int) :: rocsparse_zgebsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -9540,7 +9540,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_hyb2csr_buffer_size_
+      integer(c_int) :: rocsparse_hyb2csr_buffer_size_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: hyb
@@ -9613,7 +9613,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_shyb2csr_
+      integer(c_int) :: rocsparse_shyb2csr_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: hyb
@@ -9640,7 +9640,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dhyb2csr_
+      integer(c_int) :: rocsparse_dhyb2csr_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: hyb
@@ -9667,7 +9667,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_chyb2csr_
+      integer(c_int) :: rocsparse_chyb2csr_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: hyb
@@ -9694,7 +9694,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zhyb2csr_
+      integer(c_int) :: rocsparse_zhyb2csr_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: hyb
@@ -9753,7 +9753,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_create_identity_permutation_
+      integer(c_int) :: rocsparse_create_identity_permutation_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: p
@@ -9807,12 +9807,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_inverse_permutation_
+      integer(c_int) :: rocsparse_inverse_permutation_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: p
       type(c_ptr),value :: q
-      integer(kind(rocsparse_index_base_zero)),value :: base
+      integer(c_int),value :: base
     end function
   end interface
 
@@ -9867,11 +9867,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_set_identity_permutation_
+      integer(c_int) :: rocsparse_set_identity_permutation_
       type(c_ptr),value :: handle
       integer(c_int64_t),value :: n
       type(c_ptr),value :: p
-      integer(kind(rocsparse_indextype_i32)),value :: indextype
+      integer(c_int),value :: indextype
     end function
   end interface
 
@@ -9915,9 +9915,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_snnz_
+      integer(c_int) :: rocsparse_snnz_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descr
@@ -9947,9 +9947,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnnz_
+      integer(c_int) :: rocsparse_dnnz_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descr
@@ -9979,9 +9979,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cnnz_
+      integer(c_int) :: rocsparse_cnnz_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descr
@@ -10011,9 +10011,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_znnz_
+      integer(c_int) :: rocsparse_znnz_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descr
@@ -10088,7 +10088,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_snnz_compress_
+      integer(c_int) :: rocsparse_snnz_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: descr_A
@@ -10119,7 +10119,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dnnz_compress_
+      integer(c_int) :: rocsparse_dnnz_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: descr_A
@@ -10150,7 +10150,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cnnz_compress_
+      integer(c_int) :: rocsparse_cnnz_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: descr_A
@@ -10181,7 +10181,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_znnz_compress_
+      integer(c_int) :: rocsparse_znnz_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: descr_A
@@ -10259,7 +10259,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_buffer_size_
+      integer(c_int) :: rocsparse_sprune_csr2csr_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10299,7 +10299,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_buffer_size_
+      integer(c_int) :: rocsparse_dprune_csr2csr_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10382,7 +10382,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_nnz_
+      integer(c_int) :: rocsparse_sprune_csr2csr_nnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10418,7 +10418,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_nnz_
+      integer(c_int) :: rocsparse_dprune_csr2csr_nnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10521,7 +10521,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_
+      integer(c_int) :: rocsparse_sprune_csr2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10558,7 +10558,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_
+      integer(c_int) :: rocsparse_dprune_csr2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10647,7 +10647,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_by_percentage_buffer_size_
+      integer(c_int) :: rocsparse_sprune_csr2csr_by_percentage_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10686,7 +10686,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_by_percentage_buffer_size_
+      integer(c_int) :: rocsparse_dprune_csr2csr_by_percentage_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10774,7 +10774,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_nnz_by_percentage_
+      integer(c_int) :: rocsparse_sprune_csr2csr_nnz_by_percentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10812,7 +10812,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_nnz_by_percentage_
+      integer(c_int) :: rocsparse_dprune_csr2csr_nnz_by_percentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10938,7 +10938,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_csr2csr_by_percentage_
+      integer(c_int) :: rocsparse_sprune_csr2csr_by_percentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -10975,7 +10975,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_csr2csr_by_percentage_
+      integer(c_int) :: rocsparse_dprune_csr2csr_by_percentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11049,7 +11049,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_buffer_size_
+      integer(c_int) :: rocsparse_sprune_dense2csr_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11086,7 +11086,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_buffer_size_
+      integer(c_int) :: rocsparse_dprune_dense2csr_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11157,7 +11157,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_nnz_
+      integer(c_int) :: rocsparse_sprune_dense2csr_nnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11191,7 +11191,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_nnz_
+      integer(c_int) :: rocsparse_dprune_dense2csr_nnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11282,7 +11282,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_
+      integer(c_int) :: rocsparse_sprune_dense2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11317,7 +11317,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_
+      integer(c_int) :: rocsparse_dprune_dense2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11395,7 +11395,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_by_percentage_buffer_size_
+      integer(c_int) :: rocsparse_sprune_dense2csr_by_percentage_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11431,7 +11431,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_by_percentage_buffer_size_
+      integer(c_int) :: rocsparse_dprune_dense2csr_by_percentage_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11505,7 +11505,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_nnz_by_percentage_
+      integer(c_int) :: rocsparse_sprune_dense2csr_nnz_by_percentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11540,7 +11540,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_nnz_by_percentage_
+      integer(c_int) :: rocsparse_dprune_dense2csr_nnz_by_percentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11655,7 +11655,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_by_percentage_
+      integer(c_int) :: rocsparse_sprune_dense2csr_by_percentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11689,7 +11689,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_by_percentage_
+      integer(c_int) :: rocsparse_dprune_dense2csr_by_percentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -11783,9 +11783,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsrgeam_nnzb_
+      integer(c_int) :: rocsparse_bsrgeam_nnzb_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: block_dim
@@ -11894,9 +11894,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrgeam_
+      integer(c_int) :: rocsparse_sbsrgeam_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: block_dim
@@ -11929,9 +11929,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrgeam_
+      integer(c_int) :: rocsparse_dbsrgeam_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: block_dim
@@ -11964,9 +11964,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrgeam_
+      integer(c_int) :: rocsparse_cbsrgeam_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: block_dim
@@ -11999,9 +11999,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrgeam_
+      integer(c_int) :: rocsparse_zbsrgeam_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: block_dim
@@ -12113,11 +12113,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrgemm_buffer_size_
+      integer(c_int) :: rocsparse_sbsrgemm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: kb
@@ -12151,11 +12151,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrgemm_buffer_size_
+      integer(c_int) :: rocsparse_dbsrgemm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: kb
@@ -12189,11 +12189,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrgemm_buffer_size_
+      integer(c_int) :: rocsparse_cbsrgemm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: kb
@@ -12227,11 +12227,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrgemm_buffer_size_
+      integer(c_int) :: rocsparse_zbsrgemm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: kb
@@ -12356,11 +12356,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsrgemm_nnzb_
+      integer(c_int) :: rocsparse_bsrgemm_nnzb_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: kb
@@ -12535,11 +12535,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrgemm_
+      integer(c_int) :: rocsparse_sbsrgemm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: kb
@@ -12581,11 +12581,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrgemm_
+      integer(c_int) :: rocsparse_dbsrgemm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: kb
@@ -12627,11 +12627,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrgemm_
+      integer(c_int) :: rocsparse_cbsrgemm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: kb
@@ -12673,11 +12673,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrgemm_
+      integer(c_int) :: rocsparse_zbsrgemm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: kb
@@ -12768,7 +12768,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrgeam_nnz_
+      integer(c_int) :: rocsparse_csrgeam_nnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -12878,7 +12878,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrgeam_
+      integer(c_int) :: rocsparse_scsrgeam_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -12921,7 +12921,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrgeam_
+      integer(c_int) :: rocsparse_dcsrgeam_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -12964,7 +12964,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrgeam_
+      integer(c_int) :: rocsparse_ccsrgeam_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -13007,7 +13007,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrgeam_
+      integer(c_int) :: rocsparse_zcsrgeam_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -13123,10 +13123,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrgemm_buffer_size_
+      integer(c_int) :: rocsparse_scsrgemm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -13171,10 +13171,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrgemm_buffer_size_
+      integer(c_int) :: rocsparse_dcsrgemm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -13219,10 +13219,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrgemm_buffer_size_
+      integer(c_int) :: rocsparse_ccsrgemm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -13267,10 +13267,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrgemm_buffer_size_
+      integer(c_int) :: rocsparse_zcsrgemm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -13405,10 +13405,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrgemm_nnz_
+      integer(c_int) :: rocsparse_csrgemm_nnz_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -13703,10 +13703,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrgemm_
+      integer(c_int) :: rocsparse_scsrgemm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -13757,10 +13757,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrgemm_
+      integer(c_int) :: rocsparse_dcsrgemm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -13811,10 +13811,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrgemm_
+      integer(c_int) :: rocsparse_ccsrgemm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -13865,10 +13865,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrgemm_
+      integer(c_int) :: rocsparse_zcsrgemm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -14145,10 +14145,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrgemm_symbolic_
+      integer(c_int) :: rocsparse_csrgemm_symbolic_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -14453,10 +14453,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrgemm_numeric_
+      integer(c_int) :: rocsparse_scsrgemm_numeric_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -14498,10 +14498,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrgemm_numeric_
+      integer(c_int) :: rocsparse_dcsrgemm_numeric_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -14543,10 +14543,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrgemm_numeric_
+      integer(c_int) :: rocsparse_ccsrgemm_numeric_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -14588,10 +14588,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrgemm_numeric_
+      integer(c_int) :: rocsparse_zcsrgemm_numeric_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -14696,7 +14696,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_axpby_
+      integer(c_int) :: rocsparse_axpby_
       type(c_ptr),value :: handle
       type(c_ptr),value :: alpha
       type(c_ptr),value :: x
@@ -14783,11 +14783,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_check_spmat_
+      integer(c_int) :: rocsparse_check_spmat_
       type(c_ptr),value :: handle
       type(c_ptr),value :: mat
       type(c_ptr),value :: data_status
-      integer(kind(rocsparse_check_spmat_stage_buffer_size)),value :: stage
+      integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
@@ -14910,11 +14910,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dense_to_sparse_
+      integer(c_int) :: rocsparse_dense_to_sparse_
       type(c_ptr),value :: handle
       type(c_ptr),value :: mat_A
       type(c_ptr),value :: mat_B
-      integer(kind(rocsparse_dense_to_sparse_alg_default)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
@@ -14959,12 +14959,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_extract_buffer_size_
+      integer(c_int) :: rocsparse_extract_buffer_size_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: source
       type(c_ptr),value :: target
-      integer(kind(rocsparse_extract_stage_analysis)),value :: stage
+      integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size_in_bytes
     end function
 
@@ -14999,7 +14999,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_extract_nnz_
+      integer(c_int) :: rocsparse_extract_nnz_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: nnz
@@ -15162,12 +15162,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_extract_
+      integer(c_int) :: rocsparse_extract_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: source
       type(c_ptr),value :: target
-      integer(kind(rocsparse_extract_stage_analysis)),value :: stage
+      integer(c_int),value :: stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
     end function
@@ -15228,7 +15228,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_gather_
+      integer(c_int) :: rocsparse_gather_
       type(c_ptr),value :: handle
       type(c_ptr),value :: y
       type(c_ptr),value :: x
@@ -15296,7 +15296,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_rot_
+      integer(c_int) :: rocsparse_rot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -15360,7 +15360,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scatter_
+      integer(c_int) :: rocsparse_scatter_
       type(c_ptr),value :: handle
       type(c_ptr),value :: x
       type(c_ptr),value :: y
@@ -15404,17 +15404,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sddmm_buffer_size_
+      integer(c_int) :: rocsparse_sddmm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: opA
-      integer(kind(rocsparse_operation_none)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: mat_A
       type(c_ptr),value :: mat_B
       type(c_ptr),value :: beta
       type(c_ptr),value :: mat_C
-      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
-      integer(kind(rocsparse_sddmm_alg_default)),value :: alg
+      integer(c_int),value :: compute_type
+      integer(c_int),value :: alg
       type(c_ptr),value :: buffer_size
     end function
 
@@ -15458,17 +15458,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sddmm_preprocess_
+      integer(c_int) :: rocsparse_sddmm_preprocess_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: opA
-      integer(kind(rocsparse_operation_none)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: mat_A
       type(c_ptr),value :: mat_B
       type(c_ptr),value :: beta
       type(c_ptr),value :: mat_C
-      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
-      integer(kind(rocsparse_sddmm_alg_default)),value :: alg
+      integer(c_int),value :: compute_type
+      integer(c_int),value :: alg
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -15676,17 +15676,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sddmm_
+      integer(c_int) :: rocsparse_sddmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: opA
-      integer(kind(rocsparse_operation_none)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: mat_A
       type(c_ptr),value :: mat_B
       type(c_ptr),value :: beta
       type(c_ptr),value :: mat_C
-      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
-      integer(kind(rocsparse_sddmm_alg_default)),value :: alg
+      integer(c_int),value :: compute_type
+      integer(c_int),value :: alg
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -15788,11 +15788,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sparse_to_dense_
+      integer(c_int) :: rocsparse_sparse_to_dense_
       type(c_ptr),value :: handle
       type(c_ptr),value :: mat_A
       type(c_ptr),value :: mat_B
-      integer(kind(rocsparse_sparse_to_dense_alg_default)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
@@ -15827,12 +15827,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sparse_to_sparse_buffer_size_
+      integer(c_int) :: rocsparse_sparse_to_sparse_buffer_size_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: source
       type(c_ptr),value :: target
-      integer(kind(rocsparse_sparse_to_sparse_stage_analysis)),value :: stage
+      integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size_in_bytes
     end function
 
@@ -15874,12 +15874,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sparse_to_sparse_
+      integer(c_int) :: rocsparse_sparse_to_sparse_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: source
       type(c_ptr),value :: target
-      integer(kind(rocsparse_sparse_to_sparse_stage_analysis)),value :: stage
+      integer(c_int),value :: stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
     end function
@@ -15916,13 +15916,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spgeam_buffer_size_
+      integer(c_int) :: rocsparse_spgeam_buffer_size_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: mat_A
       type(c_ptr),value :: mat_B
       type(c_ptr),value :: mat_C
-      integer(kind(rocsparse_spgeam_stage_analysis)),value :: stage
+      integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size
       type(c_ptr), optional :: error
     end function
@@ -16101,13 +16101,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spgeam_
+      integer(c_int) :: rocsparse_spgeam_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: mat_A
       type(c_ptr),value :: mat_B
       type(c_ptr),value :: mat_C
-      integer(kind(rocsparse_spgeam_stage_analysis)),value :: stage
+      integer(c_int),value :: stage
       integer(c_size_t),value :: buffer_size
       type(c_ptr),value :: temp_buffer
       type(c_ptr), optional :: error
@@ -16289,19 +16289,19 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spgemm_
+      integer(c_int) :: rocsparse_spgemm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       type(c_ptr),value :: alpha
       type(c_ptr),value :: A
       type(c_ptr),value :: B
       type(c_ptr),value :: beta
       type(c_ptr),value :: D
       type(c_ptr),value :: C
-      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
-      integer(kind(rocsparse_spgemm_alg_default)),value :: alg
-      integer(kind(rocsparse_spgemm_stage_buffer_size)),value :: stage
+      integer(c_int),value :: compute_type
+      integer(c_int),value :: alg
+      integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
@@ -16352,12 +16352,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spic0_buffer_size_
+      integer(c_int) :: rocsparse_spic0_buffer_size_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spic0_descr
       type(c_ptr),value :: A
       type(c_ptr),value :: P
-      integer(kind(rocsparse_spic0_stage_analysis)),value :: spic0_stage
+      integer(c_int),value :: spic0_stage
       type(c_ptr),value :: p_buffer_size_in_bytes
       type(c_ptr), optional :: p_error
     end function
@@ -16452,12 +16452,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spic0_
+      integer(c_int) :: rocsparse_spic0_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spic0_descr
       type(c_ptr),value :: A
       type(c_ptr),value :: P
-      integer(kind(rocsparse_spic0_stage_analysis)),value :: spic0_stage
+      integer(c_int),value :: spic0_stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
       type(c_ptr), optional :: p_error
@@ -16532,7 +16532,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_scale_
+      integer(c_int) :: rocsparse_spmat_scale_
       type(c_ptr),value :: handle
       type(c_ptr),value :: alpha
       type(c_ptr),value :: source
@@ -16584,12 +16584,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_buffer_size_
+      integer(c_int) :: rocsparse_spildlt0_buffer_size_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spildlt0_descr
       type(c_ptr),value :: A
       type(c_ptr),value :: P
-      integer(kind(rocsparse_spildlt0_stage_analysis)),value :: spildlt0_stage
+      integer(c_int),value :: spildlt0_stage
       type(c_ptr),value :: p_buffer_size_in_bytes
       type(c_ptr), optional :: p_error
     end function
@@ -16682,12 +16682,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_
+      integer(c_int) :: rocsparse_spildlt0_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spildlt0_descr
       type(c_ptr),value :: A
       type(c_ptr),value :: P
-      integer(kind(rocsparse_spildlt0_stage_analysis)),value :: spildlt0_stage
+      integer(c_int),value :: spildlt0_stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
       type(c_ptr), optional :: p_error
@@ -16734,12 +16734,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spilu0_buffer_size_
+      integer(c_int) :: rocsparse_spilu0_buffer_size_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spilu0_descr
       type(c_ptr),value :: A
       type(c_ptr),value :: P
-      integer(kind(rocsparse_spilu0_stage_analysis)),value :: spilu0_stage
+      integer(c_int),value :: spilu0_stage
       type(c_ptr),value :: p_buffer_size_in_bytes
       type(c_ptr), optional :: p_error
     end function
@@ -16825,12 +16825,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spilu0_
+      integer(c_int) :: rocsparse_spilu0_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spilu0_descr
       type(c_ptr),value :: A
       type(c_ptr),value :: P
-      integer(kind(rocsparse_spilu0_stage_analysis)),value :: spilu0_stage
+      integer(c_int),value :: spilu0_stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
       type(c_ptr), optional :: p_error
@@ -16954,19 +16954,19 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spitsv_
+      integer(c_int) :: rocsparse_spitsv_
       type(c_ptr),value :: handle
       type(c_ptr),value :: host_nmaxiter
       type(c_ptr),value :: host_tol
       type(c_ptr),value :: host_history
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       type(c_ptr),value :: alpha
       type(c_ptr),value :: mat
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
-      integer(kind(rocsparse_spitsv_alg_default)),value :: alg
-      integer(kind(rocsparse_spitsv_stage_buffer_size)),value :: stage
+      integer(c_int),value :: compute_type
+      integer(c_int),value :: alg
+      integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
@@ -17270,18 +17270,18 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmm_
+      integer(c_int) :: rocsparse_spmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       type(c_ptr),value :: alpha
       type(c_ptr),value :: mat_A
       type(c_ptr),value :: mat_B
       type(c_ptr),value :: beta
       type(c_ptr),value :: mat_C
-      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
-      integer(kind(rocsparse_spmm_alg_default)),value :: alg
-      integer(kind(rocsparse_spmm_stage_buffer_size)),value :: stage
+      integer(c_int),value :: compute_type
+      integer(c_int),value :: alg
+      integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
@@ -17487,17 +17487,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmv_
+      integer(c_int) :: rocsparse_spmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       type(c_ptr),value :: alpha
       type(c_ptr),value :: mat
       type(c_ptr),value :: x
       type(c_ptr),value :: beta
       type(c_ptr),value :: y
-      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
-      integer(kind(rocsparse_spmv_alg_default)),value :: alg
-      integer(kind(rocsparse_spmv_stage_buffer_size)),value :: stage
+      integer(c_int),value :: compute_type
+      integer(c_int),value :: alg
+      integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
@@ -17643,17 +17643,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spsm_
+      integer(c_int) :: rocsparse_spsm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: matC
-      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
-      integer(kind(rocsparse_spsm_alg_default)),value :: alg
-      integer(kind(rocsparse_spsm_stage_buffer_size)),value :: stage
+      integer(c_int),value :: compute_type
+      integer(c_int),value :: alg
+      integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
@@ -17777,16 +17777,16 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spsv_
+      integer(c_int) :: rocsparse_spsv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       type(c_ptr),value :: alpha
       type(c_ptr),value :: mat
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
-      integer(kind(rocsparse_spsv_alg_default)),value :: alg
-      integer(kind(rocsparse_spsv_stage_buffer_size)),value :: stage
+      integer(c_int),value :: compute_type
+      integer(c_int),value :: alg
+      integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
@@ -17830,13 +17830,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsm_buffer_size_
+      integer(c_int) :: rocsparse_sptrsm_buffer_size_
       type(c_ptr),value :: handle
       type(c_ptr),value :: sptrsm_descr
       type(c_ptr),value :: A
       type(c_ptr),value :: X
       type(c_ptr),value :: Y
-      integer(kind(rocsparse_sptrsm_stage_analysis)),value :: sptrsm_stage
+      integer(c_int),value :: sptrsm_stage
       type(c_ptr),value :: buffer_size_in_bytes
       type(c_ptr), optional :: p_error
     end function
@@ -17967,13 +17967,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsm_
+      integer(c_int) :: rocsparse_sptrsm_
       type(c_ptr),value :: handle
       type(c_ptr),value :: sptrsm_descr
       type(c_ptr),value :: A
       type(c_ptr),value :: X
       type(c_ptr),value :: Y
-      integer(kind(rocsparse_sptrsm_stage_analysis)),value :: sptrsm_stage
+      integer(c_int),value :: sptrsm_stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
       type(c_ptr), optional :: p_error
@@ -18017,13 +18017,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsv_buffer_size_
+      integer(c_int) :: rocsparse_sptrsv_buffer_size_
       type(c_ptr),value :: handle
       type(c_ptr),value :: sptrsv_descr
       type(c_ptr),value :: spmat_descr
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_sptrsv_stage_analysis)),value :: sptrsv_stage
+      integer(c_int),value :: sptrsv_stage
       type(c_ptr),value :: buffer_size_in_bytes
       type(c_ptr), optional :: p_error
     end function
@@ -18129,13 +18129,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsv_
+      integer(c_int) :: rocsparse_sptrsv_
       type(c_ptr),value :: handle
       type(c_ptr),value :: sptrsv_descr
       type(c_ptr),value :: A
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_sptrsv_stage_analysis)),value :: sptrsv_stage
+      integer(c_int),value :: sptrsv_stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
       type(c_ptr), optional :: p_error
@@ -18243,13 +18243,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spvv_
+      integer(c_int) :: rocsparse_spvv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       type(c_ptr),value :: x
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
+      integer(c_int),value :: compute_type
       type(c_ptr),value :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
@@ -18289,13 +18289,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_v2_spmv_buffer_size_
+      integer(c_int) :: rocsparse_v2_spmv_buffer_size_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: mat
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_v2_spmv_stage_analysis)),value :: stage
+      integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size_in_bytes
       type(c_ptr), optional :: error
     end function
@@ -18498,7 +18498,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_v2_spmv_
+      integer(c_int) :: rocsparse_v2_spmv_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: alpha
@@ -18506,7 +18506,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: x
       type(c_ptr),value :: beta
       type(c_ptr),value :: y
-      integer(kind(rocsparse_v2_spmv_stage_analysis)),value :: stage
+      integer(c_int),value :: stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
       type(c_ptr), optional :: error
@@ -18563,7 +18563,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmv_set_extra_
+      integer(c_int) :: rocsparse_spmv_set_extra_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       integer(c_int64_t),value :: num_extras
@@ -18595,7 +18595,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmv_clear_extra_
+      integer(c_int) :: rocsparse_spmv_clear_extra_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr), optional :: p_error
@@ -18650,14 +18650,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_saxpyi_
+      integer(c_int) :: rocsparse_saxpyi_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
     module procedure rocsparse_saxpyi_typed
@@ -18679,14 +18679,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_daxpyi_
+      integer(c_int) :: rocsparse_daxpyi_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
     module procedure rocsparse_daxpyi_typed
@@ -18708,14 +18708,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_caxpyi_
+      integer(c_int) :: rocsparse_caxpyi_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
     module procedure rocsparse_caxpyi_typed
@@ -18737,14 +18737,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zaxpyi_
+      integer(c_int) :: rocsparse_zaxpyi_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
     module procedure rocsparse_zaxpyi_typed
@@ -18810,14 +18810,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cdotci_
+      integer(c_int) :: rocsparse_cdotci_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
     module procedure rocsparse_cdotci_typed
@@ -18839,14 +18839,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zdotci_
+      integer(c_int) :: rocsparse_zdotci_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
     module procedure rocsparse_zdotci_typed
@@ -18913,14 +18913,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sdoti_
+      integer(c_int) :: rocsparse_sdoti_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
     module procedure rocsparse_sdoti_typed
@@ -18942,14 +18942,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ddoti_
+      integer(c_int) :: rocsparse_ddoti_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
     module procedure rocsparse_ddoti_typed
@@ -18971,14 +18971,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cdoti_
+      integer(c_int) :: rocsparse_cdoti_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
     module procedure rocsparse_cdoti_typed
@@ -19000,14 +19000,14 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zdoti_
+      integer(c_int) :: rocsparse_zdoti_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
     module procedure rocsparse_zdoti_typed
@@ -19065,13 +19065,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgthr_
+      integer(c_int) :: rocsparse_sgthr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19090,13 +19090,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgthr_
+      integer(c_int) :: rocsparse_dgthr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19115,13 +19115,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgthr_
+      integer(c_int) :: rocsparse_cgthr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19140,13 +19140,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgthr_
+      integer(c_int) :: rocsparse_zgthr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19203,13 +19203,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgthrz_
+      integer(c_int) :: rocsparse_sgthrz_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19228,13 +19228,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgthrz_
+      integer(c_int) :: rocsparse_dgthrz_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19253,13 +19253,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgthrz_
+      integer(c_int) :: rocsparse_cgthrz_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19278,13 +19278,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgthrz_
+      integer(c_int) :: rocsparse_zgthrz_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19349,7 +19349,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sroti_
+      integer(c_int) :: rocsparse_sroti_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
@@ -19357,7 +19357,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
       type(c_ptr),value :: c
       type(c_ptr),value :: s
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
     module procedure rocsparse_sroti_typed
@@ -19378,7 +19378,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_droti_
+      integer(c_int) :: rocsparse_droti_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
@@ -19386,7 +19386,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
       type(c_ptr),value :: c
       type(c_ptr),value :: s
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
     module procedure rocsparse_droti_typed
@@ -19445,13 +19445,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ssctr_
+      integer(c_int) :: rocsparse_ssctr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19470,13 +19470,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dsctr_
+      integer(c_int) :: rocsparse_dsctr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19495,13 +19495,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csctr_
+      integer(c_int) :: rocsparse_csctr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19520,13 +19520,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zsctr_
+      integer(c_int) :: rocsparse_zsctr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19545,13 +19545,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_isctr_
+      integer(c_int) :: rocsparse_isctr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: x_val
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -19625,10 +19625,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrmv_analysis_
+      integer(c_int) :: rocsparse_sbsrmv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -19648,10 +19648,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrmv_analysis_
+      integer(c_int) :: rocsparse_dbsrmv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -19671,10 +19671,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrmv_analysis_
+      integer(c_int) :: rocsparse_cbsrmv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -19694,10 +19694,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrmv_analysis_
+      integer(c_int) :: rocsparse_zbsrmv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -19819,10 +19819,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrmv_
+      integer(c_int) :: rocsparse_sbsrmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -19858,10 +19858,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrmv_
+      integer(c_int) :: rocsparse_dbsrmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -19897,10 +19897,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrmv_
+      integer(c_int) :: rocsparse_cbsrmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -19936,10 +19936,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrmv_
+      integer(c_int) :: rocsparse_zbsrmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -19996,7 +19996,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsrmv_clear_
+      integer(c_int) :: rocsparse_bsrmv_clear_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
     end function
@@ -20036,7 +20036,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsrsv_zero_pivot_
+      integer(c_int) :: rocsparse_bsrsv_zero_pivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -20095,10 +20095,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsv_buffer_size_
+      integer(c_int) :: rocsparse_sbsrsv_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -20130,10 +20130,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsv_buffer_size_
+      integer(c_int) :: rocsparse_dbsrsv_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -20165,10 +20165,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsv_buffer_size_
+      integer(c_int) :: rocsparse_cbsrsv_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -20200,10 +20200,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsv_buffer_size_
+      integer(c_int) :: rocsparse_zbsrsv_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -20290,10 +20290,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsv_analysis_
+      integer(c_int) :: rocsparse_sbsrsv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -20302,8 +20302,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -20325,10 +20325,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsv_analysis_
+      integer(c_int) :: rocsparse_dbsrsv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -20337,8 +20337,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -20360,10 +20360,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsv_analysis_
+      integer(c_int) :: rocsparse_cbsrsv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -20372,8 +20372,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -20395,10 +20395,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsv_analysis_
+      integer(c_int) :: rocsparse_zbsrsv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -20407,8 +20407,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -20451,7 +20451,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsrsv_clear_
+      integer(c_int) :: rocsparse_bsrsv_clear_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
     end function
@@ -20574,10 +20574,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsv_solve_
+      integer(c_int) :: rocsparse_sbsrsv_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: alpha
@@ -20589,7 +20589,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -20613,10 +20613,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsv_solve_
+      integer(c_int) :: rocsparse_dbsrsv_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: alpha
@@ -20628,7 +20628,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -20652,10 +20652,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsv_solve_
+      integer(c_int) :: rocsparse_cbsrsv_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: alpha
@@ -20667,7 +20667,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -20691,10 +20691,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsv_solve_
+      integer(c_int) :: rocsparse_zbsrsv_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: alpha
@@ -20706,7 +20706,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -20810,10 +20810,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrxmv_
+      integer(c_int) :: rocsparse_sbsrxmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: size_of_mask
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -20851,10 +20851,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrxmv_
+      integer(c_int) :: rocsparse_dbsrxmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: size_of_mask
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -20892,10 +20892,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrxmv_
+      integer(c_int) :: rocsparse_cbsrxmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: size_of_mask
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -20933,10 +20933,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrxmv_
+      integer(c_int) :: rocsparse_zbsrxmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: size_of_mask
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -21052,9 +21052,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scoomv_
+      integer(c_int) :: rocsparse_scoomv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -21088,9 +21088,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcoomv_
+      integer(c_int) :: rocsparse_dcoomv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -21124,9 +21124,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccoomv_
+      integer(c_int) :: rocsparse_ccoomv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -21160,9 +21160,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcoomv_
+      integer(c_int) :: rocsparse_zcoomv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -21225,7 +21225,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csritsv_zero_pivot_
+      integer(c_int) :: rocsparse_csritsv_zero_pivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: myInfo
@@ -21276,9 +21276,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsritsv_buffer_size_
+      integer(c_int) :: rocsparse_scsritsv_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -21299,9 +21299,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsritsv_buffer_size_
+      integer(c_int) :: rocsparse_dcsritsv_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -21322,9 +21322,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsritsv_buffer_size_
+      integer(c_int) :: rocsparse_ccsritsv_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -21345,9 +21345,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsritsv_buffer_size_
+      integer(c_int) :: rocsparse_zcsritsv_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -21417,9 +21417,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsritsv_analysis_
+      integer(c_int) :: rocsparse_scsritsv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -21427,8 +21427,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -21440,9 +21440,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsritsv_analysis_
+      integer(c_int) :: rocsparse_dcsritsv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -21450,8 +21450,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -21463,9 +21463,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsritsv_analysis_
+      integer(c_int) :: rocsparse_ccsritsv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -21473,8 +21473,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -21486,9 +21486,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsritsv_analysis_
+      integer(c_int) :: rocsparse_zcsritsv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -21496,8 +21496,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -21531,7 +21531,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csritsv_clear_
+      integer(c_int) :: rocsparse_csritsv_clear_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: myInfo
@@ -21740,12 +21740,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsritsv_solve_
+      integer(c_int) :: rocsparse_scsritsv_solve_
       type(c_ptr),value :: handle
       type(c_ptr),value :: host_nmaxiter
       type(c_ptr),value :: host_tol
       type(c_ptr),value :: host_history
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -21756,7 +21756,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -21772,12 +21772,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsritsv_solve_
+      integer(c_int) :: rocsparse_dcsritsv_solve_
       type(c_ptr),value :: handle
       type(c_ptr),value :: host_nmaxiter
       type(c_ptr),value :: host_tol
       type(c_ptr),value :: host_history
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -21788,7 +21788,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -21804,12 +21804,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsritsv_solve_
+      integer(c_int) :: rocsparse_ccsritsv_solve_
       type(c_ptr),value :: handle
       type(c_ptr),value :: host_nmaxiter
       type(c_ptr),value :: host_tol
       type(c_ptr),value :: host_history
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -21820,7 +21820,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -21836,12 +21836,12 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsritsv_solve_
+      integer(c_int) :: rocsparse_zcsritsv_solve_
       type(c_ptr),value :: handle
       type(c_ptr),value :: host_nmaxiter
       type(c_ptr),value :: host_tol
       type(c_ptr),value :: host_history
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -21852,7 +21852,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -22077,13 +22077,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsritsv_solve_ex_
+      integer(c_int) :: rocsparse_scsritsv_solve_ex_
       type(c_ptr),value :: handle
       type(c_ptr),value :: host_nmaxiter
       integer(c_int),value :: host_nfreeiter
       type(c_ptr),value :: host_tol
       type(c_ptr),value :: host_history
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -22094,7 +22094,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -22111,13 +22111,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsritsv_solve_ex_
+      integer(c_int) :: rocsparse_dcsritsv_solve_ex_
       type(c_ptr),value :: handle
       type(c_ptr),value :: host_nmaxiter
       integer(c_int),value :: host_nfreeiter
       type(c_ptr),value :: host_tol
       type(c_ptr),value :: host_history
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -22128,7 +22128,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -22145,13 +22145,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsritsv_solve_ex_
+      integer(c_int) :: rocsparse_ccsritsv_solve_ex_
       type(c_ptr),value :: handle
       type(c_ptr),value :: host_nmaxiter
       integer(c_int),value :: host_nfreeiter
       type(c_ptr),value :: host_tol
       type(c_ptr),value :: host_history
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -22162,7 +22162,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -22179,13 +22179,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsritsv_solve_ex_
+      integer(c_int) :: rocsparse_zcsritsv_solve_ex_
       type(c_ptr),value :: handle
       type(c_ptr),value :: host_nmaxiter
       integer(c_int),value :: host_nfreeiter
       type(c_ptr),value :: host_tol
       type(c_ptr),value :: host_history
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -22196,7 +22196,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -22259,9 +22259,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrmv_analysis_
+      integer(c_int) :: rocsparse_scsrmv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -22290,9 +22290,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrmv_analysis_
+      integer(c_int) :: rocsparse_dcsrmv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -22321,9 +22321,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrmv_analysis_
+      integer(c_int) :: rocsparse_ccsrmv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -22352,9 +22352,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrmv_analysis_
+      integer(c_int) :: rocsparse_zcsrmv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -22406,7 +22406,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrmv_clear_
+      integer(c_int) :: rocsparse_csrmv_clear_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
     end function
@@ -22529,9 +22529,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrmv_
+      integer(c_int) :: rocsparse_scsrmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -22566,9 +22566,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrmv_
+      integer(c_int) :: rocsparse_dcsrmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -22603,9 +22603,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrmv_
+      integer(c_int) :: rocsparse_ccsrmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -22640,9 +22640,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrmv_
+      integer(c_int) :: rocsparse_zcsrmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -22704,7 +22704,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrsv_zero_pivot_
+      integer(c_int) :: rocsparse_csrsv_zero_pivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: myInfo
@@ -22764,9 +22764,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrsv_buffer_size_
+      integer(c_int) :: rocsparse_scsrsv_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -22797,9 +22797,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsv_buffer_size_
+      integer(c_int) :: rocsparse_dcsrsv_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -22830,9 +22830,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsv_buffer_size_
+      integer(c_int) :: rocsparse_ccsrsv_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -22863,9 +22863,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsv_buffer_size_
+      integer(c_int) :: rocsparse_zcsrsv_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -22953,9 +22953,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrsv_analysis_
+      integer(c_int) :: rocsparse_scsrsv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -22963,8 +22963,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -22986,9 +22986,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsv_analysis_
+      integer(c_int) :: rocsparse_dcsrsv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -22996,8 +22996,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -23019,9 +23019,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsv_analysis_
+      integer(c_int) :: rocsparse_ccsrsv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -23029,8 +23029,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -23052,9 +23052,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsv_analysis_
+      integer(c_int) :: rocsparse_zcsrsv_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descr
@@ -23062,8 +23062,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -23109,7 +23109,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrsv_clear_
+      integer(c_int) :: rocsparse_csrsv_clear_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
       type(c_ptr),value :: myInfo
@@ -23232,9 +23232,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrsv_solve_
+      integer(c_int) :: rocsparse_scsrsv_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -23245,7 +23245,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -23269,9 +23269,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsv_solve_
+      integer(c_int) :: rocsparse_dcsrsv_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -23282,7 +23282,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -23306,9 +23306,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsv_solve_
+      integer(c_int) :: rocsparse_ccsrsv_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -23319,7 +23319,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -23343,9 +23343,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsv_solve_
+      integer(c_int) :: rocsparse_zcsrsv_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -23356,7 +23356,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -23459,9 +23459,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sellmv_
+      integer(c_int) :: rocsparse_sellmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
@@ -23494,9 +23494,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dellmv_
+      integer(c_int) :: rocsparse_dellmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
@@ -23529,9 +23529,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cellmv_
+      integer(c_int) :: rocsparse_cellmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
@@ -23564,9 +23564,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zellmv_
+      integer(c_int) :: rocsparse_zellmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
@@ -23667,10 +23667,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsrmv_
+      integer(c_int) :: rocsparse_sgebsrmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -23706,10 +23706,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsrmv_
+      integer(c_int) :: rocsparse_dgebsrmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -23745,10 +23745,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsrmv_
+      integer(c_int) :: rocsparse_cgebsrmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -23784,10 +23784,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsrmv_
+      integer(c_int) :: rocsparse_zgebsrmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -23849,9 +23849,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgemvi_buffer_size_
+      integer(c_int) :: rocsparse_sgemvi_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -23867,9 +23867,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgemvi_buffer_size_
+      integer(c_int) :: rocsparse_dgemvi_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -23885,9 +23885,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgemvi_buffer_size_
+      integer(c_int) :: rocsparse_cgemvi_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -23903,9 +23903,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgemvi_buffer_size_
+      integer(c_int) :: rocsparse_zgemvi_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -23984,9 +23984,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgemvi_
+      integer(c_int) :: rocsparse_sgemvi_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
@@ -23997,7 +23997,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: beta
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -24022,9 +24022,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgemvi_
+      integer(c_int) :: rocsparse_dgemvi_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
@@ -24035,7 +24035,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: beta
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -24060,9 +24060,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgemvi_
+      integer(c_int) :: rocsparse_cgemvi_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
@@ -24073,7 +24073,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: beta
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -24098,9 +24098,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgemvi_
+      integer(c_int) :: rocsparse_zgemvi_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
@@ -24111,7 +24111,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: x_ind
       type(c_ptr),value :: beta
       type(c_ptr),value :: y
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -24192,9 +24192,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_shybmv_
+      integer(c_int) :: rocsparse_shybmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       type(c_ptr),value :: alpha
       type(c_ptr),value :: descr
       type(c_ptr),value :: hyb
@@ -24222,9 +24222,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dhybmv_
+      integer(c_int) :: rocsparse_dhybmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       type(c_ptr),value :: alpha
       type(c_ptr),value :: descr
       type(c_ptr),value :: hyb
@@ -24252,9 +24252,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_chybmv_
+      integer(c_int) :: rocsparse_chybmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       type(c_ptr),value :: alpha
       type(c_ptr),value :: descr
       type(c_ptr),value :: hyb
@@ -24282,9 +24282,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zhybmv_
+      integer(c_int) :: rocsparse_zhybmv_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans
+      integer(c_int),value :: trans
       type(c_ptr),value :: alpha
       type(c_ptr),value :: descr
       type(c_ptr),value :: hyb
@@ -24404,11 +24404,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrmm_
+      integer(c_int) :: rocsparse_sbsrmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: n
       integer(c_int),value :: kb
@@ -24447,11 +24447,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrmm_
+      integer(c_int) :: rocsparse_dbsrmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: n
       integer(c_int),value :: kb
@@ -24490,11 +24490,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrmm_
+      integer(c_int) :: rocsparse_cbsrmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: n
       integer(c_int),value :: kb
@@ -24533,11 +24533,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrmm_
+      integer(c_int) :: rocsparse_zbsrmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: n
       integer(c_int),value :: kb
@@ -24603,7 +24603,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsrsm_zero_pivot_
+      integer(c_int) :: rocsparse_bsrsm_zero_pivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -24664,11 +24664,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsm_buffer_size_
+      integer(c_int) :: rocsparse_sbsrsm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_X
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -24701,11 +24701,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsm_buffer_size_
+      integer(c_int) :: rocsparse_dbsrsm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_X
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -24738,11 +24738,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsm_buffer_size_
+      integer(c_int) :: rocsparse_cbsrsm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_X
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -24775,11 +24775,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsm_buffer_size_
+      integer(c_int) :: rocsparse_zbsrsm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_X
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -24868,11 +24868,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsm_analysis_
+      integer(c_int) :: rocsparse_sbsrsm_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_X
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -24882,8 +24882,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -24905,11 +24905,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsm_analysis_
+      integer(c_int) :: rocsparse_dbsrsm_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_X
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -24919,8 +24919,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -24942,11 +24942,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsm_analysis_
+      integer(c_int) :: rocsparse_cbsrsm_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_X
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -24956,8 +24956,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -24979,11 +24979,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsm_analysis_
+      integer(c_int) :: rocsparse_zbsrsm_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_X
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -24993,8 +24993,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -25037,7 +25037,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsrsm_clear_
+      integer(c_int) :: rocsparse_bsrsm_clear_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
     end function
@@ -25303,11 +25303,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrsm_solve_
+      integer(c_int) :: rocsparse_sbsrsm_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_X
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -25322,7 +25322,7 @@ module hipfort_rocsparse
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -25347,11 +25347,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrsm_solve_
+      integer(c_int) :: rocsparse_dbsrsm_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_X
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -25366,7 +25366,7 @@ module hipfort_rocsparse
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -25391,11 +25391,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrsm_solve_
+      integer(c_int) :: rocsparse_cbsrsm_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_X
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -25410,7 +25410,7 @@ module hipfort_rocsparse
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -25435,11 +25435,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrsm_solve_
+      integer(c_int) :: rocsparse_zbsrsm_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_X
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_X
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -25454,7 +25454,7 @@ module hipfort_rocsparse
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -25574,10 +25574,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrmm_
+      integer(c_int) :: rocsparse_scsrmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -25615,10 +25615,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrmm_
+      integer(c_int) :: rocsparse_dcsrmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -25656,10 +25656,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrmm_
+      integer(c_int) :: rocsparse_ccsrmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -25697,10 +25697,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrmm_
+      integer(c_int) :: rocsparse_zcsrmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -25765,7 +25765,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrsm_zero_pivot_
+      integer(c_int) :: rocsparse_csrsm_zero_pivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -25830,10 +25830,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrsm_buffer_size_
+      integer(c_int) :: rocsparse_scsrsm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -25845,7 +25845,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: buffer_size
     end function
 
@@ -25872,10 +25872,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsm_buffer_size_
+      integer(c_int) :: rocsparse_dcsrsm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -25887,7 +25887,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: buffer_size
     end function
 
@@ -25914,10 +25914,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsm_buffer_size_
+      integer(c_int) :: rocsparse_ccsrsm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -25929,7 +25929,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: buffer_size
     end function
 
@@ -25956,10 +25956,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsm_buffer_size_
+      integer(c_int) :: rocsparse_zcsrsm_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -25971,7 +25971,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: buffer_size
     end function
 
@@ -26056,10 +26056,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrsm_analysis_
+      integer(c_int) :: rocsparse_scsrsm_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -26071,8 +26071,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -26097,10 +26097,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsm_analysis_
+      integer(c_int) :: rocsparse_dcsrsm_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -26112,8 +26112,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -26138,10 +26138,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsm_analysis_
+      integer(c_int) :: rocsparse_ccsrsm_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -26153,8 +26153,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -26179,10 +26179,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsm_analysis_
+      integer(c_int) :: rocsparse_zcsrsm_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -26194,8 +26194,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -26241,7 +26241,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrsm_clear_
+      integer(c_int) :: rocsparse_csrsm_clear_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
     end function
@@ -26448,10 +26448,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrsm_solve_
+      integer(c_int) :: rocsparse_scsrsm_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -26463,7 +26463,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -26488,10 +26488,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrsm_solve_
+      integer(c_int) :: rocsparse_dcsrsm_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -26503,7 +26503,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -26528,10 +26528,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrsm_solve_
+      integer(c_int) :: rocsparse_ccsrsm_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -26543,7 +26543,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -26568,10 +26568,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrsm_solve_
+      integer(c_int) :: rocsparse_zcsrsm_solve_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -26583,7 +26583,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -26703,11 +26703,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgebsrmm_
+      integer(c_int) :: rocsparse_sgebsrmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: n
       integer(c_int),value :: kb
@@ -26747,11 +26747,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgebsrmm_
+      integer(c_int) :: rocsparse_dgebsrmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: n
       integer(c_int),value :: kb
@@ -26791,11 +26791,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgebsrmm_
+      integer(c_int) :: rocsparse_cgebsrmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: n
       integer(c_int),value :: kb
@@ -26835,11 +26835,11 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgebsrmm_
+      integer(c_int) :: rocsparse_zgebsrmm_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: mb
       integer(c_int),value :: n
       integer(c_int),value :: kb
@@ -26961,10 +26961,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgemmi_
+      integer(c_int) :: rocsparse_sgemmi_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -27002,10 +27002,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgemmi_
+      integer(c_int) :: rocsparse_dgemmi_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -27043,10 +27043,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgemmi_
+      integer(c_int) :: rocsparse_cgemmi_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -27084,10 +27084,10 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgemmi_
+      integer(c_int) :: rocsparse_zgemmi_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_operation_none)),value :: trans_A
-      integer(kind(rocsparse_operation_none)),value :: trans_B
+      integer(c_int),value :: trans_A
+      integer(c_int),value :: trans_B
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -27158,7 +27158,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsric0_zero_pivot_
+      integer(c_int) :: rocsparse_bsric0_zero_pivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -27222,9 +27222,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsric0_buffer_size_
+      integer(c_int) :: rocsparse_sbsric0_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -27256,9 +27256,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsric0_buffer_size_
+      integer(c_int) :: rocsparse_dbsric0_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -27290,9 +27290,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsric0_buffer_size_
+      integer(c_int) :: rocsparse_cbsric0_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -27324,9 +27324,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsric0_buffer_size_
+      integer(c_int) :: rocsparse_zbsric0_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -27414,9 +27414,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsric0_analysis_
+      integer(c_int) :: rocsparse_sbsric0_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -27425,8 +27425,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -27448,9 +27448,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsric0_analysis_
+      integer(c_int) :: rocsparse_dbsric0_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -27459,8 +27459,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -27482,9 +27482,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsric0_analysis_
+      integer(c_int) :: rocsparse_cbsric0_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -27493,8 +27493,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -27516,9 +27516,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsric0_analysis_
+      integer(c_int) :: rocsparse_zbsric0_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -27527,8 +27527,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -27572,7 +27572,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsric0_clear_
+      integer(c_int) :: rocsparse_bsric0_clear_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
     end function
@@ -27665,9 +27665,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsric0_
+      integer(c_int) :: rocsparse_sbsric0_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -27676,7 +27676,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -27698,9 +27698,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsric0_
+      integer(c_int) :: rocsparse_dbsric0_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -27709,7 +27709,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -27731,9 +27731,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsric0_
+      integer(c_int) :: rocsparse_cbsric0_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -27742,7 +27742,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -27764,9 +27764,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsric0_
+      integer(c_int) :: rocsparse_zbsric0_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -27775,7 +27775,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -27830,7 +27830,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsrilu0_zero_pivot_
+      integer(c_int) :: rocsparse_bsrilu0_zero_pivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -27875,7 +27875,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrilu0_numeric_boost_
+      integer(c_int) :: rocsparse_sbsrilu0_numeric_boost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -27892,7 +27892,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrilu0_numeric_boost_
+      integer(c_int) :: rocsparse_dbsrilu0_numeric_boost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -27909,7 +27909,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrilu0_numeric_boost_
+      integer(c_int) :: rocsparse_cbsrilu0_numeric_boost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -27926,7 +27926,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrilu0_numeric_boost_
+      integer(c_int) :: rocsparse_zbsrilu0_numeric_boost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -27943,7 +27943,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dsbsrilu0_numeric_boost_
+      integer(c_int) :: rocsparse_dsbsrilu0_numeric_boost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -27960,7 +27960,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcbsrilu0_numeric_boost_
+      integer(c_int) :: rocsparse_dcbsrilu0_numeric_boost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -28027,9 +28027,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrilu0_buffer_size_
+      integer(c_int) :: rocsparse_sbsrilu0_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -28061,9 +28061,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrilu0_buffer_size_
+      integer(c_int) :: rocsparse_dbsrilu0_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -28095,9 +28095,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrilu0_buffer_size_
+      integer(c_int) :: rocsparse_cbsrilu0_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -28129,9 +28129,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrilu0_buffer_size_
+      integer(c_int) :: rocsparse_zbsrilu0_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -28218,9 +28218,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrilu0_analysis_
+      integer(c_int) :: rocsparse_sbsrilu0_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -28229,8 +28229,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -28252,9 +28252,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrilu0_analysis_
+      integer(c_int) :: rocsparse_dbsrilu0_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -28263,8 +28263,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -28286,9 +28286,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrilu0_analysis_
+      integer(c_int) :: rocsparse_cbsrilu0_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -28297,8 +28297,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -28320,9 +28320,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrilu0_analysis_
+      integer(c_int) :: rocsparse_zbsrilu0_analysis_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -28331,8 +28331,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -28376,7 +28376,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_bsrilu0_clear_
+      integer(c_int) :: rocsparse_bsrilu0_clear_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
     end function
@@ -28462,9 +28462,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sbsrilu0_
+      integer(c_int) :: rocsparse_sbsrilu0_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -28473,7 +28473,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -28495,9 +28495,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dbsrilu0_
+      integer(c_int) :: rocsparse_dbsrilu0_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -28506,7 +28506,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -28528,9 +28528,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cbsrilu0_
+      integer(c_int) :: rocsparse_cbsrilu0_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -28539,7 +28539,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -28561,9 +28561,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zbsrilu0_
+      integer(c_int) :: rocsparse_zbsrilu0_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descr
@@ -28572,7 +28572,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: block_dim
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -28621,7 +28621,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csric0_zero_pivot_
+      integer(c_int) :: rocsparse_csric0_zero_pivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -28663,7 +28663,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csric0_singular_pivot_
+      integer(c_int) :: rocsparse_csric0_singular_pivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -28700,7 +28700,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csric0_set_tolerance_
+      integer(c_int) :: rocsparse_csric0_set_tolerance_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       real(c_double),value :: tolerance
@@ -28735,7 +28735,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csric0_get_tolerance_
+      integer(c_int) :: rocsparse_csric0_get_tolerance_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: tolerance
@@ -28791,7 +28791,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsric0_buffer_size_
+      integer(c_int) :: rocsparse_scsric0_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -28823,7 +28823,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsric0_buffer_size_
+      integer(c_int) :: rocsparse_dcsric0_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -28855,7 +28855,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsric0_buffer_size_
+      integer(c_int) :: rocsparse_ccsric0_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -28887,7 +28887,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsric0_buffer_size_
+      integer(c_int) :: rocsparse_zcsric0_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -28968,7 +28968,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsric0_analysis_
+      integer(c_int) :: rocsparse_scsric0_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -28977,8 +28977,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -29000,7 +29000,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsric0_analysis_
+      integer(c_int) :: rocsparse_dcsric0_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29009,8 +29009,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -29032,7 +29032,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsric0_analysis_
+      integer(c_int) :: rocsparse_ccsric0_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29041,8 +29041,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -29064,7 +29064,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsric0_analysis_
+      integer(c_int) :: rocsparse_zcsric0_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29073,8 +29073,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -29119,7 +29119,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csric0_clear_
+      integer(c_int) :: rocsparse_csric0_clear_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
     end function
@@ -29309,7 +29309,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsric0_
+      integer(c_int) :: rocsparse_scsric0_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29318,7 +29318,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -29340,7 +29340,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsric0_
+      integer(c_int) :: rocsparse_dcsric0_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29349,7 +29349,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -29371,7 +29371,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsric0_
+      integer(c_int) :: rocsparse_ccsric0_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29380,7 +29380,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -29402,7 +29402,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsric0_
+      integer(c_int) :: rocsparse_zcsric0_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29411,7 +29411,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -29461,7 +29461,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrilu0_zero_pivot_
+      integer(c_int) :: rocsparse_csrilu0_zero_pivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -29499,7 +29499,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrilu0_set_tolerance_
+      integer(c_int) :: rocsparse_csrilu0_set_tolerance_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       real(c_double),value :: tolerance
@@ -29534,7 +29534,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrilu0_get_tolerance_
+      integer(c_int) :: rocsparse_csrilu0_get_tolerance_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: tolerance
@@ -29577,7 +29577,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrilu0_singular_pivot_
+      integer(c_int) :: rocsparse_csrilu0_singular_pivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -29622,7 +29622,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrilu0_numeric_boost_
+      integer(c_int) :: rocsparse_scsrilu0_numeric_boost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -29639,7 +29639,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrilu0_numeric_boost_
+      integer(c_int) :: rocsparse_dcsrilu0_numeric_boost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -29656,7 +29656,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrilu0_numeric_boost_
+      integer(c_int) :: rocsparse_ccsrilu0_numeric_boost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -29673,7 +29673,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrilu0_numeric_boost_
+      integer(c_int) :: rocsparse_zcsrilu0_numeric_boost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -29690,7 +29690,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dscsrilu0_numeric_boost_
+      integer(c_int) :: rocsparse_dscsrilu0_numeric_boost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -29707,7 +29707,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dccsrilu0_numeric_boost_
+      integer(c_int) :: rocsparse_dccsrilu0_numeric_boost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -29766,7 +29766,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrilu0_buffer_size_
+      integer(c_int) :: rocsparse_scsrilu0_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29798,7 +29798,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrilu0_buffer_size_
+      integer(c_int) :: rocsparse_dcsrilu0_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29830,7 +29830,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrilu0_buffer_size_
+      integer(c_int) :: rocsparse_ccsrilu0_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29862,7 +29862,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrilu0_buffer_size_
+      integer(c_int) :: rocsparse_zcsrilu0_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29944,7 +29944,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrilu0_analysis_
+      integer(c_int) :: rocsparse_scsrilu0_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29953,8 +29953,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -29976,7 +29976,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrilu0_analysis_
+      integer(c_int) :: rocsparse_dcsrilu0_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -29985,8 +29985,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -30008,7 +30008,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrilu0_analysis_
+      integer(c_int) :: rocsparse_ccsrilu0_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -30017,8 +30017,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -30040,7 +30040,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrilu0_analysis_
+      integer(c_int) :: rocsparse_zcsrilu0_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -30049,8 +30049,8 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_analysis_policy_reuse)),value :: analysis
-      integer(kind(rocsparse_solve_policy_auto)),value :: solve
+      integer(c_int),value :: analysis
+      integer(c_int),value :: solve
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -30095,7 +30095,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csrilu0_clear_
+      integer(c_int) :: rocsparse_csrilu0_clear_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
     end function
@@ -30260,7 +30260,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrilu0_
+      integer(c_int) :: rocsparse_scsrilu0_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -30269,7 +30269,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -30291,7 +30291,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrilu0_
+      integer(c_int) :: rocsparse_dcsrilu0_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -30300,7 +30300,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -30322,7 +30322,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrilu0_
+      integer(c_int) :: rocsparse_ccsrilu0_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -30331,7 +30331,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -30353,7 +30353,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrilu0_
+      integer(c_int) :: rocsparse_zcsrilu0_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -30362,7 +30362,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: myInfo
-      integer(kind(rocsparse_solve_policy_auto)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: temp_buffer
     end function
 
@@ -30425,17 +30425,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csritilu0_buffer_size_
+      integer(c_int) :: rocsparse_csritilu0_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: option
       integer(c_int),value :: nmaxiter
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: datatype
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: datatype
       type(c_ptr),value :: buffer_size
     end function
 
@@ -30489,17 +30489,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_csritilu0_preprocess_
+      integer(c_int) :: rocsparse_csritilu0_preprocess_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: option
       integer(c_int),value :: nmaxiter
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_datatype_f16_r)),value :: datatype
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: datatype
       integer(c_size_t),value :: buffer_size
       type(c_ptr),value :: buffer
     end function
@@ -30620,9 +30620,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsritilu0_compute_
+      integer(c_int) :: rocsparse_scsritilu0_compute_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: option
       type(c_ptr),value :: nmaxiter
       real(c_float),value :: tol
@@ -30632,7 +30632,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: ilu0
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
       integer(c_size_t),value :: buffer_size
       type(c_ptr),value :: buffer
     end function
@@ -30645,9 +30645,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsritilu0_compute_
+      integer(c_int) :: rocsparse_dcsritilu0_compute_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: option
       type(c_ptr),value :: nmaxiter
       real(c_double),value :: tol
@@ -30657,7 +30657,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: ilu0
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
       integer(c_size_t),value :: buffer_size
       type(c_ptr),value :: buffer
     end function
@@ -30670,9 +30670,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsritilu0_compute_
+      integer(c_int) :: rocsparse_ccsritilu0_compute_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: option
       type(c_ptr),value :: nmaxiter
       real(c_float),value :: tol
@@ -30682,7 +30682,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: ilu0
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
       integer(c_size_t),value :: buffer_size
       type(c_ptr),value :: buffer
     end function
@@ -30695,9 +30695,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsritilu0_compute_
+      integer(c_int) :: rocsparse_zcsritilu0_compute_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: option
       type(c_ptr),value :: nmaxiter
       real(c_double),value :: tol
@@ -30707,7 +30707,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: ilu0
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
       integer(c_size_t),value :: buffer_size
       type(c_ptr),value :: buffer
     end function
@@ -30801,9 +30801,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsritilu0_compute_ex_
+      integer(c_int) :: rocsparse_scsritilu0_compute_ex_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: option
       type(c_ptr),value :: nmaxiter
       integer(c_int),value :: nfreeiter
@@ -30814,7 +30814,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: ilu0
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
       integer(c_size_t),value :: buffer_size
       type(c_ptr),value :: buffer
     end function
@@ -30827,9 +30827,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsritilu0_compute_ex_
+      integer(c_int) :: rocsparse_dcsritilu0_compute_ex_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: option
       type(c_ptr),value :: nmaxiter
       integer(c_int),value :: nfreeiter
@@ -30840,7 +30840,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: ilu0
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
       integer(c_size_t),value :: buffer_size
       type(c_ptr),value :: buffer
     end function
@@ -30853,9 +30853,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsritilu0_compute_ex_
+      integer(c_int) :: rocsparse_ccsritilu0_compute_ex_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: option
       type(c_ptr),value :: nmaxiter
       integer(c_int),value :: nfreeiter
@@ -30866,7 +30866,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: ilu0
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
       integer(c_size_t),value :: buffer_size
       type(c_ptr),value :: buffer
     end function
@@ -30879,9 +30879,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsritilu0_compute_ex_
+      integer(c_int) :: rocsparse_zcsritilu0_compute_ex_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: option
       type(c_ptr),value :: nmaxiter
       integer(c_int),value :: nfreeiter
@@ -30892,7 +30892,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: ilu0
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
+      integer(c_int),value :: idx_base
       integer(c_size_t),value :: buffer_size
       type(c_ptr),value :: buffer
     end function
@@ -30972,9 +30972,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsritilu0_history_
+      integer(c_int) :: rocsparse_scsritilu0_history_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: niter
       type(c_ptr),value :: myData
       integer(c_size_t),value :: buffer_size
@@ -30988,9 +30988,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsritilu0_history_
+      integer(c_int) :: rocsparse_dcsritilu0_history_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: niter
       type(c_ptr),value :: myData
       integer(c_size_t),value :: buffer_size
@@ -31004,9 +31004,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsritilu0_history_
+      integer(c_int) :: rocsparse_ccsritilu0_history_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: niter
       type(c_ptr),value :: myData
       integer(c_size_t),value :: buffer_size
@@ -31020,9 +31020,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsritilu0_history_
+      integer(c_int) :: rocsparse_zcsritilu0_history_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_itilu0_alg_default)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: niter
       type(c_ptr),value :: myData
       integer(c_size_t),value :: buffer_size
@@ -31075,9 +31075,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgpsv_interleaved_batch_buffer_size_
+      integer(c_int) :: rocsparse_sgpsv_interleaved_batch_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: ds
       type(c_ptr),value :: dl
@@ -31110,9 +31110,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgpsv_interleaved_batch_buffer_size_
+      integer(c_int) :: rocsparse_dgpsv_interleaved_batch_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: ds
       type(c_ptr),value :: dl
@@ -31145,9 +31145,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgpsv_interleaved_batch_buffer_size_
+      integer(c_int) :: rocsparse_cgpsv_interleaved_batch_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: ds
       type(c_ptr),value :: dl
@@ -31180,9 +31180,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgpsv_interleaved_batch_buffer_size_
+      integer(c_int) :: rocsparse_zgpsv_interleaved_batch_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: ds
       type(c_ptr),value :: dl
@@ -31329,9 +31329,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgpsv_interleaved_batch_
+      integer(c_int) :: rocsparse_sgpsv_interleaved_batch_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: ds
       type(c_ptr),value :: dl
@@ -31362,9 +31362,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgpsv_interleaved_batch_
+      integer(c_int) :: rocsparse_dgpsv_interleaved_batch_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: ds
       type(c_ptr),value :: dl
@@ -31395,9 +31395,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgpsv_interleaved_batch_
+      integer(c_int) :: rocsparse_cgpsv_interleaved_batch_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: ds
       type(c_ptr),value :: dl
@@ -31428,9 +31428,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgpsv_interleaved_batch_
+      integer(c_int) :: rocsparse_zgpsv_interleaved_batch_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: ds
       type(c_ptr),value :: dl
@@ -31491,7 +31491,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_buffer_size_
+      integer(c_int) :: rocsparse_sgtsv_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -31523,7 +31523,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_buffer_size_
+      integer(c_int) :: rocsparse_dgtsv_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -31555,7 +31555,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_buffer_size_
+      integer(c_int) :: rocsparse_cgtsv_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -31587,7 +31587,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_buffer_size_
+      integer(c_int) :: rocsparse_zgtsv_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -31667,7 +31667,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_
+      integer(c_int) :: rocsparse_sgtsv_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -31696,7 +31696,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_
+      integer(c_int) :: rocsparse_dgtsv_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -31725,7 +31725,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_
+      integer(c_int) :: rocsparse_cgtsv_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -31754,7 +31754,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_
+      integer(c_int) :: rocsparse_zgtsv_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -31816,7 +31816,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_buffer_size_
+      integer(c_int) :: rocsparse_sgtsv_no_pivot_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -31848,7 +31848,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_buffer_size_
+      integer(c_int) :: rocsparse_dgtsv_no_pivot_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -31880,7 +31880,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_buffer_size_
+      integer(c_int) :: rocsparse_cgtsv_no_pivot_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -31912,7 +31912,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_buffer_size_
+      integer(c_int) :: rocsparse_zgtsv_no_pivot_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -31996,7 +31996,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_
+      integer(c_int) :: rocsparse_sgtsv_no_pivot_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -32026,7 +32026,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_
+      integer(c_int) :: rocsparse_dgtsv_no_pivot_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -32056,7 +32056,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_
+      integer(c_int) :: rocsparse_cgtsv_no_pivot_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -32086,7 +32086,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_
+      integer(c_int) :: rocsparse_zgtsv_no_pivot_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -32155,7 +32155,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_
+      integer(c_int) :: rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -32187,7 +32187,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_
+      integer(c_int) :: rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -32219,7 +32219,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_
+      integer(c_int) :: rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -32251,7 +32251,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_
+      integer(c_int) :: rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -32377,7 +32377,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_no_pivot_strided_batch_
+      integer(c_int) :: rocsparse_sgtsv_no_pivot_strided_batch_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -32407,7 +32407,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_no_pivot_strided_batch_
+      integer(c_int) :: rocsparse_dgtsv_no_pivot_strided_batch_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -32437,7 +32437,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_no_pivot_strided_batch_
+      integer(c_int) :: rocsparse_cgtsv_no_pivot_strided_batch_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -32467,7 +32467,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_no_pivot_strided_batch_
+      integer(c_int) :: rocsparse_zgtsv_no_pivot_strided_batch_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -32539,9 +32539,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_interleaved_batch_buffer_size_
+      integer(c_int) :: rocsparse_sgtsv_interleaved_batch_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gtsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: dl
       type(c_ptr),value :: d
@@ -32562,9 +32562,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_interleaved_batch_buffer_size_
+      integer(c_int) :: rocsparse_dgtsv_interleaved_batch_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gtsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: dl
       type(c_ptr),value :: d
@@ -32585,9 +32585,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_interleaved_batch_buffer_size_
+      integer(c_int) :: rocsparse_cgtsv_interleaved_batch_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gtsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: dl
       type(c_ptr),value :: d
@@ -32608,9 +32608,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_interleaved_batch_buffer_size_
+      integer(c_int) :: rocsparse_zgtsv_interleaved_batch_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gtsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: dl
       type(c_ptr),value :: d
@@ -32740,9 +32740,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sgtsv_interleaved_batch_
+      integer(c_int) :: rocsparse_sgtsv_interleaved_batch_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gtsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: dl
       type(c_ptr),value :: d
@@ -32761,9 +32761,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dgtsv_interleaved_batch_
+      integer(c_int) :: rocsparse_dgtsv_interleaved_batch_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gtsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: dl
       type(c_ptr),value :: d
@@ -32782,9 +32782,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cgtsv_interleaved_batch_
+      integer(c_int) :: rocsparse_cgtsv_interleaved_batch_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gtsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: dl
       type(c_ptr),value :: d
@@ -32803,9 +32803,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zgtsv_interleaved_batch_
+      integer(c_int) :: rocsparse_zgtsv_interleaved_batch_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_gtsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: alg
       integer(c_int),value :: m
       type(c_ptr),value :: dl
       type(c_ptr),value :: d
@@ -32870,7 +32870,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsrcolor_
+      integer(c_int) :: rocsparse_scsrcolor_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -32905,7 +32905,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrcolor_
+      integer(c_int) :: rocsparse_dcsrcolor_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -32940,7 +32940,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrcolor_
+      integer(c_int) :: rocsparse_ccsrcolor_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -32975,7 +32975,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrcolor_
+      integer(c_int) :: rocsparse_zcsrcolor_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -33043,7 +33043,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scheck_matrix_coo_buffer_size_
+      integer(c_int) :: rocsparse_scheck_matrix_coo_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33051,10 +33051,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_val
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -33068,7 +33068,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcheck_matrix_coo_buffer_size_
+      integer(c_int) :: rocsparse_dcheck_matrix_coo_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33076,10 +33076,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_val
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -33093,7 +33093,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccheck_matrix_coo_buffer_size_
+      integer(c_int) :: rocsparse_ccheck_matrix_coo_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33101,10 +33101,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_val
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -33118,7 +33118,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcheck_matrix_coo_buffer_size_
+      integer(c_int) :: rocsparse_zcheck_matrix_coo_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33126,10 +33126,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_val
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -33254,7 +33254,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scheck_matrix_coo_
+      integer(c_int) :: rocsparse_scheck_matrix_coo_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33262,10 +33262,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_val
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -33280,7 +33280,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcheck_matrix_coo_
+      integer(c_int) :: rocsparse_dcheck_matrix_coo_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33288,10 +33288,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_val
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -33306,7 +33306,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccheck_matrix_coo_
+      integer(c_int) :: rocsparse_ccheck_matrix_coo_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33314,10 +33314,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_val
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -33332,7 +33332,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcheck_matrix_coo_
+      integer(c_int) :: rocsparse_zcheck_matrix_coo_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33340,10 +33340,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: coo_val
       type(c_ptr),value :: coo_row_ind
       type(c_ptr),value :: coo_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -33392,7 +33392,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scheck_matrix_csc_buffer_size_
+      integer(c_int) :: rocsparse_scheck_matrix_csc_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33400,10 +33400,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_val
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -33417,7 +33417,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcheck_matrix_csc_buffer_size_
+      integer(c_int) :: rocsparse_dcheck_matrix_csc_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33425,10 +33425,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_val
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -33442,7 +33442,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccheck_matrix_csc_buffer_size_
+      integer(c_int) :: rocsparse_ccheck_matrix_csc_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33450,10 +33450,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_val
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -33467,7 +33467,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcheck_matrix_csc_buffer_size_
+      integer(c_int) :: rocsparse_zcheck_matrix_csc_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33475,10 +33475,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_val
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -33605,7 +33605,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scheck_matrix_csc_
+      integer(c_int) :: rocsparse_scheck_matrix_csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33613,10 +33613,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_val
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -33631,7 +33631,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcheck_matrix_csc_
+      integer(c_int) :: rocsparse_dcheck_matrix_csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33639,10 +33639,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_val
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -33657,7 +33657,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccheck_matrix_csc_
+      integer(c_int) :: rocsparse_ccheck_matrix_csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33665,10 +33665,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_val
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -33683,7 +33683,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcheck_matrix_csc_
+      integer(c_int) :: rocsparse_zcheck_matrix_csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33691,10 +33691,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csc_val
       type(c_ptr),value :: csc_col_ptr
       type(c_ptr),value :: csc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -33744,7 +33744,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scheck_matrix_csr_buffer_size_
+      integer(c_int) :: rocsparse_scheck_matrix_csr_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33752,10 +33752,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -33769,7 +33769,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcheck_matrix_csr_buffer_size_
+      integer(c_int) :: rocsparse_dcheck_matrix_csr_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33777,10 +33777,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -33794,7 +33794,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccheck_matrix_csr_buffer_size_
+      integer(c_int) :: rocsparse_ccheck_matrix_csr_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33802,10 +33802,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -33819,7 +33819,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcheck_matrix_csr_buffer_size_
+      integer(c_int) :: rocsparse_zcheck_matrix_csr_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33827,10 +33827,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -33955,7 +33955,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scheck_matrix_csr_
+      integer(c_int) :: rocsparse_scheck_matrix_csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33963,10 +33963,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -33981,7 +33981,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcheck_matrix_csr_
+      integer(c_int) :: rocsparse_dcheck_matrix_csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -33989,10 +33989,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34007,7 +34007,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccheck_matrix_csr_
+      integer(c_int) :: rocsparse_ccheck_matrix_csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -34015,10 +34015,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34033,7 +34033,7 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcheck_matrix_csr_
+      integer(c_int) :: rocsparse_zcheck_matrix_csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -34041,10 +34041,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_val
       type(c_ptr),value :: csr_row_ptr
       type(c_ptr),value :: csr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34092,17 +34092,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scheck_matrix_ell_buffer_size_
+      integer(c_int) :: rocsparse_scheck_matrix_ell_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: ell_width
       type(c_ptr),value :: ell_val
       type(c_ptr),value :: ell_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -34116,17 +34116,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcheck_matrix_ell_buffer_size_
+      integer(c_int) :: rocsparse_dcheck_matrix_ell_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: ell_width
       type(c_ptr),value :: ell_val
       type(c_ptr),value :: ell_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -34140,17 +34140,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccheck_matrix_ell_buffer_size_
+      integer(c_int) :: rocsparse_ccheck_matrix_ell_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: ell_width
       type(c_ptr),value :: ell_val
       type(c_ptr),value :: ell_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -34164,17 +34164,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcheck_matrix_ell_buffer_size_
+      integer(c_int) :: rocsparse_zcheck_matrix_ell_buffer_size_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: ell_width
       type(c_ptr),value :: ell_val
       type(c_ptr),value :: ell_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -34234,17 +34234,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scheck_matrix_ell_
+      integer(c_int) :: rocsparse_scheck_matrix_ell_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: ell_width
       type(c_ptr),value :: ell_val
       type(c_ptr),value :: ell_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34259,17 +34259,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcheck_matrix_ell_
+      integer(c_int) :: rocsparse_dcheck_matrix_ell_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: ell_width
       type(c_ptr),value :: ell_val
       type(c_ptr),value :: ell_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34284,17 +34284,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccheck_matrix_ell_
+      integer(c_int) :: rocsparse_ccheck_matrix_ell_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: ell_width
       type(c_ptr),value :: ell_val
       type(c_ptr),value :: ell_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34309,17 +34309,17 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcheck_matrix_ell_
+      integer(c_int) :: rocsparse_zcheck_matrix_ell_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: ell_width
       type(c_ptr),value :: ell_val
       type(c_ptr),value :: ell_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34374,9 +34374,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scheck_matrix_gebsc_buffer_size_
+      integer(c_int) :: rocsparse_scheck_matrix_gebsc_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34385,10 +34385,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsc_val
       type(c_ptr),value :: bsc_col_ptr
       type(c_ptr),value :: bsc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -34403,9 +34403,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcheck_matrix_gebsc_buffer_size_
+      integer(c_int) :: rocsparse_dcheck_matrix_gebsc_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34414,10 +34414,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsc_val
       type(c_ptr),value :: bsc_col_ptr
       type(c_ptr),value :: bsc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -34432,9 +34432,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccheck_matrix_gebsc_buffer_size_
+      integer(c_int) :: rocsparse_ccheck_matrix_gebsc_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34443,10 +34443,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsc_val
       type(c_ptr),value :: bsc_col_ptr
       type(c_ptr),value :: bsc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -34461,9 +34461,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcheck_matrix_gebsc_buffer_size_
+      integer(c_int) :: rocsparse_zcheck_matrix_gebsc_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34472,10 +34472,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsc_val
       type(c_ptr),value :: bsc_col_ptr
       type(c_ptr),value :: bsc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -34543,9 +34543,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scheck_matrix_gebsc_
+      integer(c_int) :: rocsparse_scheck_matrix_gebsc_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34554,10 +34554,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsc_val
       type(c_ptr),value :: bsc_col_ptr
       type(c_ptr),value :: bsc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34572,9 +34572,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcheck_matrix_gebsc_
+      integer(c_int) :: rocsparse_dcheck_matrix_gebsc_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34583,10 +34583,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsc_val
       type(c_ptr),value :: bsc_col_ptr
       type(c_ptr),value :: bsc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34601,9 +34601,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccheck_matrix_gebsc_
+      integer(c_int) :: rocsparse_ccheck_matrix_gebsc_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34612,10 +34612,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsc_val
       type(c_ptr),value :: bsc_col_ptr
       type(c_ptr),value :: bsc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34630,9 +34630,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcheck_matrix_gebsc_
+      integer(c_int) :: rocsparse_zcheck_matrix_gebsc_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34641,10 +34641,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsc_val
       type(c_ptr),value :: bsc_col_ptr
       type(c_ptr),value :: bsc_row_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34702,9 +34702,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scheck_matrix_gebsr_buffer_size_
+      integer(c_int) :: rocsparse_scheck_matrix_gebsr_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34713,10 +34713,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_val
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -34731,9 +34731,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcheck_matrix_gebsr_buffer_size_
+      integer(c_int) :: rocsparse_dcheck_matrix_gebsr_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34742,10 +34742,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_val
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -34760,9 +34760,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccheck_matrix_gebsr_buffer_size_
+      integer(c_int) :: rocsparse_ccheck_matrix_gebsr_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34771,10 +34771,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_val
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -34789,9 +34789,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcheck_matrix_gebsr_buffer_size_
+      integer(c_int) :: rocsparse_zcheck_matrix_gebsr_buffer_size_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34800,10 +34800,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_val
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -34940,9 +34940,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scheck_matrix_gebsr_
+      integer(c_int) :: rocsparse_scheck_matrix_gebsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34951,10 +34951,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_val
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34969,9 +34969,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcheck_matrix_gebsr_
+      integer(c_int) :: rocsparse_dcheck_matrix_gebsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -34980,10 +34980,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_val
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -34998,9 +34998,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccheck_matrix_gebsr_
+      integer(c_int) :: rocsparse_ccheck_matrix_gebsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -35009,10 +35009,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_val
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -35027,9 +35027,9 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcheck_matrix_gebsr_
+      integer(c_int) :: rocsparse_zcheck_matrix_gebsr_
       type(c_ptr),value :: handle
-      integer(kind(rocsparse_direction_row)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -35038,10 +35038,10 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_val
       type(c_ptr),value :: bsr_row_ptr
       type(c_ptr),value :: bsr_col_ind
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function
@@ -35081,13 +35081,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_check_matrix_hyb_buffer_size_
+      integer(c_int) :: rocsparse_check_matrix_hyb_buffer_size_
       type(c_ptr),value :: handle
       type(c_ptr),value :: hyb
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: buffer_size
     end function
 
@@ -35140,13 +35140,13 @@ module hipfort_rocsparse
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_check_matrix_hyb_
+      integer(c_int) :: rocsparse_check_matrix_hyb_
       type(c_ptr),value :: handle
       type(c_ptr),value :: hyb
-      integer(kind(rocsparse_index_base_zero)),value :: idx_base
-      integer(kind(rocsparse_matrix_type_general)),value :: matrix_type
-      integer(kind(rocsparse_fill_mode_lower)),value :: uplo
-      integer(kind(rocsparse_storage_mode_sorted)),value :: storage
+      integer(c_int),value :: idx_base
+      integer(c_int),value :: matrix_type
+      integer(c_int),value :: uplo
+      integer(c_int),value :: storage
       type(c_ptr),value :: data_status
       type(c_ptr),value :: temp_buffer
     end function

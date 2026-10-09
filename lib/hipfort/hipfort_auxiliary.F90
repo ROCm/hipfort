@@ -48,11 +48,7 @@ module hipfort_auxiliary
       use hipfort_enums
       use hipfort_types
       implicit none
-#ifdef USE_CUDA_NAMES
-      integer(kind(cudaSuccess)) :: hipGetDeviceProperties_
-#else
-      integer(kind(hipSuccess)) :: hipGetDeviceProperties_
-#endif
+      integer(c_int) :: hipGetDeviceProperties_
       type(hipDeviceProp_t),intent(out) :: prop
       integer(c_int),value :: deviceId
     end function

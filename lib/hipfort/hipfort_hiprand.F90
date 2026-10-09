@@ -66,9 +66,9 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandCreateGenerator_
+      integer(c_int) :: hiprandCreateGenerator_
       type(c_ptr) :: generator
-      integer(kind(HIPRAND_RNG_TEST)),value :: rng_type
+      integer(c_int),value :: rng_type
     end function
   end interface
 
@@ -112,9 +112,9 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandCreateGeneratorHost_
+      integer(c_int) :: hiprandCreateGeneratorHost_
       type(c_ptr) :: generator
-      integer(kind(HIPRAND_RNG_TEST)),value :: rng_type
+      integer(c_int),value :: rng_type
     end function
   end interface
 
@@ -136,7 +136,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandDestroyGenerator_
+      integer(c_int) :: hiprandDestroyGenerator_
       type(c_ptr),value :: generator
     end function
   end interface
@@ -169,7 +169,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_
+      integer(c_int) :: hiprandGenerate_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -208,7 +208,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateChar_
+      integer(c_int) :: hiprandGenerateChar_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -238,7 +238,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateShort_
+      integer(c_int) :: hiprandGenerateShort_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -276,7 +276,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_
+      integer(c_int) :: hiprandGenerateLongLong_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -320,7 +320,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_
+      integer(c_int) :: hiprandGenerateUniform_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -372,7 +372,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_
+      integer(c_int) :: hiprandGenerateUniformDouble_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -414,7 +414,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformHalf_
+      integer(c_int) :: hiprandGenerateUniformHalf_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -451,7 +451,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_
+      integer(c_int) :: hiprandGenerateNormal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -499,7 +499,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_
+      integer(c_int) :: hiprandGenerateNormalDouble_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -543,7 +543,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalHalf_
+      integer(c_int) :: hiprandGenerateNormalHalf_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -582,7 +582,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_
+      integer(c_int) :: hiprandGenerateLogNormal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -630,7 +630,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_
+      integer(c_int) :: hiprandGenerateLogNormalDouble_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -674,7 +674,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalHalf_
+      integer(c_int) :: hiprandGenerateLogNormalHalf_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -712,7 +712,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_
+      integer(c_int) :: hiprandGeneratePoisson_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -755,7 +755,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateSeeds_
+      integer(c_int) :: hiprandGenerateSeeds_
       type(c_ptr),value :: generator
     end function
   end interface
@@ -780,7 +780,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetStream_
+      integer(c_int) :: hiprandSetStream_
       type(c_ptr),value :: generator
       type(c_ptr),value :: stream
     end function
@@ -811,7 +811,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetPseudoRandomGeneratorSeed_
+      integer(c_int) :: hiprandSetPseudoRandomGeneratorSeed_
       type(c_ptr),value :: generator
       integer(c_int64_t),value :: seed
     end function
@@ -844,7 +844,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetGeneratorOffset_
+      integer(c_int) :: hiprandSetGeneratorOffset_
       type(c_ptr),value :: generator
       integer(c_int64_t),value :: offset
     end function
@@ -884,9 +884,9 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetGeneratorOrdering_
+      integer(c_int) :: hiprandSetGeneratorOrdering_
       type(c_ptr),value :: generator
-      integer(kind(HIPRAND_ORDERING_PSEUDO_BEST)),value :: order
+      integer(c_int),value :: order
     end function
   end interface
 
@@ -917,7 +917,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandSetQuasiRandomGeneratorDimensions_
+      integer(c_int) :: hiprandSetQuasiRandomGeneratorDimensions_
       type(c_ptr),value :: generator
       integer(c_int),value :: dimensions
     end function
@@ -942,7 +942,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetVersion_
+      integer(c_int) :: hiprandGetVersion_
       type(c_ptr),value :: version
     end function
 
@@ -972,7 +972,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandCreatePoissonDistribution_
+      integer(c_int) :: hiprandCreatePoissonDistribution_
       real(c_double),value :: lambda
       type(c_ptr) :: discrete_distribution
     end function
@@ -999,7 +999,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandDestroyDistribution_
+      integer(c_int) :: hiprandDestroyDistribution_
       type(c_ptr),value :: discrete_distribution
     end function
   end interface
@@ -1021,9 +1021,9 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetDirectionVectors32_
+      integer(c_int) :: hiprandGetDirectionVectors32_
       type(c_ptr) :: vectors
-      integer(kind(HIPRAND_DIRECTION_VECTORS_32_JOEKUO6)),value :: set
+      integer(c_int),value :: set
     end function
   end interface
 
@@ -1044,9 +1044,9 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetDirectionVectors64_
+      integer(c_int) :: hiprandGetDirectionVectors64_
       type(c_ptr) :: vectors
-      integer(kind(HIPRAND_DIRECTION_VECTORS_32_JOEKUO6)),value :: set
+      integer(c_int),value :: set
     end function
   end interface
 
@@ -1065,7 +1065,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetScrambleConstants32_
+      integer(c_int) :: hiprandGetScrambleConstants32_
       type(c_ptr) :: constants
     end function
   end interface
@@ -1085,7 +1085,7 @@ module hipfort_hiprand
       use iso_c_binding
       use hipfort_hiprand_enums
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetScrambleConstants64_
+      integer(c_int) :: hiprandGetScrambleConstants64_
       type(c_ptr) :: constants
     end function
   end interface

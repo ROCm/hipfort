@@ -199,6 +199,11 @@
 * Under `USE_CUDA_NAMES`, the compatibility-API `hipsolver?gesvd_bufferSize`
   and `hipsolver??gels_bufferSize` were bound to the `cusolverDn` routines of
   the same name, whose arguments differ. They are now ROCm-only.
+* The modules compile without warnings under gfortran `-Wall`. The bind(C)
+  interfaces declared enum-valued arguments and results as
+  `integer(kind(<enumerator>))`, which gfortran reported about 12,000 times as
+  possibly not C interoperable (`-Wc-binding-type`). They are declared
+  `integer(c_int)` now, which is the same type.
 
 ## hipfort 0.9.0 for ROCm 10.0.0
 

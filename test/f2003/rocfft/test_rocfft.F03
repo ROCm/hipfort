@@ -29,16 +29,10 @@ program test_rocfft
   use hipfort_rocfft_enums
   implicit none
   logical :: never
-  integer(kind(rocfft_status_success)) :: v0
+  integer(c_int) :: v0
   type(c_ptr) :: v1
-  integer(kind(rocfft_placement_inplace)) :: v2
-  integer(kind(rocfft_transform_type_complex_forward)) :: v3
-  integer(kind(rocfft_precision_single)) :: v4
-  integer(c_size_t) :: v5
-  real(c_double) :: v6
-  integer(kind(rocfft_array_type_complex_interleaved)) :: v7
-  integer(kind(rocfft_comm_none)) :: v8
-  integer(c_int) :: v9
+  integer(c_size_t) :: v2
+  real(c_double) :: v3
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
@@ -46,18 +40,18 @@ program test_rocfft
 
     if (never) v0 = rocfft_setup_()
     if (never) v0 = rocfft_cleanup_()
-    if (never) v0 = rocfft_plan_create_(v1, v2, v3, v4, v5, v1, v5, v1)
+    if (never) v0 = rocfft_plan_create_(v1, v0, v0, v0, v2, v1, v2, v1)
     if (never) v0 = rocfft_execute_(v1, v1, v1, v1)
     if (never) v0 = rocfft_plan_destroy_(v1)
-    if (never) v0 = rocfft_plan_description_set_scale_factor_(v1, v6)
-    if (never) v0 = rocfft_plan_description_set_data_layout_(v1, v7, v7, v1, v1, v5, v1, v5, v5, v1, v5)
+    if (never) v0 = rocfft_plan_description_set_scale_factor_(v1, v3)
+    if (never) v0 = rocfft_plan_description_set_data_layout_(v1, v0, v0, v1, v1, v2, v1, v2, v2, v1, v2)
     if (never) v0 = rocfft_field_create_(v1)
     if (never) v0 = rocfft_field_destroy_(v1)
-    if (never) v0 = rocfft_get_version_string_(v1, v5)
-    if (never) v0 = rocfft_plan_description_set_comm_(v1, v8, v1)
-    if (never) v0 = rocfft_plan_description_set_load_callback_(v1, v1, v1, v5, v5)
-    if (never) v0 = rocfft_plan_description_set_store_callback_(v1, v1, v1, v5, v5)
-    if (never) v0 = rocfft_brick_create_(v1, v1, v1, v1, v5, v9)
+    if (never) v0 = rocfft_get_version_string_(v1, v2)
+    if (never) v0 = rocfft_plan_description_set_comm_(v1, v0, v1)
+    if (never) v0 = rocfft_plan_description_set_load_callback_(v1, v1, v1, v2, v2)
+    if (never) v0 = rocfft_plan_description_set_store_callback_(v1, v1, v1, v2, v2)
+    if (never) v0 = rocfft_brick_create_(v1, v1, v1, v1, v2, v0)
     if (never) v0 = rocfft_brick_destroy_(v1)
     if (never) v0 = rocfft_field_add_brick_(v1, v1)
     if (never) v0 = rocfft_plan_description_add_infield_(v1, v1)
@@ -68,15 +62,15 @@ program test_rocfft
     if (never) v0 = rocfft_plan_description_destroy_(v1)
     if (never) v0 = rocfft_execution_info_create_(v1)
     if (never) v0 = rocfft_execution_info_destroy_(v1)
-    if (never) v0 = rocfft_execution_info_set_work_buffer_(v1, v1, v5)
+    if (never) v0 = rocfft_execution_info_set_work_buffer_(v1, v1, v2)
     if (never) v0 = rocfft_execution_info_set_stream_(v1, v1)
-    if (never) v0 = rocfft_execution_info_set_load_callback_(v1, v1, v1, v5)
-    if (never) v0 = rocfft_execution_info_set_load_callback_data_(v1, v1, v5)
-    if (never) v0 = rocfft_execution_info_set_store_callback_(v1, v1, v1, v5)
-    if (never) v0 = rocfft_execution_info_set_store_callback_data_(v1, v1, v5)
+    if (never) v0 = rocfft_execution_info_set_load_callback_(v1, v1, v1, v2)
+    if (never) v0 = rocfft_execution_info_set_load_callback_data_(v1, v1, v2)
+    if (never) v0 = rocfft_execution_info_set_store_callback_(v1, v1, v1, v2)
+    if (never) v0 = rocfft_execution_info_set_store_callback_data_(v1, v1, v2)
     if (never) v0 = rocfft_cache_serialize_(v1, v1)
     if (never) v0 = rocfft_cache_buffer_free_(v1)
-    if (never) v0 = rocfft_cache_deserialize_(v1, v5)
+    if (never) v0 = rocfft_cache_deserialize_(v1, v2)
 
   write(*,"(a)") "-- test_rocfft (bind(C) symbols): PASSED (compile+link only)!"
 end program test_rocfft

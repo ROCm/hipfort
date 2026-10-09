@@ -44,7 +44,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreate_
+      integer(c_int) :: hipsparseCreate_
       type(c_ptr) :: handle
     end function
   end interface
@@ -64,7 +64,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroy_
+      integer(c_int) :: hipsparseDestroy_
       type(c_ptr),value :: handle
     end function
   end interface
@@ -95,7 +95,7 @@ module hipfort_hipsparse
       use hipfort_hipsparse_enums
       implicit none
       type(c_ptr) :: hipsparseGetErrorName_
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)),value :: status
+      integer(c_int),value :: status
     end function
   end interface
 
@@ -118,7 +118,7 @@ module hipfort_hipsparse
       use hipfort_hipsparse_enums
       implicit none
       type(c_ptr) :: hipsparseGetErrorString_
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)),value :: status
+      integer(c_int),value :: status
     end function
   end interface
 
@@ -139,7 +139,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseGetVersion_
+      integer(c_int) :: hipsparseGetVersion_
       type(c_ptr),value :: handle
       type(c_ptr),value :: version
     end function
@@ -158,7 +158,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseGetGitRevision_
+      integer(c_int) :: hipsparseGetGitRevision_
       type(c_ptr),value :: handle
       type(c_ptr),value :: rev
     end function
@@ -180,7 +180,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSetStream_
+      integer(c_int) :: hipsparseSetStream_
       type(c_ptr),value :: handle
       type(c_ptr),value :: streamId
     end function
@@ -201,7 +201,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseGetStream_
+      integer(c_int) :: hipsparseGetStream_
       type(c_ptr),value :: handle
       type(c_ptr) :: streamId
     end function
@@ -224,9 +224,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSetPointerMode_
+      integer(c_int) :: hipsparseSetPointerMode_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_POINTER_MODE_HOST)),value :: mode
+      integer(c_int),value :: mode
     end function
   end interface
 
@@ -245,7 +245,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseGetPointerMode_
+      integer(c_int) :: hipsparseGetPointerMode_
       type(c_ptr),value :: handle
       type(c_ptr),value :: mode
     end function
@@ -269,7 +269,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateMatDescr_
+      integer(c_int) :: hipsparseCreateMatDescr_
       type(c_ptr) :: descrA
     end function
   end interface
@@ -289,7 +289,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyMatDescr_
+      integer(c_int) :: hipsparseDestroyMatDescr_
       type(c_ptr),value :: descrA
     end function
   end interface
@@ -305,7 +305,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCopyMatDescr_
+      integer(c_int) :: hipsparseCopyMatDescr_
       type(c_ptr),value :: dest
       type(c_ptr),value :: src
     end function
@@ -329,9 +329,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSetMatType_
+      integer(c_int) :: hipsparseSetMatType_
       type(c_ptr),value :: descrA
-      integer(kind(HIPSPARSE_MATRIX_TYPE_GENERAL)),value :: myType
+      integer(c_int),value :: myType
     end function
   end interface
 
@@ -349,7 +349,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_MATRIX_TYPE_GENERAL)) :: hipsparseGetMatType_
+      integer(c_int) :: hipsparseGetMatType_
       type(c_ptr),value :: descrA
     end function
   end interface
@@ -370,9 +370,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSetMatFillMode_
+      integer(c_int) :: hipsparseSetMatFillMode_
       type(c_ptr),value :: descrA
-      integer(kind(HIPSPARSE_FILL_MODE_LOWER)),value :: fillMode
+      integer(c_int),value :: fillMode
     end function
   end interface
 
@@ -390,7 +390,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_FILL_MODE_LOWER)) :: hipsparseGetMatFillMode_
+      integer(c_int) :: hipsparseGetMatFillMode_
       type(c_ptr),value :: descrA
     end function
   end interface
@@ -411,9 +411,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSetMatDiagType_
+      integer(c_int) :: hipsparseSetMatDiagType_
       type(c_ptr),value :: descrA
-      integer(kind(HIPSPARSE_DIAG_TYPE_NON_UNIT)),value :: diagType
+      integer(c_int),value :: diagType
     end function
   end interface
 
@@ -432,7 +432,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_DIAG_TYPE_NON_UNIT)) :: hipsparseGetMatDiagType_
+      integer(c_int) :: hipsparseGetMatDiagType_
       type(c_ptr),value :: descrA
     end function
   end interface
@@ -452,9 +452,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSetMatIndexBase_
+      integer(c_int) :: hipsparseSetMatIndexBase_
       type(c_ptr),value :: descrA
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: base
+      integer(c_int),value :: base
     end function
   end interface
 
@@ -472,7 +472,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: hipsparseGetMatIndexBase_
+      integer(c_int) :: hipsparseGetMatIndexBase_
       type(c_ptr),value :: descrA
     end function
   end interface
@@ -489,7 +489,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateHybMat_
+      integer(c_int) :: hipsparseCreateHybMat_
       type(c_ptr) :: hybA
     end function
   end interface
@@ -506,7 +506,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyHybMat_
+      integer(c_int) :: hipsparseDestroyHybMat_
       type(c_ptr),value :: hybA
     end function
   end interface
@@ -528,7 +528,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateBsrsv2Info_
+      integer(c_int) :: hipsparseCreateBsrsv2Info_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -547,7 +547,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyBsrsv2Info_
+      integer(c_int) :: hipsparseDestroyBsrsv2Info_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -568,7 +568,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateBsrsm2Info_
+      integer(c_int) :: hipsparseCreateBsrsm2Info_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -587,7 +587,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyBsrsm2Info_
+      integer(c_int) :: hipsparseDestroyBsrsm2Info_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -608,7 +608,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateBsrilu02Info_
+      integer(c_int) :: hipsparseCreateBsrilu02Info_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -627,7 +627,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyBsrilu02Info_
+      integer(c_int) :: hipsparseDestroyBsrilu02Info_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -648,7 +648,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateBsric02Info_
+      integer(c_int) :: hipsparseCreateBsric02Info_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -667,7 +667,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyBsric02Info_
+      integer(c_int) :: hipsparseDestroyBsric02Info_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -685,7 +685,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateCsrsv2Info_
+      integer(c_int) :: hipsparseCreateCsrsv2Info_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -702,7 +702,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyCsrsv2Info_
+      integer(c_int) :: hipsparseDestroyCsrsv2Info_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -721,7 +721,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateCsrsm2Info_
+      integer(c_int) :: hipsparseCreateCsrsm2Info_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -738,7 +738,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyCsrsm2Info_
+      integer(c_int) :: hipsparseDestroyCsrsm2Info_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -760,7 +760,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateCsrilu02Info_
+      integer(c_int) :: hipsparseCreateCsrilu02Info_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -779,7 +779,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyCsrilu02Info_
+      integer(c_int) :: hipsparseDestroyCsrilu02Info_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -800,7 +800,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateCsric02Info_
+      integer(c_int) :: hipsparseCreateCsric02Info_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -819,7 +819,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyCsric02Info_
+      integer(c_int) :: hipsparseDestroyCsric02Info_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -840,7 +840,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateCsru2csrInfo_
+      integer(c_int) :: hipsparseCreateCsru2csrInfo_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -859,7 +859,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyCsru2csrInfo_
+      integer(c_int) :: hipsparseDestroyCsru2csrInfo_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -880,7 +880,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateColorInfo_
+      integer(c_int) :: hipsparseCreateColorInfo_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -899,7 +899,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyColorInfo_
+      integer(c_int) :: hipsparseDestroyColorInfo_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -917,7 +917,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateCsrgemm2Info_
+      integer(c_int) :: hipsparseCreateCsrgemm2Info_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -934,7 +934,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyCsrgemm2Info_
+      integer(c_int) :: hipsparseDestroyCsrgemm2Info_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -956,7 +956,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreatePruneInfo_
+      integer(c_int) :: hipsparseCreatePruneInfo_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -975,7 +975,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyPruneInfo_
+      integer(c_int) :: hipsparseDestroyPruneInfo_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -1033,14 +1033,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSaxpyi_
+      integer(c_int) :: hipsparseSaxpyi_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
     module procedure hipsparseSaxpyi_typed
@@ -1063,14 +1063,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDaxpyi_
+      integer(c_int) :: hipsparseDaxpyi_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
     module procedure hipsparseDaxpyi_typed
@@ -1093,14 +1093,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCaxpyi_
+      integer(c_int) :: hipsparseCaxpyi_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
     module procedure hipsparseCaxpyi_typed
@@ -1123,14 +1123,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZaxpyi_
+      integer(c_int) :: hipsparseZaxpyi_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
     module procedure hipsparseZaxpyi_typed
@@ -1203,14 +1203,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdotci_
+      integer(c_int) :: hipsparseCdotci_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
     module procedure hipsparseCdotci_typed
@@ -1234,14 +1234,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdotci_
+      integer(c_int) :: hipsparseZdotci_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
     module procedure hipsparseZdotci_typed
@@ -1312,14 +1312,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdoti_
+      integer(c_int) :: hipsparseSdoti_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
     module procedure hipsparseSdoti_typed
@@ -1342,14 +1342,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdoti_
+      integer(c_int) :: hipsparseDdoti_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
     module procedure hipsparseDdoti_typed
@@ -1372,14 +1372,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdoti_
+      integer(c_int) :: hipsparseCdoti_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
     module procedure hipsparseCdoti_typed
@@ -1402,14 +1402,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdoti_
+      integer(c_int) :: hipsparseZdoti_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
       type(c_ptr),value :: myResult
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
     module procedure hipsparseZdoti_typed
@@ -1472,13 +1472,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgthr_
+      integer(c_int) :: hipsparseSgthr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -1499,13 +1499,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgthr_
+      integer(c_int) :: hipsparseDgthr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -1526,13 +1526,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgthr_
+      integer(c_int) :: hipsparseCgthr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -1553,13 +1553,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgthr_
+      integer(c_int) :: hipsparseZgthr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -1624,13 +1624,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgthrz_
+      integer(c_int) :: hipsparseSgthrz_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -1651,13 +1651,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgthrz_
+      integer(c_int) :: hipsparseDgthrz_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -1678,13 +1678,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgthrz_
+      integer(c_int) :: hipsparseCgthrz_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -1705,13 +1705,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgthrz_
+      integer(c_int) :: hipsparseZgthrz_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: y
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -1782,7 +1782,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSroti_
+      integer(c_int) :: hipsparseSroti_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: xVal
@@ -1790,7 +1790,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
       type(c_ptr),value :: c
       type(c_ptr),value :: s
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
     module procedure hipsparseSroti_typed
@@ -1813,7 +1813,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDroti_
+      integer(c_int) :: hipsparseDroti_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: xVal
@@ -1821,7 +1821,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: y
       type(c_ptr),value :: c
       type(c_ptr),value :: s
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
     module procedure hipsparseDroti_typed
@@ -1886,13 +1886,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSsctr_
+      integer(c_int) :: hipsparseSsctr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -1913,13 +1913,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDsctr_
+      integer(c_int) :: hipsparseDsctr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -1940,13 +1940,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsctr_
+      integer(c_int) :: hipsparseCsctr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -1967,13 +1967,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZsctr_
+      integer(c_int) :: hipsparseZsctr_
       type(c_ptr),value :: handle
       integer(c_int),value :: nnz
       type(c_ptr),value :: xVal
       type(c_ptr),value :: xInd
       type(c_ptr),value :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -2060,10 +2060,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmv_
+      integer(c_int) :: hipsparseSbsrmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -2104,10 +2104,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmv_
+      integer(c_int) :: hipsparseDbsrmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -2148,10 +2148,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmv_
+      integer(c_int) :: hipsparseCbsrmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -2192,10 +2192,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmv_
+      integer(c_int) :: hipsparseZbsrmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -2261,7 +2261,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXbsrsv2_zeroPivot_
+      integer(c_int) :: hipsparseXbsrsv2_zeroPivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -2317,10 +2317,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_bufferSize_
+      integer(c_int) :: hipsparseSbsrsv2_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -2358,10 +2358,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_bufferSize_
+      integer(c_int) :: hipsparseDbsrsv2_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -2399,10 +2399,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_bufferSize_
+      integer(c_int) :: hipsparseCbsrsv2_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -2440,10 +2440,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_bufferSize_
+      integer(c_int) :: hipsparseZbsrsv2_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -2510,10 +2510,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_bufferSizeExt_
+      integer(c_int) :: hipsparseSbsrsv2_bufferSizeExt_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -2547,10 +2547,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_bufferSizeExt_
+      integer(c_int) :: hipsparseDbsrsv2_bufferSizeExt_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -2584,10 +2584,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_bufferSizeExt_
+      integer(c_int) :: hipsparseCbsrsv2_bufferSizeExt_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -2621,10 +2621,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_bufferSizeExt_
+      integer(c_int) :: hipsparseZbsrsv2_bufferSizeExt_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -2704,10 +2704,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_analysis_
+      integer(c_int) :: hipsparseSbsrsv2_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -2716,7 +2716,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -2744,10 +2744,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_analysis_
+      integer(c_int) :: hipsparseDbsrsv2_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -2756,7 +2756,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -2784,10 +2784,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_analysis_
+      integer(c_int) :: hipsparseCbsrsv2_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -2796,7 +2796,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -2824,10 +2824,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_analysis_
+      integer(c_int) :: hipsparseZbsrsv2_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -2836,7 +2836,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -2968,10 +2968,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_solve_
+      integer(c_int) :: hipsparseSbsrsv2_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: alpha
@@ -2983,7 +2983,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: f
       type(c_ptr),value :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -3013,10 +3013,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_solve_
+      integer(c_int) :: hipsparseDbsrsv2_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: alpha
@@ -3028,7 +3028,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: f
       type(c_ptr),value :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -3058,10 +3058,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_solve_
+      integer(c_int) :: hipsparseCbsrsv2_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: alpha
@@ -3073,7 +3073,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: f
       type(c_ptr),value :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -3103,10 +3103,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_solve_
+      integer(c_int) :: hipsparseZbsrsv2_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: alpha
@@ -3118,7 +3118,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: f
       type(c_ptr),value :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -3228,10 +3228,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrxmv_
+      integer(c_int) :: hipsparseSbsrxmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: sizeOfMask
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -3275,10 +3275,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrxmv_
+      integer(c_int) :: hipsparseDbsrxmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: sizeOfMask
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -3322,10 +3322,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrxmv_
+      integer(c_int) :: hipsparseCbsrxmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: sizeOfMask
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -3369,10 +3369,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrxmv_
+      integer(c_int) :: hipsparseZbsrxmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: trans
+      integer(c_int),value :: dir
+      integer(c_int),value :: trans
       integer(c_int),value :: sizeOfMask
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -3484,9 +3484,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmv_
+      integer(c_int) :: hipsparseScsrmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -3522,9 +3522,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmv_
+      integer(c_int) :: hipsparseDcsrmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -3560,9 +3560,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmv_
+      integer(c_int) :: hipsparseCcsrmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -3598,9 +3598,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmv_
+      integer(c_int) :: hipsparseZcsrmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -3663,7 +3663,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrsv2_zeroPivot_
+      integer(c_int) :: hipsparseXcsrsv2_zeroPivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -3713,9 +3713,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_bufferSize_
+      integer(c_int) :: hipsparseScsrsv2_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descrA
@@ -3748,9 +3748,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_bufferSize_
+      integer(c_int) :: hipsparseDcsrsv2_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descrA
@@ -3783,9 +3783,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_bufferSize_
+      integer(c_int) :: hipsparseCcsrsv2_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descrA
@@ -3818,9 +3818,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_bufferSize_
+      integer(c_int) :: hipsparseZcsrsv2_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descrA
@@ -3885,9 +3885,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_bufferSizeExt_
+      integer(c_int) :: hipsparseScsrsv2_bufferSizeExt_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descrA
@@ -3920,9 +3920,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_bufferSizeExt_
+      integer(c_int) :: hipsparseDcsrsv2_bufferSizeExt_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descrA
@@ -3955,9 +3955,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_bufferSizeExt_
+      integer(c_int) :: hipsparseCcsrsv2_bufferSizeExt_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descrA
@@ -3990,9 +3990,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_bufferSizeExt_
+      integer(c_int) :: hipsparseZcsrsv2_bufferSizeExt_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descrA
@@ -4062,9 +4062,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_analysis_
+      integer(c_int) :: hipsparseScsrsv2_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descrA
@@ -4072,7 +4072,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -4096,9 +4096,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_analysis_
+      integer(c_int) :: hipsparseDcsrsv2_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descrA
@@ -4106,7 +4106,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -4130,9 +4130,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_analysis_
+      integer(c_int) :: hipsparseCcsrsv2_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descrA
@@ -4140,7 +4140,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -4164,9 +4164,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_analysis_
+      integer(c_int) :: hipsparseZcsrsv2_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: descrA
@@ -4174,7 +4174,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -4301,9 +4301,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_solve_
+      integer(c_int) :: hipsparseScsrsv2_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -4314,7 +4314,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: f
       type(c_ptr),value :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -4340,9 +4340,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_solve_
+      integer(c_int) :: hipsparseDcsrsv2_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -4353,7 +4353,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: f
       type(c_ptr),value :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -4379,9 +4379,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_solve_
+      integer(c_int) :: hipsparseCcsrsv2_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -4392,7 +4392,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: f
       type(c_ptr),value :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -4418,9 +4418,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_solve_
+      integer(c_int) :: hipsparseZcsrsv2_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: nnz
       type(c_ptr),value :: alpha
@@ -4431,7 +4431,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: f
       type(c_ptr),value :: x
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -4479,9 +4479,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemvi_bufferSize_
+      integer(c_int) :: hipsparseSgemvi_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -4502,9 +4502,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemvi_bufferSize_
+      integer(c_int) :: hipsparseDgemvi_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -4525,9 +4525,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemvi_bufferSize_
+      integer(c_int) :: hipsparseCgemvi_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -4548,9 +4548,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemvi_bufferSize_
+      integer(c_int) :: hipsparseZgemvi_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: nnz
@@ -4626,9 +4626,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemvi_
+      integer(c_int) :: hipsparseSgemvi_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
@@ -4639,7 +4639,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: xInd
       type(c_ptr),value :: beta
       type(c_ptr),value :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
       type(c_ptr),value :: pBuffer
     end function
 
@@ -4668,9 +4668,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemvi_
+      integer(c_int) :: hipsparseDgemvi_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
@@ -4681,7 +4681,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: xInd
       type(c_ptr),value :: beta
       type(c_ptr),value :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
       type(c_ptr),value :: pBuffer
     end function
 
@@ -4710,9 +4710,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemvi_
+      integer(c_int) :: hipsparseCgemvi_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
@@ -4723,7 +4723,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: xInd
       type(c_ptr),value :: beta
       type(c_ptr),value :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
       type(c_ptr),value :: pBuffer
     end function
 
@@ -4752,9 +4752,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemvi_
+      integer(c_int) :: hipsparseZgemvi_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: alpha
@@ -4765,7 +4765,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: xInd
       type(c_ptr),value :: beta
       type(c_ptr),value :: y
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
       type(c_ptr),value :: pBuffer
     end function
 
@@ -4843,9 +4843,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShybmv_
+      integer(c_int) :: hipsparseShybmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       type(c_ptr),value :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: hybA
@@ -4875,9 +4875,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhybmv_
+      integer(c_int) :: hipsparseDhybmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       type(c_ptr),value :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: hybA
@@ -4907,9 +4907,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChybmv_
+      integer(c_int) :: hipsparseChybmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       type(c_ptr),value :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: hybA
@@ -4939,9 +4939,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhybmv_
+      integer(c_int) :: hipsparseZhybmv_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       type(c_ptr),value :: alpha
       type(c_ptr),value :: descrA
       type(c_ptr),value :: hybA
@@ -5064,11 +5064,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmm_
+      integer(c_int) :: hipsparseSbsrmm_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: mb
       integer(c_int),value :: n
       integer(c_int),value :: kb
@@ -5113,11 +5113,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmm_
+      integer(c_int) :: hipsparseDbsrmm_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: mb
       integer(c_int),value :: n
       integer(c_int),value :: kb
@@ -5162,11 +5162,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmm_
+      integer(c_int) :: hipsparseCbsrmm_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: mb
       integer(c_int),value :: n
       integer(c_int),value :: kb
@@ -5211,11 +5211,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmm_
+      integer(c_int) :: hipsparseZbsrmm_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: mb
       integer(c_int),value :: n
       integer(c_int),value :: kb
@@ -5287,7 +5287,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXbsrsm2_zeroPivot_
+      integer(c_int) :: hipsparseXbsrsm2_zeroPivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -5347,11 +5347,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_bufferSize_
+      integer(c_int) :: hipsparseSbsrsm2_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transX
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -5390,11 +5390,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_bufferSize_
+      integer(c_int) :: hipsparseDbsrsm2_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transX
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -5433,11 +5433,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_bufferSize_
+      integer(c_int) :: hipsparseCbsrsm2_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transX
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -5476,11 +5476,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_bufferSize_
+      integer(c_int) :: hipsparseZbsrsm2_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transX
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -5564,11 +5564,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_analysis_
+      integer(c_int) :: hipsparseSbsrsm2_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transX
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -5578,7 +5578,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -5606,11 +5606,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_analysis_
+      integer(c_int) :: hipsparseDbsrsm2_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transX
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -5620,7 +5620,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -5648,11 +5648,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_analysis_
+      integer(c_int) :: hipsparseCbsrsm2_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transX
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -5662,7 +5662,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -5690,11 +5690,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_analysis_
+      integer(c_int) :: hipsparseZbsrsm2_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transX
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -5704,7 +5704,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -5985,11 +5985,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_solve_
+      integer(c_int) :: hipsparseSbsrsm2_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transX
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -6004,7 +6004,7 @@ module hipfort_hipsparse
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -6037,11 +6037,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_solve_
+      integer(c_int) :: hipsparseDbsrsm2_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transX
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -6056,7 +6056,7 @@ module hipfort_hipsparse
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -6089,11 +6089,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_solve_
+      integer(c_int) :: hipsparseCbsrsm2_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transX
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -6108,7 +6108,7 @@ module hipfort_hipsparse
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -6141,11 +6141,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_solve_
+      integer(c_int) :: hipsparseZbsrsm2_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transX
+      integer(c_int),value :: dirA
+      integer(c_int),value :: transA
+      integer(c_int),value :: transX
       integer(c_int),value :: mb
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnzb
@@ -6160,7 +6160,7 @@ module hipfort_hipsparse
       integer(c_int),value :: ldb
       type(c_ptr),value :: X
       integer(c_int),value :: ldx
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -6267,9 +6267,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm_
+      integer(c_int) :: hipsparseScsrmm_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -6309,9 +6309,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm_
+      integer(c_int) :: hipsparseDcsrmm_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -6351,9 +6351,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm_
+      integer(c_int) :: hipsparseCcsrmm_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -6393,9 +6393,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm_
+      integer(c_int) :: hipsparseZcsrmm_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
+      integer(c_int),value :: transA
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -6520,10 +6520,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm2_
+      integer(c_int) :: hipsparseScsrmm2_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -6563,10 +6563,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm2_
+      integer(c_int) :: hipsparseDcsrmm2_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -6606,10 +6606,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm2_
+      integer(c_int) :: hipsparseCcsrmm2_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -6649,10 +6649,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm2_
+      integer(c_int) :: hipsparseZcsrmm2_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -6719,7 +6719,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrsm2_zeroPivot_
+      integer(c_int) :: hipsparseXcsrsm2_zeroPivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -6778,11 +6778,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_bufferSizeExt_
+      integer(c_int) :: hipsparseScsrsm2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -6794,7 +6794,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
@@ -6821,11 +6821,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_bufferSizeExt_
+      integer(c_int) :: hipsparseDcsrsm2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -6837,7 +6837,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
@@ -6864,11 +6864,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_bufferSizeExt_
+      integer(c_int) :: hipsparseCcsrsm2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -6880,7 +6880,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
@@ -6907,11 +6907,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_bufferSizeExt_
+      integer(c_int) :: hipsparseZcsrsm2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -6923,7 +6923,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
@@ -6995,11 +6995,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_analysis_
+      integer(c_int) :: hipsparseScsrsm2_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -7011,7 +7011,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -7038,11 +7038,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_analysis_
+      integer(c_int) :: hipsparseDcsrsm2_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -7054,7 +7054,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -7081,11 +7081,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_analysis_
+      integer(c_int) :: hipsparseCcsrsm2_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -7097,7 +7097,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -7124,11 +7124,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_analysis_
+      integer(c_int) :: hipsparseZcsrsm2_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -7140,7 +7140,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -7360,11 +7360,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_solve_
+      integer(c_int) :: hipsparseScsrsm2_solve_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -7376,7 +7376,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -7403,11 +7403,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_solve_
+      integer(c_int) :: hipsparseDcsrsm2_solve_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -7419,7 +7419,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -7446,11 +7446,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_solve_
+      integer(c_int) :: hipsparseCcsrsm2_solve_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -7462,7 +7462,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -7489,11 +7489,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_solve_
+      integer(c_int) :: hipsparseZcsrsm2_solve_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: nrhs
       integer(c_int),value :: nnz
@@ -7505,7 +7505,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -7583,7 +7583,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemmi_
+      integer(c_int) :: hipsparseSgemmi_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7623,7 +7623,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemmi_
+      integer(c_int) :: hipsparseDgemmi_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7663,7 +7663,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemmi_
+      integer(c_int) :: hipsparseCgemmi_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7703,7 +7703,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemmi_
+      integer(c_int) :: hipsparseZgemmi_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7805,7 +7805,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeamNnz_
+      integer(c_int) :: hipsparseXcsrgeamNnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7911,7 +7911,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam_
+      integer(c_int) :: hipsparseScsrgeam_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7955,7 +7955,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam_
+      integer(c_int) :: hipsparseDcsrgeam_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -7999,7 +7999,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam_
+      integer(c_int) :: hipsparseCcsrgeam_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8043,7 +8043,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam_
+      integer(c_int) :: hipsparseZcsrgeam_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8147,7 +8147,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_bufferSizeExt_
+      integer(c_int) :: hipsparseScsrgeam2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8202,7 +8202,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_bufferSizeExt_
+      integer(c_int) :: hipsparseDcsrgeam2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8257,7 +8257,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_bufferSizeExt_
+      integer(c_int) :: hipsparseCcsrgeam2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8312,7 +8312,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_bufferSizeExt_
+      integer(c_int) :: hipsparseZcsrgeam2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8420,7 +8420,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeam2Nnz_
+      integer(c_int) :: hipsparseXcsrgeam2Nnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8541,7 +8541,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_
+      integer(c_int) :: hipsparseScsrgeam2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8592,7 +8592,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_
+      integer(c_int) :: hipsparseDcsrgeam2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8643,7 +8643,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_
+      integer(c_int) :: hipsparseCcsrgeam2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8694,7 +8694,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_
+      integer(c_int) :: hipsparseZcsrgeam2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -8813,10 +8813,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemmNnz_
+      integer(c_int) :: hipsparseXcsrgemmNnz_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8949,10 +8949,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm_
+      integer(c_int) :: hipsparseScsrgemm_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -8992,10 +8992,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm_
+      integer(c_int) :: hipsparseDcsrgemm_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -9035,10 +9035,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm_
+      integer(c_int) :: hipsparseCcsrgemm_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -9078,10 +9078,10 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm_
+      integer(c_int) :: hipsparseZcsrgemm_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: transB
+      integer(c_int),value :: transA
+      integer(c_int),value :: transB
       integer(c_int),value :: m
       integer(c_int),value :: n
       integer(c_int),value :: k
@@ -9184,7 +9184,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_bufferSizeExt_
+      integer(c_int) :: hipsparseScsrgemm2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9232,7 +9232,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_bufferSizeExt_
+      integer(c_int) :: hipsparseDcsrgemm2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9280,7 +9280,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_bufferSizeExt_
+      integer(c_int) :: hipsparseCcsrgemm2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9328,7 +9328,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_bufferSizeExt_
+      integer(c_int) :: hipsparseZcsrgemm2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9453,7 +9453,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemm2Nnz_
+      integer(c_int) :: hipsparseXcsrgemm2Nnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9591,7 +9591,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_
+      integer(c_int) :: hipsparseScsrgemm2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9644,7 +9644,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_
+      integer(c_int) :: hipsparseDcsrgemm2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9697,7 +9697,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_
+      integer(c_int) :: hipsparseCcsrgemm2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9750,7 +9750,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_
+      integer(c_int) :: hipsparseZcsrgemm2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -9838,7 +9838,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXbsric02_zeroPivot_
+      integer(c_int) :: hipsparseXbsric02_zeroPivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -9900,9 +9900,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsric02_bufferSize_
+      integer(c_int) :: hipsparseSbsric02_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -9940,9 +9940,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsric02_bufferSize_
+      integer(c_int) :: hipsparseDbsric02_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -9980,9 +9980,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsric02_bufferSize_
+      integer(c_int) :: hipsparseCbsric02_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10020,9 +10020,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsric02_bufferSize_
+      integer(c_int) :: hipsparseZbsric02_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10100,9 +10100,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsric02_analysis_
+      integer(c_int) :: hipsparseSbsric02_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10111,7 +10111,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -10139,9 +10139,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsric02_analysis_
+      integer(c_int) :: hipsparseDbsric02_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10150,7 +10150,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -10178,9 +10178,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsric02_analysis_
+      integer(c_int) :: hipsparseCbsric02_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10189,7 +10189,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -10217,9 +10217,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsric02_analysis_
+      integer(c_int) :: hipsparseZbsric02_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10228,7 +10228,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -10325,9 +10325,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsric02_
+      integer(c_int) :: hipsparseSbsric02_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10336,7 +10336,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -10364,9 +10364,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsric02_
+      integer(c_int) :: hipsparseDbsric02_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10375,7 +10375,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -10403,9 +10403,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsric02_
+      integer(c_int) :: hipsparseCbsric02_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10414,7 +10414,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -10442,9 +10442,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsric02_
+      integer(c_int) :: hipsparseZbsric02_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10453,7 +10453,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -10512,7 +10512,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXbsrilu02_zeroPivot_
+      integer(c_int) :: hipsparseXbsrilu02_zeroPivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -10559,7 +10559,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_numericBoost_
+      integer(c_int) :: hipsparseSbsrilu02_numericBoost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -10581,7 +10581,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_numericBoost_
+      integer(c_int) :: hipsparseDbsrilu02_numericBoost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -10603,7 +10603,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_numericBoost_
+      integer(c_int) :: hipsparseCbsrilu02_numericBoost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -10625,7 +10625,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_numericBoost_
+      integer(c_int) :: hipsparseZbsrilu02_numericBoost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -10686,9 +10686,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_bufferSize_
+      integer(c_int) :: hipsparseSbsrilu02_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10726,9 +10726,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_bufferSize_
+      integer(c_int) :: hipsparseDbsrilu02_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10766,9 +10766,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_bufferSize_
+      integer(c_int) :: hipsparseCbsrilu02_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10806,9 +10806,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_bufferSize_
+      integer(c_int) :: hipsparseZbsrilu02_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10886,9 +10886,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_analysis_
+      integer(c_int) :: hipsparseSbsrilu02_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10897,7 +10897,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -10925,9 +10925,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_analysis_
+      integer(c_int) :: hipsparseDbsrilu02_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10936,7 +10936,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -10964,9 +10964,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_analysis_
+      integer(c_int) :: hipsparseCbsrilu02_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -10975,7 +10975,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -11003,9 +11003,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_analysis_
+      integer(c_int) :: hipsparseZbsrilu02_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -11014,7 +11014,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -11101,9 +11101,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrilu02_
+      integer(c_int) :: hipsparseSbsrilu02_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -11112,7 +11112,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -11140,9 +11140,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrilu02_
+      integer(c_int) :: hipsparseDbsrilu02_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -11151,7 +11151,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -11179,9 +11179,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrilu02_
+      integer(c_int) :: hipsparseCbsrilu02_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -11190,7 +11190,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -11218,9 +11218,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrilu02_
+      integer(c_int) :: hipsparseZbsrilu02_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nnzb
       type(c_ptr),value :: descrA
@@ -11229,7 +11229,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrSortedColIndA
       integer(c_int),value :: blockDim
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -11283,7 +11283,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsric02_zeroPivot_
+      integer(c_int) :: hipsparseXcsric02_zeroPivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -11336,7 +11336,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_bufferSize_
+      integer(c_int) :: hipsparseScsric02_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -11374,7 +11374,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_bufferSize_
+      integer(c_int) :: hipsparseDcsric02_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -11412,7 +11412,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_bufferSize_
+      integer(c_int) :: hipsparseCcsric02_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -11450,7 +11450,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_bufferSize_
+      integer(c_int) :: hipsparseZcsric02_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -11514,7 +11514,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_bufferSizeExt_
+      integer(c_int) :: hipsparseScsric02_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -11548,7 +11548,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_bufferSizeExt_
+      integer(c_int) :: hipsparseDcsric02_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -11582,7 +11582,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_bufferSizeExt_
+      integer(c_int) :: hipsparseCcsric02_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -11616,7 +11616,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_bufferSizeExt_
+      integer(c_int) :: hipsparseZcsric02_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -11690,7 +11690,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_analysis_
+      integer(c_int) :: hipsparseScsric02_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -11699,7 +11699,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -11727,7 +11727,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_analysis_
+      integer(c_int) :: hipsparseDcsric02_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -11736,7 +11736,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -11764,7 +11764,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_analysis_
+      integer(c_int) :: hipsparseCcsric02_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -11773,7 +11773,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -11801,7 +11801,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_analysis_
+      integer(c_int) :: hipsparseZcsric02_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -11810,7 +11810,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -11997,7 +11997,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsric02_
+      integer(c_int) :: hipsparseScsric02_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12006,7 +12006,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -12034,7 +12034,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsric02_
+      integer(c_int) :: hipsparseDcsric02_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12043,7 +12043,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -12071,7 +12071,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsric02_
+      integer(c_int) :: hipsparseCcsric02_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12080,7 +12080,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -12108,7 +12108,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsric02_
+      integer(c_int) :: hipsparseZcsric02_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12117,7 +12117,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -12172,7 +12172,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrilu02_zeroPivot_
+      integer(c_int) :: hipsparseXcsrilu02_zeroPivot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: position
@@ -12219,7 +12219,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_numericBoost_
+      integer(c_int) :: hipsparseScsrilu02_numericBoost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -12241,7 +12241,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_numericBoost_
+      integer(c_int) :: hipsparseDcsrilu02_numericBoost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -12263,7 +12263,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_numericBoost_
+      integer(c_int) :: hipsparseCcsrilu02_numericBoost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -12285,7 +12285,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_numericBoost_
+      integer(c_int) :: hipsparseZcsrilu02_numericBoost_
       type(c_ptr),value :: handle
       type(c_ptr),value :: myInfo
       integer(c_int),value :: enable_boost
@@ -12338,7 +12338,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_bufferSize_
+      integer(c_int) :: hipsparseScsrilu02_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12376,7 +12376,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_bufferSize_
+      integer(c_int) :: hipsparseDcsrilu02_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12414,7 +12414,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_bufferSize_
+      integer(c_int) :: hipsparseCcsrilu02_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12452,7 +12452,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_bufferSize_
+      integer(c_int) :: hipsparseZcsrilu02_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12514,7 +12514,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_bufferSizeExt_
+      integer(c_int) :: hipsparseScsrilu02_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12548,7 +12548,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_bufferSizeExt_
+      integer(c_int) :: hipsparseDcsrilu02_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12582,7 +12582,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_bufferSizeExt_
+      integer(c_int) :: hipsparseCcsrilu02_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12616,7 +12616,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_bufferSizeExt_
+      integer(c_int) :: hipsparseZcsrilu02_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12689,7 +12689,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_analysis_
+      integer(c_int) :: hipsparseScsrilu02_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12698,7 +12698,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -12726,7 +12726,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_analysis_
+      integer(c_int) :: hipsparseDcsrilu02_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12735,7 +12735,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -12763,7 +12763,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_analysis_
+      integer(c_int) :: hipsparseCcsrilu02_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12772,7 +12772,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -12800,7 +12800,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_analysis_
+      integer(c_int) :: hipsparseZcsrilu02_analysis_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12809,7 +12809,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -12979,7 +12979,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrilu02_
+      integer(c_int) :: hipsparseScsrilu02_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -12988,7 +12988,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -13016,7 +13016,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrilu02_
+      integer(c_int) :: hipsparseDcsrilu02_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -13025,7 +13025,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -13053,7 +13053,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrilu02_
+      integer(c_int) :: hipsparseCcsrilu02_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -13062,7 +13062,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -13090,7 +13090,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrilu02_
+      integer(c_int) :: hipsparseZcsrilu02_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -13099,7 +13099,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedRowPtrA
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: myInfo
-      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)),value :: policy
+      integer(c_int),value :: policy
       type(c_ptr),value :: pBuffer
     end function
 
@@ -13153,7 +13153,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_bufferSizeExt_
+      integer(c_int) :: hipsparseSgpsvInterleavedBatch_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -13193,7 +13193,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_bufferSizeExt_
+      integer(c_int) :: hipsparseDgpsvInterleavedBatch_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -13233,7 +13233,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_bufferSizeExt_
+      integer(c_int) :: hipsparseCgpsvInterleavedBatch_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -13273,7 +13273,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_bufferSizeExt_
+      integer(c_int) :: hipsparseZgpsvInterleavedBatch_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -13410,7 +13410,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_
+      integer(c_int) :: hipsparseSgpsvInterleavedBatch_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -13446,7 +13446,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_
+      integer(c_int) :: hipsparseDgpsvInterleavedBatch_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -13482,7 +13482,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_
+      integer(c_int) :: hipsparseCgpsvInterleavedBatch_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -13518,7 +13518,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_
+      integer(c_int) :: hipsparseZgpsvInterleavedBatch_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -13584,7 +13584,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_bufferSizeExt_
+      integer(c_int) :: hipsparseSgtsv2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -13621,7 +13621,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_bufferSizeExt_
+      integer(c_int) :: hipsparseDgtsv2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -13658,7 +13658,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_bufferSizeExt_
+      integer(c_int) :: hipsparseCgtsv2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -13695,7 +13695,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_bufferSizeExt_
+      integer(c_int) :: hipsparseZgtsv2_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -13776,7 +13776,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_
+      integer(c_int) :: hipsparseSgtsv2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -13809,7 +13809,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_
+      integer(c_int) :: hipsparseDgtsv2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -13842,7 +13842,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_
+      integer(c_int) :: hipsparseCgtsv2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -13875,7 +13875,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_
+      integer(c_int) :: hipsparseZgtsv2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -13940,7 +13940,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsvInterleavedBatch_bufferSizeExt_
+      integer(c_int) :: hipsparseSgtsvInterleavedBatch_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -13968,7 +13968,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsvInterleavedBatch_bufferSizeExt_
+      integer(c_int) :: hipsparseDgtsvInterleavedBatch_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -13996,7 +13996,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsvInterleavedBatch_bufferSizeExt_
+      integer(c_int) :: hipsparseCgtsvInterleavedBatch_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -14024,7 +14024,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsvInterleavedBatch_bufferSizeExt_
+      integer(c_int) :: hipsparseZgtsvInterleavedBatch_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -14146,7 +14146,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsvInterleavedBatch_
+      integer(c_int) :: hipsparseSgtsvInterleavedBatch_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -14170,7 +14170,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsvInterleavedBatch_
+      integer(c_int) :: hipsparseDgtsvInterleavedBatch_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -14194,7 +14194,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsvInterleavedBatch_
+      integer(c_int) :: hipsparseCgtsvInterleavedBatch_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -14218,7 +14218,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsvInterleavedBatch_
+      integer(c_int) :: hipsparseZgtsvInterleavedBatch_
       type(c_ptr),value :: handle
       integer(c_int),value :: algo
       integer(c_int),value :: m
@@ -14265,7 +14265,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_nopivot_bufferSizeExt_
+      integer(c_int) :: hipsparseSgtsv2_nopivot_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -14302,7 +14302,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_nopivot_bufferSizeExt_
+      integer(c_int) :: hipsparseDgtsv2_nopivot_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -14339,7 +14339,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_nopivot_bufferSizeExt_
+      integer(c_int) :: hipsparseCgtsv2_nopivot_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -14376,7 +14376,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_nopivot_bufferSizeExt_
+      integer(c_int) :: hipsparseZgtsv2_nopivot_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -14459,7 +14459,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2_nopivot_
+      integer(c_int) :: hipsparseSgtsv2_nopivot_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -14494,7 +14494,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2_nopivot_
+      integer(c_int) :: hipsparseDgtsv2_nopivot_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -14529,7 +14529,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2_nopivot_
+      integer(c_int) :: hipsparseCgtsv2_nopivot_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -14564,7 +14564,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2_nopivot_
+      integer(c_int) :: hipsparseZgtsv2_nopivot_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -14631,7 +14631,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_
+      integer(c_int) :: hipsparseSgtsv2StridedBatch_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -14669,7 +14669,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_
+      integer(c_int) :: hipsparseDgtsv2StridedBatch_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -14707,7 +14707,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_
+      integer(c_int) :: hipsparseCgtsv2StridedBatch_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -14745,7 +14745,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_
+      integer(c_int) :: hipsparseZgtsv2StridedBatch_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -14866,7 +14866,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsv2StridedBatch_
+      integer(c_int) :: hipsparseSgtsv2StridedBatch_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -14900,7 +14900,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsv2StridedBatch_
+      integer(c_int) :: hipsparseDgtsv2StridedBatch_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -14934,7 +14934,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsv2StridedBatch_
+      integer(c_int) :: hipsparseCgtsv2StridedBatch_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -14968,7 +14968,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsv2StridedBatch_
+      integer(c_int) :: hipsparseZgtsv2StridedBatch_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: dl
@@ -15084,9 +15084,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsr2csr_
+      integer(c_int) :: hipsparseSbsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: descrA
@@ -15124,9 +15124,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsr2csr_
+      integer(c_int) :: hipsparseDbsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: descrA
@@ -15164,9 +15164,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsr2csr_
+      integer(c_int) :: hipsparseCbsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: descrA
@@ -15204,9 +15204,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsr2csr_
+      integer(c_int) :: hipsparseZbsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: descrA
@@ -15289,13 +15289,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoo2csr_
+      integer(c_int) :: hipsparseXcoo2csr_
       type(c_ptr),value :: handle
       type(c_ptr),value :: cooRowInd
       integer(c_int),value :: nnz
       integer(c_int),value :: m
       type(c_ptr),value :: csrRowPtr
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -15343,7 +15343,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosort_bufferSizeExt_
+      integer(c_int) :: hipsparseXcoosort_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -15415,7 +15415,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosortByRow_
+      integer(c_int) :: hipsparseXcoosortByRow_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -15486,7 +15486,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcoosortByColumn_
+      integer(c_int) :: hipsparseXcoosortByColumn_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -15543,7 +15543,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateIdentityPermutation_
+      integer(c_int) :: hipsparseCreateIdentityPermutation_
       type(c_ptr),value :: handle
       integer(c_int),value :: n
       type(c_ptr),value :: p
@@ -15633,7 +15633,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsc2dense_
+      integer(c_int) :: hipsparseScsc2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -15665,7 +15665,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsc2dense_
+      integer(c_int) :: hipsparseDcsc2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -15697,7 +15697,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsc2dense_
+      integer(c_int) :: hipsparseCcsc2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -15729,7 +15729,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsc2dense_
+      integer(c_int) :: hipsparseZcsc2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -15790,7 +15790,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcscsort_bufferSizeExt_
+      integer(c_int) :: hipsparseXcscsort_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -15866,7 +15866,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcscsort_
+      integer(c_int) :: hipsparseXcscsort_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -16036,9 +16036,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2bsrNnz_
+      integer(c_int) :: hipsparseXcsr2bsrNnz_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descrA
@@ -16191,9 +16191,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2bsr_
+      integer(c_int) :: hipsparseScsr2bsr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descrA
@@ -16231,9 +16231,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2bsr_
+      integer(c_int) :: hipsparseDcsr2bsr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descrA
@@ -16271,9 +16271,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2bsr_
+      integer(c_int) :: hipsparseCcsr2bsr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descrA
@@ -16311,9 +16311,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2bsr_
+      integer(c_int) :: hipsparseZcsr2bsr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descrA
@@ -16396,13 +16396,13 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2coo_
+      integer(c_int) :: hipsparseXcsr2coo_
       type(c_ptr),value :: handle
       type(c_ptr),value :: csrRowPtr
       integer(c_int),value :: nnz
       integer(c_int),value :: m
       type(c_ptr),value :: cooRowInd
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -16510,7 +16510,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csc_
+      integer(c_int) :: hipsparseScsr2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -16521,8 +16521,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: cscSortedVal
       type(c_ptr),value :: cscSortedRowInd
       type(c_ptr),value :: cscSortedColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: copyValues
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -16545,7 +16545,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csc_
+      integer(c_int) :: hipsparseDcsr2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -16556,8 +16556,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: cscSortedVal
       type(c_ptr),value :: cscSortedRowInd
       type(c_ptr),value :: cscSortedColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: copyValues
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -16580,7 +16580,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csc_
+      integer(c_int) :: hipsparseCcsr2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -16591,8 +16591,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: cscSortedVal
       type(c_ptr),value :: cscSortedRowInd
       type(c_ptr),value :: cscSortedColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: copyValues
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -16615,7 +16615,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csc_
+      integer(c_int) :: hipsparseZcsr2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -16626,8 +16626,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: cscSortedVal
       type(c_ptr),value :: cscSortedRowInd
       type(c_ptr),value :: cscSortedColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: copyValues
+      integer(c_int),value :: idxBase
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -16703,9 +16703,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsr2cscEx2_bufferSize_
+      integer(c_int) :: hipsparseCsr2cscEx2_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -16716,10 +16715,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: cscVal
       type(c_ptr),value :: cscColPtr
       type(c_ptr),value :: cscRowInd
-      integer(kind(HIP_R_32F)),value :: valType
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIPSPARSE_CSR2CSC_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: valType
+      integer(c_int),value :: copyValues
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: alg
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
@@ -16784,9 +16783,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsr2cscEx2_
+      integer(c_int) :: hipsparseCsr2cscEx2_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -16797,10 +16795,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: cscVal
       type(c_ptr),value :: cscColPtr
       type(c_ptr),value :: cscRowInd
-      integer(kind(HIP_R_32F)),value :: valType
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIPSPARSE_CSR2CSC_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: valType
+      integer(c_int),value :: copyValues
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: alg
       type(c_ptr),value :: buffer
     end function
   end interface
@@ -16875,7 +16873,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csr_compress_
+      integer(c_int) :: hipsparseScsr2csr_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -16915,7 +16913,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csr_compress_
+      integer(c_int) :: hipsparseDcsr2csr_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -16955,7 +16953,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csr_compress_
+      integer(c_int) :: hipsparseCcsr2csr_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -16995,7 +16993,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csr_compress_
+      integer(c_int) :: hipsparseZcsr2csr_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -17037,7 +17035,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csru_
+      integer(c_int) :: hipsparseScsr2csru_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -17072,7 +17070,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csru_
+      integer(c_int) :: hipsparseDcsr2csru_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -17107,7 +17105,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csru_
+      integer(c_int) :: hipsparseCcsr2csru_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -17142,7 +17140,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csru_
+      integer(c_int) :: hipsparseZcsr2csru_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -17239,7 +17237,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2dense_
+      integer(c_int) :: hipsparseScsr2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -17271,7 +17269,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2dense_
+      integer(c_int) :: hipsparseDcsr2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -17303,7 +17301,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2dense_
+      integer(c_int) :: hipsparseCcsr2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -17335,7 +17333,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2dense_
+      integer(c_int) :: hipsparseZcsr2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -17412,9 +17410,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_bufferSize_
+      integer(c_int) :: hipsparseScsr2gebsr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -17452,9 +17450,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2gebsr_bufferSize_
+      integer(c_int) :: hipsparseDcsr2gebsr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -17492,9 +17490,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2gebsr_bufferSize_
+      integer(c_int) :: hipsparseCcsr2gebsr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -17532,9 +17530,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2gebsr_bufferSize_
+      integer(c_int) :: hipsparseZcsr2gebsr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -17700,9 +17698,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2gebsrNnz_
+      integer(c_int) :: hipsparseXcsr2gebsrNnz_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -17909,9 +17907,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_
+      integer(c_int) :: hipsparseScsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -17951,9 +17949,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2gebsr_
+      integer(c_int) :: hipsparseDcsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -17993,9 +17991,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2gebsr_
+      integer(c_int) :: hipsparseCcsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -18035,9 +18033,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2gebsr_
+      integer(c_int) :: hipsparseZcsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dir
+      integer(c_int),value :: dir
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
@@ -18117,7 +18115,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2hyb_
+      integer(c_int) :: hipsparseScsr2hyb_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18127,7 +18125,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: hybA
       integer(c_int),value :: userEllWidth
-      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
+      integer(c_int),value :: partitionType
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -18150,7 +18148,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2hyb_
+      integer(c_int) :: hipsparseDcsr2hyb_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18160,7 +18158,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: hybA
       integer(c_int),value :: userEllWidth
-      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
+      integer(c_int),value :: partitionType
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -18183,7 +18181,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2hyb_
+      integer(c_int) :: hipsparseCcsr2hyb_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18193,7 +18191,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: hybA
       integer(c_int),value :: userEllWidth
-      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
+      integer(c_int),value :: partitionType
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -18216,7 +18214,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2hyb_
+      integer(c_int) :: hipsparseZcsr2hyb_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18226,7 +18224,7 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrSortedColIndA
       type(c_ptr),value :: hybA
       integer(c_int),value :: userEllWidth
-      integer(kind(HIPSPARSE_HYB_PARTITION_AUTO)),value :: partitionType
+      integer(c_int),value :: partitionType
     end function
 
 #ifdef USE_ASSUMED_RANK
@@ -18277,7 +18275,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrsort_bufferSizeExt_
+      integer(c_int) :: hipsparseXcsrsort_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18354,7 +18352,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrsort_
+      integer(c_int) :: hipsparseXcsrsort_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18394,7 +18392,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsru2csr_bufferSizeExt_
+      integer(c_int) :: hipsparseScsru2csr_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18432,7 +18430,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsru2csr_bufferSizeExt_
+      integer(c_int) :: hipsparseDcsru2csr_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18470,7 +18468,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsru2csr_bufferSizeExt_
+      integer(c_int) :: hipsparseCcsru2csr_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18508,7 +18506,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsru2csr_bufferSizeExt_
+      integer(c_int) :: hipsparseZcsru2csr_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18548,7 +18546,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsru2csr_
+      integer(c_int) :: hipsparseScsru2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18583,7 +18581,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsru2csr_
+      integer(c_int) :: hipsparseDcsru2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18618,7 +18616,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsru2csr_
+      integer(c_int) :: hipsparseCcsru2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18653,7 +18651,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsru2csr_
+      integer(c_int) :: hipsparseZcsru2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18757,7 +18755,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csc_
+      integer(c_int) :: hipsparseSdense2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18790,7 +18788,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csc_
+      integer(c_int) :: hipsparseDdense2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18823,7 +18821,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csc_
+      integer(c_int) :: hipsparseCdense2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18856,7 +18854,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csc_
+      integer(c_int) :: hipsparseZdense2csc_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18950,7 +18948,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csr_
+      integer(c_int) :: hipsparseSdense2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -18983,7 +18981,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csr_
+      integer(c_int) :: hipsparseDdense2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -19016,7 +19014,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csr_
+      integer(c_int) :: hipsparseCdense2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -19049,7 +19047,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csr_
+      integer(c_int) :: hipsparseZdense2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -19182,9 +19180,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2csr_
+      integer(c_int) :: hipsparseSgebsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: descrA
@@ -19223,9 +19221,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2csr_
+      integer(c_int) :: hipsparseDgebsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: descrA
@@ -19264,9 +19262,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2csr_
+      integer(c_int) :: hipsparseCgebsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: descrA
@@ -19305,9 +19303,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2csr_
+      integer(c_int) :: hipsparseZgebsr2csr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       type(c_ptr),value :: descrA
@@ -19381,7 +19379,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsc_bufferSize_
+      integer(c_int) :: hipsparseSgebsr2gebsc_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -19410,7 +19408,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsc_bufferSize_
+      integer(c_int) :: hipsparseDgebsr2gebsc_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -19439,7 +19437,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsc_bufferSize_
+      integer(c_int) :: hipsparseCgebsr2gebsc_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -19468,7 +19466,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsc_bufferSize_
+      integer(c_int) :: hipsparseZgebsr2gebsc_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -19603,7 +19601,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsc_
+      integer(c_int) :: hipsparseSgebsr2gebsc_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -19616,8 +19614,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: bscVal
       type(c_ptr),value :: bscRowInd
       type(c_ptr),value :: bscColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: copyValues
+      integer(c_int),value :: idxBase
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -19635,7 +19633,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsc_
+      integer(c_int) :: hipsparseDgebsr2gebsc_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -19648,8 +19646,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: bscVal
       type(c_ptr),value :: bscRowInd
       type(c_ptr),value :: bscColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: copyValues
+      integer(c_int),value :: idxBase
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -19667,7 +19665,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsc_
+      integer(c_int) :: hipsparseCgebsr2gebsc_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -19680,8 +19678,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: bscVal
       type(c_ptr),value :: bscRowInd
       type(c_ptr),value :: bscColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: copyValues
+      integer(c_int),value :: idxBase
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -19699,7 +19697,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsc_
+      integer(c_int) :: hipsparseZgebsr2gebsc_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
@@ -19712,8 +19710,8 @@ module hipfort_hipsparse
       type(c_ptr),value :: bscVal
       type(c_ptr),value :: bscRowInd
       type(c_ptr),value :: bscColPtr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(c_int),value :: copyValues
+      integer(c_int),value :: idxBase
       type(c_ptr),value :: temp_buffer
     end function
   end interface
@@ -19777,9 +19775,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsr_bufferSize_
+      integer(c_int) :: hipsparseSgebsr2gebsr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -19820,9 +19818,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsr_bufferSize_
+      integer(c_int) :: hipsparseDgebsr2gebsr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -19863,9 +19861,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsr_bufferSize_
+      integer(c_int) :: hipsparseCgebsr2gebsr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -19906,9 +19904,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsr_bufferSize_
+      integer(c_int) :: hipsparseZgebsr2gebsr_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -19999,9 +19997,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXgebsr2gebsrNnz_
+      integer(c_int) :: hipsparseXgebsr2gebsrNnz_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -20186,9 +20184,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsr_
+      integer(c_int) :: hipsparseSgebsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -20233,9 +20231,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsr_
+      integer(c_int) :: hipsparseDgebsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -20280,9 +20278,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsr_
+      integer(c_int) :: hipsparseCgebsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -20327,9 +20325,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsr_
+      integer(c_int) :: hipsparseZgebsr2gebsr_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
@@ -20398,7 +20396,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShyb2csr_
+      integer(c_int) :: hipsparseShyb2csr_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descrA
       type(c_ptr),value :: hybA
@@ -20427,7 +20425,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhyb2csr_
+      integer(c_int) :: hipsparseDhyb2csr_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descrA
       type(c_ptr),value :: hybA
@@ -20456,7 +20454,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChyb2csr_
+      integer(c_int) :: hipsparseChyb2csr_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descrA
       type(c_ptr),value :: hybA
@@ -20485,7 +20483,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhyb2csr_
+      integer(c_int) :: hipsparseZhyb2csr_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descrA
       type(c_ptr),value :: hybA
@@ -20581,9 +20579,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_
+      integer(c_int) :: hipsparseSnnz_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descrA
@@ -20618,9 +20616,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_
+      integer(c_int) :: hipsparseDnnz_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descrA
@@ -20655,9 +20653,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_
+      integer(c_int) :: hipsparseCnnz_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descrA
@@ -20692,9 +20690,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_
+      integer(c_int) :: hipsparseZnnz_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_DIRECTION_ROW)),value :: dirA
+      integer(c_int),value :: dirA
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descrA
@@ -20779,7 +20777,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_compress_
+      integer(c_int) :: hipsparseSnnz_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: descrA
@@ -20814,7 +20812,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_compress_
+      integer(c_int) :: hipsparseDnnz_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: descrA
@@ -20849,7 +20847,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_compress_
+      integer(c_int) :: hipsparseCnnz_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: descrA
@@ -20884,7 +20882,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_compress_
+      integer(c_int) :: hipsparseZnnz_compress_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       type(c_ptr),value :: descrA
@@ -20954,7 +20952,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSize_
+      integer(c_int) :: hipsparseSpruneCsr2csr_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -20993,7 +20991,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSize_
+      integer(c_int) :: hipsparseDpruneCsr2csr_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21076,7 +21074,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSizeExt_
+      integer(c_int) :: hipsparseSpruneCsr2csr_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21119,7 +21117,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSizeExt_
+      integer(c_int) :: hipsparseDpruneCsr2csr_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21201,7 +21199,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnz_
+      integer(c_int) :: hipsparseSpruneCsr2csrNnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21243,7 +21241,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnz_
+      integer(c_int) :: hipsparseDpruneCsr2csrNnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21339,7 +21337,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_
+      integer(c_int) :: hipsparseSpruneCsr2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21382,7 +21380,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_
+      integer(c_int) :: hipsparseDpruneCsr2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21462,7 +21460,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrByPercentage_bufferSize_
+      integer(c_int) :: hipsparseSpruneCsr2csrByPercentage_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21503,7 +21501,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrByPercentage_bufferSize_
+      integer(c_int) :: hipsparseDpruneCsr2csrByPercentage_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21591,7 +21589,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_
+      integer(c_int) :: hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21637,7 +21635,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_
+      integer(c_int) :: hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21721,7 +21719,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnzByPercentage_
+      integer(c_int) :: hipsparseSpruneCsr2csrNnzByPercentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21764,7 +21762,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnzByPercentage_
+      integer(c_int) :: hipsparseDpruneCsr2csrNnzByPercentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21863,7 +21861,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrByPercentage_
+      integer(c_int) :: hipsparseSpruneCsr2csrByPercentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21905,7 +21903,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrByPercentage_
+      integer(c_int) :: hipsparseDpruneCsr2csrByPercentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -21998,7 +21996,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSize_
+      integer(c_int) :: hipsparseSpruneDense2csr_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22035,7 +22033,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSize_
+      integer(c_int) :: hipsparseDpruneDense2csr_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22077,7 +22075,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSizeExt_
+      integer(c_int) :: hipsparseSpruneDense2csr_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22118,7 +22116,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_
+      integer(c_int) :: hipsparseDpruneDense2csr_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22245,7 +22243,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_
+      integer(c_int) :: hipsparseSpruneDense2csrNnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22285,7 +22283,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_
+      integer(c_int) :: hipsparseDpruneDense2csrNnz_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22414,7 +22412,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_
+      integer(c_int) :: hipsparseSpruneDense2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22455,7 +22453,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_
+      integer(c_int) :: hipsparseDpruneDense2csr_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22552,7 +22550,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSize_
+      integer(c_int) :: hipsparseSpruneDense2csrByPercentage_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22590,7 +22588,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSize_
+      integer(c_int) :: hipsparseDpruneDense2csrByPercentage_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22691,7 +22689,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSizeExt_
+      integer(c_int) :: hipsparseSpruneDense2csrByPercentage_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22733,7 +22731,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSizeExt_
+      integer(c_int) :: hipsparseDpruneDense2csrByPercentage_bufferSizeExt_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22832,7 +22830,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_
+      integer(c_int) :: hipsparseSpruneDense2csrNnzByPercentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22873,7 +22871,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_
+      integer(c_int) :: hipsparseDpruneDense2csrNnzByPercentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -22976,7 +22974,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_
+      integer(c_int) :: hipsparseSpruneDense2csrByPercentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -23016,7 +23014,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_
+      integer(c_int) :: hipsparseDpruneDense2csrByPercentage_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
@@ -23103,7 +23101,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrcolor_
+      integer(c_int) :: hipsparseScsrcolor_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -23148,7 +23146,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrcolor_
+      integer(c_int) :: hipsparseDcsrcolor_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -23193,7 +23191,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrcolor_
+      integer(c_int) :: hipsparseCcsrcolor_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -23238,7 +23236,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrcolor_
+      integer(c_int) :: hipsparseZcsrcolor_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: nnz
@@ -23280,17 +23278,16 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateSpVec_
+      integer(c_int) :: hipsparseCreateSpVec_
       type(c_ptr) :: spVecDescr
       integer(c_int64_t),value :: mySize
       integer(c_int64_t),value :: nnz
       type(c_ptr),value :: indices
       type(c_ptr),value :: values
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: idxType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: idxType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -23306,17 +23303,16 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstSpVec_
+      integer(c_int) :: hipsparseCreateConstSpVec_
       type(c_ptr) :: spVecDescr
       integer(c_int64_t),value :: mySize
       integer(c_int64_t),value :: nnz
       type(c_ptr),value :: indices
       type(c_ptr),value :: values
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: idxType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: idxType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -23329,7 +23325,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroySpVec_
+      integer(c_int) :: hipsparseDestroySpVec_
       type(c_ptr),value :: spVecDescr
     end function
   end interface
@@ -23345,7 +23341,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpVecGet_
+      integer(c_int) :: hipsparseSpVecGet_
       type(c_ptr),value :: spVecDescr
       type(c_ptr),value :: mySize
       type(c_ptr),value :: nnz
@@ -23372,7 +23368,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstSpVecGet_
+      integer(c_int) :: hipsparseConstSpVecGet_
       type(c_ptr),value :: spVecDescr
       type(c_ptr),value :: mySize
       type(c_ptr),value :: nnz
@@ -23397,7 +23393,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpVecGetIndexBase_
+      integer(c_int) :: hipsparseSpVecGetIndexBase_
       type(c_ptr),value :: spVecDescr
       type(c_ptr),value :: idxBase
     end function
@@ -23414,7 +23410,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpVecGetValues_
+      integer(c_int) :: hipsparseSpVecGetValues_
       type(c_ptr),value :: spVecDescr
       type(c_ptr) :: values
     end function
@@ -23431,7 +23427,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstSpVecGetValues_
+      integer(c_int) :: hipsparseConstSpVecGetValues_
       type(c_ptr),value :: spVecDescr
       type(c_ptr) :: values
     end function
@@ -23446,7 +23442,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpVecSetValues_
+      integer(c_int) :: hipsparseSpVecSetValues_
       type(c_ptr),value :: spVecDescr
       type(c_ptr),value :: values
     end function
@@ -23464,9 +23460,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateCoo_
+      integer(c_int) :: hipsparseCreateCoo_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -23474,9 +23469,9 @@ module hipfort_hipsparse
       type(c_ptr),value :: cooRowInd
       type(c_ptr),value :: cooColInd
       type(c_ptr),value :: cooValues
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: cooIdxType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: cooIdxType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -23492,9 +23487,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstCoo_
+      integer(c_int) :: hipsparseCreateConstCoo_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -23502,9 +23496,9 @@ module hipfort_hipsparse
       type(c_ptr),value :: cooRowInd
       type(c_ptr),value :: cooColInd
       type(c_ptr),value :: cooValues
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: cooIdxType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: cooIdxType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -23515,18 +23509,17 @@ module hipfort_hipsparse
         bind(c, name="hipsparseCreateCooAoS")
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateCooAoS_
+      integer(c_int) :: hipsparseCreateCooAoS_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
       integer(c_int64_t),value :: nnz
       type(c_ptr),value :: cooInd
       type(c_ptr),value :: cooValues
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: cooIdxType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: cooIdxType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 #endif
@@ -23543,9 +23536,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateCsr_
+      integer(c_int) :: hipsparseCreateCsr_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -23553,10 +23545,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowOffsets
       type(c_ptr),value :: csrColInd
       type(c_ptr),value :: csrValues
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: csrRowOffsetsType
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: csrColIndType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: csrRowOffsetsType
+      integer(c_int),value :: csrColIndType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -23572,9 +23564,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstCsr_
+      integer(c_int) :: hipsparseCreateConstCsr_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -23582,10 +23573,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowOffsets
       type(c_ptr),value :: csrColInd
       type(c_ptr),value :: csrValues
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: csrRowOffsetsType
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: csrColIndType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: csrRowOffsetsType
+      integer(c_int),value :: csrColIndType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -23601,9 +23592,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateCsc_
+      integer(c_int) :: hipsparseCreateCsc_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -23611,10 +23601,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: cscColOffsets
       type(c_ptr),value :: cscRowInd
       type(c_ptr),value :: cscValues
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: cscColOffsetsType
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: cscRowIndType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: cscColOffsetsType
+      integer(c_int),value :: cscRowIndType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -23630,9 +23620,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstCsc_
+      integer(c_int) :: hipsparseCreateConstCsc_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -23640,10 +23629,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: cscColOffsets
       type(c_ptr),value :: cscRowInd
       type(c_ptr),value :: cscValues
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: cscColOffsetsType
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: cscRowIndType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: cscColOffsetsType
+      integer(c_int),value :: cscRowIndType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -23659,9 +23648,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateBlockedEll_
+      integer(c_int) :: hipsparseCreateBlockedEll_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -23669,9 +23657,9 @@ module hipfort_hipsparse
       integer(c_int64_t),value :: ellCols
       type(c_ptr),value :: ellColInd
       type(c_ptr),value :: ellValue
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: ellIdxType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: ellIdxType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -23687,9 +23675,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstBlockedEll_
+      integer(c_int) :: hipsparseCreateConstBlockedEll_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -23697,9 +23684,9 @@ module hipfort_hipsparse
       integer(c_int64_t),value :: ellCols
       type(c_ptr),value :: ellColInd
       type(c_ptr),value :: ellValue
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: ellIdxType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: ellIdxType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -23717,9 +23704,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateSlicedEll_
+      integer(c_int) :: hipsparseCreateSlicedEll_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -23729,10 +23715,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: sellSliceOffsets
       type(c_ptr),value :: sellColInd
       type(c_ptr),value :: sellValues
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: sellSliceOffsetsType
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: sellColIndType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: sellSliceOffsetsType
+      integer(c_int),value :: sellColIndType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -23750,9 +23736,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstSlicedEll_
+      integer(c_int) :: hipsparseCreateConstSlicedEll_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
@@ -23762,10 +23747,10 @@ module hipfort_hipsparse
       type(c_ptr),value :: sellSliceOffsets
       type(c_ptr),value :: sellColInd
       type(c_ptr),value :: sellValues
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: sellSliceOffsetsType
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: sellColIndType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: sellSliceOffsetsType
+      integer(c_int),value :: sellColIndType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -23781,9 +23766,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateBsr_
+      integer(c_int) :: hipsparseCreateBsr_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: mb
       integer(c_int64_t),value :: nb
@@ -23793,11 +23777,11 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrRowPtr
       type(c_ptr),value :: bsrColInd
       type(c_ptr),value :: bsrValues
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: bsrRowPtrType
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: bsrColIndType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
-      integer(kind(HIPSPARSE_ORDER_COLUMN)),value :: order
+      integer(c_int),value :: bsrRowPtrType
+      integer(c_int),value :: bsrColIndType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
+      integer(c_int),value :: order
     end function
   end interface
 
@@ -23813,9 +23797,8 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstBsr_
+      integer(c_int) :: hipsparseCreateConstBsr_
       type(c_ptr) :: spMatDescr
       integer(c_int64_t),value :: mb
       integer(c_int64_t),value :: nb
@@ -23825,11 +23808,11 @@ module hipfort_hipsparse
       type(c_ptr),value :: bsrRowPtr
       type(c_ptr),value :: bsrColInd
       type(c_ptr),value :: bsrValues
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: bsrRowPtrType
-      integer(kind(HIPSPARSE_INDEX_16U)),value :: bsrColIndType
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
-      integer(kind(HIP_R_32F)),value :: valueType
-      integer(kind(HIPSPARSE_ORDER_COLUMN)),value :: order
+      integer(c_int),value :: bsrRowPtrType
+      integer(c_int),value :: bsrColIndType
+      integer(c_int),value :: idxBase
+      integer(c_int),value :: valueType
+      integer(c_int),value :: order
     end function
   end interface
 
@@ -23842,7 +23825,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroySpMat_
+      integer(c_int) :: hipsparseDestroySpMat_
       type(c_ptr),value :: spMatDescr
     end function
   end interface
@@ -23860,7 +23843,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCooGet_
+      integer(c_int) :: hipsparseCooGet_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -23889,7 +23872,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstCooGet_
+      integer(c_int) :: hipsparseConstCooGet_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -23913,7 +23896,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCooAoSGet_
+      integer(c_int) :: hipsparseCooAoSGet_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -23942,7 +23925,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsrGet_
+      integer(c_int) :: hipsparseCsrGet_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -23972,7 +23955,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstCsrGet_
+      integer(c_int) :: hipsparseConstCsrGet_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -24002,7 +23985,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCscGet_
+      integer(c_int) :: hipsparseCscGet_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -24032,7 +24015,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstCscGet_
+      integer(c_int) :: hipsparseConstCscGet_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -24062,7 +24045,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseBlockedEllGet_
+      integer(c_int) :: hipsparseBlockedEllGet_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -24091,7 +24074,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstBlockedEllGet_
+      integer(c_int) :: hipsparseConstBlockedEllGet_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -24118,7 +24101,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsrSetPointers_
+      integer(c_int) :: hipsparseCsrSetPointers_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: csrRowOffsets
       type(c_ptr),value :: csrColInd
@@ -24137,7 +24120,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCscSetPointers_
+      integer(c_int) :: hipsparseCscSetPointers_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: cscColOffsets
       type(c_ptr),value :: cscRowInd
@@ -24156,7 +24139,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCooSetPointers_
+      integer(c_int) :: hipsparseCooSetPointers_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: cooRowInd
       type(c_ptr),value :: cooColInd
@@ -24171,7 +24154,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseBlockedEllSetPointers_
+      integer(c_int) :: hipsparseBlockedEllSetPointers_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: ellColInd
       type(c_ptr),value :: ellValue
@@ -24188,7 +24171,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatGetSize_
+      integer(c_int) :: hipsparseSpMatGetSize_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -24207,7 +24190,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatGetFormat_
+      integer(c_int) :: hipsparseSpMatGetFormat_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: myFormat
     end function
@@ -24226,7 +24209,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatGetIndexBase_
+      integer(c_int) :: hipsparseSpMatGetIndexBase_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: idxBase
     end function
@@ -24243,7 +24226,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatGetValues_
+      integer(c_int) :: hipsparseSpMatGetValues_
       type(c_ptr),value :: spMatDescr
       type(c_ptr) :: values
     end function
@@ -24260,7 +24243,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstSpMatGetValues_
+      integer(c_int) :: hipsparseConstSpMatGetValues_
       type(c_ptr),value :: spMatDescr
       type(c_ptr) :: values
     end function
@@ -24275,7 +24258,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatSetValues_
+      integer(c_int) :: hipsparseSpMatSetValues_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: values
     end function
@@ -24292,7 +24275,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatGetStridedBatch_
+      integer(c_int) :: hipsparseSpMatGetStridedBatch_
       type(c_ptr),value :: spMatDescr
       type(c_ptr),value :: batchCount
     end function
@@ -24307,7 +24290,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatSetStridedBatch_
+      integer(c_int) :: hipsparseSpMatSetStridedBatch_
       type(c_ptr),value :: spMatDescr
       integer(c_int),value :: batchCount
     end function
@@ -24325,7 +24308,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCooSetStridedBatch_
+      integer(c_int) :: hipsparseCooSetStridedBatch_
       type(c_ptr),value :: spMatDescr
       integer(c_int),value :: batchCount
       integer(c_int64_t),value :: batchStride
@@ -24345,7 +24328,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsrSetStridedBatch_
+      integer(c_int) :: hipsparseCsrSetStridedBatch_
       type(c_ptr),value :: spMatDescr
       integer(c_int),value :: batchCount
       integer(c_int64_t),value :: offsetsBatchStride
@@ -24364,9 +24347,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatGetAttribute_
+      integer(c_int) :: hipsparseSpMatGetAttribute_
       type(c_ptr),value :: spMatDescr
-      integer(kind(HIPSPARSE_SPMAT_FILL_MODE)),value :: attribute
+      integer(c_int),value :: attribute
       type(c_ptr),value :: myData
       integer(c_size_t),value :: dataSize
     end function
@@ -24383,9 +24366,9 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatSetAttribute_
+      integer(c_int) :: hipsparseSpMatSetAttribute_
       type(c_ptr),value :: spMatDescr
-      integer(kind(HIPSPARSE_SPMAT_FILL_MODE)),value :: attribute
+      integer(c_int),value :: attribute
       type(c_ptr),value :: myData
       integer(c_size_t),value :: dataSize
     end function
@@ -24401,13 +24384,12 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateDnVec_
+      integer(c_int) :: hipsparseCreateDnVec_
       type(c_ptr) :: dnVecDescr
       integer(c_int64_t),value :: mySize
       type(c_ptr),value :: values
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -24421,13 +24403,12 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstDnVec_
+      integer(c_int) :: hipsparseCreateConstDnVec_
       type(c_ptr) :: dnVecDescr
       integer(c_int64_t),value :: mySize
       type(c_ptr),value :: values
-      integer(kind(HIP_R_32F)),value :: valueType
+      integer(c_int),value :: valueType
     end function
   end interface
 
@@ -24440,7 +24421,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyDnVec_
+      integer(c_int) :: hipsparseDestroyDnVec_
       type(c_ptr),value :: dnVecDescr
     end function
   end interface
@@ -24455,7 +24436,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnVecGet_
+      integer(c_int) :: hipsparseDnVecGet_
       type(c_ptr),value :: dnVecDescr
       type(c_ptr),value :: mySize
       type(c_ptr) :: values
@@ -24476,7 +24457,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnVecGet_
+      integer(c_int) :: hipsparseConstDnVecGet_
       type(c_ptr),value :: dnVecDescr
       type(c_ptr),value :: mySize
       type(c_ptr) :: values
@@ -24495,7 +24476,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnVecGetValues_
+      integer(c_int) :: hipsparseDnVecGetValues_
       type(c_ptr),value :: dnVecDescr
       type(c_ptr) :: values
     end function
@@ -24512,7 +24493,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnVecGetValues_
+      integer(c_int) :: hipsparseConstDnVecGetValues_
       type(c_ptr),value :: dnVecDescr
       type(c_ptr) :: values
     end function
@@ -24527,7 +24508,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnVecSetValues_
+      integer(c_int) :: hipsparseDnVecSetValues_
       type(c_ptr),value :: dnVecDescr
       type(c_ptr),value :: values
     end function
@@ -24543,16 +24524,15 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateDnMat_
+      integer(c_int) :: hipsparseCreateDnMat_
       type(c_ptr) :: dnMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
       integer(c_int64_t),value :: ld
       type(c_ptr),value :: values
-      integer(kind(HIP_R_32F)),value :: valueType
-      integer(kind(HIPSPARSE_ORDER_COLUMN)),value :: order
+      integer(c_int),value :: valueType
+      integer(c_int),value :: order
     end function
   end interface
 
@@ -24566,16 +24546,15 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstDnMat_
+      integer(c_int) :: hipsparseCreateConstDnMat_
       type(c_ptr) :: dnMatDescr
       integer(c_int64_t),value :: rows
       integer(c_int64_t),value :: cols
       integer(c_int64_t),value :: ld
       type(c_ptr),value :: values
-      integer(kind(HIP_R_32F)),value :: valueType
-      integer(kind(HIPSPARSE_ORDER_COLUMN)),value :: order
+      integer(c_int),value :: valueType
+      integer(c_int),value :: order
     end function
   end interface
 
@@ -24588,7 +24567,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDestroyDnMat_
+      integer(c_int) :: hipsparseDestroyDnMat_
       type(c_ptr),value :: dnMatDescr
     end function
   end interface
@@ -24604,7 +24583,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnMatGet_
+      integer(c_int) :: hipsparseDnMatGet_
       type(c_ptr),value :: dnMatDescr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -24628,7 +24607,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnMatGet_
+      integer(c_int) :: hipsparseConstDnMatGet_
       type(c_ptr),value :: dnMatDescr
       type(c_ptr),value :: rows
       type(c_ptr),value :: cols
@@ -24650,7 +24629,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnMatGetValues_
+      integer(c_int) :: hipsparseDnMatGetValues_
       type(c_ptr),value :: dnMatDescr
       type(c_ptr) :: values
     end function
@@ -24667,7 +24646,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnMatGetValues_
+      integer(c_int) :: hipsparseConstDnMatGetValues_
       type(c_ptr),value :: dnMatDescr
       type(c_ptr) :: values
     end function
@@ -24682,7 +24661,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnMatSetValues_
+      integer(c_int) :: hipsparseDnMatSetValues_
       type(c_ptr),value :: dnMatDescr
       type(c_ptr),value :: values
     end function
@@ -24699,7 +24678,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnMatGetStridedBatch_
+      integer(c_int) :: hipsparseDnMatGetStridedBatch_
       type(c_ptr),value :: dnMatDescr
       type(c_ptr),value :: batchCount
       type(c_ptr),value :: batchStride
@@ -24719,7 +24698,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnMatSetStridedBatch_
+      integer(c_int) :: hipsparseDnMatSetStridedBatch_
       type(c_ptr),value :: dnMatDescr
       integer(c_int),value :: batchCount
       integer(c_int64_t),value :: batchStride
@@ -24735,7 +24714,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseAxpby_
+      integer(c_int) :: hipsparseAxpby_
       type(c_ptr),value :: handle
       type(c_ptr),value :: alpha
       type(c_ptr),value :: vecX
@@ -24755,11 +24734,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDenseToSparse_bufferSize_
+      integer(c_int) :: hipsparseDenseToSparse_bufferSize_
       type(c_ptr),value :: handle
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
-      integer(kind(HIPSPARSE_DENSETOSPARSE_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
@@ -24777,11 +24756,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDenseToSparse_analysis_
+      integer(c_int) :: hipsparseDenseToSparse_analysis_
       type(c_ptr),value :: handle
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
-      integer(kind(HIPSPARSE_DENSETOSPARSE_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: externalBuffer
     end function
   end interface
@@ -24797,11 +24776,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDenseToSparse_convert_
+      integer(c_int) :: hipsparseDenseToSparse_convert_
       type(c_ptr),value :: handle
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
-      integer(kind(HIPSPARSE_DENSETOSPARSE_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: externalBuffer
     end function
   end interface
@@ -24815,7 +24794,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseGather_
+      integer(c_int) :: hipsparseGather_
       type(c_ptr),value :: handle
       type(c_ptr),value :: vecY
       type(c_ptr),value :: vecX
@@ -24831,7 +24810,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseRot_
+      integer(c_int) :: hipsparseRot_
       type(c_ptr),value :: handle
       type(c_ptr),value :: c_coeff
       type(c_ptr),value :: s_coeff
@@ -24849,7 +24828,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScatter_
+      integer(c_int) :: hipsparseScatter_
       type(c_ptr),value :: handle
       type(c_ptr),value :: vecX
       type(c_ptr),value :: vecY
@@ -24868,19 +24847,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSDDMM_bufferSize_
+      integer(c_int) :: hipsparseSDDMM_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: A
       type(c_ptr),value :: B
       type(c_ptr),value :: beta
       type(c_ptr),value :: C
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SDDMM_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
@@ -24899,19 +24877,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSDDMM_preprocess_
+      integer(c_int) :: hipsparseSDDMM_preprocess_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: A
       type(c_ptr),value :: B
       type(c_ptr),value :: beta
       type(c_ptr),value :: C
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SDDMM_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: tempBuffer
     end function
   end interface
@@ -24926,19 +24903,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSDDMM_
+      integer(c_int) :: hipsparseSDDMM_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: A
       type(c_ptr),value :: B
       type(c_ptr),value :: beta
       type(c_ptr),value :: C
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SDDMM_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: tempBuffer
     end function
   end interface
@@ -24954,11 +24930,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSparseToDense_bufferSize_
+      integer(c_int) :: hipsparseSparseToDense_bufferSize_
       type(c_ptr),value :: handle
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
-      integer(kind(HIPSPARSE_SPARSETODENSE_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
@@ -24976,11 +24952,11 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSparseToDense_
+      integer(c_int) :: hipsparseSparseToDense_
       type(c_ptr),value :: handle
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
-      integer(kind(HIPSPARSE_SPARSETODENSE_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: externalBuffer
     end function
   end interface
@@ -24994,7 +24970,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEAM_createDescr_
+      integer(c_int) :: hipsparseSpGEAM_createDescr_
       type(c_ptr) :: descr
     end function
   end interface
@@ -25008,7 +24984,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEAM_destroyDescr_
+      integer(c_int) :: hipsparseSpGEAM_destroyDescr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -25025,19 +25001,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEAM_bufferSize_
+      integer(c_int) :: hipsparseSpGEAM_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: beta
       type(c_ptr),value :: matB
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPGEAM_ALG1)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spgeamDescr
       type(c_ptr),value :: bufferSize
     end function
@@ -25057,19 +25032,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEAM_nnz_
+      integer(c_int) :: hipsparseSpGEAM_nnz_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: beta
       type(c_ptr),value :: matB
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPGEAM_ALG1)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spgeamDescr
       type(c_ptr),value :: externalBuffer
     end function
@@ -25087,19 +25061,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEAM_
+      integer(c_int) :: hipsparseSpGEAM_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: beta
       type(c_ptr),value :: matB
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPGEAM_ALG1)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spgeamDescr
       type(c_ptr),value :: externalBuffer
     end function
@@ -25114,7 +25087,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMM_createDescr_
+      integer(c_int) :: hipsparseSpGEMM_createDescr_
       type(c_ptr) :: descr
     end function
   end interface
@@ -25128,7 +25101,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMM_destroyDescr_
+      integer(c_int) :: hipsparseSpGEMM_destroyDescr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -25145,19 +25118,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMM_workEstimation_
+      integer(c_int) :: hipsparseSpGEMM_workEstimation_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: beta
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPGEMM_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spgemmDescr
       type(c_ptr),value :: bufferSize1
       type(c_ptr),value :: externalBuffer1
@@ -25178,19 +25150,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMM_compute_
+      integer(c_int) :: hipsparseSpGEMM_compute_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: beta
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPGEMM_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spgemmDescr
       type(c_ptr),value :: bufferSize2
       type(c_ptr),value :: externalBuffer2
@@ -25211,19 +25182,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMM_copy_
+      integer(c_int) :: hipsparseSpGEMM_copy_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: beta
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPGEMM_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spgemmDescr
     end function
   end interface
@@ -25241,14 +25211,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMMreuse_workEstimation_
+      integer(c_int) :: hipsparseSpGEMMreuse_workEstimation_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: matC
-      integer(kind(HIPSPARSE_SPGEMM_DEFAULT)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: spgemmDescr
       type(c_ptr),value :: bufferSize1
       type(c_ptr),value :: externalBuffer1
@@ -25270,14 +25240,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMMreuse_nnz_
+      integer(c_int) :: hipsparseSpGEMMreuse_nnz_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: matC
-      integer(kind(HIPSPARSE_SPGEMM_DEFAULT)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: spgemmDescr
       type(c_ptr),value :: bufferSize2
       type(c_ptr),value :: externalBuffer2
@@ -25303,14 +25273,14 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMMreuse_copy_
+      integer(c_int) :: hipsparseSpGEMMreuse_copy_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: matC
-      integer(kind(HIPSPARSE_SPGEMM_DEFAULT)),value :: alg
+      integer(c_int),value :: alg
       type(c_ptr),value :: spgemmDescr
       type(c_ptr),value :: bufferSize5
       type(c_ptr),value :: externalBuffer5
@@ -25331,19 +25301,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMMreuse_compute_
+      integer(c_int) :: hipsparseSpGEMMreuse_compute_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: beta
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPGEMM_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spgemmDescr
     end function
   end interface
@@ -25360,19 +25329,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMM_bufferSize_
+      integer(c_int) :: hipsparseSpMM_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: beta
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_MM_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
@@ -25391,19 +25359,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMM_preprocess_
+      integer(c_int) :: hipsparseSpMM_preprocess_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: beta
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_MM_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: externalBuffer
     end function
   end interface
@@ -25420,19 +25387,18 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMM_
+      integer(c_int) :: hipsparseSpMM_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: beta
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_MM_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: externalBuffer
     end function
   end interface
@@ -25449,18 +25415,17 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMV_bufferSize_
+      integer(c_int) :: hipsparseSpMV_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(c_int),value :: opA
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: vecX
       type(c_ptr),value :: beta
       type(c_ptr),value :: vecY
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_MV_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
@@ -25479,18 +25444,17 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMV_preprocess_
+      integer(c_int) :: hipsparseSpMV_preprocess_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(c_int),value :: opA
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: vecX
       type(c_ptr),value :: beta
       type(c_ptr),value :: vecY
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_MV_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: externalBuffer
     end function
   end interface
@@ -25505,18 +25469,17 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMV_
+      integer(c_int) :: hipsparseSpMV_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(c_int),value :: opA
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: vecX
       type(c_ptr),value :: beta
       type(c_ptr),value :: vecY
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_MV_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: externalBuffer
     end function
   end interface
@@ -25530,7 +25493,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_createDescr_
+      integer(c_int) :: hipsparseSpSM_createDescr_
       type(c_ptr) :: descr
     end function
   end interface
@@ -25544,7 +25507,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_destroyDescr_
+      integer(c_int) :: hipsparseSpSM_destroyDescr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -25561,18 +25524,17 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_bufferSize_
+      integer(c_int) :: hipsparseSpSM_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPSM_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spsmDescr
       type(c_ptr),value :: pBufferSizeInBytes
     end function
@@ -25592,18 +25554,17 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_analysis_
+      integer(c_int) :: hipsparseSpSM_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPSM_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spsmDescr
       type(c_ptr),value :: externalBuffer
     end function
@@ -25621,18 +25582,17 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_solve_
+      integer(c_int) :: hipsparseSpSM_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPSM_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spsmDescr
       type(c_ptr),value :: externalBuffer
     end function
@@ -25645,18 +25605,17 @@ module hipfort_hipsparse
         bind(c, name="hipsparseSpSM_solve_ex")
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_solve_ex_
+      integer(c_int) :: hipsparseSpSM_solve_ex_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      integer(c_int),value :: opA
+      integer(c_int),value :: opB
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       type(c_ptr),value :: matC
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPSM_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spsmDescr
     end function
   end interface
@@ -25671,7 +25630,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSV_createDescr_
+      integer(c_int) :: hipsparseSpSV_createDescr_
       type(c_ptr) :: descr
     end function
   end interface
@@ -25685,7 +25644,7 @@ module hipfort_hipsparse
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSV_destroyDescr_
+      integer(c_int) :: hipsparseSpSV_destroyDescr_
       type(c_ptr),value :: descr
     end function
   end interface
@@ -25702,17 +25661,16 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSV_bufferSize_
+      integer(c_int) :: hipsparseSpSV_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(c_int),value :: opA
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPSV_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spsvDescr
       type(c_ptr),value :: pBufferSizeInBytes
     end function
@@ -25732,17 +25690,16 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSV_analysis_
+      integer(c_int) :: hipsparseSpSV_analysis_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(c_int),value :: opA
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPSV_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spsvDescr
       type(c_ptr),value :: externalBuffer
     end function
@@ -25758,17 +25715,16 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSV_solve_
+      integer(c_int) :: hipsparseSpSV_solve_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(c_int),value :: opA
       type(c_ptr),value :: alpha
       type(c_ptr),value :: matA
       type(c_ptr),value :: x
       type(c_ptr),value :: y
-      integer(kind(HIP_R_32F)),value :: computeType
-      integer(kind(HIPSPARSE_SPSV_ALG_DEFAULT)),value :: alg
+      integer(c_int),value :: computeType
+      integer(c_int),value :: alg
       type(c_ptr),value :: spsvDescr
     end function
   end interface
@@ -25785,15 +25741,14 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpVV_bufferSize_
+      integer(c_int) :: hipsparseSpVV_bufferSize_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opX
+      integer(c_int),value :: opX
       type(c_ptr),value :: vecX
       type(c_ptr),value :: vecY
       type(c_ptr),value :: myResult
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
@@ -25810,15 +25765,14 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpVV_
+      integer(c_int) :: hipsparseSpVV_
       type(c_ptr),value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opX
+      integer(c_int),value :: opX
       type(c_ptr),value :: vecX
       type(c_ptr),value :: vecY
       type(c_ptr),value :: myResult
-      integer(kind(HIP_R_32F)),value :: computeType
+      integer(c_int),value :: computeType
       type(c_ptr),value :: externalBuffer
     end function
   end interface
