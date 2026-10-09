@@ -337,9 +337,9 @@ program test_hip
     if (never) v0 = hipDrvMemcpy3D_(v30)
     if (never) v0 = hipDrvMemcpy3DAsync_(v30, v2)
     if (never) v0 = hipMemGetAddressRange_(v2, v2, v2)
-#endif
     if (never) v0 = hipMemcpyBatchAsync_(v2, v2, v2, v4, v31, v2, v4, v2, v2)
     if (never) v0 = hipMemcpy3DBatchAsync_(v4, v32, v2, v10, v2)
+#endif
     if (never) v0 = hipMemcpy3DPeer_(v33)
     if (never) v0 = hipMemcpy3DPeerAsync_(v33, v2)
     if (never) v0 = hipDeviceCanAccessPeer_(v2, v0, v0)
@@ -510,7 +510,9 @@ program test_hip
     if (never) v0 = hipStreamGetCaptureInfo_v2_(v2, v2, v2, v2, v2, v2)
 #endif
     if (never) v0 = hipStreamIsCapturing_(v2, v2)
+#ifndef USE_CUDA_NAMES
     if (never) v0 = hipStreamUpdateCaptureDependencies_(v2, v2, v4, v0)
+#endif
     if (never) v0 = hipThreadExchangeStreamCaptureMode_(v2)
     if (never) v0 = hipGraphCreate_(v2, v0)
     if (never) v0 = hipGraphDestroy_(v2)
@@ -536,12 +538,18 @@ program test_hip
     if (never) v0 = hipGraphInstantiateWithParams_(v2, v2, v50)
     if (never) v0 = hipGraphLaunch_(v2, v2)
     if (never) v0 = hipGraphUpload_(v2, v2)
+#ifndef USE_CUDA_NAMES
     if (never) v0 = hipGraphAddNode_(v2, v2, v2, v4, v51)
+#endif
     if (never) v0 = hipGraphExecGetFlags_(v2, v2)
+#ifndef USE_CUDA_NAMES
     if (never) v0 = hipGraphNodeSetParams_(v2, v51)
     if (never) v0 = hipGraphExecNodeSetParams_(v2, v2, v51)
+#endif
     if (never) v0 = hipGraphExecDestroy_(v2)
+#ifndef USE_CUDA_NAMES
     if (never) v0 = hipGraphExecUpdate_(v2, v2, v2, v2)
+#endif
     if (never) v0 = hipGraphAddKernelNode_(v2, v2, v2, v4, v52)
     if (never) v0 = hipGraphKernelNodeGetParams_(v2, v52)
     if (never) v0 = hipGraphKernelNodeSetParams_(v2, v52)
@@ -671,7 +679,9 @@ program test_hip
     if (never) v0 = hipStreamBeginCapture_spt_(v2, v0)
     if (never) v0 = hipStreamEndCapture_spt_(v2, v2)
     if (never) v0 = hipStreamIsCapturing_spt_(v2, v2)
+#ifndef USE_CUDA_NAMES
     if (never) v0 = hipStreamGetCaptureInfo_spt_(v2, v2, v2)
+#endif
     if (never) v0 = hipStreamGetCaptureInfo_v2_spt_(v2, v2, v2, v2, v2, v2)
     if (never) v0 = hipLaunchHostFunc_spt_(v2, v9, v2)
     if (never) v0 = hipGetDriverEntryPoint_spt_(v2, v2, v10, v2)

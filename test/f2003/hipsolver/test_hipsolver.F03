@@ -602,9 +602,13 @@ program test_hipsolver
     if (never) v1 = hipsolverSpDcsrlsvchol_(v0, v1, v1, v0, v0, v0, v0, v0, v2, v1, v0, v0)
     if (never) v1 = hipsolverSpScsrlsvcholHost_(v0, v1, v1, v0, v0, v0, v0, v0, v5, v1, v0, v0)
     if (never) v1 = hipsolverSpDcsrlsvcholHost_(v0, v1, v1, v0, v0, v0, v0, v0, v2, v1, v0, v0)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverSpScsrlsvqr_(v0, v1, v1, v0, v0, v0, v0, v0, v2, v1, v0, v0)
+#endif
     if (never) v1 = hipsolverSpDcsrlsvqr_(v0, v1, v1, v0, v0, v0, v0, v0, v2, v1, v0, v0)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverSpCcsrlsvqr_(v0, v1, v1, v0, v0, v0, v0, v0, v2, v1, v0, v0)
+#endif
     if (never) v1 = hipsolverSpZcsrlsvqr_(v0, v1, v1, v0, v0, v0, v0, v0, v2, v1, v0, v0)
 
   write(*,"(a)") "-- test_hipsolver (bind(C) symbols): PASSED (compile+link only)!"

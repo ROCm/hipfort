@@ -15162,16 +15162,11 @@ module hipfort_hipsolver
     module procedure hipsolverSpDcsrlsvcholHost_typed
   end interface
 
+#ifndef USE_CUDA_NAMES
   interface hipsolverSpScsrlsvqr
-#ifdef USE_CUDA_NAMES
-    function hipsolverSpScsrlsvqr_(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b,tolerance, &
-        reorder,x,singularity) &
-        bind(c, name="cusolverSpScsrlsvqr")
-#else
     function hipsolverSpScsrlsvqr_(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b,tolerance, &
         reorder,x,singularity) &
         bind(c, name="hipsolverSpScsrlsvqr")
-#endif
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
@@ -15192,6 +15187,7 @@ module hipfort_hipsolver
 
     module procedure hipsolverSpScsrlsvqr_typed
   end interface
+#endif
 
   interface hipsolverSpDcsrlsvqr
 #ifdef USE_CUDA_NAMES
@@ -15224,16 +15220,11 @@ module hipfort_hipsolver
     module procedure hipsolverSpDcsrlsvqr_typed
   end interface
 
+#ifndef USE_CUDA_NAMES
   interface hipsolverSpCcsrlsvqr
-#ifdef USE_CUDA_NAMES
-    function hipsolverSpCcsrlsvqr_(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b,tolerance, &
-        reorder,x,singularity) &
-        bind(c, name="cusolverSpCcsrlsvqr")
-#else
     function hipsolverSpCcsrlsvqr_(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b,tolerance, &
         reorder,x,singularity) &
         bind(c, name="hipsolverSpCcsrlsvqr")
-#endif
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
@@ -15254,6 +15245,7 @@ module hipfort_hipsolver
 
     module procedure hipsolverSpCcsrlsvqr_typed
   end interface
+#endif
 
   interface hipsolverSpZcsrlsvqr
 #ifdef USE_CUDA_NAMES
@@ -21101,6 +21093,7 @@ module hipfort_hipsolver
         csrRowPtr,csrColInd,b,tolerance,reorder,x,c_loc(singularity))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSpScsrlsvqr_typed(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b, &
         tolerance,reorder,x,singularity)
       use iso_c_binding
@@ -21124,6 +21117,7 @@ module hipfort_hipsolver
         csrColInd,b,tolerance,reorder,x,c_loc(singularity))
     end function
 
+#endif
     function hipsolverSpDcsrlsvqr_typed(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b, &
         tolerance,reorder,x,singularity)
       use iso_c_binding
@@ -21147,6 +21141,7 @@ module hipfort_hipsolver
         csrColInd,b,tolerance,reorder,x,c_loc(singularity))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsolverSpCcsrlsvqr_typed(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b, &
         tolerance,reorder,x,singularity)
       use iso_c_binding
@@ -21170,6 +21165,7 @@ module hipfort_hipsolver
         csrColInd,b,tolerance,reorder,x,c_loc(singularity))
     end function
 
+#endif
     function hipsolverSpZcsrlsvqr_typed(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b, &
         tolerance,reorder,x,singularity)
       use iso_c_binding
