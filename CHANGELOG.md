@@ -7,8 +7,6 @@
 * Bindings regenerated against the ROCm 10.1 API, adding 59 routines: rocSOLVER
   (+28), hipBLAS (+8), rocBLAS (+6), hipSPARSE (+5), rocFFT (+4), rocSPARSE
   (+3), hipSOLVER (+2), HIP (+2) and hipFFT (+1).
-* `_typed` and `_devptr` forms for the arguments passed by pointer (see
-  *Changed*).
 * CMake option `HIPFORT_BUILD_AMDGCN` (default `ON`), the counterpart of
   `HIPFORT_BUILD_NVPTX`: `-DHIPFORT_BUILD_AMDGCN=OFF` gives a CUDA-only build.
 * `hipfort_roctx` binds twelve ROCTx entry points instead of five, adding
@@ -44,8 +42,9 @@
   Outputs the C API lets the caller skip are `optional` in the `_typed` form.
   Device-only scalars, such as rocSOLVER `info` and hipSOLVER `devInfo`, have no
   `_typed` form; the array overloads take them like the device arrays next to
-  them. The 28 rocSPARSE and hipSPARSE routines with both kinds also get a
-  `<routine>_devptr` form for the device pointer mode.
+  them. The 28 rocSPARSE and hipSPARSE routines that take both `alpha`/`beta`
+  and a host output also get a `<routine>_devptr` form for the device pointer
+  mode.
 * `hipfort_roctx` is generated from `rocprofiler-sdk-roctx/roctx.h`, the header
   behind the library `hipfort::roctx` links, instead of the legacy
   `roctracer/roctx.h`. Its string arguments take a `character(kind=c_char)`
@@ -72,7 +71,6 @@
     array;
   * passing an address as `nev` and a variable as `lwork` to
     `hipsolverDsyevdx_bufferSize`: pass two variables or two addresses;
-  * passing an array as `value` to `hipfftGetProperty`: pass an integer;
   * passing a `character(kind=c_char)` array to `hipfort_roctx`: pass `c_loc`
     of it.
 
@@ -85,7 +83,8 @@
 
 * `rocblas_set_optimal_device_memory_size_impl` and
   `rocblas_device_malloc_alloc`, variadic C helpers that Fortran cannot call.
-* The rank overloads of `hipfftGetProperty`, whose value is a scalar.
+* The array overloads of `hipfftGetProperty`, whose `value` is a scalar: pass
+  an integer.
 
 ### Fixed
 
@@ -111,7 +110,8 @@
 * The DEB package lacked the `find_package(hipfort)` config files, and
   `hipfort::hipblas` was skipped when ROCm was outside the default CMake
   prefixes.
-* Wrong NVHPC flags with `-DBUILD_NATIVE=ON` and Intel Release flags.
+* Wrong compiler flags for NVHPC with `-DBUILD_NATIVE=ON` and for Intel in
+  Release builds.
 * Tests can now fail: their failure branches exited with status 0 under
   gfortran, which hid 27 failing tests.
 * The modules compile without warnings under gfortran `-Wall`.
