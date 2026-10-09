@@ -11,8 +11,12 @@ overloads -- one per rank:
 
 Each overload is a distinct wrapper body that marshals its arguments with c_loc
 and calls the bind(C) interface, so gcov can tell whether a test actually
-executed it. This script reports, per library, how many of those wrapper bodies
-ran, counted over the routines that have at least one test.
+executed it. The HIP runtime (hipMalloc, hipMemcpy, hipHostRegister) also ships array
+overloads, keyed by element type and rank instead -- hipmalloc_i4_2_source,
+hipfree_c4_1 -- and those are counted too, as a "hip runtime" row.
+
+This script reports, per library, how many of those wrapper bodies ran, counted
+over the routines that have at least one test.
 
 Note what this does *not* measure. A test that calls the raw bind(C) interface
 directly -- which every Fortran 2003 test does, and which is a perfectly correct
@@ -44,11 +48,34 @@ import subprocess
 import sys
 from collections import defaultdict
 
-LIBS = ["rocblas", "rocsolver", "rocsparse", "rocfft", "rocrand",
-        "hipblas", "hipsolver", "hipsparse", "hipfft", "hiprand"]
+# Each entry is a reported row: the label, and the binding modules to scan for
+# it. The math libraries are one module each; the HIP runtime spreads its array
+# overloads over several.
+GROUPS = [
+    ("rocblas",  ["hipfort_rocblas"]),
+    ("rocsolver", ["hipfort_rocsolver"]),
+    ("rocsparse", ["hipfort_rocsparse"]),
+    ("rocfft",   ["hipfort_rocfft"]),
+    ("rocrand",  ["hipfort_rocrand"]),
+    ("hipblas",  ["hipfort_hipblas"]),
+    ("hipsolver", ["hipfort_hipsolver"]),
+    ("hipsparse", ["hipfort_hipsparse"]),
+    ("hipfft",   ["hipfort_hipfft"]),
+    ("hipfftw",  ["hipfort_hipfftw"]),
+    ("hiprand",  ["hipfort_hiprand"]),
+    ("hip runtime", ["hipfort_hipmalloc", "hipfort_hipmemcpy",
+                     "hipfort_hiphostregister"]),
+]
 
-# <routine>_rank_0 / _rank_1 / _full_rank. assumed_rank is deliberately absent.
+# The math-library bindings name their overloads <routine>_rank_0 / _rank_1 /
+# _full_rank.
 VARIANT_RE = re.compile(r"(.+?)_(rank_\d+|full_rank)$")
+
+# The HIP runtime overloads are keyed by element type and rank instead, as in
+# hipmalloc_i4_2_source or hipfree_c4_1, so the family is the routine plus its
+# type and the variant is the rank with any flavour suffix. Both schemes leave
+# out assumed_rank, which is off by default and so not callable.
+HIP_VARIANT_RE = re.compile(r"(.+?_(?:i|r|c|l)\d+)_(\d+(?:_[a-z0-9_]+)?)$")
 
 
 def find_object_dir(build):
@@ -114,44 +141,52 @@ def load_gcov(gcno, gcov_exe):
 
 
 def measure(build, gcov_exe):
-    """Return {lib: {run, gen, tested, families, detail}} (None when no data)."""
+    """Return {group: {run, gen, tested, families, detail}} (None when no data)."""
     objdir = find_object_dir(build)
     if objdir is None:
         sys.exit(f"error: no instrumented binding objects under {build}. "
                  f"Configure with -DHIPFORT_CODE_COVERAGE=ON and build first.")
 
     results = {}
-    for lib in LIBS:
-        gcno = os.path.join(objdir, f"hipfort_{lib}.F90.gcno")
-        if not os.path.exists(gcno):
-            results[lib] = None
-            continue
-        data = load_gcov(gcno, gcov_exe)
-        if not data or not data.get("files"):
-            results[lib] = None
+    for label, modules in GROUPS:
+        generated = defaultdict(set)   # family -> variants emitted
+        executed = defaultdict(set)    # family -> variants that ran
+        saw_data = False
+
+        for module in modules:
+            gcno = os.path.join(objdir, f"{module}.F90.gcno")
+            if not os.path.exists(gcno):
+                continue
+            # The module was built, so the group is reportable even if it turns
+            # out to hold no wrapper bodies at all -- that is "no array
+            # overloads", which is a real answer, not missing data.
+            saw_data = True
+            data = load_gcov(gcno, gcov_exe)
+            if not data or not data.get("files"):
+                continue
+            for line in data["files"][0]["lines"]:
+                fn = line.get("function_name")
+                if not fn:
+                    continue
+                match = VARIANT_RE.match(fn) or HIP_VARIANT_RE.match(fn)
+                if not match:
+                    continue
+                family, variant = match.group(1), match.group(2)
+                generated[family].add(variant)
+                if line.get("count", 0) > 0:
+                    executed[family].add(variant)
+
+        if not saw_data:
+            results[label] = None
             continue
 
-        generated = defaultdict(set)   # routine -> variants emitted
-        executed = defaultdict(set)    # routine -> variants that ran
-        for line in data["files"][0]["lines"]:
-            fn = line.get("function_name")
-            if not fn:
-                continue
-            match = VARIANT_RE.match(fn)
-            if not match:
-                continue
-            routine, variant = match.group(1), match.group(2)
-            generated[routine].add(variant)
-            if line.get("count", 0) > 0:
-                executed[routine].add(variant)
-
-        tested = [r for r in generated if executed[r]]
-        results[lib] = {
-            "run": sum(len(executed[r]) for r in tested),
-            "gen": sum(len(generated[r]) for r in tested),
+        tested = [f for f in generated if executed[f]]
+        results[label] = {
+            "run": sum(len(executed[f]) for f in tested),
+            "gen": sum(len(generated[f]) for f in tested),
             "tested": len(tested),
             "families": len(generated),
-            "detail": {r: (len(executed[r]), len(generated[r])) for r in tested},
+            "detail": {f: (len(executed[f]), len(generated[f])) for f in tested},
         }
     return results
 
@@ -163,27 +198,27 @@ def totals(results):
 
 
 def print_report(results, show_partial=False):
-    header = f"{'library':10} {'variants run/gen':>18} {'coverage':>9} {'tested routines':>16}"
+    header = f"{'library':12} {'variants run/gen':>18} {'coverage':>9} {'tested routines':>16}"
     print(header)
     print("-" * len(header))
-    for lib in LIBS:
+    for lib, _modules in GROUPS:
         r = results.get(lib)
         if not r or r["gen"] == 0:
             note = "(no array overloads)" if r else "(no data)"
-            print(f"{lib:10} {note:>18} {'n/a':>9} {(r['tested'] if r else 0):>16}")
+            print(f"{lib:12} {note:>18} {'n/a':>9} {(r['tested'] if r else 0):>16}")
             continue
         pct = f"{round(100 * r['run'] / r['gen'])}%"
         ratio = f"{r['run']}/{r['gen']}"
-        print(f"{lib:10} {ratio:>18} {pct:>9} {r['tested']:>16}")
+        print(f"{lib:12} {ratio:>18} {pct:>9} {r['tested']:>16}")
     print("-" * len(header))
     run, gen = totals(results)
     pct = f"{round(100 * run / gen)}%" if gen else "n/a"
     ratio = f"{run}/{gen}"
-    print(f"{'TOTAL':10} {ratio:>18} {pct:>9}")
+    print(f"{'TOTAL':12} {ratio:>18} {pct:>9}")
 
     if show_partial:
         print("\nRoutines not covering every variant they generate:")
-        for lib in LIBS:
+        for lib, _modules in GROUPS:
             r = results.get(lib)
             if not r:
                 continue
@@ -204,7 +239,7 @@ def write_html(results, path):
     run, gen = totals(results)
     pct = round(100 * run / gen) if gen else 0
     rows = []
-    for lib in LIBS:
+    for lib, _modules in GROUPS:
         r = results.get(lib)
         if not r or r["gen"] == 0:
             rows.append(f"<tr><td>{html.escape(lib)}</td><td colspan=2 class=na>"

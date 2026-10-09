@@ -33,15 +33,25 @@ if(NOT HIPFORT_CODE_COVERAGE)
   return()
 endif()
 
+# Unsupported configurations warn and switch the option back off rather than
+# failing. The option is meant to be safe to turn on for a whole build matrix:
+# the legs that can collect coverage do, and the rest build exactly as before.
 if(NOT CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
-  message(FATAL_ERROR
-          "HIPFORT_CODE_COVERAGE requires GNU Fortran (found "
-          "${CMAKE_Fortran_COMPILER_ID}); coverage is collected with gcov.")
+  message(WARNING
+          "HIPFORT_CODE_COVERAGE: coverage is collected with gcov, which needs GNU "
+          "Fortran; ${CMAKE_Fortran_COMPILER_ID} does not support it "
+          "(amdflang accepts neither --coverage nor -fprofile-instr-generate). "
+          "Continuing with coverage disabled.")
+  set(HIPFORT_CODE_COVERAGE OFF CACHE BOOL "" FORCE)
+  return()
 endif()
 
 if(NOT BUILD_TESTING)
-  message(FATAL_ERROR
-          "HIPFORT_CODE_COVERAGE needs the test suite: configure with -DBUILD_TESTING=ON.")
+  message(WARNING
+          "HIPFORT_CODE_COVERAGE: coverage is measured by running the test suite, "
+          "so it needs -DBUILD_TESTING=ON. Continuing with coverage disabled.")
+  set(HIPFORT_CODE_COVERAGE OFF CACHE BOOL "" FORCE)
+  return()
 endif()
 
 # Match gcov to the compiler. A mismatched gcov cannot read the .gcno format.
@@ -50,7 +60,11 @@ find_program(HIPFORT_GCOV_EXECUTABLE
              NAMES "gcov-${_hipfort_gcc_major}" gcov
              DOC "gcov matching the Fortran compiler")
 if(NOT HIPFORT_GCOV_EXECUTABLE)
-  message(FATAL_ERROR "HIPFORT_CODE_COVERAGE: no gcov found (looked for gcov-${_hipfort_gcc_major}, gcov).")
+  message(WARNING
+          "HIPFORT_CODE_COVERAGE: no gcov found (looked for gcov-${_hipfort_gcc_major} "
+          "and gcov). Continuing with coverage disabled.")
+  set(HIPFORT_CODE_COVERAGE OFF CACHE BOOL "" FORCE)
+  return()
 endif()
 
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
