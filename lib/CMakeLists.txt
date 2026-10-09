@@ -459,10 +459,11 @@ if(HIPFORT_EXTENDED_TESTS)
       set(_amd_dir "${ROCM_PATH}/lib")
     endif()
     # NB: the HIP runtime is libamdhip64, not "libhip".
-    # rocTX ships under two names and they are NOT interchangeable -- librocprofiler-sdk-roctx exports
-    # the plain symbols and is what hipfort::roctx links, while the legacy
-    # libroctx64 exports them versioned (roctxMarkA@@ROCTX_4.1) -- so resolve the
-    # same one the component does, falling back to the legacy name.
+    # rocTX ships under two names and they are NOT interchangeable --
+    # librocprofiler-sdk-roctx exports the plain symbols and is what
+    # hipfort::roctx links, while the legacy libroctx64 exports them versioned
+    # (roctxMarkA@@ROCTX_4.1) -- so resolve the same one the component does,
+    # falling back to the legacy name.
     set(_amd_libs hipfftw hipfft rocfft hipsolver rocsolver hipblas rocblas
                   rocrand hiprand hipsparse rocsparse roctx amdhip64)
     set(_amd_names_roctx rocprofiler-sdk-roctx roctx64)
