@@ -48,7 +48,7 @@ program hipsparse_zcsrsv2
   complex(c_double_complex) :: hF(3)
   complex(c_double_complex) :: hX(3)
   complex(c_double_complex) :: hExp(3) = (/(1.0d0,1.0d0), (2.0d0,-1.0d0), (3.0d0,0.0d0)/)
-  complex(c_double_complex), target :: alpha = (1.0d0,0.0d0)
+  complex(c_double_complex), allocatable, target :: alpha
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descrA = c_null_ptr
   type(c_ptr) :: info = c_null_ptr
@@ -56,6 +56,11 @@ program hipsparse_zcsrsv2
   complex(c_double_complex), pointer :: dVal(:), dF(:), dX(:)
   type(c_ptr) :: dBuf
   integer(c_int) :: bufSize
+
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha)
+  alpha = (1.0d0,0.0d0)
   write(*,"(a)",advance="no") "-- Running test 'hipsparse_zcsrsv2' (Fortran 2008 interfaces) - "
 
   ! f = L*x (row by row from the CSR structure above).

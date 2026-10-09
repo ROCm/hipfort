@@ -83,7 +83,10 @@ program hipfft_version
      STOP 1
   end if
 
-  if (version /= major * 10000 + minor * 100 + patch) then
+  ! hipFFT packs major*10000 + minor*100 + patch; on the CUDA backend these are
+  ! cuFFT's answers, packed major*1000 + minor*100 + patch (CUFFT_VERSION).
+  if (version /= major * 10000 + minor * 100 + patch .and. &
+      version /= major * 1000 + minor * 100 + patch) then
      write(*,*) "FAILED! hipfftGetVersion code ", version, &
                 " disagrees with hipfftGetProperty triple ", major, minor, patch
      STOP 1

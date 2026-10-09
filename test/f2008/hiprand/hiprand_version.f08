@@ -79,8 +79,15 @@ program hiprand_version_test
     end if
 
     ! HIPRAND_VERSION / 100000 is major, / 100 % 1000 is minor, % 100 is patch.
-    major = version / 100000
-    minor = mod(version / 100, 1000)
+    ! On the CUDA backend this is cuRAND's version, packed major*1000 +
+    ! minor*100 + patch (CURAND_VERSION), so a code below 100000 decodes that way.
+    if (version >= 100000) then
+       major = version / 100000
+       minor = mod(version / 100, 1000)
+    else
+       major = version / 1000
+       minor = mod(version / 100, 10)
+    end if
     patch = mod(version, 100)
 
     if (major < 1 .or. major > 99) then

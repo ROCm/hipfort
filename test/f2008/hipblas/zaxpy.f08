@@ -36,11 +36,15 @@ program hip_zaxpy
   integer :: j
   complex(kind=8), allocatable, dimension(:) :: x, y, y_exact
 
-  complex(kind=8), target :: alpha = (2.0d0, 0.d0)
+  complex(kind=8), allocatable, target :: alpha
   complex(kind=8), pointer, dimension(:) :: dx, dy
 
   double precision :: error
   double precision, parameter :: error_max = 10*epsilon(error)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha)
+  alpha = (2.0d0, 0.d0)
 
   allocate(x(n))
   allocate(y(n))

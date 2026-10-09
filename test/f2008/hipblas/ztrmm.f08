@@ -35,7 +35,7 @@ program hip_ztrmm
   ! C := alpha*op(A)*B with A upper triangular (out-of-place trmm).
   ! A = [1 2; 0 3] and B = I, so C = A.
   integer, parameter :: ld = 2
-  complex(c_double_complex), target :: alpha = (1.0, 0.0)
+  complex(c_double_complex), allocatable, target :: alpha
 
   complex(c_double_complex) :: hA(ld,ld) = reshape([(1.0, 0.0), (0.0, 0.0), (2.0, 0.0), (3.0, 0.0)], [ld,ld])
   complex(c_double_complex) :: hB(ld,ld) = reshape([(1.0, 0.0), (0.0, 0.0), (0.0, 0.0), (1.0, 0.0)], [ld,ld])
@@ -46,6 +46,10 @@ program hip_ztrmm
   integer :: i, j
   real(c_double) :: error
   real(c_double), parameter :: error_max = 10*epsilon(error)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha)
+  alpha = (1.0, 0.0)
 
   write(*,"(a)",advance="no") "-- Running test 'ztrmm' (Fortran 2008 interfaces) - "
 

@@ -1607,11 +1607,17 @@ if(BUILD_TESTING)
     hipfort_add_test(hip error_version f2003)
     # hipblasCheck on a failing status: it must name the status, then stop. The
     # nvptx build reports CUDA statuses, which the HIP names do not describe, so
-    # it prints the code alone. PASS_REGULAR_EXPRESSION replaces the exit-status
-    # check, so the stop is not a failure here.
+    # it prints the code alone, and HIPBLAS_STATUS_INVALID_VALUE there carries
+    # cuBLAS's value, 7. PASS_REGULAR_EXPRESSION replaces the exit-status check,
+    # so the stop is not a failure here.
     hipfort_add_test(hip check_message f2003)
+    if(_hipfort_cuda_backend)
+      set(_hipfort_check_regex "HIPBLAS ERROR: code = +7")
+    else()
+      set(_hipfort_check_regex "HIPBLAS ERROR: HIPBLAS_STATUS_INVALID_VALUE \\(code 3\\)")
+    endif()
     set_tests_properties(hipfort_test_f2003_hip_check_message PROPERTIES
-      PASS_REGULAR_EXPRESSION "HIPBLAS ERROR: (HIPBLAS_STATUS_INVALID_VALUE \\(code 3\\)|code = +3)"
+      PASS_REGULAR_EXPRESSION "${_hipfort_check_regex}"
       FAIL_REGULAR_EXPRESSION "FAILED!")
     hipfort_add_test(hip pointer_attributes f2003)
     hipfort_add_test(hip mem_advise f2003)
