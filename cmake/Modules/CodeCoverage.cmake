@@ -1,3 +1,28 @@
+###############################################################################
+# Copyright (C) 2026 Advanced Micro Devices, Inc. All rights reserved.
+#
+# SPDX-License-Identifier: MIT
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+###############################################################################
+
 # Code-coverage support for the hipfort test suite.
 #
 # Enable with -DHIPFORT_CODE_COVERAGE=ON. This instruments the generated binding
@@ -12,11 +37,12 @@
 # What is measured
 # ----------------
 # hipfort is generated code, and the only part of it with an instrumentable body
-# is the set of Fortran array overloads the generator emits per routine
-# (_rank_0, _rank_1, _full_rank). The report counts how many of those wrapper
-# bodies actually executed. Tests that call the raw bind(C) interface -- which
-# every Fortran 2003 test does, and which is correct usage -- execute no wrapper
-# and so do not register, and routines that get no array overloads cannot
+# is the set of Fortran wrappers the generator emits around a routine's bind(C)
+# interface: the array overloads (_rank_0, _rank_1, _full_rank) and the typed
+# forms (_typed, _devptr, _rank_N_devptr). The report counts how many of those
+# wrapper bodies actually executed. Tests that call the raw bind(C) interface --
+# which every Fortran 2003 test does, and which is correct usage -- execute no
+# wrapper and so do not register, and routines that get no wrapper cannot
 # register at all. Read the number as how much of the generator's output is
 # live, not as API test coverage. See test/coverage/variant_coverage.py.
 #

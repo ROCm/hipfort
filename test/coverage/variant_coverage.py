@@ -1,15 +1,44 @@
 #!/usr/bin/env python3
+###############################################################################
+# Copyright (C) 2026 Advanced Micro Devices, Inc. All rights reserved.
+#
+# SPDX-License-Identifier: MIT
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+###############################################################################
+
 """Measure how thoroughly the test suite exercises the generated bindings.
 
 hipfort is generated code. For each routine the generator emits a raw bind(C)
-interface plus, where the argument shapes allow it, a set of Fortran array
-overloads -- one per rank:
+interface plus, where the arguments allow it, Fortran module procedures that
+wrap it:
 
     <routine>_rank_0     scalar / raw c_ptr argument
     <routine>_rank_1     1-D Fortran array
     <routine>_full_rank  N-D Fortran array
+    <routine>_typed      typed scalars (and Fortran strings) in place of the
+                         type(c_ptr) the bind(C) interface takes
+    <routine>_devptr     the same, keeping the device-pointer-mode scalars as
+                         type(c_ptr); also _rank_N_devptr / _full_rank_devptr
 
-Each overload is a distinct wrapper body that marshals its arguments with c_loc
+Each one is a distinct wrapper body that marshals its arguments with c_loc
 and calls the bind(C) interface, so gcov can tell whether a test actually
 executed it. The HIP runtime (hipMalloc, hipMemcpy, hipHostRegister) also ships array
 overloads, keyed by element type and rank instead -- hipmalloc_i4_2_source,
@@ -21,10 +50,9 @@ over the routines that have at least one test.
 Note what this does *not* measure. A test that calls the raw bind(C) interface
 directly -- which every Fortran 2003 test does, and which is a perfectly correct
 way to use the library -- executes no wrapper body and is therefore invisible
-here. Routines that get no array overloads at all (expert drivers with scalar
-selection arguments, the _64 entry points, plan/descriptor APIs) contribute
-nothing for the same reason. This is a measure of how much of the *generator's*
-output is live, not a measure of API test coverage.
+here. Routines that get no wrapper at all (no array or typed-scalar argument)
+contribute nothing for the same reason. This is a measure of how much of the
+*generator's* output is live, not a measure of API test coverage.
 
 F2018 assumed-rank overloads are excluded: they are off by default, so they are
 not callable in a normal build.
@@ -63,19 +91,32 @@ GROUPS = [
     ("hipfft",   ["hipfort_hipfft"]),
     ("hipfftw",  ["hipfort_hipfftw"]),
     ("hiprand",  ["hipfort_hiprand"]),
-    ("hip runtime", ["hipfort_hipmalloc", "hipfort_hipmemcpy",
+    ("roctx",    ["hipfort_roctx"]),
+    ("hip runtime", ["hipfort", "hipfort_hipmalloc", "hipfort_hipmemcpy",
                      "hipfort_hiphostregister"]),
 ]
 
-# The math-library bindings name their overloads <routine>_rank_0 / _rank_1 /
-# _full_rank.
-VARIANT_RE = re.compile(r"(.+?)_(rank_\d+|full_rank)$")
+# The generated wrappers are named <routine>_rank_0 / _rank_1 / _full_rank,
+# <routine>_typed, <routine>_devptr and <routine>_rank_N_devptr /
+# _full_rank_devptr; all of a routine's wrappers form one family.
+VARIANT_RE = re.compile(r"(.+?)_((?:rank_\d+|full_rank)(?:_devptr)?|typed|devptr)$")
 
 # The HIP runtime overloads are keyed by element type and rank instead, as in
 # hipmalloc_i4_2_source or hipfree_c4_1, so the family is the routine plus its
 # type and the variant is the rank with any flavour suffix. Both schemes leave
 # out assumed_rank, which is off by default and so not callable.
 HIP_VARIANT_RE = re.compile(r"(.+?_(?:i|r|c|l)\d+)_(\d+(?:_[a-z0-9_]+)?)$")
+
+
+def matching_gcov():
+    """gcov-<major> for the gfortran on PATH, else plain gcov: a gcov of another
+    major version cannot read the .gcno files."""
+    try:
+        major = subprocess.run(["gfortran", "-dumpversion"], capture_output=True,
+                               text=True).stdout.strip().split(".")[0]
+    except OSError:
+        major = ""
+    return (major and shutil.which(f"gcov-{major}")) or shutil.which("gcov")
 
 
 def find_object_dir(build):
@@ -168,6 +209,8 @@ def measure(build, gcov_exe):
                 fn = line.get("function_name")
                 if not fn:
                     continue
+                if "_assumed_rank" in fn:
+                    continue    # off by default; see the module docstring
                 match = VARIANT_RE.match(fn) or HIP_VARIANT_RE.match(fn)
                 if not match:
                     continue
@@ -204,7 +247,7 @@ def print_report(results, show_partial=False):
     for lib, _modules in GROUPS:
         r = results.get(lib)
         if not r or r["gen"] == 0:
-            note = "(no array overloads)" if r else "(no data)"
+            note = ("(none tested)" if r["families"] else "(no wrappers)") if r else "(no data)"
             print(f"{lib:12} {note:>18} {'n/a':>9} {(r['tested'] if r else 0):>16}")
             continue
         pct = f"{round(100 * r['run'] / r['gen'])}%"
@@ -243,7 +286,8 @@ def write_html(results, path):
         r = results.get(lib)
         if not r or r["gen"] == 0:
             rows.append(f"<tr><td>{html.escape(lib)}</td><td colspan=2 class=na>"
-                        f"no array overloads</td><td>{(r['tested'] if r else 0)}</td></tr>")
+                        f"{'none tested' if r and r['families'] else 'no wrappers'}</td>"
+                        f"<td>{(r['tested'] if r else 0)}</td></tr>")
             continue
         lpct = round(100 * r["run"] / r["gen"])
         rows.append(f"<tr><td>{html.escape(lib)}</td><td>{r['run']}/{r['gen']}</td>"
@@ -266,12 +310,13 @@ def write_html(results, path):
  <tr><th>library</th><th>variants run/generated</th><th>coverage</th><th>tested routines</th></tr>
  {chr(10) + ' '.join(rows)}
 </table>
-<p class="note">Counts the generated Fortran array-overload wrapper bodies
-(<code>rank_0</code>, <code>rank_1</code>, <code>full_rank</code>) that actually
-executed, over the routines that have at least one test. Tests that call the raw
+<p class="note">Counts the generated Fortran wrapper bodies
+(<code>rank_0</code>, <code>rank_1</code>, <code>full_rank</code>,
+<code>typed</code>, <code>devptr</code>) that actually executed, over the
+routines that have at least one test. Tests that call the raw
 <code>bind(C)</code> interface directly &mdash; every Fortran 2003 test does
-&mdash; execute no wrapper and are not counted, and routines that get no array
-overloads cannot contribute at all. Read this as how much of the
+&mdash; execute no wrapper and are not counted, and routines that get no
+wrapper cannot contribute at all. Read this as how much of the
 <em>generator's</em> output is live, not as API test coverage.</p>
 </body></html>
 """
@@ -301,7 +346,7 @@ def main():
         clean(args.build)
         return
 
-    gcov = args.gcov or shutil.which("gcov-13") or shutil.which("gcov")
+    gcov = args.gcov or matching_gcov()
     if not gcov:
         sys.exit("error: no gcov found; install the one matching your gfortran.")
 
