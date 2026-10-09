@@ -47,6 +47,132 @@ if(BUILD_TESTING)
            CMAKE_Fortran_COMPILE_OBJECT "${CMAKE_Fortran_COMPILE_OBJECT}")
   endif()
 
+  # Which backend the tests link: hipfort::hip carries the archive of the one
+  # lib/ built the components for (nvptx when HIPFORT_BUILD_AMDGCN is OFF, even on
+  # an AMD host). On the CUDA backend the symbol tests are compiled with
+  # -DUSE_CUDA_NAMES and the ROCm-only tests below are skipped. Without the
+  # in-tree target (test/ configured on its own), fall back to HIP_PLATFORM, as
+  # lib/CMakeLists.txt does: CUDAToolkit alone is often found on an AMD box too.
+  set(_hipfort_cuda_backend FALSE)
+  if(TARGET hipfort-hip)
+    get_target_property(_hipfort_hip_links hipfort-hip INTERFACE_LINK_LIBRARIES)
+    if("hipfort-nvptx" IN_LIST _hipfort_hip_links)
+      set(_hipfort_cuda_backend TRUE)
+    endif()
+  else()
+    find_package(hip QUIET PATHS ${ROCM_PATH})
+    find_package(CUDAToolkit QUIET)
+    if(NOT HIP_PLATFORM STREQUAL "amd" AND CUDAToolkit_FOUND)
+      set(_hipfort_cuda_backend TRUE)
+    endif()
+  endif()
+
+  # Tests that only build on the ROCm backend. Under USE_CUDA_NAMES a routine
+  # with no CUDA counterpart of the same signature is left out of the bindings
+  # (see audit_cuda_mappings.jl in rocm-fortran), and so is the typed form of a
+  # routine bound to the CUDA driver API; a test calling one cannot compile there.
+  # Keyed <dir>/<lib>/<test>, since the f2003 and f2008 variants differ.
+  set(HIPFORT_TESTS_ROCM_ONLY
+    # hipSOLVER compat API (hipsolverX, no Dn): getrf, getrs, potrs, potrfBatched
+    # and gesvd_bufferSize take a workspace cuSOLVER does not, and the Rf getter
+    # hipsolverRfGet_Algs has no cuSOLVER counterpart.
+    f2003/hipsolver/hipsolver_cgesvd
+    f2003/hipsolver/hipsolver_cgetrf
+    f2003/hipsolver/hipsolver_cpotrfbatched
+    f2003/hipsolver/hipsolver_cpotrs
+    f2003/hipsolver/hipsolver_dgetrf
+    f2003/hipsolver/hipsolver_dpotrfbatched
+    f2003/hipsolver/hipsolver_dpotrs
+    f2003/hipsolver/hipsolver_rf_params
+    f2003/hipsolver/hipsolver_sgesvd
+    f2003/hipsolver/hipsolver_sgetrf
+    f2003/hipsolver/hipsolver_spotrfbatched
+    f2003/hipsolver/hipsolver_spotrs
+    f2003/hipsolver/hipsolver_zgesvd
+    f2003/hipsolver/hipsolver_zgetrf
+    f2003/hipsolver/hipsolver_zpotrfbatched
+    f2003/hipsolver/hipsolver_zpotrs
+    f2008/hipsolver/hipsolver_cgesvd
+    f2008/hipsolver/hipsolver_cgetrf
+    f2008/hipsolver/hipsolver_cpotrfbatched
+    f2008/hipsolver/hipsolver_cpotrs
+    f2008/hipsolver/hipsolver_dgesvd
+    f2008/hipsolver/hipsolver_dgetrf
+    f2008/hipsolver/hipsolver_dgetrs
+    f2008/hipsolver/hipsolver_dpotrfbatched
+    f2008/hipsolver/hipsolver_dpotrs
+    f2008/hipsolver/hipsolver_rf_params
+    f2008/hipsolver/hipsolver_sgesvd
+    f2008/hipsolver/hipsolver_sgetrf
+    f2008/hipsolver/hipsolver_spotrfbatched
+    f2008/hipsolver/hipsolver_spotrs
+    f2008/hipsolver/hipsolver_zgesvd
+    f2008/hipsolver/hipsolver_zgetrf
+    f2008/hipsolver/hipsolver_zpotrfbatched
+    f2008/hipsolver/hipsolver_zpotrs
+    # hipSPARSE routines cuSPARSE 12 removed: csrsv2, csrgemm, gthr, sctr,
+    # csr2csc; and hipsparseGetGitRevision, which is hipSPARSE's own.
+    f2003/hipsparse/hipsparse_ccsr2csc
+    f2003/hipsparse/hipsparse_ccsrgemm
+    f2003/hipsparse/hipsparse_ccsrsv2
+    f2003/hipsparse/hipsparse_ccsrsv2_devptr
+    f2003/hipsparse/hipsparse_cgthr
+    f2003/hipsparse/hipsparse_csctr
+    f2003/hipsparse/hipsparse_dcsr2csc
+    f2003/hipsparse/hipsparse_dcsrgemm
+    f2003/hipsparse/hipsparse_dcsrsv2
+    f2003/hipsparse/hipsparse_dcsrsv2_devptr
+    f2003/hipsparse/hipsparse_dgthr
+    f2003/hipsparse/hipsparse_dsctr
+    f2003/hipsparse/hipsparse_scsrgemm
+    f2003/hipsparse/hipsparse_scsrsv2
+    f2003/hipsparse/hipsparse_scsrsv2_devptr
+    f2003/hipsparse/hipsparse_sgthr
+    f2003/hipsparse/hipsparse_ssctr
+    f2003/hipsparse/hipsparse_version
+    f2003/hipsparse/hipsparse_zcsr2csc
+    f2003/hipsparse/hipsparse_zcsrgemm
+    f2003/hipsparse/hipsparse_zcsrsv2
+    f2003/hipsparse/hipsparse_zcsrsv2_devptr
+    f2003/hipsparse/hipsparse_zcsrsv2_typed
+    f2003/hipsparse/hipsparse_zgthr
+    f2003/hipsparse/hipsparse_zsctr
+    f2008/hipsparse/hipsparse_ccsr2csc
+    f2008/hipsparse/hipsparse_ccsrgemm
+    f2008/hipsparse/hipsparse_ccsrsv2
+    f2008/hipsparse/hipsparse_cgthr
+    f2008/hipsparse/hipsparse_csctr
+    f2008/hipsparse/hipsparse_dcsr2csc
+    f2008/hipsparse/hipsparse_dcsrgemm
+    f2008/hipsparse/hipsparse_dcsrsv2
+    f2008/hipsparse/hipsparse_dgthr
+    f2008/hipsparse/hipsparse_dsctr
+    f2008/hipsparse/hipsparse_scsr2csc
+    f2008/hipsparse/hipsparse_scsrgemm
+    f2008/hipsparse/hipsparse_scsrsv2
+    f2008/hipsparse/hipsparse_sgthr
+    f2008/hipsparse/hipsparse_ssctr
+    f2008/hipsparse/hipsparse_version
+    f2008/hipsparse/hipsparse_zcsr2csc
+    f2008/hipsparse/hipsparse_zcsrgemm
+    f2008/hipsparse/hipsparse_zcsrsv2
+    f2008/hipsparse/hipsparse_zgthr
+    f2008/hipsparse/hipsparse_zsctr
+    # HIP runtime
+    f2003/hip/device_management              # hipDeviceTotalMem typed form (driver API: c_ptr form only)
+    f2003/hip/device_properties              # hipDeviceProp_t%clockRate (gone from CUDA 13)
+    f2003/hip/event_timing                   # hipMemcpyWithStream
+    f2003/hip/graph_empty_node               # hipGraphAddDependencies (CUDA 13 adds edgeData)
+    f2003/hip/graph_nodes                    # hipGraphAddDependencies (CUDA 13 adds edgeData)
+    f2003/hip/mem_advise                     # hipMemAdvise, hipMemPrefetchAsync (CUDA 13 takes a location)
+    f2003/hip/memcpy_async                   # hipMemcpyWithStream
+    f2003/hip/pointer_attributes             # hipPointerAttribute_t%isManaged
+    f2003/hip/stream_capture_info            # hipStreamGetCaptureInfo (CUDA 13 takes 6 arguments)
+    f2003/hip/virtual_memory                 # typed hipMemGetAllocationGranularity (driver API)
+    f2008/hip/mem_advise                     # hipMemAdvise, hipMemPrefetchAsync (CUDA 13 takes a location)
+    f2008/hip/pointer_attributes             # hipPointerAttribute_t%isManaged
+  )
+
   function(hipfort_add_test lib func dir)
     # The f2008 tests exercise the per-rank array overloads and
     # the f2018 tests the assumed-rank overloads; skip each when its interface
@@ -55,6 +181,9 @@ if(BUILD_TESTING)
       return()
     endif()
     if(dir STREQUAL "f2018" AND NOT HIPFORT_ASSUMED_RANK)
+      return()
+    endif()
+    if(_hipfort_cuda_backend AND "${dir}/${lib}/${func}" IN_LIST HIPFORT_TESTS_ROCM_ONLY)
       return()
     endif()
     if(dir STREQUAL "f2008")
@@ -105,21 +234,10 @@ if(BUILD_TESTING)
   # backend, where the interfaces bind to cu* symbols. On that backend the test
   # must be compiled with -DUSE_CUDA_NAMES to match the nvptx library it links.
   #
-  # Detect the active backend the way lib/CMakeLists.txt does: this test/ tree is
-  # a sibling add_subdirectory and cannot see lib/'s HIP_PLATFORM, so re-run the
-  # same detection here. The symbol tests build whenever HIPFORT_EXTENDED_TESTS is
-  # on and the backend's runtime libraries are found (the per-test if(TARGET
-  # hipfort::<lib>) guards handle that); this only decides the symbol naming.
-  # NB: CUDAToolkit is often found on an AMD box too, so it alone is not the
-  # discriminator -- HIP_PLATFORM is.
-  set(_hipfort_cuda_backend FALSE)
-  if(HIPFORT_EXTENDED_TESTS)
-    find_package(hip QUIET PATHS ${ROCM_PATH})
-    find_package(CUDAToolkit QUIET)
-    if(NOT HIP_PLATFORM STREQUAL "amd" AND CUDAToolkit_FOUND)
-      set(_hipfort_cuda_backend TRUE)
-    endif()
-  endif()
+  # The backend comes from _hipfort_cuda_backend, set above. The symbol tests
+  # build whenever HIPFORT_EXTENDED_TESTS is on and the backend's runtime
+  # libraries are found (the per-test if(TARGET hipfort::<lib>) guards handle
+  # that); the backend only decides the symbol naming.
   function(hipfort_add_symbol_test lib)
     if(NOT HIPFORT_EXTENDED_TESTS)
       return()
@@ -1505,11 +1623,11 @@ if(BUILD_TESTING)
     hipfort_add_test(hip mem_advise f2008)
 
     # The hipModule* entry points need a real GPU kernel, so this test loads a
-    # standalone code object built from the existing vecadd source. They have no
-    # CUDA-driver counterpart in the generated bindings, hence the AMD-only guard.
+    # standalone code object built from the existing vecadd source. hipcc builds
+    # it for AMD, hence the ROCm-backend guard.
     find_package(hip QUIET PATHS ${ROCM_PATH})
     find_program(HIPFORT_HIPCC hipcc HINTS ${ROCM_PATH}/bin)
-    if(HIPFORT_HIPCC AND HIP_PLATFORM STREQUAL "amd")
+    if(HIPFORT_HIPCC AND HIP_PLATFORM STREQUAL "amd" AND NOT _hipfort_cuda_backend)
       # --offload-arch=native and `rocm_agent_enumerator -name` both append the
       # :xnack suffix, which pins the code object to one XNACK mode and makes
       # hipModuleLoad fail in the other. The bare gfxNNN loads under both.
@@ -1578,7 +1696,9 @@ if(BUILD_TESTING)
   endif()
 
   # hipOccupancy* and hipLaunchCooperativeKernel take the host stub of a kernel.
-  if(CMAKE_HIP_COMPILER AND TARGET hipfort::hip AND HIP_PLATFORM STREQUAL "amd")
+  # Like module_kernel, these need the ROCm backend: the kernel is built for AMD.
+  if(CMAKE_HIP_COMPILER AND TARGET hipfort::hip AND HIP_PLATFORM STREQUAL "amd"
+     AND NOT _hipfort_cuda_backend)
     foreach(kernel_test IN ITEMS occupancy cooperative_launch)
       hipfort_add_test(hip ${kernel_test} f2003)
       target_sources(hipfort_test_f2003_hip_${kernel_test}
