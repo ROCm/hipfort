@@ -17397,16 +17397,11 @@ module hipfort_hipsparse
   !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p rowBlockDim, \p colBlockDim,
   !>   \p csrVal,
   !>               \p csrRowPtr, \p csrColInd, or \p pBufferSizeInBytes pointer is invalid.
+#ifndef USE_CUDA_NAMES
   interface hipsparseScsr2gebsr_bufferSize
-#ifdef USE_CUDA_NAMES
-    function hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
-        rowBlockDim,colBlockDim,pBufferSizeInBytes) &
-        bind(c, name="cusparseScsr2gebsr_bufferSize")
-#else
     function hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
         rowBlockDim,colBlockDim,pBufferSizeInBytes) &
         bind(c, name="hipsparseScsr2gebsr_bufferSize")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -17436,17 +17431,13 @@ module hipfort_hipsparse
 #endif
 #endif
   end interface
+#endif
 
+#ifndef USE_CUDA_NAMES
   interface hipsparseDcsr2gebsr_bufferSize
-#ifdef USE_CUDA_NAMES
-    function hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
-        rowBlockDim,colBlockDim,pBufferSizeInBytes) &
-        bind(c, name="cusparseDcsr2gebsr_bufferSize")
-#else
     function hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
         rowBlockDim,colBlockDim,pBufferSizeInBytes) &
         bind(c, name="hipsparseDcsr2gebsr_bufferSize")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -17476,17 +17467,13 @@ module hipfort_hipsparse
 #endif
 #endif
   end interface
+#endif
 
+#ifndef USE_CUDA_NAMES
   interface hipsparseCcsr2gebsr_bufferSize
-#ifdef USE_CUDA_NAMES
-    function hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
-        rowBlockDim,colBlockDim,pBufferSizeInBytes) &
-        bind(c, name="cusparseCcsr2gebsr_bufferSize")
-#else
     function hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
         rowBlockDim,colBlockDim,pBufferSizeInBytes) &
         bind(c, name="hipsparseCcsr2gebsr_bufferSize")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -17516,17 +17503,13 @@ module hipfort_hipsparse
 #endif
 #endif
   end interface
+#endif
 
+#ifndef USE_CUDA_NAMES
   interface hipsparseZcsr2gebsr_bufferSize
-#ifdef USE_CUDA_NAMES
-    function hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
-        rowBlockDim,colBlockDim,pBufferSizeInBytes) &
-        bind(c, name="cusparseZcsr2gebsr_bufferSize")
-#else
     function hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd, &
         rowBlockDim,colBlockDim,pBufferSizeInBytes) &
         bind(c, name="hipsparseZcsr2gebsr_bufferSize")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -17556,6 +17539,7 @@ module hipfort_hipsparse
 #endif
 #endif
   end interface
+#endif
 
   !>  \ingroup conv_module
   !>   \brief
@@ -19366,16 +19350,11 @@ module hipfort_hipsparse
   !>   bsrColInd,
   !>               or \p pBufferSizeInBytes pointer is invalid.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
+#ifndef USE_CUDA_NAMES
   interface hipsparseSgebsr2gebsc_bufferSize
-#ifdef USE_CUDA_NAMES
-    function hipsparseSgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
-        rowBlockDim,colBlockDim,pBufferSizeInBytes) &
-        bind(c, name="cusparseSgebsr2gebsc_bufferSize")
-#else
     function hipsparseSgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
         rowBlockDim,colBlockDim,pBufferSizeInBytes) &
         bind(c, name="hipsparseSgebsr2gebsc_bufferSize")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -19394,17 +19373,13 @@ module hipfort_hipsparse
 
     module procedure hipsparseSgebsr2gebsc_bufferSize_typed
   end interface
+#endif
 
+#ifndef USE_CUDA_NAMES
   interface hipsparseDgebsr2gebsc_bufferSize
-#ifdef USE_CUDA_NAMES
-    function hipsparseDgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
-        rowBlockDim,colBlockDim,pBufferSizeInBytes) &
-        bind(c, name="cusparseDgebsr2gebsc_bufferSize")
-#else
     function hipsparseDgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
         rowBlockDim,colBlockDim,pBufferSizeInBytes) &
         bind(c, name="hipsparseDgebsr2gebsc_bufferSize")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -19423,17 +19398,13 @@ module hipfort_hipsparse
 
     module procedure hipsparseDgebsr2gebsc_bufferSize_typed
   end interface
+#endif
 
+#ifndef USE_CUDA_NAMES
   interface hipsparseCgebsr2gebsc_bufferSize
-#ifdef USE_CUDA_NAMES
-    function hipsparseCgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
-        rowBlockDim,colBlockDim,pBufferSizeInBytes) &
-        bind(c, name="cusparseCgebsr2gebsc_bufferSize")
-#else
     function hipsparseCgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
         rowBlockDim,colBlockDim,pBufferSizeInBytes) &
         bind(c, name="hipsparseCgebsr2gebsc_bufferSize")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -19452,17 +19423,13 @@ module hipfort_hipsparse
 
     module procedure hipsparseCgebsr2gebsc_bufferSize_typed
   end interface
+#endif
 
+#ifndef USE_CUDA_NAMES
   interface hipsparseZgebsr2gebsc_bufferSize
-#ifdef USE_CUDA_NAMES
-    function hipsparseZgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
-        rowBlockDim,colBlockDim,pBufferSizeInBytes) &
-        bind(c, name="cusparseZgebsr2gebsc_bufferSize")
-#else
     function hipsparseZgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
         rowBlockDim,colBlockDim,pBufferSizeInBytes) &
         bind(c, name="hipsparseZgebsr2gebsc_bufferSize")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -19481,6 +19448,7 @@ module hipfort_hipsparse
 
     module procedure hipsparseZgebsr2gebsc_bufferSize_typed
   end interface
+#endif
 
   !>  \ingroup conv_module
   !>   \brief Convert a sparse GEBSR matrix into a sparse GEBSC matrix
@@ -21620,18 +21588,12 @@ module hipfort_hipsparse
 #endif
   end interface
 
+#ifndef USE_CUDA_NAMES
   interface hipsparseDpruneCsr2csrByPercentage_bufferSizeExt
-#ifdef USE_CUDA_NAMES
-    function hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_(handle,m,n,nnzA,descrA,csrValA, &
-        csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
-        pBufferSizeInBytes) &
-        bind(c, name="cusparseDpruneCsr2csrByPercentage_bufferSizeExt")
-#else
     function hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
         pBufferSizeInBytes) &
         bind(c, name="hipsparseDpruneCsr2csrByPercentage_bufferSizeExt")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -21665,6 +21627,7 @@ module hipfort_hipsparse
 #endif
 #endif
   end interface
+#endif
 
   !>  \ingroup conv_module
   !>   \brief Convert and prune by percentage a sparse CSR matrix into a sparse CSR matrix.
@@ -21749,16 +21712,11 @@ module hipfort_hipsparse
 #endif
   end interface
 
+#ifndef USE_CUDA_NAMES
   interface hipsparseDpruneCsr2csrNnzByPercentage
-#ifdef USE_CUDA_NAMES
-    function hipsparseDpruneCsr2csrNnzByPercentage_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
-        csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer) &
-        bind(c, name="cusparseDpruneCsr2csrNnzByPercentage")
-#else
     function hipsparseDpruneCsr2csrNnzByPercentage_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer) &
         bind(c, name="hipsparseDpruneCsr2csrNnzByPercentage")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -21791,6 +21749,7 @@ module hipfort_hipsparse
 #endif
 #endif
   end interface
+#endif
 
   !>  \ingroup conv_module
   !>   \brief Convert and prune by percentage a sparse CSR matrix into a sparse CSR matrix.
@@ -21890,16 +21849,11 @@ module hipfort_hipsparse
 #endif
   end interface
 
+#ifndef USE_CUDA_NAMES
   interface hipsparseDpruneCsr2csrByPercentage
-#ifdef USE_CUDA_NAMES
-    function hipsparseDpruneCsr2csrByPercentage_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
-        csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,buffer) &
-        bind(c, name="cusparseDpruneCsr2csrByPercentage")
-#else
     function hipsparseDpruneCsr2csrByPercentage_(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,buffer) &
         bind(c, name="hipsparseDpruneCsr2csrByPercentage")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -21931,6 +21885,7 @@ module hipfort_hipsparse
 #endif
 #endif
   end interface
+#endif
 
   !>  \ingroup conv_module
   !>   \brief
@@ -22718,16 +22673,11 @@ module hipfort_hipsparse
 #endif
   end interface
 
+#ifndef USE_CUDA_NAMES
   interface hipsparseDpruneDense2csrByPercentage_bufferSizeExt
-#ifdef USE_CUDA_NAMES
-    function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,A,lda,percentage, &
-        descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes) &
-        bind(c, name="cusparseDpruneDense2csrByPercentage_bufferSizeExt")
-#else
     function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,A,lda,percentage, &
         descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes) &
         bind(c, name="hipsparseDpruneDense2csrByPercentage_bufferSizeExt")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -22759,6 +22709,7 @@ module hipfort_hipsparse
 #endif
 #endif
   end interface
+#endif
 
   !>  \ingroup conv_module
   !>   \brief
@@ -22858,16 +22809,11 @@ module hipfort_hipsparse
 #endif
   end interface
 
+#ifndef USE_CUDA_NAMES
   interface hipsparseDpruneDense2csrNnzByPercentage
-#ifdef USE_CUDA_NAMES
-    function hipsparseDpruneDense2csrNnzByPercentage_(handle,m,n,A,lda,percentage,descr,csrRowPtr, &
-        nnzTotalDevHostPtr,myInfo,buffer) &
-        bind(c, name="cusparseDpruneDense2csrNnzByPercentage")
-#else
     function hipsparseDpruneDense2csrNnzByPercentage_(handle,m,n,A,lda,percentage,descr,csrRowPtr, &
         nnzTotalDevHostPtr,myInfo,buffer) &
         bind(c, name="hipsparseDpruneDense2csrNnzByPercentage")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -22898,6 +22844,7 @@ module hipfort_hipsparse
 #endif
 #endif
   end interface
+#endif
 
   !>  \ingroup conv_module
   !>   \brief
@@ -23001,16 +22948,11 @@ module hipfort_hipsparse
 #endif
   end interface
 
+#ifndef USE_CUDA_NAMES
   interface hipsparseDpruneDense2csrByPercentage
-#ifdef USE_CUDA_NAMES
-    function hipsparseDpruneDense2csrByPercentage_(handle,m,n,A,lda,percentage,descr,csrVal, &
-        csrRowPtr,csrColInd,myInfo,buffer) &
-        bind(c, name="cusparseDpruneDense2csrByPercentage")
-#else
     function hipsparseDpruneDense2csrByPercentage_(handle,m,n,A,lda,percentage,descr,csrVal, &
         csrRowPtr,csrColInd,myInfo,buffer) &
         bind(c, name="hipsparseDpruneDense2csrByPercentage")
-#endif
       use iso_c_binding
       use hipfort_hipsparse_enums
       implicit none
@@ -23040,6 +22982,7 @@ module hipfort_hipsparse
 #endif
 #endif
   end interface
+#endif
 
   !>  \ingroup reordering_module
   !>   \brief Coloring of the adjacency graph of the matrix \f$A\f$ stored in the CSR format.
@@ -30608,6 +30551,7 @@ module hipfort_hipsparse
         c_loc(pBufferSizeInBytes))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseScsr2gebsr_bufferSize_typed(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
         csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -30630,6 +30574,8 @@ module hipfort_hipsparse
         csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDcsr2gebsr_bufferSize_typed(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
         csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -30652,6 +30598,8 @@ module hipfort_hipsparse
         csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCcsr2gebsr_bufferSize_typed(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
         csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -30674,6 +30622,8 @@ module hipfort_hipsparse
         csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZcsr2gebsr_bufferSize_typed(handle,dir,m,n,csr_descr,csrVal,csrRowPtr, &
         csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -30696,6 +30646,7 @@ module hipfort_hipsparse
         csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
+#endif
     function hipsparseXcsr2gebsrNnz_typed(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd,bsr_descr, &
         bsrRowPtr,rowBlockDim,colBlockDim,bsrNnzDevhost,pbuffer)
       use iso_c_binding
@@ -30818,6 +30769,7 @@ module hipfort_hipsparse
         csrVal,csrRowPtr,csrColInd,myInfo,c_loc(pBufferSizeInBytes))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseSgebsr2gebsc_bufferSize_typed(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
         rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -30839,6 +30791,8 @@ module hipfort_hipsparse
         nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseDgebsr2gebsc_bufferSize_typed(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
         rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -30860,6 +30814,8 @@ module hipfort_hipsparse
         nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseCgebsr2gebsc_bufferSize_typed(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
         rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -30881,6 +30837,8 @@ module hipfort_hipsparse
         nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipsparseZgebsr2gebsc_bufferSize_typed(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
         rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
@@ -30902,6 +30860,7 @@ module hipfort_hipsparse
         nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
+#endif
     function hipsparseSgebsr2gebsr_bufferSize_typed(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC, &
         pBufferSizeInBytes)
@@ -31482,6 +31441,7 @@ module hipfort_hipsparse
         c_loc(pBufferSizeInBytes))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_typed(handle,m,n,nnzA,descrA, &
         csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
         pBufferSizeInBytes)
@@ -31511,6 +31471,7 @@ module hipfort_hipsparse
         c_loc(pBufferSizeInBytes))
     end function
 
+#endif
     function hipsparseSpruneCsr2csrNnzByPercentage_typed(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
       use iso_c_binding
@@ -31537,6 +31498,7 @@ module hipfort_hipsparse
         c_loc(nnzTotalDevHostPtr),myInfo,buffer)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseDpruneCsr2csrNnzByPercentage_typed(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
       use iso_c_binding
@@ -31563,6 +31525,7 @@ module hipfort_hipsparse
         c_loc(nnzTotalDevHostPtr),myInfo,buffer)
     end function
 
+#endif
 #ifndef USE_CUDA_NAMES
     function hipsparseSpruneDense2csr_bufferSize_typed(handle,m,n,A,lda,threshold,descr,csrVal, &
         csrRowPtr,csrColInd,pBufferSizeInBytes)
@@ -31817,6 +31780,7 @@ module hipfort_hipsparse
         csrVal,csrRowPtr,csrColInd,myInfo,c_loc(pBufferSizeInBytes))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_typed(handle,m,n,A,lda,percentage, &
         descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
@@ -31841,6 +31805,7 @@ module hipfort_hipsparse
         csrVal,csrRowPtr,csrColInd,myInfo,c_loc(pBufferSizeInBytes))
     end function
 
+#endif
     function hipsparseSpruneDense2csrNnzByPercentage_typed(handle,m,n,A,lda,percentage,descr, &
         csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
       use iso_c_binding
@@ -31863,6 +31828,7 @@ module hipfort_hipsparse
         handle,m,n,A,lda,percentage,descr,csrRowPtr,c_loc(nnzTotalDevHostPtr),myInfo,buffer)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipsparseDpruneDense2csrNnzByPercentage_typed(handle,m,n,A,lda,percentage,descr, &
         csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
       use iso_c_binding
@@ -31885,6 +31851,7 @@ module hipfort_hipsparse
         handle,m,n,A,lda,percentage,descr,csrRowPtr,c_loc(nnzTotalDevHostPtr),myInfo,buffer)
     end function
 
+#endif
     function hipsparseScsrcolor_typed(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       use iso_c_binding
@@ -54524,6 +54491,7 @@ module hipfort_hipsparse
 
 #endif
 #endif
+#ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsparseScsr2gebsr_bufferSize_assumed_rank(handle,dir,m,n,csr_descr,csrVal, &
         csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
@@ -54596,6 +54564,8 @@ module hipfort_hipsparse
     end function
 
 #endif
+#endif
+#ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsparseDcsr2gebsr_bufferSize_assumed_rank(handle,dir,m,n,csr_descr,csrVal, &
         csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
@@ -54668,6 +54638,8 @@ module hipfort_hipsparse
     end function
 
 #endif
+#endif
+#ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsparseCcsr2gebsr_bufferSize_assumed_rank(handle,dir,m,n,csr_descr,csrVal, &
         csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
@@ -54740,6 +54712,8 @@ module hipfort_hipsparse
     end function
 
 #endif
+#endif
+#ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsparseZcsr2gebsr_bufferSize_assumed_rank(handle,dir,m,n,csr_descr,csrVal, &
         csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
@@ -54811,6 +54785,7 @@ module hipfort_hipsparse
         c_loc(pBufferSizeInBytes))
     end function
 
+#endif
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsparseXcsr2gebsrNnz_assumed_rank(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd, &
@@ -59671,6 +59646,7 @@ module hipfort_hipsparse
     end function
 
 #endif
+#ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_assumed_rank(handle,m,n,nnzA,descrA, &
         csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo, &
@@ -59761,6 +59737,7 @@ module hipfort_hipsparse
     end function
 
 #endif
+#endif
 #ifdef USE_ASSUMED_RANK
     function hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
@@ -59842,6 +59819,7 @@ module hipfort_hipsparse
     end function
 
 #endif
+#ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
@@ -59922,6 +59900,7 @@ module hipfort_hipsparse
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),myInfo,buffer)
     end function
 
+#endif
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsparseSpruneCsr2csrByPercentage_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
@@ -60007,6 +59986,7 @@ module hipfort_hipsparse
     end function
 
 #endif
+#ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsparseDpruneCsr2csrByPercentage_assumed_rank(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,buffer)
@@ -60090,6 +60070,7 @@ module hipfort_hipsparse
         c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,buffer)
     end function
 
+#endif
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -61132,6 +61113,7 @@ module hipfort_hipsparse
     end function
 
 #endif
+#ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_assumed_rank(handle,m,n,A,lda, &
         percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
@@ -61231,6 +61213,7 @@ module hipfort_hipsparse
     end function
 
 #endif
+#endif
 #ifdef USE_ASSUMED_RANK
     function hipsparseSpruneDense2csrNnzByPercentage_assumed_rank(handle,m,n,A,lda,percentage, &
         descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
@@ -61326,6 +61309,7 @@ module hipfort_hipsparse
     end function
 
 #endif
+#ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsparseDpruneDense2csrNnzByPercentage_assumed_rank(handle,m,n,A,lda,percentage, &
         descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
@@ -61420,6 +61404,7 @@ module hipfort_hipsparse
         c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),myInfo,buffer)
     end function
 
+#endif
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsparseSpruneDense2csrByPercentage_assumed_rank(handle,m,n,A,lda,percentage,descr, &
@@ -61520,6 +61505,7 @@ module hipfort_hipsparse
     end function
 
 #endif
+#ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsparseDpruneDense2csrByPercentage_assumed_rank(handle,m,n,A,lda,percentage,descr, &
         csrVal,csrRowPtr,csrColInd,myInfo,buffer)
@@ -61618,6 +61604,7 @@ module hipfort_hipsparse
         myInfo,buffer)
     end function
 
+#endif
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsparseScsrcolor_assumed_rank(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &

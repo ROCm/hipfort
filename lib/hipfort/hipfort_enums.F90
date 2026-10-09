@@ -101,11 +101,31 @@ module hipfort_enums
     enumerator :: hipJitOptionPrecDiv = 22
     enumerator :: hipJitOptionPrecSqrt = 23
     enumerator :: hipJitOptionFma = 24
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipJitOptionPositionIndependentCode = 30
+#else
     enumerator :: hipJitOptionPositionIndependentCode = 25
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipJitOptionMinCTAPerSM = 31
+#else
     enumerator :: hipJitOptionMinCTAPerSM = 26
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipJitOptionMaxThreadsPerBlock = 32
+#else
     enumerator :: hipJitOptionMaxThreadsPerBlock = 27
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipJitOptionOverrideDirectiveValues = 33
+#else
     enumerator :: hipJitOptionOverrideDirectiveValues = 28
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipJitOptionNumOptions = 36
+#else
     enumerator :: hipJitOptionNumOptions = 29
+#endif
     enumerator :: hipJitOptionIRtoISAOptExt = 10000
     enumerator :: hipJitOptionIRtoISAOptCountExt = 10001
   end enum
@@ -118,12 +138,20 @@ module hipfort_enums
     enumerator :: hipJitInputObject = 3
     enumerator :: hipJitInputLibrary = 4
     enumerator :: hipJitInputNvvm = 5
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipJitNumLegacyInputTypes = -1
+#else
     enumerator :: hipJitNumLegacyInputTypes = 6
+#endif
     enumerator :: hipJitInputLLVMBitcode = 100
     enumerator :: hipJitInputLLVMBundledBitcode = 101
     enumerator :: hipJitInputLLVMArchivesOfBundledBitcode = 102
     enumerator :: hipJitInputSpirv = 103
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipJitNumInputTypes = 6
+#else
     enumerator :: hipJitNumInputTypes = 10
+#endif
   end enum
 
   ! hipJitCacheMode
@@ -149,8 +177,16 @@ module hipfort_enums
   enum, bind(c)
     enumerator :: HIP_SUCCESS = 0
     enumerator :: HIP_ERROR_INVALID_VALUE = 1
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIP_ERROR_NOT_INITIALIZED = 3
+#else
     enumerator :: HIP_ERROR_NOT_INITIALIZED = 2
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIP_ERROR_LAUNCH_OUT_OF_RESOURCES = 701
+#else
     enumerator :: HIP_ERROR_LAUNCH_OUT_OF_RESOURCES = 3
+#endif
   end enum
 
   ! hipMemoryType
@@ -159,7 +195,11 @@ module hipfort_enums
     enumerator :: hipMemoryTypeHost = 1
     enumerator :: hipMemoryTypeDevice = 2
     enumerator :: hipMemoryTypeManaged = 3
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipMemoryTypeArray = 3
+#else
     enumerator :: hipMemoryTypeArray = 10
+#endif
     enumerator :: hipMemoryTypeUnified = 11
   end enum
 
@@ -239,123 +279,535 @@ module hipfort_enums
     enumerator :: hipErrorCapturedEvent = 907
     enumerator :: hipErrorStreamCaptureWrongThread = 908
     enumerator :: hipErrorGraphExecUpdateFailure = 910
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipErrorInvalidChannelDescriptor = 20
+#else
     enumerator :: hipErrorInvalidChannelDescriptor = 911
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipErrorInvalidTexture = 18
+#else
     enumerator :: hipErrorInvalidTexture = 912
+#endif
     enumerator :: hipErrorInvalidResourceType = 914
     enumerator :: hipErrorInvalidResourceConfiguration = 915
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipErrorStreamDetached = 917
+#else
     enumerator :: hipErrorStreamDetached = 916
+#endif
     enumerator :: hipErrorUnknown = 999
     enumerator :: hipErrorRuntimeMemory = 1052
     enumerator :: hipErrorRuntimeOther = 1053
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipErrorInvalidClusterSize = 912
+#else
     enumerator :: hipErrorInvalidClusterSize = 1054
+#endif
     enumerator :: hipErrorTbd = 1055
   end enum
 
   ! hipDeviceAttribute_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeCudaCompatibleBegin = 32
+#else
     enumerator :: hipDeviceAttributeCudaCompatibleBegin = 0
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeEccEnabled = 32
+#else
     enumerator :: hipDeviceAttributeEccEnabled = 0
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeAccessPolicyMaxWindowSize = 109
+#else
     enumerator :: hipDeviceAttributeAccessPolicyMaxWindowSize = 1
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeAsyncEngineCount = 40
+#else
     enumerator :: hipDeviceAttributeAsyncEngineCount = 2
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeCanMapHostMemory = 19
+#else
     enumerator :: hipDeviceAttributeCanMapHostMemory = 3
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeCanUseHostPointerForRegisteredMem = 91
+#else
     enumerator :: hipDeviceAttributeCanUseHostPointerForRegisteredMem = 4
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeClockRate = 13
+#else
     enumerator :: hipDeviceAttributeClockRate = 5
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeComputeMode = 20
+#else
     enumerator :: hipDeviceAttributeComputeMode = 6
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeComputePreemptionSupported = 90
+#else
     enumerator :: hipDeviceAttributeComputePreemptionSupported = 7
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeConcurrentKernels = 31
+#else
     enumerator :: hipDeviceAttributeConcurrentKernels = 8
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeConcurrentManagedAccess = 89
+#else
     enumerator :: hipDeviceAttributeConcurrentManagedAccess = 9
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeCooperativeLaunch = 95
+#else
     enumerator :: hipDeviceAttributeCooperativeLaunch = 10
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeCooperativeMultiDeviceLaunch = -1
+#else
     enumerator :: hipDeviceAttributeCooperativeMultiDeviceLaunch = 11
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeDeviceOverlap = 15
+#else
     enumerator :: hipDeviceAttributeDeviceOverlap = 12
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeDirectManagedMemAccessFromHost = 101
+#else
     enumerator :: hipDeviceAttributeDirectManagedMemAccessFromHost = 13
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeGlobalL1CacheSupported = 79
+#else
     enumerator :: hipDeviceAttributeGlobalL1CacheSupported = 14
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeHostNativeAtomicSupported = 86
+#else
     enumerator :: hipDeviceAttributeHostNativeAtomicSupported = 15
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeIntegrated = 18
+#else
     enumerator :: hipDeviceAttributeIntegrated = 16
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeIsMultiGpuBoard = 84
+#else
     enumerator :: hipDeviceAttributeIsMultiGpuBoard = 17
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeKernelExecTimeout = 17
+#else
     enumerator :: hipDeviceAttributeKernelExecTimeout = 18
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeL2CacheSize = 38
+#else
     enumerator :: hipDeviceAttributeL2CacheSize = 19
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeLocalL1CacheSupported = 80
+#else
     enumerator :: hipDeviceAttributeLocalL1CacheSupported = 20
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeLuid = -2
+#else
     enumerator :: hipDeviceAttributeLuid = 21
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeLuidDeviceNodeMask = -3
+#else
     enumerator :: hipDeviceAttributeLuidDeviceNodeMask = 22
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeComputeCapabilityMajor = 75
+#else
     enumerator :: hipDeviceAttributeComputeCapabilityMajor = 23
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeManagedMemory = 83
+#else
     enumerator :: hipDeviceAttributeManagedMemory = 24
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxBlocksPerMultiProcessor = 106
+#else
     enumerator :: hipDeviceAttributeMaxBlocksPerMultiProcessor = 25
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxBlockDimX = 2
+#else
     enumerator :: hipDeviceAttributeMaxBlockDimX = 26
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxBlockDimY = 3
+#else
     enumerator :: hipDeviceAttributeMaxBlockDimY = 27
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxBlockDimZ = 4
+#else
     enumerator :: hipDeviceAttributeMaxBlockDimZ = 28
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxGridDimX = 5
+#else
     enumerator :: hipDeviceAttributeMaxGridDimX = 29
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxGridDimY = 6
+#else
     enumerator :: hipDeviceAttributeMaxGridDimY = 30
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxGridDimZ = 7
+#else
     enumerator :: hipDeviceAttributeMaxGridDimZ = 31
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxSurface1D = 55
+#else
     enumerator :: hipDeviceAttributeMaxSurface1D = 32
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxSurface1DLayered = -4
+#else
     enumerator :: hipDeviceAttributeMaxSurface1DLayered = 33
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxSurface2D = -5
+#else
     enumerator :: hipDeviceAttributeMaxSurface2D = 34
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxSurface2DLayered = -6
+#else
     enumerator :: hipDeviceAttributeMaxSurface2DLayered = 35
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxSurface3D = -7
+#else
     enumerator :: hipDeviceAttributeMaxSurface3D = 36
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxSurfaceCubemap = -8
+#else
     enumerator :: hipDeviceAttributeMaxSurfaceCubemap = 37
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxSurfaceCubemapLayered = -9
+#else
     enumerator :: hipDeviceAttributeMaxSurfaceCubemapLayered = 38
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture1DWidth = 21
+#else
     enumerator :: hipDeviceAttributeMaxTexture1DWidth = 39
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture1DLayered = -10
+#else
     enumerator :: hipDeviceAttributeMaxTexture1DLayered = 40
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture1DLinear = 69
+#else
     enumerator :: hipDeviceAttributeMaxTexture1DLinear = 41
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture1DMipmap = 77
+#else
     enumerator :: hipDeviceAttributeMaxTexture1DMipmap = 42
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture2DWidth = 22
+#else
     enumerator :: hipDeviceAttributeMaxTexture2DWidth = 43
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture2DHeight = 23
+#else
     enumerator :: hipDeviceAttributeMaxTexture2DHeight = 44
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture2DGather = -11
+#else
     enumerator :: hipDeviceAttributeMaxTexture2DGather = 45
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture2DLayered = -12
+#else
     enumerator :: hipDeviceAttributeMaxTexture2DLayered = 46
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture2DLinear = -13
+#else
     enumerator :: hipDeviceAttributeMaxTexture2DLinear = 47
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture2DMipmap = -14
+#else
     enumerator :: hipDeviceAttributeMaxTexture2DMipmap = 48
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture3DWidth = 24
+#else
     enumerator :: hipDeviceAttributeMaxTexture3DWidth = 49
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture3DHeight = 25
+#else
     enumerator :: hipDeviceAttributeMaxTexture3DHeight = 50
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture3DDepth = 26
+#else
     enumerator :: hipDeviceAttributeMaxTexture3DDepth = 51
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTexture3DAlt = -15
+#else
     enumerator :: hipDeviceAttributeMaxTexture3DAlt = 52
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTextureCubemap = 52
+#else
     enumerator :: hipDeviceAttributeMaxTextureCubemap = 53
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxTextureCubemapLayered = -16
+#else
     enumerator :: hipDeviceAttributeMaxTextureCubemapLayered = 54
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxThreadsDim = -17
+#else
     enumerator :: hipDeviceAttributeMaxThreadsDim = 55
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxThreadsPerBlock = 1
+#else
     enumerator :: hipDeviceAttributeMaxThreadsPerBlock = 56
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxThreadsPerMultiProcessor = 39
+#else
     enumerator :: hipDeviceAttributeMaxThreadsPerMultiProcessor = 57
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxPitch = 11
+#else
     enumerator :: hipDeviceAttributeMaxPitch = 58
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMemoryBusWidth = 37
+#else
     enumerator :: hipDeviceAttributeMemoryBusWidth = 59
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMemoryClockRate = 36
+#else
     enumerator :: hipDeviceAttributeMemoryClockRate = 60
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeComputeCapabilityMinor = 76
+#else
     enumerator :: hipDeviceAttributeComputeCapabilityMinor = 61
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMultiGpuBoardGroupID = 85
+#else
     enumerator :: hipDeviceAttributeMultiGpuBoardGroupID = 62
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMultiprocessorCount = 16
+#else
     enumerator :: hipDeviceAttributeMultiprocessorCount = 63
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeUnused1 = -18
+#else
     enumerator :: hipDeviceAttributeUnused1 = 64
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributePageableMemoryAccess = 88
+#else
     enumerator :: hipDeviceAttributePageableMemoryAccess = 65
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributePageableMemoryAccessUsesHostPageTables = 100
+#else
     enumerator :: hipDeviceAttributePageableMemoryAccessUsesHostPageTables = 66
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributePciBusId = 33
+#else
     enumerator :: hipDeviceAttributePciBusId = 67
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributePciDeviceId = 34
+#else
     enumerator :: hipDeviceAttributePciDeviceId = 68
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributePciDomainId = 50
+#else
     enumerator :: hipDeviceAttributePciDomainId = 69
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributePersistingL2CacheMaxSize = 108
+#else
     enumerator :: hipDeviceAttributePersistingL2CacheMaxSize = 70
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxRegistersPerBlock = 12
+#else
     enumerator :: hipDeviceAttributeMaxRegistersPerBlock = 71
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxRegistersPerMultiprocessor = 82
+#else
     enumerator :: hipDeviceAttributeMaxRegistersPerMultiprocessor = 72
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeReservedSharedMemPerBlock = 111
+#else
     enumerator :: hipDeviceAttributeReservedSharedMemPerBlock = 73
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxSharedMemoryPerBlock = 8
+#else
     enumerator :: hipDeviceAttributeMaxSharedMemoryPerBlock = 74
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeSharedMemPerBlockOptin = 97
+#else
     enumerator :: hipDeviceAttributeSharedMemPerBlockOptin = 75
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeSharedMemPerMultiprocessor = 81
+#else
     enumerator :: hipDeviceAttributeSharedMemPerMultiprocessor = 76
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeSingleToDoublePrecisionPerfRatio = 87
+#else
     enumerator :: hipDeviceAttributeSingleToDoublePrecisionPerfRatio = 77
+#endif
     enumerator :: hipDeviceAttributeStreamPrioritiesSupported = 78
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeSurfaceAlignment = 30
+#else
     enumerator :: hipDeviceAttributeSurfaceAlignment = 79
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeTccDriver = 35
+#else
     enumerator :: hipDeviceAttributeTccDriver = 80
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeTextureAlignment = 14
+#else
     enumerator :: hipDeviceAttributeTextureAlignment = 81
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeTexturePitchAlignment = 51
+#else
     enumerator :: hipDeviceAttributeTexturePitchAlignment = 82
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeTotalConstantMemory = 9
+#else
     enumerator :: hipDeviceAttributeTotalConstantMemory = 83
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeTotalGlobalMem = -19
+#else
     enumerator :: hipDeviceAttributeTotalGlobalMem = 84
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeUnifiedAddressing = 41
+#else
     enumerator :: hipDeviceAttributeUnifiedAddressing = 85
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeUnused2 = -20
+#else
     enumerator :: hipDeviceAttributeUnused2 = 86
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeWarpSize = 10
+#else
     enumerator :: hipDeviceAttributeWarpSize = 87
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMemoryPoolsSupported = 115
+#else
     enumerator :: hipDeviceAttributeMemoryPoolsSupported = 88
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeVirtualMemoryManagementSupported = -21
+#else
     enumerator :: hipDeviceAttributeVirtualMemoryManagementSupported = 89
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeHostRegisterSupported = 99
+#else
     enumerator :: hipDeviceAttributeHostRegisterSupported = 90
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMemoryPoolSupportedHandleTypes = 119
+#else
     enumerator :: hipDeviceAttributeMemoryPoolSupportedHandleTypes = 91
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeHostNumaId = 134
+#else
     enumerator :: hipDeviceAttributeHostNumaId = 92
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeDmaBufSupported = -22
+#else
     enumerator :: hipDeviceAttributeDmaBufSupported = 93
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeGPUDirectRDMAWithHipVMMSupported = -23
+#else
     enumerator :: hipDeviceAttributeGPUDirectRDMAWithHipVMMSupported = 94
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeHandleTypeFabricSupported = -24
+#else
     enumerator :: hipDeviceAttributeHandleTypeFabricSupported = 95
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeHostAllocDmaBufSupported = -25
+#else
     enumerator :: hipDeviceAttributeHostAllocDmaBufSupported = 96
+#endif
     enumerator :: hipDeviceAttributeCudaCompatibleEnd = 9999
     enumerator :: hipDeviceAttributeAmdSpecificBegin = 10000
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeClockInstructionRate = -26
+#else
     enumerator :: hipDeviceAttributeClockInstructionRate = 10000
+#endif
     enumerator :: hipDeviceAttributeUnused3 = 10001
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeMaxSharedMemoryPerMultiprocessor = 81
+#else
     enumerator :: hipDeviceAttributeMaxSharedMemoryPerMultiprocessor = 10002
+#endif
     enumerator :: hipDeviceAttributeUnused4 = 10003
     enumerator :: hipDeviceAttributeUnused5 = 10004
     enumerator :: hipDeviceAttributeHdpMemFlushCntl = 10005
@@ -366,7 +818,11 @@ module hipfort_enums
     enumerator :: hipDeviceAttributeCooperativeMultiDeviceUnmatchedSharedMem = 10010
     enumerator :: hipDeviceAttributeIsLargeBar = 10011
     enumerator :: hipDeviceAttributeAsicRevision = 10012
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeCanUseStreamWaitValue = 92
+#else
     enumerator :: hipDeviceAttributeCanUseStreamWaitValue = 10013
+#endif
     enumerator :: hipDeviceAttributeImageSupport = 10014
     enumerator :: hipDeviceAttributePhysicalMultiProcessorCount = 10015
     enumerator :: hipDeviceAttributeFineGrainSupport = 10016
@@ -543,7 +999,11 @@ module hipfort_enums
     enumerator :: hipMemcpyDeviceToHost = 2
     enumerator :: hipMemcpyDeviceToDevice = 3
     enumerator :: hipMemcpyDefault = 4
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipMemcpyDeviceToDeviceNoCU = 3
+#else
     enumerator :: hipMemcpyDeviceToDeviceNoCU = 1024
+#endif
   end enum
 
   ! hipMemLocationType
@@ -594,13 +1054,21 @@ module hipfort_enums
     enumerator :: HIP_FUNC_ATTRIBUTE_CACHE_MODE_CA = 7
     enumerator :: HIP_FUNC_ATTRIBUTE_MAX_DYNAMIC_SHARED_SIZE_BYTES = 8
     enumerator :: HIP_FUNC_ATTRIBUTE_PREFERRED_SHARED_MEMORY_CARVEOUT = 9
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIP_FUNC_ATTRIBUTE_CLUSTER_DIM_MUST_BE_SET = -1
+#else
     enumerator :: HIP_FUNC_ATTRIBUTE_CLUSTER_DIM_MUST_BE_SET = 10
+#endif
     enumerator :: HIP_FUNC_ATTRIBUTE_REQUIRED_CLUSTER_WIDTH = 11
     enumerator :: HIP_FUNC_ATTRIBUTE_REQUIRED_CLUSTER_HEIGHT = 12
     enumerator :: HIP_FUNC_ATTRIBUTE_REQUIRED_CLUSTER_DEPTH = 13
     enumerator :: HIP_FUNC_ATTRIBUTE_NON_PORTABLE_CLUSTER_SIZE_ALLOWED = 14
     enumerator :: HIP_FUNC_ATTRIBUTE_CLUSTER_SCHEDULING_POLICY_PREFERENCE = 15
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIP_FUNC_ATTRIBUTE_MAX = 17
+#else
     enumerator :: HIP_FUNC_ATTRIBUTE_MAX = 16
+#endif
   end enum
 
   ! hipPointer_attribute
@@ -614,7 +1082,11 @@ module hipfort_enums
     enumerator :: HIP_POINTER_ATTRIBUTE_BUFFER_ID = 7
     enumerator :: HIP_POINTER_ATTRIBUTE_IS_MANAGED = 8
     enumerator :: HIP_POINTER_ATTRIBUTE_DEVICE_ORDINAL = 9
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIP_POINTER_ATTRIBUTE_IS_LEGACY_HIP_IPC_CAPABLE = -1
+#else
     enumerator :: HIP_POINTER_ATTRIBUTE_IS_LEGACY_HIP_IPC_CAPABLE = 10
+#endif
     enumerator :: HIP_POINTER_ATTRIBUTE_RANGE_START_ADDR = 11
     enumerator :: HIP_POINTER_ATTRIBUTE_RANGE_SIZE = 12
     enumerator :: HIP_POINTER_ATTRIBUTE_MAPPED = 13
@@ -647,8 +1119,16 @@ module hipfort_enums
   ! hipSurfaceBoundaryMode
   enum, bind(c)
     enumerator :: hipBoundaryModeZero = 0
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipBoundaryModeTrap = 2
+#else
     enumerator :: hipBoundaryModeTrap = 1
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipBoundaryModeClamp = 1
+#else
     enumerator :: hipBoundaryModeClamp = 2
+#endif
   end enum
 
   ! hipDevResourceType
@@ -679,10 +1159,26 @@ module hipfort_enums
 
   ! hipDeviceP2PAttr
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDevP2PAttrPerformanceRank = 1
+#else
     enumerator :: hipDevP2PAttrPerformanceRank = 0
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDevP2PAttrAccessSupported = 2
+#else
     enumerator :: hipDevP2PAttrAccessSupported = 1
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDevP2PAttrNativeAtomicSupported = 3
+#else
     enumerator :: hipDevP2PAttrNativeAtomicSupported = 2
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDevP2PAttrHipArrayAccessSupported = 4
+#else
     enumerator :: hipDevP2PAttrHipArrayAccessSupported = 3
+#endif
   end enum
 
   ! hipDriverEntryPointQueryResult
@@ -856,9 +1352,17 @@ module hipfort_enums
     enumerator :: hipGraphNodeTypeMemAlloc = 10
     enumerator :: hipGraphNodeTypeMemFree = 11
     enumerator :: hipGraphNodeTypeMemcpyFromSymbol = 12
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipGraphNodeTypeMemcpyToSymbol = -1
+#else
     enumerator :: hipGraphNodeTypeMemcpyToSymbol = 13
+#endif
     enumerator :: hipGraphNodeTypeBatchMemOp = 14
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipGraphNodeTypeCount = 17
+#else
     enumerator :: hipGraphNodeTypeCount = 15
+#endif
   end enum
 
   ! hipAccessProperty

@@ -1325,16 +1325,12 @@ program test_hipblas
 #ifndef USE_CUDA_NAMES
     if (never) v1 = hipblasGemmBatchedExWithFlags_64_(v0, v1, v1, v3, v3, v3, v0, v0, v1, v3, v0, v1, v3, v0, v0, v1, &
       v3, v3, v1, v1, v1)
-#endif
     if (never) v1 = hipblasGemmGroupedBatchedEx_(v0, v0, v0, v0, v0, v0, v0, v0, v1, v0, v0, v1, v0, v0, v0, v1, v0, &
       v0, v1, v0, v1, v0, v1, v1)
-#ifndef USE_CUDA_NAMES
     if (never) v1 = hipblasGemmGroupedBatchedExWithFlags_(v0, v0, v0, v0, v0, v0, v0, v0, v1, v0, v0, v1, v0, v0, v0, &
       v1, v0, v0, v1, v0, v1, v0, v1, v1, v1)
-#endif
     if (never) v1 = hipblasGemmGroupedBatchedEx_64_(v0, v0, v0, v0, v0, v0, v0, v0, v1, v0, v0, v1, v0, v0, v0, v1, &
       v0, v0, v1, v0, v3, v0, v1, v1)
-#ifndef USE_CUDA_NAMES
     if (never) v1 = hipblasGemmGroupedBatchedExWithFlags_64_(v0, v0, v0, v0, v0, v0, v0, v0, v1, v0, v0, v1, v0, v0, &
       v0, v1, v0, v0, v1, v0, v3, v0, v1, v1, v1)
 #endif

@@ -437,11 +437,11 @@ program test_hipsparse
     if (never) v1 = hipsparseDcsr2dense_(v0, v1, v1, v0, v0, v0, v0, v0, v1)
     if (never) v1 = hipsparseCcsr2dense_(v0, v1, v1, v0, v0, v0, v0, v0, v1)
     if (never) v1 = hipsparseZcsr2dense_(v0, v1, v1, v0, v0, v0, v0, v0, v1)
-#endif
     if (never) v1 = hipsparseScsr2gebsr_bufferSize_(v0, v1, v1, v1, v0, v0, v0, v0, v1, v1, v0)
     if (never) v1 = hipsparseDcsr2gebsr_bufferSize_(v0, v1, v1, v1, v0, v0, v0, v0, v1, v1, v0)
     if (never) v1 = hipsparseCcsr2gebsr_bufferSize_(v0, v1, v1, v1, v0, v0, v0, v0, v1, v1, v0)
     if (never) v1 = hipsparseZcsr2gebsr_bufferSize_(v0, v1, v1, v1, v0, v0, v0, v0, v1, v1, v0)
+#endif
     if (never) v1 = hipsparseXcsr2gebsrNnz_(v0, v1, v1, v1, v0, v0, v0, v0, v0, v1, v1, v0, v0)
     if (never) v1 = hipsparseScsr2gebsr_(v0, v1, v1, v1, v0, v0, v0, v0, v0, v0, v0, v0, v1, v1, v0)
     if (never) v1 = hipsparseDcsr2gebsr_(v0, v1, v1, v1, v0, v0, v0, v0, v0, v0, v0, v0, v1, v1, v0)
@@ -477,10 +477,12 @@ program test_hipsparse
     if (never) v1 = hipsparseDgebsr2csr_(v0, v1, v1, v1, v0, v0, v0, v0, v1, v1, v0, v0, v0, v0)
     if (never) v1 = hipsparseCgebsr2csr_(v0, v1, v1, v1, v0, v0, v0, v0, v1, v1, v0, v0, v0, v0)
     if (never) v1 = hipsparseZgebsr2csr_(v0, v1, v1, v1, v0, v0, v0, v0, v1, v1, v0, v0, v0, v0)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsparseSgebsr2gebsc_bufferSize_(v0, v1, v1, v1, v0, v0, v0, v1, v1, v0)
     if (never) v1 = hipsparseDgebsr2gebsc_bufferSize_(v0, v1, v1, v1, v0, v0, v0, v1, v1, v0)
     if (never) v1 = hipsparseCgebsr2gebsc_bufferSize_(v0, v1, v1, v1, v0, v0, v0, v1, v1, v0)
     if (never) v1 = hipsparseZgebsr2gebsc_bufferSize_(v0, v1, v1, v1, v0, v0, v0, v1, v1, v0)
+#endif
     if (never) v1 = hipsparseSgebsr2gebsc_(v0, v1, v1, v1, v0, v0, v0, v1, v1, v0, v0, v0, v1, v1, v0)
     if (never) v1 = hipsparseDgebsr2gebsc_(v0, v1, v1, v1, v0, v0, v0, v1, v1, v0, v0, v0, v1, v1, v0)
     if (never) v1 = hipsparseCgebsr2gebsc_(v0, v1, v1, v1, v0, v0, v0, v1, v1, v0, v0, v0, v1, v1, v0)
@@ -526,13 +528,17 @@ program test_hipsparse
 #endif
     if (never) v1 = hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_(v0, v1, v1, v1, v0, v0, v0, v0, v2, v0, v0, v0, &
       v0, v0, v0)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_(v0, v1, v1, v1, v0, v0, v0, v0, v3, v0, v0, v0, &
       v0, v0, v0)
+#endif
     if (never) v1 = hipsparseSpruneCsr2csrNnzByPercentage_(v0, v1, v1, v1, v0, v0, v0, v0, v2, v0, v0, v0, v0, v0)
-    if (never) v1 = hipsparseDpruneCsr2csrNnzByPercentage_(v0, v1, v1, v1, v0, v0, v0, v0, v3, v0, v0, v0, v0, v0)
-    if (never) v1 = hipsparseSpruneCsr2csrByPercentage_(v0, v1, v1, v1, v0, v0, v0, v0, v2, v0, v0, v0, v0, v0, v0)
-    if (never) v1 = hipsparseDpruneCsr2csrByPercentage_(v0, v1, v1, v1, v0, v0, v0, v0, v3, v0, v0, v0, v0, v0, v0)
 #ifndef USE_CUDA_NAMES
+    if (never) v1 = hipsparseDpruneCsr2csrNnzByPercentage_(v0, v1, v1, v1, v0, v0, v0, v0, v3, v0, v0, v0, v0, v0)
+#endif
+    if (never) v1 = hipsparseSpruneCsr2csrByPercentage_(v0, v1, v1, v1, v0, v0, v0, v0, v2, v0, v0, v0, v0, v0, v0)
+#ifndef USE_CUDA_NAMES
+    if (never) v1 = hipsparseDpruneCsr2csrByPercentage_(v0, v1, v1, v1, v0, v0, v0, v0, v3, v0, v0, v0, v0, v0, v0)
     if (never) v1 = hipsparseSpruneDense2csr_bufferSize_(v0, v1, v1, v0, v1, v0, v0, v0, v0, v0, v0)
     if (never) v1 = hipsparseDpruneDense2csr_bufferSize_(v0, v1, v1, v0, v1, v0, v0, v0, v0, v0, v0)
 #endif
@@ -547,11 +553,17 @@ program test_hipsparse
     if (never) v1 = hipsparseDpruneDense2csrByPercentage_bufferSize_(v0, v1, v1, v0, v1, v3, v0, v0, v0, v0, v0, v0)
 #endif
     if (never) v1 = hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(v0, v1, v1, v0, v1, v2, v0, v0, v0, v0, v0, v0)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(v0, v1, v1, v0, v1, v3, v0, v0, v0, v0, v0, v0)
+#endif
     if (never) v1 = hipsparseSpruneDense2csrNnzByPercentage_(v0, v1, v1, v0, v1, v2, v0, v0, v0, v0, v0)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsparseDpruneDense2csrNnzByPercentage_(v0, v1, v1, v0, v1, v3, v0, v0, v0, v0, v0)
+#endif
     if (never) v1 = hipsparseSpruneDense2csrByPercentage_(v0, v1, v1, v0, v1, v2, v0, v0, v0, v0, v0, v0)
+#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsparseDpruneDense2csrByPercentage_(v0, v1, v1, v0, v1, v3, v0, v0, v0, v0, v0, v0)
+#endif
     if (never) v1 = hipsparseScsrcolor_(v0, v1, v1, v0, v0, v0, v0, v0, v0, v0, v0, v0)
     if (never) v1 = hipsparseDcsrcolor_(v0, v1, v1, v0, v0, v0, v0, v0, v0, v0, v0, v0)
     if (never) v1 = hipsparseCcsrcolor_(v0, v1, v1, v0, v0, v0, v0, v0, v0, v0, v0, v0)

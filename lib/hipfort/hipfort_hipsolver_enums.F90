@@ -58,9 +58,21 @@ module hipfort_hipsolver_enums
 #else
     enumerator :: HIPSOLVER_STATUS_ARCH_MISMATCH = 8
 #endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_STATUS_HANDLE_IS_NULLPTR = -1
+#else
     enumerator :: HIPSOLVER_STATUS_HANDLE_IS_NULLPTR = 9
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_STATUS_INVALID_ENUM = -2
+#else
     enumerator :: HIPSOLVER_STATUS_INVALID_ENUM = 10
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_STATUS_UNKNOWN = -3
+#else
     enumerator :: HIPSOLVER_STATUS_UNKNOWN = 11
+#endif
 #ifdef USE_CUDA_NAMES
     enumerator :: HIPSOLVER_STATUS_ZERO_PIVOT = 10
 #else
@@ -75,28 +87,68 @@ module hipfort_hipsolver_enums
 
   ! hipblasOperation_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_OP_N = 0
+#else
     enumerator :: HIPSOLVER_OP_N = 111
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_OP_T = 1
+#else
     enumerator :: HIPSOLVER_OP_T = 112
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_OP_C = 2
+#else
     enumerator :: HIPSOLVER_OP_C = 113
+#endif
   end enum
 
   ! hipblasFillMode_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_FILL_MODE_UPPER = 1
+#else
     enumerator :: HIPSOLVER_FILL_MODE_UPPER = 121
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_FILL_MODE_LOWER = 0
+#else
     enumerator :: HIPSOLVER_FILL_MODE_LOWER = 122
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_FILL_MODE_FULL = 2
+#else
     enumerator :: HIPSOLVER_FILL_MODE_FULL = 123
+#endif
   end enum
 
   ! hipblasDiagType_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_DIAG_NON_UNIT = 0
+#else
     enumerator :: HIPSOLVER_DIAG_NON_UNIT = 131
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_DIAG_UNIT = 1
+#else
     enumerator :: HIPSOLVER_DIAG_UNIT = 132
+#endif
   end enum
 
   ! hipblasSideMode_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_SIDE_LEFT = 0
+#else
     enumerator :: HIPSOLVER_SIDE_LEFT = 141
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_SIDE_RIGHT = 1
+#else
     enumerator :: HIPSOLVER_SIDE_RIGHT = 142
+#endif
     enumerator :: HIPSOLVER_SIDE_BOTH = 143
   end enum
 
@@ -168,14 +220,42 @@ module hipfort_hipsolver_enums
 
   ! hipsolverDirectMode_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+#else
+#endif
+#ifdef USE_CUDA_NAMES
+#else
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_DIRECT_FORWARD = 0
+#else
     enumerator :: HIPSOLVER_DIRECT_FORWARD = 251
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_DIRECT_BACKWARD = 1
+#else
     enumerator :: HIPSOLVER_DIRECT_BACKWARD = 252
+#endif
   end enum
 
   ! hipsolverStorevMode_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+#else
+#endif
+#ifdef USE_CUDA_NAMES
+#else
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_STOREV_COLUMNWISE = 0
+#else
     enumerator :: HIPSOLVER_STOREV_COLUMNWISE = 261
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSOLVER_STOREV_ROWWISE = 1
+#else
     enumerator :: HIPSOLVER_STOREV_ROWWISE = 262
+#endif
   end enum
 
   ! hipsolverAlgMode_t

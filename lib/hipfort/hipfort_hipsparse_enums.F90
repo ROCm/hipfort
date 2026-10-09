@@ -131,8 +131,16 @@ module hipfort_hipsparse_enums
     enumerator :: HIPSPARSE_FORMAT_COO = 3
     enumerator :: HIPSPARSE_FORMAT_COO_AOS = 4
     enumerator :: HIPSPARSE_FORMAT_BLOCKED_ELL = 5
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSPARSE_FORMAT_SLICED_ELL = 7
+#else
     enumerator :: HIPSPARSE_FORMAT_SLICED_ELL = 6
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSPARSE_FORMAT_BSR = 6
+#else
     enumerator :: HIPSPARSE_FORMAT_BSR = 7
+#endif
   end enum
 
   ! hipsparseOrder_t
@@ -227,7 +235,11 @@ module hipfort_hipsparse_enums
 
   ! hipsparseSpGEAMAlg_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPSPARSE_SPGEAM_ALG1 = 1
+#else
     enumerator :: HIPSPARSE_SPGEAM_ALG1 = 0
+#endif
   end enum
 
   integer(c_int), parameter :: hipsparseVersionMajor = 4
