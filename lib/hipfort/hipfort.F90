@@ -220,7 +220,7 @@ module hipfort
   !>  `hipErrorDeinitialized`
   interface hipDeviceGetUuid
 #ifdef USE_CUDA_NAMES
-    function hipDeviceGetUuid_(uuid,device) bind(c, name="cuDeviceGetUuid")
+    function hipDeviceGetUuid_(uuid,device) bind(c, name="cuDeviceGetUuid_v2")
 #else
     function hipDeviceGetUuid_(uuid,device) bind(c, name="hipDeviceGetUuid")
 #endif
@@ -2017,7 +2017,7 @@ module hipfort
   interface hipStreamWaitValue32
 #ifdef USE_CUDA_NAMES
     function hipStreamWaitValue32_(stream,ptr,myValue,flags,mask) &
-        bind(c, name="cuStreamWaitValue32")
+        bind(c, name="cuStreamWaitValue32_v2")
 #else
     function hipStreamWaitValue32_(stream,ptr,myValue,flags,mask) &
         bind(c, name="hipStreamWaitValue32")
@@ -2071,7 +2071,7 @@ module hipfort
   interface hipStreamWaitValue64
 #ifdef USE_CUDA_NAMES
     function hipStreamWaitValue64_(stream,ptr,myValue,flags,mask) &
-        bind(c, name="cuStreamWaitValue64")
+        bind(c, name="cuStreamWaitValue64_v2")
 #else
     function hipStreamWaitValue64_(stream,ptr,myValue,flags,mask) &
         bind(c, name="hipStreamWaitValue64")
@@ -2172,7 +2172,8 @@ module hipfort
   !>  hipStreamWaitValue64. hipStreamWriteValue64
   interface hipStreamBatchMemOp
 #ifdef USE_CUDA_NAMES
-    function hipStreamBatchMemOp_(stream,count,paramArray,flags) bind(c, name="cuStreamBatchMemOp")
+    function hipStreamBatchMemOp_(stream,count,paramArray,flags) &
+        bind(c, name="cuStreamBatchMemOp_v2")
 #else
     function hipStreamBatchMemOp_(stream,count,paramArray,flags) bind(c, name="hipStreamBatchMemOp")
 #endif
@@ -4367,7 +4368,7 @@ module hipfort
   !>  hipMemHostAlloc, hipMemHostGetDevicePointer
   interface hipMemcpyAtoD
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyAtoD_(dstDevice,srcArray,srcOffset,ByteCount) bind(c, name="cuMemcpyAtoD")
+    function hipMemcpyAtoD_(dstDevice,srcArray,srcOffset,ByteCount) bind(c, name="cuMemcpyAtoD_v2")
 #else
     function hipMemcpyAtoD_(dstDevice,srcArray,srcOffset,ByteCount) bind(c, name="hipMemcpyAtoD")
 #endif
@@ -4401,7 +4402,7 @@ module hipfort
   !>  hipMemHostAlloc, hipMemHostGetDevicePointer
   interface hipMemcpyDtoA
 #ifdef USE_CUDA_NAMES
-    function hipMemcpyDtoA_(dstArray,dstOffset,srcDevice,ByteCount) bind(c, name="cuMemcpyDtoA")
+    function hipMemcpyDtoA_(dstArray,dstOffset,srcDevice,ByteCount) bind(c, name="cuMemcpyDtoA_v2")
 #else
     function hipMemcpyDtoA_(dstArray,dstOffset,srcDevice,ByteCount) bind(c, name="hipMemcpyDtoA")
 #endif
@@ -4437,7 +4438,7 @@ module hipfort
   interface hipMemcpyAtoA
 #ifdef USE_CUDA_NAMES
     function hipMemcpyAtoA_(dstArray,dstOffset,srcArray,srcOffset,ByteCount) &
-        bind(c, name="cuMemcpyAtoA")
+        bind(c, name="cuMemcpyAtoA_v2")
 #else
     function hipMemcpyAtoA_(dstArray,dstOffset,srcArray,srcOffset,ByteCount) &
         bind(c, name="hipMemcpyAtoA")
@@ -4571,7 +4572,7 @@ module hipfort
   interface hipMemcpyAtoHAsync
 #ifdef USE_CUDA_NAMES
     function hipMemcpyAtoHAsync_(dstHost,srcArray,srcOffset,ByteCount,stream) &
-        bind(c, name="cuMemcpyAtoHAsync")
+        bind(c, name="cuMemcpyAtoHAsync_v2")
 #else
     function hipMemcpyAtoHAsync_(dstHost,srcArray,srcOffset,ByteCount,stream) &
         bind(c, name="hipMemcpyAtoHAsync")
@@ -4609,7 +4610,7 @@ module hipfort
   interface hipMemcpyHtoAAsync
 #ifdef USE_CUDA_NAMES
     function hipMemcpyHtoAAsync_(dstArray,dstOffset,srcHost,ByteCount,stream) &
-        bind(c, name="cuMemcpyHtoAAsync")
+        bind(c, name="cuMemcpyHtoAAsync_v2")
 #else
     function hipMemcpyHtoAAsync_(dstArray,dstOffset,srcHost,ByteCount,stream) &
         bind(c, name="hipMemcpyHtoAAsync")
@@ -4723,7 +4724,7 @@ module hipfort
   interface hipGetProcAddress
 #ifdef USE_CUDA_NAMES
     function hipGetProcAddress_(symbol,pfn,hipVersion,flags,symbolStatus) &
-        bind(c, name="cuGetProcAddress")
+        bind(c, name="cuGetProcAddress_v2")
 #else
     function hipGetProcAddress_(symbol,pfn,hipVersion,flags,symbolStatus) &
         bind(c, name="hipGetProcAddress")
@@ -5204,7 +5205,7 @@ module hipfort
   !>   @returns `hipSuccess`, `hipErrorInvalidValue`
   interface hipMemsetD2D8
 #ifdef USE_CUDA_NAMES
-    function hipMemsetD2D8_(dst,dstPitch,myValue,width,height) bind(c, name="cuMemsetD2D8")
+    function hipMemsetD2D8_(dst,dstPitch,myValue,width,height) bind(c, name="cuMemsetD2D8_v2")
 #else
     function hipMemsetD2D8_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D8")
 #endif
@@ -5264,7 +5265,7 @@ module hipfort
   !>   @returns `hipSuccess`, `hipErrorInvalidValue`
   interface hipMemsetD2D16
 #ifdef USE_CUDA_NAMES
-    function hipMemsetD2D16_(dst,dstPitch,myValue,width,height) bind(c, name="cuMemsetD2D16")
+    function hipMemsetD2D16_(dst,dstPitch,myValue,width,height) bind(c, name="cuMemsetD2D16_v2")
 #else
     function hipMemsetD2D16_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D16")
 #endif
@@ -5324,7 +5325,7 @@ module hipfort
   !>   @returns `hipSuccess`, `hipErrorInvalidValue`
   interface hipMemsetD2D32
 #ifdef USE_CUDA_NAMES
-    function hipMemsetD2D32_(dst,dstPitch,myValue,width,height) bind(c, name="cuMemsetD2D32")
+    function hipMemsetD2D32_(dst,dstPitch,myValue,width,height) bind(c, name="cuMemsetD2D32_v2")
 #else
     function hipMemsetD2D32_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D32")
 #endif
@@ -5637,7 +5638,7 @@ module hipfort
   !>  hipMemHostGetDevicePointer, hipMemsetD8, hipMemsetD16, hipMemsetD32, hipArrayGetInfo
   interface hipArrayGetDescriptor
 #ifdef USE_CUDA_NAMES
-    function hipArrayGetDescriptor_(pArrayDescriptor,array) bind(c, name="cuArrayGetDescriptor")
+    function hipArrayGetDescriptor_(pArrayDescriptor,array) bind(c, name="cuArrayGetDescriptor_v2")
 #else
     function hipArrayGetDescriptor_(pArrayDescriptor,array) bind(c, name="hipArrayGetDescriptor")
 #endif
@@ -5670,7 +5671,8 @@ module hipfort
   !>  hipMemHostGetDevicePointer, hipMemsetD8, hipMemsetD16, hipMemsetD32, hipArrayGetInfo
   interface hipArray3DGetDescriptor
 #ifdef USE_CUDA_NAMES
-    function hipArray3DGetDescriptor_(pArrayDescriptor,array) bind(c, name="cuArray3DGetDescriptor")
+    function hipArray3DGetDescriptor_(pArrayDescriptor,array) &
+        bind(c, name="cuArray3DGetDescriptor_v2")
 #else
     function hipArray3DGetDescriptor_(pArrayDescriptor,array) &
         bind(c, name="hipArray3DGetDescriptor")
@@ -8052,7 +8054,7 @@ module hipfort
   interface hipLinkAddData
 #ifdef USE_CUDA_NAMES
     function hipLinkAddData_(state,myType,myData,mySize,name,numOptions,options,optionValues) &
-        bind(c, name="cuLinkAddData")
+        bind(c, name="cuLinkAddData_v2")
 #else
     function hipLinkAddData_(state,myType,myData,mySize,name,numOptions,options,optionValues) &
         bind(c, name="hipLinkAddData")
@@ -8089,7 +8091,7 @@ module hipfort
   interface hipLinkAddFile
 #ifdef USE_CUDA_NAMES
     function hipLinkAddFile_(state,myType,path,numOptions,options,optionValues) &
-        bind(c, name="cuLinkAddFile")
+        bind(c, name="cuLinkAddFile_v2")
 #else
     function hipLinkAddFile_(state,myType,path,numOptions,options,optionValues) &
         bind(c, name="hipLinkAddFile")
@@ -8149,7 +8151,8 @@ module hipfort
   !>  @see hipSuccess
   interface hipLinkCreate
 #ifdef USE_CUDA_NAMES
-    function hipLinkCreate_(numOptions,options,optionValues,stateOut) bind(c, name="cuLinkCreate")
+    function hipLinkCreate_(numOptions,options,optionValues,stateOut) &
+        bind(c, name="cuLinkCreate_v2")
 #else
     function hipLinkCreate_(numOptions,options,optionValues,stateOut) bind(c, name="hipLinkCreate")
 #endif
