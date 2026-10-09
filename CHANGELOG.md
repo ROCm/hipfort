@@ -200,6 +200,9 @@
 * The eight-byte integer overloads of the BLAS `Set`/`Get` `Vector`/`Matrix`
   routines and their `Async` variants declared their arrays `integer(c_long)`,
   which is four bytes on LLP64 targets. They are `integer(c_int64_t)` now.
+* The DEB package had no `find_package(hipfort)` entry point: the
+  `hipfort-config.cmake` shim and its version file were left out of the
+  packaged component.
 * `hipfort::hipblas` was silently skipped when ROCm was installed outside the
   default CMake search prefixes. `ROCM_PATH` is now added to
   `CMAKE_PREFIX_PATH`, so the dependencies of the hipBLAS package resolve as
