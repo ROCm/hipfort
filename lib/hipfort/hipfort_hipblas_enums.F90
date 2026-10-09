@@ -31,16 +31,44 @@ module hipfort_hipblas_enums
   enum, bind(c)
     enumerator :: HIPBLAS_STATUS_SUCCESS = 0
     enumerator :: HIPBLAS_STATUS_NOT_INITIALIZED = 1
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_STATUS_ALLOC_FAILED = 3
+#else
     enumerator :: HIPBLAS_STATUS_ALLOC_FAILED = 2
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_STATUS_INVALID_VALUE = 7
+#else
     enumerator :: HIPBLAS_STATUS_INVALID_VALUE = 3
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_STATUS_MAPPING_ERROR = 11
+#else
     enumerator :: HIPBLAS_STATUS_MAPPING_ERROR = 4
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_STATUS_EXECUTION_FAILED = 13
+#else
     enumerator :: HIPBLAS_STATUS_EXECUTION_FAILED = 5
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_STATUS_INTERNAL_ERROR = 14
+#else
     enumerator :: HIPBLAS_STATUS_INTERNAL_ERROR = 6
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_STATUS_NOT_SUPPORTED = 15
+#else
     enumerator :: HIPBLAS_STATUS_NOT_SUPPORTED = 7
+#endif
     enumerator :: HIPBLAS_STATUS_ARCH_MISMATCH = 8
     enumerator :: HIPBLAS_STATUS_HANDLE_IS_NULLPTR = 9
     enumerator :: HIPBLAS_STATUS_INVALID_ENUM = 10
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_STATUS_UNKNOWN = -1
+#else
     enumerator :: HIPBLAS_STATUS_UNKNOWN = 11
+#endif
   end enum
 
   ! hipblasOperation_t
@@ -64,17 +92,61 @@ module hipfort_hipblas_enums
 
   ! hipblasComputeType_t
   enum, bind(c)
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_COMPUTE_16F = 64
+#else
     enumerator :: HIPBLAS_COMPUTE_16F = 0
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_COMPUTE_16F_PEDANTIC = 65
+#else
     enumerator :: HIPBLAS_COMPUTE_16F_PEDANTIC = 1
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_COMPUTE_32F = 68
+#else
     enumerator :: HIPBLAS_COMPUTE_32F = 2
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_COMPUTE_32F_PEDANTIC = 69
+#else
     enumerator :: HIPBLAS_COMPUTE_32F_PEDANTIC = 3
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_COMPUTE_32F_FAST_16F = 74
+#else
     enumerator :: HIPBLAS_COMPUTE_32F_FAST_16F = 4
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_COMPUTE_32F_FAST_16BF = 75
+#else
     enumerator :: HIPBLAS_COMPUTE_32F_FAST_16BF = 5
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_COMPUTE_32F_FAST_TF32 = 77
+#else
     enumerator :: HIPBLAS_COMPUTE_32F_FAST_TF32 = 6
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_COMPUTE_64F = 70
+#else
     enumerator :: HIPBLAS_COMPUTE_64F = 7
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_COMPUTE_64F_PEDANTIC = 71
+#else
     enumerator :: HIPBLAS_COMPUTE_64F_PEDANTIC = 8
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_COMPUTE_32I = 72
+#else
     enumerator :: HIPBLAS_COMPUTE_32I = 9
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_COMPUTE_32I_PEDANTIC = 73
+#else
     enumerator :: HIPBLAS_COMPUTE_32I_PEDANTIC = 10
+#endif
     enumerator :: HIPBLAS_COMPUTE_32F_FAST_8F_FNUZ = 100
     enumerator :: HIPBLAS_COMPUTE_32F_FAST_8BF_FNUZ = 101
     enumerator :: HIPBLAS_COMPUTE_32F_FAST_8F8BF_FNUZ = 102
@@ -83,16 +155,8 @@ module hipfort_hipblas_enums
 
   ! hipblasPointerMode_t
   enum, bind(c)
-#ifdef USE_CUDA_NAMES
     enumerator :: HIPBLAS_POINTER_MODE_HOST = 0
-#else
-    enumerator :: HIPBLAS_POINTER_MODE_HOST = 0
-#endif
-#ifdef USE_CUDA_NAMES
     enumerator :: HIPBLAS_POINTER_MODE_DEVICE = 1
-#else
-    enumerator :: HIPBLAS_POINTER_MODE_DEVICE = 1
-#endif
   end enum
 
   ! hipblasFillMode_t
@@ -146,11 +210,23 @@ module hipfort_hipblas_enums
   ! hipblasMath_t
   enum, bind(c)
     enumerator :: HIPBLAS_DEFAULT_MATH = 0
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_XF32_XDL_MATH = -1
+#else
     enumerator :: HIPBLAS_XF32_XDL_MATH = 1
+#endif
     enumerator :: HIPBLAS_PEDANTIC_MATH = 2
     enumerator :: HIPBLAS_TF32_TENSOR_OP_MATH = 3
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_MATH_DISALLOW_REDUCED_PRECISION_REDUCTION = 16
+#else
     enumerator :: HIPBLAS_MATH_DISALLOW_REDUCED_PRECISION_REDUCTION = 4
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPBLAS_TENSOR_OP_MATH = 1
+#else
     enumerator :: HIPBLAS_TENSOR_OP_MATH = 5
+#endif
   end enum
 
   ! hipblasGemmAlgo_t
@@ -164,16 +240,8 @@ module hipfort_hipblas_enums
 
   ! hipblasAtomicsMode_t
   enum, bind(c)
-#ifdef USE_CUDA_NAMES
     enumerator :: HIPBLAS_ATOMICS_NOT_ALLOWED = 0
-#else
-    enumerator :: HIPBLAS_ATOMICS_NOT_ALLOWED = 0
-#endif
-#ifdef USE_CUDA_NAMES
     enumerator :: HIPBLAS_ATOMICS_ALLOWED = 1
-#else
-    enumerator :: HIPBLAS_ATOMICS_ALLOWED = 1
-#endif
   end enum
 
   ! hipblasGemmFlags_t
