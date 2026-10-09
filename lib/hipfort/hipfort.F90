@@ -6184,14 +6184,10 @@ module hipfort
   !>  @param [in] stream    - stream used to enqueue operations in.
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+#ifndef USE_CUDA_NAMES
   interface hipMemcpyBatchAsync
-#ifdef USE_CUDA_NAMES
-    function hipMemcpyBatchAsync_(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx,stream) &
-        bind(c, name="cudaMemcpyBatchAsync")
-#else
     function hipMemcpyBatchAsync_(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx,stream) &
         bind(c, name="hipMemcpyBatchAsync")
-#endif
       use iso_c_binding
       use hipfort_enums
       use hipfort_types
@@ -6210,6 +6206,7 @@ module hipfort
 
     module procedure hipMemcpyBatchAsync_typed
   end interface
+#endif
 
   !>  @brief Perform Batch of 3D copies
   !>
@@ -6221,14 +6218,10 @@ module hipfort
   !>  @param [in] stream  - The stream to enqueue the operations in.
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+#ifndef USE_CUDA_NAMES
   interface hipMemcpy3DBatchAsync
-#ifdef USE_CUDA_NAMES
-    function hipMemcpy3DBatchAsync_(numOps,opList,failIdx,flags,stream) &
-        bind(c, name="cudaMemcpy3DBatchAsync")
-#else
     function hipMemcpy3DBatchAsync_(numOps,opList,failIdx,flags,stream) &
         bind(c, name="hipMemcpy3DBatchAsync")
-#endif
       use iso_c_binding
       use hipfort_enums
       use hipfort_types
@@ -6243,6 +6236,7 @@ module hipfort
 
     module procedure hipMemcpy3DBatchAsync_typed
   end interface
+#endif
 
   !>  @brief Performs 3D memory copies between devices
   !>  This API is asynchronous with respect to host
@@ -10483,14 +10477,10 @@ module hipfort
   !>  @param [in] flags  Flag to update dependency set. Should be one of the values
   !>  in enum `hipStreamUpdateCaptureDependenciesFlags`.
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorIllegalState`
+#ifndef USE_CUDA_NAMES
   interface hipStreamUpdateCaptureDependencies
-#ifdef USE_CUDA_NAMES
-    function hipStreamUpdateCaptureDependencies_(stream,dependencies,numDependencies,flags) &
-        bind(c, name="cudaStreamUpdateCaptureDependencies")
-#else
     function hipStreamUpdateCaptureDependencies_(stream,dependencies,numDependencies,flags) &
         bind(c, name="hipStreamUpdateCaptureDependencies")
-#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -10501,6 +10491,7 @@ module hipfort
       integer(c_int),value :: flags
     end function
   end interface
+#endif
 
   !>  @brief Swaps the stream capture mode of a thread.
   !>
@@ -10971,14 +10962,10 @@ module hipfort
   !>  @param [in] numDependencies - Number of dependencies.
   !>  @param [in] nodeParams - Pointer to the node parameters.
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`.
+#ifndef USE_CUDA_NAMES
   interface hipGraphAddNode
-#ifdef USE_CUDA_NAMES
-    function hipGraphAddNode_(pGraphNode,graph,pDependencies,numDependencies,nodeParams) &
-        bind(c, name="cudaGraphAddNode")
-#else
     function hipGraphAddNode_(pGraphNode,graph,pDependencies,numDependencies,nodeParams) &
         bind(c, name="hipGraphAddNode")
-#endif
       use iso_c_binding
       use hipfort_enums
       use hipfort_types
@@ -10991,6 +10978,7 @@ module hipfort
       type(hipGraphNodeParams) :: nodeParams
     end function
   end interface
+#endif
 
   !>  @brief Return the flags of an executable graph.
   !>
@@ -11020,12 +11008,9 @@ module hipfort
   !>  @param [in] nodeParams - Pointer to the parameters to be set.
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidDeviceFunction`,
   !>  `hipErrorNotSupported`.
+#ifndef USE_CUDA_NAMES
   interface hipGraphNodeSetParams
-#ifdef USE_CUDA_NAMES
-    function hipGraphNodeSetParams_(node,nodeParams) bind(c, name="cudaGraphNodeSetParams")
-#else
     function hipGraphNodeSetParams_(node,nodeParams) bind(c, name="hipGraphNodeSetParams")
-#endif
       use iso_c_binding
       use hipfort_enums
       use hipfort_types
@@ -11035,6 +11020,7 @@ module hipfort
       type(hipGraphNodeParams) :: nodeParams
     end function
   end interface
+#endif
 
   !>  @brief Updates parameters of an executable graph's node.
   !>
@@ -11043,14 +11029,10 @@ module hipfort
   !>  @param [in] nodeParams - Pointer to the parameters to be set.
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidDeviceFunction`,
   !>  `hipErrorNotSupported`.
+#ifndef USE_CUDA_NAMES
   interface hipGraphExecNodeSetParams
-#ifdef USE_CUDA_NAMES
-    function hipGraphExecNodeSetParams_(graphExec,node,nodeParams) &
-        bind(c, name="cudaGraphExecNodeSetParams")
-#else
     function hipGraphExecNodeSetParams_(graphExec,node,nodeParams) &
         bind(c, name="hipGraphExecNodeSetParams")
-#endif
       use iso_c_binding
       use hipfort_enums
       use hipfort_types
@@ -11061,6 +11043,7 @@ module hipfort
       type(hipGraphNodeParams) :: nodeParams
     end function
   end interface
+#endif
 
   !>  @brief Destroys an executable graph
   !>
@@ -11090,14 +11073,10 @@ module hipfort
   !>  @param [in] hErrorNode_out -  node which caused the permissibility check to forbid the update.
   !>  @param [in] updateResult_out - Return code whether the graph update was performed.
   !>  @returns `hipSuccess`, `hipErrorGraphExecUpdateFailure`
+#ifndef USE_CUDA_NAMES
   interface hipGraphExecUpdate
-#ifdef USE_CUDA_NAMES
-    function hipGraphExecUpdate_(hGraphExec,hGraph,hErrorNode_out,updateResult_out) &
-        bind(c, name="cudaGraphExecUpdate")
-#else
     function hipGraphExecUpdate_(hGraphExec,hGraph,hErrorNode_out,updateResult_out) &
         bind(c, name="hipGraphExecUpdate")
-#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -11110,6 +11089,7 @@ module hipfort
 
     module procedure hipGraphExecUpdate_typed
   end interface
+#endif
 
   !>  @brief Creates a kernel execution node and adds it to a graph.
   !>
@@ -14172,14 +14152,10 @@ module hipfort
     end function
   end interface
 
+#ifndef USE_CUDA_NAMES
   interface hipStreamGetCaptureInfo_spt
-#ifdef USE_CUDA_NAMES
-    function hipStreamGetCaptureInfo_spt_(stream,pCaptureStatus,pId) &
-        bind(c, name="cudaStreamGetCaptureInfo_ptsz")
-#else
     function hipStreamGetCaptureInfo_spt_(stream,pCaptureStatus,pId) &
         bind(c, name="hipStreamGetCaptureInfo_spt")
-#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -14189,6 +14165,7 @@ module hipfort
       type(c_ptr),value :: pId
     end function
   end interface
+#endif
 
   interface hipStreamGetCaptureInfo_v2_spt
 #ifdef USE_CUDA_NAMES
@@ -14706,6 +14683,7 @@ module hipfort
     end function
 
 #endif
+#ifndef USE_CUDA_NAMES
     function hipMemcpyBatchAsync_typed(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx, &
         stream)
       use iso_c_binding
@@ -14727,6 +14705,8 @@ module hipfort
         numAttrs,c_loc(failIdx),stream)
     end function
 
+#endif
+#ifndef USE_CUDA_NAMES
     function hipMemcpy3DBatchAsync_typed(numOps,opList,failIdx,flags,stream)
       use iso_c_binding
       use hipfort_enums
@@ -14743,6 +14723,7 @@ module hipfort
         stream)
     end function
 
+#endif
     function hipDeviceCanAccessPeer_typed(canAccessPeer,deviceId,peerDeviceId)
       use iso_c_binding
       use hipfort_enums
@@ -15526,6 +15507,7 @@ module hipfort
       hipGraphExecGetFlags_typed = hipGraphExecGetFlags_(graphExec,c_loc(flags))
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipGraphExecUpdate_typed(hGraphExec,hGraph,hErrorNode_out,updateResult_out)
       use iso_c_binding
       use hipfort_enums
@@ -15540,6 +15522,7 @@ module hipfort
         c_loc(updateResult_out))
     end function
 
+#endif
     function hipGraphNodeGetEnabled_typed(hGraphExec,hNode,isEnabled)
       use iso_c_binding
       use hipfort_enums
