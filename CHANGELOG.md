@@ -102,8 +102,9 @@
   `type(fftw_iodim)` / `type(fftw_iodim64)` arrays in every precision. The
   `hipfftGetProperty` rank overloads are removed, as its value is a plain
   integer.
-* **Breaking.** Apart from ROCTx and the preprocessor macros (below), eight
-  patterns of code written against hipfort 0.9.0 no longer compile:
+* **Breaking.** Apart from ROCTx, the preprocessor macros and direct calls to
+  the `bind(C)` specifics (below), eight patterns of code written against
+  hipfort 0.9.0 no longer compile:
   * hipSOLVER, an `integer` `devInfo` passed with `type(c_ptr)` buffers: pass a
     device pointer, such as the `type(c_ptr)` from `hipMalloc`;
   * hipSOLVER array overloads, `tau` passed as an element, `dTau(1)`: pass the
@@ -127,19 +128,25 @@
   `hipsolverRfBatchSolve` is now `type(c_ptr), value`. Pass `c_loc` of the
   array; code that passed its first element, `arr(1)`, now passes the first
   pointer instead of the address of the array.
+* **Breaking.** Calling a `bind(C)` specific directly, by its `<routine>_`
+  name, with a Fortran variable where the C API takes a pointer no longer
+  compiles for the 223 specifics whose argument became `type(c_ptr), value`,
+  such as `hipGetDevice_`, `hipMemGetInfo_` and `hipfftGetSize_`. Call the
+  generic, `hipGetDevice(dev)`, which picks the `_typed` form, or pass `c_loc`
+  to the specific.
 * **Breaking.** `hipfort_roctx` is now generated from
   `rocprofiler-sdk-roctx/roctx.h`, which is the header behind the library that
   `hipfort::roctx` links. The hand-written 0.9.0 module followed the legacy
-  `roctracer/roctx.h`. Its
-  `const char*` arguments are now `type(c_ptr)`, like every other `char*`
-  argument in hipfort. Pass `c_loc` of a NUL-terminated
-  `character(kind=c_char)` array instead of a Fortran string:
+  `roctracer/roctx.h`. Its `const char*` arguments are bound as `type(c_ptr)`,
+  and each of these routines also accepts a `character(kind=c_char)` string,
+  passed by address without a copy. As in 0.9.0, the caller supplies the
+  terminator:
 
   ```fortran
-  character(kind=c_char), dimension(5), target :: msg = &
-      [c_char_"z", c_char_"o", c_char_"n", c_char_"e", c_null_char]
-  ret = roctxRangePush(c_loc(msg))
+  ret = roctxRangePush("zone"//c_null_char)
   ```
+
+  A `character(kind=c_char)` array is no longer accepted: pass `c_loc` of it.
 
   `hipfort_roctx` is now AMD-only and is no longer part of
   `libhipfort-nvptx.a`.
