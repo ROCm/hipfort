@@ -23834,15 +23834,15 @@ module hipfort_rocsparse
   !>   @param[in] m - number of rows of the dense matrix.
   !>   @param[in] n - number of columns of the dense matrix.
   !>   @param[in] nnz - number of non-zero entries in the sparse vector.
-  !>   @param[out] buffer_size - temporary storage buffer size.
+  !>   @param[out] buffer_size - temporary storage buffer size. Can return zero if no buffer is
+  !>   required
+  !>               for the supplied input parameters.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p nnz is invalid.
   !>   \retval     rocsparse_status_invalid_pointer \p buffer_size pointer is invalid.
-  !>   \retval     rocsparse_status_not_implemented
-  !>               \p trans != `rocsparse_operation_none` or
-  !>               `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
+  !>   \retval     rocsparse_status_not_implemented \p trans != `rocsparse_operation_none`.
   interface rocsparse_sgemvi_buffer_size
     function rocsparse_sgemvi_buffer_size_(handle,trans,m,n,nnz,buffer_size) &
         bind(c, name="rocsparse_sgemvi_buffer_size")
@@ -23965,16 +23965,16 @@ module hipfort_rocsparse
   !>   @param[inout] y - array of \p m elements (\f$op(A) == A\f$) or \p n elements
   !>               (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
   !>   @param[in] idx_base - rocsparse_index_base_zero or rocsparse_index_base_one.
-  !>   @param[in] temp_buffer - temporary storage buffer.
+  !>   @param[in] temp_buffer - temporary storage buffer of at least the size returned by
+  !>               \ref rocsparse_sgemvi_buffer_size "rocsparse_Xgemvi_buffer_size()".
+  !>               Might be a \p nullptr when the returned size is zero.
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval     rocsparse_status_invalid_size \p m, \p n, \p lda, or \p nnz is invalid.
   !>   \retval     rocsparse_status_invalid_pointer \p alpha, \p A, \p x_val, \p x_ind,
   !>               \p beta, \p y, or \p temp_buffer pointer is invalid.
-  !>   \retval     rocsparse_status_not_implemented
-  !>               \p trans != `rocsparse_operation_none` or
-  !>               `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
+  !>   \retval     rocsparse_status_not_implemented \p trans != `rocsparse_operation_none`.
   !>
   !>   \par Example
   interface rocsparse_sgemvi

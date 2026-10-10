@@ -4057,6 +4057,190 @@ module hipfort_hipsolver
 #endif
 
 #ifndef USE_CUDA_NAMES
+  interface hipsolverSgetrfBatched_bufferSize
+    function hipsolverSgetrfBatched_bufferSize_(handle,m,n,A,lda,strideP,lwork,batch_count) &
+        bind(c, name="hipsolverSgetrfBatched_bufferSize")
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(c_int) :: hipsolverSgetrfBatched_bufferSize_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideP
+      type(c_ptr),value :: lwork
+      integer(c_int),value :: batch_count
+    end function
+
+    module procedure hipsolverSgetrfBatched_bufferSize_typed
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipsolverDgetrfBatched_bufferSize
+    function hipsolverDgetrfBatched_bufferSize_(handle,m,n,A,lda,strideP,lwork,batch_count) &
+        bind(c, name="hipsolverDgetrfBatched_bufferSize")
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(c_int) :: hipsolverDgetrfBatched_bufferSize_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideP
+      type(c_ptr),value :: lwork
+      integer(c_int),value :: batch_count
+    end function
+
+    module procedure hipsolverDgetrfBatched_bufferSize_typed
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipsolverCgetrfBatched_bufferSize
+    function hipsolverCgetrfBatched_bufferSize_(handle,m,n,A,lda,strideP,lwork,batch_count) &
+        bind(c, name="hipsolverCgetrfBatched_bufferSize")
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(c_int) :: hipsolverCgetrfBatched_bufferSize_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideP
+      type(c_ptr),value :: lwork
+      integer(c_int),value :: batch_count
+    end function
+
+    module procedure hipsolverCgetrfBatched_bufferSize_typed
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipsolverZgetrfBatched_bufferSize
+    function hipsolverZgetrfBatched_bufferSize_(handle,m,n,A,lda,strideP,lwork,batch_count) &
+        bind(c, name="hipsolverZgetrfBatched_bufferSize")
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(c_int) :: hipsolverZgetrfBatched_bufferSize_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int),value :: strideP
+      type(c_ptr),value :: lwork
+      integer(c_int),value :: batch_count
+    end function
+
+    module procedure hipsolverZgetrfBatched_bufferSize_typed
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipsolverSgetrfBatched
+    function hipsolverSgetrfBatched_(handle,m,n,A,lda,work,lwork,devIpiv,strideP,devInfo, &
+        batch_count) &
+        bind(c, name="hipsolverSgetrfBatched")
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(c_int) :: hipsolverSgetrfBatched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      type(c_ptr),value :: devIpiv
+      integer(c_int),value :: strideP
+      type(c_ptr),value :: devInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipsolverDgetrfBatched
+    function hipsolverDgetrfBatched_(handle,m,n,A,lda,work,lwork,devIpiv,strideP,devInfo, &
+        batch_count) &
+        bind(c, name="hipsolverDgetrfBatched")
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(c_int) :: hipsolverDgetrfBatched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      type(c_ptr),value :: devIpiv
+      integer(c_int),value :: strideP
+      type(c_ptr),value :: devInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipsolverCgetrfBatched
+    function hipsolverCgetrfBatched_(handle,m,n,A,lda,work,lwork,devIpiv,strideP,devInfo, &
+        batch_count) &
+        bind(c, name="hipsolverCgetrfBatched")
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(c_int) :: hipsolverCgetrfBatched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      type(c_ptr),value :: devIpiv
+      integer(c_int),value :: strideP
+      type(c_ptr),value :: devInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipsolverZgetrfBatched
+    function hipsolverZgetrfBatched_(handle,m,n,A,lda,work,lwork,devIpiv,strideP,devInfo, &
+        batch_count) &
+        bind(c, name="hipsolverZgetrfBatched")
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(c_int) :: hipsolverZgetrfBatched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: work
+      integer(c_int),value :: lwork
+      type(c_ptr),value :: devIpiv
+      integer(c_int),value :: strideP
+      type(c_ptr),value :: devInfo
+      integer(c_int),value :: batch_count
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
   interface hipsolverSgetrs_bufferSize
     function hipsolverSgetrs_bufferSize_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork) &
         bind(c, name="hipsolverSgetrs_bufferSize")
@@ -17087,6 +17271,86 @@ module hipfort_hipsolver
       integer(c_int),target :: lwork
       !
       hipsolverZgetrf_bufferSize_typed = hipsolverZgetrf_bufferSize_(handle,m,n,A,lda,c_loc(lwork))
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipsolverSgetrfBatched_bufferSize_typed(handle,m,n,A,lda,strideP,lwork,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrfBatched_bufferSize_typed
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      integer(c_int) :: strideP
+      integer(c_int),target :: lwork
+      integer(c_int) :: batch_count
+      !
+      hipsolverSgetrfBatched_bufferSize_typed = hipsolverSgetrfBatched_bufferSize_(handle,m,n,A, &
+        lda,strideP,c_loc(lwork),batch_count)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipsolverDgetrfBatched_bufferSize_typed(handle,m,n,A,lda,strideP,lwork,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrfBatched_bufferSize_typed
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      integer(c_int) :: strideP
+      integer(c_int),target :: lwork
+      integer(c_int) :: batch_count
+      !
+      hipsolverDgetrfBatched_bufferSize_typed = hipsolverDgetrfBatched_bufferSize_(handle,m,n,A, &
+        lda,strideP,c_loc(lwork),batch_count)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipsolverCgetrfBatched_bufferSize_typed(handle,m,n,A,lda,strideP,lwork,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrfBatched_bufferSize_typed
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      integer(c_int) :: strideP
+      integer(c_int),target :: lwork
+      integer(c_int) :: batch_count
+      !
+      hipsolverCgetrfBatched_bufferSize_typed = hipsolverCgetrfBatched_bufferSize_(handle,m,n,A, &
+        lda,strideP,c_loc(lwork),batch_count)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipsolverZgetrfBatched_bufferSize_typed(handle,m,n,A,lda,strideP,lwork,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrfBatched_bufferSize_typed
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      integer(c_int) :: strideP
+      integer(c_int),target :: lwork
+      integer(c_int) :: batch_count
+      !
+      hipsolverZgetrfBatched_bufferSize_typed = hipsolverZgetrfBatched_bufferSize_(handle,m,n,A, &
+        lda,strideP,c_loc(lwork),batch_count)
     end function
 
 #endif
