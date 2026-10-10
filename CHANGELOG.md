@@ -6,7 +6,6 @@
 
 * Regenerated all Fortran bindings against the ROCm 10.1 API, adding 59
   routines.
-* Bound 250 more routines to their CUDA twin under `USE_CUDA_NAMES`.
 * Added seven ROCTx entry points to `hipfort_roctx`: `roctxProfilerPause`,
   `roctxProfilerResume`, `roctxGetThreadId` and the `roctxName*` family.
 * Added the status name to the `hipfort_check` error message for every library,
