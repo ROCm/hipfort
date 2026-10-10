@@ -105,12 +105,17 @@ is only defined when that component is requested. The Fortran language must be e
 before ``find_package(hipfort)``. See :doc:`../how-to/using-hipfort` for the full
 component list.
 
-The installed CMake package targets the ROCm backend only. ``hipfort-config.cmake``
-is written when hipFORT is configured for ROCm; it pulls in ``libhipfort-amdgcn`` and
-resolves each component against its ROCm package, so ``find_package(hipfort)`` does
-not work against the optional CUDA (``nvptx``) backend even when that archive is
-built and installed. Link ``libhipfort-nvptx`` and the CUDA libraries directly
-instead.
+The installed CMake package follows the backend the components were exported for.
+On ROCm, ``hipfort-config.cmake`` pulls in ``libhipfort-amdgcn`` and resolves each
+component against its ROCm package. When only the optional CUDA (``nvptx``) archive
+is built, it pulls in ``libhipfort-nvptx`` instead, offers only the ``hip*``
+components, and resolves them against ``CUDAToolkit``.
+
+With the ``nvptx`` archive, a ``complex(8)`` host scalar passed by address, such as
+``alpha`` or ``beta`` given as ``c_loc(alpha)``, must be 16-byte aligned: the CUDA
+libraries access a ``cuDoubleComplex`` with an aligned load or store, and a Fortran
+``complex(8)`` variable is only guaranteed 8-byte alignment. Declaring the scalar
+``allocatable`` places it on the heap, which is 16-byte aligned.
 
 
 Examples and tests

@@ -59,7 +59,7 @@ program hipsparse_zsddmm
   complex(c_double_complex), target :: h_csr_val(4)     = (/(0.0,0.0), (0.0,0.0), (0.0,0.0), (0.0,0.0)/)
 
   complex(c_double_complex) :: h_AB(3,2), h_expected(4)
-  complex(c_double_complex), target :: alpha = (1.0d0,0.0d0), beta = (0.0d0,0.0d0)
+  complex(c_double_complex), allocatable, target :: alpha, beta
   
   ! Device-resident copies of the dual-mode scalars; the library reads them
   ! from device memory because the handle is in device pointer mode.
@@ -75,6 +75,11 @@ program hipsparse_zsddmm
 
   real(c_double) :: error
   real(c_double), parameter :: error_max = 10 * epsilon(error_max)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.0d0,0.0d0)
+  beta = (0.0d0,0.0d0)
 
   write(*,"(a)",advance="no") "-- Running test 'hipsparse_zsddmm_devptr' (Fortran 2003 interfaces) - "
 

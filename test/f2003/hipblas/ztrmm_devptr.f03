@@ -36,7 +36,7 @@ program hip_ztrmm
   ! A = [1 2; 0 3] and B = I, so C = A.
   integer, parameter :: ld = 2
   integer(c_size_t) :: Nbytes
-  complex(c_double_complex), target :: alpha = (1.0, 0.0)
+  complex(c_double_complex), allocatable, target :: alpha
   
   ! Device-resident copies of the dual-mode scalars; the library reads them
   ! from device memory because the handle is in device pointer mode.
@@ -51,6 +51,10 @@ program hip_ztrmm
   integer :: i, j
   real(c_double) :: error
   real(c_double), parameter :: error_max = 10*epsilon(error)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha)
+  alpha = (1.0, 0.0)
 
   write(*,"(a)",advance="no") "-- Running test 'ztrmm_devptr' (Fortran 2003 interfaces) - "
 

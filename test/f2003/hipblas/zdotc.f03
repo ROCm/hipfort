@@ -35,12 +35,15 @@ program hip_zdotc
   integer, parameter :: bytes_per_element = 16
   integer(c_size_t) :: Nbytes
   complex(kind=8), allocatable, target, dimension(:) :: hx, hy
-  complex(kind=8), target :: res
+  complex(kind=8), allocatable, target :: res
   complex(kind=8) :: res_exact
   double precision :: error
   double precision, parameter :: error_max = 10*epsilon(error)
   type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr
   type(c_ptr) :: handle = c_null_ptr
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(res)
 
   write(*,"(a)",advance="no") "-- Running test 'ZDOTC' (Fortran 2003 interfaces) - "
 

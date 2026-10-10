@@ -37,12 +37,13 @@
 ! back the very same object) and then reset to the null/default stream with a
 ! pre-poisoned output variable (so the getter must overwrite it, not leave it).
 !
-! The math mode is checked more loosely on purpose. HIPBLAS_XF32_XDL_MATH is
-! accepted on every architecture but only honoured on hardware with XF32 XDL
+! The math mode is checked more loosely on purpose. On ROCm HIPBLAS_XF32_XDL_MATH
+! is accepted on every architecture but only honoured on hardware with XF32 XDL
 ! support, so the handle may legitimately stay on HIPBLAS_DEFAULT_MATH; a hard
-! round-trip would be a false failure elsewhere. What is asserted is that the
-! getter overwrote the -1 sentinel with a member of the enum, and that setting
-! HIPBLAS_DEFAULT_MATH back does round-trip exactly.
+! round-trip would be a false failure elsewhere. On the CUDA backend it has no
+! cuBLAS counterpart and the setter returns HIPBLAS_STATUS_INVALID_VALUE.
+! What is asserted is that the getter overwrote the sentinel with a member of
+! the enum, and that setting HIPBLAS_DEFAULT_MATH back does round-trip exactly.
 program hipblas_handle_state
   use iso_c_binding
   use hipfort
@@ -57,6 +58,9 @@ program hipblas_handle_state
   type(c_ptr) :: got = c_null_ptr
   integer(kind(HIPBLAS_ATOMICS_NOT_ALLOWED)) :: amode
   integer(kind(HIPBLAS_DEFAULT_MATH)) :: mmode
+  ! Not a hipblasMath_t member on either backend (XF32_XDL is -1 under CUDA).
+  integer(kind(HIPBLAS_DEFAULT_MATH)), parameter :: sentinel = -12345
+  integer(kind(HIPBLAS_STATUS_SUCCESS)) :: stat
 
   write(*,"(a)",advance="no") "-- Running test 'hipblas_handle_state' (Fortran 2008 interfaces) - "
 
@@ -117,7 +121,7 @@ program hipblas_handle_state
   ! 7. Math mode: the default must be reported exactly, a non-default request
   !    must at least leave a legal enum member behind, and restoring the
   !    default must round-trip.
-  mmode = -1
+  mmode = sentinel
   call hipblasCheck(hipblasGetMathMode(handle, mmode))
   if (mmode /= HIPBLAS_DEFAULT_MATH) then
      write(*,*) "FAILED! fresh handle math mode is ", mmode, &
@@ -125,8 +129,13 @@ program hipblas_handle_state
      STOP 1
   end if
 
-  call hipblasCheck(hipblasSetMathMode(handle, HIPBLAS_XF32_XDL_MATH))
-  mmode = -1
+  ! XF32_XDL is an AMD mode: on the CUDA backend cuBLAS rejects it.
+  stat = hipblasSetMathMode(handle, HIPBLAS_XF32_XDL_MATH)
+  if (stat /= HIPBLAS_STATUS_SUCCESS .and. stat /= HIPBLAS_STATUS_INVALID_VALUE) then
+     write(*,*) "FAILED! hipblasSetMathMode(HIPBLAS_XF32_XDL_MATH) returned ", stat
+     STOP 1
+  end if
+  mmode = sentinel
   call hipblasCheck(hipblasGetMathMode(handle, mmode))
   if (mmode /= HIPBLAS_DEFAULT_MATH .and. mmode /= HIPBLAS_XF32_XDL_MATH .and. &
       mmode /= HIPBLAS_PEDANTIC_MATH .and. mmode /= HIPBLAS_TF32_TENSOR_OP_MATH .and. &
@@ -137,7 +146,7 @@ program hipblas_handle_state
   end if
 
   call hipblasCheck(hipblasSetMathMode(handle, HIPBLAS_DEFAULT_MATH))
-  mmode = -1
+  mmode = sentinel
   call hipblasCheck(hipblasGetMathMode(handle, mmode))
   if (mmode /= HIPBLAS_DEFAULT_MATH) then
      write(*,*) "FAILED! hipblasGetMathMode did not restore HIPBLAS_DEFAULT_MATH, got ", mmode

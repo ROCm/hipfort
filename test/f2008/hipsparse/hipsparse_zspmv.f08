@@ -53,7 +53,7 @@ program hipsparse_zspmv
   complex(c_double_complex) :: h_x(3) = (/(1.0d0,0.0d0), (2.0d0,1.0d0), (3.0d0,0.0d0)/)
   complex(c_double_complex) :: h_y(3)
   complex(c_double_complex) :: h_dense(3,3), h_expected(3)
-  complex(c_double_complex), target :: alpha = (1.0d0,0.0d0), beta = (0.0d0,0.0d0)
+  complex(c_double_complex), allocatable, target :: alpha, beta
 
   integer(c_int), pointer :: d_csr_row_ptr(:), d_csr_col_ind(:)
   complex(c_double_complex), pointer :: d_csr_val(:), d_x(:), d_y(:)
@@ -62,6 +62,11 @@ program hipsparse_zspmv
 
   real(c_double) :: error
   real(c_double), parameter :: error_max = 1.0d-11
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.0d0,0.0d0)
+  beta = (0.0d0,0.0d0)
 
   write(*,"(a)",advance="no") "-- Running test 'hipsparse_zspmv' (Fortran 2008 interfaces) - "
 

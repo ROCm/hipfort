@@ -110,7 +110,9 @@ program error_version
 
   ! Both accessors describe the error the runtime just reported.
   ename = c_string(hipGetErrorName(hipErrorInvalidDevice))
-  if (trim(ename) /= "hipErrorInvalidDevice") then
+  ! On the CUDA backend the name comes from cudaGetErrorName.
+  if (trim(ename) /= "hipErrorInvalidDevice" .and. &
+      trim(ename) /= "cudaErrorInvalidDevice") then
      write(*,*) "FAILED! hipGetErrorName = '", trim(ename), "'"
      call exit(1)
   end if

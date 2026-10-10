@@ -49,11 +49,17 @@ program hipsparse_zgemvi
   complex(c_double_complex), target :: hXval(2) = (/(2.0d0,1.0d0), (3.0d0,-1.0d0)/)
   integer(c_int), target :: hXind(2) = (/0, 2/)
   complex(c_double_complex), target :: hY(3) = (/(1.0d0,0.0d0), (1.0d0,0.0d0), (1.0d0,0.0d0)/)
-  complex(c_double_complex), target :: alpha = (2.0d0,1.0d0), beta = (3.0d0,0.0d0)
+  complex(c_double_complex), allocatable, target :: alpha, beta
   complex(c_double_complex) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dA, dXval, dXind, dY, dBuf
   integer(c_int) :: bufSize
+
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (2.0d0,1.0d0)
+  beta = (3.0d0,0.0d0)
   write(*,"(a)",advance="no") "-- Running test 'hipsparse_zgemvi' (Fortran 2003 interfaces) - "
 
   ! Dense host reference.

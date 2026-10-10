@@ -41,7 +41,7 @@ program hipblas_zgemm_trans_test
       HIPBLAS_OP_T, HIPBLAS_OP_C]
   character(len=1), parameter :: op_names(3) = ['N', 'T', 'C']
   integer, parameter :: m = 37, n = 23, k = 19, pad = 3
-  complex(c_double_complex), target :: alpha = (1.5_c_double, -0.5_c_double), beta = (0.5_c_double, 0.25_c_double)
+  complex(c_double_complex), allocatable, target :: alpha, beta
 
   complex(c_double_complex), allocatable, target :: hA(:,:), hB(:,:), hC(:,:)
   complex(c_double_complex), allocatable :: hC0(:,:), opA(:,:), opB(:,:), hC_ref(:,:)
@@ -51,6 +51,11 @@ program hipblas_zgemm_trans_test
 
   integer :: ia, ib, i, j, rows_a, cols_a, rows_b, cols_b, lda, ldb, ldc
   real(c_double) :: error, error_max
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.5_c_double, -0.5_c_double)
+  beta = (0.5_c_double, 0.25_c_double)
 
   write(*,"(a)",advance="no") "-- Running test 'ZGEMM transposes' (Fortran 2003 interfaces) - "
 

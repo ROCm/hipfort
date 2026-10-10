@@ -34,11 +34,14 @@ program hip_zdotu
   integer, parameter :: n = 10240
   complex(kind=8), allocatable, dimension(:) :: hx, hy
   complex(kind=8), pointer, dimension(:) :: dx, dy
-  complex(kind=8), target :: res
+  complex(kind=8), allocatable, target :: res
   complex(kind=8) :: res_exact
   double precision :: error
   double precision, parameter :: error_max = 10*epsilon(error)
   type(c_ptr) :: handle = c_null_ptr
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(res)
 
   write(*,"(a)",advance="no") "-- Running test 'ZDOTU' (Fortran 2008 interfaces) - "
 

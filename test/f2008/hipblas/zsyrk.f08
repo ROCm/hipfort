@@ -35,7 +35,7 @@ program hip_zsyrk
   ! C := alpha*A*A**T + beta*C, upper triangle. A = [1 0; 2 3] gives
   ! A*A**T = [1 2; 2 13], so the referenced upper triangle is 1, 2, 13.
   integer, parameter :: ld = 2
-  complex(c_double_complex), target :: alpha = (1.0, 0.0), beta = (0.0, 0.0)
+  complex(c_double_complex), allocatable, target :: alpha, beta
 
   complex(c_double_complex) :: hA(ld,ld) = reshape([(1.0, 0.0), (2.0, 0.0), (0.0, 0.0), (3.0, 0.0)], [ld,ld])
   complex(c_double_complex) :: hC(ld,ld)
@@ -45,6 +45,11 @@ program hip_zsyrk
   integer :: i, j
   real(c_double) :: error
   real(c_double), parameter :: error_max = 10*epsilon(error)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.0, 0.0)
+  beta = (0.0, 0.0)
 
   write(*,"(a)",advance="no") "-- Running test 'zsyrk' (Fortran 2008 interfaces) - "
 

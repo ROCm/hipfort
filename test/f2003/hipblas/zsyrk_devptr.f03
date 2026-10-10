@@ -36,7 +36,7 @@ program hip_zsyrk
   ! A*A**T = [1 2; 2 13], so the referenced upper triangle is 1, 2, 13.
   integer, parameter :: ld = 2
   integer(c_size_t) :: Nbytes
-  complex(c_double_complex), target :: alpha = (1.0, 0.0), beta = (0.0, 0.0)
+  complex(c_double_complex), allocatable, target :: alpha, beta
   
   ! Device-resident copies of the dual-mode scalars; the library reads them
   ! from device memory because the handle is in device pointer mode.
@@ -51,6 +51,11 @@ program hip_zsyrk
   integer :: i, j
   real(c_double) :: error
   real(c_double), parameter :: error_max = 10*epsilon(error)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.0, 0.0)
+  beta = (0.0, 0.0)
 
   write(*,"(a)",advance="no") "-- Running test 'zsyrk_devptr' (Fortran 2003 interfaces) - "
 

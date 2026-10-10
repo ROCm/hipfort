@@ -31,7 +31,7 @@ program hipblas_zgemv_test
 
   implicit none
 
-  complex(kind=8), target :: alpha = (1.1d0, 0.0d0), beta = (0.9d0, 0.0d0)
+  complex(kind=8), allocatable, target :: alpha, beta
   integer, parameter :: m = 512, n = 512
 
   complex(kind=8), allocatable, target, dimension(:) :: hA, hx, hy
@@ -43,6 +43,11 @@ program hipblas_zgemv_test
   double precision :: error
   double precision, parameter :: error_max = 10*epsilon(error)
   integer :: i
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.1d0, 0.0d0)
+  beta = (0.9d0, 0.0d0)
 
   write(*,"(a)",advance="no") "-- Running test 'ZGEMV' (Fortran 2008 interfaces) - "
 
