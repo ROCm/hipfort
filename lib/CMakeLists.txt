@@ -349,6 +349,33 @@ if(HIP_PLATFORM STREQUAL "amd" AND TARGET hipfort-amdgcn)
     message(STATUS "Skipping hipfort::hipsparse target export")
   endif()
 
+elseif(CUDAToolkit_FOUND AND TARGET hipfort-nvptx)
+  # Only the hip* components exist here; roc* and the FFTW3 API have no CUDA counterpart.
+  set(HIPFORT_BASE_LIB hipfort-nvptx)
+  foreach(pair "hip:cudart" "hipblas:cublas" "hipfft:cufft"
+               "hiprand:curand" "hipsolver:cusolver" "hipsparse:cusparse")
+    string(REPLACE ":" ";" pair "${pair}")
+    list(GET pair 0 _comp)
+    list(GET pair 1 _cudalib)
+    if(TARGET CUDA::${_cudalib})
+      hipfort_add_component(${_comp} CUDA::${_cudalib})
+    else()
+      message(STATUS "Skipping hipfort::${_comp} target export (no CUDA::${_cudalib})")
+    endif()
+  endforeach()
+  # The HIP runtime binds part of its routines to the CUDA driver API (cu*:
+  # hipModule*, hipMemsetD*, hipGraphInstantiate, ...), which lives in libcuda,
+  # not libcudart. The archive itself never calls them (their wrappers are
+  # AMD-only), but a program that does needs libcuda on its link line.
+  if(TARGET hipfort-hip AND TARGET CUDA::cuda_driver)
+    target_link_libraries(hipfort-hip INTERFACE CUDA::cuda_driver)
+    target_link_libraries(${HIPFORT_BASE_LIB} INTERFACE "$<BUILD_INTERFACE:CUDA::cuda_driver>")
+  endif()
+endif()
+
+# The package config files, for whichever backend the components above were
+# exported for. HIPFORT_BASE_LIB is unset when neither branch ran.
+if(HIPFORT_BASE_LIB)
   include(CMakePackageConfigHelpers)
 
   # hipfort-config.cmake has to pull in the backend archive's targets file before
@@ -418,20 +445,6 @@ if(HIP_PLATFORM STREQUAL "amd" AND TARGET hipfort-amdgcn)
       COMPONENT devel
     )
   endif()
-elseif(CUDAToolkit_FOUND AND TARGET hipfort-nvptx)
-  # Only the hip* components exist here; roc* and the FFTW3 API have no CUDA counterpart.
-  set(HIPFORT_BASE_LIB hipfort-nvptx)
-  foreach(pair "hip:cudart" "hipblas:cublas" "hipfft:cufft"
-               "hiprand:curand" "hipsolver:cusolver" "hipsparse:cusparse")
-    string(REPLACE ":" ";" pair "${pair}")
-    list(GET pair 0 _comp)
-    list(GET pair 1 _cudalib)
-    if(TARGET CUDA::${_cudalib})
-      hipfort_add_component(${_comp} CUDA::${_cudalib})
-    else()
-      message(STATUS "Skipping hipfort::${_comp} target export (no CUDA::${_cudalib})")
-    endif()
-  endforeach()
 endif()
 
 # ---------------------------------------------------------------------------

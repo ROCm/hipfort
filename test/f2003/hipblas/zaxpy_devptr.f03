@@ -36,7 +36,7 @@ program hip_zaxpy
   integer :: j
   complex(kind=8), allocatable, target, dimension(:) :: x, y, y_exact
 
-  complex(kind=8), target :: alpha = (2.0d0, 0.d0)
+  complex(kind=8), allocatable, target :: alpha
   
   ! Device-resident copies of the dual-mode scalars; the library reads them
   ! from device memory because the handle is in device pointer mode.
@@ -50,6 +50,10 @@ program hip_zaxpy
 
   double precision :: error
   double precision, parameter :: error_max = 10*epsilon(error)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha)
+  alpha = (2.0d0, 0.d0)
 
   Nxbytes = n * bytes_per_element
   Nybytes = n * bytes_per_element

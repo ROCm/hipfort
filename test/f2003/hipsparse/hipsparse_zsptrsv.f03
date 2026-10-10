@@ -60,7 +60,7 @@ program zsptrsv
   complex(c_double_complex), target :: h_yout(3)       ! recovered solution
   complex(c_double_complex) :: L_dense(3,3)
 
-  complex(c_double_complex), target :: alpha = (1.0d0,0.0d0)
+  complex(c_double_complex), allocatable, target :: alpha
   integer(kind(HIPSPARSE_FILL_MODE_LOWER)), target :: fill = HIPSPARSE_FILL_MODE_LOWER
   integer(kind(HIPSPARSE_DIAG_TYPE_NON_UNIT)), target :: diag = HIPSPARSE_DIAG_TYPE_NON_UNIT
 
@@ -73,6 +73,10 @@ program zsptrsv
 
   real(c_double) :: error
   real(c_double), parameter :: error_max = 100 * epsilon(error_max)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha)
+  alpha = (1.0d0,0.0d0)
 
   write(*,"(a)",advance="no") "-- Running test 'hipsparse_zsptrsv' (Fortran 2003 interfaces) - "
 

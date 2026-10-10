@@ -37,7 +37,7 @@ program hip_ztrsm
   integer(kind(HIPBLAS_DIAG_NON_UNIT)),   parameter :: diag   = HIPBLAS_DIAG_NON_UNIT
   integer, parameter :: m = 512, n = 512
   integer, parameter :: bytes_per_element = 16
-  complex(kind=8), target :: alpha = (2.d0, 0.d0)
+  complex(kind=8), allocatable, target :: alpha
   integer(c_size_t) :: NAbytes, NBbytes
   complex(kind=8), allocatable, target, dimension(:) :: hA, hB
   complex(kind=8), parameter :: x_exact = (1.d0, 0.d0)
@@ -46,6 +46,10 @@ program hip_ztrsm
   type(c_ptr) :: dA = c_null_ptr, dB = c_null_ptr
   type(c_ptr) :: handle = c_null_ptr
   integer :: i, j
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha)
+  alpha = (2.d0, 0.d0)
 
   write(*,"(a)",advance="no") "-- Running test 'ZTRSM' (Fortran 2003 interfaces) - "
 

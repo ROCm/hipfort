@@ -35,7 +35,7 @@ program hip_zgeam
   ! C := alpha*op(A) + beta*op(B) with alpha = beta = 1 and no
   ! transposition, so C is the elementwise sum A + B.
   integer, parameter :: ld = 2
-  complex(c_double_complex), target :: alpha = (1.0, 0.0), beta = (1.0, 0.0)
+  complex(c_double_complex), allocatable, target :: alpha, beta
 
   complex(c_double_complex) :: hA(ld,ld) = reshape([(1.0, 0.0), (2.0, 0.0), (3.0, 0.0), (4.0, 0.0)], [ld,ld])
   complex(c_double_complex) :: hB(ld,ld) = reshape([(10.0, 0.0), (20.0, 0.0), (30.0, 0.0), (40.0, 0.0)], [ld,ld])
@@ -46,6 +46,11 @@ program hip_zgeam
   integer :: i, j
   real(c_double) :: error
   real(c_double), parameter :: error_max = 10*epsilon(error)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.0, 0.0)
+  beta = (1.0, 0.0)
 
   write(*,"(a)",advance="no") "-- Running test 'zgeam' (Fortran 2008 interfaces) - "
 

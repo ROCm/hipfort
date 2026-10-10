@@ -33,7 +33,7 @@ program hip_zgemm_strided_batched
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N
-  complex(kind=8), target :: alpha = (1.1d0,0.0d0), beta = (0.9d0,0.0d0)
+  complex(kind=8), allocatable, target :: alpha, beta
 
   integer, parameter :: m = 256, n = 256, k = 256, batch_count = 4
   integer :: lda, ldb, ldc, i, b
@@ -48,6 +48,11 @@ program hip_zgemm_strided_batched
 
   double precision :: error
   double precision, parameter :: error_max = 10*epsilon(error)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.1d0,0.0d0)
+  beta = (0.9d0,0.0d0)
 
   write(*,"(a)",advance="no") "-- Running test 'ZGEMM_STRIDED_BATCHED' (Fortran 2008 interfaces) - "
 
