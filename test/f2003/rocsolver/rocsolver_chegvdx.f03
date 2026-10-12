@@ -59,7 +59,7 @@ program chegvdx
   integer(c_size_t) :: sizeA = 9, sizeB = 9, sizeW = 3, sizeZ = 9
 
   type(c_ptr) :: dA, dB, dW, dZ, dInfo
-  integer(c_int), pointer :: dNev(:)
+  type(c_ptr) :: dNev
   type(c_ptr) :: handle
 
   real(c_float) :: error
@@ -74,7 +74,7 @@ program chegvdx
   call hipCheck(hipMalloc(dB, sizeB * 8))
   call hipCheck(hipMalloc(dW, sizeW * 4))
   call hipCheck(hipMalloc(dZ, sizeZ * 8))
-  call hipCheck(hipMalloc(dNev, 1))
+  call hipCheck(hipMalloc(dNev, 4_c_size_t))
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sizeA * 8, hipMemcpyHostToDevice))
@@ -84,9 +84,9 @@ program chegvdx
 
   call rocsolverCheck(rocsolver_chegvdx(handle, rocblas_eform_ax, rocblas_evect_original, &
        rocblas_erange_index, rocblas_fill_upper, N, dA, lda, dB, ldb, &
-       0.0, 0.0, 1, N, c_loc(dNev(1)), dW, dZ, ldz, dInfo))
+       0.0, 0.0, 1, N, dNev, dW, dZ, ldz, dInfo))
 
-  call hipCheck(hipMemcpy(c_loc(hNev), c_loc(dNev(1)), 4_c_size_t, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hNev), dNev, 4_c_size_t, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 4, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hZ(1,1)), dZ, sizeZ * 8, hipMemcpyDeviceToHost))
 

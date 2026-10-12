@@ -93,6 +93,7 @@ module hipfort_hipmemcpy
     module procedure hipMemcpy_l_assumed_rank_c_size_t
     module procedure hipMemcpy_l_assumed_rank_c_int
 #else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipMemcpy_i4_0
     module procedure hipMemcpy_i4_0_c_size_t
     module procedure hipMemcpy_i4_0_c_int
@@ -262,6 +263,7 @@ module hipfort_hipmemcpy
     module procedure hipMemcpy_l_7_c_size_t
     module procedure hipMemcpy_l_7_c_int
 #endif
+#endif
   end interface hipMemcpy
 
   interface hipMemcpyAsync
@@ -330,6 +332,7 @@ module hipfort_hipmemcpy
     module procedure hipMemcpyAsync_l_assumed_rank_c_size_t
     module procedure hipMemcpyAsync_l_assumed_rank_c_int
 #else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipMemcpyAsync_i4_0
     module procedure hipMemcpyAsync_i4_0_c_size_t
     module procedure hipMemcpyAsync_i4_0_c_int
@@ -499,6 +502,7 @@ module hipfort_hipmemcpy
     module procedure hipMemcpyAsync_l_7_c_size_t
     module procedure hipMemcpyAsync_l_7_c_int
 #endif
+#endif
   end interface hipMemcpyAsync
 
   interface hipMemcpy2D
@@ -572,6 +576,7 @@ module hipfort_hipmemcpy
     module procedure hipMemcpy2D_l_assumed_rank_c_size_t
     module procedure hipMemcpy2D_l_assumed_rank_c_int
 #else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipMemcpy2D_i4_0_c_size_t
     module procedure hipMemcpy2D_i4_0_c_int
     module procedure hipMemcpy2D_i4_1_c_size_t
@@ -685,6 +690,7 @@ module hipfort_hipmemcpy
     module procedure hipMemcpy2D_l_7_c_size_t
     module procedure hipMemcpy2D_l_7_c_int
 #endif
+#endif
   end interface hipMemcpy2D
 
   interface hipMemcpy2DAsync
@@ -765,6 +771,7 @@ module hipfort_hipmemcpy
     module procedure hipMemcpy2DAsync_l_assumed_rank_c_size_t
     module procedure hipMemcpy2DAsync_l_assumed_rank_c_int
 #else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipMemcpy2DAsync_i4_0_c_size_t
     module procedure hipMemcpy2DAsync_i4_0_c_int
     module procedure hipMemcpy2DAsync_i4_1_c_size_t
@@ -878,8 +885,10 @@ module hipfort_hipmemcpy
     module procedure hipMemcpy2DAsync_l_7_c_size_t
     module procedure hipMemcpy2DAsync_l_7_c_int
 #endif
+#endif
   end interface hipMemcpy2DAsync
 
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 contains
 
 #ifdef USE_ASSUMED_RANK
@@ -9767,5 +9776,6 @@ contains
       int(height,c_size_t), myKind, stream)
   end function hipMemcpy2DAsync_l_7_c_int
 
+#endif
 #endif
 end module hipfort_hipmemcpy

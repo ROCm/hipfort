@@ -79,6 +79,7 @@ module hipfort_hiphostregister
       integer(c_size_t), value :: sizeBytes
       integer(c_int), value :: flags
     end function hipHostRegister_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipHostRegister_i4_0_nosize
     module procedure hipHostRegister_i4_1_nosize
     module procedure hipHostRegister_i4_1
@@ -233,6 +234,7 @@ module hipfort_hiphostregister
     module procedure hipHostRegister_l_7_nosize
     module procedure hipHostRegister_l_7
     module procedure hipHostRegister_l_7_c_size_t
+#endif
   end interface hipHostRegister
 
   interface hipHostUnregister
@@ -252,6 +254,7 @@ module hipfort_hiphostregister
       integer(c_int) :: hipHostUnregister_
       type(c_ptr), value :: hostPtr
     end function hipHostUnregister_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipHostUnregister_i4_0
     module procedure hipHostUnregister_i4_1
     module procedure hipHostUnregister_i4_2
@@ -308,6 +311,7 @@ module hipfort_hiphostregister
     module procedure hipHostUnregister_l_5
     module procedure hipHostUnregister_l_6
     module procedure hipHostUnregister_l_7
+#endif
   end interface hipHostUnregister
 
   interface hipHostGetDevicePointer
@@ -333,6 +337,7 @@ module hipfort_hiphostregister
       type(c_ptr), value :: hstPtr
       integer(c_int), value :: flags
     end function hipHostGetDevicePointer_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipHostGetDevicePointer_i4_0
     module procedure hipHostGetDevicePointer_i4_1
     module procedure hipHostGetDevicePointer_i4_2
@@ -389,6 +394,7 @@ module hipfort_hiphostregister
     module procedure hipHostGetDevicePointer_l_5
     module procedure hipHostGetDevicePointer_l_6
     module procedure hipHostGetDevicePointer_l_7
+#endif
   end interface hipHostGetDevicePointer
 
   interface hipHostGetFlags
@@ -410,6 +416,7 @@ module hipfort_hiphostregister
       integer(c_int) :: flagsPtr
       type(c_ptr), value :: hostPtr
     end function hipHostGetFlags_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipHostGetFlags_i4_0
     module procedure hipHostGetFlags_i4_1
     module procedure hipHostGetFlags_i4_2
@@ -466,8 +473,10 @@ module hipfort_hiphostregister
     module procedure hipHostGetFlags_l_5
     module procedure hipHostGetFlags_l_6
     module procedure hipHostGetFlags_l_7
+#endif
   end interface hipHostGetFlags
 
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 contains
 
   function hipHostRegister_i4_0_nosize(hostPtr, flags) result(res)
@@ -4054,4 +4063,5 @@ contains
     res = hipHostGetFlags_(flagsPtr, c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostGetFlags_l_7
 
+#endif
 end module hipfort_hiphostregister

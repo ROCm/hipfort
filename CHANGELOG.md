@@ -4,6 +4,11 @@
 
 ### Changed
 
+* **Breaking.** The array overloads of `hipMalloc`, `hipMallocManaged`,
+  `hipHostMalloc`, `hipFree`, `hipHostFree`, the `hipMemcpy` families and the
+  `hipHostRegister` family are now part of the Fortran 2008 array overloads, like
+  those of the math libraries. A build with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`
+  no longer has them: pass a `type(c_ptr)` and a byte count.
 * `fftw_iodim64` declares its fields `integer(c_intptr_t)` instead of
   `integer(c_ptrdiff_t)`, which is Fortran 2008. Both kinds are equal on every
   platform ROCm supports, so existing code is unaffected.

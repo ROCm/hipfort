@@ -51,6 +51,7 @@ module hipfort_hipmalloc
       type(c_ptr) :: ptr
       integer(c_size_t), value :: sizeBytes
     end function hipMalloc_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipMalloc_i4_0_source
     module procedure hipMalloc_i4_1
     module procedure hipMalloc_i4_1_c_size_t
@@ -205,6 +206,7 @@ module hipfort_hipmalloc
     module procedure hipMalloc_l_7
     module procedure hipMalloc_l_7_c_size_t
     module procedure hipMalloc_l_7_source
+#endif
   end interface hipMalloc
 
   interface hipMallocManaged
@@ -244,6 +246,7 @@ module hipfort_hipmalloc
       integer(c_size_t), value :: sizeBytes
       integer(c_int), value :: flags
     end function hipMallocManaged_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipMallocManaged_i4_0_source
     module procedure hipMallocManaged_i4_1
     module procedure hipMallocManaged_i4_1_c_size_t
@@ -398,6 +401,7 @@ module hipfort_hipmalloc
     module procedure hipMallocManaged_l_7
     module procedure hipMallocManaged_l_7_c_size_t
     module procedure hipMallocManaged_l_7_source
+#endif
   end interface hipMallocManaged
 
   interface hipHostMalloc
@@ -446,6 +450,7 @@ module hipfort_hipmalloc
       integer(c_size_t), value :: sizeBytes
       integer(c_int), value :: flags
     end function hipHostMalloc_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipHostMalloc_i4_0_source
     module procedure hipHostMalloc_i4_1
     module procedure hipHostMalloc_i4_1_c_size_t
@@ -600,6 +605,7 @@ module hipfort_hipmalloc
     module procedure hipHostMalloc_l_7
     module procedure hipHostMalloc_l_7_c_size_t
     module procedure hipHostMalloc_l_7_source
+#endif
   end interface hipHostMalloc
 
   interface hipFree
@@ -625,6 +631,7 @@ module hipfort_hipmalloc
       integer(c_int) :: hipFree_
       type(c_ptr), value :: ptr
     end function hipFree_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipFree_i4_0
     module procedure hipFree_i4_1
     module procedure hipFree_i4_2
@@ -681,6 +688,7 @@ module hipfort_hipmalloc
     module procedure hipFree_l_5
     module procedure hipFree_l_6
     module procedure hipFree_l_7
+#endif
   end interface hipFree
 
   interface hipHostFree
@@ -708,6 +716,7 @@ module hipfort_hipmalloc
       integer(c_int) :: hipHostFree_
       type(c_ptr), value :: ptr
     end function hipHostFree_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipHostFree_i4_0
     module procedure hipHostFree_i4_1
     module procedure hipHostFree_i4_2
@@ -764,8 +773,10 @@ module hipfort_hipmalloc
     module procedure hipHostFree_l_5
     module procedure hipHostFree_l_6
     module procedure hipHostFree_l_7
+#endif
   end interface hipHostFree
 
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 contains
 
   function hipMalloc_i4_1(ptr, length1) result(res)
@@ -17953,4 +17964,5 @@ contains
     end if
   end function hipHostFree_l_7
 
+#endif
 end module hipfort_hipmalloc
