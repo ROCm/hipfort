@@ -34,9 +34,9 @@ module hipfort_hipfftw_types
   end type fftw_iodim
 
   type, bind(c) :: fftw_iodim64
-    integer(c_ptrdiff_t) :: n
-    integer(c_ptrdiff_t) :: is
-    integer(c_ptrdiff_t) :: os
+    integer(c_intptr_t) :: n
+    integer(c_intptr_t) :: is
+    integer(c_intptr_t) :: os
   end type fftw_iodim64
 
 end module hipfort_hipfftw_types

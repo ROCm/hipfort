@@ -1,5 +1,13 @@
 # Changelog for hipfort
 
+## Unreleased
+
+### Changed
+
+* `fftw_iodim64` declares its fields `integer(c_intptr_t)` instead of
+  `integer(c_ptrdiff_t)`, which is Fortran 2008. Both kinds are equal on every
+  platform ROCm supports, so existing code is unaffected.
+
 ## hipfort 0.10.0 for ROCm 10.1.0
 
 ### Added
