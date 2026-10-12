@@ -83,9 +83,11 @@ of another array without copying anything, while ``source`` takes its shape
 Use ``dsource`` instead of ``source`` when the source array already lives on the
 device.
 
-Unlike the array interfaces of the math libraries, these ``hipMalloc`` and
-``hipMemcpy`` overloads are unconditional, so they are available in every
-hipFORT build.
+Like the array interfaces of the math libraries, these ``hipMalloc`` and
+``hipMemcpy`` overloads are part of the Fortran 2008 array overloads: a build with
+``-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`` has only the ``type(c_ptr)`` forms.
+``hipMalloc``, ``hipFree`` and ``hipHostRegister`` have no assumed-rank form, so
+their per-rank overloads stay available with ``-DHIPFORT_ASSUMED_RANK=ON``.
 
 Scalar arguments passed by pointer
 ==================================

@@ -1,5 +1,15 @@
 # Changelog for hipfort
 
+## Unreleased
+
+### Changed
+
+* **Breaking.** The array overloads of `hipMalloc`, `hipMallocManaged`,
+  `hipHostMalloc`, `hipFree`, `hipHostFree`, the `hipMemcpy` families and the
+  `hipHostRegister` family are now part of the Fortran 2008 array overloads, like
+  those of the math libraries. A build with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`
+  no longer has them: pass a `type(c_ptr)` and a byte count.
+
 ## hipfort 0.10.0 for ROCm 10.1.0
 
 ### Added

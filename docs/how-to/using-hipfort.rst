@@ -53,9 +53,8 @@ variables and the number of bytes. Therefore, they reduce the chance of introduc
 into your code and make it easier to read.
 
 These additional interfaces are enabled automatically once hipFORT detects Fortran 2008
-support in your compiler. The
-``hipMalloc`` and ``hipMemcpy`` array overloads are an exception: they are not guarded and are
-therefore available in every hipFORT build. By convention,
+support in your compiler. This includes the ``hipMalloc``, ``hipMemcpy`` and
+``hipHostRegister`` array overloads. By convention,
 application and test sources that rely on them use the ``.f08`` file extension (see the ``test/f2008``
 examples), while Fortran 2003 sources use ``.f03``.
 

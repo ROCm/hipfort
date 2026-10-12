@@ -51,7 +51,7 @@ program hipsolver_dsygvd
   integer(c_size_t) :: sizeA = 9, sizeB = 9, sizeW = 3
 
   type(c_ptr) :: dA, dB, dW
-  integer(c_int), pointer :: dInfo(:)
+  type(c_ptr) :: dInfo
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
 
@@ -66,7 +66,7 @@ program hipsolver_dsygvd
   call hipCheck(hipMalloc(dA, sizeA * 8))
   call hipCheck(hipMalloc(dB, sizeB * 8))
   call hipCheck(hipMalloc(dW, sizeW * 8))
-  call hipCheck(hipMalloc(dInfo, 1))
+  call hipCheck(hipMalloc(dInfo, 4_c_size_t))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sizeA * 8, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), sizeB * 8, hipMemcpyHostToDevice))
 
@@ -77,7 +77,7 @@ program hipsolver_dsygvd
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 8, 1_c_size_t)))
 
   call hipsolverCheck(hipsolverDsygvd(handle, HIPSOLVER_EIG_TYPE_1, HIPSOLVER_EIG_MODE_VECTOR, &
-       HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dB, ldb, dW, dWork, lwork, c_loc(dInfo(1))))
+       HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dB, ldb, dW, dWork, lwork, dInfo))
 
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sizeA * 8, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 8, hipMemcpyDeviceToHost))

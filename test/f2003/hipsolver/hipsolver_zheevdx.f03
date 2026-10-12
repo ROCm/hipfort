@@ -54,7 +54,7 @@ program hipsolver_zheevdx
   integer(c_int) :: nevBuf
 
   type(c_ptr) :: dA, dW
-  integer(c_int), pointer :: dInfo(:)
+  type(c_ptr) :: dInfo
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
 
@@ -67,7 +67,7 @@ program hipsolver_zheevdx
 
   call hipCheck(hipMalloc(dA, sizeA * 16))
   call hipCheck(hipMalloc(dW, sizeW * 8))
-  call hipCheck(hipMalloc(dInfo, 1))
+  call hipCheck(hipMalloc(dInfo, 4_c_size_t))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sizeA * 16, hipMemcpyHostToDevice))
 
   call hipsolverCheck(hipsolverCreate(handle))
@@ -79,7 +79,7 @@ program hipsolver_zheevdx
 
   call hipsolverCheck(hipsolverZheevdx(handle, HIPSOLVER_EIG_MODE_VECTOR, &
        HIPSOLVER_EIG_RANGE_ALL, HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, &
-       0.0d0, 0.0d0, 1, N, hNev, dW, dWork, lwork, c_loc(dInfo(1))))
+       0.0d0, 0.0d0, 1, N, hNev, dW, dWork, lwork, dInfo))
 
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sizeA * 16, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 8, hipMemcpyDeviceToHost))
