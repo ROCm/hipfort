@@ -13,7 +13,7 @@ You call a ROCm math library from Fortran through the module **that library
 ships itself**, ``use rocblas`` compiled against
 ``/opt/rocm/include/rocblas/rocblas_module.f90``, ``use rocsparse``,
 ``use rocrand_m``. Several ROCm libraries have shipped a hand-written Fortran
-module next to their C API for years. At ROCm 10.2 a generated binding
+module next to their C API for years. At ROCm 10.3 a generated binding
 supersedes them and they are removed.
 
 If instead you build **hipFORT** yourself and write ``use hipfort_rocblas``,
@@ -41,7 +41,7 @@ it declares every entry point the ``.so`` exports, with the same layout,
 options and CMake package in every library. hipSOLVER's binding, for example,
 goes from 224 interfaces to 546.
 
-Your deadline is 10.2
+Your deadline is 10.3
 =====================
 
 Not 11.0. That is the release where the hand-written module is removed and the
@@ -51,7 +51,7 @@ coexist in one build.
 
 That is also why these modules are removed rather than deprecated in place. The
 old module is already called ``rocblas``, not ``hipfort_rocblas``, so there is
-no prefixed-versus-bare distinction to keep two versions apart. At 10.2 there is
+no prefixed-versus-bare distinction to keep two versions apart. At 10.3 there is
 exactly one ``rocblas`` module in the tree, the generated one. Unlike the
 hipFORT migration, there is no gradual file-by-file window.
 
@@ -149,7 +149,7 @@ Stop compiling the library's source
 The build change catches people precisely because the ``use`` line often does
 not move. rocBLAS, hipBLAS and rocSPARSE installed their module as a **source**
 file (``/opt/rocm/include/rocblas/rocblas_module.f90``), so you almost certainly
-compile it as part of your own build today. Stop: the file is gone at 10.2, and
+compile it as part of your own build today. Stop: the file is gone at 10.3, and
 a compiled module now ships with ROCm. Drop it from your source list and link
 the archive instead.
 
@@ -304,19 +304,19 @@ If you hit a difference not described here, report it at
 around it locally: these are generator differences, and a fix there fixes it for
 everyone.
 
-Building on ROCm versions before and after 10.2
+Building on ROCm versions before and after 10.3
 ===============================================
 
 Because the module name stays the same, a code that has to build on both sides
-of 10.2 does not need a wrapper module; only the build differs. Compile the
+of 10.3 does not need a wrapper module; only the build differs. Compile the
 hand-written source where it exists, and link the generated binding otherwise:
 
 .. code-block:: cmake
 
    find_package(rocblas-fortran CONFIG QUIET)
-   if(TARGET roc::rocblas_fortran)          # ROCm 10.2 or later
+   if(TARGET roc::rocblas_fortran)          # ROCm 10.3 or later
      target_link_libraries(app PRIVATE roc::rocblas roc::rocblas_fortran)
-   else()                                   # before 10.2
+   else()                                   # before 10.3
      find_package(rocblas REQUIRED)
      find_file(ROCBLAS_MODULE_F90 rocblas_module.f90
                PATH_SUFFIXES include/rocblas REQUIRED)
