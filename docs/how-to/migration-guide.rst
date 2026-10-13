@@ -80,9 +80,9 @@ Timeline
 
    * - ROCm
      - What happens
-   * - **≤ 10.1**
+   * - **≤ 10.2**
      - Nothing changes. Keep using hipFORT as today.
-   * - **10.2 to 10.x**
+   * - **10.3 to 10.x**
      - The new bindings ship inside ROCm. **hipFORT is still maintained beside
        them**, so both work and you can migrate at any point in this window.
        Aim for the start of it rather than the end.
@@ -96,18 +96,18 @@ but if something does behave differently you want releases to spare, and an
 early report gets fixed for everyone.
 
 A binding is versioned with its library and stays valid across a major ROCm
-series: a ``rocblas.mod`` built for 10.2 is still the right one on any 10.x.y,
+series: a ``rocblas.mod`` built for 10.3 is still the right one on any 10.x.y,
 and the CMake package accepts any version with the same major number. You
 revisit your build at a major release, not at every point release.
 
 Codes that build on several ROCm versions
 -----------------------------------------
 
-If one code base has to build on systems that will not reach ROCm 10.2 for a
+If one code base has to build on systems that will not reach ROCm 10.3 for a
 while (a production machine frozen on ROCm 6.x, for example) and on newer ones,
 you have two options:
 
-*  **Stay on hipFORT until your oldest system reaches 10.2.** hipFORT keeps
+*  **Stay on hipFORT until your oldest system reaches 10.3.** hipFORT keeps
    working through the 10.x series, so a single hipFORT-based build covers
    everything until then. On each system, use the hipFORT release that matches
    its ROCm (hipFORT tags them ``rocm-<version>``, for example ``rocm-6.3.3``):
@@ -143,7 +143,7 @@ you have two options:
    Test the target rather than ``rocblas-fortran_FOUND``: the package can be
    found but have nothing installed for your compiler.
 
-If you need the new bindings on a ROCm older than 10.2, `open an issue
+If you need the new bindings on a ROCm older than 10.3, `open an issue
 <https://github.com/ROCm/hipfort/issues>`_ saying which release: the bindings
 are generated from a release's headers, and an older release can be generated
 on request.
@@ -159,10 +159,10 @@ Usually not. Find your case:
 
    * - Your situation
      - What you build
-   * - ROCm 10.2 or later, compiling with ``amdflang``
+   * - ROCm 10.3 or later, compiling with ``amdflang``
      - **Nothing.** The ``.mod`` and ``.a`` files are installed with ROCm.
        Point your build at them (`Compile and link`_).
-   * - ROCm 10.2 or later, compiling with ``gfortran``, Cray ``ftn``, or any
+   * - ROCm 10.3 or later, compiling with ``gfortran``, Cray ``ftn``, or any
        other compiler
      - **Each binding you use, once per compiler.** A ``.mod`` only works
        with the compiler that wrote it. The sources are installed with ROCm,
@@ -172,7 +172,7 @@ Usually not. Find your case:
        package)
      - **Nothing extra.** With a Fortran compiler present, the bindings are
        built along with each library, by that compiler.
-   * - ROCm older than 10.2
+   * - ROCm older than 10.3
      - **hipFORT, as today.** See `Codes that build on several ROCm versions`_.
    * - Windows
      - **Each binding you use, from the repository.** ROCm for Windows ships
@@ -329,8 +329,6 @@ now come from the library module you already ``use``:
    * - ``use hipfort_check``
      - In each library module (``hipCheck`` in ``hip``, ``rocblasCheck`` in
        ``rocblas``, and so on)
-   * - ``use hipfort_handles``
-     - In each library module (``rocblas_handle`` in ``rocblas``, and so on)
    * - ``use hipfort_auxiliary``
      - In ``hip`` (``hipGetDeviceProperties``)
 
@@ -358,7 +356,7 @@ line.
 
    Do **not** keep ``use hipfort_rocblas`` and ``use rocblas`` in the same
    scope: both export the same public names (``rocblas_dgemm``,
-   ``rocblas_handle``, the enums, and so on), so the compiler cannot tell which
+   ``rocblasCheck``, the enums, and so on), so the compiler cannot tell which
    one you mean and the file will not compile.
 
 Different files in the same program can still migrate independently, because
@@ -376,7 +374,7 @@ codebase by hand. On a Git tree, this rewrites every ``use`` line in place:
 
    sed -i -E \
      -e "/^[[:space:]]*use[[:space:]]+hipfort_($libs)_(enums|types)\b/Id" \
-     -e "/^[[:space:]]*use[[:space:]]+hipfort_(check|handles|auxiliary|types|enums)\b/Id" \
+     -e "/^[[:space:]]*use[[:space:]]+hipfort_(check|auxiliary|types|enums)\b/Id" \
      -e "s/^([[:space:]]*use[[:space:]]+)hipfort_($libs)\b/\1\2/I" \
      -e "s/^([[:space:]]*use[[:space:]]+)hipfort_(hipmalloc|hipmemcpy|hiphostregister)\b/\1hip/I" \
      -e "s/^([[:space:]]*use[[:space:]]+)hipfort\b/\1hip/I" \
@@ -384,6 +382,10 @@ codebase by hand. On a Git tree, this rewrites every ``use`` line in place:
 
 The first two rules delete the modules that fold away, and the last three
 rename what is left.
+
+The recipe needs GNU ``sed``: ``\b`` and the ``I`` flag are GNU extensions, and
+BSD ``sed -i`` takes a suffix argument. On macOS, install GNU sed
+(``brew install gnu-sed``) and run the same command with ``gsed``.
 
 The rules cannot step on each other, because ``_`` is a word character:
 ``hipfort_rocblas_enums`` is deleted by rule 1 rather than renamed to
@@ -397,10 +399,9 @@ Then read the diff, because a few things are deliberately left to you:
 *  A file might end up with two ``use hip`` lines (from ``use hipfort`` and
    ``use hipfort_hipmalloc``, for example). That is valid Fortran and compiles
    fine; collapse them if you prefer.
-*  A file that used ``hipfort_check``, ``hipfort_handles``, or
-   ``hipfort_auxiliary`` without ever using ``hipfort`` itself loses those
-   symbols, because the delete rules take the whole line. Add ``use hip``
-   there.
+*  A file that used ``hipfort_check`` or ``hipfort_auxiliary`` without ever
+   using ``hipfort`` itself loses those symbols, because the delete rules take
+   the whole line. Add ``use hip`` there.
 *  ``use hipfort_cuda_errors`` is left untouched on purpose; it has no new
    equivalent (see above).
 *  Fixed-form sources, continuation lines, and ``use`` lines behind
@@ -707,7 +708,7 @@ Inside a ROCm build tree, ``<LIB>_HAVE_FORTRAN_BINDINGS`` is true only when
 that library's bindings were built, since a Fortran compiler can be present
 with ``BUILD_FORTRAN_BINDINGS=OFF``.
 
-Trying the bindings before ROCm 10.2
+Trying the bindings before ROCm 10.3
 ====================================
 
 The bindings are under review in one pull request per library. Until they ship
@@ -772,7 +773,7 @@ Special cases
 =============
 
 The in-tree Fortran modules that rocBLAS, hipSPARSE, hipRAND and the others
-shipped themselves have collisions of their own at 10.2; those are covered in
+shipped themselves have collisions of their own at 10.3; those are covered in
 :doc:`migration-guide-in-tree`, not here.
 
 **If you build for NVIDIA (CUDA)**, the ``nvptx`` backend is dropped from the
@@ -856,7 +857,7 @@ and it is the whole of the migration.
 
 **Where do I get the new bindings?**
 
-They ship precompiled for ``amdflang`` with ROCm 10.2 and later, with no
+They ship precompiled for ``amdflang`` with ROCm 10.3 and later, with no
 separate install. For another compiler, see
-`Building a binding with your compiler`_; before 10.2, see
-`Trying the bindings before ROCm 10.2`_.
+`Building a binding with your compiler`_; before 10.3, see
+`Trying the bindings before ROCm 10.3`_.
