@@ -105,10 +105,10 @@ program hipsparse_zsddmm
   
   ! Switch to device pointer mode and stage the scalars in device memory
   call hipsparseCheck(hipsparseSetPointerMode(handle, HIPSPARSE_POINTER_MODE_DEVICE))
-  call hipCheck(hipMalloc(d_alpha, c_sizeof(alpha)))
-  call hipCheck(hipMalloc(d_beta, c_sizeof(beta)))
-  call hipCheck(hipMemcpy(d_alpha, c_loc(alpha), c_sizeof(alpha), hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(d_beta, c_loc(beta), c_sizeof(beta), hipMemcpyHostToDevice))
+  call hipCheck(hipMalloc(d_alpha, 16_c_size_t))
+  call hipCheck(hipMalloc(d_beta, 16_c_size_t))
+  call hipCheck(hipMemcpy(d_alpha, c_loc(alpha), 16_c_size_t, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(d_beta, c_loc(beta), 16_c_size_t, hipMemcpyHostToDevice))
   call hipsparseCheck(hipsparseCreateDnMat(matA, int(M,c_int64_t), int(K,c_int64_t), int(M,c_int64_t), &
        d_A, HIP_C_64F, HIPSPARSE_ORDER_COL))
   call hipsparseCheck(hipsparseCreateDnMat(matB, int(K,c_int64_t), int(N,c_int64_t), int(K,c_int64_t), &

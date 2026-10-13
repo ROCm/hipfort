@@ -34,7 +34,8 @@ program hipblas_dgemv_test
   double precision, target :: alpha = 1.1d0, beta = 0.9d0
   integer, parameter :: m = 1024, n = 1024
 
-  double precision, allocatable, target, dimension(:) :: hA, hx, hy
+  double precision, allocatable, target, dimension(:,:) :: hA
+  double precision, allocatable, target, dimension(:) :: hx, hy
   double precision, pointer, dimension(:,:) :: dA
   double precision, pointer, dimension(:)   :: dx, dy
   type(c_ptr) :: handle = c_null_ptr
@@ -47,11 +48,11 @@ program hipblas_dgemv_test
 
   call hipblasCheck(hipblasCreate(handle))
 
-  allocate(hA(m*n), hx(n), hy(m))
+  allocate(hA(m,n), hx(n), hy(m))
   hA = 1.d0;  hx = 1.d0;  hy = 1.d0
   y_exact = alpha * n + beta
 
-  call hipCheck(hipMalloc(dA, source=reshape(hA, [m, n])))
+  call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dx, source=hx))
   call hipCheck(hipMalloc(dy, source=hy))
 

@@ -61,8 +61,8 @@ program hip_ztrsm
   
   ! Switch to device pointer mode and stage the scalars in device memory
   call hipblasCheck(hipblasSetPointerMode(handle, HIPBLAS_POINTER_MODE_DEVICE))
-  call hipCheck(hipMalloc(d_alpha, c_sizeof(alpha)))
-  call hipCheck(hipMemcpy(d_alpha, c_loc(alpha), c_sizeof(alpha), hipMemcpyHostToDevice))
+  call hipCheck(hipMalloc(d_alpha, 16_c_size_t))
+  call hipCheck(hipMemcpy(d_alpha, c_loc(alpha), 16_c_size_t, hipMemcpyHostToDevice))
 
   NAbytes = int(m, c_size_t) * int(m, c_size_t) * bytes_per_element
   NBbytes = int(m, c_size_t) * int(n, c_size_t) * bytes_per_element

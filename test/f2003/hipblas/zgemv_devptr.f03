@@ -59,10 +59,10 @@ program hipblas_zgemv_test
   
   ! Switch to device pointer mode and stage the scalars in device memory
   call hipblasCheck(hipblasSetPointerMode(handle, HIPBLAS_POINTER_MODE_DEVICE))
-  call hipCheck(hipMalloc(d_alpha, c_sizeof(alpha)))
-  call hipCheck(hipMalloc(d_beta, c_sizeof(beta)))
-  call hipCheck(hipMemcpy(d_alpha, c_loc(alpha), c_sizeof(alpha), hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(d_beta, c_loc(beta), c_sizeof(beta), hipMemcpyHostToDevice))
+  call hipCheck(hipMalloc(d_alpha, 16_c_size_t))
+  call hipCheck(hipMalloc(d_beta, 16_c_size_t))
+  call hipCheck(hipMemcpy(d_alpha, c_loc(alpha), 16_c_size_t, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(d_beta, c_loc(beta), 16_c_size_t, hipMemcpyHostToDevice))
 
   NAbytes = int(m*n, c_size_t) * bytes_per_element
   Nxbytes = int(n,   c_size_t) * bytes_per_element
