@@ -98,8 +98,9 @@ if(NOT HIPFORT_BUILD_AMDGCN AND NOT HIPFORT_BUILD_NVPTX)
 endif()
 
 # Guard the opt-in: assumed-rank is nested in the F2008 interfaces and additionally
-# needs a Fortran 2018 compiler (c_loc() of a dimension(..) argument; see the
-# CMAKE_Fortran_COMPILER_SUPPORTS_F18 probe in the top-level CMakeLists.txt). If it
+# needs a Fortran 2018 compiler whose c_loc() of a dimension(..) argument returns
+# the actual argument's address (see the CMAKE_Fortran_COMPILER_SUPPORTS_F18 probe
+# in the top-level CMakeLists.txt). If it
 # was requested but either prerequisite is missing, warn and fall back to the
 # per-rank interfaces (or plain C bindings if those are off too) rather than
 # failing the build. FORCE the cache so test/ sees the same effective value.

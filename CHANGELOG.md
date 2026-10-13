@@ -13,6 +13,15 @@
   `integer(c_ptrdiff_t)`, which is Fortran 2008. Both kinds are equal on every
   platform ROCm supports, so existing code is unaffected.
 
+### Fixed
+
+* Fixed `-DHIPFORT_ASSUMED_RANK=ON` with nvfortran, whose `c_loc` of an
+  assumed-rank argument returns a wrong address for a scalar or an array of rank
+  2 or more: the assumed-rank overloads passed a wrong pointer to the C library.
+  The configure probe now runs a program that checks the address for ranks 0, 1
+  and 2 instead of only compiling it, so nvfortran falls back to the per-rank
+  interfaces with a warning.
+
 ## hipfort 0.10.0 for ROCm 10.1.0
 
 ### Added
