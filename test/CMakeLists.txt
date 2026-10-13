@@ -42,9 +42,14 @@ if(BUILD_TESTING)
   # extensions and skip such files ("no action performed"). Force Fortran
   # compilation by inserting -Tf immediately before the source in the compile
   # rule (set_source_files_properties(LANGUAGE Fortran) alone is not enough).
+  # hipfort sets CMAKE_Fortran_PREPROCESS, so with Ninja every source first goes
+  # through a separate preprocessing rule, which needs the same -Tf: without it
+  # no preprocessed file is written and no test builds.
   if(CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
     string(REPLACE "<SOURCE>" "-Tf <SOURCE>"
            CMAKE_Fortran_COMPILE_OBJECT "${CMAKE_Fortran_COMPILE_OBJECT}")
+    string(REPLACE "<SOURCE>" "-Tf <SOURCE>"
+           CMAKE_Fortran_PREPROCESS_SOURCE "${CMAKE_Fortran_PREPROCESS_SOURCE}")
   endif()
 
   # Which backend the tests link: hipfort::hip carries the archive of the one
