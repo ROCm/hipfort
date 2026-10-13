@@ -4707,7 +4707,7 @@ module hipfort
   !>   @param[in] name - Name of global to retrieve
   !>
   !>   @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotFound`, `hipErrorInvalidContext`
-  interface hipModuleGetGlobal
+  interface
 #ifdef USE_CUDA_NAMES
     function hipModuleGetGlobal_(dptr,bytes,hmod,name) bind(c, name="cuModuleGetGlobal_v2")
 #else
@@ -4717,14 +4717,21 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(c_int) :: hipModuleGetGlobal_
-      type(c_ptr), optional :: dptr
+      type(c_ptr),value :: dptr
       type(c_ptr),value :: bytes
       type(c_ptr),value :: hmod
       type(c_ptr),value :: name
     end function
+  end interface
 
-#ifndef USE_CUDA_NAMES
-    module procedure hipModuleGetGlobal_typed
+  interface hipModuleGetGlobal
+
+#ifdef USE_CUDA_NAMES
+    procedure hipModuleGetGlobal_
+#else
+    module procedure &
+      hipModuleGetGlobal_opt,&
+      hipModuleGetGlobal_typed
 #endif
   end interface
 
@@ -7871,7 +7878,7 @@ module hipfort
   !>  @param [in]  name   Name of the global symbol to look up.
   !>  @return `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`,
   !>          `hipErrorNotFound`
-  interface hipLibraryGetGlobal
+  interface
 #ifdef USE_CUDA_NAMES
     function hipLibraryGetGlobal_(dptr,bytes,library,name) bind(c, name="cudaLibraryGetGlobal")
 #else
@@ -7881,13 +7888,18 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(c_int) :: hipLibraryGetGlobal_
-      type(c_ptr), optional :: dptr
+      type(c_ptr),value :: dptr
       type(c_ptr),value :: bytes
       type(c_ptr),value :: library
       type(c_ptr),value :: name
     end function
+  end interface
 
-    module procedure hipLibraryGetGlobal_typed
+  interface hipLibraryGetGlobal
+
+    module procedure &
+      hipLibraryGetGlobal_opt,&
+      hipLibraryGetGlobal_typed
   end interface
 
   !>  @brief Get host pointer to a `__managed__` variable defined in a library.
@@ -7904,7 +7916,7 @@ module hipfort
   !>  @param [in]  name   Name of the managed symbol to look up.
   !>  @return `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`,
   !>          `hipErrorNotFound`
-  interface hipLibraryGetManaged
+  interface
 #ifdef USE_CUDA_NAMES
     function hipLibraryGetManaged_(dptr,bytes,library,name) bind(c, name="cudaLibraryGetManaged")
 #else
@@ -7914,13 +7926,18 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(c_int) :: hipLibraryGetManaged_
-      type(c_ptr), optional :: dptr
+      type(c_ptr),value :: dptr
       type(c_ptr),value :: bytes
       type(c_ptr),value :: library
       type(c_ptr),value :: name
     end function
+  end interface
 
-    module procedure hipLibraryGetManaged_typed
+  interface hipLibraryGetManaged
+
+    module procedure &
+      hipLibraryGetManaged_opt,&
+      hipLibraryGetManaged_typed
   end interface
 
   !>  @brief Retrieve kernel handles within a library
@@ -10636,7 +10653,7 @@ module hipfort
   !>  @param [out] numDependencies_out - Returns size of the array returned in dependencies_out.
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorStreamCaptureImplicit`
-  interface hipStreamGetCaptureInfo_v2
+  interface
 #ifdef USE_CUDA_NAMES
     function hipStreamGetCaptureInfo_v2_(stream,captureStatus_out,id_out,graph_out, &
         dependencies_out,numDependencies_out) &
@@ -10653,13 +10670,20 @@ module hipfort
       type(c_ptr),value :: stream
       type(c_ptr),value :: captureStatus_out
       type(c_ptr),value :: id_out
-      type(c_ptr), optional :: graph_out
-      type(c_ptr), optional :: dependencies_out
+      type(c_ptr),value :: graph_out
+      type(c_ptr),value :: dependencies_out
       type(c_ptr),value :: numDependencies_out
     end function
+  end interface
 
-#ifndef USE_CUDA_NAMES
-    module procedure hipStreamGetCaptureInfo_v2_typed
+  interface hipStreamGetCaptureInfo_v2
+
+#ifdef USE_CUDA_NAMES
+    procedure hipStreamGetCaptureInfo_v2_
+#else
+    module procedure &
+      hipStreamGetCaptureInfo_v2_opt,&
+      hipStreamGetCaptureInfo_v2_typed
 #endif
   end interface
 
@@ -10831,19 +10855,24 @@ module hipfort
   !>  number of edges, the remaining entries in from and to will be set to NULL, and the number of
   !>  edges actually returned will be written to numEdges.
 #ifndef USE_CUDA_NAMES
-  interface hipGraphGetEdges
+  interface
     function hipGraphGetEdges_(graph,from,to,numEdges) bind(c, name="hipGraphGetEdges")
       use iso_c_binding
       use hipfort_enums
       implicit none
       integer(c_int) :: hipGraphGetEdges_
       type(c_ptr),value :: graph
-      type(c_ptr), optional :: from
-      type(c_ptr), optional :: to
+      type(c_ptr),value :: from
+      type(c_ptr),value :: to
       type(c_ptr),value :: numEdges
     end function
+  end interface
 
-    module procedure hipGraphGetEdges_typed
+  interface hipGraphGetEdges
+
+    module procedure &
+      hipGraphGetEdges_opt,&
+      hipGraphGetEdges_typed
   end interface
 #endif
 
@@ -10858,7 +10887,7 @@ module hipfort
   !>  Otherwise, numNodes entries will be filled in. If numNodes is higher than the actual number of
   !>  nodes, the remaining entries in nodes will be set to NULL, and the number of nodes actually
   !>  obtained will be returned in numNodes.
-  interface hipGraphGetNodes
+  interface
 #ifdef USE_CUDA_NAMES
     function hipGraphGetNodes_(graph,nodes,numNodes) bind(c, name="cudaGraphGetNodes")
 #else
@@ -10869,11 +10898,16 @@ module hipfort
       implicit none
       integer(c_int) :: hipGraphGetNodes_
       type(c_ptr),value :: graph
-      type(c_ptr), optional :: nodes
+      type(c_ptr),value :: nodes
       type(c_ptr),value :: numNodes
     end function
+  end interface
 
-    module procedure hipGraphGetNodes_typed
+  interface hipGraphGetNodes
+
+    module procedure &
+      hipGraphGetNodes_opt,&
+      hipGraphGetNodes_typed
   end interface
 
   !>  @brief Returns a graph's root nodes.
@@ -10887,7 +10921,7 @@ module hipfort
   !>  pNumRootNodes. Otherwise, pNumRootNodes entries will be filled in. If pNumRootNodes is higher
   !>  than the actual number of root nodes, the remaining entries in pRootNodes will be set to NULL,
   !>  and the number of nodes actually obtained will be returned in pNumRootNodes.
-  interface hipGraphGetRootNodes
+  interface
 #ifdef USE_CUDA_NAMES
     function hipGraphGetRootNodes_(graph,pRootNodes,pNumRootNodes) &
         bind(c, name="cudaGraphGetRootNodes")
@@ -10900,11 +10934,16 @@ module hipfort
       implicit none
       integer(c_int) :: hipGraphGetRootNodes_
       type(c_ptr),value :: graph
-      type(c_ptr), optional :: pRootNodes
+      type(c_ptr),value :: pRootNodes
       type(c_ptr),value :: pNumRootNodes
     end function
+  end interface
 
-    module procedure hipGraphGetRootNodes_typed
+  interface hipGraphGetRootNodes
+
+    module procedure &
+      hipGraphGetRootNodes_opt,&
+      hipGraphGetRootNodes_typed
   end interface
 
   !>  @brief Returns a node's dependencies.
@@ -10922,7 +10961,7 @@ module hipfort
   !>  set
   !>  to NULL, and the number of nodes actually obtained will be returned in pNumDependencies.
 #ifndef USE_CUDA_NAMES
-  interface hipGraphNodeGetDependencies
+  interface
     function hipGraphNodeGetDependencies_(node,pDependencies,pNumDependencies) &
         bind(c, name="hipGraphNodeGetDependencies")
       use iso_c_binding
@@ -10930,11 +10969,16 @@ module hipfort
       implicit none
       integer(c_int) :: hipGraphNodeGetDependencies_
       type(c_ptr),value :: node
-      type(c_ptr), optional :: pDependencies
+      type(c_ptr),value :: pDependencies
       type(c_ptr),value :: pNumDependencies
     end function
+  end interface
 
-    module procedure hipGraphNodeGetDependencies_typed
+  interface hipGraphNodeGetDependencies
+
+    module procedure &
+      hipGraphNodeGetDependencies_opt,&
+      hipGraphNodeGetDependencies_typed
   end interface
 #endif
 
@@ -10953,7 +10997,7 @@ module hipfort
   !>  returned
   !>  in pNumDependentNodes.
 #ifndef USE_CUDA_NAMES
-  interface hipGraphNodeGetDependentNodes
+  interface
     function hipGraphNodeGetDependentNodes_(node,pDependentNodes,pNumDependentNodes) &
         bind(c, name="hipGraphNodeGetDependentNodes")
       use iso_c_binding
@@ -10961,11 +11005,16 @@ module hipfort
       implicit none
       integer(c_int) :: hipGraphNodeGetDependentNodes_
       type(c_ptr),value :: node
-      type(c_ptr), optional :: pDependentNodes
+      type(c_ptr),value :: pDependentNodes
       type(c_ptr),value :: pNumDependentNodes
     end function
+  end interface
 
-    module procedure hipGraphNodeGetDependentNodes_typed
+  interface hipGraphNodeGetDependentNodes
+
+    module procedure &
+      hipGraphNodeGetDependentNodes_opt,&
+      hipGraphNodeGetDependentNodes_typed
   end interface
 #endif
 
@@ -14804,20 +14853,39 @@ module hipfort
 
 #endif
 #ifndef USE_CUDA_NAMES
+    function hipModuleGetGlobal_opt(dptr,bytes,hmod,name)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleGetGlobal_opt
+      type(c_ptr),optional,target :: dptr
+      type(c_ptr),value :: bytes
+      type(c_ptr), value :: hmod
+      type(c_ptr), value :: name
+      type(c_ptr) :: dptr__p
+      !
+      dptr__p = c_null_ptr
+      if (present(dptr)) dptr__p = c_loc(dptr)
+      hipModuleGetGlobal_opt = hipModuleGetGlobal_(dptr__p,bytes,hmod,name)
+    end function
+
     function hipModuleGetGlobal_typed(dptr,bytes,hmod,name)
       use iso_c_binding
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipModuleGetGlobal_typed
-      type(c_ptr), optional :: dptr
+      type(c_ptr),optional,target :: dptr
       integer(c_size_t),optional,target :: bytes
       type(c_ptr), value :: hmod
       type(c_ptr), value :: name
+      type(c_ptr) :: dptr__p
       type(c_ptr) :: bytes__p
       !
+      dptr__p = c_null_ptr
+      if (present(dptr)) dptr__p = c_loc(dptr)
       bytes__p = c_null_ptr
       if (present(bytes)) bytes__p = c_loc(bytes)
-      hipModuleGetGlobal_typed = hipModuleGetGlobal_(dptr,bytes__p,hmod,name)
+      hipModuleGetGlobal_typed = hipModuleGetGlobal_(dptr__p,bytes__p,hmod,name)
     end function
 
 #endif
@@ -15111,20 +15179,55 @@ module hipfort
       hipLibraryGetKernelCount_typed = hipLibraryGetKernelCount_(c_loc(count),library)
     end function
 
+    function hipLibraryGetGlobal_opt(dptr,bytes,library,name)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetGlobal_opt
+      type(c_ptr),optional,target :: dptr
+      type(c_ptr),value :: bytes
+      type(c_ptr), value :: library
+      type(c_ptr), value :: name
+      type(c_ptr) :: dptr__p
+      !
+      dptr__p = c_null_ptr
+      if (present(dptr)) dptr__p = c_loc(dptr)
+      hipLibraryGetGlobal_opt = hipLibraryGetGlobal_(dptr__p,bytes,library,name)
+    end function
+
     function hipLibraryGetGlobal_typed(dptr,bytes,library,name)
       use iso_c_binding
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipLibraryGetGlobal_typed
-      type(c_ptr), optional :: dptr
+      type(c_ptr),optional,target :: dptr
       integer(c_size_t),optional,target :: bytes
       type(c_ptr), value :: library
       type(c_ptr), value :: name
+      type(c_ptr) :: dptr__p
       type(c_ptr) :: bytes__p
       !
+      dptr__p = c_null_ptr
+      if (present(dptr)) dptr__p = c_loc(dptr)
       bytes__p = c_null_ptr
       if (present(bytes)) bytes__p = c_loc(bytes)
-      hipLibraryGetGlobal_typed = hipLibraryGetGlobal_(dptr,bytes__p,library,name)
+      hipLibraryGetGlobal_typed = hipLibraryGetGlobal_(dptr__p,bytes__p,library,name)
+    end function
+
+    function hipLibraryGetManaged_opt(dptr,bytes,library,name)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetManaged_opt
+      type(c_ptr),optional,target :: dptr
+      type(c_ptr),value :: bytes
+      type(c_ptr), value :: library
+      type(c_ptr), value :: name
+      type(c_ptr) :: dptr__p
+      !
+      dptr__p = c_null_ptr
+      if (present(dptr)) dptr__p = c_loc(dptr)
+      hipLibraryGetManaged_opt = hipLibraryGetManaged_(dptr__p,bytes,library,name)
     end function
 
     function hipLibraryGetManaged_typed(dptr,bytes,library,name)
@@ -15132,15 +15235,18 @@ module hipfort
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipLibraryGetManaged_typed
-      type(c_ptr), optional :: dptr
+      type(c_ptr),optional,target :: dptr
       integer(c_size_t),optional,target :: bytes
       type(c_ptr), value :: library
       type(c_ptr), value :: name
+      type(c_ptr) :: dptr__p
       type(c_ptr) :: bytes__p
       !
+      dptr__p = c_null_ptr
+      if (present(dptr)) dptr__p = c_loc(dptr)
       bytes__p = c_null_ptr
       if (present(bytes)) bytes__p = c_loc(bytes)
-      hipLibraryGetManaged_typed = hipLibraryGetManaged_(dptr,bytes__p,library,name)
+      hipLibraryGetManaged_typed = hipLibraryGetManaged_(dptr__p,bytes__p,library,name)
     end function
 
 #ifndef USE_CUDA_NAMES
@@ -15577,6 +15683,29 @@ module hipfort
 
 #endif
 #ifndef USE_CUDA_NAMES
+    function hipStreamGetCaptureInfo_v2_opt(stream,captureStatus_out,id_out,graph_out, &
+        dependencies_out,numDependencies_out)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_v2_opt
+      type(c_ptr), value :: stream
+      type(c_ptr),value :: captureStatus_out
+      type(c_ptr),value :: id_out
+      type(c_ptr),optional,target :: graph_out
+      type(c_ptr),optional,target :: dependencies_out
+      type(c_ptr),value :: numDependencies_out
+      type(c_ptr) :: graph_out__p
+      type(c_ptr) :: dependencies_out__p
+      !
+      graph_out__p = c_null_ptr
+      if (present(graph_out)) graph_out__p = c_loc(graph_out)
+      dependencies_out__p = c_null_ptr
+      if (present(dependencies_out)) dependencies_out__p = c_loc(dependencies_out)
+      hipStreamGetCaptureInfo_v2_opt = hipStreamGetCaptureInfo_v2_(stream,captureStatus_out, &
+        id_out,graph_out__p,dependencies_out__p,numDependencies_out)
+    end function
+
     function hipStreamGetCaptureInfo_v2_typed(stream,captureStatus_out,id_out,graph_out, &
         dependencies_out,numDependencies_out)
       use iso_c_binding
@@ -15586,18 +15715,24 @@ module hipfort
       type(c_ptr), value :: stream
       integer(kind(hipStreamCaptureStatusNone)),target :: captureStatus_out
       integer(c_int64_t),optional,target :: id_out
-      type(c_ptr), optional :: graph_out
-      type(c_ptr), optional :: dependencies_out
+      type(c_ptr),optional,target :: graph_out
+      type(c_ptr),optional,target :: dependencies_out
       integer(c_size_t),optional,target :: numDependencies_out
       type(c_ptr) :: id_out__p
+      type(c_ptr) :: graph_out__p
+      type(c_ptr) :: dependencies_out__p
       type(c_ptr) :: numDependencies_out__p
       !
       id_out__p = c_null_ptr
       if (present(id_out)) id_out__p = c_loc(id_out)
+      graph_out__p = c_null_ptr
+      if (present(graph_out)) graph_out__p = c_loc(graph_out)
+      dependencies_out__p = c_null_ptr
+      if (present(dependencies_out)) dependencies_out__p = c_loc(dependencies_out)
       numDependencies_out__p = c_null_ptr
       if (present(numDependencies_out)) numDependencies_out__p = c_loc(numDependencies_out)
       hipStreamGetCaptureInfo_v2_typed = hipStreamGetCaptureInfo_v2_(stream, &
-        c_loc(captureStatus_out),id_out__p,graph_out,dependencies_out,numDependencies_out__p)
+        c_loc(captureStatus_out),id_out__p,graph_out__p,dependencies_out__p,numDependencies_out__p)
     end function
 
 #endif
@@ -15623,30 +15758,88 @@ module hipfort
     end function
 
 #ifndef USE_CUDA_NAMES
+    function hipGraphGetEdges_opt(graph,from,to,numEdges)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphGetEdges_opt
+      type(c_ptr), value :: graph
+      type(c_ptr),optional,target :: from
+      type(c_ptr),optional,target :: to
+      type(c_ptr),value :: numEdges
+      type(c_ptr) :: from__p
+      type(c_ptr) :: to__p
+      !
+      from__p = c_null_ptr
+      if (present(from)) from__p = c_loc(from)
+      to__p = c_null_ptr
+      if (present(to)) to__p = c_loc(to)
+      hipGraphGetEdges_opt = hipGraphGetEdges_(graph,from__p,to__p,numEdges)
+    end function
+
     function hipGraphGetEdges_typed(graph,from,to,numEdges)
       use iso_c_binding
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipGraphGetEdges_typed
       type(c_ptr), value :: graph
-      type(c_ptr), optional :: from
-      type(c_ptr), optional :: to
+      type(c_ptr),optional,target :: from
+      type(c_ptr),optional,target :: to
       integer(c_size_t),target :: numEdges
+      type(c_ptr) :: from__p
+      type(c_ptr) :: to__p
       !
-      hipGraphGetEdges_typed = hipGraphGetEdges_(graph,from,to,c_loc(numEdges))
+      from__p = c_null_ptr
+      if (present(from)) from__p = c_loc(from)
+      to__p = c_null_ptr
+      if (present(to)) to__p = c_loc(to)
+      hipGraphGetEdges_typed = hipGraphGetEdges_(graph,from__p,to__p,c_loc(numEdges))
     end function
 
 #endif
+    function hipGraphGetNodes_opt(graph,nodes,numNodes)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphGetNodes_opt
+      type(c_ptr), value :: graph
+      type(c_ptr),optional,target :: nodes
+      type(c_ptr),value :: numNodes
+      type(c_ptr) :: nodes__p
+      !
+      nodes__p = c_null_ptr
+      if (present(nodes)) nodes__p = c_loc(nodes)
+      hipGraphGetNodes_opt = hipGraphGetNodes_(graph,nodes__p,numNodes)
+    end function
+
     function hipGraphGetNodes_typed(graph,nodes,numNodes)
       use iso_c_binding
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipGraphGetNodes_typed
       type(c_ptr), value :: graph
-      type(c_ptr), optional :: nodes
+      type(c_ptr),optional,target :: nodes
       integer(c_size_t),target :: numNodes
+      type(c_ptr) :: nodes__p
       !
-      hipGraphGetNodes_typed = hipGraphGetNodes_(graph,nodes,c_loc(numNodes))
+      nodes__p = c_null_ptr
+      if (present(nodes)) nodes__p = c_loc(nodes)
+      hipGraphGetNodes_typed = hipGraphGetNodes_(graph,nodes__p,c_loc(numNodes))
+    end function
+
+    function hipGraphGetRootNodes_opt(graph,pRootNodes,pNumRootNodes)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphGetRootNodes_opt
+      type(c_ptr), value :: graph
+      type(c_ptr),optional,target :: pRootNodes
+      type(c_ptr),value :: pNumRootNodes
+      type(c_ptr) :: pRootNodes__p
+      !
+      pRootNodes__p = c_null_ptr
+      if (present(pRootNodes)) pRootNodes__p = c_loc(pRootNodes)
+      hipGraphGetRootNodes_opt = hipGraphGetRootNodes_(graph,pRootNodes__p,pNumRootNodes)
     end function
 
     function hipGraphGetRootNodes_typed(graph,pRootNodes,pNumRootNodes)
@@ -15655,39 +15848,80 @@ module hipfort
       implicit none
       integer(kind(hipSuccess)) :: hipGraphGetRootNodes_typed
       type(c_ptr), value :: graph
-      type(c_ptr), optional :: pRootNodes
+      type(c_ptr),optional,target :: pRootNodes
       integer(c_size_t),target :: pNumRootNodes
+      type(c_ptr) :: pRootNodes__p
       !
-      hipGraphGetRootNodes_typed = hipGraphGetRootNodes_(graph,pRootNodes,c_loc(pNumRootNodes))
+      pRootNodes__p = c_null_ptr
+      if (present(pRootNodes)) pRootNodes__p = c_loc(pRootNodes)
+      hipGraphGetRootNodes_typed = hipGraphGetRootNodes_(graph,pRootNodes__p,c_loc(pNumRootNodes))
     end function
 
 #ifndef USE_CUDA_NAMES
+    function hipGraphNodeGetDependencies_opt(node,pDependencies,pNumDependencies)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetDependencies_opt
+      type(c_ptr), value :: node
+      type(c_ptr),optional,target :: pDependencies
+      type(c_ptr),value :: pNumDependencies
+      type(c_ptr) :: pDependencies__p
+      !
+      pDependencies__p = c_null_ptr
+      if (present(pDependencies)) pDependencies__p = c_loc(pDependencies)
+      hipGraphNodeGetDependencies_opt = hipGraphNodeGetDependencies_(node,pDependencies__p, &
+        pNumDependencies)
+    end function
+
     function hipGraphNodeGetDependencies_typed(node,pDependencies,pNumDependencies)
       use iso_c_binding
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipGraphNodeGetDependencies_typed
       type(c_ptr), value :: node
-      type(c_ptr), optional :: pDependencies
+      type(c_ptr),optional,target :: pDependencies
       integer(c_size_t),target :: pNumDependencies
+      type(c_ptr) :: pDependencies__p
       !
-      hipGraphNodeGetDependencies_typed = hipGraphNodeGetDependencies_(node,pDependencies, &
+      pDependencies__p = c_null_ptr
+      if (present(pDependencies)) pDependencies__p = c_loc(pDependencies)
+      hipGraphNodeGetDependencies_typed = hipGraphNodeGetDependencies_(node,pDependencies__p, &
         c_loc(pNumDependencies))
     end function
 
 #endif
 #ifndef USE_CUDA_NAMES
+    function hipGraphNodeGetDependentNodes_opt(node,pDependentNodes,pNumDependentNodes)
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetDependentNodes_opt
+      type(c_ptr), value :: node
+      type(c_ptr),optional,target :: pDependentNodes
+      type(c_ptr),value :: pNumDependentNodes
+      type(c_ptr) :: pDependentNodes__p
+      !
+      pDependentNodes__p = c_null_ptr
+      if (present(pDependentNodes)) pDependentNodes__p = c_loc(pDependentNodes)
+      hipGraphNodeGetDependentNodes_opt = hipGraphNodeGetDependentNodes_(node,pDependentNodes__p, &
+        pNumDependentNodes)
+    end function
+
     function hipGraphNodeGetDependentNodes_typed(node,pDependentNodes,pNumDependentNodes)
       use iso_c_binding
       use hipfort_enums
       implicit none
       integer(kind(hipSuccess)) :: hipGraphNodeGetDependentNodes_typed
       type(c_ptr), value :: node
-      type(c_ptr), optional :: pDependentNodes
+      type(c_ptr),optional,target :: pDependentNodes
       integer(c_size_t),target :: pNumDependentNodes
+      type(c_ptr) :: pDependentNodes__p
       !
-      hipGraphNodeGetDependentNodes_typed = hipGraphNodeGetDependentNodes_(node,pDependentNodes, &
-        c_loc(pNumDependentNodes))
+      pDependentNodes__p = c_null_ptr
+      if (present(pDependentNodes)) pDependentNodes__p = c_loc(pDependentNodes)
+      hipGraphNodeGetDependentNodes_typed = hipGraphNodeGetDependentNodes_(node, &
+        pDependentNodes__p,c_loc(pNumDependentNodes))
     end function
 
 #endif

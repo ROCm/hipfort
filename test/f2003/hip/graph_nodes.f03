@@ -30,7 +30,8 @@
 ! Builds a graph by hand rather than by stream capture: two 1-D memcpy nodes
 ! (H2D then D2H) linked with an explicit dependency, then instantiated and
 ! launched. Exercises hipGraphCreate, hipGraphAddMemcpyNode1D,
-! hipGraphAddDependencies, hipGraphGetNodes, hipGraphInstantiate,
+! hipGraphAddDependencies, hipGraphGetNodes (with and without its optional
+! nodes argument), hipGraphInstantiate,
 ! hipGraphLaunch, hipGraphExecDestroy and hipGraphDestroy.
 !!!!!!!!!!!!!!
 !
@@ -74,9 +75,17 @@ program graph_nodes
   ! Make the device->host copy depend on the host->device copy.
   call hipCheck(hipGraphAddDependencies(graph, nodeH2D, nodeD2H, 1_c_size_t))
 
-  ! Query the node count: pass an array and its capacity in numnodes; on return
-  ! numnodes holds the actual count. (nodes is a by-reference c_ptr in the
-  ! binding, so a real capacity buffer is used rather than a null query.)
+  ! Query the node count alone: nodes is optional, and leaving it out passes
+  ! NULL, for which HIP returns the count in numNodes.
+  numnodes = 0
+  call hipCheck(hipGraphGetNodes(graph, numNodes=numnodes))
+  if (numnodes /= 2) then
+     write(*,*) "FAILED! graph node count (null query) = ", numnodes, " (expected 2)"
+     call exit(1)
+  end if
+
+  ! Then fetch the nodes: pass an array and its capacity in numnodes; on return
+  ! numnodes holds the actual count.
   numnodes = size(nodes_out, kind=c_size_t)
   call hipCheck(hipGraphGetNodes(graph, nodes_out(1), numnodes))
   if (numnodes /= 2) then

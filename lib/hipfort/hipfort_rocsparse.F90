@@ -85,7 +85,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_success the initialization succeeded.
   !>   \retval rocsparse_status_invalid_pointer \p handle pointer is invalid.
   !>   \retval rocsparse_status_internal_error an internal error occurred.
-  interface rocsparse_handle_create
+  interface
     function rocsparse_handle_create_(handle,stream,p_error) bind(c, name="rocsparse_handle_create")
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -93,8 +93,13 @@ module hipfort_rocsparse
       integer(c_int) :: rocsparse_handle_create_
       type(c_ptr) :: handle
       type(c_ptr),value :: stream
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_handle_create
+
+    module procedure rocsparse_handle_create_opt
   end interface
 
   !>  \ingroup aux_module
@@ -133,15 +138,20 @@ module hipfort_rocsparse
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_internal_error an internal error occurred.
-  interface rocsparse_handle_destroy
+  interface
     function rocsparse_handle_destroy_(handle,p_error) bind(c, name="rocsparse_handle_destroy")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
       integer(c_int) :: rocsparse_handle_destroy_
       type(c_ptr),value :: handle
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_handle_destroy
+
+    module procedure rocsparse_handle_destroy_opt
   end interface
 
   !>  \ingroup aux_module
@@ -1852,7 +1862,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
   !>   \retval rocsparse_status_invalid_value if \p input is invalid.
   !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
-  interface rocsparse_spgeam_set_input
+  interface
     function rocsparse_spgeam_set_input_(handle,descr,input,myData,data_size_in_bytes,p_error) &
         bind(c, name="rocsparse_spgeam_set_input")
       use iso_c_binding
@@ -1864,8 +1874,13 @@ module hipfort_rocsparse
       integer(c_int),value :: input
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spgeam_set_input
+
+    module procedure rocsparse_spgeam_set_input_opt
   end interface
 
   !>  \ingroup aux_module
@@ -1884,7 +1899,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
   !>   \retval rocsparse_status_invalid_value if \p output is invalid.
   !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
-  interface rocsparse_spgeam_get_output
+  interface
     function rocsparse_spgeam_get_output_(handle,descr,output,myData,data_size_in_bytes,error) &
         bind(c, name="rocsparse_spgeam_get_output")
       use iso_c_binding
@@ -1896,8 +1911,13 @@ module hipfort_rocsparse
       integer(c_int),value :: output
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size_in_bytes
-      type(c_ptr), optional :: error
+      type(c_ptr),value :: error
     end function
+  end interface
+
+  interface rocsparse_spgeam_get_output
+
+    module procedure rocsparse_spgeam_get_output_opt
   end interface
 
   !>  \ingroup aux_module
@@ -1958,7 +1978,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p in is invalid.
   !>   \retval rocsparse_status_invalid_value if \p input is invalid.
   !>   \retval rocsparse_status_invalid_size if \p size_in_bytes is zero.
-  interface rocsparse_spmv_set_input
+  interface
     function rocsparse_spmv_set_input_(handle,descr,input,in,size_in_bytes,error) &
         bind(c, name="rocsparse_spmv_set_input")
       use iso_c_binding
@@ -1970,8 +1990,13 @@ module hipfort_rocsparse
       integer(c_int),value :: input
       type(c_ptr),value :: in
       integer(c_size_t),value :: size_in_bytes
-      type(c_ptr), optional :: error
+      type(c_ptr),value :: error
     end function
+  end interface
+
+  interface rocsparse_spmv_set_input
+
+    module procedure rocsparse_spmv_set_input_opt
   end interface
 
   !>  \ingroup aux_module
@@ -1991,7 +2016,7 @@ module hipfort_rocsparse
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_pointer \p descr pointer is invalid.
-  interface rocsparse_sptrsv_descr_create
+  interface
     function rocsparse_sptrsv_descr_create_(handle,p_sptrsv_descr,p_error) &
         bind(c, name="rocsparse_sptrsv_descr_create")
       use iso_c_binding
@@ -2000,8 +2025,13 @@ module hipfort_rocsparse
       integer(c_int) :: rocsparse_sptrsv_descr_create_
       type(c_ptr),value :: handle
       type(c_ptr) :: p_sptrsv_descr
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_sptrsv_descr_create
+
+    module procedure rocsparse_sptrsv_descr_create_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2020,7 +2050,7 @@ module hipfort_rocsparse
   !>
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
-  interface rocsparse_sptrsv_descr_destroy
+  interface
     function rocsparse_sptrsv_descr_destroy_(handle,sptrsv_descr,p_error) &
         bind(c, name="rocsparse_sptrsv_descr_destroy")
       use iso_c_binding
@@ -2029,8 +2059,13 @@ module hipfort_rocsparse
       integer(c_int) :: rocsparse_sptrsv_descr_destroy_
       type(c_ptr),value :: handle
       type(c_ptr),value :: sptrsv_descr
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_sptrsv_descr_destroy
+
+    module procedure rocsparse_sptrsv_descr_destroy_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2092,7 +2127,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
   !>   \retval rocsparse_status_invalid_value if \p input is invalid.
   !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
-  interface rocsparse_sptrsv_set_input
+  interface
     function rocsparse_sptrsv_set_input_(handle,descr,input,myData,data_size_in_bytes,p_error) &
         bind(c, name="rocsparse_sptrsv_set_input")
       use iso_c_binding
@@ -2104,8 +2139,13 @@ module hipfort_rocsparse
       integer(c_int),value :: input
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_sptrsv_set_input
+
+    module procedure rocsparse_sptrsv_set_input_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2124,7 +2164,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
   !>   \retval rocsparse_status_invalid_value if \p output is invalid.
   !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
-  interface rocsparse_sptrsv_get_output
+  interface
     function rocsparse_sptrsv_get_output_(handle,descr,output,myData,data_size_in_bytes,p_error) &
         bind(c, name="rocsparse_sptrsv_get_output")
       use iso_c_binding
@@ -2136,8 +2176,13 @@ module hipfort_rocsparse
       integer(c_int),value :: output
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_sptrsv_get_output
+
+    module procedure rocsparse_sptrsv_get_output_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2198,7 +2243,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
   !>   \retval rocsparse_status_invalid_value if \p input is invalid.
   !>   \retval rocsparse_status_invalid_size if \p data_size is invalid.
-  interface rocsparse_sptrsm_set_input
+  interface
     function rocsparse_sptrsm_set_input_(handle,descr,input,myData,data_size,p_error) &
         bind(c, name="rocsparse_sptrsm_set_input")
       use iso_c_binding
@@ -2210,8 +2255,13 @@ module hipfort_rocsparse
       integer(c_int),value :: input
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_sptrsm_set_input
+
+    module procedure rocsparse_sptrsm_set_input_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2230,7 +2280,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
   !>   \retval rocsparse_status_invalid_value if \p output is invalid.
   !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
-  interface rocsparse_sptrsm_get_output
+  interface
     function rocsparse_sptrsm_get_output_(handle,descr,output,myData,data_size_in_bytes,p_error) &
         bind(c, name="rocsparse_sptrsm_get_output")
       use iso_c_binding
@@ -2242,8 +2292,13 @@ module hipfort_rocsparse
       integer(c_int),value :: output
       type(c_ptr),value :: myData
       integer(c_size_t),value :: data_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_sptrsm_get_output
+
+    module procedure rocsparse_sptrsm_get_output_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2261,7 +2316,7 @@ module hipfort_rocsparse
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_pointer \p descr pointer is invalid.
-  interface rocsparse_spic0_descr_create
+  interface
     function rocsparse_spic0_descr_create_(handle,p_spic0_descr,p_error) &
         bind(c, name="rocsparse_spic0_descr_create")
       use iso_c_binding
@@ -2270,8 +2325,13 @@ module hipfort_rocsparse
       integer(c_int) :: rocsparse_spic0_descr_create_
       type(c_ptr),value :: handle
       type(c_ptr) :: p_spic0_descr
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spic0_descr_create
+
+    module procedure rocsparse_spic0_descr_create_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2288,7 +2348,7 @@ module hipfort_rocsparse
   !>   required.
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
-  interface rocsparse_spic0_descr_destroy
+  interface
     function rocsparse_spic0_descr_destroy_(handle,spic0_descr,p_error) &
         bind(c, name="rocsparse_spic0_descr_destroy")
       use iso_c_binding
@@ -2297,8 +2357,13 @@ module hipfort_rocsparse
       integer(c_int) :: rocsparse_spic0_descr_destroy_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spic0_descr
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spic0_descr_destroy
+
+    module procedure rocsparse_spic0_descr_destroy_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2333,7 +2398,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
   !>   \retval rocsparse_status_invalid_value if \p input is invalid.
   !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
-  interface rocsparse_spic0_set_input
+  interface
     function rocsparse_spic0_set_input_(handle,spic0_descr,spic0_input,input,input_size_in_bytes, &
         p_error) &
         bind(c, name="rocsparse_spic0_set_input")
@@ -2346,8 +2411,13 @@ module hipfort_rocsparse
       integer(c_int),value :: spic0_input
       type(c_ptr),value :: input
       integer(c_size_t),value :: input_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spic0_set_input
+
+    module procedure rocsparse_spic0_set_input_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2370,7 +2440,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
   !>   \retval rocsparse_status_invalid_value if \p output is invalid.
   !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
-  interface rocsparse_spic0_get_output
+  interface
     function rocsparse_spic0_get_output_(handle,spic0_descr,spic0_output,output, &
         output_size_in_bytes,p_error) &
         bind(c, name="rocsparse_spic0_get_output")
@@ -2383,8 +2453,13 @@ module hipfort_rocsparse
       integer(c_int),value :: spic0_output
       type(c_ptr),value :: output
       integer(c_size_t),value :: output_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spic0_get_output
+
+    module procedure rocsparse_spic0_get_output_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2403,7 +2478,7 @@ module hipfort_rocsparse
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_pointer \p descr pointer is invalid.
-  interface rocsparse_spilu0_descr_create
+  interface
     function rocsparse_spilu0_descr_create_(handle,p_spilu0_descr,p_error) &
         bind(c, name="rocsparse_spilu0_descr_create")
       use iso_c_binding
@@ -2412,8 +2487,13 @@ module hipfort_rocsparse
       integer(c_int) :: rocsparse_spilu0_descr_create_
       type(c_ptr),value :: handle
       type(c_ptr) :: p_spilu0_descr
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spilu0_descr_create
+
+    module procedure rocsparse_spilu0_descr_create_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2430,7 +2510,7 @@ module hipfort_rocsparse
   !>   required.
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
-  interface rocsparse_spilu0_descr_destroy
+  interface
     function rocsparse_spilu0_descr_destroy_(handle,spilu0_descr,p_error) &
         bind(c, name="rocsparse_spilu0_descr_destroy")
       use iso_c_binding
@@ -2439,8 +2519,13 @@ module hipfort_rocsparse
       integer(c_int) :: rocsparse_spilu0_descr_destroy_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spilu0_descr
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spilu0_descr_destroy
+
+    module procedure rocsparse_spilu0_descr_destroy_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2477,7 +2562,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
   !>   \retval rocsparse_status_invalid_value if \p input is invalid.
   !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
-  interface rocsparse_spilu0_set_input
+  interface
     function rocsparse_spilu0_set_input_(handle,spilu0_descr,spilu0_input,input, &
         input_size_in_bytes,p_error) &
         bind(c, name="rocsparse_spilu0_set_input")
@@ -2490,8 +2575,13 @@ module hipfort_rocsparse
       integer(c_int),value :: spilu0_input
       type(c_ptr),value :: input
       integer(c_size_t),value :: input_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spilu0_set_input
+
+    module procedure rocsparse_spilu0_set_input_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2514,7 +2604,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
   !>   \retval rocsparse_status_invalid_value if \p output is invalid.
   !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
-  interface rocsparse_spilu0_get_output
+  interface
     function rocsparse_spilu0_get_output_(handle,spilu0_descr,spilu0_output,output, &
         output_size_in_bytes,p_error) &
         bind(c, name="rocsparse_spilu0_get_output")
@@ -2527,8 +2617,13 @@ module hipfort_rocsparse
       integer(c_int),value :: spilu0_output
       type(c_ptr),value :: output
       integer(c_size_t),value :: output_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spilu0_get_output
+
+    module procedure rocsparse_spilu0_get_output_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2546,7 +2641,7 @@ module hipfort_rocsparse
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
   !>   \retval      rocsparse_status_invalid_pointer \p descr pointer is invalid.
-  interface rocsparse_spildlt0_descr_create
+  interface
     function rocsparse_spildlt0_descr_create_(handle,p_spildlt0_descr,p_error) &
         bind(c, name="rocsparse_spildlt0_descr_create")
       use iso_c_binding
@@ -2555,8 +2650,13 @@ module hipfort_rocsparse
       integer(c_int) :: rocsparse_spildlt0_descr_create_
       type(c_ptr),value :: handle
       type(c_ptr) :: p_spildlt0_descr
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spildlt0_descr_create
+
+    module procedure rocsparse_spildlt0_descr_create_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2573,7 +2673,7 @@ module hipfort_rocsparse
   !>   required.
   !>   \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
   !>   \retval      rocsparse_status_success the operation completed successfully.
-  interface rocsparse_spildlt0_descr_destroy
+  interface
     function rocsparse_spildlt0_descr_destroy_(handle,spildlt0_descr,p_error) &
         bind(c, name="rocsparse_spildlt0_descr_destroy")
       use iso_c_binding
@@ -2582,8 +2682,13 @@ module hipfort_rocsparse
       integer(c_int) :: rocsparse_spildlt0_descr_destroy_
       type(c_ptr),value :: handle
       type(c_ptr),value :: spildlt0_descr
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spildlt0_descr_destroy
+
+    module procedure rocsparse_spildlt0_descr_destroy_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2627,7 +2732,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
   !>   \retval rocsparse_status_invalid_value if \p input is invalid.
   !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
-  interface rocsparse_spildlt0_set_input
+  interface
     function rocsparse_spildlt0_set_input_(handle,spildlt0_descr,spildlt0_input,input, &
         input_size_in_bytes,p_error) &
         bind(c, name="rocsparse_spildlt0_set_input")
@@ -2640,8 +2745,13 @@ module hipfort_rocsparse
       integer(c_int),value :: spildlt0_input
       type(c_ptr),value :: input
       integer(c_size_t),value :: input_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spildlt0_set_input
+
+    module procedure rocsparse_spildlt0_set_input_opt
   end interface
 
   !>  \ingroup aux_module
@@ -2662,7 +2772,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
   !>   \retval rocsparse_status_invalid_value if \p output is invalid.
   !>   \retval rocsparse_status_invalid_size if \p data_size_in_bytes is invalid.
-  interface rocsparse_spildlt0_get_output
+  interface
     function rocsparse_spildlt0_get_output_(handle,spildlt0_descr,spildlt0_output,output, &
         output_size_in_bytes,p_error) &
         bind(c, name="rocsparse_spildlt0_get_output")
@@ -2675,8 +2785,13 @@ module hipfort_rocsparse
       integer(c_int),value :: spildlt0_output
       type(c_ptr),value :: output
       integer(c_size_t),value :: output_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spildlt0_get_output
+
+    module procedure rocsparse_spildlt0_get_output_opt
   end interface
 
   !>  \ingroup aux_module
@@ -3883,7 +3998,7 @@ module hipfort_rocsparse
     end function
   end interface
 
-  interface rocsparse_dnvec_descr_create_scalar
+  interface
     function rocsparse_dnvec_descr_create_scalar_(handle,descr,pointer_mode,data_type, &
         const_values,values,p_error) &
         bind(c, name="rocsparse_dnvec_descr_create_scalar")
@@ -3897,8 +4012,13 @@ module hipfort_rocsparse
       integer(c_int),value :: data_type
       type(c_ptr),value :: const_values
       type(c_ptr),value :: values
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_dnvec_descr_create_scalar
+
+    module procedure rocsparse_dnvec_descr_create_scalar_opt
   end interface
 
   !>  \ingroup aux_module
@@ -15910,7 +16030,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval rocsparse_status_invalid_pointer \p mat_A, \p mat_B, \p descr, or \p buffer_size
   !>   pointer is invalid.
-  interface rocsparse_spgeam_buffer_size
+  interface
     function rocsparse_spgeam_buffer_size_(handle,descr,mat_A,mat_B,mat_C,stage,buffer_size,error) &
         bind(c, name="rocsparse_spgeam_buffer_size")
       use iso_c_binding
@@ -15924,10 +16044,15 @@ module hipfort_rocsparse
       type(c_ptr),value :: mat_C
       integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size
-      type(c_ptr), optional :: error
+      type(c_ptr),value :: error
     end function
+  end interface
 
-    module procedure rocsparse_spgeam_buffer_size_typed
+  interface rocsparse_spgeam_buffer_size
+
+    module procedure &
+      rocsparse_spgeam_buffer_size_opt,&
+      rocsparse_spgeam_buffer_size_typed
   end interface
 
   !>  \ingroup generic_module
@@ -16095,7 +16220,7 @@ module hipfort_rocsparse
   !>
   !>
   !>   \par Second Example
-  interface rocsparse_spgeam
+  interface
     function rocsparse_spgeam_(handle,descr,mat_A,mat_B,mat_C,stage,buffer_size,temp_buffer,error) &
         bind(c, name="rocsparse_spgeam")
       use iso_c_binding
@@ -16110,8 +16235,13 @@ module hipfort_rocsparse
       integer(c_int),value :: stage
       integer(c_size_t),value :: buffer_size
       type(c_ptr),value :: temp_buffer
-      type(c_ptr), optional :: error
+      type(c_ptr),value :: error
     end function
+  end interface
+
+  interface rocsparse_spgeam
+
+    module procedure rocsparse_spgeam_opt
   end interface
 
   !>  \ingroup generic_module
@@ -16345,7 +16475,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_value the \p spic0_stage value is invalid.
   !>   \retval rocsparse_status_invalid_pointer \p spic0_descr, \p A, \p P, or \p
   !>   p_buffer_size_in_bytes pointer is invalid.
-  interface rocsparse_spic0_buffer_size
+  interface
     function rocsparse_spic0_buffer_size_(handle,spic0_descr,A,P,spic0_stage, &
         p_buffer_size_in_bytes,p_error) &
         bind(c, name="rocsparse_spic0_buffer_size")
@@ -16359,10 +16489,15 @@ module hipfort_rocsparse
       type(c_ptr),value :: P
       integer(c_int),value :: spic0_stage
       type(c_ptr),value :: p_buffer_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
 
-    module procedure rocsparse_spic0_buffer_size_typed
+  interface rocsparse_spic0_buffer_size
+
+    module procedure &
+      rocsparse_spic0_buffer_size_opt,&
+      rocsparse_spic0_buffer_size_typed
   end interface
 
   !>  \ingroup generic_module
@@ -16445,7 +16580,7 @@ module hipfort_rocsparse
   !>   buffer_size_in_bytes pointer is invalid.
   !>
   !>   \par Example
-  interface rocsparse_spic0
+  interface
     function rocsparse_spic0_(handle,spic0_descr,A,P,spic0_stage,buffer_size_in_bytes,buffer, &
         p_error) &
         bind(c, name="rocsparse_spic0")
@@ -16460,8 +16595,13 @@ module hipfort_rocsparse
       integer(c_int),value :: spic0_stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spic0
+
+    module procedure rocsparse_spic0_opt
   end interface
 
   !>  \ingroup generic_module
@@ -16526,7 +16666,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_pointer \p alpha, \p source or \p target pointer is invalid.
   !>   \retval rocsparse_status_not_implemented the formats of \p source and \p target differ, the
   !>           format is not one of the supported formats, or a batched matrix is passed.
-  interface rocsparse_spmat_scale
+  interface
     function rocsparse_spmat_scale_(handle,alpha,source,target,p_error) &
         bind(c, name="rocsparse_spmat_scale")
       use iso_c_binding
@@ -16537,8 +16677,13 @@ module hipfort_rocsparse
       type(c_ptr),value :: alpha
       type(c_ptr),value :: source
       type(c_ptr),value :: target
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spmat_scale
+
+    module procedure rocsparse_spmat_scale_opt
   end interface
 
   !>  \ingroup generic_module
@@ -16577,7 +16722,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_value the \p spildlt0_stage value is invalid.
   !>   \retval rocsparse_status_invalid_pointer \p spildlt0_descr, \p A, \p P, or \p
   !>   p_buffer_size_in_bytes pointer is invalid.
-  interface rocsparse_spildlt0_buffer_size
+  interface
     function rocsparse_spildlt0_buffer_size_(handle,spildlt0_descr,A,P,spildlt0_stage, &
         p_buffer_size_in_bytes,p_error) &
         bind(c, name="rocsparse_spildlt0_buffer_size")
@@ -16591,10 +16736,15 @@ module hipfort_rocsparse
       type(c_ptr),value :: P
       integer(c_int),value :: spildlt0_stage
       type(c_ptr),value :: p_buffer_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
 
-    module procedure rocsparse_spildlt0_buffer_size_typed
+  interface rocsparse_spildlt0_buffer_size
+
+    module procedure &
+      rocsparse_spildlt0_buffer_size_opt,&
+      rocsparse_spildlt0_buffer_size_typed
   end interface
 
   !>  \ingroup generic_module
@@ -16675,7 +16825,7 @@ module hipfort_rocsparse
   !>   buffer_size_in_bytes pointer is invalid.
   !>
   !>   \par Example
-  interface rocsparse_spildlt0
+  interface
     function rocsparse_spildlt0_(handle,spildlt0_descr,A,P,spildlt0_stage,buffer_size_in_bytes, &
         buffer,p_error) &
         bind(c, name="rocsparse_spildlt0")
@@ -16690,8 +16840,13 @@ module hipfort_rocsparse
       integer(c_int),value :: spildlt0_stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spildlt0
+
+    module procedure rocsparse_spildlt0_opt
   end interface
 
   !>  \ingroup generic_module
@@ -16727,7 +16882,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_value the \p spilu0_stage value is invalid.
   !>   \retval rocsparse_status_invalid_pointer \p spilu0_descr, \p A, \p P, or \p
   !>   p_buffer_size_in_bytes pointer is invalid.
-  interface rocsparse_spilu0_buffer_size
+  interface
     function rocsparse_spilu0_buffer_size_(handle,spilu0_descr,A,P,spilu0_stage, &
         p_buffer_size_in_bytes,p_error) &
         bind(c, name="rocsparse_spilu0_buffer_size")
@@ -16741,10 +16896,15 @@ module hipfort_rocsparse
       type(c_ptr),value :: P
       integer(c_int),value :: spilu0_stage
       type(c_ptr),value :: p_buffer_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
 
-    module procedure rocsparse_spilu0_buffer_size_typed
+  interface rocsparse_spilu0_buffer_size
+
+    module procedure &
+      rocsparse_spilu0_buffer_size_opt,&
+      rocsparse_spilu0_buffer_size_typed
   end interface
 
   !>  \ingroup generic_module
@@ -16818,7 +16978,7 @@ module hipfort_rocsparse
   !>   buffer_size_in_bytes pointer is invalid.
   !>
   !>   \par Example
-  interface rocsparse_spilu0
+  interface
     function rocsparse_spilu0_(handle,spilu0_descr,A,P,spilu0_stage,buffer_size_in_bytes,buffer, &
         p_error) &
         bind(c, name="rocsparse_spilu0")
@@ -16833,8 +16993,13 @@ module hipfort_rocsparse
       integer(c_int),value :: spilu0_stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spilu0
+
+    module procedure rocsparse_spilu0_opt
   end interface
 
   !>  \ingroup generic_module
@@ -17823,7 +17988,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_value the \p sptrsm_stage value is invalid.
   !>   \retval rocsparse_status_invalid_pointer \p A, \p X, \p Y, \p sptrsm_descr, or \p
   !>   buffer_size_in_bytes pointer is invalid.
-  interface rocsparse_sptrsm_buffer_size
+  interface
     function rocsparse_sptrsm_buffer_size_(handle,sptrsm_descr,A,X,Y,sptrsm_stage, &
         buffer_size_in_bytes,p_error) &
         bind(c, name="rocsparse_sptrsm_buffer_size")
@@ -17838,10 +18003,15 @@ module hipfort_rocsparse
       type(c_ptr),value :: Y
       integer(c_int),value :: sptrsm_stage
       type(c_ptr),value :: buffer_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
 
-    module procedure rocsparse_sptrsm_buffer_size_typed
+  interface rocsparse_sptrsm_buffer_size
+
+    module procedure &
+      rocsparse_sptrsm_buffer_size_opt,&
+      rocsparse_sptrsm_buffer_size_typed
   end interface
 
   !>  \ingroup generic_module
@@ -17960,7 +18130,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_not_implemented the configuration of the descriptor \p sptrsm_descr
   !>   is currently not supported.
   !>   \par Example
-  interface rocsparse_sptrsm
+  interface
     function rocsparse_sptrsm_(handle,sptrsm_descr,A,X,Y,sptrsm_stage,buffer_size_in_bytes,buffer, &
         p_error) &
         bind(c, name="rocsparse_sptrsm")
@@ -17976,8 +18146,13 @@ module hipfort_rocsparse
       integer(c_int),value :: sptrsm_stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_sptrsm
+
+    module procedure rocsparse_sptrsm_opt
   end interface
 
   !>  \ingroup generic_module
@@ -18010,7 +18185,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_value the \p sptrsv_stage value is invalid.
   !>   \retval rocsparse_status_invalid_pointer \p sptrsv_descr, \p spmat_descr, \p x, \p y, or \p
   !>   buffer_size_in_bytes pointer is invalid.
-  interface rocsparse_sptrsv_buffer_size
+  interface
     function rocsparse_sptrsv_buffer_size_(handle,sptrsv_descr,spmat_descr,x,y,sptrsv_stage, &
         buffer_size_in_bytes,p_error) &
         bind(c, name="rocsparse_sptrsv_buffer_size")
@@ -18025,10 +18200,15 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
       integer(c_int),value :: sptrsv_stage
       type(c_ptr),value :: buffer_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
 
-    module procedure rocsparse_sptrsv_buffer_size_typed
+  interface rocsparse_sptrsv_buffer_size
+
+    module procedure &
+      rocsparse_sptrsv_buffer_size_opt,&
+      rocsparse_sptrsv_buffer_size_typed
   end interface
 
   !>  \ingroup generic_module
@@ -18122,7 +18302,7 @@ module hipfort_rocsparse
   !>   \retval      rocsparse_status_invalid_value \p sptrsv_stage is invalid.
   !>
   !>   \par Example
-  interface rocsparse_sptrsv
+  interface
     function rocsparse_sptrsv_(handle,sptrsv_descr,A,x,y,sptrsv_stage,buffer_size_in_bytes,buffer, &
         p_error) &
         bind(c, name="rocsparse_sptrsv")
@@ -18138,8 +18318,13 @@ module hipfort_rocsparse
       integer(c_int),value :: sptrsv_stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_sptrsv
+
+    module procedure rocsparse_sptrsv_opt
   end interface
 
   !>  \ingroup generic_module
@@ -18283,7 +18468,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_invalid_value the \p stage value is invalid.
   !>   \retval rocsparse_status_invalid_pointer \p mat, \p x, \p y, \p descr, or \p
   !>   buffer_size_in_bytes pointer is invalid.
-  interface rocsparse_v2_spmv_buffer_size
+  interface
     function rocsparse_v2_spmv_buffer_size_(handle,descr,mat,x,y,stage,buffer_size_in_bytes,error) &
         bind(c, name="rocsparse_v2_spmv_buffer_size")
       use iso_c_binding
@@ -18297,10 +18482,15 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
       integer(c_int),value :: stage
       type(c_ptr),value :: buffer_size_in_bytes
-      type(c_ptr), optional :: error
+      type(c_ptr),value :: error
     end function
+  end interface
 
-    module procedure rocsparse_v2_spmv_buffer_size_typed
+  interface rocsparse_v2_spmv_buffer_size
+
+    module procedure &
+      rocsparse_v2_spmv_buffer_size_opt,&
+      rocsparse_v2_spmv_buffer_size_typed
   end interface
 
   !>  \ingroup generic_module
@@ -18491,7 +18681,7 @@ module hipfort_rocsparse
   !>   configuration is not supported.
   !>
   !>   \par Example
-  interface rocsparse_v2_spmv
+  interface
     function rocsparse_v2_spmv_(handle,descr,alpha,mat,x,beta,y,stage,buffer_size_in_bytes,buffer, &
         error) &
         bind(c, name="rocsparse_v2_spmv")
@@ -18509,8 +18699,13 @@ module hipfort_rocsparse
       integer(c_int),value :: stage
       integer(c_size_t),value :: buffer_size_in_bytes
       type(c_ptr),value :: buffer
-      type(c_ptr), optional :: error
+      type(c_ptr),value :: error
     end function
+  end interface
+
+  interface rocsparse_v2_spmv
+
+    module procedure rocsparse_v2_spmv_opt
   end interface
 
   !>  \ingroup generic_module
@@ -18557,7 +18752,7 @@ module hipfort_rocsparse
   !>           or between \p z_vecs elements.
   !>
   !>   \par Example
-  interface rocsparse_spmv_set_extra
+  interface
     function rocsparse_spmv_set_extra_(handle,descr,num_extras,gamma_vec,z_vecs,p_error) &
         bind(c, name="rocsparse_spmv_set_extra")
       use iso_c_binding
@@ -18569,8 +18764,13 @@ module hipfort_rocsparse
       integer(c_int64_t),value :: num_extras
       type(c_ptr),value :: gamma_vec
       type(c_ptr) :: z_vecs
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spmv_set_extra
+
+    module procedure rocsparse_spmv_set_extra_opt
   end interface
 
   !>  \ingroup generic_module
@@ -18589,7 +18789,7 @@ module hipfort_rocsparse
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval rocsparse_status_invalid_pointer \p descr is invalid.
-  interface rocsparse_spmv_clear_extra
+  interface
     function rocsparse_spmv_clear_extra_(handle,descr,p_error) &
         bind(c, name="rocsparse_spmv_clear_extra")
       use iso_c_binding
@@ -18598,8 +18798,13 @@ module hipfort_rocsparse
       integer(c_int) :: rocsparse_spmv_clear_extra_
       type(c_ptr),value :: handle
       type(c_ptr),value :: descr
-      type(c_ptr), optional :: p_error
+      type(c_ptr),value :: p_error
     end function
+  end interface
+
+  interface rocsparse_spmv_clear_extra
+
+    module procedure rocsparse_spmv_clear_extra_opt
   end interface
 
   !>  \ingroup level1_module
@@ -35192,6 +35397,35 @@ module hipfort_rocsparse
 
   contains
 
+    function rocsparse_handle_create_opt(handle,stream,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_handle_create_opt
+      type(c_ptr) :: handle
+      type(c_ptr), value :: stream
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_handle_create_opt = rocsparse_handle_create_(handle,stream,p_error__p)
+    end function
+
+    function rocsparse_handle_destroy_opt(handle,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_handle_destroy_opt
+      type(c_ptr), value :: handle
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_handle_destroy_opt = rocsparse_handle_destroy_(handle,p_error__p)
+    end function
+
     function rocsparse_get_pointer_mode_typed(handle,pointer_mode)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -35260,6 +35494,387 @@ module hipfort_rocsparse
       integer(kind(rocsparse_index_base_zero)),target :: idx_base
       !
       rocsparse_spvec_get_index_base_typed = rocsparse_spvec_get_index_base_(descr,c_loc(idx_base))
+    end function
+
+    function rocsparse_spgeam_set_input_opt(handle,descr,input,myData,data_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spgeam_set_input_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      integer(kind(rocsparse_spgeam_input_alg)) :: input
+      type(c_ptr), value :: myData
+      integer(c_size_t) :: data_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spgeam_set_input_opt = rocsparse_spgeam_set_input_(handle,descr,input,myData, &
+        data_size_in_bytes,p_error__p)
+    end function
+
+    function rocsparse_spgeam_get_output_opt(handle,descr,output,myData,data_size_in_bytes,error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spgeam_get_output_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      integer(kind(rocsparse_spgeam_output_nnz)) :: output
+      type(c_ptr), value :: myData
+      integer(c_size_t) :: data_size_in_bytes
+      type(c_ptr),optional,target :: error
+      type(c_ptr) :: error__p
+      !
+      error__p = c_null_ptr
+      if (present(error)) error__p = c_loc(error)
+      rocsparse_spgeam_get_output_opt = rocsparse_spgeam_get_output_(handle,descr,output,myData, &
+        data_size_in_bytes,error__p)
+    end function
+
+    function rocsparse_spmv_set_input_opt(handle,descr,input,in,size_in_bytes,error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spmv_set_input_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      integer(kind(rocsparse_spmv_input_alg)) :: input
+      type(c_ptr), value :: in
+      integer(c_size_t) :: size_in_bytes
+      type(c_ptr),optional,target :: error
+      type(c_ptr) :: error__p
+      !
+      error__p = c_null_ptr
+      if (present(error)) error__p = c_loc(error)
+      rocsparse_spmv_set_input_opt = rocsparse_spmv_set_input_(handle,descr,input,in, &
+        size_in_bytes,error__p)
+    end function
+
+    function rocsparse_sptrsv_descr_create_opt(handle,p_sptrsv_descr,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsv_descr_create_opt
+      type(c_ptr), value :: handle
+      type(c_ptr) :: p_sptrsv_descr
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_sptrsv_descr_create_opt = rocsparse_sptrsv_descr_create_(handle,p_sptrsv_descr, &
+        p_error__p)
+    end function
+
+    function rocsparse_sptrsv_descr_destroy_opt(handle,sptrsv_descr,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsv_descr_destroy_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: sptrsv_descr
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_sptrsv_descr_destroy_opt = rocsparse_sptrsv_descr_destroy_(handle,sptrsv_descr, &
+        p_error__p)
+    end function
+
+    function rocsparse_sptrsv_set_input_opt(handle,descr,input,myData,data_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsv_set_input_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      integer(kind(rocsparse_sptrsv_input_alg)) :: input
+      type(c_ptr), value :: myData
+      integer(c_size_t) :: data_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_sptrsv_set_input_opt = rocsparse_sptrsv_set_input_(handle,descr,input,myData, &
+        data_size_in_bytes,p_error__p)
+    end function
+
+    function rocsparse_sptrsv_get_output_opt(handle,descr,output,myData,data_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsv_get_output_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      integer(kind(rocsparse_sptrsv_output_zero_pivot_position)) :: output
+      type(c_ptr), value :: myData
+      integer(c_size_t) :: data_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_sptrsv_get_output_opt = rocsparse_sptrsv_get_output_(handle,descr,output,myData, &
+        data_size_in_bytes,p_error__p)
+    end function
+
+    function rocsparse_sptrsm_set_input_opt(handle,descr,input,myData,data_size,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsm_set_input_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      integer(kind(rocsparse_sptrsm_input_alg)) :: input
+      type(c_ptr), value :: myData
+      integer(c_size_t) :: data_size
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_sptrsm_set_input_opt = rocsparse_sptrsm_set_input_(handle,descr,input,myData, &
+        data_size,p_error__p)
+    end function
+
+    function rocsparse_sptrsm_get_output_opt(handle,descr,output,myData,data_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsm_get_output_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      integer(kind(rocsparse_sptrsm_output_zero_pivot_position)) :: output
+      type(c_ptr), value :: myData
+      integer(c_size_t) :: data_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_sptrsm_get_output_opt = rocsparse_sptrsm_get_output_(handle,descr,output,myData, &
+        data_size_in_bytes,p_error__p)
+    end function
+
+    function rocsparse_spic0_descr_create_opt(handle,p_spic0_descr,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spic0_descr_create_opt
+      type(c_ptr), value :: handle
+      type(c_ptr) :: p_spic0_descr
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spic0_descr_create_opt = rocsparse_spic0_descr_create_(handle,p_spic0_descr, &
+        p_error__p)
+    end function
+
+    function rocsparse_spic0_descr_destroy_opt(handle,spic0_descr,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spic0_descr_destroy_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spic0_descr
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spic0_descr_destroy_opt = rocsparse_spic0_descr_destroy_(handle,spic0_descr, &
+        p_error__p)
+    end function
+
+    function rocsparse_spic0_set_input_opt(handle,spic0_descr,spic0_input,input, &
+        input_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spic0_set_input_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spic0_descr
+      integer(kind(rocsparse_spic0_input_alg)) :: spic0_input
+      type(c_ptr), value :: input
+      integer(c_size_t) :: input_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spic0_set_input_opt = rocsparse_spic0_set_input_(handle,spic0_descr,spic0_input, &
+        input,input_size_in_bytes,p_error__p)
+    end function
+
+    function rocsparse_spic0_get_output_opt(handle,spic0_descr,spic0_output,output, &
+        output_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spic0_get_output_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spic0_descr
+      integer(kind(rocsparse_spic0_output_singularity)) :: spic0_output
+      type(c_ptr), value :: output
+      integer(c_size_t) :: output_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spic0_get_output_opt = rocsparse_spic0_get_output_(handle,spic0_descr, &
+        spic0_output,output,output_size_in_bytes,p_error__p)
+    end function
+
+    function rocsparse_spilu0_descr_create_opt(handle,p_spilu0_descr,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spilu0_descr_create_opt
+      type(c_ptr), value :: handle
+      type(c_ptr) :: p_spilu0_descr
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spilu0_descr_create_opt = rocsparse_spilu0_descr_create_(handle,p_spilu0_descr, &
+        p_error__p)
+    end function
+
+    function rocsparse_spilu0_descr_destroy_opt(handle,spilu0_descr,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spilu0_descr_destroy_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spilu0_descr
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spilu0_descr_destroy_opt = rocsparse_spilu0_descr_destroy_(handle,spilu0_descr, &
+        p_error__p)
+    end function
+
+    function rocsparse_spilu0_set_input_opt(handle,spilu0_descr,spilu0_input,input, &
+        input_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spilu0_set_input_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spilu0_descr
+      integer(kind(rocsparse_spilu0_input_alg)) :: spilu0_input
+      type(c_ptr), value :: input
+      integer(c_size_t) :: input_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spilu0_set_input_opt = rocsparse_spilu0_set_input_(handle,spilu0_descr, &
+        spilu0_input,input,input_size_in_bytes,p_error__p)
+    end function
+
+    function rocsparse_spilu0_get_output_opt(handle,spilu0_descr,spilu0_output,output, &
+        output_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spilu0_get_output_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spilu0_descr
+      integer(kind(rocsparse_spilu0_output_singularity)) :: spilu0_output
+      type(c_ptr), value :: output
+      integer(c_size_t) :: output_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spilu0_get_output_opt = rocsparse_spilu0_get_output_(handle,spilu0_descr, &
+        spilu0_output,output,output_size_in_bytes,p_error__p)
+    end function
+
+    function rocsparse_spildlt0_descr_create_opt(handle,p_spildlt0_descr,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_descr_create_opt
+      type(c_ptr), value :: handle
+      type(c_ptr) :: p_spildlt0_descr
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spildlt0_descr_create_opt = rocsparse_spildlt0_descr_create_(handle, &
+        p_spildlt0_descr,p_error__p)
+    end function
+
+    function rocsparse_spildlt0_descr_destroy_opt(handle,spildlt0_descr,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_descr_destroy_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spildlt0_descr
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spildlt0_descr_destroy_opt = rocsparse_spildlt0_descr_destroy_(handle, &
+        spildlt0_descr,p_error__p)
+    end function
+
+    function rocsparse_spildlt0_set_input_opt(handle,spildlt0_descr,spildlt0_input,input, &
+        input_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_set_input_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spildlt0_descr
+      integer(kind(rocsparse_spildlt0_input_alg)) :: spildlt0_input
+      type(c_ptr), value :: input
+      integer(c_size_t) :: input_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spildlt0_set_input_opt = rocsparse_spildlt0_set_input_(handle,spildlt0_descr, &
+        spildlt0_input,input,input_size_in_bytes,p_error__p)
+    end function
+
+    function rocsparse_spildlt0_get_output_opt(handle,spildlt0_descr,spildlt0_output,output, &
+        output_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_get_output_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spildlt0_descr
+      integer(kind(rocsparse_spildlt0_output_singularity)) :: spildlt0_output
+      type(c_ptr), value :: output
+      integer(c_size_t) :: output_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spildlt0_get_output_opt = rocsparse_spildlt0_get_output_(handle,spildlt0_descr, &
+        spildlt0_output,output,output_size_in_bytes,p_error__p)
     end function
 
     function rocsparse_coo_get_typed(descr,rows,cols,nnz,coo_row_ind,coo_col_ind,coo_val,idx_type, &
@@ -35682,6 +36297,27 @@ module hipfort_rocsparse
       !
       rocsparse_spmat_get_strided_batch_typed = rocsparse_spmat_get_strided_batch_(descr, &
         c_loc(batch_count))
+    end function
+
+    function rocsparse_dnvec_descr_create_scalar_opt(handle,descr,pointer_mode,data_type, &
+        const_values,values,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dnvec_descr_create_scalar_opt
+      type(c_ptr), value :: handle
+      type(c_ptr) :: descr
+      integer(kind(rocsparse_pointer_mode_host)) :: pointer_mode
+      integer(kind(rocsparse_datatype_f16_r)) :: data_type
+      type(c_ptr), value :: const_values
+      type(c_ptr), value :: values
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_dnvec_descr_create_scalar_opt = rocsparse_dnvec_descr_create_scalar_(handle,descr, &
+        pointer_mode,data_type,const_values,values,p_error__p)
     end function
 
     function rocsparse_dnvec_get_typed(descr,mySize,values,data_type)
@@ -38486,6 +39122,28 @@ module hipfort_rocsparse
         handle,descr,source,target,stage,c_loc(buffer_size_in_bytes))
     end function
 
+    function rocsparse_spgeam_buffer_size_opt(handle,descr,mat_A,mat_B,mat_C,stage,buffer_size, &
+        error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spgeam_buffer_size_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      type(c_ptr), value :: mat_A
+      type(c_ptr), value :: mat_B
+      type(c_ptr), value :: mat_C
+      integer(kind(rocsparse_spgeam_stage_analysis)) :: stage
+      type(c_ptr),value :: buffer_size
+      type(c_ptr),optional,target :: error
+      type(c_ptr) :: error__p
+      !
+      error__p = c_null_ptr
+      if (present(error)) error__p = c_loc(error)
+      rocsparse_spgeam_buffer_size_opt = rocsparse_spgeam_buffer_size_(handle,descr,mat_A,mat_B, &
+        mat_C,stage,buffer_size,error__p)
+    end function
+
     function rocsparse_spgeam_buffer_size_typed(handle,descr,mat_A,mat_B,mat_C,stage,buffer_size, &
         error)
       use iso_c_binding
@@ -38499,10 +39157,36 @@ module hipfort_rocsparse
       type(c_ptr), value :: mat_C
       integer(kind(rocsparse_spgeam_stage_analysis)) :: stage
       integer(c_size_t),target :: buffer_size
-      type(c_ptr), optional :: error
+      type(c_ptr),optional,target :: error
+      type(c_ptr) :: error__p
       !
+      error__p = c_null_ptr
+      if (present(error)) error__p = c_loc(error)
       rocsparse_spgeam_buffer_size_typed = rocsparse_spgeam_buffer_size_(handle,descr,mat_A,mat_B, &
-        mat_C,stage,c_loc(buffer_size),error)
+        mat_C,stage,c_loc(buffer_size),error__p)
+    end function
+
+    function rocsparse_spgeam_opt(handle,descr,mat_A,mat_B,mat_C,stage,buffer_size,temp_buffer, &
+        error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spgeam_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      type(c_ptr), value :: mat_A
+      type(c_ptr), value :: mat_B
+      type(c_ptr), value :: mat_C
+      integer(kind(rocsparse_spgeam_stage_analysis)) :: stage
+      integer(c_size_t) :: buffer_size
+      type(c_ptr), value :: temp_buffer
+      type(c_ptr),optional,target :: error
+      type(c_ptr) :: error__p
+      !
+      error__p = c_null_ptr
+      if (present(error)) error__p = c_loc(error)
+      rocsparse_spgeam_opt = rocsparse_spgeam_(handle,descr,mat_A,mat_B,mat_C,stage,buffer_size, &
+        temp_buffer,error__p)
     end function
 
     function rocsparse_spgemm_typed(handle,trans_A,trans_B,alpha,A,B,beta,D,C,compute_type,alg, &
@@ -38530,6 +39214,27 @@ module hipfort_rocsparse
         compute_type,alg,stage,c_loc(buffer_size),temp_buffer)
     end function
 
+    function rocsparse_spic0_buffer_size_opt(handle,spic0_descr,A,P,spic0_stage, &
+        p_buffer_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spic0_buffer_size_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spic0_descr
+      type(c_ptr), value :: A
+      type(c_ptr), value :: P
+      integer(kind(rocsparse_spic0_stage_analysis)) :: spic0_stage
+      type(c_ptr),value :: p_buffer_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spic0_buffer_size_opt = rocsparse_spic0_buffer_size_(handle,spic0_descr,A,P, &
+        spic0_stage,p_buffer_size_in_bytes,p_error__p)
+    end function
+
     function rocsparse_spic0_buffer_size_typed(handle,spic0_descr,A,P,spic0_stage, &
         p_buffer_size_in_bytes,p_error)
       use iso_c_binding
@@ -38542,10 +39247,73 @@ module hipfort_rocsparse
       type(c_ptr), value :: P
       integer(kind(rocsparse_spic0_stage_analysis)) :: spic0_stage
       integer(c_size_t),target :: p_buffer_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
       !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
       rocsparse_spic0_buffer_size_typed = rocsparse_spic0_buffer_size_(handle,spic0_descr,A,P, &
-        spic0_stage,c_loc(p_buffer_size_in_bytes),p_error)
+        spic0_stage,c_loc(p_buffer_size_in_bytes),p_error__p)
+    end function
+
+    function rocsparse_spic0_opt(handle,spic0_descr,A,P,spic0_stage,buffer_size_in_bytes,buffer, &
+        p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spic0_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spic0_descr
+      type(c_ptr), value :: A
+      type(c_ptr), value :: P
+      integer(kind(rocsparse_spic0_stage_analysis)) :: spic0_stage
+      integer(c_size_t) :: buffer_size_in_bytes
+      type(c_ptr), value :: buffer
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spic0_opt = rocsparse_spic0_(handle,spic0_descr,A,P,spic0_stage, &
+        buffer_size_in_bytes,buffer,p_error__p)
+    end function
+
+    function rocsparse_spmat_scale_opt(handle,alpha,source,target,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_scale_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: alpha
+      type(c_ptr), value :: source
+      type(c_ptr), value :: target
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spmat_scale_opt = rocsparse_spmat_scale_(handle,alpha,source,target,p_error__p)
+    end function
+
+    function rocsparse_spildlt0_buffer_size_opt(handle,spildlt0_descr,A,P,spildlt0_stage, &
+        p_buffer_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_buffer_size_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spildlt0_descr
+      type(c_ptr), value :: A
+      type(c_ptr), value :: P
+      integer(kind(rocsparse_spildlt0_stage_analysis)) :: spildlt0_stage
+      type(c_ptr),value :: p_buffer_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spildlt0_buffer_size_opt = rocsparse_spildlt0_buffer_size_(handle,spildlt0_descr, &
+        A,P,spildlt0_stage,p_buffer_size_in_bytes,p_error__p)
     end function
 
     function rocsparse_spildlt0_buffer_size_typed(handle,spildlt0_descr,A,P,spildlt0_stage, &
@@ -38560,10 +39328,56 @@ module hipfort_rocsparse
       type(c_ptr), value :: P
       integer(kind(rocsparse_spildlt0_stage_analysis)) :: spildlt0_stage
       integer(c_size_t),target :: p_buffer_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
       !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
       rocsparse_spildlt0_buffer_size_typed = rocsparse_spildlt0_buffer_size_(handle, &
-        spildlt0_descr,A,P,spildlt0_stage,c_loc(p_buffer_size_in_bytes),p_error)
+        spildlt0_descr,A,P,spildlt0_stage,c_loc(p_buffer_size_in_bytes),p_error__p)
+    end function
+
+    function rocsparse_spildlt0_opt(handle,spildlt0_descr,A,P,spildlt0_stage,buffer_size_in_bytes, &
+        buffer,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spildlt0_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spildlt0_descr
+      type(c_ptr), value :: A
+      type(c_ptr), value :: P
+      integer(kind(rocsparse_spildlt0_stage_analysis)) :: spildlt0_stage
+      integer(c_size_t) :: buffer_size_in_bytes
+      type(c_ptr), value :: buffer
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spildlt0_opt = rocsparse_spildlt0_(handle,spildlt0_descr,A,P,spildlt0_stage, &
+        buffer_size_in_bytes,buffer,p_error__p)
+    end function
+
+    function rocsparse_spilu0_buffer_size_opt(handle,spilu0_descr,A,P,spilu0_stage, &
+        p_buffer_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spilu0_buffer_size_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spilu0_descr
+      type(c_ptr), value :: A
+      type(c_ptr), value :: P
+      integer(kind(rocsparse_spilu0_stage_analysis)) :: spilu0_stage
+      type(c_ptr),value :: p_buffer_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spilu0_buffer_size_opt = rocsparse_spilu0_buffer_size_(handle,spilu0_descr,A,P, &
+        spilu0_stage,p_buffer_size_in_bytes,p_error__p)
     end function
 
     function rocsparse_spilu0_buffer_size_typed(handle,spilu0_descr,A,P,spilu0_stage, &
@@ -38578,10 +39392,35 @@ module hipfort_rocsparse
       type(c_ptr), value :: P
       integer(kind(rocsparse_spilu0_stage_analysis)) :: spilu0_stage
       integer(c_size_t),target :: p_buffer_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
       !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
       rocsparse_spilu0_buffer_size_typed = rocsparse_spilu0_buffer_size_(handle,spilu0_descr,A,P, &
-        spilu0_stage,c_loc(p_buffer_size_in_bytes),p_error)
+        spilu0_stage,c_loc(p_buffer_size_in_bytes),p_error__p)
+    end function
+
+    function rocsparse_spilu0_opt(handle,spilu0_descr,A,P,spilu0_stage,buffer_size_in_bytes, &
+        buffer,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spilu0_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: spilu0_descr
+      type(c_ptr), value :: A
+      type(c_ptr), value :: P
+      integer(kind(rocsparse_spilu0_stage_analysis)) :: spilu0_stage
+      integer(c_size_t) :: buffer_size_in_bytes
+      type(c_ptr), value :: buffer
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spilu0_opt = rocsparse_spilu0_(handle,spilu0_descr,A,P,spilu0_stage, &
+        buffer_size_in_bytes,buffer,p_error__p)
     end function
 
     function rocsparse_spitsv_typed(handle,host_nmaxiter,host_tol,host_history,trans,alpha,mat,x, &
@@ -38701,6 +39540,28 @@ module hipfort_rocsparse
         c_loc(buffer_size),temp_buffer)
     end function
 
+    function rocsparse_sptrsm_buffer_size_opt(handle,sptrsm_descr,A,X,Y,sptrsm_stage, &
+        buffer_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsm_buffer_size_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: sptrsm_descr
+      type(c_ptr), value :: A
+      type(c_ptr), value :: X
+      type(c_ptr), value :: Y
+      integer(kind(rocsparse_sptrsm_stage_analysis)) :: sptrsm_stage
+      type(c_ptr),value :: buffer_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_sptrsm_buffer_size_opt = rocsparse_sptrsm_buffer_size_(handle,sptrsm_descr,A,X,Y, &
+        sptrsm_stage,buffer_size_in_bytes,p_error__p)
+    end function
+
     function rocsparse_sptrsm_buffer_size_typed(handle,sptrsm_descr,A,X,Y,sptrsm_stage, &
         buffer_size_in_bytes,p_error)
       use iso_c_binding
@@ -38714,10 +39575,58 @@ module hipfort_rocsparse
       type(c_ptr), value :: Y
       integer(kind(rocsparse_sptrsm_stage_analysis)) :: sptrsm_stage
       integer(c_size_t),target :: buffer_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
       !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
       rocsparse_sptrsm_buffer_size_typed = rocsparse_sptrsm_buffer_size_(handle,sptrsm_descr,A,X, &
-        Y,sptrsm_stage,c_loc(buffer_size_in_bytes),p_error)
+        Y,sptrsm_stage,c_loc(buffer_size_in_bytes),p_error__p)
+    end function
+
+    function rocsparse_sptrsm_opt(handle,sptrsm_descr,A,X,Y,sptrsm_stage,buffer_size_in_bytes, &
+        buffer,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsm_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: sptrsm_descr
+      type(c_ptr), value :: A
+      type(c_ptr), value :: X
+      type(c_ptr), value :: Y
+      integer(kind(rocsparse_sptrsm_stage_analysis)) :: sptrsm_stage
+      integer(c_size_t) :: buffer_size_in_bytes
+      type(c_ptr), value :: buffer
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_sptrsm_opt = rocsparse_sptrsm_(handle,sptrsm_descr,A,X,Y,sptrsm_stage, &
+        buffer_size_in_bytes,buffer,p_error__p)
+    end function
+
+    function rocsparse_sptrsv_buffer_size_opt(handle,sptrsv_descr,spmat_descr,x,y,sptrsv_stage, &
+        buffer_size_in_bytes,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsv_buffer_size_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: sptrsv_descr
+      type(c_ptr), value :: spmat_descr
+      type(c_ptr), value :: x
+      type(c_ptr), value :: y
+      integer(kind(rocsparse_sptrsv_stage_analysis)) :: sptrsv_stage
+      type(c_ptr),value :: buffer_size_in_bytes
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_sptrsv_buffer_size_opt = rocsparse_sptrsv_buffer_size_(handle,sptrsv_descr, &
+        spmat_descr,x,y,sptrsv_stage,buffer_size_in_bytes,p_error__p)
     end function
 
     function rocsparse_sptrsv_buffer_size_typed(handle,sptrsv_descr,spmat_descr,x,y,sptrsv_stage, &
@@ -38733,10 +39642,36 @@ module hipfort_rocsparse
       type(c_ptr), value :: y
       integer(kind(rocsparse_sptrsv_stage_analysis)) :: sptrsv_stage
       integer(c_size_t),target :: buffer_size_in_bytes
-      type(c_ptr), optional :: p_error
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
       !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
       rocsparse_sptrsv_buffer_size_typed = rocsparse_sptrsv_buffer_size_(handle,sptrsv_descr, &
-        spmat_descr,x,y,sptrsv_stage,c_loc(buffer_size_in_bytes),p_error)
+        spmat_descr,x,y,sptrsv_stage,c_loc(buffer_size_in_bytes),p_error__p)
+    end function
+
+    function rocsparse_sptrsv_opt(handle,sptrsv_descr,A,x,y,sptrsv_stage,buffer_size_in_bytes, &
+        buffer,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sptrsv_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: sptrsv_descr
+      type(c_ptr), value :: A
+      type(c_ptr), value :: x
+      type(c_ptr), value :: y
+      integer(kind(rocsparse_sptrsv_stage_analysis)) :: sptrsv_stage
+      integer(c_size_t) :: buffer_size_in_bytes
+      type(c_ptr), value :: buffer
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_sptrsv_opt = rocsparse_sptrsv_(handle,sptrsv_descr,A,x,y,sptrsv_stage, &
+        buffer_size_in_bytes,buffer,p_error__p)
     end function
 
     function rocsparse_spvv_typed(handle,trans,x,y,myResult,compute_type,buffer_size,temp_buffer)
@@ -38757,6 +39692,28 @@ module hipfort_rocsparse
         c_loc(buffer_size),temp_buffer)
     end function
 
+    function rocsparse_v2_spmv_buffer_size_opt(handle,descr,mat,x,y,stage,buffer_size_in_bytes, &
+        error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_v2_spmv_buffer_size_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      type(c_ptr), value :: mat
+      type(c_ptr), value :: x
+      type(c_ptr), value :: y
+      integer(kind(rocsparse_v2_spmv_stage_analysis)) :: stage
+      type(c_ptr),value :: buffer_size_in_bytes
+      type(c_ptr),optional,target :: error
+      type(c_ptr) :: error__p
+      !
+      error__p = c_null_ptr
+      if (present(error)) error__p = c_loc(error)
+      rocsparse_v2_spmv_buffer_size_opt = rocsparse_v2_spmv_buffer_size_(handle,descr,mat,x,y, &
+        stage,buffer_size_in_bytes,error__p)
+    end function
+
     function rocsparse_v2_spmv_buffer_size_typed(handle,descr,mat,x,y,stage,buffer_size_in_bytes, &
         error)
       use iso_c_binding
@@ -38770,10 +39727,72 @@ module hipfort_rocsparse
       type(c_ptr), value :: y
       integer(kind(rocsparse_v2_spmv_stage_analysis)) :: stage
       integer(c_size_t),target :: buffer_size_in_bytes
-      type(c_ptr), optional :: error
+      type(c_ptr),optional,target :: error
+      type(c_ptr) :: error__p
       !
+      error__p = c_null_ptr
+      if (present(error)) error__p = c_loc(error)
       rocsparse_v2_spmv_buffer_size_typed = rocsparse_v2_spmv_buffer_size_(handle,descr,mat,x,y, &
-        stage,c_loc(buffer_size_in_bytes),error)
+        stage,c_loc(buffer_size_in_bytes),error__p)
+    end function
+
+    function rocsparse_v2_spmv_opt(handle,descr,alpha,mat,x,beta,y,stage,buffer_size_in_bytes, &
+        buffer,error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_v2_spmv_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      type(c_ptr), value :: alpha
+      type(c_ptr), value :: mat
+      type(c_ptr), value :: x
+      type(c_ptr), value :: beta
+      type(c_ptr), value :: y
+      integer(kind(rocsparse_v2_spmv_stage_analysis)) :: stage
+      integer(c_size_t) :: buffer_size_in_bytes
+      type(c_ptr), value :: buffer
+      type(c_ptr),optional,target :: error
+      type(c_ptr) :: error__p
+      !
+      error__p = c_null_ptr
+      if (present(error)) error__p = c_loc(error)
+      rocsparse_v2_spmv_opt = rocsparse_v2_spmv_(handle,descr,alpha,mat,x,beta,y,stage, &
+        buffer_size_in_bytes,buffer,error__p)
+    end function
+
+    function rocsparse_spmv_set_extra_opt(handle,descr,num_extras,gamma_vec,z_vecs,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spmv_set_extra_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      integer(c_int64_t) :: num_extras
+      type(c_ptr), value :: gamma_vec
+      type(c_ptr) :: z_vecs
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spmv_set_extra_opt = rocsparse_spmv_set_extra_(handle,descr,num_extras,gamma_vec, &
+        z_vecs,p_error__p)
+    end function
+
+    function rocsparse_spmv_clear_extra_opt(handle,descr,p_error)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spmv_clear_extra_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: descr
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spmv_clear_extra_opt = rocsparse_spmv_clear_extra_(handle,descr,p_error__p)
     end function
 
     function rocsparse_saxpyi_typed(handle,nnz,alpha,x_val,x_ind,y,idx_base)
