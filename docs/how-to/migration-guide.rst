@@ -35,10 +35,11 @@ a hipFORT build had to be matched by hand to the ROCm it ran against. Moving the
 bindings into ROCm fixes that at the root:
 
 *  **Always complete and current.** Each binding is generated from the headers
-   of the library it ships with, in the same build. Every entry point the
-   ``.so`` exports is declared, and none that it does not.
-*  **Nothing extra to build.** The bindings arrive precompiled with ROCm, in the
-   same packages as the libraries. There is no separate project to clone,
+   of the library it ships with, committed next to them, and kept in sync by
+   CI whenever a header changes. Every entry point the ``.so`` exports is
+   declared, and none that it does not.
+*  **Nothing extra to build.** The bindings arrive precompiled with ROCm, in
+   its development packages. There is no separate project to clone,
    configure, and keep in step.
 *  **Pay for what you use.** One module and one archive per library instead of
    one archive for everything, so a code that only calls rocBLAS links only
@@ -96,7 +97,7 @@ but if something does behave differently you want releases to spare, and an
 early report gets fixed for everyone.
 
 A binding is versioned with its library and stays valid across a major ROCm
-series: a ``rocblas.mod`` built for 10.3 is still the right one on any 10.x.y,
+series: a ``rocblas.mod`` built for 10.3 is still the right one on any later 10.x,
 and the CMake package accepts any version with the same major number. You
 revisit your build at a major release, not at every point release.
 
@@ -170,8 +171,10 @@ Usually not. Find your case:
        compiler`_). The C libraries are not rebuilt.
    * - You build ROCm itself from source (Spack, EasyBuild, a distribution
        package)
-     - **Nothing extra.** With a Fortran compiler present, the bindings are
-       built along with each library, by that compiler.
+     - **Nothing extra.** With a Fortran compiler present, each math
+       library's binding is built along with the library, by that compiler;
+       HIP's and ROCTx's are built by rocm-systems' ``projects/fortran/``
+       against the installed HIP and ROCTx.
    * - ROCm older than 10.3
      - **hipFORT, as today.** See `Codes that build on several ROCm versions`_.
    * - Windows
@@ -399,8 +402,9 @@ Then read the diff, because a few things are deliberately left to you:
 *  A file might end up with two ``use hip`` lines (from ``use hipfort`` and
    ``use hipfort_hipmalloc``, for example). That is valid Fortran and compiles
    fine; collapse them if you prefer.
-*  A file that used ``hipfort_check`` or ``hipfort_auxiliary`` without ever
-   using ``hipfort`` itself loses those symbols, because the delete rules take
+*  A file that used ``hipfort_check``, ``hipfort_auxiliary``,
+   ``hipfort_types`` or ``hipfort_enums`` without ever using ``hipfort`` itself
+   loses those symbols, because the delete rules take
    the whole line. Add ``use hip`` there.
 *  ``use hipfort_cuda_errors`` is left untouched on purpose; it has no new
    equivalent (see above).
@@ -447,8 +451,9 @@ Which compiler?
 ---------------
 
 The bindings support ``amdflang`` (ROCm's bundled LLVM Flang, the recommended
-default), ``gfortran``, and other ``iso_c_binding``-capable compilers such as
-Cray Fortran, Intel ``ifx``, and NVIDIA ``nvfortran``.
+default), ``gfortran``, and Cray Fortran, and each ``fortran/`` project carries
+toolchain files for Intel ``ifx`` and ``ifort`` and NVIDIA ``nvfortran``. Any
+compiler with Fortran 2003 ``iso_c_binding`` should work.
 
 One catch is worth knowing: there is no portable Fortran ABI, so a ``.mod``
 (and its compiled ``.a``) is tied to one compiler, and even one compiler
@@ -478,8 +483,8 @@ The bindings are Linux-first. ROCm for Windows ships no Fortran compiler, so
 contains no ``.mod``, no ``lib<lib>_fortran`` archive, and no installed
 ``.F90``. Nothing in the bindings is Linux-specific, though: they are plain
 ``iso_c_binding`` code. With a Fortran compiler of your own (Intel ``ifx``, for
-example), take the ``fortran/`` directory from the repository at the tag of
-your ROCm and build it as in `Building a binding with your compiler`_. This
+example), take the library's ``fortran/`` directory (``projects/fortran`` in
+rocm-systems for HIP and ROCTx) from the repository at the tag of your ROCm and build it as in `Building a binding with your compiler`_. This
 path is not tested yet; if you try it, please
 `report how it went <https://github.com/ROCm/hipfort/issues>`_.
 
@@ -570,13 +575,13 @@ The source is there for three reasons:
    ``amdflang``; the ``.F90`` serves every compiler. Nothing to clone, no
    other repository to track.
 *  **It cannot disagree with your libraries.** It was generated from the same
-   headers as the installed ``.so``, in the same build, so it declares exactly
-   the entry points your ROCm exports. A copy taken from another release or
+   headers as the installed ``.so`` and ships in the same release, so it
+   declares exactly the entry points your ROCm exports. A copy taken from another release or
    branch can declare routines your ``.so`` does not have, and fail at link
    time.
 *  **It is the reference.** It is the authoritative list of what the binding
-   declares, with the argument types and the documentation comments from the C
-   headers, readable without a ``.mod`` viewer.
+   declares, with the argument types, readable without a ``.mod`` viewer. It
+   carries no documentation comments: the C headers' documentation applies.
 
 It sits under ``share/`` rather than ``include/`` because it is
 compiler-independent: everything under ``<includedir>/fortran/`` is
@@ -590,8 +595,10 @@ compiler, no C headers and no ``.so``, since the vendor symbols resolve when
 you link your application. The C libraries are not rebuilt.
 
 **By hand**, compile each source you need into a ``.mod`` and an object file.
-The array overloads are behind ``-DUSE_ASSUMED_SHAPE=1``; without it you get
-only the raw ``type(c_ptr)`` interfaces:
+The array overloads are behind ``-DUSE_ASSUMED_SHAPE=1`` (or
+``-DUSE_ASSUMED_RANK=1`` for the assumed-rank variants); without either you get
+no array overloads, only the raw ``type(c_ptr)`` forms and the forms with
+optional arguments:
 
 .. code-block:: shell
 
@@ -618,10 +625,13 @@ project; build it against your installed ROCm, into a prefix of your own:
    cmake --build build/rocblas-fortran
    cmake --install build/rocblas-fortran
 
-The ``fortran/`` project lives in the library's repository,
-`rocm-systems <https://github.com/ROCm/rocm-systems>`_ for HIP and ROCTx,
-`rocm-libraries <https://github.com/ROCm/rocm-libraries>`_ for the math
-libraries, under ``projects/<library>/fortran``. Check out the tag of the ROCm
+The ``fortran/`` project lives in
+`rocm-libraries <https://github.com/ROCm/rocm-libraries>`_ under
+``projects/<library>/fortran`` for the math libraries, and in
+`rocm-systems <https://github.com/ROCm/rocm-systems>`_ under
+``projects/fortran`` for HIP and ROCTx, which one project builds together
+(``cmake -S <rocm-systems>/projects/fortran -B build/fortran`` with the same
+options). Check out the tag of the ROCm
 you have installed (both repositories tag releases as ``therock-<version>``),
 for the reason given above.
 
@@ -661,6 +671,7 @@ out.
        ``HIPFORT_ASSUMED_RANK`` (``OFF``)
      - Both fold into one tri-state ``FORTRAN_ARRAY_INTERFACES``, which is
        ``none``, ``assumed-shape`` (the default), or ``assumed-rank``
+       (ROCTx has no array overloads and ignores it)
    * - ``HIPFORT_MULTITOOLCHAIN_LAYOUT`` (``ON``)
      - Gone. The per-compiler layout is unconditional (see
        `Where the files install`_)
@@ -673,7 +684,8 @@ out.
        to
    * - ``BUILD_TESTING``, ``HIPFORT_ROCM_LIB_DIR``, ``HIPFORT_CUDA_LIB_DIR``
      - ``BUILD_FORTRAN_CLIENTS`` (``ON``), per library. hipFORT's single suite
-       splits into each library's ``fortran/test/``, and rides on the same
+       splits into each library's ``fortran/test/`` (rocBLAS's and hipBLAS's are
+       still to come), and rides on the same
        switch as the Fortran clients rather than having one of its own
    * - ``HIPFORT_EXTENDED_TESTS``
      - Gone, with both link-time audits it gated, which checked the bindings
@@ -715,7 +727,9 @@ The bindings are under review in one pull request per library. Until they ship
 in a ROCm release, you can try them by building a binding from its pull request
 branch against a recent ROCm, such as a TheRock nightly, with the commands in
 `Building a binding with your compiler`_. Build HIP's binding first: the other
-bindings' tests ``use hip``.
+bindings' tests ``use hip``. ROCTx's branch still has its binding under
+``projects/rocprofiler-sdk/fortran/``; it moves to ``projects/fortran/``
+beside HIP's before it merges.
 
 .. list-table::
    :header-rows: 1
@@ -763,8 +777,13 @@ What does not change
    types have since been corrected (an output scalar typed by reference instead
    of ``type(c_ptr)``, for example), and the compiler points at each one.
 *  **Calling styles.** Raw ``type(c_ptr)`` still works (including for OpenMP
-   target data); the array, typed-handle, and string overloads still resolve
-   under the same name; you never touch ``iso_c_binding``.
+   target data), handles are still ``type(c_ptr)``, and ``const char*``
+   results are still returned as ``type(c_ptr)``. Every routine ``X`` is still
+   a generic around a ``bind(C)`` specific ``X_``, so the array overloads
+   resolve under the same name and ``X_`` stays callable. Arguments that C
+   accepts as ``NULL`` can be omitted (they are ``optional``). ROCTx also
+   accepts a ``character(kind=c_char)`` string; append ``c_null_char``
+   yourself (``'zone'//c_null_char``).
 *  **The vendor libraries.** You still link the same ``.so``
    (``libamdhip64.so``, ``librocblas.so``, and so on). Only the Fortran ``.a``
    and ``.mod`` change.
@@ -842,11 +861,11 @@ CONTINUE``, implicit typing and a 72-column layout can ``use hip`` like any
 other source. The requirement is on the compiler, which must handle Fortran
 2003's ``iso_c_binding``, not on how your code looks.
 
-The exception is a unit compiled as pre-Fortran 90, which has no modules and so
+The exception is a compiler limited to Fortran 77, which has no modules and so
 no ``use`` statement to write. hipFORT never had a path for that either. If you
 are stuck there, `open an issue <https://github.com/ROCm/hipfort/issues>`_
-rather than hand-writing glue, because a C shim with F77 linkage can be
-generated.
+rather than hand-writing glue: a C shim with Fortran 77 linkage could be
+generated from the same headers.
 
 **Will my calls break?**
 
