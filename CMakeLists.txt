@@ -132,6 +132,15 @@ if(NOT DEFINED ROCM_PATH)
   unset(_rocm_path)
 endif()
 
+# hipFORT is replaced by the Fortran bindings ROCm ships from 10.3. CMake prints
+# DEPRECATION messages as warnings by default; -Wno-deprecated silences them.
+message(DEPRECATION
+  "hipFORT is deprecated: it is maintained through the ROCm 10.x series and "
+  "removed in ROCm 11.0. From ROCm 10.3, ROCm ships Fortran bindings for HIP, "
+  "ROCTx and the math libraries, one module and one CMake package per library "
+  "(use hip, use rocblas, ...; find_package(rocblas-fortran)). Migrate with the "
+  "guide at https://rocm.docs.amd.com/projects/hipfort/en/latest/how-to/migration-guide.html")
+
 message("-- HIPFORT -------------  cmake START -------------------")
 message("-- Fortran Compiler:       ${CMAKE_Fortran_COMPILER}")
 message("-- Build Type:             ${CMAKE_BUILD_TYPE}")
