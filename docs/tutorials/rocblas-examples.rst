@@ -106,9 +106,9 @@ Arrays of rank greater than one
 
 The Fortran 2008 array interfaces shown above are generated per rank and stop
 at rank 1 for vector arguments, so a rank-3 array cannot be handed to
-``rocblas_saxpy`` directly. Building hipFORT with the ``HIPFORT_ASSUMED_RANK``
-option replaces those rank-specific overloads with a single Fortran 2018
-``dimension(..)`` wrapper that accepts an array of any rank. The following
+``rocblas_saxpy`` directly. Building hipFORT with
+``-DFORTRAN_ARRAY_INTERFACES=assumed-rank`` replaces those rank-specific
+overloads with a single Fortran 2018 ``dimension(..)`` wrapper that accepts an array of any rank. The following
 program passes rank-3 ``dx`` and ``dy`` to the same generic, with ``n``
 counting all of the elements:
 
@@ -117,7 +117,7 @@ counting all of the elements:
    :start-at: ! Exercises the experimental F2018 assumed-rank interfaces: a rank-3 array is
 
 This is the only assumed-rank example in the test suite, and it is skipped
-unless ``HIPFORT_ASSUMED_RANK`` is enabled.
+unless ``FORTRAN_ARRAY_INTERFACES`` is ``assumed-rank``.
 
 Vector scaling (scal)
 ---------------------

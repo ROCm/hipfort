@@ -189,7 +189,7 @@ The `f2003` and `f2008` collections largely overlap, but they are not identical:
 some tests exist only in one of them. Each requires that the Fortran compiler
 used supports at least the respective Fortran standard.
 The `f2018` tests exercise the experimental assumed-rank interfaces and are only
-registered when configuring with `-DHIPFORT_ASSUMED_RANK=ON`; the `openmp` tests
+registered when configuring with `-DFORTRAN_ARRAY_INTERFACES=assumed-rank`; the `openmp` tests
 require an offload-capable compiler (LLVM Flang) and a host LAPACK.
 There are further subcategories per `hip*` or `roc*` library that is tested.
 

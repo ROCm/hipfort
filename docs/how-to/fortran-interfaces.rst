@@ -85,9 +85,9 @@ device.
 
 Like the array interfaces of the math libraries, these ``hipMalloc`` and
 ``hipMemcpy`` overloads are part of the Fortran 2008 array overloads: a build with
-``-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`` has only the ``type(c_ptr)`` forms.
+``-DFORTRAN_ARRAY_INTERFACES=none`` has only the ``type(c_ptr)`` forms.
 ``hipMalloc``, ``hipFree`` and ``hipHostRegister`` have no assumed-rank form, so
-their per-rank overloads stay available with ``-DHIPFORT_ASSUMED_RANK=ON``.
+their per-rank overloads stay available with ``-DFORTRAN_ARRAY_INTERFACES=assumed-rank``.
 
 Scalar arguments passed by pointer
 ==================================

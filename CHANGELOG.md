@@ -25,9 +25,9 @@
   ```
 
   The `<lib>Check` helpers travel with their library: `rocblasCheck` now comes
-  from `rocblas`, and only `hipCheck` is in `hip`. The exported CMake targets
-  are unchanged, so `find_package(hipfort REQUIRED COMPONENTS ...)` and the
-  matching `hipfort::*` link lines still work as they are.
+  from `rocblas`, and only `hipCheck` is in `hip`. `find_package(hipfort)`
+  and the `hipfort::*` targets are gone: each library has its own package and
+  target, for example `find_package(rocblas-fortran)` and `roc::rocblas_fortran`.
 * **Breaking: the CUDA (nvptx) backend is dropped.** These bindings are
   generated for ROCm only and carry no `USE_CUDA_NAMES` branch, so an nvptx
   build would compile cleanly while binding `hip*`/`roc*` symbols.
@@ -36,8 +36,14 @@
 * **Breaking.** The array overloads of `hipMalloc`, `hipMallocManaged`,
   `hipHostMalloc`, `hipFree`, `hipHostFree`, the `hipMemcpy` families and the
   `hipHostRegister` family are now part of the Fortran 2008 array overloads, like
-  those of the math libraries. A build with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`
+  those of the math libraries. A build with `-DFORTRAN_ARRAY_INTERFACES=none`
   no longer has them: pass a `type(c_ptr)` and a byte count.
+* Each binding archive is compiled with one section per procedure
+  (`-ffunction-sections -fdata-sections`). A program linked with
+  `-Wl,--gc-sections` keeps only the wrappers it calls, instead of all of a
+  library's wrappers, and still links when another wrapper names a C function
+  that the installed library does not export yet. The tests link that way.
+  A shared library that links an archive also needs `-Wl,--exclude-libs,ALL`.
 * `fftw_iodim64` declares its fields `integer(c_intptr_t)` instead of
   `integer(c_ptrdiff_t)`, which is Fortran 2008. Both kinds are equal on every
   platform ROCm supports, so existing code is unaffected.
