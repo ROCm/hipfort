@@ -21025,7 +21025,6 @@ module hipfort_hipsolver
         dataTypeW,W,dataTypeVL,VL,ldvl,dataTypeVR,VR,ldvr,computeType,lworkOnDevice,lworkOnHost)
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgeev_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21033,18 +21032,18 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobvl
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobvr
       integer(c_int64_t) :: n
-      integer(kind(HIP_R_32F)) :: dataTypeA
+      integer(c_int) :: dataTypeA
       type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      integer(kind(HIP_R_32F)) :: dataTypeW
+      integer(c_int) :: dataTypeW
       type(c_ptr), value :: W
-      integer(kind(HIP_R_32F)) :: dataTypeVL
+      integer(c_int) :: dataTypeVL
       type(c_ptr), value :: VL
       integer(c_int64_t) :: ldvl
-      integer(kind(HIP_R_32F)) :: dataTypeVR
+      integer(c_int) :: dataTypeVR
       type(c_ptr), value :: VR
       integer(c_int64_t) :: ldvr
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(c_size_t),target :: lworkOnDevice
       integer(c_size_t),target :: lworkOnHost
       !
@@ -21057,19 +21056,18 @@ module hipfort_hipsolver
         computeType,lworkOnDevice,lworkOnHost)
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgeqrf_bufferSize_typed
       type(c_ptr), value :: handle
       type(c_ptr), value :: params
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      integer(kind(HIP_R_32F)) :: dataTypeA
+      integer(c_int) :: dataTypeA
       type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      integer(kind(HIP_R_32F)) :: dataTypeTau
+      integer(c_int) :: dataTypeTau
       type(c_ptr), value :: tau
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(c_size_t),target :: lworkOnDevice
       integer(c_size_t),target :: lworkOnHost
       !
@@ -21081,17 +21079,16 @@ module hipfort_hipsolver
         lworkOnDevice,lworkOnHost)
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgetrf_bufferSize_typed
       type(c_ptr), value :: handle
       type(c_ptr), value :: params
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      integer(kind(HIP_R_32F)) :: dataTypeA
+      integer(c_int) :: dataTypeA
       type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(c_size_t),target :: lworkOnDevice
       integer(c_size_t),target :: lworkOnHost
       !
@@ -21103,7 +21100,6 @@ module hipfort_hipsolver
         dataTypeTau,tau,dataTypeT,T,ldt,computeType,lworkOnDevice,lworkOnHost)
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXlarft_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21112,15 +21108,15 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_STOREV_COLUMNWISE)) :: storev
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      integer(kind(HIP_R_32F)) :: dataTypeV
+      integer(c_int) :: dataTypeV
       type(c_ptr), value :: V
       integer(c_int64_t) :: ldv
-      integer(kind(HIP_R_32F)) :: dataTypeTau
+      integer(c_int) :: dataTypeTau
       type(c_ptr), value :: tau
-      integer(kind(HIP_R_32F)) :: dataTypeT
+      integer(c_int) :: dataTypeT
       type(c_ptr), value :: T
       integer(c_int64_t) :: ldt
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(c_size_t),target :: lworkOnDevice
       integer(c_size_t),target :: lworkOnHost
       !
@@ -21133,17 +21129,16 @@ module hipfort_hipsolver
         lworkOnDevice,lworkOnHost)
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXpotrf_bufferSize_typed
       type(c_ptr), value :: handle
       type(c_ptr), value :: params
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
-      integer(kind(HIP_R_32F)) :: dataTypeA
+      integer(c_int) :: dataTypeA
       type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(c_size_t),target :: lworkOnDevice
       integer(c_size_t),target :: lworkOnHost
       !
@@ -21155,7 +21150,6 @@ module hipfort_hipsolver
         dataTypeW,W,computeType,lworkOnDevice,lworkOnHost)
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21163,12 +21157,12 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
-      integer(kind(HIP_R_32F)) :: dataTypeA
+      integer(c_int) :: dataTypeA
       type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      integer(kind(HIP_R_32F)) :: dataTypeW
+      integer(c_int) :: dataTypeW
       type(c_ptr), value :: W
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(c_size_t),target :: lworkOnDevice
       integer(c_size_t),target :: lworkOnHost
       !
@@ -21180,7 +21174,6 @@ module hipfort_hipsolver
         dataTypeW,W,computeType,lworkOnDevice,lworkOnHost,batchSize)
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21188,12 +21181,12 @@ module hipfort_hipsolver
       integer(kind(HIPSOLVER_EIG_MODE_NOVECTOR)) :: jobz
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
-      integer(kind(HIP_R_32F)) :: dataTypeA
+      integer(c_int) :: dataTypeA
       type(c_ptr), value :: A
       integer(c_int64_t) :: lda
-      integer(kind(HIP_R_32F)) :: dataTypeW
+      integer(c_int) :: dataTypeW
       type(c_ptr), value :: W
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(c_size_t),target :: lworkOnDevice
       integer(c_size_t),target :: lworkOnHost
       integer(c_int64_t) :: batchSize
@@ -21207,18 +21200,17 @@ module hipfort_hipsolver
         dataTypeB,B,ldb,lworkOnDevice,lworkOnHost)
       use iso_c_binding
       use hipfort_hipsolver_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsytrs_bufferSize_typed
       type(c_ptr), value :: handle
       integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       integer(c_int64_t) :: nrhs
-      integer(kind(HIP_R_32F)) :: dataTypeA
+      integer(c_int) :: dataTypeA
       type(c_ptr), value :: A
       integer(c_int64_t) :: lda
       type(c_ptr) :: devIpiv
-      integer(kind(HIP_R_32F)) :: dataTypeB
+      integer(c_int) :: dataTypeB
       type(c_ptr), value :: B
       integer(c_int64_t) :: ldb
       integer(c_size_t),target :: lworkOnDevice

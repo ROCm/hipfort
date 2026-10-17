@@ -12,6 +12,10 @@
 * `fftw_iodim64` declares its fields `integer(c_intptr_t)` instead of
   `integer(c_ptrdiff_t)`, which is Fortran 2008. Both kinds are equal on every
   platform ROCm supports, so existing code is unaffected.
+* The `_typed` forms of hipSOLVER and hipSPARSE declare their `hipDataType`
+  arguments `integer(c_int)`, like their `bind(C)` interfaces, instead of
+  `integer(kind(HIP_R_32F))`. Both are the C `int` kind, so existing code is
+  unaffected, and these routines no longer `use hipfort_enums`.
 
 ### Fixed
 
