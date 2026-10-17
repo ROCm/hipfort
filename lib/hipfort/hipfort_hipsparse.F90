@@ -30527,7 +30527,6 @@ module hipfort_hipsparse
         cscVal,cscColPtr,cscRowInd,valType,copyValues,idxBase,alg,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsr2cscEx2_bufferSize_typed
       type(c_ptr), value :: handle
@@ -30540,7 +30539,7 @@ module hipfort_hipsparse
       type(c_ptr), value :: cscVal
       type(c_ptr) :: cscColPtr
       type(c_ptr) :: cscRowInd
-      integer(kind(HIP_R_32F)) :: valType
+      integer(c_int) :: valType
       integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       integer(kind(HIPSPARSE_CSR2CSC_ALG_DEFAULT)) :: alg
@@ -31947,7 +31946,6 @@ module hipfort_hipsparse
     function hipsparseSpVecGet_typed(spVecDescr,mySize,nnz,indices,values,idxType,idxBase,valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpVecGet_typed
       type(c_ptr), value :: spVecDescr
@@ -31957,7 +31955,7 @@ module hipfort_hipsparse
       type(c_ptr) :: values
       integer(kind(HIPSPARSE_INDEX_16U)),target :: idxType
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),target :: idxBase
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseSpVecGet_typed = hipsparseSpVecGet_(spVecDescr,c_loc(mySize),c_loc(nnz),indices, &
         values,c_loc(idxType),c_loc(idxBase),c_loc(valueType))
@@ -31967,7 +31965,6 @@ module hipfort_hipsparse
         valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstSpVecGet_typed
       type(c_ptr), value :: spVecDescr
@@ -31977,7 +31974,7 @@ module hipfort_hipsparse
       type(c_ptr) :: values
       integer(kind(HIPSPARSE_INDEX_16U)),target :: idxType
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),target :: idxBase
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseConstSpVecGet_typed = hipsparseConstSpVecGet_(spVecDescr,c_loc(mySize),c_loc(nnz), &
         indices,values,c_loc(idxType),c_loc(idxBase),c_loc(valueType))
@@ -31998,7 +31995,6 @@ module hipfort_hipsparse
         idxBase,valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCooGet_typed
       type(c_ptr), value :: spMatDescr
@@ -32010,7 +32006,7 @@ module hipfort_hipsparse
       type(c_ptr) :: cooValues
       integer(kind(HIPSPARSE_INDEX_16U)),target :: idxType
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),target :: idxBase
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseCooGet_typed = hipsparseCooGet_(spMatDescr,c_loc(rows),c_loc(cols),c_loc(nnz), &
         cooRowInd,cooColInd,cooValues,c_loc(idxType),c_loc(idxBase),c_loc(valueType))
@@ -32020,7 +32016,6 @@ module hipfort_hipsparse
         idxType,idxBase,valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstCooGet_typed
       type(c_ptr), value :: spMatDescr
@@ -32032,7 +32027,7 @@ module hipfort_hipsparse
       type(c_ptr) :: cooValues
       integer(kind(HIPSPARSE_INDEX_16U)),target :: idxType
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),target :: idxBase
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseConstCooGet_typed = hipsparseConstCooGet_(spMatDescr,c_loc(rows),c_loc(cols), &
         c_loc(nnz),cooRowInd,cooColInd,cooValues,c_loc(idxType),c_loc(idxBase),c_loc(valueType))
@@ -32043,7 +32038,6 @@ module hipfort_hipsparse
         valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCooAoSGet_typed
       type(c_ptr), value :: spMatDescr
@@ -32054,7 +32048,7 @@ module hipfort_hipsparse
       type(c_ptr) :: cooValues
       integer(kind(HIPSPARSE_INDEX_16U)),target :: idxType
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),target :: idxBase
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseCooAoSGet_typed = hipsparseCooAoSGet_(spMatDescr,c_loc(rows),c_loc(cols), &
         c_loc(nnz),cooInd,cooValues,c_loc(idxType),c_loc(idxBase),c_loc(valueType))
@@ -32065,7 +32059,6 @@ module hipfort_hipsparse
         csrRowOffsetsType,csrColIndType,idxBase,valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsrGet_typed
       type(c_ptr), value :: spMatDescr
@@ -32078,7 +32071,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_16U)),target :: csrRowOffsetsType
       integer(kind(HIPSPARSE_INDEX_16U)),target :: csrColIndType
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),target :: idxBase
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseCsrGet_typed = hipsparseCsrGet_(spMatDescr,c_loc(rows),c_loc(cols),c_loc(nnz), &
         csrRowOffsets,csrColInd,csrValues,c_loc(csrRowOffsetsType),c_loc(csrColIndType), &
@@ -32089,7 +32082,6 @@ module hipfort_hipsparse
         csrValues,csrRowOffsetsType,csrColIndType,idxBase,valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstCsrGet_typed
       type(c_ptr), value :: spMatDescr
@@ -32102,7 +32094,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_16U)),target :: csrRowOffsetsType
       integer(kind(HIPSPARSE_INDEX_16U)),target :: csrColIndType
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),target :: idxBase
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseConstCsrGet_typed = hipsparseConstCsrGet_(spMatDescr,c_loc(rows),c_loc(cols), &
         c_loc(nnz),csrRowOffsets,csrColInd,csrValues,c_loc(csrRowOffsetsType), &
@@ -32113,7 +32105,6 @@ module hipfort_hipsparse
         cscColOffsetsType,cscRowIndType,idxBase,valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCscGet_typed
       type(c_ptr), value :: spMatDescr
@@ -32126,7 +32117,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_16U)),target :: cscColOffsetsType
       integer(kind(HIPSPARSE_INDEX_16U)),target :: cscRowIndType
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),target :: idxBase
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseCscGet_typed = hipsparseCscGet_(spMatDescr,c_loc(rows),c_loc(cols),c_loc(nnz), &
         cscColOffsets,cscRowInd,cscValues,c_loc(cscColOffsetsType),c_loc(cscRowIndType), &
@@ -32137,7 +32128,6 @@ module hipfort_hipsparse
         cscValues,cscColOffsetsType,cscRowIndType,idxBase,valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstCscGet_typed
       type(c_ptr), value :: spMatDescr
@@ -32150,7 +32140,7 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_16U)),target :: cscColOffsetsType
       integer(kind(HIPSPARSE_INDEX_16U)),target :: cscRowIndType
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),target :: idxBase
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseConstCscGet_typed = hipsparseConstCscGet_(spMatDescr,c_loc(rows),c_loc(cols), &
         c_loc(nnz),cscColOffsets,cscRowInd,cscValues,c_loc(cscColOffsetsType), &
@@ -32161,7 +32151,6 @@ module hipfort_hipsparse
         ellValue,ellIdxType,idxBase,valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseBlockedEllGet_typed
       type(c_ptr), value :: spMatDescr
@@ -32173,7 +32162,7 @@ module hipfort_hipsparse
       type(c_ptr) :: ellValue
       integer(kind(HIPSPARSE_INDEX_16U)),target :: ellIdxType
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),target :: idxBase
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseBlockedEllGet_typed = hipsparseBlockedEllGet_(spMatDescr,c_loc(rows),c_loc(cols), &
         c_loc(ellBlockSize),c_loc(ellCols),ellColInd,ellValue,c_loc(ellIdxType),c_loc(idxBase), &
@@ -32184,7 +32173,6 @@ module hipfort_hipsparse
         ellColInd,ellValue,ellIdxType,idxBase,valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstBlockedEllGet_typed
       type(c_ptr), value :: spMatDescr
@@ -32196,7 +32184,7 @@ module hipfort_hipsparse
       type(c_ptr) :: ellValue
       integer(kind(HIPSPARSE_INDEX_16U)),target :: ellIdxType
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),target :: idxBase
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseConstBlockedEllGet_typed = hipsparseConstBlockedEllGet_(spMatDescr,c_loc(rows), &
         c_loc(cols),c_loc(ellBlockSize),c_loc(ellCols),ellColInd,ellValue,c_loc(ellIdxType), &
@@ -32254,13 +32242,12 @@ module hipfort_hipsparse
     function hipsparseDnVecGet_typed(dnVecDescr,mySize,values,valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnVecGet_typed
       type(c_ptr), value :: dnVecDescr
       integer(c_int64_t),target :: mySize
       type(c_ptr) :: values
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseDnVecGet_typed = hipsparseDnVecGet_(dnVecDescr,c_loc(mySize),values,c_loc(valueType))
     end function
@@ -32268,13 +32255,12 @@ module hipfort_hipsparse
     function hipsparseConstDnVecGet_typed(dnVecDescr,mySize,values,valueType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnVecGet_typed
       type(c_ptr), value :: dnVecDescr
       integer(c_int64_t),target :: mySize
       type(c_ptr) :: values
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       !
       hipsparseConstDnVecGet_typed = hipsparseConstDnVecGet_(dnVecDescr,c_loc(mySize),values, &
         c_loc(valueType))
@@ -32283,7 +32269,6 @@ module hipfort_hipsparse
     function hipsparseDnMatGet_typed(dnMatDescr,rows,cols,ld,values,valueType,order)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnMatGet_typed
       type(c_ptr), value :: dnMatDescr
@@ -32291,7 +32276,7 @@ module hipfort_hipsparse
       integer(c_int64_t),target :: cols
       integer(c_int64_t),target :: ld
       type(c_ptr) :: values
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       integer(kind(HIPSPARSE_ORDER_COLUMN)),target :: order
       !
       hipsparseDnMatGet_typed = hipsparseDnMatGet_(dnMatDescr,c_loc(rows),c_loc(cols),c_loc(ld), &
@@ -32301,7 +32286,6 @@ module hipfort_hipsparse
     function hipsparseConstDnMatGet_typed(dnMatDescr,rows,cols,ld,values,valueType,order)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnMatGet_typed
       type(c_ptr), value :: dnMatDescr
@@ -32309,7 +32293,7 @@ module hipfort_hipsparse
       integer(c_int64_t),target :: cols
       integer(c_int64_t),target :: ld
       type(c_ptr) :: values
-      integer(kind(HIP_R_32F)),target :: valueType
+      integer(c_int),target :: valueType
       integer(kind(HIPSPARSE_ORDER_COLUMN)),target :: order
       !
       hipsparseConstDnMatGet_typed = hipsparseConstDnMatGet_(dnMatDescr,c_loc(rows),c_loc(cols), &
@@ -32348,7 +32332,6 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSDDMM_bufferSize_typed
       type(c_ptr), value :: handle
@@ -32359,7 +32342,7 @@ module hipfort_hipsparse
       type(c_ptr), value :: B
       type(c_ptr), value :: beta
       type(c_ptr), value :: C
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(kind(HIPSPARSE_SDDMM_ALG_DEFAULT)) :: alg
       integer(c_size_t),target :: pBufferSizeInBytes
       !
@@ -32386,7 +32369,6 @@ module hipfort_hipsparse
         computeType,alg,spgeamDescr,bufferSize)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEAM_bufferSize_typed
       type(c_ptr), value :: handle
@@ -32397,7 +32379,7 @@ module hipfort_hipsparse
       type(c_ptr), value :: beta
       type(c_ptr), value :: matB
       type(c_ptr), value :: matC
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(kind(HIPSPARSE_SPGEAM_ALG1)) :: alg
       type(c_ptr), value :: spgeamDescr
       integer(c_size_t),target :: bufferSize
@@ -32410,7 +32392,6 @@ module hipfort_hipsparse
         computeType,alg,spgemmDescr,bufferSize1,externalBuffer1)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMM_workEstimation_typed
       type(c_ptr), value :: handle
@@ -32421,7 +32402,7 @@ module hipfort_hipsparse
       type(c_ptr), value :: matB
       type(c_ptr), value :: beta
       type(c_ptr), value :: matC
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(kind(HIPSPARSE_SPGEMM_DEFAULT)) :: alg
       type(c_ptr), value :: spgemmDescr
       integer(c_size_t),target :: bufferSize1
@@ -32435,7 +32416,6 @@ module hipfort_hipsparse
         alg,spgemmDescr,bufferSize2,externalBuffer2)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMM_compute_typed
       type(c_ptr), value :: handle
@@ -32446,7 +32426,7 @@ module hipfort_hipsparse
       type(c_ptr), value :: matB
       type(c_ptr), value :: beta
       type(c_ptr), value :: matC
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(kind(HIPSPARSE_SPGEMM_DEFAULT)) :: alg
       type(c_ptr), value :: spgemmDescr
       integer(c_size_t),target :: bufferSize2
@@ -32528,7 +32508,6 @@ module hipfort_hipsparse
         alg,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMM_bufferSize_typed
       type(c_ptr), value :: handle
@@ -32539,7 +32518,7 @@ module hipfort_hipsparse
       type(c_ptr), value :: matB
       type(c_ptr), value :: beta
       type(c_ptr), value :: matC
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(kind(HIPSPARSE_MM_ALG_DEFAULT)) :: alg
       integer(c_size_t),target :: pBufferSizeInBytes
       !
@@ -32551,7 +32530,6 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMV_bufferSize_typed
       type(c_ptr), value :: handle
@@ -32561,7 +32539,7 @@ module hipfort_hipsparse
       type(c_ptr), value :: vecX
       type(c_ptr), value :: beta
       type(c_ptr), value :: vecY
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(kind(HIPSPARSE_MV_ALG_DEFAULT)) :: alg
       integer(c_size_t),target :: pBufferSizeInBytes
       !
@@ -32573,7 +32551,6 @@ module hipfort_hipsparse
         spsmDescr,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_bufferSize_typed
       type(c_ptr), value :: handle
@@ -32583,7 +32560,7 @@ module hipfort_hipsparse
       type(c_ptr), value :: matA
       type(c_ptr), value :: matB
       type(c_ptr), value :: matC
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(kind(HIPSPARSE_SPSM_ALG_DEFAULT)) :: alg
       type(c_ptr), value :: spsmDescr
       integer(c_size_t),target :: pBufferSizeInBytes
@@ -32596,7 +32573,6 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSV_bufferSize_typed
       type(c_ptr), value :: handle
@@ -32605,7 +32581,7 @@ module hipfort_hipsparse
       type(c_ptr), value :: matA
       type(c_ptr), value :: x
       type(c_ptr), value :: y
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(kind(HIPSPARSE_SPSV_ALG_DEFAULT)) :: alg
       type(c_ptr), value :: spsvDescr
       integer(c_size_t),target :: pBufferSizeInBytes
@@ -32618,7 +32594,6 @@ module hipfort_hipsparse
         pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpVV_bufferSize_typed
       type(c_ptr), value :: handle
@@ -32626,7 +32601,7 @@ module hipfort_hipsparse
       type(c_ptr), value :: vecX
       type(c_ptr), value :: vecY
       type(c_ptr), value :: myResult
-      integer(kind(HIP_R_32F)) :: computeType
+      integer(c_int) :: computeType
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseSpVV_bufferSize_typed = hipsparseSpVV_bufferSize_(handle,opX,vecX,vecY,myResult, &

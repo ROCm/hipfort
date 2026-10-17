@@ -27,7 +27,6 @@ program test_hipsolver
   use iso_c_binding
   use hipfort_hipsolver
   use hipfort_hipsolver_enums
-  use hipfort_enums
   implicit none
   logical :: never
   type(c_ptr) :: v0

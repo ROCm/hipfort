@@ -27,7 +27,6 @@ program test_hipsparse
   use iso_c_binding
   use hipfort_hipsparse
   use hipfort_hipsparse_enums
-  use hipfort_enums
   implicit none
   logical :: never
   type(c_ptr) :: v0
