@@ -47,1012 +47,978 @@ module hipfftw
   end type fftw_iodim
 
   type, bind(c) :: fftw_iodim64
-    integer(c_ptrdiff_t) :: n
-    integer(c_ptrdiff_t) :: is
-    integer(c_ptrdiff_t) :: os
+    integer(c_intptr_t) :: n
+    integer(c_intptr_t) :: is
+    integer(c_intptr_t) :: os
   end type fftw_iodim64
 
 
-  interface
-
-    !---------------------------------------------
-    ! fftw_malloc
-    !---------------------------------------------
-    function fftw_malloc(n) &
-       result(malloc) &
-       bind(C, name="fftw_malloc")
-       import :: c_size_t, c_ptr
-       integer(c_size_t), value :: n
-       type(c_ptr) :: malloc
-    end function fftw_malloc
-
-    !---------------------------------------------
-    ! fftwf_malloc
-    !---------------------------------------------
-    function fftwf_malloc(n) &
-       result(f_malloc) &
-       bind(C, name="fftwf_malloc")
-       import :: c_size_t, c_ptr
-       integer(c_size_t), value :: n
-       type(c_ptr) :: f_malloc
-    end function fftwf_malloc
-
-    !---------------------------------------------
-    ! fftw_alloc_real
-    !---------------------------------------------
-    function fftw_alloc_real(n) &
-       result(alloc_real) &
-       bind(C, name="fftw_alloc_real")
-       import :: c_size_t, c_ptr
-       integer(c_size_t), value :: n
-       type(c_ptr) :: alloc_real
-    end function fftw_alloc_real
-
-    !---------------------------------------------
-    ! fftwf_alloc_real
-    !---------------------------------------------
-    function fftwf_alloc_real(n) &
-       result(f_alloc_real) &
-       bind(C, name="fftwf_alloc_real")
-       import :: c_size_t, c_ptr
-       integer(c_size_t), value :: n
-       type(c_ptr) :: f_alloc_real
-    end function fftwf_alloc_real
-
-    !---------------------------------------------
-    ! fftw_alloc_complex
-    !---------------------------------------------
-    function fftw_alloc_complex(n) &
-       result(alloc_complex) &
-       bind(C, name="fftw_alloc_complex")
-       import :: c_size_t, c_ptr
-       integer(c_size_t), value :: n
-       type(c_ptr) :: alloc_complex
-    end function fftw_alloc_complex
-
-    !---------------------------------------------
-    ! fftwf_alloc_complex
-    !---------------------------------------------
-    function fftwf_alloc_complex(n) &
-       result(f_alloc_complex) &
-       bind(C, name="fftwf_alloc_complex")
-       import :: c_size_t, c_ptr
-       integer(c_size_t), value :: n
-       type(c_ptr) :: f_alloc_complex
-    end function fftwf_alloc_complex
-
-    !---------------------------------------------
-    ! fftw_free
-    !---------------------------------------------
-    subroutine fftw_free(p) &
-       bind(C, name="fftw_free")
-       import :: c_ptr
-       type(c_ptr), value :: p
-    end subroutine fftw_free
-
-    !---------------------------------------------
-    ! fftwf_free
-    !---------------------------------------------
-    subroutine fftwf_free(p) &
-       bind(C, name="fftwf_free")
-       import :: c_ptr
-       type(c_ptr), value :: p
-    end subroutine fftwf_free
-
-    !---------------------------------------------
-    ! fftw_plan_dft_1d
-    !---------------------------------------------
-    function fftw_plan_dft_1d(n, in, out, sign, flags) &
-       result(plan_dft_1d) &
-       bind(C, name="fftw_plan_dft_1d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_dft_1d
-    end function fftw_plan_dft_1d
-
-    !---------------------------------------------
-    ! fftwf_plan_dft_1d
-    !---------------------------------------------
-    function fftwf_plan_dft_1d(n, in, out, sign, flags) &
-       result(f_plan_dft_1d) &
-       bind(C, name="fftwf_plan_dft_1d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_dft_1d
-    end function fftwf_plan_dft_1d
-
-    !---------------------------------------------
-    ! fftw_plan_dft_2d
-    !---------------------------------------------
-    function fftw_plan_dft_2d(n0, n1, in, out, sign, flags) &
-       result(plan_dft_2d) &
-       bind(C, name="fftw_plan_dft_2d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n0
-       integer(c_int), value :: n1
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_dft_2d
-    end function fftw_plan_dft_2d
-
-    !---------------------------------------------
-    ! fftwf_plan_dft_2d
-    !---------------------------------------------
-    function fftwf_plan_dft_2d(n0, n1, in, out, sign, flags) &
-       result(f_plan_dft_2d) &
-       bind(C, name="fftwf_plan_dft_2d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n0
-       integer(c_int), value :: n1
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_dft_2d
-    end function fftwf_plan_dft_2d
-
-    !---------------------------------------------
-    ! fftw_plan_dft_3d
-    !---------------------------------------------
-    function fftw_plan_dft_3d(n0, n1, n2, in, out, sign, flags) &
-       result(plan_dft_3d) &
-       bind(C, name="fftw_plan_dft_3d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n0
-       integer(c_int), value :: n1
-       integer(c_int), value :: n2
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_dft_3d
-    end function fftw_plan_dft_3d
-
-    !---------------------------------------------
-    ! fftwf_plan_dft_3d
-    !---------------------------------------------
-    function fftwf_plan_dft_3d(n0, n1, n2, in, out, sign, flags) &
-       result(f_plan_dft_3d) &
-       bind(C, name="fftwf_plan_dft_3d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n0
-       integer(c_int), value :: n1
-       integer(c_int), value :: n2
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_dft_3d
-    end function fftwf_plan_dft_3d
-
-    !---------------------------------------------
-    ! fftw_plan_dft
-    !---------------------------------------------
-    function fftw_plan_dft(rank, n, in, out, sign, flags) &
-       result(plan_dft) &
-       bind(C, name="fftw_plan_dft")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: n
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_dft
-    end function fftw_plan_dft
-
-    !---------------------------------------------
-    ! fftwf_plan_dft
-    !---------------------------------------------
-    function fftwf_plan_dft(rank, n, in, out, sign, flags) &
-       result(f_plan_dft) &
-       bind(C, name="fftwf_plan_dft")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: n
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_dft
-    end function fftwf_plan_dft
-
-    !---------------------------------------------
-    ! fftw_plan_dft_r2c_1d
-    !---------------------------------------------
-    function fftw_plan_dft_r2c_1d(n, in, out, flags) &
-       result(plan_dft_r2c_1d) &
-       bind(C, name="fftw_plan_dft_r2c_1d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_dft_r2c_1d
-    end function fftw_plan_dft_r2c_1d
-
-    !---------------------------------------------
-    ! fftwf_plan_dft_r2c_1d
-    !---------------------------------------------
-    function fftwf_plan_dft_r2c_1d(n, in, out, flags) &
-       result(f_plan_dft_r2c_1d) &
-       bind(C, name="fftwf_plan_dft_r2c_1d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_dft_r2c_1d
-    end function fftwf_plan_dft_r2c_1d
-
-    !---------------------------------------------
-    ! fftw_plan_dft_r2c_2d
-    !---------------------------------------------
-    function fftw_plan_dft_r2c_2d(n0, n1, in, out, flags) &
-       result(plan_dft_r2c_2d) &
-       bind(C, name="fftw_plan_dft_r2c_2d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n0
-       integer(c_int), value :: n1
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_dft_r2c_2d
-    end function fftw_plan_dft_r2c_2d
-
-    !---------------------------------------------
-    ! fftwf_plan_dft_r2c_2d
-    !---------------------------------------------
-    function fftwf_plan_dft_r2c_2d(n0, n1, in, out, flags) &
-       result(f_plan_dft_r2c_2d) &
-       bind(C, name="fftwf_plan_dft_r2c_2d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n0
-       integer(c_int), value :: n1
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_dft_r2c_2d
-    end function fftwf_plan_dft_r2c_2d
-
-    !---------------------------------------------
-    ! fftw_plan_dft_r2c_3d
-    !---------------------------------------------
-    function fftw_plan_dft_r2c_3d(n0, n1, n2, in, out, flags) &
-       result(plan_dft_r2c_3d) &
-       bind(C, name="fftw_plan_dft_r2c_3d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n0
-       integer(c_int), value :: n1
-       integer(c_int), value :: n2
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_dft_r2c_3d
-    end function fftw_plan_dft_r2c_3d
-
-    !---------------------------------------------
-    ! fftwf_plan_dft_r2c_3d
-    !---------------------------------------------
-    function fftwf_plan_dft_r2c_3d(n0, n1, n2, in, out, flags) &
-       result(f_plan_dft_r2c_3d) &
-       bind(C, name="fftwf_plan_dft_r2c_3d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n0
-       integer(c_int), value :: n1
-       integer(c_int), value :: n2
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_dft_r2c_3d
-    end function fftwf_plan_dft_r2c_3d
-
-    !---------------------------------------------
-    ! fftw_plan_dft_r2c
-    !---------------------------------------------
-    function fftw_plan_dft_r2c(rank, n, in, out, flags) &
-       result(plan_dft_r2c) &
-       bind(C, name="fftw_plan_dft_r2c")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: n
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_dft_r2c
-    end function fftw_plan_dft_r2c
-
-    !---------------------------------------------
-    ! fftwf_plan_dft_r2c
-    !---------------------------------------------
-    function fftwf_plan_dft_r2c(rank, n, in, out, flags) &
-       result(f_plan_dft_r2c) &
-       bind(C, name="fftwf_plan_dft_r2c")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: n
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_dft_r2c
-    end function fftwf_plan_dft_r2c
-
-    !---------------------------------------------
-    ! fftw_plan_dft_c2r_1d
-    !---------------------------------------------
-    function fftw_plan_dft_c2r_1d(n, in, out, flags) &
-       result(plan_dft_c2r_1d) &
-       bind(C, name="fftw_plan_dft_c2r_1d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_dft_c2r_1d
-    end function fftw_plan_dft_c2r_1d
-
-    !---------------------------------------------
-    ! fftwf_plan_dft_c2r_1d
-    !---------------------------------------------
-    function fftwf_plan_dft_c2r_1d(n, in, out, flags) &
-       result(f_plan_dft_c2r_1d) &
-       bind(C, name="fftwf_plan_dft_c2r_1d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_dft_c2r_1d
-    end function fftwf_plan_dft_c2r_1d
-
-    !---------------------------------------------
-    ! fftw_plan_dft_c2r_2d
-    !---------------------------------------------
-    function fftw_plan_dft_c2r_2d(n0, n1, in, out, flags) &
-       result(plan_dft_c2r_2d) &
-       bind(C, name="fftw_plan_dft_c2r_2d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n0
-       integer(c_int), value :: n1
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_dft_c2r_2d
-    end function fftw_plan_dft_c2r_2d
-
-    !---------------------------------------------
-    ! fftwf_plan_dft_c2r_2d
-    !---------------------------------------------
-    function fftwf_plan_dft_c2r_2d(n0, n1, in, out, flags) &
-       result(f_plan_dft_c2r_2d) &
-       bind(C, name="fftwf_plan_dft_c2r_2d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n0
-       integer(c_int), value :: n1
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_dft_c2r_2d
-    end function fftwf_plan_dft_c2r_2d
-
-    !---------------------------------------------
-    ! fftw_plan_dft_c2r_3d
-    !---------------------------------------------
-    function fftw_plan_dft_c2r_3d(n0, n1, n2, in, out, flags) &
-       result(plan_dft_c2r_3d) &
-       bind(C, name="fftw_plan_dft_c2r_3d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n0
-       integer(c_int), value :: n1
-       integer(c_int), value :: n2
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_dft_c2r_3d
-    end function fftw_plan_dft_c2r_3d
-
-    !---------------------------------------------
-    ! fftwf_plan_dft_c2r_3d
-    !---------------------------------------------
-    function fftwf_plan_dft_c2r_3d(n0, n1, n2, in, out, flags) &
-       result(f_plan_dft_c2r_3d) &
-       bind(C, name="fftwf_plan_dft_c2r_3d")
-       import :: c_int, c_ptr
-       integer(c_int), value :: n0
-       integer(c_int), value :: n1
-       integer(c_int), value :: n2
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_dft_c2r_3d
-    end function fftwf_plan_dft_c2r_3d
-
-    !---------------------------------------------
-    ! fftw_plan_dft_c2r
-    !---------------------------------------------
-    function fftw_plan_dft_c2r(rank, n, in, out, flags) &
-       result(plan_dft_c2r) &
-       bind(C, name="fftw_plan_dft_c2r")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: n
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_dft_c2r
-    end function fftw_plan_dft_c2r
-
-    !---------------------------------------------
-    ! fftwf_plan_dft_c2r
-    !---------------------------------------------
-    function fftwf_plan_dft_c2r(rank, n, in, out, flags) &
-       result(f_plan_dft_c2r) &
-       bind(C, name="fftwf_plan_dft_c2r")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: n
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_dft_c2r
-    end function fftwf_plan_dft_c2r
-
-    !---------------------------------------------
-    ! fftw_plan_many_dft
-    !---------------------------------------------
-    function fftw_plan_many_dft(rank, n, howmany, in, inembed, istride, idist, out, onembed, &
-                                ostride, odist, sign, flags) &
-       result(plan_many_dft) &
-       bind(C, name="fftw_plan_many_dft")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: n
-       integer(c_int), value :: howmany
-       type(c_ptr), value :: in
-       type(c_ptr), value :: inembed
-       integer(c_int), value :: istride
-       integer(c_int), value :: idist
-       type(c_ptr), value :: out
-       type(c_ptr), value :: onembed
-       integer(c_int), value :: ostride
-       integer(c_int), value :: odist
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_many_dft
-    end function fftw_plan_many_dft
-
-    !---------------------------------------------
-    ! fftwf_plan_many_dft
-    !---------------------------------------------
-    function fftwf_plan_many_dft(rank, n, howmany, in, inembed, istride, idist, out, onembed, &
-                                 ostride, odist, sign, flags) &
-       result(f_plan_many_dft) &
-       bind(C, name="fftwf_plan_many_dft")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: n
-       integer(c_int), value :: howmany
-       type(c_ptr), value :: in
-       type(c_ptr), value :: inembed
-       integer(c_int), value :: istride
-       integer(c_int), value :: idist
-       type(c_ptr), value :: out
-       type(c_ptr), value :: onembed
-       integer(c_int), value :: ostride
-       integer(c_int), value :: odist
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_many_dft
-    end function fftwf_plan_many_dft
-
-    !---------------------------------------------
-    ! fftw_plan_many_dft_r2c
-    !---------------------------------------------
-    function fftw_plan_many_dft_r2c(rank, n, howmany, in, inembed, istride, idist, out, onembed, &
-                                    ostride, odist, flags) &
-       result(plan_many_dft_r2c) &
-       bind(C, name="fftw_plan_many_dft_r2c")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: n
-       integer(c_int), value :: howmany
-       type(c_ptr), value :: in
-       type(c_ptr), value :: inembed
-       integer(c_int), value :: istride
-       integer(c_int), value :: idist
-       type(c_ptr), value :: out
-       type(c_ptr), value :: onembed
-       integer(c_int), value :: ostride
-       integer(c_int), value :: odist
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_many_dft_r2c
-    end function fftw_plan_many_dft_r2c
-
-    !---------------------------------------------
-    ! fftwf_plan_many_dft_r2c
-    !---------------------------------------------
-    function fftwf_plan_many_dft_r2c(rank, n, howmany, in, inembed, istride, idist, out, onembed, &
-                                     ostride, odist, flags) &
-       result(f_plan_many_dft_r2c) &
-       bind(C, name="fftwf_plan_many_dft_r2c")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: n
-       integer(c_int), value :: howmany
-       type(c_ptr), value :: in
-       type(c_ptr), value :: inembed
-       integer(c_int), value :: istride
-       integer(c_int), value :: idist
-       type(c_ptr), value :: out
-       type(c_ptr), value :: onembed
-       integer(c_int), value :: ostride
-       integer(c_int), value :: odist
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_many_dft_r2c
-    end function fftwf_plan_many_dft_r2c
-
-    !---------------------------------------------
-    ! fftw_plan_many_dft_c2r
-    !---------------------------------------------
-    function fftw_plan_many_dft_c2r(rank, n, howmany, in, inembed, istride, idist, out, onembed, &
-                                    ostride, odist, flags) &
-       result(plan_many_dft_c2r) &
-       bind(C, name="fftw_plan_many_dft_c2r")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: n
-       integer(c_int), value :: howmany
-       type(c_ptr), value :: in
-       type(c_ptr), value :: inembed
-       integer(c_int), value :: istride
-       integer(c_int), value :: idist
-       type(c_ptr), value :: out
-       type(c_ptr), value :: onembed
-       integer(c_int), value :: ostride
-       integer(c_int), value :: odist
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_many_dft_c2r
-    end function fftw_plan_many_dft_c2r
-
-    !---------------------------------------------
-    ! fftwf_plan_many_dft_c2r
-    !---------------------------------------------
-    function fftwf_plan_many_dft_c2r(rank, n, howmany, in, inembed, istride, idist, out, onembed, &
-                                     ostride, odist, flags) &
-       result(f_plan_many_dft_c2r) &
-       bind(C, name="fftwf_plan_many_dft_c2r")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: n
-       integer(c_int), value :: howmany
-       type(c_ptr), value :: in
-       type(c_ptr), value :: inembed
-       integer(c_int), value :: istride
-       integer(c_int), value :: idist
-       type(c_ptr), value :: out
-       type(c_ptr), value :: onembed
-       integer(c_int), value :: ostride
-       integer(c_int), value :: odist
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_many_dft_c2r
-    end function fftwf_plan_many_dft_c2r
-
-    !---------------------------------------------
-    ! fftw_plan_guru_dft
-    !---------------------------------------------
-    function fftw_plan_guru_dft(rank, dims, howmany_rank, howmany_dims, in, out, sign, flags) &
-       result(plan_guru_dft) &
-       bind(C, name="fftw_plan_guru_dft")
-       import :: c_int, fftw_iodim, c_ptr
-       integer(c_int), value :: rank
-       type(fftw_iodim) :: dims
-       integer(c_int), value :: howmany_rank
-       type(fftw_iodim) :: howmany_dims
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_guru_dft
-    end function fftw_plan_guru_dft
-
-    !---------------------------------------------
-    ! fftwf_plan_guru_dft
-    !---------------------------------------------
-    function fftwf_plan_guru_dft(rank, dims, howmany_rank, howmany_dims, in, out, sign, flags) &
-       result(f_plan_guru_dft) &
-       bind(C, name="fftwf_plan_guru_dft")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: dims
-       integer(c_int), value :: howmany_rank
-       type(c_ptr), value :: howmany_dims
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_guru_dft
-    end function fftwf_plan_guru_dft
-
-    !---------------------------------------------
-    ! fftw_plan_guru_dft_r2c
-    !---------------------------------------------
-    function fftw_plan_guru_dft_r2c(rank, dims, howmany_rank, howmany_dims, in, out, flags) &
-       result(plan_guru_dft_r2c) &
-       bind(C, name="fftw_plan_guru_dft_r2c")
-       import :: c_int, fftw_iodim, c_ptr
-       integer(c_int), value :: rank
-       type(fftw_iodim) :: dims
-       integer(c_int), value :: howmany_rank
-       type(fftw_iodim) :: howmany_dims
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_guru_dft_r2c
-    end function fftw_plan_guru_dft_r2c
-
-    !---------------------------------------------
-    ! fftwf_plan_guru_dft_r2c
-    !---------------------------------------------
-    function fftwf_plan_guru_dft_r2c(rank, dims, howmany_rank, howmany_dims, in, out, flags) &
-       result(f_plan_guru_dft_r2c) &
-       bind(C, name="fftwf_plan_guru_dft_r2c")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: dims
-       integer(c_int), value :: howmany_rank
-       type(c_ptr), value :: howmany_dims
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_guru_dft_r2c
-    end function fftwf_plan_guru_dft_r2c
-
-    !---------------------------------------------
-    ! fftw_plan_guru_dft_c2r
-    !---------------------------------------------
-    function fftw_plan_guru_dft_c2r(rank, dims, howmany_rank, howmany_dims, in, out, flags) &
-       result(plan_guru_dft_c2r) &
-       bind(C, name="fftw_plan_guru_dft_c2r")
-       import :: c_int, fftw_iodim, c_ptr
-       integer(c_int), value :: rank
-       type(fftw_iodim) :: dims
-       integer(c_int), value :: howmany_rank
-       type(fftw_iodim) :: howmany_dims
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_guru_dft_c2r
-    end function fftw_plan_guru_dft_c2r
-
-    !---------------------------------------------
-    ! fftwf_plan_guru_dft_c2r
-    !---------------------------------------------
-    function fftwf_plan_guru_dft_c2r(rank, dims, howmany_rank, howmany_dims, in, out, flags) &
-       result(f_plan_guru_dft_c2r) &
-       bind(C, name="fftwf_plan_guru_dft_c2r")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: dims
-       integer(c_int), value :: howmany_rank
-       type(c_ptr), value :: howmany_dims
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_guru_dft_c2r
-    end function fftwf_plan_guru_dft_c2r
-
-    !---------------------------------------------
-    ! fftw_plan_guru64_dft
-    !---------------------------------------------
-    function fftw_plan_guru64_dft(rank, dims, howmany_rank, howmany_dims, in, out, sign, flags) &
-       result(plan_guru64_dft) &
-       bind(C, name="fftw_plan_guru64_dft")
-       import :: c_int, fftw_iodim64, c_ptr
-       integer(c_int), value :: rank
-       type(fftw_iodim64) :: dims
-       integer(c_int), value :: howmany_rank
-       type(fftw_iodim64) :: howmany_dims
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_guru64_dft
-    end function fftw_plan_guru64_dft
-
-    !---------------------------------------------
-    ! fftwf_plan_guru64_dft
-    !---------------------------------------------
-    function fftwf_plan_guru64_dft(rank, dims, howmany_rank, howmany_dims, in, out, sign, flags) &
-       result(f_plan_guru64_dft) &
-       bind(C, name="fftwf_plan_guru64_dft")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: dims
-       integer(c_int), value :: howmany_rank
-       type(c_ptr), value :: howmany_dims
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: sign
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_guru64_dft
-    end function fftwf_plan_guru64_dft
-
-    !---------------------------------------------
-    ! fftw_plan_guru64_dft_r2c
-    !---------------------------------------------
-    function fftw_plan_guru64_dft_r2c(rank, dims, howmany_rank, howmany_dims, in, out, flags) &
-       result(plan_guru64_dft_r2c) &
-       bind(C, name="fftw_plan_guru64_dft_r2c")
-       import :: c_int, fftw_iodim64, c_ptr
-       integer(c_int), value :: rank
-       type(fftw_iodim64) :: dims
-       integer(c_int), value :: howmany_rank
-       type(fftw_iodim64) :: howmany_dims
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_guru64_dft_r2c
-    end function fftw_plan_guru64_dft_r2c
-
-    !---------------------------------------------
-    ! fftwf_plan_guru64_dft_r2c
-    !---------------------------------------------
-    function fftwf_plan_guru64_dft_r2c(rank, dims, howmany_rank, howmany_dims, in, out, flags) &
-       result(f_plan_guru64_dft_r2c) &
-       bind(C, name="fftwf_plan_guru64_dft_r2c")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: dims
-       integer(c_int), value :: howmany_rank
-       type(c_ptr), value :: howmany_dims
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_guru64_dft_r2c
-    end function fftwf_plan_guru64_dft_r2c
-
-    !---------------------------------------------
-    ! fftw_plan_guru64_dft_c2r
-    !---------------------------------------------
-    function fftw_plan_guru64_dft_c2r(rank, dims, howmany_rank, howmany_dims, in, out, flags) &
-       result(plan_guru64_dft_c2r) &
-       bind(C, name="fftw_plan_guru64_dft_c2r")
-       import :: c_int, fftw_iodim64, c_ptr
-       integer(c_int), value :: rank
-       type(fftw_iodim64) :: dims
-       integer(c_int), value :: howmany_rank
-       type(fftw_iodim64) :: howmany_dims
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: plan_guru64_dft_c2r
-    end function fftw_plan_guru64_dft_c2r
-
-    !---------------------------------------------
-    ! fftwf_plan_guru64_dft_c2r
-    !---------------------------------------------
-    function fftwf_plan_guru64_dft_c2r(rank, dims, howmany_rank, howmany_dims, in, out, flags) &
-       result(f_plan_guru64_dft_c2r) &
-       bind(C, name="fftwf_plan_guru64_dft_c2r")
-       import :: c_int, c_ptr
-       integer(c_int), value :: rank
-       type(c_ptr), value :: dims
-       integer(c_int), value :: howmany_rank
-       type(c_ptr), value :: howmany_dims
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-       integer(c_int), value :: flags
-       type(c_ptr) :: f_plan_guru64_dft_c2r
-    end function fftwf_plan_guru64_dft_c2r
-
-    !---------------------------------------------
-    ! fftw_execute
-    !---------------------------------------------
-    subroutine fftw_execute(plan) &
-       bind(C, name="fftw_execute")
-       import :: c_ptr
-       type(c_ptr), value :: plan
-    end subroutine fftw_execute
-
-    !---------------------------------------------
-    ! fftwf_execute
-    !---------------------------------------------
-    subroutine fftwf_execute(plan) &
-       bind(C, name="fftwf_execute")
-       import :: c_ptr
-       type(c_ptr), value :: plan
-    end subroutine fftwf_execute
-
-    !---------------------------------------------
-    ! fftw_execute_dft
-    !---------------------------------------------
-    subroutine fftw_execute_dft(plan, in, out) &
-       bind(C, name="fftw_execute_dft")
-       import :: c_ptr
-       type(c_ptr), value :: plan
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-    end subroutine fftw_execute_dft
-
-    !---------------------------------------------
-    ! fftwf_execute_dft
-    !---------------------------------------------
-    subroutine fftwf_execute_dft(plan, in, out) &
-       bind(C, name="fftwf_execute_dft")
-       import :: c_ptr
-       type(c_ptr), value :: plan
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-    end subroutine fftwf_execute_dft
-
-    !---------------------------------------------
-    ! fftw_execute_dft_r2c
-    !---------------------------------------------
-    subroutine fftw_execute_dft_r2c(plan, in, out) &
-       bind(C, name="fftw_execute_dft_r2c")
-       import :: c_ptr
-       type(c_ptr), value :: plan
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-    end subroutine fftw_execute_dft_r2c
-
-    !---------------------------------------------
-    ! fftwf_execute_dft_r2c
-    !---------------------------------------------
-    subroutine fftwf_execute_dft_r2c(plan, in, out) &
-       bind(C, name="fftwf_execute_dft_r2c")
-       import :: c_ptr
-       type(c_ptr), value :: plan
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-    end subroutine fftwf_execute_dft_r2c
-
-    !---------------------------------------------
-    ! fftw_execute_dft_c2r
-    !---------------------------------------------
-    subroutine fftw_execute_dft_c2r(plan, in, out) &
-       bind(C, name="fftw_execute_dft_c2r")
-       import :: c_ptr
-       type(c_ptr), value :: plan
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-    end subroutine fftw_execute_dft_c2r
-
-    !---------------------------------------------
-    ! fftwf_execute_dft_c2r
-    !---------------------------------------------
-    subroutine fftwf_execute_dft_c2r(plan, in, out) &
-       bind(C, name="fftwf_execute_dft_c2r")
-       import :: c_ptr
-       type(c_ptr), value :: plan
-       type(c_ptr), value :: in
-       type(c_ptr), value :: out
-    end subroutine fftwf_execute_dft_c2r
-
-    !---------------------------------------------
-    ! fftw_destroy_plan
-    !---------------------------------------------
-    subroutine fftw_destroy_plan(plan) &
-       bind(C, name="fftw_destroy_plan")
-       import :: c_ptr
-       type(c_ptr), value :: plan
-    end subroutine fftw_destroy_plan
-
-    !---------------------------------------------
-    ! fftwf_destroy_plan
-    !---------------------------------------------
-    subroutine fftwf_destroy_plan(plan) &
-       bind(C, name="fftwf_destroy_plan")
-       import :: c_ptr
-       type(c_ptr), value :: plan
-    end subroutine fftwf_destroy_plan
-
-    !---------------------------------------------
-    ! fftw_print_plan
-    !---------------------------------------------
-    subroutine fftw_print_plan(arg1) &
-       bind(C, name="fftw_print_plan")
-       import :: c_ptr
-       type(c_ptr), value :: arg1
-    end subroutine fftw_print_plan
-
-    !---------------------------------------------
-    ! fftwf_print_plan
-    !---------------------------------------------
-    subroutine fftwf_print_plan(arg1) &
-       bind(C, name="fftwf_print_plan")
-       import :: c_ptr
-       type(c_ptr), value :: arg1
-    end subroutine fftwf_print_plan
-
-    !---------------------------------------------
-    ! fftw_set_timelimit
-    !---------------------------------------------
-    subroutine fftw_set_timelimit(arg1) &
-       bind(C, name="fftw_set_timelimit")
-       import :: c_double
-       real(c_double), value :: arg1
-    end subroutine fftw_set_timelimit
-
-    !---------------------------------------------
-    ! fftwf_set_timelimit
-    !---------------------------------------------
-    subroutine fftwf_set_timelimit(arg1) &
-       bind(C, name="fftwf_set_timelimit")
-       import :: c_double
-       real(c_double), value :: arg1
-    end subroutine fftwf_set_timelimit
-
-    !---------------------------------------------
-    ! fftw_cost
-    !---------------------------------------------
-    function fftw_cost(arg1) &
-       result(cost) &
-       bind(C, name="fftw_cost")
-       import :: c_ptr, c_double
-       type(c_ptr), value :: arg1
-       real(c_double) :: cost
-    end function fftw_cost
-
-    !---------------------------------------------
-    ! fftwf_cost
-    !---------------------------------------------
-    function fftwf_cost(arg1) &
-       result(f_cost) &
-       bind(C, name="fftwf_cost")
-       import :: c_ptr, c_double
-       type(c_ptr), value :: arg1
-       real(c_double) :: f_cost
-    end function fftwf_cost
-
-    !---------------------------------------------
-    ! fftw_flops
-    !---------------------------------------------
-    subroutine fftw_flops(arg1, arg2, arg3, arg4) &
-       bind(C, name="fftw_flops")
-       import :: c_ptr
-       type(c_ptr), value :: arg1
-       type(c_ptr), value :: arg2
-       type(c_ptr), value :: arg3
-       type(c_ptr), value :: arg4
-    end subroutine fftw_flops
-
-    !---------------------------------------------
-    ! fftwf_flops
-    !---------------------------------------------
-    subroutine fftwf_flops(arg1, arg2, arg3, arg4) &
-       bind(C, name="fftwf_flops")
-       import :: c_ptr
-       type(c_ptr), value :: arg1
-       type(c_ptr), value :: arg2
-       type(c_ptr), value :: arg3
-       type(c_ptr), value :: arg4
-    end subroutine fftwf_flops
-
-    !---------------------------------------------
-    ! fftw_cleanup
-    !---------------------------------------------
-    subroutine fftw_cleanup() &
-       bind(C, name="fftw_cleanup")
-    end subroutine fftw_cleanup
-
-    !---------------------------------------------
-    ! fftwf_cleanup
-    !---------------------------------------------
-    subroutine fftwf_cleanup() &
-       bind(C, name="fftwf_cleanup")
-    end subroutine fftwf_cleanup
-
+  interface fftw_malloc
+    function fftw_malloc_(n) bind(c, name="fftw_malloc")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_malloc_
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
+  interface fftwf_malloc
+    function fftwf_malloc_(n) bind(c, name="fftwf_malloc")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_malloc_
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
+  interface fftw_alloc_real
+    function fftw_alloc_real_(n) bind(c, name="fftw_alloc_real")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_alloc_real_
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
+  interface fftwf_alloc_real
+    function fftwf_alloc_real_(n) bind(c, name="fftwf_alloc_real")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_alloc_real_
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
+  interface fftw_alloc_complex
+    function fftw_alloc_complex_(n) bind(c, name="fftw_alloc_complex")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_alloc_complex_
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
+  interface fftwf_alloc_complex
+    function fftwf_alloc_complex_(n) bind(c, name="fftwf_alloc_complex")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_alloc_complex_
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
+  interface fftw_free
+    subroutine fftw_free_(p) bind(c, name="fftw_free")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: p
+    end subroutine
+  end interface
+
+  interface fftwf_free
+    subroutine fftwf_free_(p) bind(c, name="fftwf_free")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: p
+    end subroutine
+  end interface
+
+  interface fftw_plan_dft_1d
+    function fftw_plan_dft_1d_(n,in,out,sign,flags) bind(c, name="fftw_plan_dft_1d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_1d_
+      integer(c_int),value :: n
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_dft_1d
+    function fftwf_plan_dft_1d_(n,in,out,sign,flags) bind(c, name="fftwf_plan_dft_1d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_1d_
+      integer(c_int),value :: n
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_dft_2d
+    function fftw_plan_dft_2d_(n0,n1,in,out,sign,flags) bind(c, name="fftw_plan_dft_2d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_2d_
+      integer(c_int),value :: n0
+      integer(c_int),value :: n1
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_dft_2d
+    function fftwf_plan_dft_2d_(n0,n1,in,out,sign,flags) bind(c, name="fftwf_plan_dft_2d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_2d_
+      integer(c_int),value :: n0
+      integer(c_int),value :: n1
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_dft_3d
+    function fftw_plan_dft_3d_(n0,n1,n2,in,out,sign,flags) bind(c, name="fftw_plan_dft_3d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_3d_
+      integer(c_int),value :: n0
+      integer(c_int),value :: n1
+      integer(c_int),value :: n2
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_dft_3d
+    function fftwf_plan_dft_3d_(n0,n1,n2,in,out,sign,flags) bind(c, name="fftwf_plan_dft_3d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_3d_
+      integer(c_int),value :: n0
+      integer(c_int),value :: n1
+      integer(c_int),value :: n2
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_dft
+    function fftw_plan_dft_(rank,n,in,out,sign,flags) bind(c, name="fftw_plan_dft")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_dft
+    function fftwf_plan_dft_(rank,n,in,out,sign,flags) bind(c, name="fftwf_plan_dft")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_dft_r2c_1d
+    function fftw_plan_dft_r2c_1d_(n,in,out,flags) bind(c, name="fftw_plan_dft_r2c_1d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_1d_
+      integer(c_int),value :: n
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_dft_r2c_1d
+    function fftwf_plan_dft_r2c_1d_(n,in,out,flags) bind(c, name="fftwf_plan_dft_r2c_1d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_1d_
+      integer(c_int),value :: n
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_dft_r2c_2d
+    function fftw_plan_dft_r2c_2d_(n0,n1,in,out,flags) bind(c, name="fftw_plan_dft_r2c_2d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_2d_
+      integer(c_int),value :: n0
+      integer(c_int),value :: n1
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_dft_r2c_2d
+    function fftwf_plan_dft_r2c_2d_(n0,n1,in,out,flags) bind(c, name="fftwf_plan_dft_r2c_2d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_2d_
+      integer(c_int),value :: n0
+      integer(c_int),value :: n1
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_dft_r2c_3d
+    function fftw_plan_dft_r2c_3d_(n0,n1,n2,in,out,flags) bind(c, name="fftw_plan_dft_r2c_3d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_3d_
+      integer(c_int),value :: n0
+      integer(c_int),value :: n1
+      integer(c_int),value :: n2
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_dft_r2c_3d
+    function fftwf_plan_dft_r2c_3d_(n0,n1,n2,in,out,flags) bind(c, name="fftwf_plan_dft_r2c_3d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_3d_
+      integer(c_int),value :: n0
+      integer(c_int),value :: n1
+      integer(c_int),value :: n2
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_dft_r2c
+    function fftw_plan_dft_r2c_(rank,n,in,out,flags) bind(c, name="fftw_plan_dft_r2c")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_dft_r2c
+    function fftwf_plan_dft_r2c_(rank,n,in,out,flags) bind(c, name="fftwf_plan_dft_r2c")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_dft_c2r_1d
+    function fftw_plan_dft_c2r_1d_(n,in,out,flags) bind(c, name="fftw_plan_dft_c2r_1d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_1d_
+      integer(c_int),value :: n
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_dft_c2r_1d
+    function fftwf_plan_dft_c2r_1d_(n,in,out,flags) bind(c, name="fftwf_plan_dft_c2r_1d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_1d_
+      integer(c_int),value :: n
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_dft_c2r_2d
+    function fftw_plan_dft_c2r_2d_(n0,n1,in,out,flags) bind(c, name="fftw_plan_dft_c2r_2d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_2d_
+      integer(c_int),value :: n0
+      integer(c_int),value :: n1
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_dft_c2r_2d
+    function fftwf_plan_dft_c2r_2d_(n0,n1,in,out,flags) bind(c, name="fftwf_plan_dft_c2r_2d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_2d_
+      integer(c_int),value :: n0
+      integer(c_int),value :: n1
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_dft_c2r_3d
+    function fftw_plan_dft_c2r_3d_(n0,n1,n2,in,out,flags) bind(c, name="fftw_plan_dft_c2r_3d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_3d_
+      integer(c_int),value :: n0
+      integer(c_int),value :: n1
+      integer(c_int),value :: n2
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_dft_c2r_3d
+    function fftwf_plan_dft_c2r_3d_(n0,n1,n2,in,out,flags) bind(c, name="fftwf_plan_dft_c2r_3d")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_3d_
+      integer(c_int),value :: n0
+      integer(c_int),value :: n1
+      integer(c_int),value :: n2
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_dft_c2r
+    function fftw_plan_dft_c2r_(rank,n,in,out,flags) bind(c, name="fftw_plan_dft_c2r")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_dft_c2r
+    function fftwf_plan_dft_c2r_(rank,n,in,out,flags) bind(c, name="fftwf_plan_dft_c2r")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_many_dft
+    function fftw_plan_many_dft_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride, &
+        odist,sign,flags) &
+        bind(c, name="fftw_plan_many_dft")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_many_dft_
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      integer(c_int),value :: howmany
+      type(c_ptr),value :: in
+      type(c_ptr),value :: inembed
+      integer(c_int),value :: istride
+      integer(c_int),value :: idist
+      type(c_ptr),value :: out
+      type(c_ptr),value :: onembed
+      integer(c_int),value :: ostride
+      integer(c_int),value :: odist
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_many_dft
+    function fftwf_plan_many_dft_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride, &
+        odist,sign,flags) &
+        bind(c, name="fftwf_plan_many_dft")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_many_dft_
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      integer(c_int),value :: howmany
+      type(c_ptr),value :: in
+      type(c_ptr),value :: inembed
+      integer(c_int),value :: istride
+      integer(c_int),value :: idist
+      type(c_ptr),value :: out
+      type(c_ptr),value :: onembed
+      integer(c_int),value :: ostride
+      integer(c_int),value :: odist
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_many_dft_r2c
+    function fftw_plan_many_dft_r2c_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride, &
+        odist,flags) &
+        bind(c, name="fftw_plan_many_dft_r2c")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_many_dft_r2c_
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      integer(c_int),value :: howmany
+      type(c_ptr),value :: in
+      type(c_ptr),value :: inembed
+      integer(c_int),value :: istride
+      integer(c_int),value :: idist
+      type(c_ptr),value :: out
+      type(c_ptr),value :: onembed
+      integer(c_int),value :: ostride
+      integer(c_int),value :: odist
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_many_dft_r2c
+    function fftwf_plan_many_dft_r2c_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride, &
+        odist,flags) &
+        bind(c, name="fftwf_plan_many_dft_r2c")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_many_dft_r2c_
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      integer(c_int),value :: howmany
+      type(c_ptr),value :: in
+      type(c_ptr),value :: inembed
+      integer(c_int),value :: istride
+      integer(c_int),value :: idist
+      type(c_ptr),value :: out
+      type(c_ptr),value :: onembed
+      integer(c_int),value :: ostride
+      integer(c_int),value :: odist
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_many_dft_c2r
+    function fftw_plan_many_dft_c2r_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride, &
+        odist,flags) &
+        bind(c, name="fftw_plan_many_dft_c2r")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_many_dft_c2r_
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      integer(c_int),value :: howmany
+      type(c_ptr),value :: in
+      type(c_ptr),value :: inembed
+      integer(c_int),value :: istride
+      integer(c_int),value :: idist
+      type(c_ptr),value :: out
+      type(c_ptr),value :: onembed
+      integer(c_int),value :: ostride
+      integer(c_int),value :: odist
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_many_dft_c2r
+    function fftwf_plan_many_dft_c2r_(rank,n,howmany,in,inembed,istride,idist,out,onembed,ostride, &
+        odist,flags) &
+        bind(c, name="fftwf_plan_many_dft_c2r")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_many_dft_c2r_
+      integer(c_int),value :: rank
+      type(c_ptr),value :: n
+      integer(c_int),value :: howmany
+      type(c_ptr),value :: in
+      type(c_ptr),value :: inembed
+      integer(c_int),value :: istride
+      integer(c_int),value :: idist
+      type(c_ptr),value :: out
+      type(c_ptr),value :: onembed
+      integer(c_int),value :: ostride
+      integer(c_int),value :: odist
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_guru_dft
+    function fftw_plan_guru_dft_(rank,dims,howmany_rank,howmany_dims,in,out,sign,flags) &
+        bind(c, name="fftw_plan_guru_dft")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_guru_dft_
+      integer(c_int),value :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int),value :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_guru_dft
+    function fftwf_plan_guru_dft_(rank,dims,howmany_rank,howmany_dims,in,out,sign,flags) &
+        bind(c, name="fftwf_plan_guru_dft")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru_dft_
+      integer(c_int),value :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int),value :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_guru_dft_r2c
+    function fftw_plan_guru_dft_r2c_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftw_plan_guru_dft_r2c")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_guru_dft_r2c_
+      integer(c_int),value :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int),value :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_guru_dft_r2c
+    function fftwf_plan_guru_dft_r2c_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftwf_plan_guru_dft_r2c")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru_dft_r2c_
+      integer(c_int),value :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int),value :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_guru_dft_c2r
+    function fftw_plan_guru_dft_c2r_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftw_plan_guru_dft_c2r")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_guru_dft_c2r_
+      integer(c_int),value :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int),value :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_guru_dft_c2r
+    function fftwf_plan_guru_dft_c2r_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftwf_plan_guru_dft_c2r")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru_dft_c2r_
+      integer(c_int),value :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int),value :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_guru64_dft
+    function fftw_plan_guru64_dft_(rank,dims,howmany_rank,howmany_dims,in,out,sign,flags) &
+        bind(c, name="fftw_plan_guru64_dft")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_guru64_dft_
+      integer(c_int),value :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int),value :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_guru64_dft
+    function fftwf_plan_guru64_dft_(rank,dims,howmany_rank,howmany_dims,in,out,sign,flags) &
+        bind(c, name="fftwf_plan_guru64_dft")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru64_dft_
+      integer(c_int),value :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int),value :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: sign
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_guru64_dft_r2c
+    function fftw_plan_guru64_dft_r2c_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftw_plan_guru64_dft_r2c")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_guru64_dft_r2c_
+      integer(c_int),value :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int),value :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_guru64_dft_r2c
+    function fftwf_plan_guru64_dft_r2c_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftwf_plan_guru64_dft_r2c")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru64_dft_r2c_
+      integer(c_int),value :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int),value :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_plan_guru64_dft_c2r
+    function fftw_plan_guru64_dft_c2r_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftw_plan_guru64_dft_c2r")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftw_plan_guru64_dft_c2r_
+      integer(c_int),value :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int),value :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftwf_plan_guru64_dft_c2r
+    function fftwf_plan_guru64_dft_c2r_(rank,dims,howmany_rank,howmany_dims,in,out,flags) &
+        bind(c, name="fftwf_plan_guru64_dft_c2r")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru64_dft_c2r_
+      integer(c_int),value :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int),value :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface fftw_execute
+    subroutine fftw_execute_(plan) bind(c, name="fftw_execute")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: plan
+    end subroutine
+  end interface
+
+  interface fftwf_execute
+    subroutine fftwf_execute_(plan) bind(c, name="fftwf_execute")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: plan
+    end subroutine
+  end interface
+
+  interface fftw_execute_dft
+    subroutine fftw_execute_dft_(plan,in,out) bind(c, name="fftw_execute_dft")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: plan
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+    end subroutine
+  end interface
+
+  interface fftwf_execute_dft
+    subroutine fftwf_execute_dft_(plan,in,out) bind(c, name="fftwf_execute_dft")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: plan
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+    end subroutine
+  end interface
+
+  interface fftw_execute_dft_r2c
+    subroutine fftw_execute_dft_r2c_(plan,in,out) bind(c, name="fftw_execute_dft_r2c")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: plan
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+    end subroutine
+  end interface
+
+  interface fftwf_execute_dft_r2c
+    subroutine fftwf_execute_dft_r2c_(plan,in,out) bind(c, name="fftwf_execute_dft_r2c")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: plan
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+    end subroutine
+  end interface
+
+  interface fftw_execute_dft_c2r
+    subroutine fftw_execute_dft_c2r_(plan,in,out) bind(c, name="fftw_execute_dft_c2r")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: plan
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+    end subroutine
+  end interface
+
+  interface fftwf_execute_dft_c2r
+    subroutine fftwf_execute_dft_c2r_(plan,in,out) bind(c, name="fftwf_execute_dft_c2r")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: plan
+      type(c_ptr),value :: in
+      type(c_ptr),value :: out
+    end subroutine
+  end interface
+
+  interface fftw_destroy_plan
+    subroutine fftw_destroy_plan_(plan) bind(c, name="fftw_destroy_plan")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: plan
+    end subroutine
+  end interface
+
+  interface fftwf_destroy_plan
+    subroutine fftwf_destroy_plan_(plan) bind(c, name="fftwf_destroy_plan")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: plan
+    end subroutine
+  end interface
+
+  interface fftw_print_plan
+    subroutine fftw_print_plan_(arg1) bind(c, name="fftw_print_plan")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: arg1
+    end subroutine
+  end interface
+
+  interface fftwf_print_plan
+    subroutine fftwf_print_plan_(arg1) bind(c, name="fftwf_print_plan")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: arg1
+    end subroutine
+  end interface
+
+  interface fftw_set_timelimit
+    subroutine fftw_set_timelimit_(arg1) bind(c, name="fftw_set_timelimit")
+      use iso_c_binding
+      import
+      implicit none
+      real(c_double),value :: arg1
+    end subroutine
+  end interface
+
+  interface fftwf_set_timelimit
+    subroutine fftwf_set_timelimit_(arg1) bind(c, name="fftwf_set_timelimit")
+      use iso_c_binding
+      import
+      implicit none
+      real(c_double),value :: arg1
+    end subroutine
+  end interface
+
+  interface fftw_cost
+    function fftw_cost_(arg1) bind(c, name="fftw_cost")
+      use iso_c_binding
+      import
+      implicit none
+      real(c_double) :: fftw_cost_
+      type(c_ptr),value :: arg1
+    end function
+  end interface
+
+  interface fftwf_cost
+    function fftwf_cost_(arg1) bind(c, name="fftwf_cost")
+      use iso_c_binding
+      import
+      implicit none
+      real(c_double) :: fftwf_cost_
+      type(c_ptr),value :: arg1
+    end function
+  end interface
+
+  interface fftw_flops
+    subroutine fftw_flops_(arg1,arg2,arg3,arg4) bind(c, name="fftw_flops")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: arg1
+      type(c_ptr),value :: arg2
+      type(c_ptr),value :: arg3
+      type(c_ptr),value :: arg4
+    end subroutine
+  end interface
+
+  interface fftwf_flops
+    subroutine fftwf_flops_(arg1,arg2,arg3,arg4) bind(c, name="fftwf_flops")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr),value :: arg1
+      type(c_ptr),value :: arg2
+      type(c_ptr),value :: arg3
+      type(c_ptr),value :: arg4
+    end subroutine
+  end interface
+
+  interface fftw_cleanup
+    subroutine fftw_cleanup_() bind(c, name="fftw_cleanup")
+      use iso_c_binding
+      import
+      implicit none
+    end subroutine
+  end interface
+
+  interface fftwf_cleanup
+    subroutine fftwf_cleanup_() bind(c, name="fftwf_cleanup")
+      use iso_c_binding
+      import
+      implicit none
+    end subroutine
   end interface
 
 end module hipfftw

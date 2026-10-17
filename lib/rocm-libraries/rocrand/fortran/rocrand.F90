@@ -1,5 +1,5 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (C) 2026 Advanced Micro Devices, Inc. All rights reserved.
 !
 ! SPDX-License-Identifier: MIT
 !
@@ -80,7 +80,7 @@ module rocrand
     enumerator :: ROCRAND_SCRAMBLED_DIRECTION_VECTORS_64_JOEKUO6 = 104
   end enum
 
-  integer(c_int), parameter :: ROCRAND_VERSION = 500100
+  integer(c_int), parameter :: ROCRAND_VERSION = 500200
   integer(c_int), parameter :: ROCRAND_DEFAULT_MAX_BLOCK_SIZE = 256
 
 
@@ -92,295 +92,57 @@ module rocrand
   end type uint4
 
   type, bind(c) :: rocrand_discrete_distribution_st
-    integer(c_int) :: size !< Number of entries in the probability table
-    integer(c_int) :: offset !< The distribution can be offset
-    type(c_ptr) :: alias !< Alias table
-    type(c_ptr) :: probability !< Probability data for the alias table
-    type(c_ptr) :: cdf !< Cumulative distribution function
+    integer(c_int) :: size
+    integer(c_int) :: offset
+    type(c_ptr) :: alias
+    type(c_ptr) :: probability
+    type(c_ptr) :: cdf
   end type rocrand_discrete_distribution_st
 
 
-  interface
+  interface rocrand_create_generator
+    function rocrand_create_generator_(generator,rng_type) bind(c, name="rocrand_create_generator")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_create_generator_
+      type(c_ptr) :: generator
+      integer(c_int),value :: rng_type
+    end function
+  end interface
 
-    !---------------------------------------------
-    ! rocrand_create_generator
-    !---------------------------------------------
-    function rocrand_create_generator(generator, rng_type) &
-       result(create_generator) &
-       bind(C, name="rocrand_create_generator")
-       import :: c_ptr, ROCRAND_RNG_PSEUDO_DEFAULT, ROCRAND_STATUS_SUCCESS
-       type(c_ptr) :: generator
-       integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)), value :: rng_type
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: create_generator
-    end function rocrand_create_generator
+  interface rocrand_create_generator_host
+    function rocrand_create_generator_host_(generator,rng_type) &
+        bind(c, name="rocrand_create_generator_host")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_create_generator_host_
+      type(c_ptr) :: generator
+      integer(c_int),value :: rng_type
+    end function
+  end interface
 
-    !---------------------------------------------
-    ! rocrand_create_generator_host
-    !---------------------------------------------
-    function rocrand_create_generator_host(generator, rng_type) &
-       result(create_generator_host) &
-       bind(C, name="rocrand_create_generator_host")
-       import :: c_ptr, ROCRAND_RNG_PSEUDO_DEFAULT, ROCRAND_STATUS_SUCCESS
-       type(c_ptr) :: generator
-       integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)), value :: rng_type
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: create_generator_host
-    end function rocrand_create_generator_host
+  interface rocrand_create_generator_host_blocking
+    function rocrand_create_generator_host_blocking_(generator,rng_type) &
+        bind(c, name="rocrand_create_generator_host_blocking")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_create_generator_host_blocking_
+      type(c_ptr) :: generator
+      integer(c_int),value :: rng_type
+    end function
+  end interface
 
-    !---------------------------------------------
-    ! rocrand_create_generator_host_blocking
-    !---------------------------------------------
-    function rocrand_create_generator_host_blocking(generator, rng_type) &
-       result(create_generator_host_blocking) &
-       bind(C, name="rocrand_create_generator_host_blocking")
-       import :: c_ptr, ROCRAND_RNG_PSEUDO_DEFAULT, ROCRAND_STATUS_SUCCESS
-       type(c_ptr) :: generator
-       integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)), value :: rng_type
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: create_generator_host_blocking
-    end function rocrand_create_generator_host_blocking
-
-    !---------------------------------------------
-    ! rocrand_destroy_generator
-    !---------------------------------------------
-    function rocrand_destroy_generator(generator) &
-       result(destroy_generator) &
-       bind(C, name="rocrand_destroy_generator")
-       import :: c_ptr, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: destroy_generator
-    end function rocrand_destroy_generator
-
-    !---------------------------------------------
-    ! rocrand_generate_char
-    !---------------------------------------------
-    function rocrand_generate_char(generator, output_data, n) &
-       result(generate_char) &
-       bind(C, name="rocrand_generate_char")
-       import :: c_ptr, c_size_t, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(c_ptr), value :: output_data
-       integer(c_size_t), value :: n
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: generate_char
-    end function rocrand_generate_char
-
-    !---------------------------------------------
-    ! rocrand_generate_short
-    !---------------------------------------------
-    function rocrand_generate_short(generator, output_data, n) &
-       result(generate_short) &
-       bind(C, name="rocrand_generate_short")
-       import :: c_ptr, c_size_t, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(c_ptr), value :: output_data
-       integer(c_size_t), value :: n
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: generate_short
-    end function rocrand_generate_short
-
-    !---------------------------------------------
-    ! rocrand_generate_uniform_half
-    !---------------------------------------------
-    function rocrand_generate_uniform_half(generator, output_data, n) &
-       result(generate_uniform_half) &
-       bind(C, name="rocrand_generate_uniform_half")
-       import :: c_ptr, c_size_t, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(c_ptr), value :: output_data
-       integer(c_size_t), value :: n
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: generate_uniform_half
-    end function rocrand_generate_uniform_half
-
-    !---------------------------------------------
-    ! rocrand_generate_normal_half
-    !---------------------------------------------
-    function rocrand_generate_normal_half(generator, output_data, n, mean, stddev) &
-       result(generate_normal_half) &
-       bind(C, name="rocrand_generate_normal_half")
-       import :: c_ptr, c_size_t, c_short, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(c_ptr), value :: output_data
-       integer(c_size_t), value :: n
-       integer(c_short), value :: mean
-       integer(c_short), value :: stddev
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: generate_normal_half
-    end function rocrand_generate_normal_half
-
-    !---------------------------------------------
-    ! rocrand_generate_log_normal_half
-    !---------------------------------------------
-    function rocrand_generate_log_normal_half(generator, output_data, n, mean, stddev) &
-       result(generate_log_normal_half) &
-       bind(C, name="rocrand_generate_log_normal_half")
-       import :: c_ptr, c_size_t, c_short, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(c_ptr), value :: output_data
-       integer(c_size_t), value :: n
-       integer(c_short), value :: mean
-       integer(c_short), value :: stddev
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: generate_log_normal_half
-    end function rocrand_generate_log_normal_half
-
-    !---------------------------------------------
-    ! rocrand_initialize_generator
-    !---------------------------------------------
-    function rocrand_initialize_generator(generator) &
-       result(initialize_generator) &
-       bind(C, name="rocrand_initialize_generator")
-       import :: c_ptr, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: initialize_generator
-    end function rocrand_initialize_generator
-
-    !---------------------------------------------
-    ! rocrand_set_stream
-    !---------------------------------------------
-    function rocrand_set_stream(generator, stream) &
-       result(set_stream) &
-       bind(C, name="rocrand_set_stream")
-       import :: c_ptr, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(c_ptr), value :: stream
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: set_stream
-    end function rocrand_set_stream
-
-    !---------------------------------------------
-    ! rocrand_set_seed
-    !---------------------------------------------
-    function rocrand_set_seed(generator, seed) &
-       result(set_seed) &
-       bind(C, name="rocrand_set_seed")
-       import :: c_ptr, c_int64_t, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       integer(c_int64_t), value :: seed
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: set_seed
-    end function rocrand_set_seed
-
-    !---------------------------------------------
-    ! rocrand_set_seed_uint4
-    !---------------------------------------------
-    function rocrand_set_seed_uint4(generator, seed) &
-       result(set_seed_uint4) &
-       bind(C, name="rocrand_set_seed_uint4")
-       import :: c_ptr, uint4, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(uint4), value :: seed
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: set_seed_uint4
-    end function rocrand_set_seed_uint4
-
-    !---------------------------------------------
-    ! rocrand_set_offset
-    !---------------------------------------------
-    function rocrand_set_offset(generator, offset) &
-       result(set_offset) &
-       bind(C, name="rocrand_set_offset")
-       import :: c_ptr, c_int64_t, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       integer(c_int64_t), value :: offset
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: set_offset
-    end function rocrand_set_offset
-
-    !---------------------------------------------
-    ! rocrand_set_ordering
-    !---------------------------------------------
-    function rocrand_set_ordering(generator, order) &
-       result(set_ordering) &
-       bind(C, name="rocrand_set_ordering")
-       import :: c_ptr, ROCRAND_ORDERING_PSEUDO_BEST, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       integer(kind(ROCRAND_ORDERING_PSEUDO_BEST)), value :: order
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: set_ordering
-    end function rocrand_set_ordering
-
-    !---------------------------------------------
-    ! rocrand_set_quasi_random_generator_dimensions
-    !---------------------------------------------
-    function rocrand_set_quasi_random_generator_dimensions(generator, dimensions) &
-       result(set_quasi_random_generator_dimensions) &
-       bind(C, name="rocrand_set_quasi_random_generator_dimensions")
-       import :: c_ptr, c_int, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       integer(c_int), value :: dimensions
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: set_quasi_random_generator_dimensions
-    end function rocrand_set_quasi_random_generator_dimensions
-
-    !---------------------------------------------
-    ! rocrand_get_version
-    !---------------------------------------------
-    function rocrand_get_version(version) &
-       result(get_version) &
-       bind(C, name="rocrand_get_version")
-       import :: c_int, ROCRAND_STATUS_SUCCESS
-       integer(c_int) :: version
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: get_version
-    end function rocrand_get_version
-
-    !---------------------------------------------
-    ! rocrand_create_poisson_distribution
-    !---------------------------------------------
-    function rocrand_create_poisson_distribution(lambda, discrete_distribution) &
-       result(create_poisson_distribution) &
-       bind(C, name="rocrand_create_poisson_distribution")
-       import :: c_double, c_ptr, ROCRAND_STATUS_SUCCESS
-       real(c_double), value :: lambda
-       type(c_ptr) :: discrete_distribution
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: create_poisson_distribution
-    end function rocrand_create_poisson_distribution
-
-    !---------------------------------------------
-    ! rocrand_destroy_discrete_distribution
-    !---------------------------------------------
-    function rocrand_destroy_discrete_distribution(discrete_distribution) &
-       result(destroy_discrete_distribution) &
-       bind(C, name="rocrand_destroy_discrete_distribution")
-       import :: c_ptr, ROCRAND_STATUS_SUCCESS
-       type(c_ptr), value :: discrete_distribution
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: destroy_discrete_distribution
-    end function rocrand_destroy_discrete_distribution
-
-    !---------------------------------------------
-    ! rocrand_get_direction_vectors32
-    !---------------------------------------------
-    function rocrand_get_direction_vectors32(vectors, set) &
-       result(get_direction_vectors32) &
-       bind(C, name="rocrand_get_direction_vectors32")
-       import :: c_ptr, ROCRAND_DIRECTION_VECTORS_32_JOEKUO6, ROCRAND_STATUS_SUCCESS
-       type(c_ptr) :: vectors
-       integer(kind(ROCRAND_DIRECTION_VECTORS_32_JOEKUO6)), value :: set
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: get_direction_vectors32
-    end function rocrand_get_direction_vectors32
-
-    !---------------------------------------------
-    ! rocrand_get_direction_vectors64
-    !---------------------------------------------
-    function rocrand_get_direction_vectors64(vectors, set) &
-       result(get_direction_vectors64) &
-       bind(C, name="rocrand_get_direction_vectors64")
-       import :: c_ptr, ROCRAND_DIRECTION_VECTORS_32_JOEKUO6, ROCRAND_STATUS_SUCCESS
-       type(c_ptr) :: vectors
-       integer(kind(ROCRAND_DIRECTION_VECTORS_32_JOEKUO6)), value :: set
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: get_direction_vectors64
-    end function rocrand_get_direction_vectors64
-
-    !---------------------------------------------
-    ! rocrand_get_scramble_constants32
-    !---------------------------------------------
-    function rocrand_get_scramble_constants32(constants) &
-       result(get_scramble_constants32) &
-       bind(C, name="rocrand_get_scramble_constants32")
-       import :: c_ptr, ROCRAND_STATUS_SUCCESS
-       type(c_ptr) :: constants
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: get_scramble_constants32
-    end function rocrand_get_scramble_constants32
-
-    !---------------------------------------------
-    ! rocrand_get_scramble_constants64
-    !---------------------------------------------
-    function rocrand_get_scramble_constants64(constants) &
-       result(get_scramble_constants64) &
-       bind(C, name="rocrand_get_scramble_constants64")
-       import :: c_ptr, ROCRAND_STATUS_SUCCESS
-       type(c_ptr) :: constants
-       integer(kind(ROCRAND_STATUS_SUCCESS)) :: get_scramble_constants64
-    end function rocrand_get_scramble_constants64
-
+  interface rocrand_destroy_generator
+    function rocrand_destroy_generator_(generator) bind(c, name="rocrand_destroy_generator")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_destroy_generator_
+      type(c_ptr),value :: generator
+    end function
   end interface
 
   interface rocrand_generate
@@ -388,7 +150,7 @@ module rocrand
       use iso_c_binding
       import
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_
+      integer(c_int) :: rocrand_generate_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -411,7 +173,7 @@ module rocrand
       use iso_c_binding
       import
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_
+      integer(c_int) :: rocrand_generate_long_long_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -428,13 +190,37 @@ module rocrand
 #endif
   end interface
 
+  interface rocrand_generate_char
+    function rocrand_generate_char_(generator,output_data,n) bind(c, name="rocrand_generate_char")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_generate_char_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
+  interface rocrand_generate_short
+    function rocrand_generate_short_(generator,output_data,n) bind(c, name="rocrand_generate_short")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_generate_short_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
   interface rocrand_generate_uniform
     function rocrand_generate_uniform_(generator,output_data,n) &
         bind(c, name="rocrand_generate_uniform")
       use iso_c_binding
       import
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_
+      integer(c_int) :: rocrand_generate_uniform_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -457,7 +243,7 @@ module rocrand
       use iso_c_binding
       import
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_
+      integer(c_int) :: rocrand_generate_uniform_double_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -474,13 +260,26 @@ module rocrand
 #endif
   end interface
 
+  interface rocrand_generate_uniform_half
+    function rocrand_generate_uniform_half_(generator,output_data,n) &
+        bind(c, name="rocrand_generate_uniform_half")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_generate_uniform_half_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
   interface rocrand_generate_normal
     function rocrand_generate_normal_(generator,output_data,n,mean,stddev) &
         bind(c, name="rocrand_generate_normal")
       use iso_c_binding
       import
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_
+      integer(c_int) :: rocrand_generate_normal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -505,7 +304,7 @@ module rocrand
       use iso_c_binding
       import
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_
+      integer(c_int) :: rocrand_generate_normal_double_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -524,13 +323,28 @@ module rocrand
 #endif
   end interface
 
+  interface rocrand_generate_normal_half
+    function rocrand_generate_normal_half_(generator,output_data,n,mean,stddev) &
+        bind(c, name="rocrand_generate_normal_half")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_generate_normal_half_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+      integer(c_short),value :: mean
+      integer(c_short),value :: stddev
+    end function
+  end interface
+
   interface rocrand_generate_log_normal
     function rocrand_generate_log_normal_(generator,output_data,n,mean,stddev) &
         bind(c, name="rocrand_generate_log_normal")
       use iso_c_binding
       import
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_
+      integer(c_int) :: rocrand_generate_log_normal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -555,7 +369,7 @@ module rocrand
       use iso_c_binding
       import
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_
+      integer(c_int) :: rocrand_generate_log_normal_double_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -574,13 +388,28 @@ module rocrand
 #endif
   end interface
 
+  interface rocrand_generate_log_normal_half
+    function rocrand_generate_log_normal_half_(generator,output_data,n,mean,stddev) &
+        bind(c, name="rocrand_generate_log_normal_half")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_generate_log_normal_half_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+      integer(c_short),value :: mean
+      integer(c_short),value :: stddev
+    end function
+  end interface
+
   interface rocrand_generate_poisson
     function rocrand_generate_poisson_(generator,output_data,n,lambda) &
         bind(c, name="rocrand_generate_poisson")
       use iso_c_binding
       import
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_
+      integer(c_int) :: rocrand_generate_poisson_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -598,6 +427,107 @@ module rocrand
 #endif
   end interface
 
+  interface rocrand_initialize_generator
+    function rocrand_initialize_generator_(generator) bind(c, name="rocrand_initialize_generator")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_initialize_generator_
+      type(c_ptr),value :: generator
+    end function
+  end interface
+
+  interface rocrand_set_stream
+    function rocrand_set_stream_(generator,stream) bind(c, name="rocrand_set_stream")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_set_stream_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface rocrand_set_seed
+    function rocrand_set_seed_(generator,seed) bind(c, name="rocrand_set_seed")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_set_seed_
+      type(c_ptr),value :: generator
+      integer(c_int64_t),value :: seed
+    end function
+  end interface
+
+  interface rocrand_set_seed_uint4
+    function rocrand_set_seed_uint4_(generator,seed) bind(c, name="rocrand_set_seed_uint4")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_set_seed_uint4_
+      type(c_ptr),value :: generator
+      type(uint4),value :: seed
+    end function
+  end interface
+
+  interface rocrand_set_offset
+    function rocrand_set_offset_(generator,offset) bind(c, name="rocrand_set_offset")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_set_offset_
+      type(c_ptr),value :: generator
+      integer(c_int64_t),value :: offset
+    end function
+  end interface
+
+  interface rocrand_set_ordering
+    function rocrand_set_ordering_(generator,order) bind(c, name="rocrand_set_ordering")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_set_ordering_
+      type(c_ptr),value :: generator
+      integer(c_int),value :: order
+    end function
+  end interface
+
+  interface rocrand_set_quasi_random_generator_dimensions
+    function rocrand_set_quasi_random_generator_dimensions_(generator,dimensions) &
+        bind(c, name="rocrand_set_quasi_random_generator_dimensions")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_set_quasi_random_generator_dimensions_
+      type(c_ptr),value :: generator
+      integer(c_int),value :: dimensions
+    end function
+  end interface
+
+  interface rocrand_get_version
+    function rocrand_get_version_(version) bind(c, name="rocrand_get_version")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_get_version_
+      type(c_ptr),value :: version
+    end function
+
+    module procedure rocrand_get_version_typed
+  end interface
+
+  interface rocrand_create_poisson_distribution
+    function rocrand_create_poisson_distribution_(lambda,discrete_distribution) &
+        bind(c, name="rocrand_create_poisson_distribution")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_create_poisson_distribution_
+      real(c_double),value :: lambda
+      type(c_ptr) :: discrete_distribution
+    end function
+  end interface
+
   interface rocrand_create_discrete_distribution
     function rocrand_create_discrete_distribution_(probabilities,mySize,offset, &
         discrete_distribution) &
@@ -605,7 +535,7 @@ module rocrand
       use iso_c_binding
       import
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_discrete_distribution_
+      integer(c_int) :: rocrand_create_discrete_distribution_
       type(c_ptr),value :: probabilities
       integer(c_int),value :: mySize
       integer(c_int),value :: offset
@@ -623,17 +553,106 @@ module rocrand
 #endif
   end interface
 
+  interface rocrand_destroy_discrete_distribution
+    function rocrand_destroy_discrete_distribution_(discrete_distribution) &
+        bind(c, name="rocrand_destroy_discrete_distribution")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_destroy_discrete_distribution_
+      type(c_ptr),value :: discrete_distribution
+    end function
+  end interface
+
+  interface rocrand_get_direction_vectors32
+    function rocrand_get_direction_vectors32_(vectors,set) &
+        bind(c, name="rocrand_get_direction_vectors32")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_get_direction_vectors32_
+      type(c_ptr) :: vectors
+      integer(c_int),value :: set
+    end function
+  end interface
+
+  interface rocrand_get_direction_vectors64
+    function rocrand_get_direction_vectors64_(vectors,set) &
+        bind(c, name="rocrand_get_direction_vectors64")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_get_direction_vectors64_
+      type(c_ptr) :: vectors
+      integer(c_int),value :: set
+    end function
+  end interface
+
+  interface rocrand_get_scramble_constants32
+    function rocrand_get_scramble_constants32_(constants) &
+        bind(c, name="rocrand_get_scramble_constants32")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_get_scramble_constants32_
+      type(c_ptr) :: constants
+    end function
+  end interface
+
+  interface rocrand_get_scramble_constants64
+    function rocrand_get_scramble_constants64_(constants) &
+        bind(c, name="rocrand_get_scramble_constants64")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocrand_get_scramble_constants64_
+      type(c_ptr) :: constants
+    end function
+  end interface
+
 
   contains
 
     subroutine rocrandCheck(status)
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: status
+      character(len=:), allocatable :: name
       if (status /= ROCRAND_STATUS_SUCCESS) then
-        write (*, *) "ROCRAND ERROR: code = ", status
+        select case (status)
+        case (ROCRAND_STATUS_VERSION_MISMATCH)
+          name = "ROCRAND_STATUS_VERSION_MISMATCH"
+        case (ROCRAND_STATUS_NOT_CREATED)
+          name = "ROCRAND_STATUS_NOT_CREATED"
+        case (ROCRAND_STATUS_ALLOCATION_FAILED)
+          name = "ROCRAND_STATUS_ALLOCATION_FAILED"
+        case (ROCRAND_STATUS_TYPE_ERROR)
+          name = "ROCRAND_STATUS_TYPE_ERROR"
+        case (ROCRAND_STATUS_OUT_OF_RANGE)
+          name = "ROCRAND_STATUS_OUT_OF_RANGE"
+        case (ROCRAND_STATUS_LENGTH_NOT_MULTIPLE)
+          name = "ROCRAND_STATUS_LENGTH_NOT_MULTIPLE"
+        case (ROCRAND_STATUS_DOUBLE_PRECISION_REQUIRED)
+          name = "ROCRAND_STATUS_DOUBLE_PRECISION_REQUIRED"
+        case (ROCRAND_STATUS_LAUNCH_FAILURE)
+          name = "ROCRAND_STATUS_LAUNCH_FAILURE"
+        case (ROCRAND_STATUS_INTERNAL_ERROR)
+          name = "ROCRAND_STATUS_INTERNAL_ERROR"
+        case default
+          name = "unknown status"
+        end select
+        write (*, "(a,i0,a)") "ROCRAND ERROR: " // name // " (code ", status, ")"
         stop 1
       end if
     end subroutine rocrandCheck
+    function rocrand_get_version_typed(version)
+      use iso_c_binding
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_version_typed
+      integer(c_int),target :: version
+      !
+      rocrand_get_version_typed = rocrand_get_version_(c_loc(version))
+    end function
+
 
 #if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
@@ -642,7 +661,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -654,7 +673,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target :: output_data
       integer(c_size_t) :: n
       !
@@ -665,7 +684,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -678,7 +697,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -691,7 +710,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target :: output_data
       integer(c_size_t) :: n
       !
@@ -703,7 +722,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -717,7 +736,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -730,7 +749,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       !
@@ -741,7 +760,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -754,7 +773,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -767,7 +786,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       !
@@ -779,7 +798,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -793,7 +812,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -808,7 +827,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -822,7 +841,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -838,7 +857,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -853,7 +872,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -867,7 +886,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -883,7 +902,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -898,7 +917,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -912,7 +931,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -928,7 +947,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -943,7 +962,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -957,7 +976,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -973,7 +992,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda
@@ -987,7 +1006,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda
@@ -1000,7 +1019,7 @@ module rocrand
       use iso_c_binding
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda

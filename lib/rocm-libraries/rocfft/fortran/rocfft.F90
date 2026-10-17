@@ -1,5 +1,5 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (C) 2026 Advanced Micro Devices, Inc. All rights reserved.
 !
 ! SPDX-License-Identifier: MIT
 !
@@ -78,391 +78,22 @@ module rocfft
   end enum
 
 
-  interface
+  interface rocfft_setup
+    function rocfft_setup_() bind(c, name="rocfft_setup")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_setup_
+    end function
+  end interface
 
-    !---------------------------------------------
-    ! rocfft_setup
-    !---------------------------------------------
-    function rocfft_setup() &
-       result(setup) &
-       bind(C, name="rocfft_setup")
-       import :: rocfft_status_success
-       integer(kind(rocfft_status_success)) :: setup
-    end function rocfft_setup
-
-    !---------------------------------------------
-    ! rocfft_cleanup
-    !---------------------------------------------
-    function rocfft_cleanup() &
-       result(cleanup) &
-       bind(C, name="rocfft_cleanup")
-       import :: rocfft_status_success
-       integer(kind(rocfft_status_success)) :: cleanup
-    end function rocfft_cleanup
-
-    !---------------------------------------------
-    ! rocfft_execute
-    !---------------------------------------------
-    function rocfft_execute(plan, in_buffer, out_buffer, myInfo) &
-       result(execute) &
-       bind(C, name="rocfft_execute")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr), value :: plan
-       type(c_ptr) :: in_buffer
-       type(c_ptr) :: out_buffer
-       type(c_ptr), value :: myInfo
-       integer(kind(rocfft_status_success)) :: execute
-    end function rocfft_execute
-
-    !---------------------------------------------
-    ! rocfft_plan_destroy
-    !---------------------------------------------
-    function rocfft_plan_destroy(plan) &
-       result(plan_destroy) &
-       bind(C, name="rocfft_plan_destroy")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr), value :: plan
-       integer(kind(rocfft_status_success)) :: plan_destroy
-    end function rocfft_plan_destroy
-
-    !---------------------------------------------
-    ! rocfft_plan_description_set_scale_factor
-    !---------------------------------------------
-    function rocfft_plan_description_set_scale_factor(description, scale_factor) &
-       result(plan_description_set_scale_factor) &
-       bind(C, name="rocfft_plan_description_set_scale_factor")
-       import :: c_ptr, c_double, rocfft_status_success
-       type(c_ptr), value :: description
-       real(c_double), value :: scale_factor
-       integer(kind(rocfft_status_success)) :: plan_description_set_scale_factor
-    end function rocfft_plan_description_set_scale_factor
-
-    !---------------------------------------------
-    ! rocfft_field_create
-    !---------------------------------------------
-    function rocfft_field_create(field) &
-       result(field_create) &
-       bind(C, name="rocfft_field_create")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr) :: field
-       integer(kind(rocfft_status_success)) :: field_create
-    end function rocfft_field_create
-
-    !---------------------------------------------
-    ! rocfft_field_destroy
-    !---------------------------------------------
-    function rocfft_field_destroy(field) &
-       result(field_destroy) &
-       bind(C, name="rocfft_field_destroy")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr), value :: field
-       integer(kind(rocfft_status_success)) :: field_destroy
-    end function rocfft_field_destroy
-
-    !---------------------------------------------
-    ! rocfft_get_version_string
-    !---------------------------------------------
-    function rocfft_get_version_string(buf, len) &
-       result(get_version_string) &
-       bind(C, name="rocfft_get_version_string")
-       import :: c_ptr, c_size_t, rocfft_status_success
-       type(c_ptr), value :: buf
-       integer(c_size_t), value :: len
-       integer(kind(rocfft_status_success)) :: get_version_string
-    end function rocfft_get_version_string
-
-    !---------------------------------------------
-    ! rocfft_plan_description_set_comm
-    !---------------------------------------------
-    function rocfft_plan_description_set_comm(description, comm_type, comm_handle) &
-       result(plan_description_set_comm) &
-       bind(C, name="rocfft_plan_description_set_comm")
-       import :: c_ptr, rocfft_comm_none, rocfft_status_success
-       type(c_ptr), value :: description
-       integer(kind(rocfft_comm_none)), value :: comm_type
-       type(c_ptr), value :: comm_handle
-       integer(kind(rocfft_status_success)) :: plan_description_set_comm
-    end function rocfft_plan_description_set_comm
-
-    !---------------------------------------------
-    ! rocfft_plan_description_set_load_callback
-    !---------------------------------------------
-    function rocfft_plan_description_set_load_callback(description, symbol_name, bitcode_data, &
-                                                       bitcode_len_bytes, shared_mem_bytes) &
-       result(plan_description_set_load_callback) &
-       bind(C, name="rocfft_plan_description_set_load_callback")
-       import :: c_ptr, c_size_t, rocfft_status_success
-       type(c_ptr), value :: description
-       type(c_ptr), value :: symbol_name
-       type(c_ptr), value :: bitcode_data
-       integer(c_size_t), value :: bitcode_len_bytes
-       integer(c_size_t), value :: shared_mem_bytes
-       integer(kind(rocfft_status_success)) :: plan_description_set_load_callback
-    end function rocfft_plan_description_set_load_callback
-
-    !---------------------------------------------
-    ! rocfft_plan_description_set_store_callback
-    !---------------------------------------------
-    function rocfft_plan_description_set_store_callback(description, symbol_name, bitcode_data, &
-                                                        bitcode_len_bytes, shared_mem_bytes) &
-       result(plan_description_set_store_callback) &
-       bind(C, name="rocfft_plan_description_set_store_callback")
-       import :: c_ptr, c_size_t, rocfft_status_success
-       type(c_ptr), value :: description
-       type(c_ptr), value :: symbol_name
-       type(c_ptr), value :: bitcode_data
-       integer(c_size_t), value :: bitcode_len_bytes
-       integer(c_size_t), value :: shared_mem_bytes
-       integer(kind(rocfft_status_success)) :: plan_description_set_store_callback
-    end function rocfft_plan_description_set_store_callback
-
-    !---------------------------------------------
-    ! rocfft_brick_create
-    !---------------------------------------------
-    function rocfft_brick_create(brick, field_lower, field_upper, brick_stride, dim_with_batch, &
-                                 deviceID) &
-       result(brick_create) &
-       bind(C, name="rocfft_brick_create")
-       import :: c_ptr, c_size_t, c_int, rocfft_status_success
-       type(c_ptr) :: brick
-       type(c_ptr), value :: field_lower
-       type(c_ptr), value :: field_upper
-       type(c_ptr), value :: brick_stride
-       integer(c_size_t), value :: dim_with_batch
-       integer(c_int), value :: deviceID
-       integer(kind(rocfft_status_success)) :: brick_create
-    end function rocfft_brick_create
-
-    !---------------------------------------------
-    ! rocfft_brick_destroy
-    !---------------------------------------------
-    function rocfft_brick_destroy(brick) &
-       result(brick_destroy) &
-       bind(C, name="rocfft_brick_destroy")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr), value :: brick
-       integer(kind(rocfft_status_success)) :: brick_destroy
-    end function rocfft_brick_destroy
-
-    !---------------------------------------------
-    ! rocfft_field_add_brick
-    !---------------------------------------------
-    function rocfft_field_add_brick(field, brick) &
-       result(field_add_brick) &
-       bind(C, name="rocfft_field_add_brick")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr), value :: field
-       type(c_ptr), value :: brick
-       integer(kind(rocfft_status_success)) :: field_add_brick
-    end function rocfft_field_add_brick
-
-    !---------------------------------------------
-    ! rocfft_plan_description_add_infield
-    !---------------------------------------------
-    function rocfft_plan_description_add_infield(description, field) &
-       result(plan_description_add_infield) &
-       bind(C, name="rocfft_plan_description_add_infield")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr), value :: description
-       type(c_ptr), value :: field
-       integer(kind(rocfft_status_success)) :: plan_description_add_infield
-    end function rocfft_plan_description_add_infield
-
-    !---------------------------------------------
-    ! rocfft_plan_description_add_outfield
-    !---------------------------------------------
-    function rocfft_plan_description_add_outfield(description, field) &
-       result(plan_description_add_outfield) &
-       bind(C, name="rocfft_plan_description_add_outfield")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr), value :: description
-       type(c_ptr), value :: field
-       integer(kind(rocfft_status_success)) :: plan_description_add_outfield
-    end function rocfft_plan_description_add_outfield
-
-    !---------------------------------------------
-    ! rocfft_plan_get_work_buffer_size
-    !---------------------------------------------
-    function rocfft_plan_get_work_buffer_size(plan, size_in_bytes) &
-       result(plan_get_work_buffer_size) &
-       bind(C, name="rocfft_plan_get_work_buffer_size")
-       import :: c_ptr, c_size_t, rocfft_status_success
-       type(c_ptr), value :: plan
-       integer(c_size_t) :: size_in_bytes
-       integer(kind(rocfft_status_success)) :: plan_get_work_buffer_size
-    end function rocfft_plan_get_work_buffer_size
-
-    !---------------------------------------------
-    ! rocfft_plan_get_print
-    !---------------------------------------------
-    function rocfft_plan_get_print(plan) &
-       result(plan_get_print) &
-       bind(C, name="rocfft_plan_get_print")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr), value :: plan
-       integer(kind(rocfft_status_success)) :: plan_get_print
-    end function rocfft_plan_get_print
-
-    !---------------------------------------------
-    ! rocfft_plan_description_create
-    !---------------------------------------------
-    function rocfft_plan_description_create(description) &
-       result(plan_description_create) &
-       bind(C, name="rocfft_plan_description_create")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr) :: description
-       integer(kind(rocfft_status_success)) :: plan_description_create
-    end function rocfft_plan_description_create
-
-    !---------------------------------------------
-    ! rocfft_plan_description_destroy
-    !---------------------------------------------
-    function rocfft_plan_description_destroy(description) &
-       result(plan_description_destroy) &
-       bind(C, name="rocfft_plan_description_destroy")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr), value :: description
-       integer(kind(rocfft_status_success)) :: plan_description_destroy
-    end function rocfft_plan_description_destroy
-
-    !---------------------------------------------
-    ! rocfft_execution_info_create
-    !---------------------------------------------
-    function rocfft_execution_info_create(myInfo) &
-       result(execution_info_create) &
-       bind(C, name="rocfft_execution_info_create")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr) :: myInfo
-       integer(kind(rocfft_status_success)) :: execution_info_create
-    end function rocfft_execution_info_create
-
-    !---------------------------------------------
-    ! rocfft_execution_info_destroy
-    !---------------------------------------------
-    function rocfft_execution_info_destroy(myInfo) &
-       result(execution_info_destroy) &
-       bind(C, name="rocfft_execution_info_destroy")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr), value :: myInfo
-       integer(kind(rocfft_status_success)) :: execution_info_destroy
-    end function rocfft_execution_info_destroy
-
-    !---------------------------------------------
-    ! rocfft_execution_info_set_work_buffer
-    !---------------------------------------------
-    function rocfft_execution_info_set_work_buffer(myInfo, work_buffer, size_in_bytes) &
-       result(execution_info_set_work_buffer) &
-       bind(C, name="rocfft_execution_info_set_work_buffer")
-       import :: c_ptr, c_size_t, rocfft_status_success
-       type(c_ptr), value :: myInfo
-       type(c_ptr), value :: work_buffer
-       integer(c_size_t), value :: size_in_bytes
-       integer(kind(rocfft_status_success)) :: execution_info_set_work_buffer
-    end function rocfft_execution_info_set_work_buffer
-
-    !---------------------------------------------
-    ! rocfft_execution_info_set_stream
-    !---------------------------------------------
-    function rocfft_execution_info_set_stream(myInfo, stream) &
-       result(execution_info_set_stream) &
-       bind(C, name="rocfft_execution_info_set_stream")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr), value :: myInfo
-       type(c_ptr), value :: stream
-       integer(kind(rocfft_status_success)) :: execution_info_set_stream
-    end function rocfft_execution_info_set_stream
-
-    !---------------------------------------------
-    ! rocfft_execution_info_set_load_callback
-    !---------------------------------------------
-    function rocfft_execution_info_set_load_callback(myInfo, cb_functions, cb_data, &
-                                                     shared_mem_bytes) &
-       result(execution_info_set_load_callback) &
-       bind(C, name="rocfft_execution_info_set_load_callback")
-       import :: c_ptr, c_size_t, rocfft_status_success
-       type(c_ptr), value :: myInfo
-       type(c_ptr), value :: cb_functions
-       type(c_ptr), value :: cb_data
-       integer(c_size_t), value :: shared_mem_bytes
-       integer(kind(rocfft_status_success)) :: execution_info_set_load_callback
-    end function rocfft_execution_info_set_load_callback
-
-    !---------------------------------------------
-    ! rocfft_execution_info_set_load_callback_data
-    !---------------------------------------------
-    function rocfft_execution_info_set_load_callback_data(myInfo, cb_data, count) &
-       result(execution_info_set_load_callback_data) &
-       bind(C, name="rocfft_execution_info_set_load_callback_data")
-       import :: c_ptr, c_size_t, rocfft_status_success
-       type(c_ptr), value :: myInfo
-       type(c_ptr) :: cb_data
-       integer(c_size_t), value :: count
-       integer(kind(rocfft_status_success)) :: execution_info_set_load_callback_data
-    end function rocfft_execution_info_set_load_callback_data
-
-    !---------------------------------------------
-    ! rocfft_execution_info_set_store_callback
-    !---------------------------------------------
-    function rocfft_execution_info_set_store_callback(myInfo, cb_functions, cb_data, &
-                                                      shared_mem_bytes) &
-       result(execution_info_set_store_callback) &
-       bind(C, name="rocfft_execution_info_set_store_callback")
-       import :: c_ptr, c_size_t, rocfft_status_success
-       type(c_ptr), value :: myInfo
-       type(c_ptr), value :: cb_functions
-       type(c_ptr), value :: cb_data
-       integer(c_size_t), value :: shared_mem_bytes
-       integer(kind(rocfft_status_success)) :: execution_info_set_store_callback
-    end function rocfft_execution_info_set_store_callback
-
-    !---------------------------------------------
-    ! rocfft_execution_info_set_store_callback_data
-    !---------------------------------------------
-    function rocfft_execution_info_set_store_callback_data(myInfo, cb_data, count) &
-       result(execution_info_set_store_callback_data) &
-       bind(C, name="rocfft_execution_info_set_store_callback_data")
-       import :: c_ptr, c_size_t, rocfft_status_success
-       type(c_ptr), value :: myInfo
-       type(c_ptr) :: cb_data
-       integer(c_size_t), value :: count
-       integer(kind(rocfft_status_success)) :: execution_info_set_store_callback_data
-    end function rocfft_execution_info_set_store_callback_data
-
-    !---------------------------------------------
-    ! rocfft_cache_serialize
-    !---------------------------------------------
-    function rocfft_cache_serialize(buffer, buffer_len_bytes) &
-       result(cache_serialize) &
-       bind(C, name="rocfft_cache_serialize")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr) :: buffer
-       type(c_ptr), value :: buffer_len_bytes
-       integer(kind(rocfft_status_success)) :: cache_serialize
-    end function rocfft_cache_serialize
-
-    !---------------------------------------------
-    ! rocfft_cache_buffer_free
-    !---------------------------------------------
-    function rocfft_cache_buffer_free(buffer) &
-       result(cache_buffer_free) &
-       bind(C, name="rocfft_cache_buffer_free")
-       import :: c_ptr, rocfft_status_success
-       type(c_ptr), value :: buffer
-       integer(kind(rocfft_status_success)) :: cache_buffer_free
-    end function rocfft_cache_buffer_free
-
-    !---------------------------------------------
-    ! rocfft_cache_deserialize
-    !---------------------------------------------
-    function rocfft_cache_deserialize(buffer, buffer_len_bytes) &
-       result(cache_deserialize) &
-       bind(C, name="rocfft_cache_deserialize")
-       import :: c_ptr, c_size_t, rocfft_status_success
-       type(c_ptr), value :: buffer
-       integer(c_size_t), value :: buffer_len_bytes
-       integer(kind(rocfft_status_success)) :: cache_deserialize
-    end function rocfft_cache_deserialize
-
+  interface rocfft_cleanup
+    function rocfft_cleanup_() bind(c, name="rocfft_cleanup")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_cleanup_
+    end function
   end interface
 
   interface rocfft_plan_create
@@ -472,11 +103,11 @@ module rocfft
       use iso_c_binding
       import
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_create_
+      integer(c_int) :: rocfft_plan_create_
       type(c_ptr) :: plan
-      integer(kind(rocfft_placement_inplace)),value :: placement
-      integer(kind(rocfft_transform_type_complex_forward)),value :: transform_type
-      integer(kind(rocfft_precision_single)),value :: myPrecision
+      integer(c_int),value :: placement
+      integer(c_int),value :: transform_type
+      integer(c_int),value :: myPrecision
       integer(c_size_t),value :: dimensions
       type(c_ptr),value :: lengths
       integer(c_size_t),value :: number_of_transforms
@@ -494,6 +125,41 @@ module rocfft
 #endif
   end interface
 
+  interface rocfft_execute
+    function rocfft_execute_(plan,in_buffer,out_buffer,myInfo) bind(c, name="rocfft_execute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_execute_
+      type(c_ptr),value :: plan
+      type(c_ptr) :: in_buffer
+      type(c_ptr) :: out_buffer
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocfft_plan_destroy
+    function rocfft_plan_destroy_(plan) bind(c, name="rocfft_plan_destroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_plan_destroy_
+      type(c_ptr),value :: plan
+    end function
+  end interface
+
+  interface rocfft_plan_description_set_scale_factor
+    function rocfft_plan_description_set_scale_factor_(description,scale_factor) &
+        bind(c, name="rocfft_plan_description_set_scale_factor")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_plan_description_set_scale_factor_
+      type(c_ptr),value :: description
+      real(c_double),value :: scale_factor
+    end function
+  end interface
+
   interface rocfft_plan_description_set_data_layout
     function rocfft_plan_description_set_data_layout_(description,in_array_type,out_array_type, &
         in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size, &
@@ -502,10 +168,10 @@ module rocfft
       use iso_c_binding
       import
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_
+      integer(c_int) :: rocfft_plan_description_set_data_layout_
       type(c_ptr),value :: description
-      integer(kind(rocfft_array_type_complex_interleaved)),value :: in_array_type
-      integer(kind(rocfft_array_type_complex_interleaved)),value :: out_array_type
+      integer(c_int),value :: in_array_type
+      integer(c_int),value :: out_array_type
       type(c_ptr),value :: in_offsets
       type(c_ptr),value :: out_offsets
       integer(c_size_t),value :: in_strides_size
@@ -527,17 +193,379 @@ module rocfft
 #endif
   end interface
 
+  interface rocfft_field_create
+    function rocfft_field_create_(field) bind(c, name="rocfft_field_create")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_field_create_
+      type(c_ptr) :: field
+    end function
+  end interface
+
+  interface rocfft_field_destroy
+    function rocfft_field_destroy_(field) bind(c, name="rocfft_field_destroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_field_destroy_
+      type(c_ptr),value :: field
+    end function
+  end interface
+
+  interface rocfft_get_version_string
+    function rocfft_get_version_string_(buf,len) bind(c, name="rocfft_get_version_string")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_get_version_string_
+      type(c_ptr),value :: buf
+      integer(c_size_t),value :: len
+    end function
+  end interface
+
+  interface rocfft_plan_description_set_comm
+    function rocfft_plan_description_set_comm_(description,comm_type,comm_handle) &
+        bind(c, name="rocfft_plan_description_set_comm")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_plan_description_set_comm_
+      type(c_ptr),value :: description
+      integer(c_int),value :: comm_type
+      type(c_ptr),value :: comm_handle
+    end function
+  end interface
+
+  interface rocfft_plan_description_set_load_callback
+    function rocfft_plan_description_set_load_callback_(description,symbol_name,bitcode_data, &
+        bitcode_len_bytes,shared_mem_bytes) &
+        bind(c, name="rocfft_plan_description_set_load_callback")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_plan_description_set_load_callback_
+      type(c_ptr),value :: description
+      type(c_ptr),value :: symbol_name
+      type(c_ptr),value :: bitcode_data
+      integer(c_size_t),value :: bitcode_len_bytes
+      integer(c_size_t),value :: shared_mem_bytes
+    end function
+  end interface
+
+  interface rocfft_plan_description_set_store_callback
+    function rocfft_plan_description_set_store_callback_(description,symbol_name,bitcode_data, &
+        bitcode_len_bytes,shared_mem_bytes) &
+        bind(c, name="rocfft_plan_description_set_store_callback")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_plan_description_set_store_callback_
+      type(c_ptr),value :: description
+      type(c_ptr),value :: symbol_name
+      type(c_ptr),value :: bitcode_data
+      integer(c_size_t),value :: bitcode_len_bytes
+      integer(c_size_t),value :: shared_mem_bytes
+    end function
+  end interface
+
+  interface rocfft_brick_create
+    function rocfft_brick_create_(brick,field_lower,field_upper,brick_stride,dim_with_batch, &
+        deviceID) &
+        bind(c, name="rocfft_brick_create")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_brick_create_
+      type(c_ptr) :: brick
+      type(c_ptr),value :: field_lower
+      type(c_ptr),value :: field_upper
+      type(c_ptr),value :: brick_stride
+      integer(c_size_t),value :: dim_with_batch
+      integer(c_int),value :: deviceID
+    end function
+  end interface
+
+  interface rocfft_brick_destroy
+    function rocfft_brick_destroy_(brick) bind(c, name="rocfft_brick_destroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_brick_destroy_
+      type(c_ptr),value :: brick
+    end function
+  end interface
+
+  interface rocfft_field_add_brick
+    function rocfft_field_add_brick_(field,brick) bind(c, name="rocfft_field_add_brick")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_field_add_brick_
+      type(c_ptr),value :: field
+      type(c_ptr),value :: brick
+    end function
+  end interface
+
+  interface rocfft_plan_description_add_infield
+    function rocfft_plan_description_add_infield_(description,field) &
+        bind(c, name="rocfft_plan_description_add_infield")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_plan_description_add_infield_
+      type(c_ptr),value :: description
+      type(c_ptr),value :: field
+    end function
+  end interface
+
+  interface rocfft_plan_description_add_outfield
+    function rocfft_plan_description_add_outfield_(description,field) &
+        bind(c, name="rocfft_plan_description_add_outfield")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_plan_description_add_outfield_
+      type(c_ptr),value :: description
+      type(c_ptr),value :: field
+    end function
+  end interface
+
+  interface rocfft_plan_get_work_buffer_size
+    function rocfft_plan_get_work_buffer_size_(plan,size_in_bytes) &
+        bind(c, name="rocfft_plan_get_work_buffer_size")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_plan_get_work_buffer_size_
+      type(c_ptr),value :: plan
+      type(c_ptr),value :: size_in_bytes
+    end function
+
+    module procedure rocfft_plan_get_work_buffer_size_typed
+  end interface
+
+  interface rocfft_plan_get_print
+    function rocfft_plan_get_print_(plan) bind(c, name="rocfft_plan_get_print")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_plan_get_print_
+      type(c_ptr),value :: plan
+    end function
+  end interface
+
+  interface rocfft_plan_description_create
+    function rocfft_plan_description_create_(description) &
+        bind(c, name="rocfft_plan_description_create")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_plan_description_create_
+      type(c_ptr) :: description
+    end function
+  end interface
+
+  interface rocfft_plan_description_destroy
+    function rocfft_plan_description_destroy_(description) &
+        bind(c, name="rocfft_plan_description_destroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_plan_description_destroy_
+      type(c_ptr),value :: description
+    end function
+  end interface
+
+  interface rocfft_execution_info_create
+    function rocfft_execution_info_create_(myInfo) bind(c, name="rocfft_execution_info_create")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_execution_info_create_
+      type(c_ptr) :: myInfo
+    end function
+  end interface
+
+  interface rocfft_execution_info_destroy
+    function rocfft_execution_info_destroy_(myInfo) bind(c, name="rocfft_execution_info_destroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_execution_info_destroy_
+      type(c_ptr),value :: myInfo
+    end function
+  end interface
+
+  interface rocfft_execution_info_set_work_buffer
+    function rocfft_execution_info_set_work_buffer_(myInfo,work_buffer,size_in_bytes) &
+        bind(c, name="rocfft_execution_info_set_work_buffer")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_execution_info_set_work_buffer_
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: work_buffer
+      integer(c_size_t),value :: size_in_bytes
+    end function
+  end interface
+
+  interface rocfft_execution_info_set_stream
+    function rocfft_execution_info_set_stream_(myInfo,stream) &
+        bind(c, name="rocfft_execution_info_set_stream")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_execution_info_set_stream_
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface rocfft_execution_info_set_load_callback
+    function rocfft_execution_info_set_load_callback_(myInfo,cb_functions,cb_data, &
+        shared_mem_bytes) &
+        bind(c, name="rocfft_execution_info_set_load_callback")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_execution_info_set_load_callback_
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: cb_functions
+      type(c_ptr),value :: cb_data
+      integer(c_size_t),value :: shared_mem_bytes
+    end function
+  end interface
+
+  interface rocfft_execution_info_set_load_callback_data
+    function rocfft_execution_info_set_load_callback_data_(myInfo,cb_data,count) &
+        bind(c, name="rocfft_execution_info_set_load_callback_data")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_execution_info_set_load_callback_data_
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: cb_data
+      integer(c_size_t),value :: count
+    end function
+  end interface
+
+  interface rocfft_execution_info_set_store_callback
+    function rocfft_execution_info_set_store_callback_(myInfo,cb_functions,cb_data, &
+        shared_mem_bytes) &
+        bind(c, name="rocfft_execution_info_set_store_callback")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_execution_info_set_store_callback_
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: cb_functions
+      type(c_ptr),value :: cb_data
+      integer(c_size_t),value :: shared_mem_bytes
+    end function
+  end interface
+
+  interface rocfft_execution_info_set_store_callback_data
+    function rocfft_execution_info_set_store_callback_data_(myInfo,cb_data,count) &
+        bind(c, name="rocfft_execution_info_set_store_callback_data")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_execution_info_set_store_callback_data_
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: cb_data
+      integer(c_size_t),value :: count
+    end function
+  end interface
+
+  interface rocfft_cache_serialize
+    function rocfft_cache_serialize_(buffer,buffer_len_bytes) bind(c, name="rocfft_cache_serialize")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_cache_serialize_
+      type(c_ptr) :: buffer
+      type(c_ptr),value :: buffer_len_bytes
+    end function
+
+    module procedure rocfft_cache_serialize_typed
+  end interface
+
+  interface rocfft_cache_buffer_free
+    function rocfft_cache_buffer_free_(buffer) bind(c, name="rocfft_cache_buffer_free")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_cache_buffer_free_
+      type(c_ptr),value :: buffer
+    end function
+  end interface
+
+  interface rocfft_cache_deserialize
+    function rocfft_cache_deserialize_(buffer,buffer_len_bytes) &
+        bind(c, name="rocfft_cache_deserialize")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: rocfft_cache_deserialize_
+      type(c_ptr),value :: buffer
+      integer(c_size_t),value :: buffer_len_bytes
+    end function
+  end interface
+
 
   contains
 
     subroutine rocfftCheck(status)
       implicit none
       integer(kind(rocfft_status_success)) :: status
+      character(len=:), allocatable :: name
       if (status /= rocfft_status_success) then
-        write (*, *) "ROCFFT ERROR: code = ", status
+        select case (status)
+        case (rocfft_status_failure)
+          name = "rocfft_status_failure"
+        case (rocfft_status_invalid_arg_value)
+          name = "rocfft_status_invalid_arg_value"
+        case (rocfft_status_invalid_dimensions)
+          name = "rocfft_status_invalid_dimensions"
+        case (rocfft_status_invalid_array_type)
+          name = "rocfft_status_invalid_array_type"
+        case (rocfft_status_invalid_strides)
+          name = "rocfft_status_invalid_strides"
+        case (rocfft_status_invalid_distance)
+          name = "rocfft_status_invalid_distance"
+        case (rocfft_status_invalid_offset)
+          name = "rocfft_status_invalid_offset"
+        case (rocfft_status_invalid_work_buffer)
+          name = "rocfft_status_invalid_work_buffer"
+        case default
+          name = "unknown status"
+        end select
+        write (*, "(a,i0,a)") "ROCFFT ERROR: " // name // " (code ", status, ")"
         stop 1
       end if
     end subroutine rocfftCheck
+    function rocfft_plan_get_work_buffer_size_typed(plan,size_in_bytes)
+      use iso_c_binding
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size_typed
+      type(c_ptr), value :: plan
+      integer(c_size_t),target :: size_in_bytes
+      !
+      rocfft_plan_get_work_buffer_size_typed = rocfft_plan_get_work_buffer_size_(plan, &
+        c_loc(size_in_bytes))
+    end function
+
+    function rocfft_cache_serialize_typed(buffer,buffer_len_bytes)
+      use iso_c_binding
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_cache_serialize_typed
+      type(c_ptr) :: buffer
+      integer(c_size_t),target :: buffer_len_bytes
+      !
+      rocfft_cache_serialize_typed = rocfft_cache_serialize_(buffer,c_loc(buffer_len_bytes))
+    end function
+
 
 #if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
@@ -554,7 +582,7 @@ module rocfft
       integer(c_size_t) :: dimensions
       integer(c_size_t),target,contiguous,dimension(..) :: lengths
       integer(c_size_t) :: number_of_transforms
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       !
       rocfft_plan_create_assumed_rank = rocfft_plan_create_(plan,placement,transform_type, &
         myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
@@ -573,7 +601,7 @@ module rocfft
       integer(c_size_t) :: dimensions
       integer(c_size_t),target :: lengths
       integer(c_size_t) :: number_of_transforms
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       !
       rocfft_plan_create_rank_0 = rocfft_plan_create_(plan,placement,transform_type,myPrecision, &
         dimensions,c_loc(lengths),number_of_transforms,description)
@@ -591,7 +619,7 @@ module rocfft
       integer(c_size_t) :: dimensions
       integer(c_size_t),target,dimension(:) :: lengths
       integer(c_size_t) :: number_of_transforms
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       !
       rocfft_plan_create_rank_1 = rocfft_plan_create_(plan,placement,transform_type,myPrecision, &
         dimensions,c_loc(lengths),number_of_transforms,description)
@@ -605,7 +633,7 @@ module rocfft
       use iso_c_binding
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_assumed_rank
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
       integer(c_size_t),target,contiguous,dimension(..) :: in_offsets
@@ -630,7 +658,7 @@ module rocfft
       use iso_c_binding
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_rank_0
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
       integer(c_size_t),target :: in_offsets
@@ -654,7 +682,7 @@ module rocfft
       use iso_c_binding
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_rank_1
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
       integer(c_size_t),target,dimension(:) :: in_offsets

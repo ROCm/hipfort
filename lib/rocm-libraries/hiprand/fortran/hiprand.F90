@@ -1,5 +1,5 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (C) 2026 Advanced Micro Devices, Inc. All rights reserved.
 !
 ! SPDX-License-Identifier: MIT
 !
@@ -84,263 +84,37 @@ module hiprand
   integer(c_int), parameter :: HIPRAND_DEFAULT_MIN_WARPS_PER_EU = 1
 
 
-  interface
+  interface hiprandCreateGenerator
+    function hiprandCreateGenerator_(generator,rng_type) bind(c, name="hiprandCreateGenerator")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandCreateGenerator_
+      type(c_ptr) :: generator
+      integer(c_int),value :: rng_type
+    end function
+  end interface
 
-    !---------------------------------------------
-    ! hiprandCreateGenerator
-    !---------------------------------------------
-    function hiprandCreateGenerator(generator, rng_type) &
-       result(CreateGenerator) &
-       bind(C, name="hiprandCreateGenerator")
-       import :: c_ptr, HIPRAND_RNG_TEST, HIPRAND_STATUS_SUCCESS
-       type(c_ptr) :: generator
-       integer(kind(HIPRAND_RNG_TEST)), value :: rng_type
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: CreateGenerator
-    end function hiprandCreateGenerator
+  interface hiprandCreateGeneratorHost
+    function hiprandCreateGeneratorHost_(generator,rng_type) &
+        bind(c, name="hiprandCreateGeneratorHost")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandCreateGeneratorHost_
+      type(c_ptr) :: generator
+      integer(c_int),value :: rng_type
+    end function
+  end interface
 
-    !---------------------------------------------
-    ! hiprandCreateGeneratorHost
-    !---------------------------------------------
-    function hiprandCreateGeneratorHost(generator, rng_type) &
-       result(CreateGeneratorHost) &
-       bind(C, name="hiprandCreateGeneratorHost")
-       import :: c_ptr, HIPRAND_RNG_TEST, HIPRAND_STATUS_SUCCESS
-       type(c_ptr) :: generator
-       integer(kind(HIPRAND_RNG_TEST)), value :: rng_type
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: CreateGeneratorHost
-    end function hiprandCreateGeneratorHost
-
-    !---------------------------------------------
-    ! hiprandDestroyGenerator
-    !---------------------------------------------
-    function hiprandDestroyGenerator(generator) &
-       result(DestroyGenerator) &
-       bind(C, name="hiprandDestroyGenerator")
-       import :: c_ptr, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: DestroyGenerator
-    end function hiprandDestroyGenerator
-
-    !---------------------------------------------
-    ! hiprandGenerateChar
-    !---------------------------------------------
-    function hiprandGenerateChar(generator, output_data, n) &
-       result(GenerateChar) &
-       bind(C, name="hiprandGenerateChar")
-       import :: c_ptr, c_size_t, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(c_ptr), value :: output_data
-       integer(c_size_t), value :: n
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: GenerateChar
-    end function hiprandGenerateChar
-
-    !---------------------------------------------
-    ! hiprandGenerateShort
-    !---------------------------------------------
-    function hiprandGenerateShort(generator, output_data, n) &
-       result(GenerateShort) &
-       bind(C, name="hiprandGenerateShort")
-       import :: c_ptr, c_size_t, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(c_ptr), value :: output_data
-       integer(c_size_t), value :: n
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: GenerateShort
-    end function hiprandGenerateShort
-
-    !---------------------------------------------
-    ! hiprandGenerateUniformHalf
-    !---------------------------------------------
-    function hiprandGenerateUniformHalf(generator, output_data, n) &
-       result(GenerateUniformHalf) &
-       bind(C, name="hiprandGenerateUniformHalf")
-       import :: c_ptr, c_size_t, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(c_ptr), value :: output_data
-       integer(c_size_t), value :: n
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: GenerateUniformHalf
-    end function hiprandGenerateUniformHalf
-
-    !---------------------------------------------
-    ! hiprandGenerateNormalHalf
-    !---------------------------------------------
-    function hiprandGenerateNormalHalf(generator, output_data, n, mean, stddev) &
-       result(GenerateNormalHalf) &
-       bind(C, name="hiprandGenerateNormalHalf")
-       import :: c_ptr, c_size_t, c_short, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(c_ptr), value :: output_data
-       integer(c_size_t), value :: n
-       integer(c_short), value :: mean
-       integer(c_short), value :: stddev
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: GenerateNormalHalf
-    end function hiprandGenerateNormalHalf
-
-    !---------------------------------------------
-    ! hiprandGenerateLogNormalHalf
-    !---------------------------------------------
-    function hiprandGenerateLogNormalHalf(generator, output_data, n, mean, stddev) &
-       result(GenerateLogNormalHalf) &
-       bind(C, name="hiprandGenerateLogNormalHalf")
-       import :: c_ptr, c_size_t, c_short, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(c_ptr), value :: output_data
-       integer(c_size_t), value :: n
-       integer(c_short), value :: mean
-       integer(c_short), value :: stddev
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: GenerateLogNormalHalf
-    end function hiprandGenerateLogNormalHalf
-
-    !---------------------------------------------
-    ! hiprandGenerateSeeds
-    !---------------------------------------------
-    function hiprandGenerateSeeds(generator) &
-       result(GenerateSeeds) &
-       bind(C, name="hiprandGenerateSeeds")
-       import :: c_ptr, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: GenerateSeeds
-    end function hiprandGenerateSeeds
-
-    !---------------------------------------------
-    ! hiprandSetStream
-    !---------------------------------------------
-    function hiprandSetStream(generator, stream) &
-       result(SetStream) &
-       bind(C, name="hiprandSetStream")
-       import :: c_ptr, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       type(c_ptr), value :: stream
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: SetStream
-    end function hiprandSetStream
-
-    !---------------------------------------------
-    ! hiprandSetPseudoRandomGeneratorSeed
-    !---------------------------------------------
-    function hiprandSetPseudoRandomGeneratorSeed(generator, seed) &
-       result(SetPseudoRandomGeneratorSeed) &
-       bind(C, name="hiprandSetPseudoRandomGeneratorSeed")
-       import :: c_ptr, c_int64_t, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       integer(c_int64_t), value :: seed
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: SetPseudoRandomGeneratorSeed
-    end function hiprandSetPseudoRandomGeneratorSeed
-
-    !---------------------------------------------
-    ! hiprandSetGeneratorOffset
-    !---------------------------------------------
-    function hiprandSetGeneratorOffset(generator, offset) &
-       result(SetGeneratorOffset) &
-       bind(C, name="hiprandSetGeneratorOffset")
-       import :: c_ptr, c_int64_t, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       integer(c_int64_t), value :: offset
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: SetGeneratorOffset
-    end function hiprandSetGeneratorOffset
-
-    !---------------------------------------------
-    ! hiprandSetGeneratorOrdering
-    !---------------------------------------------
-    function hiprandSetGeneratorOrdering(generator, order) &
-       result(SetGeneratorOrdering) &
-       bind(C, name="hiprandSetGeneratorOrdering")
-       import :: c_ptr, HIPRAND_ORDERING_PSEUDO_BEST, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       integer(kind(HIPRAND_ORDERING_PSEUDO_BEST)), value :: order
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: SetGeneratorOrdering
-    end function hiprandSetGeneratorOrdering
-
-    !---------------------------------------------
-    ! hiprandSetQuasiRandomGeneratorDimensions
-    !---------------------------------------------
-    function hiprandSetQuasiRandomGeneratorDimensions(generator, dimensions) &
-       result(SetQuasiRandomGeneratorDimensions) &
-       bind(C, name="hiprandSetQuasiRandomGeneratorDimensions")
-       import :: c_ptr, c_int, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: generator
-       integer(c_int), value :: dimensions
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: SetQuasiRandomGeneratorDimensions
-    end function hiprandSetQuasiRandomGeneratorDimensions
-
-    !---------------------------------------------
-    ! hiprandGetVersion
-    !---------------------------------------------
-    function hiprandGetVersion(version) &
-       result(GetVersion) &
-       bind(C, name="hiprandGetVersion")
-       import :: c_int, HIPRAND_STATUS_SUCCESS
-       integer(c_int) :: version
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: GetVersion
-    end function hiprandGetVersion
-
-    !---------------------------------------------
-    ! hiprandCreatePoissonDistribution
-    !---------------------------------------------
-    function hiprandCreatePoissonDistribution(lambda, discrete_distribution) &
-       result(CreatePoissonDistribution) &
-       bind(C, name="hiprandCreatePoissonDistribution")
-       import :: c_double, c_ptr, HIPRAND_STATUS_SUCCESS
-       real(c_double), value :: lambda
-       type(c_ptr) :: discrete_distribution
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: CreatePoissonDistribution
-    end function hiprandCreatePoissonDistribution
-
-    !---------------------------------------------
-    ! hiprandDestroyDistribution
-    !---------------------------------------------
-    function hiprandDestroyDistribution(discrete_distribution) &
-       result(DestroyDistribution) &
-       bind(C, name="hiprandDestroyDistribution")
-       import :: c_ptr, HIPRAND_STATUS_SUCCESS
-       type(c_ptr), value :: discrete_distribution
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: DestroyDistribution
-    end function hiprandDestroyDistribution
-
-    !---------------------------------------------
-    ! hiprandGetDirectionVectors32
-    !---------------------------------------------
-    function hiprandGetDirectionVectors32(vectors, set) &
-       result(GetDirectionVectors32) &
-       bind(C, name="hiprandGetDirectionVectors32")
-       import :: c_ptr, HIPRAND_DIRECTION_VECTORS_32_JOEKUO6, HIPRAND_STATUS_SUCCESS
-       type(c_ptr) :: vectors
-       integer(kind(HIPRAND_DIRECTION_VECTORS_32_JOEKUO6)), value :: set
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: GetDirectionVectors32
-    end function hiprandGetDirectionVectors32
-
-    !---------------------------------------------
-    ! hiprandGetDirectionVectors64
-    !---------------------------------------------
-    function hiprandGetDirectionVectors64(vectors, set) &
-       result(GetDirectionVectors64) &
-       bind(C, name="hiprandGetDirectionVectors64")
-       import :: c_ptr, HIPRAND_DIRECTION_VECTORS_32_JOEKUO6, HIPRAND_STATUS_SUCCESS
-       type(c_ptr) :: vectors
-       integer(kind(HIPRAND_DIRECTION_VECTORS_32_JOEKUO6)), value :: set
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: GetDirectionVectors64
-    end function hiprandGetDirectionVectors64
-
-    !---------------------------------------------
-    ! hiprandGetScrambleConstants32
-    !---------------------------------------------
-    function hiprandGetScrambleConstants32(constants) &
-       result(GetScrambleConstants32) &
-       bind(C, name="hiprandGetScrambleConstants32")
-       import :: c_ptr, HIPRAND_STATUS_SUCCESS
-       type(c_ptr) :: constants
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: GetScrambleConstants32
-    end function hiprandGetScrambleConstants32
-
-    !---------------------------------------------
-    ! hiprandGetScrambleConstants64
-    !---------------------------------------------
-    function hiprandGetScrambleConstants64(constants) &
-       result(GetScrambleConstants64) &
-       bind(C, name="hiprandGetScrambleConstants64")
-       import :: c_ptr, HIPRAND_STATUS_SUCCESS
-       type(c_ptr) :: constants
-       integer(kind(HIPRAND_STATUS_SUCCESS)) :: GetScrambleConstants64
-    end function hiprandGetScrambleConstants64
-
+  interface hiprandDestroyGenerator
+    function hiprandDestroyGenerator_(generator) bind(c, name="hiprandDestroyGenerator")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandDestroyGenerator_
+      type(c_ptr),value :: generator
+    end function
   end interface
 
   interface hiprandGenerate
@@ -348,7 +122,7 @@ module hiprand
       use iso_c_binding
       import
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_
+      integer(c_int) :: hiprandGenerate_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -365,13 +139,37 @@ module hiprand
 #endif
   end interface
 
+  interface hiprandGenerateChar
+    function hiprandGenerateChar_(generator,output_data,n) bind(c, name="hiprandGenerateChar")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandGenerateChar_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
+  interface hiprandGenerateShort
+    function hiprandGenerateShort_(generator,output_data,n) bind(c, name="hiprandGenerateShort")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandGenerateShort_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
   interface hiprandGenerateLongLong
     function hiprandGenerateLongLong_(generator,output_data,n) &
         bind(c, name="hiprandGenerateLongLong")
       use iso_c_binding
       import
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_
+      integer(c_int) :: hiprandGenerateLongLong_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -393,7 +191,7 @@ module hiprand
       use iso_c_binding
       import
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_
+      integer(c_int) :: hiprandGenerateUniform_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -416,7 +214,7 @@ module hiprand
       use iso_c_binding
       import
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_
+      integer(c_int) :: hiprandGenerateUniformDouble_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -433,13 +231,26 @@ module hiprand
 #endif
   end interface
 
+  interface hiprandGenerateUniformHalf
+    function hiprandGenerateUniformHalf_(generator,output_data,n) &
+        bind(c, name="hiprandGenerateUniformHalf")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandGenerateUniformHalf_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+    end function
+  end interface
+
   interface hiprandGenerateNormal
     function hiprandGenerateNormal_(generator,output_data,n,mean,stddev) &
         bind(c, name="hiprandGenerateNormal")
       use iso_c_binding
       import
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_
+      integer(c_int) :: hiprandGenerateNormal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -464,7 +275,7 @@ module hiprand
       use iso_c_binding
       import
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_
+      integer(c_int) :: hiprandGenerateNormalDouble_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -483,13 +294,28 @@ module hiprand
 #endif
   end interface
 
+  interface hiprandGenerateNormalHalf
+    function hiprandGenerateNormalHalf_(generator,output_data,n,mean,stddev) &
+        bind(c, name="hiprandGenerateNormalHalf")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandGenerateNormalHalf_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+      integer(c_short),value :: mean
+      integer(c_short),value :: stddev
+    end function
+  end interface
+
   interface hiprandGenerateLogNormal
     function hiprandGenerateLogNormal_(generator,output_data,n,mean,stddev) &
         bind(c, name="hiprandGenerateLogNormal")
       use iso_c_binding
       import
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_
+      integer(c_int) :: hiprandGenerateLogNormal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -514,7 +340,7 @@ module hiprand
       use iso_c_binding
       import
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_
+      integer(c_int) :: hiprandGenerateLogNormalDouble_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -533,13 +359,28 @@ module hiprand
 #endif
   end interface
 
+  interface hiprandGenerateLogNormalHalf
+    function hiprandGenerateLogNormalHalf_(generator,output_data,n,mean,stddev) &
+        bind(c, name="hiprandGenerateLogNormalHalf")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandGenerateLogNormalHalf_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: output_data
+      integer(c_size_t),value :: n
+      integer(c_short),value :: mean
+      integer(c_short),value :: stddev
+    end function
+  end interface
+
   interface hiprandGeneratePoisson
     function hiprandGeneratePoisson_(generator,output_data,n,lambda) &
         bind(c, name="hiprandGeneratePoisson")
       use iso_c_binding
       import
       implicit none
-      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_
+      integer(c_int) :: hiprandGeneratePoisson_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -557,17 +398,202 @@ module hiprand
 #endif
   end interface
 
+  interface hiprandGenerateSeeds
+    function hiprandGenerateSeeds_(generator) bind(c, name="hiprandGenerateSeeds")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandGenerateSeeds_
+      type(c_ptr),value :: generator
+    end function
+  end interface
+
+  interface hiprandSetStream
+    function hiprandSetStream_(generator,stream) bind(c, name="hiprandSetStream")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandSetStream_
+      type(c_ptr),value :: generator
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hiprandSetPseudoRandomGeneratorSeed
+    function hiprandSetPseudoRandomGeneratorSeed_(generator,seed) &
+        bind(c, name="hiprandSetPseudoRandomGeneratorSeed")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandSetPseudoRandomGeneratorSeed_
+      type(c_ptr),value :: generator
+      integer(c_int64_t),value :: seed
+    end function
+  end interface
+
+  interface hiprandSetGeneratorOffset
+    function hiprandSetGeneratorOffset_(generator,offset) bind(c, name="hiprandSetGeneratorOffset")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandSetGeneratorOffset_
+      type(c_ptr),value :: generator
+      integer(c_int64_t),value :: offset
+    end function
+  end interface
+
+  interface hiprandSetGeneratorOrdering
+    function hiprandSetGeneratorOrdering_(generator,order) &
+        bind(c, name="hiprandSetGeneratorOrdering")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandSetGeneratorOrdering_
+      type(c_ptr),value :: generator
+      integer(c_int),value :: order
+    end function
+  end interface
+
+  interface hiprandSetQuasiRandomGeneratorDimensions
+    function hiprandSetQuasiRandomGeneratorDimensions_(generator,dimensions) &
+        bind(c, name="hiprandSetQuasiRandomGeneratorDimensions")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandSetQuasiRandomGeneratorDimensions_
+      type(c_ptr),value :: generator
+      integer(c_int),value :: dimensions
+    end function
+  end interface
+
+  interface hiprandGetVersion
+    function hiprandGetVersion_(version) bind(c, name="hiprandGetVersion")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandGetVersion_
+      type(c_ptr),value :: version
+    end function
+
+    module procedure hiprandGetVersion_typed
+  end interface
+
+  interface hiprandCreatePoissonDistribution
+    function hiprandCreatePoissonDistribution_(lambda,discrete_distribution) &
+        bind(c, name="hiprandCreatePoissonDistribution")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandCreatePoissonDistribution_
+      real(c_double),value :: lambda
+      type(c_ptr) :: discrete_distribution
+    end function
+  end interface
+
+  interface hiprandDestroyDistribution
+    function hiprandDestroyDistribution_(discrete_distribution) &
+        bind(c, name="hiprandDestroyDistribution")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandDestroyDistribution_
+      type(c_ptr),value :: discrete_distribution
+    end function
+  end interface
+
+  interface hiprandGetDirectionVectors32
+    function hiprandGetDirectionVectors32_(vectors,set) bind(c, name="hiprandGetDirectionVectors32")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandGetDirectionVectors32_
+      type(c_ptr) :: vectors
+      integer(c_int),value :: set
+    end function
+  end interface
+
+  interface hiprandGetDirectionVectors64
+    function hiprandGetDirectionVectors64_(vectors,set) bind(c, name="hiprandGetDirectionVectors64")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandGetDirectionVectors64_
+      type(c_ptr) :: vectors
+      integer(c_int),value :: set
+    end function
+  end interface
+
+  interface hiprandGetScrambleConstants32
+    function hiprandGetScrambleConstants32_(constants) bind(c, name="hiprandGetScrambleConstants32")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandGetScrambleConstants32_
+      type(c_ptr) :: constants
+    end function
+  end interface
+
+  interface hiprandGetScrambleConstants64
+    function hiprandGetScrambleConstants64_(constants) bind(c, name="hiprandGetScrambleConstants64")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hiprandGetScrambleConstants64_
+      type(c_ptr) :: constants
+    end function
+  end interface
+
 
   contains
 
     subroutine hiprandCheck(status)
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: status
+      character(len=:), allocatable :: name
       if (status /= HIPRAND_STATUS_SUCCESS) then
-        write (*, *) "HIPRAND ERROR: code = ", status
+        select case (status)
+        case (HIPRAND_STATUS_VERSION_MISMATCH)
+          name = "HIPRAND_STATUS_VERSION_MISMATCH"
+        case (HIPRAND_STATUS_NOT_INITIALIZED)
+          name = "HIPRAND_STATUS_NOT_INITIALIZED"
+        case (HIPRAND_STATUS_ALLOCATION_FAILED)
+          name = "HIPRAND_STATUS_ALLOCATION_FAILED"
+        case (HIPRAND_STATUS_TYPE_ERROR)
+          name = "HIPRAND_STATUS_TYPE_ERROR"
+        case (HIPRAND_STATUS_OUT_OF_RANGE)
+          name = "HIPRAND_STATUS_OUT_OF_RANGE"
+        case (HIPRAND_STATUS_LENGTH_NOT_MULTIPLE)
+          name = "HIPRAND_STATUS_LENGTH_NOT_MULTIPLE"
+        case (HIPRAND_STATUS_DOUBLE_PRECISION_REQUIRED)
+          name = "HIPRAND_STATUS_DOUBLE_PRECISION_REQUIRED"
+        case (HIPRAND_STATUS_LAUNCH_FAILURE)
+          name = "HIPRAND_STATUS_LAUNCH_FAILURE"
+        case (HIPRAND_STATUS_PREEXISTING_FAILURE)
+          name = "HIPRAND_STATUS_PREEXISTING_FAILURE"
+        case (HIPRAND_STATUS_INITIALIZATION_FAILED)
+          name = "HIPRAND_STATUS_INITIALIZATION_FAILED"
+        case (HIPRAND_STATUS_ARCH_MISMATCH)
+          name = "HIPRAND_STATUS_ARCH_MISMATCH"
+        case (HIPRAND_STATUS_INTERNAL_ERROR)
+          name = "HIPRAND_STATUS_INTERNAL_ERROR"
+        case (HIPRAND_STATUS_NOT_IMPLEMENTED)
+          name = "HIPRAND_STATUS_NOT_IMPLEMENTED"
+        case default
+          name = "unknown status"
+        end select
+        write (*, "(a,i0,a)") "HIPRAND ERROR: " // name // " (code ", status, ")"
         stop 1
       end if
     end subroutine hiprandCheck
+    function hiprandGetVersion_typed(version)
+      use iso_c_binding
+      implicit none
+      integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetVersion_typed
+      integer(c_int),target :: version
+      !
+      hiprandGetVersion_typed = hiprandGetVersion_(c_loc(version))
+    end function
+
 
 #if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
@@ -576,7 +602,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -588,7 +614,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target :: output_data
       integer(c_size_t) :: n
       !
@@ -599,7 +625,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -612,7 +638,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -625,7 +651,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target :: output_data
       integer(c_size_t) :: n
       !
@@ -636,7 +662,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -649,7 +675,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -661,7 +687,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       !
@@ -672,7 +698,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -685,7 +711,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
@@ -698,7 +724,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       !
@@ -710,7 +736,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -724,7 +750,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -739,7 +765,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -753,7 +779,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -769,7 +795,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -784,7 +810,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -798,7 +824,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -814,7 +840,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -829,7 +855,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -843,7 +869,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -859,7 +885,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -874,7 +900,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -888,7 +914,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -904,7 +930,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_assumed_rank
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,contiguous,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda
@@ -918,7 +944,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda
@@ -930,7 +956,7 @@ module hiprand
       use iso_c_binding
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda

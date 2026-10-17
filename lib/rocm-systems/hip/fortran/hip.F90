@@ -1,5 +1,5 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (C) 2026 Advanced Micro Devices, Inc. All rights reserved.
 !
 ! SPDX-License-Identifier: MIT
 !
@@ -145,7 +145,7 @@ module hip
     enumerator :: hipLibraryBinaryIsPreserved = 1
   end enum
 
-  ! enum (unnamed at /opt/rocm-10.2/include/hip/hip_runtime_api.h:37:1)
+  ! enum (unnamed at hip/hip_runtime_api.h:37:1)
   enum, bind(c)
     enumerator :: HIP_SUCCESS = 0
     enumerator :: HIP_ERROR_INVALID_VALUE = 1
@@ -218,6 +218,7 @@ module hip
     enumerator :: hipErrorHostMemoryNotRegistered = 713
     enumerator :: hipErrorLaunchFailure = 719
     enumerator :: hipErrorCooperativeLaunchTooLarge = 720
+    enumerator :: hipErrorNotPermitted = 800
     enumerator :: hipErrorNotSupported = 801
     enumerator :: hipErrorStreamCaptureUnsupported = 900
     enumerator :: hipErrorStreamCaptureInvalidated = 901
@@ -351,6 +352,9 @@ module hip
     enumerator :: hipDeviceAttributeGPUDirectRDMAWithHipVMMSupported = 94
     enumerator :: hipDeviceAttributeHandleTypeFabricSupported = 95
     enumerator :: hipDeviceAttributeHostAllocDmaBufSupported = 96
+    enumerator :: hipDeviceAttributeGPUDirectRDMASupported = 97
+    enumerator :: hipDeviceAttributeGPUDirectRDMAFlushWritesOptions = 98
+    enumerator :: hipDeviceAttributeGPUDirectRDMAWritesOrdering = 99
     enumerator :: hipDeviceAttributeCudaCompatibleEnd = 9999
     enumerator :: hipDeviceAttributeAmdSpecificBegin = 10000
     enumerator :: hipDeviceAttributeClockInstructionRate = 10000
@@ -406,6 +410,17 @@ module hip
     enumerator :: hipGPUDirectRDMAWritesOrderingNone = 0
     enumerator :: hipGPUDirectRDMAWritesOrderingOwner = 100
     enumerator :: hipGPUDirectRDMAWritesOrderingAllDevices = 200
+  end enum
+
+  ! hipFlushGPUDirectRDMAWritesTarget
+  enum, bind(c)
+    enumerator :: hipFlushGPUDirectRDMAWritesTargetCurrentDevice = 0
+  end enum
+
+  ! hipFlushGPUDirectRDMAWritesScope
+  enum, bind(c)
+    enumerator :: hipFlushGPUDirectRDMAWritesToOwner = 100
+    enumerator :: hipFlushGPUDirectRDMAWritesToAllDevices = 200
   end enum
 
   ! hipChannelFormatKind
@@ -1034,7 +1049,7 @@ module hip
 
   integer(c_int), parameter :: HIP_VERSION_MAJOR = 7
   integer(c_int), parameter :: HIP_VERSION_MINOR = 17
-  integer(c_int), parameter :: HIP_VERSION_PATCH = 26385
+  integer(c_int), parameter :: HIP_VERSION_PATCH = 0
   integer(c_int), parameter :: HIP_VERSION_BUILD_ID = 0
   integer(c_int), parameter :: HIP_GET_PROC_ADDRESS_DEFAULT = 0
   integer(c_int), parameter :: HIP_GET_PROC_ADDRESS_LEGACY_STREAM = 1
@@ -1142,113 +1157,113 @@ module hip
   end type hipUUID
 
   type, bind(c) :: hipDeviceProp_t
-    character(c_char) :: name(256) !< Device name.
-    type(hipUUID) :: uuid !< UUID of a device
-    character(c_char) :: luid(8) !< 8-byte unique identifier. Only valid on windows
-    integer(c_int) :: luidDeviceNodeMask !< LUID node mask
-    integer(c_size_t) :: totalGlobalMem !< Size of global memory region (in bytes).
-    integer(c_size_t) :: sharedMemPerBlock !< Size of shared memory per block (in bytes).
-    integer(c_int) :: regsPerBlock !< Registers per block.
-    integer(c_int) :: warpSize !< Warp size.
-    integer(c_size_t) :: memPitch !< Maximum pitch in bytes allowed by memory copies pitched memory
-    integer(c_int) :: maxThreadsPerBlock !< Max work items per work group or workgroup max size.
-    integer(c_int) :: maxThreadsDim(3) !< Max number of threads in each dimension (XYZ) of a block.
-    integer(c_int) :: maxGridSize(3) !< Max grid dimensions (XYZ).
-    integer(c_int) :: clockRate !< Max clock frequency of the multiProcessors in khz.
-    integer(c_size_t) :: totalConstMem !< Size of shared constant memory region on the device (in bytes).
-    integer(c_int) :: major !< Major compute capability version. This indicates the core instruction set of the GPU architect...
-    integer(c_int) :: minor !< Minor compute capability version. This indicates a particular configuration, feature set, or v...
-    integer(c_size_t) :: textureAlignment !< Alignment requirement for textures
-    integer(c_size_t) :: texturePitchAlignment !< Pitch alignment requirement for texture references bound to
-    integer(c_int) :: deviceOverlap !< Deprecated. Use asyncEngineCount instead
-    integer(c_int) :: multiProcessorCount !< Number of multi-processors. When the GPU works in Compute Unit (CU) mode, this v...
-    integer(c_int) :: kernelExecTimeoutEnabled !< Run time limit for kernels executed on the device
-    integer(c_int) :: integrated !< APU vs dGPU
-    integer(c_int) :: canMapHostMemory !< Check whether HIP can map host memory
-    integer(c_int) :: computeMode !< Compute mode.
-    integer(c_int) :: maxTexture1D !< Maximum number of elements in 1D images
-    integer(c_int) :: maxTexture1DMipmap !< Maximum 1D mipmap texture size
-    integer(c_int) :: maxTexture1DLinear !< Maximum size for 1D textures bound to linear memory
-    integer(c_int) :: maxTexture2D(2) !< Maximum dimensions (width, height) of 2D images, in image elements
-    integer(c_int) :: maxTexture2DMipmap(2) !< Maximum number of elements in 2D array mipmap of images
-    integer(c_int) :: maxTexture2DLinear(3) !< Maximum 2D tex dimensions if tex are bound to pitched memory
-    integer(c_int) :: maxTexture2DGather(2) !< Maximum 2D tex dimensions if gather has to be performed
-    integer(c_int) :: maxTexture3D(3) !< Maximum dimensions (width, height, depth) of 3D images, in image elements
-    integer(c_int) :: maxTexture3DAlt(3) !< Maximum alternate 3D texture dims
-    integer(c_int) :: maxTextureCubemap !< Maximum cubemap texture dims
-    integer(c_int) :: maxTexture1DLayered(2) !< Maximum number of elements in 1D array images
-    integer(c_int) :: maxTexture2DLayered(3) !< Maximum number of elements in 2D array images
-    integer(c_int) :: maxTextureCubemapLayered(2) !< Maximum cubemaps layered texture dims
-    integer(c_int) :: maxSurface1D !< Maximum 1D surface size
-    integer(c_int) :: maxSurface2D(2) !< Maximum 2D surface size
-    integer(c_int) :: maxSurface3D(3) !< Maximum 3D surface size
-    integer(c_int) :: maxSurface1DLayered(2) !< Maximum 1D layered surface size
-    integer(c_int) :: maxSurface2DLayered(3) !< Maximum 2D layared surface size
-    integer(c_int) :: maxSurfaceCubemap !< Maximum cubemap surface size
-    integer(c_int) :: maxSurfaceCubemapLayered(2) !< Maximum cubemap layered surface size
-    integer(c_size_t) :: surfaceAlignment !< Alignment requirement for surface
-    integer(c_int) :: concurrentKernels !< Device can possibly execute multiple kernels concurrently.
-    integer(c_int) :: ECCEnabled !< Device has ECC support enabled
-    integer(c_int) :: pciBusID !< PCI Bus ID.
-    integer(c_int) :: pciDeviceID !< PCI Device ID
-    integer(c_int) :: pciDomainID !< PCI Domain ID
-    integer(c_int) :: tccDriver !< 1:If device is Tesla device using TCC driver, else 0
-    integer(c_int) :: asyncEngineCount !< Number of async engines
-    integer(c_int) :: unifiedAddressing !< Does device and host share unified address space
-    integer(c_int) :: memoryClockRate !< Max global memory clock frequency in khz.
-    integer(c_int) :: memoryBusWidth !< Global memory bus width in bits.
-    integer(c_int) :: l2CacheSize !< L2 cache size.
-    integer(c_int) :: persistingL2CacheMaxSize !< Device's max L2 persisting lines in bytes
-    integer(c_int) :: maxThreadsPerMultiProcessor !< Maximum resident threads per multi-processor.
-    integer(c_int) :: streamPrioritiesSupported !< Device supports stream priority
-    integer(c_int) :: globalL1CacheSupported !< Indicates globals are cached in L1
-    integer(c_int) :: localL1CacheSupported !< Locals are cahced in L1
-    integer(c_size_t) :: sharedMemPerMultiprocessor !< Amount of shared memory available per multiprocessor.
-    integer(c_int) :: regsPerMultiprocessor !< registers available per multiprocessor
-    integer(c_int) :: managedMemory !< Device supports allocating managed memory on this system
-    integer(c_int) :: isMultiGpuBoard !< 1 if device is on a multi-GPU board, 0 if not.
-    integer(c_int) :: multiGpuBoardGroupID !< Unique identifier for a group of devices on same multiboard GPU
-    integer(c_int) :: hostNativeAtomicSupported !< Link between host and device supports native atomics
-    integer(c_int) :: singleToDoublePrecisionPerfRatio !< Deprecated. CUDA only.
-    integer(c_int) :: pageableMemoryAccess !< Device supports coherently accessing pageable memory without calling hipHostReg...
-    integer(c_int) :: concurrentManagedAccess !< Device can coherently access managed memory concurrently with the CPU
-    integer(c_int) :: computePreemptionSupported !< Is compute preemption supported on the device
-    integer(c_int) :: canUseHostPointerForRegisteredMem !< Device can access host registered memory with same address as the ...
-    integer(c_int) :: cooperativeLaunch !< HIP device supports cooperative launch
-    integer(c_int) :: cooperativeMultiDeviceLaunch !< HIP device supports cooperative launch on multiple devices
-    integer(c_size_t) :: sharedMemPerBlockOptin !< Per device m ax shared mem per block usable by special opt in
-    integer(c_int) :: pageableMemoryAccessUsesHostPageTables !< Device accesses pageable memory via the host's page tables
-    integer(c_int) :: directManagedMemAccessFromHost !< Host can directly access managed memory on the device without migration
-    integer(c_int) :: maxBlocksPerMultiProcessor !< Max number of blocks on CU
-    integer(c_int) :: accessPolicyMaxWindowSize !< Max value of access policy window
-    integer(c_size_t) :: reservedSharedMemPerBlock !< Shared memory reserved by driver per block
-    integer(c_int) :: hostRegisterSupported !< Device supports hipHostRegister
-    integer(c_int) :: sparseHipArraySupported !< Indicates if device supports sparse hip arrays
-    integer(c_int) :: hostRegisterReadOnlySupported !< Device supports using the hipHostRegisterReadOnly flag with hipHostReg...
-    integer(c_int) :: timelineSemaphoreInteropSupported !< Indicates external timeline semaphore support
-    integer(c_int) :: memoryPoolsSupported !< Indicates if device supports hipMallocAsync and hipMemPool APIs
-    integer(c_int) :: gpuDirectRDMASupported !< Indicates device support of RDMA APIs
-    integer(c_int) :: gpuDirectRDMAFlushWritesOptions !< Bitmask to be interpreted according to hipFlushGPUDirectRDMAWritesOp...
-    integer(c_int) :: gpuDirectRDMAWritesOrdering !< value of hipGPUDirectRDMAWritesOrdering
-    integer(c_int) :: memoryPoolSupportedHandleTypes !< Bitmask of handle types support with mempool based IPC
-    integer(c_int) :: deferredMappingHipArraySupported !< Device supports deferred mapping HIP arrays and HIP mipmapped arrays
-    integer(c_int) :: ipcEventSupported !< Device supports IPC events
-    integer(c_int) :: clusterLaunch !< Device supports cluster launch
-    integer(c_int) :: unifiedFunctionPointers !< Indicates device supports unified function pointers
-    integer(c_int) :: reserved(63) !< CUDA Reserved.
-    integer(c_int) :: hipReserved(32) !< Reserved for adding new entries for HIP/CUDA.
-    character(c_char) :: gcnArchName(256) !< AMD GCN Arch Name. HIP Only.
-    integer(c_size_t) :: maxSharedMemoryPerMultiProcessor !< Maximum Shared Memory Per CU. HIP Only.
-    integer(c_int) :: clockInstructionRate !< Frequency in khz of the timer used by the device-side "clock*" instructions. Ne...
-    type(hipDeviceArch_t) :: arch !< Architectural feature flags. New for HIP.
-    type(c_ptr) :: hdpMemFlushCntl !< Addres of HDP_MEM_COHERENCY_FLUSH_CNTL register
-    type(c_ptr) :: hdpRegFlushCntl !< Addres of HDP_REG_COHERENCY_FLUSH_CNTL register
-    integer(c_int) :: cooperativeMultiDeviceUnmatchedFunc !< HIP device supports cooperative launch on multiple
-    integer(c_int) :: cooperativeMultiDeviceUnmatchedGridDim !< HIP device supports cooperative launch on multiple
-    integer(c_int) :: cooperativeMultiDeviceUnmatchedBlockDim !< HIP device supports cooperative launch on multiple
-    integer(c_int) :: cooperativeMultiDeviceUnmatchedSharedMem !< HIP device supports cooperative launch on multiple
-    integer(c_int) :: isLargeBar !< 1: if it is a large PCI bar device, else 0
-    integer(c_int) :: asicRevision !< Revision of the GPU in this device
+    character(c_char) :: name(256)
+    type(hipUUID) :: uuid
+    character(c_char) :: luid(8)
+    integer(c_int) :: luidDeviceNodeMask
+    integer(c_size_t) :: totalGlobalMem
+    integer(c_size_t) :: sharedMemPerBlock
+    integer(c_int) :: regsPerBlock
+    integer(c_int) :: warpSize
+    integer(c_size_t) :: memPitch
+    integer(c_int) :: maxThreadsPerBlock
+    integer(c_int) :: maxThreadsDim(3)
+    integer(c_int) :: maxGridSize(3)
+    integer(c_int) :: clockRate
+    integer(c_size_t) :: totalConstMem
+    integer(c_int) :: major
+    integer(c_int) :: minor
+    integer(c_size_t) :: textureAlignment
+    integer(c_size_t) :: texturePitchAlignment
+    integer(c_int) :: deviceOverlap
+    integer(c_int) :: multiProcessorCount
+    integer(c_int) :: kernelExecTimeoutEnabled
+    integer(c_int) :: integrated
+    integer(c_int) :: canMapHostMemory
+    integer(c_int) :: computeMode
+    integer(c_int) :: maxTexture1D
+    integer(c_int) :: maxTexture1DMipmap
+    integer(c_int) :: maxTexture1DLinear
+    integer(c_int) :: maxTexture2D(2)
+    integer(c_int) :: maxTexture2DMipmap(2)
+    integer(c_int) :: maxTexture2DLinear(3)
+    integer(c_int) :: maxTexture2DGather(2)
+    integer(c_int) :: maxTexture3D(3)
+    integer(c_int) :: maxTexture3DAlt(3)
+    integer(c_int) :: maxTextureCubemap
+    integer(c_int) :: maxTexture1DLayered(2)
+    integer(c_int) :: maxTexture2DLayered(3)
+    integer(c_int) :: maxTextureCubemapLayered(2)
+    integer(c_int) :: maxSurface1D
+    integer(c_int) :: maxSurface2D(2)
+    integer(c_int) :: maxSurface3D(3)
+    integer(c_int) :: maxSurface1DLayered(2)
+    integer(c_int) :: maxSurface2DLayered(3)
+    integer(c_int) :: maxSurfaceCubemap
+    integer(c_int) :: maxSurfaceCubemapLayered(2)
+    integer(c_size_t) :: surfaceAlignment
+    integer(c_int) :: concurrentKernels
+    integer(c_int) :: ECCEnabled
+    integer(c_int) :: pciBusID
+    integer(c_int) :: pciDeviceID
+    integer(c_int) :: pciDomainID
+    integer(c_int) :: tccDriver
+    integer(c_int) :: asyncEngineCount
+    integer(c_int) :: unifiedAddressing
+    integer(c_int) :: memoryClockRate
+    integer(c_int) :: memoryBusWidth
+    integer(c_int) :: l2CacheSize
+    integer(c_int) :: persistingL2CacheMaxSize
+    integer(c_int) :: maxThreadsPerMultiProcessor
+    integer(c_int) :: streamPrioritiesSupported
+    integer(c_int) :: globalL1CacheSupported
+    integer(c_int) :: localL1CacheSupported
+    integer(c_size_t) :: sharedMemPerMultiprocessor
+    integer(c_int) :: regsPerMultiprocessor
+    integer(c_int) :: managedMemory
+    integer(c_int) :: isMultiGpuBoard
+    integer(c_int) :: multiGpuBoardGroupID
+    integer(c_int) :: hostNativeAtomicSupported
+    integer(c_int) :: singleToDoublePrecisionPerfRatio
+    integer(c_int) :: pageableMemoryAccess
+    integer(c_int) :: concurrentManagedAccess
+    integer(c_int) :: computePreemptionSupported
+    integer(c_int) :: canUseHostPointerForRegisteredMem
+    integer(c_int) :: cooperativeLaunch
+    integer(c_int) :: cooperativeMultiDeviceLaunch
+    integer(c_size_t) :: sharedMemPerBlockOptin
+    integer(c_int) :: pageableMemoryAccessUsesHostPageTables
+    integer(c_int) :: directManagedMemAccessFromHost
+    integer(c_int) :: maxBlocksPerMultiProcessor
+    integer(c_int) :: accessPolicyMaxWindowSize
+    integer(c_size_t) :: reservedSharedMemPerBlock
+    integer(c_int) :: hostRegisterSupported
+    integer(c_int) :: sparseHipArraySupported
+    integer(c_int) :: hostRegisterReadOnlySupported
+    integer(c_int) :: timelineSemaphoreInteropSupported
+    integer(c_int) :: memoryPoolsSupported
+    integer(c_int) :: gpuDirectRDMASupported
+    integer(c_int) :: gpuDirectRDMAFlushWritesOptions
+    integer(c_int) :: gpuDirectRDMAWritesOrdering
+    integer(c_int) :: memoryPoolSupportedHandleTypes
+    integer(c_int) :: deferredMappingHipArraySupported
+    integer(c_int) :: ipcEventSupported
+    integer(c_int) :: clusterLaunch
+    integer(c_int) :: unifiedFunctionPointers
+    integer(c_int) :: reserved(63)
+    integer(c_int) :: hipReserved(32)
+    character(c_char) :: gcnArchName(256)
+    integer(c_size_t) :: maxSharedMemoryPerMultiProcessor
+    integer(c_int) :: clockInstructionRate
+    type(hipDeviceArch_t) :: arch
+    type(c_ptr) :: hdpMemFlushCntl
+    type(c_ptr) :: hdpRegFlushCntl
+    integer(c_int) :: cooperativeMultiDeviceUnmatchedFunc
+    integer(c_int) :: cooperativeMultiDeviceUnmatchedGridDim
+    integer(c_int) :: cooperativeMultiDeviceUnmatchedBlockDim
+    integer(c_int) :: cooperativeMultiDeviceUnmatchedSharedMem
+    integer(c_int) :: isLargeBar
+    integer(c_int) :: asicRevision
   end type hipDeviceProp_t
 
   type, bind(c) :: hipPointerAttribute_t
@@ -1265,110 +1280,110 @@ module hip
     integer(c_int) :: y
     integer(c_int) :: z
     integer(c_int) :: w
-    integer(c_int) :: f !< Channel format kind
+    integer(c_int) :: f
   end type hipChannelFormatDesc
 
   type, bind(c) :: HIP_ARRAY_DESCRIPTOR
-    integer(c_size_t) :: Width !< Width of the array
-    integer(c_size_t) :: Height !< Height of the array
-    integer(c_int) :: Format !< Format of the array
-    integer(c_int) :: NumChannels !< Number of channels of the array
+    integer(c_size_t) :: Width
+    integer(c_size_t) :: Height
+    integer(c_int) :: Format
+    integer(c_int) :: NumChannels
   end type HIP_ARRAY_DESCRIPTOR
 
   type, bind(c) :: HIP_ARRAY3D_DESCRIPTOR
-    integer(c_size_t) :: Width !< Width of the array
-    integer(c_size_t) :: Height !< Height of the array
-    integer(c_size_t) :: Depth !< Depth of the array
-    integer(c_int) :: Format !< Format of the array
-    integer(c_int) :: NumChannels !< Number of channels of the array
-    integer(c_int) :: Flags !< Flags of the array
+    integer(c_size_t) :: Width
+    integer(c_size_t) :: Height
+    integer(c_size_t) :: Depth
+    integer(c_int) :: Format
+    integer(c_int) :: NumChannels
+    integer(c_int) :: Flags
   end type HIP_ARRAY3D_DESCRIPTOR
 
   type, bind(c) :: hip_Memcpy2D
-    integer(c_size_t) :: srcXInBytes !< Source width in bytes
-    integer(c_size_t) :: srcY !< Source height
-    integer(c_int) :: srcMemoryType !< Source memory type
-    type(c_ptr) :: srcHost !< Source pointer
-    type(c_ptr) :: srcDevice !< Source device
-    type(c_ptr) :: srcArray !< Source array
-    integer(c_size_t) :: srcPitch !< Source pitch
-    integer(c_size_t) :: dstXInBytes !< Destination width in bytes
-    integer(c_size_t) :: dstY !< Destination height
-    integer(c_int) :: dstMemoryType !< Destination memory type
-    type(c_ptr) :: dstHost !< Destination pointer
-    type(c_ptr) :: dstDevice !< Destination device
-    type(c_ptr) :: dstArray !< Destination array
-    integer(c_size_t) :: dstPitch !< Destination pitch
-    integer(c_size_t) :: WidthInBytes !< Width in bytes of the 2D memory copy
-    integer(c_size_t) :: Height !< Height of the 2D memory copy
+    integer(c_size_t) :: srcXInBytes
+    integer(c_size_t) :: srcY
+    integer(c_int) :: srcMemoryType
+    type(c_ptr) :: srcHost
+    type(c_ptr) :: srcDevice
+    type(c_ptr) :: srcArray
+    integer(c_size_t) :: srcPitch
+    integer(c_size_t) :: dstXInBytes
+    integer(c_size_t) :: dstY
+    integer(c_int) :: dstMemoryType
+    type(c_ptr) :: dstHost
+    type(c_ptr) :: dstDevice
+    type(c_ptr) :: dstArray
+    integer(c_size_t) :: dstPitch
+    integer(c_size_t) :: WidthInBytes
+    integer(c_size_t) :: Height
   end type hip_Memcpy2D
 
   type, bind(c) :: hipMipmappedArray
-    type(c_ptr) :: data !< Data pointer of the mipmapped array
-    type(hipChannelFormatDesc) :: desc !< Description of the mipmapped array
-    integer(c_int) :: type !< Type of the mipmapped array
-    integer(c_int) :: width !< Width of the mipmapped array
-    integer(c_int) :: height !< Height of the mipmapped array
-    integer(c_int) :: depth !< Depth of the mipmapped array
-    integer(c_int) :: min_mipmap_level !< Minimum level of the mipmapped array
-    integer(c_int) :: max_mipmap_level !< Maximum level of the mipmapped array
-    integer(c_int) :: flags !< Flags of the mipmapped array
-    integer(c_int) :: format !< Format of the mipmapped array
-    integer(c_int) :: num_channels !< Number of channels of the mipmapped array
+    type(c_ptr) :: data
+    type(hipChannelFormatDesc) :: desc
+    integer(c_int) :: type
+    integer(c_int) :: width
+    integer(c_int) :: height
+    integer(c_int) :: depth
+    integer(c_int) :: min_mipmap_level
+    integer(c_int) :: max_mipmap_level
+    integer(c_int) :: flags
+    integer(c_int) :: format
+    integer(c_int) :: num_channels
   end type hipMipmappedArray
 
   type, bind(c) :: HIP_TEXTURE_DESC
-    integer(c_int) :: addressMode(3) !< Address modes
-    integer(c_int) :: filterMode !< Filter mode
-    integer(c_int) :: flags !< Flags
-    integer(c_int) :: maxAnisotropy !< Maximum anisotropy ratio
-    integer(c_int) :: mipmapFilterMode !< Mipmap filter mode
-    real(c_float) :: mipmapLevelBias !< Mipmap level bias
-    real(c_float) :: minMipmapLevelClamp !< Mipmap minimum level clamp
-    real(c_float) :: maxMipmapLevelClamp !< Mipmap maximum level clamp
-    real(c_float) :: borderColor(4) !< Border Color
+    integer(c_int) :: addressMode(3)
+    integer(c_int) :: filterMode
+    integer(c_int) :: flags
+    integer(c_int) :: maxAnisotropy
+    integer(c_int) :: mipmapFilterMode
+    real(c_float) :: mipmapLevelBias
+    real(c_float) :: minMipmapLevelClamp
+    real(c_float) :: maxMipmapLevelClamp
+    real(c_float) :: borderColor(4)
     integer(c_int) :: reserved(12)
   end type HIP_TEXTURE_DESC
 
   type, bind(c) :: hipResourceDesc
-    integer(c_int) :: resType !< Resource type
+    integer(c_int) :: resType
     integer(c_int64_t) :: res(7) !< 56-byte C union: keeps the layout exact, members not individually accessible
   end type hipResourceDesc
 
   type, bind(c) :: HIP_RESOURCE_DESC
-    integer(c_int) :: resType !< Resource type
+    integer(c_int) :: resType
     integer(c_int64_t) :: res(16) !< 128-byte C union: keeps the layout exact, members not individually accessible
-    integer(c_int) :: flags !< Flags (must be zero)
+    integer(c_int) :: flags
   end type HIP_RESOURCE_DESC
 
   type, bind(c) :: hipResourceViewDesc
-    integer(c_int) :: format !< Resource view format
-    integer(c_size_t) :: width !< Width of the resource view
-    integer(c_size_t) :: height !< Height of the resource view
-    integer(c_size_t) :: depth !< Depth of the resource view
-    integer(c_int) :: firstMipmapLevel !< First defined mipmap level
-    integer(c_int) :: lastMipmapLevel !< Last defined mipmap level
-    integer(c_int) :: firstLayer !< First layer index
-    integer(c_int) :: lastLayer !< Last layer index
+    integer(c_int) :: format
+    integer(c_size_t) :: width
+    integer(c_size_t) :: height
+    integer(c_size_t) :: depth
+    integer(c_int) :: firstMipmapLevel
+    integer(c_int) :: lastMipmapLevel
+    integer(c_int) :: firstLayer
+    integer(c_int) :: lastLayer
   end type hipResourceViewDesc
 
   type, bind(c) :: HIP_RESOURCE_VIEW_DESC
-    integer(c_int) :: format !< Resource view format
-    integer(c_size_t) :: width !< Width of the resource view
-    integer(c_size_t) :: height !< Height of the resource view
-    integer(c_size_t) :: depth !< Depth of the resource view
-    integer(c_int) :: firstMipmapLevel !< First defined mipmap level
-    integer(c_int) :: lastMipmapLevel !< Last defined mipmap level
-    integer(c_int) :: firstLayer !< First layer index
-    integer(c_int) :: lastLayer !< Last layer index
+    integer(c_int) :: format
+    integer(c_size_t) :: width
+    integer(c_size_t) :: height
+    integer(c_size_t) :: depth
+    integer(c_int) :: firstMipmapLevel
+    integer(c_int) :: lastMipmapLevel
+    integer(c_int) :: firstLayer
+    integer(c_int) :: lastLayer
     integer(c_int) :: reserved(16)
   end type HIP_RESOURCE_VIEW_DESC
 
   type, bind(c) :: hipPitchedPtr
-    type(c_ptr) :: ptr !< Pointer to the allocated memory
-    integer(c_size_t) :: pitch !< Pitch in bytes
-    integer(c_size_t) :: xsize !< Logical size of the first dimension of allocation in elements
-    integer(c_size_t) :: ysize !< Logical size of the second dimension of allocation in elements
+    type(c_ptr) :: ptr
+    integer(c_size_t) :: pitch
+    integer(c_size_t) :: xsize
+    integer(c_size_t) :: ysize
   end type hipPitchedPtr
 
   type, bind(c) :: hipExtent
@@ -1378,58 +1393,58 @@ module hip
   end type hipExtent
 
   type, bind(c) :: hipPos
-    integer(c_size_t) :: x !< X coordinate
-    integer(c_size_t) :: y !< Y coordinate
-    integer(c_size_t) :: z !< Z coordinate
+    integer(c_size_t) :: x
+    integer(c_size_t) :: y
+    integer(c_size_t) :: z
   end type hipPos
 
   type, bind(c) :: hipMemcpy3DParms
-    type(c_ptr) :: srcArray !< Source array
-    type(hipPos) :: srcPos !< Source position
-    type(hipPitchedPtr) :: srcPtr !< Source pointer
-    type(c_ptr) :: dstArray !< Destination array
-    type(hipPos) :: dstPos !< Destination position
-    type(hipPitchedPtr) :: dstPtr !< Destination pointer
-    type(hipExtent) :: extent !< Extent of 3D memory copy
-    integer(c_int) :: kind !< Kind of 3D memory copy
+    type(c_ptr) :: srcArray
+    type(hipPos) :: srcPos
+    type(hipPitchedPtr) :: srcPtr
+    type(c_ptr) :: dstArray
+    type(hipPos) :: dstPos
+    type(hipPitchedPtr) :: dstPtr
+    type(hipExtent) :: extent
+    integer(c_int) :: kind
   end type hipMemcpy3DParms
 
   type, bind(c) :: HIP_MEMCPY3D
-    integer(c_size_t) :: srcXInBytes !< Source X in bytes
-    integer(c_size_t) :: srcY !< Source Y
-    integer(c_size_t) :: srcZ !< Source Z
-    integer(c_size_t) :: srcLOD !< Source LOD
-    integer(c_int) :: srcMemoryType !< Source memory type
-    type(c_ptr) :: srcHost !< Source host pointer
-    type(c_ptr) :: srcDevice !< Source device
-    type(c_ptr) :: srcArray !< Source array
-    integer(c_size_t) :: srcPitch !< Source pitch
-    integer(c_size_t) :: srcHeight !< Source height
-    integer(c_size_t) :: dstXInBytes !< Destination X in bytes
-    integer(c_size_t) :: dstY !< Destination Y
-    integer(c_size_t) :: dstZ !< Destination Z
-    integer(c_size_t) :: dstLOD !< Destination LOD
-    integer(c_int) :: dstMemoryType !< Destination memory type
-    type(c_ptr) :: dstHost !< Destination host pointer
-    type(c_ptr) :: dstDevice !< Destination device
-    type(c_ptr) :: dstArray !< Destination array
-    integer(c_size_t) :: dstPitch !< Destination pitch
-    integer(c_size_t) :: dstHeight !< Destination height
-    integer(c_size_t) :: WidthInBytes !< Width in bytes of 3D memory copy
-    integer(c_size_t) :: Height !< Height in bytes of 3D memory copy
-    integer(c_size_t) :: Depth !< Depth in bytes of 3D memory copy
+    integer(c_size_t) :: srcXInBytes
+    integer(c_size_t) :: srcY
+    integer(c_size_t) :: srcZ
+    integer(c_size_t) :: srcLOD
+    integer(c_int) :: srcMemoryType
+    type(c_ptr) :: srcHost
+    type(c_ptr) :: srcDevice
+    type(c_ptr) :: srcArray
+    integer(c_size_t) :: srcPitch
+    integer(c_size_t) :: srcHeight
+    integer(c_size_t) :: dstXInBytes
+    integer(c_size_t) :: dstY
+    integer(c_size_t) :: dstZ
+    integer(c_size_t) :: dstLOD
+    integer(c_int) :: dstMemoryType
+    type(c_ptr) :: dstHost
+    type(c_ptr) :: dstDevice
+    type(c_ptr) :: dstArray
+    integer(c_size_t) :: dstPitch
+    integer(c_size_t) :: dstHeight
+    integer(c_size_t) :: WidthInBytes
+    integer(c_size_t) :: Height
+    integer(c_size_t) :: Depth
   end type HIP_MEMCPY3D
 
   type, bind(c) :: hipMemLocation
-    integer(c_int) :: type !< Specifies the location type, which describes the meaning of id
-    integer(c_int) :: id !< Identifier for the provided location type @p hipMemLocationType
+    integer(c_int) :: type
+    integer(c_int) :: id
   end type hipMemLocation
 
   type, bind(c) :: hipMemcpyAttributes
-    integer(c_int) :: srcAccessOrder !< Source access ordering to be observed for copies with this attribute.
-    type(hipMemLocation) :: srcLocHint !< Location hint for src operand.
-    type(hipMemLocation) :: dstLocHint !< Location hint for destination operand.
-    integer(c_int) :: flags !< Additional Flags for copies. See hipMemcpyFlags.
+    integer(c_int) :: srcAccessOrder
+    type(hipMemLocation) :: srcLocHint
+    type(hipMemLocation) :: dstLocHint
+    integer(c_int) :: flags
   end type hipMemcpyAttributes
 
   type, bind(c) :: hipOffset3D
@@ -1452,15 +1467,15 @@ module hip
   end type hipMemcpy3DBatchOp
 
   type, bind(c) :: hipMemcpy3DPeerParms
-    type(c_ptr) :: srcArray !< Source memory address
-    type(hipPos) :: srcPos !< Source position offset
-    type(hipPitchedPtr) :: srcPtr !< Pitched source memory address
-    integer(c_int) :: srcDevice !< Source device
-    type(c_ptr) :: dstArray !< Destination memory address
-    type(hipPos) :: dstPos !< Destination position offset
-    type(hipPitchedPtr) :: dstPtr !< Pitched destination memory address
-    integer(c_int) :: dstDevice !< Destination device
-    type(hipExtent) :: extent !< Requested memory copy size
+    type(c_ptr) :: srcArray
+    type(hipPos) :: srcPos
+    type(hipPitchedPtr) :: srcPtr
+    integer(c_int) :: srcDevice
+    type(c_ptr) :: dstArray
+    type(hipPos) :: dstPos
+    type(hipPitchedPtr) :: dstPtr
+    integer(c_int) :: dstDevice
+    type(hipExtent) :: extent
   end type hipMemcpy3DPeerParms
 
   type, bind(c) :: textureReference
@@ -1563,17 +1578,17 @@ module hip
   end type hipBatchMemOpNodeParams
 
   type, bind(c) :: hipMemAccessDesc
-    type(hipMemLocation) :: location !< Location on which the accessibility has to change
-    integer(c_int) :: flags !< Accessibility flags to set
+    type(hipMemLocation) :: location
+    integer(c_int) :: flags
   end type hipMemAccessDesc
 
   type, bind(c) :: hipMemPoolProps
-    integer(c_int) :: allocType !< Allocation type. Currently must be specified as @p hipMemAllocationTypePinned
-    integer(c_int) :: handleTypes !< Handle types that will be supported by allocations from the pool
-    type(hipMemLocation) :: location !< Location where allocations should reside
-    type(c_ptr) :: win32SecurityAttributes !< Windows-specific LPSECURITYATTRIBUTES required when @p hipMemHandleTypeWin32 is...
-    integer(c_size_t) :: maxSize !< Maximum pool size. When set to 0, defaults to a system dependent value
-    character(c_char) :: reserved(56) !< Reserved for future use, must be 0
+    integer(c_int) :: allocType
+    integer(c_int) :: handleTypes
+    type(hipMemLocation) :: location
+    type(c_ptr) :: win32SecurityAttributes
+    integer(c_size_t) :: maxSize
+    character(c_char) :: reserved(56)
   end type hipMemPoolProps
 
   type, bind(c) :: hipMemPoolPtrExportData
@@ -1581,31 +1596,31 @@ module hip
   end type hipMemPoolPtrExportData
 
   type, bind(c) :: dim3
-    integer(c_int32_t) :: x = 1 !< x
-    integer(c_int32_t) :: y = 1 !< y
-    integer(c_int32_t) :: z = 1 !< z
+    integer(c_int32_t) :: x = 1
+    integer(c_int32_t) :: y = 1
+    integer(c_int32_t) :: z = 1
   end type dim3
 
   type, bind(c) :: hipLaunchParams
-    type(c_ptr) :: func !< Device function symbol
-    type(dim3) :: gridDim !< Grid dimensions
-    type(dim3) :: blockDim !< Block dimensions
-    type(c_ptr) :: args !< Arguments
-    integer(c_size_t) :: sharedMem !< Shared memory
-    type(c_ptr) :: stream !< Stream identifier
+    type(c_ptr) :: func
+    type(dim3) :: gridDim
+    type(dim3) :: blockDim
+    type(c_ptr) :: args
+    integer(c_size_t) :: sharedMem
+    type(c_ptr) :: stream
   end type hipLaunchParams
 
   type, bind(c) :: hipFunctionLaunchParams
-    type(c_ptr) :: function !< Kernel to launch
-    integer(c_int) :: gridDimX !< Width(X) of grid in blocks
-    integer(c_int) :: gridDimY !< Height(Y) of grid in blocks
-    integer(c_int) :: gridDimZ !< Depth(Z) of grid in blocks
-    integer(c_int) :: blockDimX !< X dimension of each thread block
-    integer(c_int) :: blockDimY !< Y dimension of each thread block
-    integer(c_int) :: blockDimZ !< Z dimension of each thread block
-    integer(c_int) :: sharedMemBytes !< Shared memory
-    type(c_ptr) :: hStream !< Stream identifier
-    type(c_ptr) :: kernelParams !< Kernel parameters
+    type(c_ptr) :: function
+    integer(c_int) :: gridDimX
+    integer(c_int) :: gridDimY
+    integer(c_int) :: gridDimZ
+    integer(c_int) :: blockDimX
+    integer(c_int) :: blockDimY
+    integer(c_int) :: blockDimZ
+    integer(c_int) :: sharedMemBytes
+    type(c_ptr) :: hStream
+    type(c_ptr) :: kernelParams
   end type hipFunctionLaunchParams
 
   type, bind(c) :: hipExternalMemoryHandleDesc
@@ -1674,51 +1689,51 @@ module hip
   end type hipMemsetParams
 
   type, bind(c) :: hipMemAllocNodeParams
-    type(hipMemPoolProps) :: poolProps !< Pool properties, which contain where the location should reside
-    type(c_ptr) :: accessDescs !< The number of memory access descriptors.
-    integer(c_size_t) :: accessDescCount !< The number of access descriptors. Must not be bigger than the number of GPUs
-    integer(c_size_t) :: bytesize !< The size of the requested allocation in bytes
-    type(c_ptr) :: dptr !< Returned device address of the allocation
+    type(hipMemPoolProps) :: poolProps
+    type(c_ptr) :: accessDescs
+    integer(c_size_t) :: accessDescCount
+    integer(c_size_t) :: bytesize
+    type(c_ptr) :: dptr
   end type hipMemAllocNodeParams
 
   type, bind(c) :: hipAccessPolicyWindow
-    type(c_ptr) :: base_ptr !< Starting address of the access policy window
-    integer(c_int) :: hitProp !< hipAccessProperty set for hit
-    real(c_float) :: hitRatio !< hitRatio specifies percentage of lines assigned hitProp
-    integer(c_int) :: missProp !< hipAccessProperty set for miss
-    integer(c_size_t) :: num_bytes !< Size in bytes of the window policy.
+    type(c_ptr) :: base_ptr
+    integer(c_int) :: hitProp
+    real(c_float) :: hitRatio
+    integer(c_int) :: missProp
+    integer(c_size_t) :: num_bytes
   end type hipAccessPolicyWindow
 
   type, bind(c) :: hipLaunchMemSyncDomainMap
-    character(c_char) :: default_ !< The default domain ID to use for designated kernels
-    character(c_char) :: remote !< The remote domain ID to use for designated kernels
+    character(c_char) :: default_
+    character(c_char) :: remote
   end type hipLaunchMemSyncDomainMap
 
   type, bind(c) :: hipExtDynDataPrefetchRegion
-    type(c_ptr) :: address !< Base address (must be cache-line aligned)
-    integer(c_size_t) :: stride !< Stride between row starts in bytes
-    integer(c_size_t) :: width !< Width of each row in bytes (must be a multiple of cache line size)
-    integer(c_size_t) :: height !< Number of rows to prefetch
+    type(c_ptr) :: address
+    integer(c_size_t) :: stride
+    integer(c_size_t) :: width
+    integer(c_size_t) :: height
   end type hipExtDynDataPrefetchRegion
 
   type, bind(c) :: hipExtDynDataPrefetchConfig
-    integer(c_int) :: numRegions !< Number of valid regions (1-max)
-    integer(c_int) :: temporal !< Cache retention policy for prefetched data
-    type(hipExtDynDataPrefetchRegion) :: regions(2) !< Prefetch regions
+    integer(c_int) :: numRegions
+    integer(c_int) :: temporal
+    type(hipExtDynDataPrefetchRegion) :: regions(2)
   end type hipExtDynDataPrefetchConfig
 
   type, bind(c) :: hipGraphInstantiateParams
-    type(c_ptr) :: errNode_out !< The node which caused instantiation to fail, if any
-    integer(c_int64_t) :: flags !< Instantiation flags
-    integer(c_int) :: result_out !< Whether instantiation was successful. If it failed, the reason why
-    type(c_ptr) :: uploadStream !< Upload stream
+    type(c_ptr) :: errNode_out
+    integer(c_int64_t) :: flags
+    integer(c_int) :: result_out
+    type(c_ptr) :: uploadStream
   end type hipGraphInstantiateParams
 
   type, bind(c) :: hipMemAllocationProp
-    integer(c_int) :: type !< Memory allocation type
+    integer(c_int) :: type
     integer(c_int) :: requestedHandleType !< C union; also spelled requestedHandleTypes
-    type(hipMemLocation) :: location !< Memory location
-    type(c_ptr) :: win32HandleMetaData !< Metadata for Win32 handles
+    type(hipMemLocation) :: location
+    type(c_ptr) :: win32HandleMetaData
     integer(c_int16_t) :: allocFlags(2) !< 4-byte unnamed C struct: keeps the layout exact, fields not individually accessible
   end type hipMemAllocationProp
 
@@ -1735,39 +1750,39 @@ module hip
   end type hipExternalSemaphoreWaitNodeParams
 
   type, bind(c) :: hipArrayMapInfo
-    integer(c_int) :: resourceType !< Resource type
+    integer(c_int) :: resourceType
     integer(c_int64_t) :: resource(8) !< 64-byte C union: keeps the layout exact, members not individually accessible
-    integer(c_int) :: subresourceType !< Sparse subresource type
+    integer(c_int) :: subresourceType
     integer(c_int64_t) :: subresource(4) !< 32-byte C union: keeps the layout exact, members not individually accessible
-    integer(c_int) :: memOperationType !< Memory operation type
-    integer(c_int) :: memHandleType !< Memory handle type
+    integer(c_int) :: memOperationType
+    integer(c_int) :: memHandleType
     type(c_ptr) :: memHandle
-    integer(c_int64_t) :: offset !< Offset within the memory
-    integer(c_int) :: deviceBitMask !< Device ordinal bit mask
-    integer(c_int) :: flags !< flags for future use, must be zero now.
-    integer(c_int) :: reserved(2) !< Reserved for future use, must be zero now.
+    integer(c_int64_t) :: offset
+    integer(c_int) :: deviceBitMask
+    integer(c_int) :: flags
+    integer(c_int) :: reserved(2)
   end type hipArrayMapInfo
 
   type, bind(c) :: hipMemcpyNodeParams
-    integer(c_int) :: flags !< Must be zero.
-    integer(c_int) :: reserved(3) !< Must be zero.
-    type(hipMemcpy3DParms) :: copyParams !< Params set for the memory copy.
+    integer(c_int) :: flags
+    integer(c_int) :: reserved(3)
+    type(hipMemcpy3DParms) :: copyParams
   end type hipMemcpyNodeParams
 
   type, bind(c) :: hipChildGraphNodeParams
-    type(c_ptr) :: graph !< Either the child graph to clone into the node, or a handle to the graph possesed by the node used...
+    type(c_ptr) :: graph
   end type hipChildGraphNodeParams
 
   type, bind(c) :: hipEventWaitNodeParams
-    type(c_ptr) :: event !< Event to wait on
+    type(c_ptr) :: event
   end type hipEventWaitNodeParams
 
   type, bind(c) :: hipEventRecordNodeParams
-    type(c_ptr) :: event !< The event to be recorded when node executes
+    type(c_ptr) :: event
   end type hipEventRecordNodeParams
 
   type, bind(c) :: hipMemFreeNodeParams
-    type(c_ptr) :: dptr !< the pointer to be freed
+    type(c_ptr) :: dptr
   end type hipMemFreeNodeParams
 
   type, bind(c) :: hipGraphNodeParams
@@ -1778,38 +1793,38 @@ module hip
   end type hipGraphNodeParams
 
   type, bind(c) :: hipGraphEdgeData
-    character(c_char) :: from_port !< This indicates when the dependency is triggered from the upstream node on the edge. The...
-    character(c_char) :: reserved(5) !< These bytes are unused and must be zeroed
-    character(c_char) :: to_port !< Currently no node types define non-zero ports. This field must be set to zero.
-    character(c_char) :: type !< This should be populated with a value from hipGraphDependencyType
+    character(c_char) :: from_port
+    character(c_char) :: reserved(5)
+    character(c_char) :: to_port
+    character(c_char) :: type
   end type hipGraphEdgeData
 
   type, bind(c) :: hipLaunchAttribute
-    integer(c_int) :: id !< Identifier of the launch attribute
-    character(c_char) :: pad(4) !< Padding to align the structure to 8 bytes
+    integer(c_int) :: id
+    character(c_char) :: pad(4)
     integer(c_int64_t) :: anonymous_union(8) !< 64-byte C union: keeps the layout exact, members not individually accessible
   end type hipLaunchAttribute
 
   type, bind(c) :: hipLaunchConfig_t
-    type(dim3) :: gridDim !< Grid dimensions
-    type(dim3) :: blockDim !< Block dimensions
-    integer(c_size_t) :: dynamicSmemBytes !< Dynamic shared-memory size per thread block
-    type(c_ptr) :: stream !< Stream identifier
-    type(c_ptr) :: attrs !< Attributes list
-    integer(c_int) :: numAttrs !< Number of attributes
+    type(dim3) :: gridDim
+    type(dim3) :: blockDim
+    integer(c_size_t) :: dynamicSmemBytes
+    type(c_ptr) :: stream
+    type(c_ptr) :: attrs
+    integer(c_int) :: numAttrs
   end type hipLaunchConfig_t
 
   type, bind(c) :: HIP_LAUNCH_CONFIG
-    integer(c_int) :: gridDimX !< Grid width in blocks
-    integer(c_int) :: gridDimY !< Grid height in blocks
-    integer(c_int) :: gridDimZ !< Grid depth in blocks
-    integer(c_int) :: blockDimX !< Thread block dimension in X
-    integer(c_int) :: blockDimY !< Thread block dimension in Y
-    integer(c_int) :: blockDimZ !< Thread block dimension in Z
-    integer(c_int) :: sharedMemBytes !< Dynamic shared-memory size in bytes per block
-    type(c_ptr) :: hStream !< HIP stream identifier
-    type(c_ptr) :: attrs !< Attribute list
-    integer(c_int) :: numAttrs !< Number of attributes
+    integer(c_int) :: gridDimX
+    integer(c_int) :: gridDimY
+    integer(c_int) :: gridDimZ
+    integer(c_int) :: blockDimX
+    integer(c_int) :: blockDimY
+    integer(c_int) :: blockDimZ
+    integer(c_int) :: sharedMemBytes
+    type(c_ptr) :: hStream
+    type(c_ptr) :: attrs
+    integer(c_int) :: numAttrs
   end type HIP_LAUNCH_CONFIG
 
   type, bind(c) :: hipArrayMemoryRequirements
@@ -1818,6944 +1833,6905 @@ module hip
   end type hipArrayMemoryRequirements
 
 
+  interface hipCreateChannelDesc
+    function hipCreateChannelDesc_(x,y,z,w,f) bind(c, name="hipCreateChannelDesc")
+      use iso_c_binding
+      import
+      implicit none
+      type(hipChannelFormatDesc) :: hipCreateChannelDesc_
+      integer(c_int),value :: x
+      integer(c_int),value :: y
+      integer(c_int),value :: z
+      integer(c_int),value :: w
+      integer(c_int),value :: f
+    end function
+  end interface
+
+  interface hipInit
+    function hipInit_(flags) bind(c, name="hipInit")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipInit_
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipDriverGetVersion
+    function hipDriverGetVersion_(driverVersion) bind(c, name="hipDriverGetVersion")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDriverGetVersion_
+      type(c_ptr),value :: driverVersion
+    end function
+
+    module procedure hipDriverGetVersion_typed
+  end interface
+
+  interface hipRuntimeGetVersion
+    function hipRuntimeGetVersion_(runtimeVersion) bind(c, name="hipRuntimeGetVersion")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipRuntimeGetVersion_
+      type(c_ptr),value :: runtimeVersion
+    end function
+
+    module procedure hipRuntimeGetVersion_typed
+  end interface
+
+  interface hipDeviceGet
+    function hipDeviceGet_(device,ordinal) bind(c, name="hipDeviceGet")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGet_
+      type(c_ptr),value :: device
+      integer(c_int),value :: ordinal
+    end function
+
+    module procedure hipDeviceGet_typed
+  end interface
+
+  interface hipDeviceComputeCapability
+    function hipDeviceComputeCapability_(major,minor,device) &
+        bind(c, name="hipDeviceComputeCapability")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceComputeCapability_
+      type(c_ptr),value :: major
+      type(c_ptr),value :: minor
+      integer(c_int),value :: device
+    end function
+
+    module procedure hipDeviceComputeCapability_typed
+  end interface
+
+  interface hipDeviceGetName
+    function hipDeviceGetName_(name,len,device) bind(c, name="hipDeviceGetName")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetName_
+      type(c_ptr),value :: name
+      integer(c_int),value :: len
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  interface hipDeviceGetUuid
+    function hipDeviceGetUuid_(uuid,device) bind(c, name="hipDeviceGetUuid")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetUuid_
+      type(hipUUID) :: uuid
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  interface hipDeviceGetLuid
+    function hipDeviceGetLuid_(luid,deviceNodeMask,device) bind(c, name="hipDeviceGetLuid")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetLuid_
+      type(c_ptr),value :: luid
+      type(c_ptr),value :: deviceNodeMask
+      integer(c_int),value :: device
+    end function
+
+    module procedure hipDeviceGetLuid_typed
+  end interface
+
+  interface hipDeviceGetP2PAttribute
+    function hipDeviceGetP2PAttribute_(myValue,attr,srcDevice,dstDevice) &
+        bind(c, name="hipDeviceGetP2PAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetP2PAttribute_
+      type(c_ptr),value :: myValue
+      integer(c_int),value :: attr
+      integer(c_int),value :: srcDevice
+      integer(c_int),value :: dstDevice
+    end function
+
+    module procedure hipDeviceGetP2PAttribute_typed
+  end interface
+
+  interface hipDeviceGetPCIBusId
+    function hipDeviceGetPCIBusId_(pciBusId,len,device) bind(c, name="hipDeviceGetPCIBusId")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetPCIBusId_
+      type(c_ptr),value :: pciBusId
+      integer(c_int),value :: len
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  interface hipDeviceGetByPCIBusId
+    function hipDeviceGetByPCIBusId_(device,pciBusId) bind(c, name="hipDeviceGetByPCIBusId")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetByPCIBusId_
+      type(c_ptr),value :: device
+      type(c_ptr),value :: pciBusId
+    end function
+
+    module procedure hipDeviceGetByPCIBusId_typed
+  end interface
+
+  interface hipDeviceTotalMem
+    function hipDeviceTotalMem_(bytes,device) bind(c, name="hipDeviceTotalMem")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceTotalMem_
+      type(c_ptr),value :: bytes
+      integer(c_int),value :: device
+    end function
+
+    module procedure hipDeviceTotalMem_typed
+  end interface
+
+  interface hipDeviceSynchronize
+    function hipDeviceSynchronize_() bind(c, name="hipDeviceSynchronize")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceSynchronize_
+    end function
+  end interface
+
+  interface hipDeviceReset
+    function hipDeviceReset_() bind(c, name="hipDeviceReset")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceReset_
+    end function
+  end interface
+
+  interface hipSetDevice
+    function hipSetDevice_(deviceId) bind(c, name="hipSetDevice")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipSetDevice_
+      integer(c_int),value :: deviceId
+    end function
+  end interface
+
+  interface hipSetValidDevices
+    function hipSetValidDevices_(device_arr,len) bind(c, name="hipSetValidDevices")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipSetValidDevices_
+      type(c_ptr),value :: device_arr
+      integer(c_int),value :: len
+    end function
+  end interface
+
+  interface hipGetDevice
+    function hipGetDevice_(deviceId) bind(c, name="hipGetDevice")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetDevice_
+      type(c_ptr),value :: deviceId
+    end function
+
+    module procedure hipGetDevice_typed
+  end interface
+
+  interface hipGetDeviceCount
+    function hipGetDeviceCount_(count) bind(c, name="hipGetDeviceCount")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetDeviceCount_
+      type(c_ptr),value :: count
+    end function
+
+    module procedure hipGetDeviceCount_typed
+  end interface
+
+  interface hipDeviceGetAttribute
+    function hipDeviceGetAttribute_(pi,attr,deviceId) bind(c, name="hipDeviceGetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetAttribute_
+      type(c_ptr),value :: pi
+      integer(c_int),value :: attr
+      integer(c_int),value :: deviceId
+    end function
+
+    module procedure hipDeviceGetAttribute_typed
+  end interface
+
+  interface hipDeviceFlushGPUDirectRDMAWrites
+    function hipDeviceFlushGPUDirectRDMAWrites_(target,scope) &
+        bind(c, name="hipDeviceFlushGPUDirectRDMAWrites")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceFlushGPUDirectRDMAWrites_
+      integer(c_int),value :: target
+      integer(c_int),value :: scope
+    end function
+  end interface
+
+  interface hipDeviceGetDefaultMemPool
+    function hipDeviceGetDefaultMemPool_(mem_pool,device) bind(c, name="hipDeviceGetDefaultMemPool")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetDefaultMemPool_
+      type(c_ptr) :: mem_pool
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  interface hipDeviceSetMemPool
+    function hipDeviceSetMemPool_(device,mem_pool) bind(c, name="hipDeviceSetMemPool")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceSetMemPool_
+      integer(c_int),value :: device
+      type(c_ptr),value :: mem_pool
+    end function
+  end interface
+
+  interface hipDeviceGetMemPool
+    function hipDeviceGetMemPool_(mem_pool,device) bind(c, name="hipDeviceGetMemPool")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetMemPool_
+      type(c_ptr) :: mem_pool
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  interface hipDeviceGetTexture1DLinearMaxWidth
+    function hipDeviceGetTexture1DLinearMaxWidth_(max_width,desc,device) &
+        bind(c, name="hipDeviceGetTexture1DLinearMaxWidth")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetTexture1DLinearMaxWidth_
+      type(c_ptr),value :: max_width
+      type(hipChannelFormatDesc) :: desc
+      integer(c_int),value :: device
+    end function
+
+    module procedure hipDeviceGetTexture1DLinearMaxWidth_typed
+  end interface
+
+  interface hipDeviceSetCacheConfig
+    function hipDeviceSetCacheConfig_(cacheConfig) bind(c, name="hipDeviceSetCacheConfig")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceSetCacheConfig_
+      integer(c_int),value :: cacheConfig
+    end function
+  end interface
+
+  interface hipDeviceGetCacheConfig
+    function hipDeviceGetCacheConfig_(cacheConfig) bind(c, name="hipDeviceGetCacheConfig")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetCacheConfig_
+      type(c_ptr),value :: cacheConfig
+    end function
+
+    module procedure hipDeviceGetCacheConfig_typed
+  end interface
+
+  interface hipDeviceGetLimit
+    function hipDeviceGetLimit_(pValue,limit) bind(c, name="hipDeviceGetLimit")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetLimit_
+      type(c_ptr),value :: pValue
+      integer(c_int),value :: limit
+    end function
+
+    module procedure hipDeviceGetLimit_typed
+  end interface
+
+  interface hipDeviceSetLimit
+    function hipDeviceSetLimit_(limit,myValue) bind(c, name="hipDeviceSetLimit")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceSetLimit_
+      integer(c_int),value :: limit
+      integer(c_size_t),value :: myValue
+    end function
+  end interface
+
+  interface hipDeviceGetSharedMemConfig
+    function hipDeviceGetSharedMemConfig_(pConfig) bind(c, name="hipDeviceGetSharedMemConfig")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetSharedMemConfig_
+      type(c_ptr),value :: pConfig
+    end function
+
+    module procedure hipDeviceGetSharedMemConfig_typed
+  end interface
+
+  interface hipGetDeviceFlags
+    function hipGetDeviceFlags_(flags) bind(c, name="hipGetDeviceFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetDeviceFlags_
+      type(c_ptr),value :: flags
+    end function
+
+    module procedure hipGetDeviceFlags_typed
+  end interface
+
+  interface hipDeviceSetSharedMemConfig
+    function hipDeviceSetSharedMemConfig_(config) bind(c, name="hipDeviceSetSharedMemConfig")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceSetSharedMemConfig_
+      integer(c_int),value :: config
+    end function
+  end interface
+
+  interface hipSetDeviceFlags
+    function hipSetDeviceFlags_(flags) bind(c, name="hipSetDeviceFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipSetDeviceFlags_
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipChooseDeviceR0600
+    function hipChooseDeviceR0600_(device,prop) bind(c, name="hipChooseDeviceR0600")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipChooseDeviceR0600_
+      type(c_ptr),value :: device
+      type(hipDeviceProp_t) :: prop
+    end function
+
+    module procedure hipChooseDeviceR0600_typed
+  end interface
+
+  interface hipInitDevice
+    function hipInitDevice_(device,deviceFlags,flags) bind(c, name="hipInitDevice")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipInitDevice_
+      integer(c_int),value :: device
+      integer(c_int),value :: deviceFlags
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipExtGetLinkTypeAndHopCount
+    function hipExtGetLinkTypeAndHopCount_(device1,device2,linktype,hopcount) &
+        bind(c, name="hipExtGetLinkTypeAndHopCount")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExtGetLinkTypeAndHopCount_
+      integer(c_int),value :: device1
+      integer(c_int),value :: device2
+      type(c_ptr),value :: linktype
+      type(c_ptr),value :: hopcount
+    end function
+
+    module procedure hipExtGetLinkTypeAndHopCount_typed
+  end interface
+
+  interface hipIpcGetMemHandle
+    function hipIpcGetMemHandle_(handle,devPtr) bind(c, name="hipIpcGetMemHandle")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipIpcGetMemHandle_
+      type(hipIpcMemHandle_t) :: handle
+      type(c_ptr),value :: devPtr
+    end function
+  end interface
+
+  interface hipIpcOpenMemHandle
+    function hipIpcOpenMemHandle_(devPtr,handle,flags) bind(c, name="hipIpcOpenMemHandle")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipIpcOpenMemHandle_
+      type(c_ptr) :: devPtr
+      type(hipIpcMemHandle_t),value :: handle
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipIpcCloseMemHandle
+    function hipIpcCloseMemHandle_(devPtr) bind(c, name="hipIpcCloseMemHandle")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipIpcCloseMemHandle_
+      type(c_ptr),value :: devPtr
+    end function
+  end interface
+
+  interface hipIpcGetEventHandle
+    function hipIpcGetEventHandle_(handle,event) bind(c, name="hipIpcGetEventHandle")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipIpcGetEventHandle_
+      type(hipIpcEventHandle_t) :: handle
+      type(c_ptr),value :: event
+    end function
+  end interface
+
+  interface hipIpcOpenEventHandle
+    function hipIpcOpenEventHandle_(event,handle) bind(c, name="hipIpcOpenEventHandle")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipIpcOpenEventHandle_
+      type(c_ptr) :: event
+      type(hipIpcEventHandle_t),value :: handle
+    end function
+  end interface
+
+  interface hipFuncSetAttribute
+    function hipFuncSetAttribute_(func,attr,myValue) bind(c, name="hipFuncSetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipFuncSetAttribute_
+      type(c_ptr),value :: func
+      integer(c_int),value :: attr
+      integer(c_int),value :: myValue
+    end function
+  end interface
+
+  interface hipKernelSetAttribute
+    function hipKernelSetAttribute_(attrib,myValue,kernel,dev) bind(c, name="hipKernelSetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipKernelSetAttribute_
+      integer(c_int),value :: attrib
+      integer(c_int),value :: myValue
+      type(c_ptr),value :: kernel
+      integer(c_int),value :: dev
+    end function
+  end interface
+
+  interface hipKernelSetAttributeForDevice
+    function hipKernelSetAttributeForDevice_(kernel,attr,myValue,device) &
+        bind(c, name="hipKernelSetAttributeForDevice")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipKernelSetAttributeForDevice_
+      type(c_ptr),value :: kernel
+      integer(c_int),value :: attr
+      integer(c_int),value :: myValue
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  interface hipKernelGetFunction
+    function hipKernelGetFunction_(pFunc,kernel) bind(c, name="hipKernelGetFunction")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipKernelGetFunction_
+      type(c_ptr) :: pFunc
+      type(c_ptr),value :: kernel
+    end function
+  end interface
+
+  interface hipFuncSetCacheConfig
+    function hipFuncSetCacheConfig_(func,config) bind(c, name="hipFuncSetCacheConfig")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipFuncSetCacheConfig_
+      type(c_ptr),value :: func
+      integer(c_int),value :: config
+    end function
+  end interface
+
+  interface hipFuncSetSharedMemConfig
+    function hipFuncSetSharedMemConfig_(func,config) bind(c, name="hipFuncSetSharedMemConfig")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipFuncSetSharedMemConfig_
+      type(c_ptr),value :: func
+      integer(c_int),value :: config
+    end function
+  end interface
+
+  interface hipGetLastError
+    function hipGetLastError_() bind(c, name="hipGetLastError")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetLastError_
+    end function
+  end interface
+
+  interface hipExtGetLastError
+    function hipExtGetLastError_() bind(c, name="hipExtGetLastError")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExtGetLastError_
+    end function
+  end interface
+
+  interface hipPeekAtLastError
+    function hipPeekAtLastError_() bind(c, name="hipPeekAtLastError")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipPeekAtLastError_
+    end function
+  end interface
+
+  interface hipGetErrorName
+    function hipGetErrorName_(hip_error) bind(c, name="hipGetErrorName")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: hipGetErrorName_
+      integer(c_int),value :: hip_error
+    end function
+  end interface
+
+  interface hipGetErrorString
+    function hipGetErrorString_(hipError) bind(c, name="hipGetErrorString")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: hipGetErrorString_
+      integer(c_int),value :: hipError
+    end function
+  end interface
+
+  interface hipDrvGetErrorName
+    function hipDrvGetErrorName_(hipError,errorString) bind(c, name="hipDrvGetErrorName")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvGetErrorName_
+      integer(c_int),value :: hipError
+      type(c_ptr) :: errorString
+    end function
+  end interface
+
+  interface hipDrvGetErrorString
+    function hipDrvGetErrorString_(hipError,errorString) bind(c, name="hipDrvGetErrorString")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvGetErrorString_
+      integer(c_int),value :: hipError
+      type(c_ptr) :: errorString
+    end function
+  end interface
+
+  interface hipStreamCreate
+    function hipStreamCreate_(stream) bind(c, name="hipStreamCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamCreate_
+      type(c_ptr) :: stream
+    end function
+  end interface
+
+  interface hipStreamCreateWithFlags
+    function hipStreamCreateWithFlags_(stream,flags) bind(c, name="hipStreamCreateWithFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamCreateWithFlags_
+      type(c_ptr) :: stream
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipStreamCreateWithPriority
+    function hipStreamCreateWithPriority_(stream,flags,priority) &
+        bind(c, name="hipStreamCreateWithPriority")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamCreateWithPriority_
+      type(c_ptr) :: stream
+      integer(c_int),value :: flags
+      integer(c_int),value :: priority
+    end function
+  end interface
+
+  interface hipDeviceGetStreamPriorityRange
+    function hipDeviceGetStreamPriorityRange_(leastPriority,greatestPriority) &
+        bind(c, name="hipDeviceGetStreamPriorityRange")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetStreamPriorityRange_
+      type(c_ptr),value :: leastPriority
+      type(c_ptr),value :: greatestPriority
+    end function
+
+    module procedure hipDeviceGetStreamPriorityRange_typed
+  end interface
+
+  interface hipStreamDestroy
+    function hipStreamDestroy_(stream) bind(c, name="hipStreamDestroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamDestroy_
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipStreamQuery
+    function hipStreamQuery_(stream) bind(c, name="hipStreamQuery")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamQuery_
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipStreamSynchronize
+    function hipStreamSynchronize_(stream) bind(c, name="hipStreamSynchronize")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamSynchronize_
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipStreamWaitEvent
+    function hipStreamWaitEvent_(stream,event,flags) bind(c, name="hipStreamWaitEvent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamWaitEvent_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: event
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipStreamGetFlags
+    function hipStreamGetFlags_(stream,flags) bind(c, name="hipStreamGetFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamGetFlags_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: flags
+    end function
+
+    module procedure hipStreamGetFlags_typed
+  end interface
+
+  interface hipStreamGetId
+    function hipStreamGetId_(stream,streamId) bind(c, name="hipStreamGetId")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamGetId_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: streamId
+    end function
+
+    module procedure hipStreamGetId_typed
+  end interface
+
+  interface hipStreamGetPriority
+    function hipStreamGetPriority_(stream,priority) bind(c, name="hipStreamGetPriority")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamGetPriority_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: priority
+    end function
+
+    module procedure hipStreamGetPriority_typed
+  end interface
+
+  interface hipStreamGetDevice
+    function hipStreamGetDevice_(stream,device) bind(c, name="hipStreamGetDevice")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamGetDevice_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: device
+    end function
+
+    module procedure hipStreamGetDevice_typed
+  end interface
+
+  interface hipExtStreamCreateWithCUMask
+    function hipExtStreamCreateWithCUMask_(stream,cuMaskSize,cuMask) &
+        bind(c, name="hipExtStreamCreateWithCUMask")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExtStreamCreateWithCUMask_
+      type(c_ptr) :: stream
+      integer(c_int32_t),value :: cuMaskSize
+      type(c_ptr),value :: cuMask
+    end function
+  end interface
+
+  interface hipExtStreamGetCUMask
+    function hipExtStreamGetCUMask_(stream,cuMaskSize,cuMask) bind(c, name="hipExtStreamGetCUMask")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExtStreamGetCUMask_
+      type(c_ptr),value :: stream
+      integer(c_int32_t),value :: cuMaskSize
+      type(c_ptr),value :: cuMask
+    end function
+  end interface
+
+  interface hipStreamAddCallback
+    function hipStreamAddCallback_(stream,callback,userData,flags) &
+        bind(c, name="hipStreamAddCallback")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamAddCallback_
+      type(c_ptr),value :: stream
+      type(c_funptr),value :: callback
+      type(c_ptr),value :: userData
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipStreamSetAttribute
+    function hipStreamSetAttribute_(stream,attr,myValue) bind(c, name="hipStreamSetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamSetAttribute_
+      type(c_ptr),value :: stream
+      integer(c_int),value :: attr
+      type(c_ptr),value :: myValue
+    end function
+  end interface
+
+  interface hipStreamGetAttribute
+    function hipStreamGetAttribute_(stream,attr,value_out) bind(c, name="hipStreamGetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamGetAttribute_
+      type(c_ptr),value :: stream
+      integer(c_int),value :: attr
+      type(c_ptr),value :: value_out
+    end function
+  end interface
+
+  interface hipStreamCopyAttributes
+    function hipStreamCopyAttributes_(dst,src) bind(c, name="hipStreamCopyAttributes")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamCopyAttributes_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+    end function
+  end interface
+
+  interface hipStreamWaitValue32
+    function hipStreamWaitValue32_(stream,ptr,myValue,flags,mask) &
+        bind(c, name="hipStreamWaitValue32")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamWaitValue32_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: ptr
+      integer(c_int32_t),value :: myValue
+      integer(c_int),value :: flags
+      integer(c_int32_t),value :: mask
+    end function
+  end interface
+
+  interface hipStreamWaitValue64
+    function hipStreamWaitValue64_(stream,ptr,myValue,flags,mask) &
+        bind(c, name="hipStreamWaitValue64")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamWaitValue64_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: ptr
+      integer(c_int64_t),value :: myValue
+      integer(c_int),value :: flags
+      integer(c_int64_t),value :: mask
+    end function
+  end interface
+
+  interface hipStreamWriteValue32
+    function hipStreamWriteValue32_(stream,ptr,myValue,flags) bind(c, name="hipStreamWriteValue32")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamWriteValue32_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: ptr
+      integer(c_int32_t),value :: myValue
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipStreamWriteValue64
+    function hipStreamWriteValue64_(stream,ptr,myValue,flags) bind(c, name="hipStreamWriteValue64")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamWriteValue64_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: ptr
+      integer(c_int64_t),value :: myValue
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipStreamBatchMemOp
+    function hipStreamBatchMemOp_(stream,count,paramArray,flags) bind(c, name="hipStreamBatchMemOp")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamBatchMemOp_
+      type(c_ptr),value :: stream
+      integer(c_int),value :: count
+      type(c_ptr),value :: paramArray
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipGraphAddBatchMemOpNode
+    function hipGraphAddBatchMemOpNode_(phGraphNode,hGraph,dependencies,numDependencies, &
+        nodeParams) &
+        bind(c, name="hipGraphAddBatchMemOpNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddBatchMemOpNode_
+      type(c_ptr) :: phGraphNode
+      type(c_ptr),value :: hGraph
+      type(c_ptr) :: dependencies
+      integer(c_size_t),value :: numDependencies
+      type(hipBatchMemOpNodeParams) :: nodeParams
+    end function
+  end interface
+
+  interface hipGraphBatchMemOpNodeGetParams
+    function hipGraphBatchMemOpNodeGetParams_(hNode,nodeParams_out) &
+        bind(c, name="hipGraphBatchMemOpNodeGetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphBatchMemOpNodeGetParams_
+      type(c_ptr),value :: hNode
+      type(hipBatchMemOpNodeParams) :: nodeParams_out
+    end function
+  end interface
+
+  interface hipGraphBatchMemOpNodeSetParams
+    function hipGraphBatchMemOpNodeSetParams_(hNode,nodeParams) &
+        bind(c, name="hipGraphBatchMemOpNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphBatchMemOpNodeSetParams_
+      type(c_ptr),value :: hNode
+      type(hipBatchMemOpNodeParams) :: nodeParams
+    end function
+  end interface
+
+  interface hipGraphExecBatchMemOpNodeSetParams
+    function hipGraphExecBatchMemOpNodeSetParams_(hGraphExec,hNode,nodeParams) &
+        bind(c, name="hipGraphExecBatchMemOpNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecBatchMemOpNodeSetParams_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: hNode
+      type(hipBatchMemOpNodeParams) :: nodeParams
+    end function
+  end interface
+
+  interface hipEventCreateWithFlags
+    function hipEventCreateWithFlags_(event,flags) bind(c, name="hipEventCreateWithFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipEventCreateWithFlags_
+      type(c_ptr) :: event
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipEventCreate
+    function hipEventCreate_(event) bind(c, name="hipEventCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipEventCreate_
+      type(c_ptr) :: event
+    end function
+  end interface
+
+  interface hipEventRecordWithFlags
+    function hipEventRecordWithFlags_(event,stream,flags) bind(c, name="hipEventRecordWithFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipEventRecordWithFlags_
+      type(c_ptr),value :: event
+      type(c_ptr),value :: stream
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipEventRecord
+    function hipEventRecord_(event,stream) bind(c, name="hipEventRecord")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipEventRecord_
+      type(c_ptr),value :: event
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipEventDestroy
+    function hipEventDestroy_(event) bind(c, name="hipEventDestroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipEventDestroy_
+      type(c_ptr),value :: event
+    end function
+  end interface
+
+  interface hipEventSynchronize
+    function hipEventSynchronize_(event) bind(c, name="hipEventSynchronize")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipEventSynchronize_
+      type(c_ptr),value :: event
+    end function
+  end interface
+
+  interface hipEventElapsedTime
+    function hipEventElapsedTime_(ms,start,myStop) bind(c, name="hipEventElapsedTime")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipEventElapsedTime_
+      type(c_ptr),value :: ms
+      type(c_ptr),value :: start
+      type(c_ptr),value :: myStop
+    end function
+
+    module procedure hipEventElapsedTime_typed
+  end interface
+
+  interface hipEventQuery
+    function hipEventQuery_(event) bind(c, name="hipEventQuery")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipEventQuery_
+      type(c_ptr),value :: event
+    end function
+  end interface
+
+  interface hipPointerSetAttribute
+    function hipPointerSetAttribute_(myValue,attribute,ptr) bind(c, name="hipPointerSetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipPointerSetAttribute_
+      type(c_ptr),value :: myValue
+      integer(c_int),value :: attribute
+      type(c_ptr),value :: ptr
+    end function
+  end interface
+
+  interface hipPointerGetAttributes
+    function hipPointerGetAttributes_(attributes,ptr) bind(c, name="hipPointerGetAttributes")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipPointerGetAttributes_
+      type(hipPointerAttribute_t) :: attributes
+      type(c_ptr),value :: ptr
+    end function
+  end interface
+
+  interface hipPointerGetAttribute
+    function hipPointerGetAttribute_(myData,attribute,ptr) bind(c, name="hipPointerGetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipPointerGetAttribute_
+      type(c_ptr),value :: myData
+      integer(c_int),value :: attribute
+      type(c_ptr),value :: ptr
+    end function
+  end interface
+
+  interface hipDrvPointerGetAttributes
+    function hipDrvPointerGetAttributes_(numAttributes,attributes,myData,ptr) &
+        bind(c, name="hipDrvPointerGetAttributes")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvPointerGetAttributes_
+      integer(c_int),value :: numAttributes
+      type(c_ptr),value :: attributes
+      type(c_ptr) :: myData
+      type(c_ptr),value :: ptr
+    end function
+  end interface
+
+  interface hipImportExternalSemaphore
+    function hipImportExternalSemaphore_(extSem_out,semHandleDesc) &
+        bind(c, name="hipImportExternalSemaphore")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipImportExternalSemaphore_
+      type(c_ptr) :: extSem_out
+      type(hipExternalSemaphoreHandleDesc) :: semHandleDesc
+    end function
+  end interface
+
+  interface hipSignalExternalSemaphoresAsync
+    function hipSignalExternalSemaphoresAsync_(extSemArray,paramsArray,numExtSems,stream) &
+        bind(c, name="hipSignalExternalSemaphoresAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipSignalExternalSemaphoresAsync_
+      type(c_ptr) :: extSemArray
+      type(hipExternalSemaphoreSignalParams) :: paramsArray
+      integer(c_int),value :: numExtSems
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipWaitExternalSemaphoresAsync
+    function hipWaitExternalSemaphoresAsync_(extSemArray,paramsArray,numExtSems,stream) &
+        bind(c, name="hipWaitExternalSemaphoresAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipWaitExternalSemaphoresAsync_
+      type(c_ptr) :: extSemArray
+      type(hipExternalSemaphoreWaitParams) :: paramsArray
+      integer(c_int),value :: numExtSems
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipDestroyExternalSemaphore
+    function hipDestroyExternalSemaphore_(extSem) bind(c, name="hipDestroyExternalSemaphore")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDestroyExternalSemaphore_
+      type(c_ptr),value :: extSem
+    end function
+  end interface
+
+  interface hipImportExternalMemory
+    function hipImportExternalMemory_(extMem_out,memHandleDesc) &
+        bind(c, name="hipImportExternalMemory")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipImportExternalMemory_
+      type(c_ptr) :: extMem_out
+      type(hipExternalMemoryHandleDesc) :: memHandleDesc
+    end function
+  end interface
+
+  interface hipExternalMemoryGetMappedBuffer
+    function hipExternalMemoryGetMappedBuffer_(devPtr,extMem,bufferDesc) &
+        bind(c, name="hipExternalMemoryGetMappedBuffer")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExternalMemoryGetMappedBuffer_
+      type(c_ptr) :: devPtr
+      type(c_ptr),value :: extMem
+      type(hipExternalMemoryBufferDesc) :: bufferDesc
+    end function
+  end interface
+
+  interface hipDestroyExternalMemory
+    function hipDestroyExternalMemory_(extMem) bind(c, name="hipDestroyExternalMemory")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDestroyExternalMemory_
+      type(c_ptr),value :: extMem
+    end function
+  end interface
+
+  interface hipExternalMemoryGetMappedMipmappedArray
+    function hipExternalMemoryGetMappedMipmappedArray_(mipmap,extMem,mipmapDesc) &
+        bind(c, name="hipExternalMemoryGetMappedMipmappedArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExternalMemoryGetMappedMipmappedArray_
+      type(c_ptr) :: mipmap
+      type(c_ptr),value :: extMem
+      type(hipExternalMemoryMipmappedArrayDesc) :: mipmapDesc
+    end function
+  end interface
+
+  interface hipExtMallocWithFlags
+    function hipExtMallocWithFlags_(ptr,sizeBytes,flags) bind(c, name="hipExtMallocWithFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExtMallocWithFlags_
+      type(c_ptr) :: ptr
+      integer(c_size_t),value :: sizeBytes
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipMallocHost
+    function hipMallocHost_(ptr,mySize) bind(c, name="hipMallocHost")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMallocHost_
+      type(c_ptr) :: ptr
+      integer(c_size_t),value :: mySize
+    end function
+  end interface
+
+  interface hipMemAllocHost
+    function hipMemAllocHost_(ptr,mySize) bind(c, name="hipMemAllocHost")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemAllocHost_
+      type(c_ptr) :: ptr
+      integer(c_size_t),value :: mySize
+    end function
+  end interface
+
+  interface hipMemPrefetchAsync
+    function hipMemPrefetchAsync_(dev_ptr,count,device,stream) bind(c, name="hipMemPrefetchAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPrefetchAsync_
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+      integer(c_int),value :: device
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemPrefetchAsync_v2
+    function hipMemPrefetchAsync_v2_(dev_ptr,count,location,flags,stream) &
+        bind(c, name="hipMemPrefetchAsync_v2")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPrefetchAsync_v2_
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+      type(hipMemLocation),value :: location
+      integer(c_int),value :: flags
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemPrefetchBatchAsync
+    function hipMemPrefetchBatchAsync_(dev_ptrs,sizes,count,prefetch_locs,prefetch_loc_idxs, &
+        num_prefetch_locs,flags,stream) &
+        bind(c, name="hipMemPrefetchBatchAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPrefetchBatchAsync_
+      type(c_ptr) :: dev_ptrs
+      type(c_ptr),value :: sizes
+      integer(c_size_t),value :: count
+      type(hipMemLocation) :: prefetch_locs
+      type(c_ptr),value :: prefetch_loc_idxs
+      integer(c_size_t),value :: num_prefetch_locs
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemDiscardBatchAsync
+    function hipMemDiscardBatchAsync_(dev_ptrs,sizes,count,flags,stream) &
+        bind(c, name="hipMemDiscardBatchAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemDiscardBatchAsync_
+      type(c_ptr) :: dev_ptrs
+      type(c_ptr),value :: sizes
+      integer(c_size_t),value :: count
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipDrvMemDiscardBatchAsync
+    function hipDrvMemDiscardBatchAsync_(dptrs,sizes,count,flags,stream) &
+        bind(c, name="hipDrvMemDiscardBatchAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvMemDiscardBatchAsync_
+      type(c_ptr) :: dptrs
+      type(c_ptr),value :: sizes
+      integer(c_size_t),value :: count
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemDiscardAndPrefetchBatchAsync
+    function hipMemDiscardAndPrefetchBatchAsync_(dptrs,sizes,count,prefetchLocs,prefetchLocIdxs, &
+        numPrefetchLocs,flags,stream) &
+        bind(c, name="hipMemDiscardAndPrefetchBatchAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemDiscardAndPrefetchBatchAsync_
+      type(c_ptr) :: dptrs
+      type(c_ptr),value :: sizes
+      integer(c_size_t),value :: count
+      type(hipMemLocation) :: prefetchLocs
+      type(c_ptr),value :: prefetchLocIdxs
+      integer(c_size_t),value :: numPrefetchLocs
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipDrvMemDiscardAndPrefetchBatchAsync
+    function hipDrvMemDiscardAndPrefetchBatchAsync_(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream) &
+        bind(c, name="hipDrvMemDiscardAndPrefetchBatchAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvMemDiscardAndPrefetchBatchAsync_
+      type(c_ptr) :: dptrs
+      type(c_ptr),value :: sizes
+      integer(c_size_t),value :: count
+      type(hipMemLocation) :: prefetchLocs
+      type(c_ptr),value :: prefetchLocIdxs
+      integer(c_size_t),value :: numPrefetchLocs
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemAdvise_v2
+    function hipMemAdvise_v2_(dev_ptr,count,advice,location) bind(c, name="hipMemAdvise_v2")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemAdvise_v2_
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+      integer(c_int),value :: advice
+      type(hipMemLocation),value :: location
+    end function
+  end interface
+
+  interface hipMemAdvise
+    function hipMemAdvise_(dev_ptr,count,advice,device) bind(c, name="hipMemAdvise")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemAdvise_
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+      integer(c_int),value :: advice
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  interface hipMemRangeGetAttribute
+    function hipMemRangeGetAttribute_(myData,data_size,attribute,dev_ptr,count) &
+        bind(c, name="hipMemRangeGetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemRangeGetAttribute_
+      type(c_ptr),value :: myData
+      integer(c_size_t),value :: data_size
+      integer(c_int),value :: attribute
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+    end function
+  end interface
+
+  interface hipMemRangeGetAttributes
+    function hipMemRangeGetAttributes_(myData,data_sizes,attributes,num_attributes,dev_ptr,count) &
+        bind(c, name="hipMemRangeGetAttributes")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemRangeGetAttributes_
+      type(c_ptr) :: myData
+      type(c_ptr),value :: data_sizes
+      type(c_ptr),value :: attributes
+      integer(c_size_t),value :: num_attributes
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+    end function
+  end interface
+
+  interface hipStreamAttachMemAsync
+    function hipStreamAttachMemAsync_(stream,dev_ptr,length,flags) &
+        bind(c, name="hipStreamAttachMemAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamAttachMemAsync_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: length
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipMallocAsync
+    function hipMallocAsync_(dev_ptr,mySize,stream) bind(c, name="hipMallocAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMallocAsync_
+      type(c_ptr) :: dev_ptr
+      integer(c_size_t),value :: mySize
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipFreeAsync
+    function hipFreeAsync_(dev_ptr,stream) bind(c, name="hipFreeAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipFreeAsync_
+      type(c_ptr),value :: dev_ptr
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemPoolTrimTo
+    function hipMemPoolTrimTo_(mem_pool,min_bytes_to_hold) bind(c, name="hipMemPoolTrimTo")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPoolTrimTo_
+      type(c_ptr),value :: mem_pool
+      integer(c_size_t),value :: min_bytes_to_hold
+    end function
+  end interface
+
+  interface hipMemPoolSetAttribute
+    function hipMemPoolSetAttribute_(mem_pool,attr,myValue) bind(c, name="hipMemPoolSetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPoolSetAttribute_
+      type(c_ptr),value :: mem_pool
+      integer(c_int),value :: attr
+      type(c_ptr),value :: myValue
+    end function
+  end interface
+
+  interface hipMemPoolGetAttribute
+    function hipMemPoolGetAttribute_(mem_pool,attr,myValue) bind(c, name="hipMemPoolGetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPoolGetAttribute_
+      type(c_ptr),value :: mem_pool
+      integer(c_int),value :: attr
+      type(c_ptr),value :: myValue
+    end function
+  end interface
+
+  interface hipMemPoolSetAccess
+    function hipMemPoolSetAccess_(mem_pool,desc_list,count) bind(c, name="hipMemPoolSetAccess")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPoolSetAccess_
+      type(c_ptr),value :: mem_pool
+      type(hipMemAccessDesc) :: desc_list
+      integer(c_size_t),value :: count
+    end function
+  end interface
+
+  interface hipMemPoolGetAccess
+    function hipMemPoolGetAccess_(flags,mem_pool,location) bind(c, name="hipMemPoolGetAccess")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPoolGetAccess_
+      type(c_ptr),value :: flags
+      type(c_ptr),value :: mem_pool
+      type(hipMemLocation) :: location
+    end function
+
+    module procedure hipMemPoolGetAccess_typed
+  end interface
+
+  interface hipMemPoolCreate
+    function hipMemPoolCreate_(mem_pool,pool_props) bind(c, name="hipMemPoolCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPoolCreate_
+      type(c_ptr) :: mem_pool
+      type(hipMemPoolProps) :: pool_props
+    end function
+  end interface
+
+  interface hipMemPoolDestroy
+    function hipMemPoolDestroy_(mem_pool) bind(c, name="hipMemPoolDestroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPoolDestroy_
+      type(c_ptr),value :: mem_pool
+    end function
+  end interface
+
+  interface hipMallocFromPoolAsync
+    function hipMallocFromPoolAsync_(dev_ptr,mySize,mem_pool,stream) &
+        bind(c, name="hipMallocFromPoolAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMallocFromPoolAsync_
+      type(c_ptr) :: dev_ptr
+      integer(c_size_t),value :: mySize
+      type(c_ptr),value :: mem_pool
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemPoolExportToShareableHandle
+    function hipMemPoolExportToShareableHandle_(shared_handle,mem_pool,handle_type,flags) &
+        bind(c, name="hipMemPoolExportToShareableHandle")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPoolExportToShareableHandle_
+      type(c_ptr),value :: shared_handle
+      type(c_ptr),value :: mem_pool
+      integer(c_int),value :: handle_type
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipMemPoolImportFromShareableHandle
+    function hipMemPoolImportFromShareableHandle_(mem_pool,shared_handle,handle_type,flags) &
+        bind(c, name="hipMemPoolImportFromShareableHandle")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPoolImportFromShareableHandle_
+      type(c_ptr) :: mem_pool
+      type(c_ptr),value :: shared_handle
+      integer(c_int),value :: handle_type
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipMemPoolExportPointer
+    function hipMemPoolExportPointer_(export_data,dev_ptr) bind(c, name="hipMemPoolExportPointer")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPoolExportPointer_
+      type(hipMemPoolPtrExportData) :: export_data
+      type(c_ptr),value :: dev_ptr
+    end function
+  end interface
+
+  interface hipMemPoolImportPointer
+    function hipMemPoolImportPointer_(dev_ptr,mem_pool,export_data) &
+        bind(c, name="hipMemPoolImportPointer")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPoolImportPointer_
+      type(c_ptr) :: dev_ptr
+      type(c_ptr),value :: mem_pool
+      type(hipMemPoolPtrExportData) :: export_data
+    end function
+  end interface
+
+  interface hipMemSetMemPool
+    function hipMemSetMemPool_(location,myType,pool) bind(c, name="hipMemSetMemPool")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemSetMemPool_
+      type(hipMemLocation) :: location
+      integer(c_int),value :: myType
+      type(c_ptr),value :: pool
+    end function
+  end interface
+
+  interface hipMemGetMemPool
+    function hipMemGetMemPool_(pool,location,myType) bind(c, name="hipMemGetMemPool")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemGetMemPool_
+      type(c_ptr) :: pool
+      type(hipMemLocation) :: location
+      integer(c_int),value :: myType
+    end function
+  end interface
+
+  interface hipMemGetDefaultMemPool
+    function hipMemGetDefaultMemPool_(memPool,location,myType) &
+        bind(c, name="hipMemGetDefaultMemPool")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemGetDefaultMemPool_
+      type(c_ptr) :: memPool
+      type(hipMemLocation) :: location
+      integer(c_int),value :: myType
+    end function
+  end interface
+
+  interface hipHostAlloc
+    function hipHostAlloc_(ptr,mySize,flags) bind(c, name="hipHostAlloc")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipHostAlloc_
+      type(c_ptr) :: ptr
+      integer(c_size_t),value :: mySize
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipMallocPitch
+    function hipMallocPitch_(ptr,pitch,width,height) bind(c, name="hipMallocPitch")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMallocPitch_
+      type(c_ptr) :: ptr
+      type(c_ptr),value :: pitch
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+    end function
+
+    module procedure hipMallocPitch_typed
+  end interface
+
+  interface hipMemAllocPitch
+    function hipMemAllocPitch_(dptr,pitch,widthInBytes,height,elementSizeBytes) &
+        bind(c, name="hipMemAllocPitch")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemAllocPitch_
+      type(c_ptr) :: dptr
+      type(c_ptr),value :: pitch
+      integer(c_size_t),value :: widthInBytes
+      integer(c_size_t),value :: height
+      integer(c_int),value :: elementSizeBytes
+    end function
+
+    module procedure hipMemAllocPitch_typed
+  end interface
+
+  interface hipFreeHost
+    function hipFreeHost_(ptr) bind(c, name="hipFreeHost")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipFreeHost_
+      type(c_ptr),value :: ptr
+    end function
+  end interface
+
+  interface hipMemcpyWithStream
+    function hipMemcpyWithStream_(dst,src,sizeBytes,myKind,stream) &
+        bind(c, name="hipMemcpyWithStream")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyWithStream_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      integer(c_int),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpyHtoD
+    function hipMemcpyHtoD_(dst,src,sizeBytes) bind(c, name="hipMemcpyHtoD")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyHtoD_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+    end function
+  end interface
+
+  interface hipMemcpyDtoH
+    function hipMemcpyDtoH_(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoH")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyDtoH_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+    end function
+  end interface
+
+  interface hipMemcpyDtoD
+    function hipMemcpyDtoD_(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoD")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyDtoD_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+    end function
+  end interface
+
+  interface hipMemcpyAtoD
+    function hipMemcpyAtoD_(dstDevice,srcArray,srcOffset,ByteCount) bind(c, name="hipMemcpyAtoD")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyAtoD_
+      type(c_ptr),value :: dstDevice
+      type(c_ptr),value :: srcArray
+      integer(c_size_t),value :: srcOffset
+      integer(c_size_t),value :: ByteCount
+    end function
+  end interface
+
+  interface hipMemcpyDtoA
+    function hipMemcpyDtoA_(dstArray,dstOffset,srcDevice,ByteCount) bind(c, name="hipMemcpyDtoA")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyDtoA_
+      type(c_ptr),value :: dstArray
+      integer(c_size_t),value :: dstOffset
+      type(c_ptr),value :: srcDevice
+      integer(c_size_t),value :: ByteCount
+    end function
+  end interface
+
+  interface hipMemcpyAtoA
+    function hipMemcpyAtoA_(dstArray,dstOffset,srcArray,srcOffset,ByteCount) &
+        bind(c, name="hipMemcpyAtoA")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyAtoA_
+      type(c_ptr),value :: dstArray
+      integer(c_size_t),value :: dstOffset
+      type(c_ptr),value :: srcArray
+      integer(c_size_t),value :: srcOffset
+      integer(c_size_t),value :: ByteCount
+    end function
+  end interface
+
+  interface hipMemcpyHtoDAsync
+    function hipMemcpyHtoDAsync_(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyHtoDAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyHtoDAsync_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpyDtoHAsync
+    function hipMemcpyDtoHAsync_(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoHAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyDtoHAsync_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpyDtoDAsync
+    function hipMemcpyDtoDAsync_(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoDAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyDtoDAsync_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpyAtoHAsync
+    function hipMemcpyAtoHAsync_(dstHost,srcArray,srcOffset,ByteCount,stream) &
+        bind(c, name="hipMemcpyAtoHAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyAtoHAsync_
+      type(c_ptr),value :: dstHost
+      type(c_ptr),value :: srcArray
+      integer(c_size_t),value :: srcOffset
+      integer(c_size_t),value :: ByteCount
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpyHtoAAsync
+    function hipMemcpyHtoAAsync_(dstArray,dstOffset,srcHost,ByteCount,stream) &
+        bind(c, name="hipMemcpyHtoAAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyHtoAAsync_
+      type(c_ptr),value :: dstArray
+      integer(c_size_t),value :: dstOffset
+      type(c_ptr),value :: srcHost
+      integer(c_size_t),value :: ByteCount
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
   interface
-
-    !---------------------------------------------
-    ! hipCreateChannelDesc
-    !---------------------------------------------
-    function hipCreateChannelDesc(x, y, z, w, f) &
-       result(CreateChannelDesc) &
-       bind(C, name="hipCreateChannelDesc")
-       import :: c_int, hipChannelFormatKindSigned, hipChannelFormatDesc
-       integer(c_int), value :: x
-       integer(c_int), value :: y
-       integer(c_int), value :: z
-       integer(c_int), value :: w
-       integer(kind(hipChannelFormatKindSigned)), value :: f
-       type(hipChannelFormatDesc) :: CreateChannelDesc
-    end function hipCreateChannelDesc
-
-    !---------------------------------------------
-    ! hipInit
-    !---------------------------------------------
-    function hipInit(flags) &
-       result(Init) &
-       bind(C, name="hipInit")
-       import :: c_int, hipSuccess
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: Init
-    end function hipInit
-
-    !---------------------------------------------
-    ! hipDriverGetVersion
-    !---------------------------------------------
-    function hipDriverGetVersion(driverVersion) &
-       result(DriverGetVersion) &
-       bind(C, name="hipDriverGetVersion")
-       import :: c_int, hipSuccess
-       integer(c_int) :: driverVersion
-       integer(kind(hipSuccess)) :: DriverGetVersion
-    end function hipDriverGetVersion
-
-    !---------------------------------------------
-    ! hipRuntimeGetVersion
-    !---------------------------------------------
-    function hipRuntimeGetVersion(runtimeVersion) &
-       result(RuntimeGetVersion) &
-       bind(C, name="hipRuntimeGetVersion")
-       import :: c_int, hipSuccess
-       integer(c_int) :: runtimeVersion
-       integer(kind(hipSuccess)) :: RuntimeGetVersion
-    end function hipRuntimeGetVersion
-
-    !---------------------------------------------
-    ! hipDeviceGet
-    !---------------------------------------------
-    function hipDeviceGet(device, ordinal) &
-       result(DeviceGet) &
-       bind(C, name="hipDeviceGet")
-       import :: c_int, hipSuccess
-       integer(c_int) :: device
-       integer(c_int), value :: ordinal
-       integer(kind(hipSuccess)) :: DeviceGet
-    end function hipDeviceGet
-
-    !---------------------------------------------
-    ! hipDeviceComputeCapability
-    !---------------------------------------------
-    function hipDeviceComputeCapability(major, minor, device) &
-       result(DeviceComputeCapability) &
-       bind(C, name="hipDeviceComputeCapability")
-       import :: c_int, hipSuccess
-       integer(c_int) :: major
-       integer(c_int) :: minor
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: DeviceComputeCapability
-    end function hipDeviceComputeCapability
-
-    !---------------------------------------------
-    ! hipDeviceGetName
-    !---------------------------------------------
-    function hipDeviceGetName(name, len, device) &
-       result(DeviceGetName) &
-       bind(C, name="hipDeviceGetName")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: name
-       integer(c_int), value :: len
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: DeviceGetName
-    end function hipDeviceGetName
-
-    !---------------------------------------------
-    ! hipDeviceGetUuid
-    !---------------------------------------------
-    function hipDeviceGetUuid(uuid, device) &
-       result(DeviceGetUuid) &
-       bind(C, name="hipDeviceGetUuid")
-       import :: hipUUID, c_int, hipSuccess
-       type(hipUUID) :: uuid
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: DeviceGetUuid
-    end function hipDeviceGetUuid
-
-    !---------------------------------------------
-    ! hipDeviceGetLuid
-    !---------------------------------------------
-    function hipDeviceGetLuid(luid, deviceNodeMask, device) &
-       result(DeviceGetLuid) &
-       bind(C, name="hipDeviceGetLuid")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: luid
-       type(c_ptr), value :: deviceNodeMask
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: DeviceGetLuid
-    end function hipDeviceGetLuid
-
-    !---------------------------------------------
-    ! hipDeviceGetP2PAttribute
-    !---------------------------------------------
-    function hipDeviceGetP2PAttribute(myValue, attr, srcDevice, dstDevice) &
-       result(DeviceGetP2PAttribute) &
-       bind(C, name="hipDeviceGetP2PAttribute")
-       import :: c_int, hipDevP2PAttrPerformanceRank, hipSuccess
-       integer(c_int) :: myValue
-       integer(kind(hipDevP2PAttrPerformanceRank)), value :: attr
-       integer(c_int), value :: srcDevice
-       integer(c_int), value :: dstDevice
-       integer(kind(hipSuccess)) :: DeviceGetP2PAttribute
-    end function hipDeviceGetP2PAttribute
-
-    !---------------------------------------------
-    ! hipDeviceGetPCIBusId
-    !---------------------------------------------
-    function hipDeviceGetPCIBusId(pciBusId, len, device) &
-       result(DeviceGetPCIBusId) &
-       bind(C, name="hipDeviceGetPCIBusId")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: pciBusId
-       integer(c_int), value :: len
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: DeviceGetPCIBusId
-    end function hipDeviceGetPCIBusId
-
-    !---------------------------------------------
-    ! hipDeviceGetByPCIBusId
-    !---------------------------------------------
-    function hipDeviceGetByPCIBusId(device, pciBusId) &
-       result(DeviceGetByPCIBusId) &
-       bind(C, name="hipDeviceGetByPCIBusId")
-       import :: c_int, c_ptr, hipSuccess
-       integer(c_int) :: device
-       type(c_ptr), value :: pciBusId
-       integer(kind(hipSuccess)) :: DeviceGetByPCIBusId
-    end function hipDeviceGetByPCIBusId
-
-    !---------------------------------------------
-    ! hipDeviceTotalMem
-    !---------------------------------------------
-    function hipDeviceTotalMem(bytes, device) &
-       result(DeviceTotalMem) &
-       bind(C, name="hipDeviceTotalMem")
-       import :: c_size_t, c_int, hipSuccess
-       integer(c_size_t) :: bytes
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: DeviceTotalMem
-    end function hipDeviceTotalMem
-
-    !---------------------------------------------
-    ! hipDeviceSynchronize
-    !---------------------------------------------
-    function hipDeviceSynchronize() &
-       result(DeviceSynchronize) &
-       bind(C, name="hipDeviceSynchronize")
-       import :: hipSuccess
-       integer(kind(hipSuccess)) :: DeviceSynchronize
-    end function hipDeviceSynchronize
-
-    !---------------------------------------------
-    ! hipDeviceReset
-    !---------------------------------------------
-    function hipDeviceReset() &
-       result(DeviceReset) &
-       bind(C, name="hipDeviceReset")
-       import :: hipSuccess
-       integer(kind(hipSuccess)) :: DeviceReset
-    end function hipDeviceReset
-
-    !---------------------------------------------
-    ! hipSetDevice
-    !---------------------------------------------
-    function hipSetDevice(deviceId) &
-       result(SetDevice) &
-       bind(C, name="hipSetDevice")
-       import :: c_int, hipSuccess
-       integer(c_int), value :: deviceId
-       integer(kind(hipSuccess)) :: SetDevice
-    end function hipSetDevice
-
-    !---------------------------------------------
-    ! hipSetValidDevices
-    !---------------------------------------------
-    function hipSetValidDevices(device_arr, len) &
-       result(SetValidDevices) &
-       bind(C, name="hipSetValidDevices")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: device_arr
-       integer(c_int), value :: len
-       integer(kind(hipSuccess)) :: SetValidDevices
-    end function hipSetValidDevices
-
-    !---------------------------------------------
-    ! hipGetDevice
-    !---------------------------------------------
-    function hipGetDevice(deviceId) &
-       result(GetDevice) &
-       bind(C, name="hipGetDevice")
-       import :: c_int, hipSuccess
-       integer(c_int) :: deviceId
-       integer(kind(hipSuccess)) :: GetDevice
-    end function hipGetDevice
-
-    !---------------------------------------------
-    ! hipGetDeviceCount
-    !---------------------------------------------
-    function hipGetDeviceCount(count) &
-       result(GetDeviceCount) &
-       bind(C, name="hipGetDeviceCount")
-       import :: c_int, hipSuccess
-       integer(c_int) :: count
-       integer(kind(hipSuccess)) :: GetDeviceCount
-    end function hipGetDeviceCount
-
-    !---------------------------------------------
-    ! hipDeviceGetAttribute
-    !---------------------------------------------
-    function hipDeviceGetAttribute(pi, attr, deviceId) &
-       result(DeviceGetAttribute) &
-       bind(C, name="hipDeviceGetAttribute")
-       import :: c_int, hipDeviceAttributeCudaCompatibleBegin, hipSuccess
-       integer(c_int) :: pi
-       integer(kind(hipDeviceAttributeCudaCompatibleBegin)), value :: attr
-       integer(c_int), value :: deviceId
-       integer(kind(hipSuccess)) :: DeviceGetAttribute
-    end function hipDeviceGetAttribute
-
-    !---------------------------------------------
-    ! hipDeviceGetDefaultMemPool
-    !---------------------------------------------
-    function hipDeviceGetDefaultMemPool(mem_pool, device) &
-       result(DeviceGetDefaultMemPool) &
-       bind(C, name="hipDeviceGetDefaultMemPool")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: mem_pool
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: DeviceGetDefaultMemPool
-    end function hipDeviceGetDefaultMemPool
-
-    !---------------------------------------------
-    ! hipDeviceSetMemPool
-    !---------------------------------------------
-    function hipDeviceSetMemPool(device, mem_pool) &
-       result(DeviceSetMemPool) &
-       bind(C, name="hipDeviceSetMemPool")
-       import :: c_int, c_ptr, hipSuccess
-       integer(c_int), value :: device
-       type(c_ptr), value :: mem_pool
-       integer(kind(hipSuccess)) :: DeviceSetMemPool
-    end function hipDeviceSetMemPool
-
-    !---------------------------------------------
-    ! hipDeviceGetMemPool
-    !---------------------------------------------
-    function hipDeviceGetMemPool(mem_pool, device) &
-       result(DeviceGetMemPool) &
-       bind(C, name="hipDeviceGetMemPool")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: mem_pool
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: DeviceGetMemPool
-    end function hipDeviceGetMemPool
-
-    !---------------------------------------------
-    ! hipDeviceGetTexture1DLinearMaxWidth
-    !---------------------------------------------
-    function hipDeviceGetTexture1DLinearMaxWidth(max_width, desc, device) &
-       result(DeviceGetTexture1DLinearMaxWidth) &
-       bind(C, name="hipDeviceGetTexture1DLinearMaxWidth")
-       import :: c_ptr, hipChannelFormatDesc, c_int, hipSuccess
-       type(c_ptr), value :: max_width
-       type(hipChannelFormatDesc) :: desc
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: DeviceGetTexture1DLinearMaxWidth
-    end function hipDeviceGetTexture1DLinearMaxWidth
-
-    !---------------------------------------------
-    ! hipDeviceSetCacheConfig
-    !---------------------------------------------
-    function hipDeviceSetCacheConfig(cacheConfig) &
-       result(DeviceSetCacheConfig) &
-       bind(C, name="hipDeviceSetCacheConfig")
-       import :: hipFuncCachePreferNone, hipSuccess
-       integer(kind(hipFuncCachePreferNone)), value :: cacheConfig
-       integer(kind(hipSuccess)) :: DeviceSetCacheConfig
-    end function hipDeviceSetCacheConfig
-
-    !---------------------------------------------
-    ! hipDeviceGetCacheConfig
-    !---------------------------------------------
-    function hipDeviceGetCacheConfig(cacheConfig) &
-       result(DeviceGetCacheConfig) &
-       bind(C, name="hipDeviceGetCacheConfig")
-       import :: hipFuncCachePreferNone, hipSuccess
-       integer(kind(hipFuncCachePreferNone)) :: cacheConfig
-       integer(kind(hipSuccess)) :: DeviceGetCacheConfig
-    end function hipDeviceGetCacheConfig
-
-    !---------------------------------------------
-    ! hipDeviceGetLimit
-    !---------------------------------------------
-    function hipDeviceGetLimit(pValue, limit) &
-       result(DeviceGetLimit) &
-       bind(C, name="hipDeviceGetLimit")
-       import :: c_size_t, hipLimitStackSize, hipSuccess
-       integer(c_size_t) :: pValue
-       integer(kind(hipLimitStackSize)), value :: limit
-       integer(kind(hipSuccess)) :: DeviceGetLimit
-    end function hipDeviceGetLimit
-
-    !---------------------------------------------
-    ! hipDeviceSetLimit
-    !---------------------------------------------
-    function hipDeviceSetLimit(limit, myValue) &
-       result(DeviceSetLimit) &
-       bind(C, name="hipDeviceSetLimit")
-       import :: hipLimitStackSize, c_size_t, hipSuccess
-       integer(kind(hipLimitStackSize)), value :: limit
-       integer(c_size_t), value :: myValue
-       integer(kind(hipSuccess)) :: DeviceSetLimit
-    end function hipDeviceSetLimit
-
-    !---------------------------------------------
-    ! hipDeviceGetSharedMemConfig
-    !---------------------------------------------
-    function hipDeviceGetSharedMemConfig(pConfig) &
-       result(DeviceGetSharedMemConfig) &
-       bind(C, name="hipDeviceGetSharedMemConfig")
-       import :: hipSharedMemBankSizeDefault, hipSuccess
-       integer(kind(hipSharedMemBankSizeDefault)) :: pConfig
-       integer(kind(hipSuccess)) :: DeviceGetSharedMemConfig
-    end function hipDeviceGetSharedMemConfig
-
-    !---------------------------------------------
-    ! hipGetDeviceFlags
-    !---------------------------------------------
-    function hipGetDeviceFlags(flags) &
-       result(GetDeviceFlags) &
-       bind(C, name="hipGetDeviceFlags")
-       import :: c_int, hipSuccess
-       integer(c_int) :: flags
-       integer(kind(hipSuccess)) :: GetDeviceFlags
-    end function hipGetDeviceFlags
-
-    !---------------------------------------------
-    ! hipDeviceSetSharedMemConfig
-    !---------------------------------------------
-    function hipDeviceSetSharedMemConfig(config) &
-       result(DeviceSetSharedMemConfig) &
-       bind(C, name="hipDeviceSetSharedMemConfig")
-       import :: hipSharedMemBankSizeDefault, hipSuccess
-       integer(kind(hipSharedMemBankSizeDefault)), value :: config
-       integer(kind(hipSuccess)) :: DeviceSetSharedMemConfig
-    end function hipDeviceSetSharedMemConfig
-
-    !---------------------------------------------
-    ! hipSetDeviceFlags
-    !---------------------------------------------
-    function hipSetDeviceFlags(flags) &
-       result(SetDeviceFlags) &
-       bind(C, name="hipSetDeviceFlags")
-       import :: c_int, hipSuccess
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: SetDeviceFlags
-    end function hipSetDeviceFlags
-
-    !---------------------------------------------
-    ! hipChooseDeviceR0600
-    !---------------------------------------------
-    function hipChooseDeviceR0600(device, prop) &
-       result(ChooseDeviceR0600) &
-       bind(C, name="hipChooseDeviceR0600")
-       import :: c_ptr, hipDeviceProp_t, hipSuccess
-       type(c_ptr), value :: device
-       type(hipDeviceProp_t) :: prop
-       integer(kind(hipSuccess)) :: ChooseDeviceR0600
-    end function hipChooseDeviceR0600
-
-    !---------------------------------------------
-    ! hipInitDevice
-    !---------------------------------------------
-    function hipInitDevice(device, deviceFlags, flags) &
-       result(InitDevice) &
-       bind(C, name="hipInitDevice")
-       import :: c_int, hipSuccess
-       integer(c_int), value :: device
-       integer(c_int), value :: deviceFlags
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: InitDevice
-    end function hipInitDevice
-
-    !---------------------------------------------
-    ! hipExtGetLinkTypeAndHopCount
-    !---------------------------------------------
-    function hipExtGetLinkTypeAndHopCount(device1, device2, linktype, hopcount) &
-       result(ExtGetLinkTypeAndHopCount) &
-       bind(C, name="hipExtGetLinkTypeAndHopCount")
-       import :: c_int, c_int32_t, hipSuccess
-       integer(c_int), value :: device1
-       integer(c_int), value :: device2
-       integer(c_int32_t) :: linktype
-       integer(c_int32_t) :: hopcount
-       integer(kind(hipSuccess)) :: ExtGetLinkTypeAndHopCount
-    end function hipExtGetLinkTypeAndHopCount
-
-    !---------------------------------------------
-    ! hipIpcGetMemHandle
-    !---------------------------------------------
-    function hipIpcGetMemHandle(handle, devPtr) &
-       result(IpcGetMemHandle) &
-       bind(C, name="hipIpcGetMemHandle")
-       import :: hipIpcMemHandle_t, c_ptr, hipSuccess
-       type(hipIpcMemHandle_t) :: handle
-       type(c_ptr), value :: devPtr
-       integer(kind(hipSuccess)) :: IpcGetMemHandle
-    end function hipIpcGetMemHandle
-
-    !---------------------------------------------
-    ! hipIpcOpenMemHandle
-    !---------------------------------------------
-    function hipIpcOpenMemHandle(devPtr, handle, flags) &
-       result(IpcOpenMemHandle) &
-       bind(C, name="hipIpcOpenMemHandle")
-       import :: c_ptr, hipIpcMemHandle_t, c_int, hipSuccess
-       type(c_ptr) :: devPtr
-       type(hipIpcMemHandle_t), value :: handle
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: IpcOpenMemHandle
-    end function hipIpcOpenMemHandle
-
-    !---------------------------------------------
-    ! hipIpcCloseMemHandle
-    !---------------------------------------------
-    function hipIpcCloseMemHandle(devPtr) &
-       result(IpcCloseMemHandle) &
-       bind(C, name="hipIpcCloseMemHandle")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: devPtr
-       integer(kind(hipSuccess)) :: IpcCloseMemHandle
-    end function hipIpcCloseMemHandle
-
-    !---------------------------------------------
-    ! hipIpcGetEventHandle
-    !---------------------------------------------
-    function hipIpcGetEventHandle(handle, event) &
-       result(IpcGetEventHandle) &
-       bind(C, name="hipIpcGetEventHandle")
-       import :: hipIpcEventHandle_t, c_ptr, hipSuccess
-       type(hipIpcEventHandle_t) :: handle
-       type(c_ptr), value :: event
-       integer(kind(hipSuccess)) :: IpcGetEventHandle
-    end function hipIpcGetEventHandle
-
-    !---------------------------------------------
-    ! hipIpcOpenEventHandle
-    !---------------------------------------------
-    function hipIpcOpenEventHandle(event, handle) &
-       result(IpcOpenEventHandle) &
-       bind(C, name="hipIpcOpenEventHandle")
-       import :: c_ptr, hipIpcEventHandle_t, hipSuccess
-       type(c_ptr) :: event
-       type(hipIpcEventHandle_t), value :: handle
-       integer(kind(hipSuccess)) :: IpcOpenEventHandle
-    end function hipIpcOpenEventHandle
-
-    !---------------------------------------------
-    ! hipFuncSetAttribute
-    !---------------------------------------------
-    function hipFuncSetAttribute(func, attr, myValue) &
-       result(FuncSetAttribute) &
-       bind(C, name="hipFuncSetAttribute")
-       import :: c_ptr, hipFuncAttributeMaxDynamicSharedMemorySize, c_int, hipSuccess
-       type(c_ptr), value :: func
-       integer(kind(hipFuncAttributeMaxDynamicSharedMemorySize)), value :: attr
-       integer(c_int), value :: myValue
-       integer(kind(hipSuccess)) :: FuncSetAttribute
-    end function hipFuncSetAttribute
-
-    !---------------------------------------------
-    ! hipKernelSetAttribute
-    !---------------------------------------------
-    function hipKernelSetAttribute(attrib, myValue, kernel, dev) &
-       result(KernelSetAttribute) &
-       bind(C, name="hipKernelSetAttribute")
-       import :: HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK, c_int, c_ptr, hipSuccess
-       integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)), value :: attrib
-       integer(c_int), value :: myValue
-       type(c_ptr), value :: kernel
-       integer(c_int), value :: dev
-       integer(kind(hipSuccess)) :: KernelSetAttribute
-    end function hipKernelSetAttribute
-
-    !---------------------------------------------
-    ! hipKernelGetFunction
-    !---------------------------------------------
-    function hipKernelGetFunction(pFunc, kernel) &
-       result(KernelGetFunction) &
-       bind(C, name="hipKernelGetFunction")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: pFunc
-       type(c_ptr), value :: kernel
-       integer(kind(hipSuccess)) :: KernelGetFunction
-    end function hipKernelGetFunction
-
-    !---------------------------------------------
-    ! hipFuncSetCacheConfig
-    !---------------------------------------------
-    function hipFuncSetCacheConfig(func, config) &
-       result(FuncSetCacheConfig) &
-       bind(C, name="hipFuncSetCacheConfig")
-       import :: c_ptr, hipFuncCachePreferNone, hipSuccess
-       type(c_ptr), value :: func
-       integer(kind(hipFuncCachePreferNone)), value :: config
-       integer(kind(hipSuccess)) :: FuncSetCacheConfig
-    end function hipFuncSetCacheConfig
-
-    !---------------------------------------------
-    ! hipFuncSetSharedMemConfig
-    !---------------------------------------------
-    function hipFuncSetSharedMemConfig(func, config) &
-       result(FuncSetSharedMemConfig) &
-       bind(C, name="hipFuncSetSharedMemConfig")
-       import :: c_ptr, hipSharedMemBankSizeDefault, hipSuccess
-       type(c_ptr), value :: func
-       integer(kind(hipSharedMemBankSizeDefault)), value :: config
-       integer(kind(hipSuccess)) :: FuncSetSharedMemConfig
-    end function hipFuncSetSharedMemConfig
-
-    !---------------------------------------------
-    ! hipGetLastError
-    !---------------------------------------------
-    function hipGetLastError() &
-       result(GetLastError) &
-       bind(C, name="hipGetLastError")
-       import :: hipSuccess
-       integer(kind(hipSuccess)) :: GetLastError
-    end function hipGetLastError
-
-    !---------------------------------------------
-    ! hipExtGetLastError
-    !---------------------------------------------
-    function hipExtGetLastError() &
-       result(ExtGetLastError) &
-       bind(C, name="hipExtGetLastError")
-       import :: hipSuccess
-       integer(kind(hipSuccess)) :: ExtGetLastError
-    end function hipExtGetLastError
-
-    !---------------------------------------------
-    ! hipPeekAtLastError
-    !---------------------------------------------
-    function hipPeekAtLastError() &
-       result(PeekAtLastError) &
-       bind(C, name="hipPeekAtLastError")
-       import :: hipSuccess
-       integer(kind(hipSuccess)) :: PeekAtLastError
-    end function hipPeekAtLastError
-
-    !---------------------------------------------
-    ! hipGetErrorName
-    !---------------------------------------------
-    function hipGetErrorName(hip_error) &
-       result(GetErrorName) &
-       bind(C, name="hipGetErrorName")
-       import :: hipSuccess, c_ptr
-       integer(kind(hipSuccess)), value :: hip_error
-       type(c_ptr) :: GetErrorName
-    end function hipGetErrorName
-
-    !---------------------------------------------
-    ! hipGetErrorString
-    !---------------------------------------------
-    function hipGetErrorString(hipError) &
-       result(GetErrorString) &
-       bind(C, name="hipGetErrorString")
-       import :: hipSuccess, c_ptr
-       integer(kind(hipSuccess)), value :: hipError
-       type(c_ptr) :: GetErrorString
-    end function hipGetErrorString
-
-    !---------------------------------------------
-    ! hipDrvGetErrorName
-    !---------------------------------------------
-    function hipDrvGetErrorName(hipError, errorString) &
-       result(DrvGetErrorName) &
-       bind(C, name="hipDrvGetErrorName")
-       import :: hipSuccess, c_ptr
-       integer(kind(hipSuccess)), value :: hipError
-       type(c_ptr) :: errorString
-       integer(kind(hipSuccess)) :: DrvGetErrorName
-    end function hipDrvGetErrorName
-
-    !---------------------------------------------
-    ! hipDrvGetErrorString
-    !---------------------------------------------
-    function hipDrvGetErrorString(hipError, errorString) &
-       result(DrvGetErrorString) &
-       bind(C, name="hipDrvGetErrorString")
-       import :: hipSuccess, c_ptr
-       integer(kind(hipSuccess)), value :: hipError
-       type(c_ptr) :: errorString
-       integer(kind(hipSuccess)) :: DrvGetErrorString
-    end function hipDrvGetErrorString
-
-    !---------------------------------------------
-    ! hipStreamCreate
-    !---------------------------------------------
-    function hipStreamCreate(stream) &
-       result(StreamCreate) &
-       bind(C, name="hipStreamCreate")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: stream
-       integer(kind(hipSuccess)) :: StreamCreate
-    end function hipStreamCreate
-
-    !---------------------------------------------
-    ! hipStreamCreateWithFlags
-    !---------------------------------------------
-    function hipStreamCreateWithFlags(stream, flags) &
-       result(StreamCreateWithFlags) &
-       bind(C, name="hipStreamCreateWithFlags")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: stream
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: StreamCreateWithFlags
-    end function hipStreamCreateWithFlags
-
-    !---------------------------------------------
-    ! hipStreamCreateWithPriority
-    !---------------------------------------------
-    function hipStreamCreateWithPriority(stream, flags, priority) &
-       result(StreamCreateWithPriority) &
-       bind(C, name="hipStreamCreateWithPriority")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: stream
-       integer(c_int), value :: flags
-       integer(c_int), value :: priority
-       integer(kind(hipSuccess)) :: StreamCreateWithPriority
-    end function hipStreamCreateWithPriority
-
-    !---------------------------------------------
-    ! hipDeviceGetStreamPriorityRange
-    !---------------------------------------------
-    function hipDeviceGetStreamPriorityRange(leastPriority, greatestPriority) &
-       result(DeviceGetStreamPriorityRange) &
-       bind(C, name="hipDeviceGetStreamPriorityRange")
-       import :: c_int, hipSuccess
-       integer(c_int) :: leastPriority
-       integer(c_int) :: greatestPriority
-       integer(kind(hipSuccess)) :: DeviceGetStreamPriorityRange
-    end function hipDeviceGetStreamPriorityRange
-
-    !---------------------------------------------
-    ! hipStreamDestroy
-    !---------------------------------------------
-    function hipStreamDestroy(stream) &
-       result(StreamDestroy) &
-       bind(C, name="hipStreamDestroy")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: StreamDestroy
-    end function hipStreamDestroy
-
-    !---------------------------------------------
-    ! hipStreamQuery
-    !---------------------------------------------
-    function hipStreamQuery(stream) &
-       result(StreamQuery) &
-       bind(C, name="hipStreamQuery")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: StreamQuery
-    end function hipStreamQuery
-
-    !---------------------------------------------
-    ! hipStreamSynchronize
-    !---------------------------------------------
-    function hipStreamSynchronize(stream) &
-       result(StreamSynchronize) &
-       bind(C, name="hipStreamSynchronize")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: StreamSynchronize
-    end function hipStreamSynchronize
-
-    !---------------------------------------------
-    ! hipStreamWaitEvent
-    !---------------------------------------------
-    function hipStreamWaitEvent(stream, event, flags) &
-       result(StreamWaitEvent) &
-       bind(C, name="hipStreamWaitEvent")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: event
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: StreamWaitEvent
-    end function hipStreamWaitEvent
-
-    !---------------------------------------------
-    ! hipStreamGetFlags
-    !---------------------------------------------
-    function hipStreamGetFlags(stream, flags) &
-       result(StreamGetFlags) &
-       bind(C, name="hipStreamGetFlags")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       integer(c_int) :: flags
-       integer(kind(hipSuccess)) :: StreamGetFlags
-    end function hipStreamGetFlags
-
-    !---------------------------------------------
-    ! hipStreamGetId
-    !---------------------------------------------
-    function hipStreamGetId(stream, streamId) &
-       result(StreamGetId) &
-       bind(C, name="hipStreamGetId")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: streamId
-       integer(kind(hipSuccess)) :: StreamGetId
-    end function hipStreamGetId
-
-    !---------------------------------------------
-    ! hipStreamGetPriority
-    !---------------------------------------------
-    function hipStreamGetPriority(stream, priority) &
-       result(StreamGetPriority) &
-       bind(C, name="hipStreamGetPriority")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       integer(c_int) :: priority
-       integer(kind(hipSuccess)) :: StreamGetPriority
-    end function hipStreamGetPriority
-
-    !---------------------------------------------
-    ! hipStreamGetDevice
-    !---------------------------------------------
-    function hipStreamGetDevice(stream, device) &
-       result(StreamGetDevice) &
-       bind(C, name="hipStreamGetDevice")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       integer(c_int) :: device
-       integer(kind(hipSuccess)) :: StreamGetDevice
-    end function hipStreamGetDevice
-
-    !---------------------------------------------
-    ! hipExtStreamCreateWithCUMask
-    !---------------------------------------------
-    function hipExtStreamCreateWithCUMask(stream, cuMaskSize, cuMask) &
-       result(ExtStreamCreateWithCUMask) &
-       bind(C, name="hipExtStreamCreateWithCUMask")
-       import :: c_ptr, c_int32_t, hipSuccess
-       type(c_ptr) :: stream
-       integer(c_int32_t), value :: cuMaskSize
-       type(c_ptr), value :: cuMask
-       integer(kind(hipSuccess)) :: ExtStreamCreateWithCUMask
-    end function hipExtStreamCreateWithCUMask
-
-    !---------------------------------------------
-    ! hipExtStreamGetCUMask
-    !---------------------------------------------
-    function hipExtStreamGetCUMask(stream, cuMaskSize, cuMask) &
-       result(ExtStreamGetCUMask) &
-       bind(C, name="hipExtStreamGetCUMask")
-       import :: c_ptr, c_int32_t, hipSuccess
-       type(c_ptr), value :: stream
-       integer(c_int32_t), value :: cuMaskSize
-       type(c_ptr), value :: cuMask
-       integer(kind(hipSuccess)) :: ExtStreamGetCUMask
-    end function hipExtStreamGetCUMask
-
-    !---------------------------------------------
-    ! hipStreamAddCallback
-    !---------------------------------------------
-    function hipStreamAddCallback(stream, callback, userData, flags) &
-       result(StreamAddCallback) &
-       bind(C, name="hipStreamAddCallback")
-       import :: c_ptr, c_funptr, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_funptr), value :: callback
-       type(c_ptr), value :: userData
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: StreamAddCallback
-    end function hipStreamAddCallback
-
-    !---------------------------------------------
-    ! hipStreamSetAttribute
-    !---------------------------------------------
-    function hipStreamSetAttribute(stream, attr, myValue) &
-       result(StreamSetAttribute) &
-       bind(C, name="hipStreamSetAttribute")
-       import :: c_ptr, hipLaunchAttributeIgnore, hipSuccess
-       type(c_ptr), value :: stream
-       integer(kind(hipLaunchAttributeIgnore)), value :: attr
-       type(c_ptr), value :: myValue
-       integer(kind(hipSuccess)) :: StreamSetAttribute
-    end function hipStreamSetAttribute
-
-    !---------------------------------------------
-    ! hipStreamGetAttribute
-    !---------------------------------------------
-    function hipStreamGetAttribute(stream, attr, value_out) &
-       result(StreamGetAttribute) &
-       bind(C, name="hipStreamGetAttribute")
-       import :: c_ptr, hipLaunchAttributeIgnore, hipSuccess
-       type(c_ptr), value :: stream
-       integer(kind(hipLaunchAttributeIgnore)), value :: attr
-       type(c_ptr), value :: value_out
-       integer(kind(hipSuccess)) :: StreamGetAttribute
-    end function hipStreamGetAttribute
-
-    !---------------------------------------------
-    ! hipStreamCopyAttributes
-    !---------------------------------------------
-    function hipStreamCopyAttributes(dst, src) &
-       result(StreamCopyAttributes) &
-       bind(C, name="hipStreamCopyAttributes")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(kind(hipSuccess)) :: StreamCopyAttributes
-    end function hipStreamCopyAttributes
-
-    !---------------------------------------------
-    ! hipStreamWaitValue32
-    !---------------------------------------------
-    function hipStreamWaitValue32(stream, ptr, myValue, flags, mask) &
-       result(StreamWaitValue32) &
-       bind(C, name="hipStreamWaitValue32")
-       import :: c_ptr, c_int32_t, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: ptr
-       integer(c_int32_t), value :: myValue
-       integer(c_int), value :: flags
-       integer(c_int32_t), value :: mask
-       integer(kind(hipSuccess)) :: StreamWaitValue32
-    end function hipStreamWaitValue32
-
-    !---------------------------------------------
-    ! hipStreamWaitValue64
-    !---------------------------------------------
-    function hipStreamWaitValue64(stream, ptr, myValue, flags, mask) &
-       result(StreamWaitValue64) &
-       bind(C, name="hipStreamWaitValue64")
-       import :: c_ptr, c_int64_t, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: ptr
-       integer(c_int64_t), value :: myValue
-       integer(c_int), value :: flags
-       integer(c_int64_t), value :: mask
-       integer(kind(hipSuccess)) :: StreamWaitValue64
-    end function hipStreamWaitValue64
-
-    !---------------------------------------------
-    ! hipStreamWriteValue32
-    !---------------------------------------------
-    function hipStreamWriteValue32(stream, ptr, myValue, flags) &
-       result(StreamWriteValue32) &
-       bind(C, name="hipStreamWriteValue32")
-       import :: c_ptr, c_int32_t, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: ptr
-       integer(c_int32_t), value :: myValue
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: StreamWriteValue32
-    end function hipStreamWriteValue32
-
-    !---------------------------------------------
-    ! hipStreamWriteValue64
-    !---------------------------------------------
-    function hipStreamWriteValue64(stream, ptr, myValue, flags) &
-       result(StreamWriteValue64) &
-       bind(C, name="hipStreamWriteValue64")
-       import :: c_ptr, c_int64_t, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: ptr
-       integer(c_int64_t), value :: myValue
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: StreamWriteValue64
-    end function hipStreamWriteValue64
-
-    !---------------------------------------------
-    ! hipStreamBatchMemOp
-    !---------------------------------------------
-    function hipStreamBatchMemOp(stream, count, paramArray, flags) &
-       result(StreamBatchMemOp) &
-       bind(C, name="hipStreamBatchMemOp")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       integer(c_int), value :: count
-       type(c_ptr), value :: paramArray
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: StreamBatchMemOp
-    end function hipStreamBatchMemOp
-
-    !---------------------------------------------
-    ! hipGraphAddBatchMemOpNode
-    !---------------------------------------------
-    function hipGraphAddBatchMemOpNode(phGraphNode, hGraph, dependencies, numDependencies, &
-                                       nodeParams) &
-       result(GraphAddBatchMemOpNode) &
-       bind(C, name="hipGraphAddBatchMemOpNode")
-       import :: c_ptr, c_size_t, hipBatchMemOpNodeParams, hipSuccess
-       type(c_ptr) :: phGraphNode
-       type(c_ptr), value :: hGraph
-       type(c_ptr) :: dependencies
-       integer(c_size_t), value :: numDependencies
-       type(hipBatchMemOpNodeParams) :: nodeParams
-       integer(kind(hipSuccess)) :: GraphAddBatchMemOpNode
-    end function hipGraphAddBatchMemOpNode
-
-    !---------------------------------------------
-    ! hipGraphBatchMemOpNodeGetParams
-    !---------------------------------------------
-    function hipGraphBatchMemOpNodeGetParams(hNode, nodeParams_out) &
-       result(GraphBatchMemOpNodeGetParams) &
-       bind(C, name="hipGraphBatchMemOpNodeGetParams")
-       import :: c_ptr, hipBatchMemOpNodeParams, hipSuccess
-       type(c_ptr), value :: hNode
-       type(hipBatchMemOpNodeParams) :: nodeParams_out
-       integer(kind(hipSuccess)) :: GraphBatchMemOpNodeGetParams
-    end function hipGraphBatchMemOpNodeGetParams
-
-    !---------------------------------------------
-    ! hipGraphBatchMemOpNodeSetParams
-    !---------------------------------------------
-    function hipGraphBatchMemOpNodeSetParams(hNode, nodeParams) &
-       result(GraphBatchMemOpNodeSetParams) &
-       bind(C, name="hipGraphBatchMemOpNodeSetParams")
-       import :: c_ptr, hipBatchMemOpNodeParams, hipSuccess
-       type(c_ptr), value :: hNode
-       type(hipBatchMemOpNodeParams) :: nodeParams
-       integer(kind(hipSuccess)) :: GraphBatchMemOpNodeSetParams
-    end function hipGraphBatchMemOpNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphExecBatchMemOpNodeSetParams
-    !---------------------------------------------
-    function hipGraphExecBatchMemOpNodeSetParams(hGraphExec, hNode, nodeParams) &
-       result(GraphExecBatchMemOpNodeSetParams) &
-       bind(C, name="hipGraphExecBatchMemOpNodeSetParams")
-       import :: c_ptr, hipBatchMemOpNodeParams, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: hNode
-       type(hipBatchMemOpNodeParams) :: nodeParams
-       integer(kind(hipSuccess)) :: GraphExecBatchMemOpNodeSetParams
-    end function hipGraphExecBatchMemOpNodeSetParams
-
-    !---------------------------------------------
-    ! hipEventCreateWithFlags
-    !---------------------------------------------
-    function hipEventCreateWithFlags(event, flags) &
-       result(EventCreateWithFlags) &
-       bind(C, name="hipEventCreateWithFlags")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: event
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: EventCreateWithFlags
-    end function hipEventCreateWithFlags
-
-    !---------------------------------------------
-    ! hipEventCreate
-    !---------------------------------------------
-    function hipEventCreate(event) &
-       result(EventCreate) &
-       bind(C, name="hipEventCreate")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: event
-       integer(kind(hipSuccess)) :: EventCreate
-    end function hipEventCreate
-
-    !---------------------------------------------
-    ! hipEventRecordWithFlags
-    !---------------------------------------------
-    function hipEventRecordWithFlags(event, stream, flags) &
-       result(EventRecordWithFlags) &
-       bind(C, name="hipEventRecordWithFlags")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: event
-       type(c_ptr), value :: stream
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: EventRecordWithFlags
-    end function hipEventRecordWithFlags
-
-    !---------------------------------------------
-    ! hipEventRecord
-    !---------------------------------------------
-    function hipEventRecord(event, stream) &
-       result(EventRecord) &
-       bind(C, name="hipEventRecord")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: event
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: EventRecord
-    end function hipEventRecord
-
-    !---------------------------------------------
-    ! hipEventDestroy
-    !---------------------------------------------
-    function hipEventDestroy(event) &
-       result(EventDestroy) &
-       bind(C, name="hipEventDestroy")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: event
-       integer(kind(hipSuccess)) :: EventDestroy
-    end function hipEventDestroy
-
-    !---------------------------------------------
-    ! hipEventSynchronize
-    !---------------------------------------------
-    function hipEventSynchronize(event) &
-       result(EventSynchronize) &
-       bind(C, name="hipEventSynchronize")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: event
-       integer(kind(hipSuccess)) :: EventSynchronize
-    end function hipEventSynchronize
-
-    !---------------------------------------------
-    ! hipEventElapsedTime
-    !---------------------------------------------
-    function hipEventElapsedTime(ms, start, myStop) &
-       result(EventElapsedTime) &
-       bind(C, name="hipEventElapsedTime")
-       import :: c_float, c_ptr, hipSuccess
-       real(c_float) :: ms
-       type(c_ptr), value :: start
-       type(c_ptr), value :: myStop
-       integer(kind(hipSuccess)) :: EventElapsedTime
-    end function hipEventElapsedTime
-
-    !---------------------------------------------
-    ! hipEventQuery
-    !---------------------------------------------
-    function hipEventQuery(event) &
-       result(EventQuery) &
-       bind(C, name="hipEventQuery")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: event
-       integer(kind(hipSuccess)) :: EventQuery
-    end function hipEventQuery
-
-    !---------------------------------------------
-    ! hipPointerSetAttribute
-    !---------------------------------------------
-    function hipPointerSetAttribute(myValue, attribute, ptr) &
-       result(PointerSetAttribute) &
-       bind(C, name="hipPointerSetAttribute")
-       import :: c_ptr, HIP_POINTER_ATTRIBUTE_CONTEXT, hipSuccess
-       type(c_ptr), value :: myValue
-       integer(kind(HIP_POINTER_ATTRIBUTE_CONTEXT)), value :: attribute
-       type(c_ptr), value :: ptr
-       integer(kind(hipSuccess)) :: PointerSetAttribute
-    end function hipPointerSetAttribute
-
-    !---------------------------------------------
-    ! hipPointerGetAttributes
-    !---------------------------------------------
-    function hipPointerGetAttributes(attributes, ptr) &
-       result(PointerGetAttributes) &
-       bind(C, name="hipPointerGetAttributes")
-       import :: hipPointerAttribute_t, c_ptr, hipSuccess
-       type(hipPointerAttribute_t) :: attributes
-       type(c_ptr), value :: ptr
-       integer(kind(hipSuccess)) :: PointerGetAttributes
-    end function hipPointerGetAttributes
-
-    !---------------------------------------------
-    ! hipPointerGetAttribute
-    !---------------------------------------------
-    function hipPointerGetAttribute(myData, attribute, ptr) &
-       result(PointerGetAttribute) &
-       bind(C, name="hipPointerGetAttribute")
-       import :: c_ptr, HIP_POINTER_ATTRIBUTE_CONTEXT, hipSuccess
-       type(c_ptr), value :: myData
-       integer(kind(HIP_POINTER_ATTRIBUTE_CONTEXT)), value :: attribute
-       type(c_ptr), value :: ptr
-       integer(kind(hipSuccess)) :: PointerGetAttribute
-    end function hipPointerGetAttribute
-
-    !---------------------------------------------
-    ! hipDrvPointerGetAttributes
-    !---------------------------------------------
-    function hipDrvPointerGetAttributes(numAttributes, attributes, myData, ptr) &
-       result(DrvPointerGetAttributes) &
-       bind(C, name="hipDrvPointerGetAttributes")
-       import :: c_int, c_ptr, hipSuccess
-       integer(c_int), value :: numAttributes
-       type(c_ptr), value :: attributes
-       type(c_ptr) :: myData
-       type(c_ptr), value :: ptr
-       integer(kind(hipSuccess)) :: DrvPointerGetAttributes
-    end function hipDrvPointerGetAttributes
-
-    !---------------------------------------------
-    ! hipImportExternalSemaphore
-    !---------------------------------------------
-    function hipImportExternalSemaphore(extSem_out, semHandleDesc) &
-       result(ImportExternalSemaphore) &
-       bind(C, name="hipImportExternalSemaphore")
-       import :: c_ptr, hipExternalSemaphoreHandleDesc, hipSuccess
-       type(c_ptr) :: extSem_out
-       type(hipExternalSemaphoreHandleDesc) :: semHandleDesc
-       integer(kind(hipSuccess)) :: ImportExternalSemaphore
-    end function hipImportExternalSemaphore
-
-    !---------------------------------------------
-    ! hipSignalExternalSemaphoresAsync
-    !---------------------------------------------
-    function hipSignalExternalSemaphoresAsync(extSemArray, paramsArray, numExtSems, stream) &
-       result(SignalExternalSemaphoresAsync) &
-       bind(C, name="hipSignalExternalSemaphoresAsync")
-       import :: c_ptr, hipExternalSemaphoreSignalParams, c_int, hipSuccess
-       type(c_ptr) :: extSemArray
-       type(hipExternalSemaphoreSignalParams) :: paramsArray
-       integer(c_int), value :: numExtSems
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: SignalExternalSemaphoresAsync
-    end function hipSignalExternalSemaphoresAsync
-
-    !---------------------------------------------
-    ! hipWaitExternalSemaphoresAsync
-    !---------------------------------------------
-    function hipWaitExternalSemaphoresAsync(extSemArray, paramsArray, numExtSems, stream) &
-       result(WaitExternalSemaphoresAsync) &
-       bind(C, name="hipWaitExternalSemaphoresAsync")
-       import :: c_ptr, hipExternalSemaphoreWaitParams, c_int, hipSuccess
-       type(c_ptr) :: extSemArray
-       type(hipExternalSemaphoreWaitParams) :: paramsArray
-       integer(c_int), value :: numExtSems
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: WaitExternalSemaphoresAsync
-    end function hipWaitExternalSemaphoresAsync
-
-    !---------------------------------------------
-    ! hipDestroyExternalSemaphore
-    !---------------------------------------------
-    function hipDestroyExternalSemaphore(extSem) &
-       result(DestroyExternalSemaphore) &
-       bind(C, name="hipDestroyExternalSemaphore")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: extSem
-       integer(kind(hipSuccess)) :: DestroyExternalSemaphore
-    end function hipDestroyExternalSemaphore
-
-    !---------------------------------------------
-    ! hipImportExternalMemory
-    !---------------------------------------------
-    function hipImportExternalMemory(extMem_out, memHandleDesc) &
-       result(ImportExternalMemory) &
-       bind(C, name="hipImportExternalMemory")
-       import :: c_ptr, hipExternalMemoryHandleDesc, hipSuccess
-       type(c_ptr) :: extMem_out
-       type(hipExternalMemoryHandleDesc) :: memHandleDesc
-       integer(kind(hipSuccess)) :: ImportExternalMemory
-    end function hipImportExternalMemory
-
-    !---------------------------------------------
-    ! hipExternalMemoryGetMappedBuffer
-    !---------------------------------------------
-    function hipExternalMemoryGetMappedBuffer(devPtr, extMem, bufferDesc) &
-       result(ExternalMemoryGetMappedBuffer) &
-       bind(C, name="hipExternalMemoryGetMappedBuffer")
-       import :: c_ptr, hipExternalMemoryBufferDesc, hipSuccess
-       type(c_ptr) :: devPtr
-       type(c_ptr), value :: extMem
-       type(hipExternalMemoryBufferDesc) :: bufferDesc
-       integer(kind(hipSuccess)) :: ExternalMemoryGetMappedBuffer
-    end function hipExternalMemoryGetMappedBuffer
-
-    !---------------------------------------------
-    ! hipDestroyExternalMemory
-    !---------------------------------------------
-    function hipDestroyExternalMemory(extMem) &
-       result(DestroyExternalMemory) &
-       bind(C, name="hipDestroyExternalMemory")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: extMem
-       integer(kind(hipSuccess)) :: DestroyExternalMemory
-    end function hipDestroyExternalMemory
-
-    !---------------------------------------------
-    ! hipExternalMemoryGetMappedMipmappedArray
-    !---------------------------------------------
-    function hipExternalMemoryGetMappedMipmappedArray(mipmap, extMem, mipmapDesc) &
-       result(ExternalMemoryGetMappedMipmappedArray) &
-       bind(C, name="hipExternalMemoryGetMappedMipmappedArray")
-       import :: c_ptr, hipExternalMemoryMipmappedArrayDesc, hipSuccess
-       type(c_ptr) :: mipmap
-       type(c_ptr), value :: extMem
-       type(hipExternalMemoryMipmappedArrayDesc) :: mipmapDesc
-       integer(kind(hipSuccess)) :: ExternalMemoryGetMappedMipmappedArray
-    end function hipExternalMemoryGetMappedMipmappedArray
-
-    !---------------------------------------------
-    ! hipExtMallocWithFlags
-    !---------------------------------------------
-    function hipExtMallocWithFlags(ptr, sizeBytes, flags) &
-       result(ExtMallocWithFlags) &
-       bind(C, name="hipExtMallocWithFlags")
-       import :: c_ptr, c_size_t, c_int, hipSuccess
-       type(c_ptr) :: ptr
-       integer(c_size_t), value :: sizeBytes
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: ExtMallocWithFlags
-    end function hipExtMallocWithFlags
-
-    !---------------------------------------------
-    ! hipMallocHost
-    !---------------------------------------------
-    function hipMallocHost(ptr, mySize) &
-       result(MallocHost) &
-       bind(C, name="hipMallocHost")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: ptr
-       integer(c_size_t), value :: mySize
-       integer(kind(hipSuccess)) :: MallocHost
-    end function hipMallocHost
-
-    !---------------------------------------------
-    ! hipMemAllocHost
-    !---------------------------------------------
-    function hipMemAllocHost(ptr, mySize) &
-       result(MemAllocHost) &
-       bind(C, name="hipMemAllocHost")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: ptr
-       integer(c_size_t), value :: mySize
-       integer(kind(hipSuccess)) :: MemAllocHost
-    end function hipMemAllocHost
-
-    !---------------------------------------------
-    ! hipMemPrefetchAsync
-    !---------------------------------------------
-    function hipMemPrefetchAsync(dev_ptr, count, device, stream) &
-       result(MemPrefetchAsync) &
-       bind(C, name="hipMemPrefetchAsync")
-       import :: c_ptr, c_size_t, c_int, hipSuccess
-       type(c_ptr), value :: dev_ptr
-       integer(c_size_t), value :: count
-       integer(c_int), value :: device
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemPrefetchAsync
-    end function hipMemPrefetchAsync
-
-    !---------------------------------------------
-    ! hipMemPrefetchAsync_v2
-    !---------------------------------------------
-    function hipMemPrefetchAsync_v2(dev_ptr, count, location, flags, stream) &
-       result(MemPrefetchAsync_v2) &
-       bind(C, name="hipMemPrefetchAsync_v2")
-       import :: c_ptr, c_size_t, hipMemLocation, c_int, hipSuccess
-       type(c_ptr), value :: dev_ptr
-       integer(c_size_t), value :: count
-       type(hipMemLocation), value :: location
-       integer(c_int), value :: flags
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemPrefetchAsync_v2
-    end function hipMemPrefetchAsync_v2
-
-    !---------------------------------------------
-    ! hipMemPrefetchBatchAsync
-    !---------------------------------------------
-    function hipMemPrefetchBatchAsync(dev_ptrs, sizes, count, prefetch_locs, prefetch_loc_idxs, &
-                                      num_prefetch_locs, flags, stream) &
-       result(MemPrefetchBatchAsync) &
-       bind(C, name="hipMemPrefetchBatchAsync")
-       import :: c_ptr, c_size_t, hipMemLocation, c_int64_t, hipSuccess
-       type(c_ptr) :: dev_ptrs
-       type(c_ptr), value :: sizes
-       integer(c_size_t), value :: count
-       type(hipMemLocation) :: prefetch_locs
-       type(c_ptr), value :: prefetch_loc_idxs
-       integer(c_size_t), value :: num_prefetch_locs
-       integer(c_int64_t), value :: flags
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemPrefetchBatchAsync
-    end function hipMemPrefetchBatchAsync
-
-    !---------------------------------------------
-    ! hipMemDiscardBatchAsync
-    !---------------------------------------------
-    function hipMemDiscardBatchAsync(dev_ptrs, sizes, count, flags, stream) &
-       result(MemDiscardBatchAsync) &
-       bind(C, name="hipMemDiscardBatchAsync")
-       import :: c_ptr, c_size_t, c_int64_t, hipSuccess
-       type(c_ptr) :: dev_ptrs
-       type(c_ptr), value :: sizes
-       integer(c_size_t), value :: count
-       integer(c_int64_t), value :: flags
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemDiscardBatchAsync
-    end function hipMemDiscardBatchAsync
-
-    !---------------------------------------------
-    ! hipDrvMemDiscardBatchAsync
-    !---------------------------------------------
-    function hipDrvMemDiscardBatchAsync(dptrs, sizes, count, flags, stream) &
-       result(DrvMemDiscardBatchAsync) &
-       bind(C, name="hipDrvMemDiscardBatchAsync")
-       import :: c_ptr, c_size_t, c_int64_t, hipSuccess
-       type(c_ptr) :: dptrs
-       type(c_ptr), value :: sizes
-       integer(c_size_t), value :: count
-       integer(c_int64_t), value :: flags
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: DrvMemDiscardBatchAsync
-    end function hipDrvMemDiscardBatchAsync
-
-    !---------------------------------------------
-    ! hipMemDiscardAndPrefetchBatchAsync
-    !---------------------------------------------
-    function hipMemDiscardAndPrefetchBatchAsync(dptrs, sizes, count, prefetchLocs, &
-                                                prefetchLocIdxs, numPrefetchLocs, flags, stream) &
-       result(MemDiscardAndPrefetchBatchAsync) &
-       bind(C, name="hipMemDiscardAndPrefetchBatchAsync")
-       import :: c_ptr, c_size_t, hipMemLocation, c_int64_t, hipSuccess
-       type(c_ptr) :: dptrs
-       type(c_ptr), value :: sizes
-       integer(c_size_t), value :: count
-       type(hipMemLocation) :: prefetchLocs
-       type(c_ptr), value :: prefetchLocIdxs
-       integer(c_size_t), value :: numPrefetchLocs
-       integer(c_int64_t), value :: flags
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemDiscardAndPrefetchBatchAsync
-    end function hipMemDiscardAndPrefetchBatchAsync
-
-    !---------------------------------------------
-    ! hipDrvMemDiscardAndPrefetchBatchAsync
-    !---------------------------------------------
-    function hipDrvMemDiscardAndPrefetchBatchAsync(dptrs, sizes, count, prefetchLocs, &
-                                                   prefetchLocIdxs, numPrefetchLocs, flags, &
-                                                   stream) &
-       result(DrvMemDiscardAndPrefetchBatchAsync) &
-       bind(C, name="hipDrvMemDiscardAndPrefetchBatchAsync")
-       import :: c_ptr, c_size_t, hipMemLocation, c_int64_t, hipSuccess
-       type(c_ptr) :: dptrs
-       type(c_ptr), value :: sizes
-       integer(c_size_t), value :: count
-       type(hipMemLocation) :: prefetchLocs
-       type(c_ptr), value :: prefetchLocIdxs
-       integer(c_size_t), value :: numPrefetchLocs
-       integer(c_int64_t), value :: flags
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: DrvMemDiscardAndPrefetchBatchAsync
-    end function hipDrvMemDiscardAndPrefetchBatchAsync
-
-    !---------------------------------------------
-    ! hipMemAdvise_v2
-    !---------------------------------------------
-    function hipMemAdvise_v2(dev_ptr, count, advice, location) &
-       result(MemAdvise_v2) &
-       bind(C, name="hipMemAdvise_v2")
-       import :: c_ptr, c_size_t, hipMemAdviseSetReadMostly, hipMemLocation, hipSuccess
-       type(c_ptr), value :: dev_ptr
-       integer(c_size_t), value :: count
-       integer(kind(hipMemAdviseSetReadMostly)), value :: advice
-       type(hipMemLocation), value :: location
-       integer(kind(hipSuccess)) :: MemAdvise_v2
-    end function hipMemAdvise_v2
-
-    !---------------------------------------------
-    ! hipMemAdvise
-    !---------------------------------------------
-    function hipMemAdvise(dev_ptr, count, advice, device) &
-       result(MemAdvise) &
-       bind(C, name="hipMemAdvise")
-       import :: c_ptr, c_size_t, hipMemAdviseSetReadMostly, c_int, hipSuccess
-       type(c_ptr), value :: dev_ptr
-       integer(c_size_t), value :: count
-       integer(kind(hipMemAdviseSetReadMostly)), value :: advice
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: MemAdvise
-    end function hipMemAdvise
-
-    !---------------------------------------------
-    ! hipMemRangeGetAttribute
-    !---------------------------------------------
-    function hipMemRangeGetAttribute(myData, data_size, attribute, dev_ptr, count) &
-       result(MemRangeGetAttribute) &
-       bind(C, name="hipMemRangeGetAttribute")
-       import :: c_ptr, c_size_t, hipMemRangeAttributeReadMostly, hipSuccess
-       type(c_ptr), value :: myData
-       integer(c_size_t), value :: data_size
-       integer(kind(hipMemRangeAttributeReadMostly)), value :: attribute
-       type(c_ptr), value :: dev_ptr
-       integer(c_size_t), value :: count
-       integer(kind(hipSuccess)) :: MemRangeGetAttribute
-    end function hipMemRangeGetAttribute
-
-    !---------------------------------------------
-    ! hipMemRangeGetAttributes
-    !---------------------------------------------
-    function hipMemRangeGetAttributes(myData, data_sizes, attributes, num_attributes, dev_ptr, &
-                                      count) &
-       result(MemRangeGetAttributes) &
-       bind(C, name="hipMemRangeGetAttributes")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: myData
-       type(c_ptr), value :: data_sizes
-       type(c_ptr), value :: attributes
-       integer(c_size_t), value :: num_attributes
-       type(c_ptr), value :: dev_ptr
-       integer(c_size_t), value :: count
-       integer(kind(hipSuccess)) :: MemRangeGetAttributes
-    end function hipMemRangeGetAttributes
-
-    !---------------------------------------------
-    ! hipStreamAttachMemAsync
-    !---------------------------------------------
-    function hipStreamAttachMemAsync(stream, dev_ptr, length, flags) &
-       result(StreamAttachMemAsync) &
-       bind(C, name="hipStreamAttachMemAsync")
-       import :: c_ptr, c_size_t, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: dev_ptr
-       integer(c_size_t), value :: length
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: StreamAttachMemAsync
-    end function hipStreamAttachMemAsync
-
-    !---------------------------------------------
-    ! hipMallocAsync
-    !---------------------------------------------
-    function hipMallocAsync(dev_ptr, mySize, stream) &
-       result(MallocAsync) &
-       bind(C, name="hipMallocAsync")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: dev_ptr
-       integer(c_size_t), value :: mySize
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MallocAsync
-    end function hipMallocAsync
-
-    !---------------------------------------------
-    ! hipFreeAsync
-    !---------------------------------------------
-    function hipFreeAsync(dev_ptr, stream) &
-       result(FreeAsync) &
-       bind(C, name="hipFreeAsync")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: dev_ptr
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: FreeAsync
-    end function hipFreeAsync
-
-    !---------------------------------------------
-    ! hipMemPoolTrimTo
-    !---------------------------------------------
-    function hipMemPoolTrimTo(mem_pool, min_bytes_to_hold) &
-       result(MemPoolTrimTo) &
-       bind(C, name="hipMemPoolTrimTo")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: mem_pool
-       integer(c_size_t), value :: min_bytes_to_hold
-       integer(kind(hipSuccess)) :: MemPoolTrimTo
-    end function hipMemPoolTrimTo
-
-    !---------------------------------------------
-    ! hipMemPoolSetAttribute
-    !---------------------------------------------
-    function hipMemPoolSetAttribute(mem_pool, attr, myValue) &
-       result(MemPoolSetAttribute) &
-       bind(C, name="hipMemPoolSetAttribute")
-       import :: c_ptr, hipMemPoolReuseFollowEventDependencies, hipSuccess
-       type(c_ptr), value :: mem_pool
-       integer(kind(hipMemPoolReuseFollowEventDependencies)), value :: attr
-       type(c_ptr), value :: myValue
-       integer(kind(hipSuccess)) :: MemPoolSetAttribute
-    end function hipMemPoolSetAttribute
-
-    !---------------------------------------------
-    ! hipMemPoolGetAttribute
-    !---------------------------------------------
-    function hipMemPoolGetAttribute(mem_pool, attr, myValue) &
-       result(MemPoolGetAttribute) &
-       bind(C, name="hipMemPoolGetAttribute")
-       import :: c_ptr, hipMemPoolReuseFollowEventDependencies, hipSuccess
-       type(c_ptr), value :: mem_pool
-       integer(kind(hipMemPoolReuseFollowEventDependencies)), value :: attr
-       type(c_ptr), value :: myValue
-       integer(kind(hipSuccess)) :: MemPoolGetAttribute
-    end function hipMemPoolGetAttribute
-
-    !---------------------------------------------
-    ! hipMemPoolSetAccess
-    !---------------------------------------------
-    function hipMemPoolSetAccess(mem_pool, desc_list, count) &
-       result(MemPoolSetAccess) &
-       bind(C, name="hipMemPoolSetAccess")
-       import :: c_ptr, hipMemAccessDesc, c_size_t, hipSuccess
-       type(c_ptr), value :: mem_pool
-       type(hipMemAccessDesc) :: desc_list
-       integer(c_size_t), value :: count
-       integer(kind(hipSuccess)) :: MemPoolSetAccess
-    end function hipMemPoolSetAccess
-
-    !---------------------------------------------
-    ! hipMemPoolGetAccess
-    !---------------------------------------------
-    function hipMemPoolGetAccess(flags, mem_pool, location) &
-       result(MemPoolGetAccess) &
-       bind(C, name="hipMemPoolGetAccess")
-       import :: hipMemAccessFlagsProtNone, c_ptr, hipMemLocation, hipSuccess
-       integer(kind(hipMemAccessFlagsProtNone)) :: flags
-       type(c_ptr), value :: mem_pool
-       type(hipMemLocation) :: location
-       integer(kind(hipSuccess)) :: MemPoolGetAccess
-    end function hipMemPoolGetAccess
-
-    !---------------------------------------------
-    ! hipMemPoolCreate
-    !---------------------------------------------
-    function hipMemPoolCreate(mem_pool, pool_props) &
-       result(MemPoolCreate) &
-       bind(C, name="hipMemPoolCreate")
-       import :: c_ptr, hipMemPoolProps, hipSuccess
-       type(c_ptr) :: mem_pool
-       type(hipMemPoolProps) :: pool_props
-       integer(kind(hipSuccess)) :: MemPoolCreate
-    end function hipMemPoolCreate
-
-    !---------------------------------------------
-    ! hipMemPoolDestroy
-    !---------------------------------------------
-    function hipMemPoolDestroy(mem_pool) &
-       result(MemPoolDestroy) &
-       bind(C, name="hipMemPoolDestroy")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: mem_pool
-       integer(kind(hipSuccess)) :: MemPoolDestroy
-    end function hipMemPoolDestroy
-
-    !---------------------------------------------
-    ! hipMallocFromPoolAsync
-    !---------------------------------------------
-    function hipMallocFromPoolAsync(dev_ptr, mySize, mem_pool, stream) &
-       result(MallocFromPoolAsync) &
-       bind(C, name="hipMallocFromPoolAsync")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: dev_ptr
-       integer(c_size_t), value :: mySize
-       type(c_ptr), value :: mem_pool
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MallocFromPoolAsync
-    end function hipMallocFromPoolAsync
-
-    !---------------------------------------------
-    ! hipMemPoolExportToShareableHandle
-    !---------------------------------------------
-    function hipMemPoolExportToShareableHandle(shared_handle, mem_pool, handle_type, flags) &
-       result(MemPoolExportToShareableHandle) &
-       bind(C, name="hipMemPoolExportToShareableHandle")
-       import :: c_ptr, hipMemHandleTypeNone, c_int, hipSuccess
-       type(c_ptr), value :: shared_handle
-       type(c_ptr), value :: mem_pool
-       integer(kind(hipMemHandleTypeNone)), value :: handle_type
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: MemPoolExportToShareableHandle
-    end function hipMemPoolExportToShareableHandle
-
-    !---------------------------------------------
-    ! hipMemPoolImportFromShareableHandle
-    !---------------------------------------------
-    function hipMemPoolImportFromShareableHandle(mem_pool, shared_handle, handle_type, flags) &
-       result(MemPoolImportFromShareableHandle) &
-       bind(C, name="hipMemPoolImportFromShareableHandle")
-       import :: c_ptr, hipMemHandleTypeNone, c_int, hipSuccess
-       type(c_ptr) :: mem_pool
-       type(c_ptr), value :: shared_handle
-       integer(kind(hipMemHandleTypeNone)), value :: handle_type
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: MemPoolImportFromShareableHandle
-    end function hipMemPoolImportFromShareableHandle
-
-    !---------------------------------------------
-    ! hipMemPoolExportPointer
-    !---------------------------------------------
-    function hipMemPoolExportPointer(export_data, dev_ptr) &
-       result(MemPoolExportPointer) &
-       bind(C, name="hipMemPoolExportPointer")
-       import :: hipMemPoolPtrExportData, c_ptr, hipSuccess
-       type(hipMemPoolPtrExportData) :: export_data
-       type(c_ptr), value :: dev_ptr
-       integer(kind(hipSuccess)) :: MemPoolExportPointer
-    end function hipMemPoolExportPointer
-
-    !---------------------------------------------
-    ! hipMemPoolImportPointer
-    !---------------------------------------------
-    function hipMemPoolImportPointer(dev_ptr, mem_pool, export_data) &
-       result(MemPoolImportPointer) &
-       bind(C, name="hipMemPoolImportPointer")
-       import :: c_ptr, hipMemPoolPtrExportData, hipSuccess
-       type(c_ptr) :: dev_ptr
-       type(c_ptr), value :: mem_pool
-       type(hipMemPoolPtrExportData) :: export_data
-       integer(kind(hipSuccess)) :: MemPoolImportPointer
-    end function hipMemPoolImportPointer
-
-    !---------------------------------------------
-    ! hipMemSetMemPool
-    !---------------------------------------------
-    function hipMemSetMemPool(location, myType, pool) &
-       result(MemSetMemPool) &
-       bind(C, name="hipMemSetMemPool")
-       import :: hipMemLocation, hipMemAllocationTypeInvalid, c_ptr, hipSuccess
-       type(hipMemLocation) :: location
-       integer(kind(hipMemAllocationTypeInvalid)), value :: myType
-       type(c_ptr), value :: pool
-       integer(kind(hipSuccess)) :: MemSetMemPool
-    end function hipMemSetMemPool
-
-    !---------------------------------------------
-    ! hipMemGetMemPool
-    !---------------------------------------------
-    function hipMemGetMemPool(pool, location, myType) &
-       result(MemGetMemPool) &
-       bind(C, name="hipMemGetMemPool")
-       import :: c_ptr, hipMemLocation, hipMemAllocationTypeInvalid, hipSuccess
-       type(c_ptr) :: pool
-       type(hipMemLocation) :: location
-       integer(kind(hipMemAllocationTypeInvalid)), value :: myType
-       integer(kind(hipSuccess)) :: MemGetMemPool
-    end function hipMemGetMemPool
-
-    !---------------------------------------------
-    ! hipMemGetDefaultMemPool
-    !---------------------------------------------
-    function hipMemGetDefaultMemPool(memPool, location, myType) &
-       result(MemGetDefaultMemPool) &
-       bind(C, name="hipMemGetDefaultMemPool")
-       import :: c_ptr, hipMemLocation, hipMemAllocationTypeInvalid, hipSuccess
-       type(c_ptr) :: memPool
-       type(hipMemLocation) :: location
-       integer(kind(hipMemAllocationTypeInvalid)), value :: myType
-       integer(kind(hipSuccess)) :: MemGetDefaultMemPool
-    end function hipMemGetDefaultMemPool
-
-    !---------------------------------------------
-    ! hipHostAlloc
-    !---------------------------------------------
-    function hipHostAlloc(ptr, mySize, flags) &
-       result(HostAlloc) &
-       bind(C, name="hipHostAlloc")
-       import :: c_ptr, c_size_t, c_int, hipSuccess
-       type(c_ptr) :: ptr
-       integer(c_size_t), value :: mySize
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: HostAlloc
-    end function hipHostAlloc
-
-    !---------------------------------------------
-    ! hipMallocPitch
-    !---------------------------------------------
-    function hipMallocPitch(ptr, pitch, width, height) &
-       result(MallocPitch) &
-       bind(C, name="hipMallocPitch")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: ptr
-       integer(c_size_t) :: pitch
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipSuccess)) :: MallocPitch
-    end function hipMallocPitch
-
-    !---------------------------------------------
-    ! hipMemAllocPitch
-    !---------------------------------------------
-    function hipMemAllocPitch(dptr, pitch, widthInBytes, height, elementSizeBytes) &
-       result(MemAllocPitch) &
-       bind(C, name="hipMemAllocPitch")
-       import :: c_ptr, c_size_t, c_int, hipSuccess
-       type(c_ptr) :: dptr
-       integer(c_size_t) :: pitch
-       integer(c_size_t), value :: widthInBytes
-       integer(c_size_t), value :: height
-       integer(c_int), value :: elementSizeBytes
-       integer(kind(hipSuccess)) :: MemAllocPitch
-    end function hipMemAllocPitch
-
-    !---------------------------------------------
-    ! hipFreeHost
-    !---------------------------------------------
-    function hipFreeHost(ptr) &
-       result(FreeHost) &
-       bind(C, name="hipFreeHost")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: ptr
-       integer(kind(hipSuccess)) :: FreeHost
-    end function hipFreeHost
-
-    !---------------------------------------------
-    ! hipMemcpyWithStream
-    !---------------------------------------------
-    function hipMemcpyWithStream(dst, src, sizeBytes, myKind, stream) &
-       result(MemcpyWithStream) &
-       bind(C, name="hipMemcpyWithStream")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyWithStream
-    end function hipMemcpyWithStream
-
-    !---------------------------------------------
-    ! hipMemcpyHtoD
-    !---------------------------------------------
-    function hipMemcpyHtoD(dst, src, sizeBytes) &
-       result(MemcpyHtoD) &
-       bind(C, name="hipMemcpyHtoD")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       integer(kind(hipSuccess)) :: MemcpyHtoD
-    end function hipMemcpyHtoD
-
-    !---------------------------------------------
-    ! hipMemcpyDtoH
-    !---------------------------------------------
-    function hipMemcpyDtoH(dst, src, sizeBytes) &
-       result(MemcpyDtoH) &
-       bind(C, name="hipMemcpyDtoH")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       integer(kind(hipSuccess)) :: MemcpyDtoH
-    end function hipMemcpyDtoH
-
-    !---------------------------------------------
-    ! hipMemcpyDtoD
-    !---------------------------------------------
-    function hipMemcpyDtoD(dst, src, sizeBytes) &
-       result(MemcpyDtoD) &
-       bind(C, name="hipMemcpyDtoD")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       integer(kind(hipSuccess)) :: MemcpyDtoD
-    end function hipMemcpyDtoD
-
-    !---------------------------------------------
-    ! hipMemcpyAtoD
-    !---------------------------------------------
-    function hipMemcpyAtoD(dstDevice, srcArray, srcOffset, ByteCount) &
-       result(MemcpyAtoD) &
-       bind(C, name="hipMemcpyAtoD")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dstDevice
-       type(c_ptr), value :: srcArray
-       integer(c_size_t), value :: srcOffset
-       integer(c_size_t), value :: ByteCount
-       integer(kind(hipSuccess)) :: MemcpyAtoD
-    end function hipMemcpyAtoD
-
-    !---------------------------------------------
-    ! hipMemcpyDtoA
-    !---------------------------------------------
-    function hipMemcpyDtoA(dstArray, dstOffset, srcDevice, ByteCount) &
-       result(MemcpyDtoA) &
-       bind(C, name="hipMemcpyDtoA")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dstArray
-       integer(c_size_t), value :: dstOffset
-       type(c_ptr), value :: srcDevice
-       integer(c_size_t), value :: ByteCount
-       integer(kind(hipSuccess)) :: MemcpyDtoA
-    end function hipMemcpyDtoA
-
-    !---------------------------------------------
-    ! hipMemcpyAtoA
-    !---------------------------------------------
-    function hipMemcpyAtoA(dstArray, dstOffset, srcArray, srcOffset, ByteCount) &
-       result(MemcpyAtoA) &
-       bind(C, name="hipMemcpyAtoA")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dstArray
-       integer(c_size_t), value :: dstOffset
-       type(c_ptr), value :: srcArray
-       integer(c_size_t), value :: srcOffset
-       integer(c_size_t), value :: ByteCount
-       integer(kind(hipSuccess)) :: MemcpyAtoA
-    end function hipMemcpyAtoA
-
-    !---------------------------------------------
-    ! hipMemcpyHtoDAsync
-    !---------------------------------------------
-    function hipMemcpyHtoDAsync(dst, src, sizeBytes, stream) &
-       result(MemcpyHtoDAsync) &
-       bind(C, name="hipMemcpyHtoDAsync")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyHtoDAsync
-    end function hipMemcpyHtoDAsync
-
-    !---------------------------------------------
-    ! hipMemcpyDtoHAsync
-    !---------------------------------------------
-    function hipMemcpyDtoHAsync(dst, src, sizeBytes, stream) &
-       result(MemcpyDtoHAsync) &
-       bind(C, name="hipMemcpyDtoHAsync")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyDtoHAsync
-    end function hipMemcpyDtoHAsync
-
-    !---------------------------------------------
-    ! hipMemcpyDtoDAsync
-    !---------------------------------------------
-    function hipMemcpyDtoDAsync(dst, src, sizeBytes, stream) &
-       result(MemcpyDtoDAsync) &
-       bind(C, name="hipMemcpyDtoDAsync")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyDtoDAsync
-    end function hipMemcpyDtoDAsync
-
-    !---------------------------------------------
-    ! hipMemcpyAtoHAsync
-    !---------------------------------------------
-    function hipMemcpyAtoHAsync(dstHost, srcArray, srcOffset, ByteCount, stream) &
-       result(MemcpyAtoHAsync) &
-       bind(C, name="hipMemcpyAtoHAsync")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dstHost
-       type(c_ptr), value :: srcArray
-       integer(c_size_t), value :: srcOffset
-       integer(c_size_t), value :: ByteCount
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyAtoHAsync
-    end function hipMemcpyAtoHAsync
-
-    !---------------------------------------------
-    ! hipMemcpyHtoAAsync
-    !---------------------------------------------
-    function hipMemcpyHtoAAsync(dstArray, dstOffset, srcHost, ByteCount, stream) &
-       result(MemcpyHtoAAsync) &
-       bind(C, name="hipMemcpyHtoAAsync")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dstArray
-       integer(c_size_t), value :: dstOffset
-       type(c_ptr), value :: srcHost
-       integer(c_size_t), value :: ByteCount
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyHtoAAsync
-    end function hipMemcpyHtoAAsync
-
-    !---------------------------------------------
-    ! hipModuleGetGlobal
-    !---------------------------------------------
-    function hipModuleGetGlobal(dptr, bytes, hmod, name) &
-       result(ModuleGetGlobal) &
-       bind(C, name="hipModuleGetGlobal")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: dptr
-       integer(c_size_t) :: bytes
-       type(c_ptr), value :: hmod
-       type(c_ptr), value :: name
-       integer(kind(hipSuccess)) :: ModuleGetGlobal
-    end function hipModuleGetGlobal
-
-    !---------------------------------------------
-    ! hipGetSymbolAddress
-    !---------------------------------------------
-    function hipGetSymbolAddress(devPtr, symbol) &
-       result(GetSymbolAddress) &
-       bind(C, name="hipGetSymbolAddress")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: devPtr
-       type(c_ptr), value :: symbol
-       integer(kind(hipSuccess)) :: GetSymbolAddress
-    end function hipGetSymbolAddress
-
-    !---------------------------------------------
-    ! hipGetSymbolSize
-    !---------------------------------------------
-    function hipGetSymbolSize(mySize, symbol) &
-       result(GetSymbolSize) &
-       bind(C, name="hipGetSymbolSize")
-       import :: c_size_t, c_ptr, hipSuccess
-       integer(c_size_t) :: mySize
-       type(c_ptr), value :: symbol
-       integer(kind(hipSuccess)) :: GetSymbolSize
-    end function hipGetSymbolSize
-
-    !---------------------------------------------
-    ! hipGetProcAddress
-    !---------------------------------------------
-    function hipGetProcAddress(symbol, pfn, hipVersion, flags, symbolStatus) &
-       result(GetProcAddress) &
-       bind(C, name="hipGetProcAddress")
-       import :: c_ptr, c_int, c_int64_t, hipSuccess
-       type(c_ptr), value :: symbol
-       type(c_ptr) :: pfn
-       integer(c_int), value :: hipVersion
-       integer(c_int64_t), value :: flags
-       type(c_ptr), value :: symbolStatus
-       integer(kind(hipSuccess)) :: GetProcAddress
-    end function hipGetProcAddress
-
-    !---------------------------------------------
-    ! hipMemcpyToSymbol
-    !---------------------------------------------
-    function hipMemcpyToSymbol(symbol, src, sizeBytes, offset, myKind) &
-       result(MemcpyToSymbol) &
-       bind(C, name="hipMemcpyToSymbol")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: symbol
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: MemcpyToSymbol
-    end function hipMemcpyToSymbol
-
-    !---------------------------------------------
-    ! hipMemcpyToSymbolAsync
-    !---------------------------------------------
-    function hipMemcpyToSymbolAsync(symbol, src, sizeBytes, offset, myKind, stream) &
-       result(MemcpyToSymbolAsync) &
-       bind(C, name="hipMemcpyToSymbolAsync")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: symbol
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyToSymbolAsync
-    end function hipMemcpyToSymbolAsync
-
-    !---------------------------------------------
-    ! hipMemcpyFromSymbol
-    !---------------------------------------------
-    function hipMemcpyFromSymbol(dst, symbol, sizeBytes, offset, myKind) &
-       result(MemcpyFromSymbol) &
-       bind(C, name="hipMemcpyFromSymbol")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: symbol
-       integer(c_size_t), value :: sizeBytes
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: MemcpyFromSymbol
-    end function hipMemcpyFromSymbol
-
-    !---------------------------------------------
-    ! hipMemcpyFromSymbolAsync
-    !---------------------------------------------
-    function hipMemcpyFromSymbolAsync(dst, symbol, sizeBytes, offset, myKind, stream) &
-       result(MemcpyFromSymbolAsync) &
-       bind(C, name="hipMemcpyFromSymbolAsync")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: symbol
-       integer(c_size_t), value :: sizeBytes
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyFromSymbolAsync
-    end function hipMemcpyFromSymbolAsync
-
-    !---------------------------------------------
-    ! hipMemset
-    !---------------------------------------------
-    function hipMemset(dst, myValue, sizeBytes) &
-       result(Memset) &
-       bind(C, name="hipMemset")
-       import :: c_ptr, c_int, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_int), value :: myValue
-       integer(c_size_t), value :: sizeBytes
-       integer(kind(hipSuccess)) :: Memset
-    end function hipMemset
-
-    !---------------------------------------------
-    ! hipMemsetD8
-    !---------------------------------------------
-    function hipMemsetD8(dest, myValue, count) &
-       result(MemsetD8) &
-       bind(C, name="hipMemsetD8")
-       import :: c_ptr, c_char, c_size_t, hipSuccess
-       type(c_ptr), value :: dest
-       character(c_char), value :: myValue
-       integer(c_size_t), value :: count
-       integer(kind(hipSuccess)) :: MemsetD8
-    end function hipMemsetD8
-
-    !---------------------------------------------
-    ! hipMemsetD8Async
-    !---------------------------------------------
-    function hipMemsetD8Async(dest, myValue, count, stream) &
-       result(MemsetD8Async) &
-       bind(C, name="hipMemsetD8Async")
-       import :: c_ptr, c_char, c_size_t, hipSuccess
-       type(c_ptr), value :: dest
-       character(c_char), value :: myValue
-       integer(c_size_t), value :: count
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemsetD8Async
-    end function hipMemsetD8Async
-
-    !---------------------------------------------
-    ! hipMemsetD16
-    !---------------------------------------------
-    function hipMemsetD16(dest, myValue, count) &
-       result(MemsetD16) &
-       bind(C, name="hipMemsetD16")
-       import :: c_ptr, c_short, c_size_t, hipSuccess
-       type(c_ptr), value :: dest
-       integer(c_short), value :: myValue
-       integer(c_size_t), value :: count
-       integer(kind(hipSuccess)) :: MemsetD16
-    end function hipMemsetD16
-
-    !---------------------------------------------
-    ! hipMemsetD16Async
-    !---------------------------------------------
-    function hipMemsetD16Async(dest, myValue, count, stream) &
-       result(MemsetD16Async) &
-       bind(C, name="hipMemsetD16Async")
-       import :: c_ptr, c_short, c_size_t, hipSuccess
-       type(c_ptr), value :: dest
-       integer(c_short), value :: myValue
-       integer(c_size_t), value :: count
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemsetD16Async
-    end function hipMemsetD16Async
-
-    !---------------------------------------------
-    ! hipMemsetD32
-    !---------------------------------------------
-    function hipMemsetD32(dest, myValue, count) &
-       result(MemsetD32) &
-       bind(C, name="hipMemsetD32")
-       import :: c_ptr, c_int, c_size_t, hipSuccess
-       type(c_ptr), value :: dest
-       integer(c_int), value :: myValue
-       integer(c_size_t), value :: count
-       integer(kind(hipSuccess)) :: MemsetD32
-    end function hipMemsetD32
-
-    !---------------------------------------------
-    ! hipMemsetAsync
-    !---------------------------------------------
-    function hipMemsetAsync(dst, myValue, sizeBytes, stream) &
-       result(MemsetAsync) &
-       bind(C, name="hipMemsetAsync")
-       import :: c_ptr, c_int, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_int), value :: myValue
-       integer(c_size_t), value :: sizeBytes
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemsetAsync
-    end function hipMemsetAsync
-
-    !---------------------------------------------
-    ! hipMemsetD32Async
-    !---------------------------------------------
-    function hipMemsetD32Async(dst, myValue, count, stream) &
-       result(MemsetD32Async) &
-       bind(C, name="hipMemsetD32Async")
-       import :: c_ptr, c_int, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_int), value :: myValue
-       integer(c_size_t), value :: count
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemsetD32Async
-    end function hipMemsetD32Async
-
-    !---------------------------------------------
-    ! hipMemset2D
-    !---------------------------------------------
-    function hipMemset2D(dst, pitch, myValue, width, height) &
-       result(Memset2D) &
-       bind(C, name="hipMemset2D")
-       import :: c_ptr, c_size_t, c_int, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: pitch
-       integer(c_int), value :: myValue
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipSuccess)) :: Memset2D
-    end function hipMemset2D
-
-    !---------------------------------------------
-    ! hipMemset2DAsync
-    !---------------------------------------------
-    function hipMemset2DAsync(dst, pitch, myValue, width, height, stream) &
-       result(Memset2DAsync) &
-       bind(C, name="hipMemset2DAsync")
-       import :: c_ptr, c_size_t, c_int, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: pitch
-       integer(c_int), value :: myValue
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memset2DAsync
-    end function hipMemset2DAsync
-
-    !---------------------------------------------
-    ! hipMemset3D
-    !---------------------------------------------
-    function hipMemset3D(pitchedDevPtr, myValue, extent) &
-       result(Memset3D) &
-       bind(C, name="hipMemset3D")
-       import :: hipPitchedPtr, c_int, hipExtent, hipSuccess
-       type(hipPitchedPtr), value :: pitchedDevPtr
-       integer(c_int), value :: myValue
-       type(hipExtent), value :: extent
-       integer(kind(hipSuccess)) :: Memset3D
-    end function hipMemset3D
-
-    !---------------------------------------------
-    ! hipMemset3DAsync
-    !---------------------------------------------
-    function hipMemset3DAsync(pitchedDevPtr, myValue, extent, stream) &
-       result(Memset3DAsync) &
-       bind(C, name="hipMemset3DAsync")
-       import :: hipPitchedPtr, c_int, hipExtent, c_ptr, hipSuccess
-       type(hipPitchedPtr), value :: pitchedDevPtr
-       integer(c_int), value :: myValue
-       type(hipExtent), value :: extent
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memset3DAsync
-    end function hipMemset3DAsync
-
-    !---------------------------------------------
-    ! hipMemsetD2D8
-    !---------------------------------------------
-    function hipMemsetD2D8(dst, dstPitch, myValue, width, height) &
-       result(MemsetD2D8) &
-       bind(C, name="hipMemsetD2D8")
-       import :: c_ptr, c_size_t, c_char, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: dstPitch
-       character(c_char), value :: myValue
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipSuccess)) :: MemsetD2D8
-    end function hipMemsetD2D8
-
-    !---------------------------------------------
-    ! hipMemsetD2D8Async
-    !---------------------------------------------
-    function hipMemsetD2D8Async(dst, dstPitch, myValue, width, height, stream) &
-       result(MemsetD2D8Async) &
-       bind(C, name="hipMemsetD2D8Async")
-       import :: c_ptr, c_size_t, c_char, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: dstPitch
-       character(c_char), value :: myValue
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemsetD2D8Async
-    end function hipMemsetD2D8Async
-
-    !---------------------------------------------
-    ! hipMemsetD2D16
-    !---------------------------------------------
-    function hipMemsetD2D16(dst, dstPitch, myValue, width, height) &
-       result(MemsetD2D16) &
-       bind(C, name="hipMemsetD2D16")
-       import :: c_ptr, c_size_t, c_short, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: dstPitch
-       integer(c_short), value :: myValue
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipSuccess)) :: MemsetD2D16
-    end function hipMemsetD2D16
-
-    !---------------------------------------------
-    ! hipMemsetD2D16Async
-    !---------------------------------------------
-    function hipMemsetD2D16Async(dst, dstPitch, myValue, width, height, stream) &
-       result(MemsetD2D16Async) &
-       bind(C, name="hipMemsetD2D16Async")
-       import :: c_ptr, c_size_t, c_short, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: dstPitch
-       integer(c_short), value :: myValue
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemsetD2D16Async
-    end function hipMemsetD2D16Async
-
-    !---------------------------------------------
-    ! hipMemsetD2D32
-    !---------------------------------------------
-    function hipMemsetD2D32(dst, dstPitch, myValue, width, height) &
-       result(MemsetD2D32) &
-       bind(C, name="hipMemsetD2D32")
-       import :: c_ptr, c_size_t, c_int, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: dstPitch
-       integer(c_int), value :: myValue
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipSuccess)) :: MemsetD2D32
-    end function hipMemsetD2D32
-
-    !---------------------------------------------
-    ! hipMemsetD2D32Async
-    !---------------------------------------------
-    function hipMemsetD2D32Async(dst, dstPitch, myValue, width, height, stream) &
-       result(MemsetD2D32Async) &
-       bind(C, name="hipMemsetD2D32Async")
-       import :: c_ptr, c_size_t, c_int, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: dstPitch
-       integer(c_int), value :: myValue
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemsetD2D32Async
-    end function hipMemsetD2D32Async
-
-    !---------------------------------------------
-    ! hipMemGetInfo
-    !---------------------------------------------
-    function hipMemGetInfo(free, total) &
-       result(MemGetInfo) &
-       bind(C, name="hipMemGetInfo")
-       import :: c_size_t, hipSuccess
-       integer(c_size_t) :: free
-       integer(c_size_t) :: total
-       integer(kind(hipSuccess)) :: MemGetInfo
-    end function hipMemGetInfo
-
-    !---------------------------------------------
-    ! hipMemPtrGetInfo
-    !---------------------------------------------
-    function hipMemPtrGetInfo(ptr, mySize) &
-       result(MemPtrGetInfo) &
-       bind(C, name="hipMemPtrGetInfo")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: ptr
-       integer(c_size_t) :: mySize
-       integer(kind(hipSuccess)) :: MemPtrGetInfo
-    end function hipMemPtrGetInfo
-
-    !---------------------------------------------
-    ! hipMallocArray
-    !---------------------------------------------
-    function hipMallocArray(array, desc, width, height, flags) &
-       result(MallocArray) &
-       bind(C, name="hipMallocArray")
-       import :: c_ptr, hipChannelFormatDesc, c_size_t, c_int, hipSuccess
-       type(c_ptr) :: array
-       type(hipChannelFormatDesc) :: desc
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: MallocArray
-    end function hipMallocArray
-
-    !---------------------------------------------
-    ! hipArrayCreate
-    !---------------------------------------------
-    function hipArrayCreate(pHandle, pAllocateArray) &
-       result(ArrayCreate) &
-       bind(C, name="hipArrayCreate")
-       import :: c_ptr, HIP_ARRAY_DESCRIPTOR, hipSuccess
-       type(c_ptr) :: pHandle
-       type(HIP_ARRAY_DESCRIPTOR) :: pAllocateArray
-       integer(kind(hipSuccess)) :: ArrayCreate
-    end function hipArrayCreate
-
-    !---------------------------------------------
-    ! hipArrayDestroy
-    !---------------------------------------------
-    function hipArrayDestroy(array) &
-       result(ArrayDestroy) &
-       bind(C, name="hipArrayDestroy")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: array
-       integer(kind(hipSuccess)) :: ArrayDestroy
-    end function hipArrayDestroy
-
-    !---------------------------------------------
-    ! hipArray3DCreate
-    !---------------------------------------------
-    function hipArray3DCreate(array, pAllocateArray) &
-       result(Array3DCreate) &
-       bind(C, name="hipArray3DCreate")
-       import :: c_ptr, HIP_ARRAY3D_DESCRIPTOR, hipSuccess
-       type(c_ptr) :: array
-       type(HIP_ARRAY3D_DESCRIPTOR) :: pAllocateArray
-       integer(kind(hipSuccess)) :: Array3DCreate
-    end function hipArray3DCreate
-
-    !---------------------------------------------
-    ! hipMalloc3D
-    !---------------------------------------------
-    function hipMalloc3D(pitchedDevPtr, extent) &
-       result(Malloc3D) &
-       bind(C, name="hipMalloc3D")
-       import :: hipPitchedPtr, hipExtent, hipSuccess
-       type(hipPitchedPtr) :: pitchedDevPtr
-       type(hipExtent), value :: extent
-       integer(kind(hipSuccess)) :: Malloc3D
-    end function hipMalloc3D
-
-    !---------------------------------------------
-    ! hipFreeArray
-    !---------------------------------------------
-    function hipFreeArray(array) &
-       result(FreeArray) &
-       bind(C, name="hipFreeArray")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: array
-       integer(kind(hipSuccess)) :: FreeArray
-    end function hipFreeArray
-
-    !---------------------------------------------
-    ! hipMalloc3DArray
-    !---------------------------------------------
-    function hipMalloc3DArray(array, desc, extent, flags) &
-       result(Malloc3DArray) &
-       bind(C, name="hipMalloc3DArray")
-       import :: c_ptr, hipChannelFormatDesc, hipExtent, c_int, hipSuccess
-       type(c_ptr) :: array
-       type(hipChannelFormatDesc) :: desc
-       type(hipExtent), value :: extent
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: Malloc3DArray
-    end function hipMalloc3DArray
-
-    !---------------------------------------------
-    ! hipArrayGetInfo
-    !---------------------------------------------
-    function hipArrayGetInfo(desc, extent, flags, array) &
-       result(ArrayGetInfo) &
-       bind(C, name="hipArrayGetInfo")
-       import :: hipChannelFormatDesc, hipExtent, c_ptr, hipSuccess
-       type(hipChannelFormatDesc) :: desc
-       type(hipExtent) :: extent
-       type(c_ptr), value :: flags
-       type(c_ptr), value :: array
-       integer(kind(hipSuccess)) :: ArrayGetInfo
-    end function hipArrayGetInfo
-
-    !---------------------------------------------
-    ! hipArrayGetDescriptor
-    !---------------------------------------------
-    function hipArrayGetDescriptor(pArrayDescriptor, array) &
-       result(ArrayGetDescriptor) &
-       bind(C, name="hipArrayGetDescriptor")
-       import :: HIP_ARRAY_DESCRIPTOR, c_ptr, hipSuccess
-       type(HIP_ARRAY_DESCRIPTOR) :: pArrayDescriptor
-       type(c_ptr), value :: array
-       integer(kind(hipSuccess)) :: ArrayGetDescriptor
-    end function hipArrayGetDescriptor
-
-    !---------------------------------------------
-    ! hipArray3DGetDescriptor
-    !---------------------------------------------
-    function hipArray3DGetDescriptor(pArrayDescriptor, array) &
-       result(Array3DGetDescriptor) &
-       bind(C, name="hipArray3DGetDescriptor")
-       import :: HIP_ARRAY3D_DESCRIPTOR, c_ptr, hipSuccess
-       type(HIP_ARRAY3D_DESCRIPTOR) :: pArrayDescriptor
-       type(c_ptr), value :: array
-       integer(kind(hipSuccess)) :: Array3DGetDescriptor
-    end function hipArray3DGetDescriptor
-
-    !---------------------------------------------
-    ! hipMemcpyParam2D
-    !---------------------------------------------
-    function hipMemcpyParam2D(pCopy) &
-       result(MemcpyParam2D) &
-       bind(C, name="hipMemcpyParam2D")
-       import :: hip_Memcpy2D, hipSuccess
-       type(hip_Memcpy2D) :: pCopy
-       integer(kind(hipSuccess)) :: MemcpyParam2D
-    end function hipMemcpyParam2D
-
-    !---------------------------------------------
-    ! hipMemcpyParam2DAsync
-    !---------------------------------------------
-    function hipMemcpyParam2DAsync(pCopy, stream) &
-       result(MemcpyParam2DAsync) &
-       bind(C, name="hipMemcpyParam2DAsync")
-       import :: hip_Memcpy2D, c_ptr, hipSuccess
-       type(hip_Memcpy2D) :: pCopy
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyParam2DAsync
-    end function hipMemcpyParam2DAsync
-
-    !---------------------------------------------
-    ! hipMemcpy2DToArray
-    !---------------------------------------------
-    function hipMemcpy2DToArray(dst, wOffset, hOffset, src, spitch, width, height, myKind) &
-       result(Memcpy2DToArray) &
-       bind(C, name="hipMemcpy2DToArray")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: wOffset
-       integer(c_size_t), value :: hOffset
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: spitch
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: Memcpy2DToArray
-    end function hipMemcpy2DToArray
-
-    !---------------------------------------------
-    ! hipMemcpy2DToArrayAsync
-    !---------------------------------------------
-    function hipMemcpy2DToArrayAsync(dst, wOffset, hOffset, src, spitch, width, height, myKind, &
-                                     stream) &
-       result(Memcpy2DToArrayAsync) &
-       bind(C, name="hipMemcpy2DToArrayAsync")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: wOffset
-       integer(c_size_t), value :: hOffset
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: spitch
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memcpy2DToArrayAsync
-    end function hipMemcpy2DToArrayAsync
-
-    !---------------------------------------------
-    ! hipMemcpy2DArrayToArray
-    !---------------------------------------------
-    function hipMemcpy2DArrayToArray(dst, wOffsetDst, hOffsetDst, src, wOffsetSrc, hOffsetSrc, &
-                                     width, height, myKind) &
-       result(Memcpy2DArrayToArray) &
-       bind(C, name="hipMemcpy2DArrayToArray")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: wOffsetDst
-       integer(c_size_t), value :: hOffsetDst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: wOffsetSrc
-       integer(c_size_t), value :: hOffsetSrc
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: Memcpy2DArrayToArray
-    end function hipMemcpy2DArrayToArray
-
-    !---------------------------------------------
-    ! hipMemcpyToArray
-    !---------------------------------------------
-    function hipMemcpyToArray(dst, wOffset, hOffset, src, count, myKind) &
-       result(MemcpyToArray) &
-       bind(C, name="hipMemcpyToArray")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: wOffset
-       integer(c_size_t), value :: hOffset
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: count
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: MemcpyToArray
-    end function hipMemcpyToArray
-
-    !---------------------------------------------
-    ! hipMemcpyFromArray
-    !---------------------------------------------
-    function hipMemcpyFromArray(dst, srcArray, wOffset, hOffset, count, myKind) &
-       result(MemcpyFromArray) &
-       bind(C, name="hipMemcpyFromArray")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: srcArray
-       integer(c_size_t), value :: wOffset
-       integer(c_size_t), value :: hOffset
-       integer(c_size_t), value :: count
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: MemcpyFromArray
-    end function hipMemcpyFromArray
-
-    !---------------------------------------------
-    ! hipMemcpy2DFromArray
-    !---------------------------------------------
-    function hipMemcpy2DFromArray(dst, dpitch, src, wOffset, hOffset, width, height, myKind) &
-       result(Memcpy2DFromArray) &
-       bind(C, name="hipMemcpy2DFromArray")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: dpitch
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: wOffset
-       integer(c_size_t), value :: hOffset
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: Memcpy2DFromArray
-    end function hipMemcpy2DFromArray
-
-    !---------------------------------------------
-    ! hipMemcpy2DFromArrayAsync
-    !---------------------------------------------
-    function hipMemcpy2DFromArrayAsync(dst, dpitch, src, wOffset, hOffset, width, height, myKind, &
-                                       stream) &
-       result(Memcpy2DFromArrayAsync) &
-       bind(C, name="hipMemcpy2DFromArrayAsync")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: dpitch
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: wOffset
-       integer(c_size_t), value :: hOffset
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memcpy2DFromArrayAsync
-    end function hipMemcpy2DFromArrayAsync
-
-    !---------------------------------------------
-    ! hipMemcpyAtoH
-    !---------------------------------------------
-    function hipMemcpyAtoH(dst, srcArray, srcOffset, count) &
-       result(MemcpyAtoH) &
-       bind(C, name="hipMemcpyAtoH")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: srcArray
-       integer(c_size_t), value :: srcOffset
-       integer(c_size_t), value :: count
-       integer(kind(hipSuccess)) :: MemcpyAtoH
-    end function hipMemcpyAtoH
-
-    !---------------------------------------------
-    ! hipMemcpyHtoA
-    !---------------------------------------------
-    function hipMemcpyHtoA(dstArray, dstOffset, srcHost, count) &
-       result(MemcpyHtoA) &
-       bind(C, name="hipMemcpyHtoA")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: dstArray
-       integer(c_size_t), value :: dstOffset
-       type(c_ptr), value :: srcHost
-       integer(c_size_t), value :: count
-       integer(kind(hipSuccess)) :: MemcpyHtoA
-    end function hipMemcpyHtoA
-
-    !---------------------------------------------
-    ! hipMemcpy3D
-    !---------------------------------------------
-    function hipMemcpy3D(p) &
-       result(Memcpy3D) &
-       bind(C, name="hipMemcpy3D")
-       import :: hipMemcpy3DParms, hipSuccess
-       type(hipMemcpy3DParms) :: p
-       integer(kind(hipSuccess)) :: Memcpy3D
-    end function hipMemcpy3D
-
-    !---------------------------------------------
-    ! hipMemcpy3DAsync
-    !---------------------------------------------
-    function hipMemcpy3DAsync(p, stream) &
-       result(Memcpy3DAsync) &
-       bind(C, name="hipMemcpy3DAsync")
-       import :: hipMemcpy3DParms, c_ptr, hipSuccess
-       type(hipMemcpy3DParms) :: p
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memcpy3DAsync
-    end function hipMemcpy3DAsync
-
-    !---------------------------------------------
-    ! hipDrvMemcpy3D
-    !---------------------------------------------
-    function hipDrvMemcpy3D(pCopy) &
-       result(DrvMemcpy3D) &
-       bind(C, name="hipDrvMemcpy3D")
-       import :: HIP_MEMCPY3D, hipSuccess
-       type(HIP_MEMCPY3D) :: pCopy
-       integer(kind(hipSuccess)) :: DrvMemcpy3D
-    end function hipDrvMemcpy3D
-
-    !---------------------------------------------
-    ! hipDrvMemcpy3DAsync
-    !---------------------------------------------
-    function hipDrvMemcpy3DAsync(pCopy, stream) &
-       result(DrvMemcpy3DAsync) &
-       bind(C, name="hipDrvMemcpy3DAsync")
-       import :: HIP_MEMCPY3D, c_ptr, hipSuccess
-       type(HIP_MEMCPY3D) :: pCopy
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: DrvMemcpy3DAsync
-    end function hipDrvMemcpy3DAsync
-
-    !---------------------------------------------
-    ! hipMemGetAddressRange
-    !---------------------------------------------
-    function hipMemGetAddressRange(pbase, psize, dptr) &
-       result(MemGetAddressRange) &
-       bind(C, name="hipMemGetAddressRange")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: pbase
-       integer(c_size_t) :: psize
-       type(c_ptr), value :: dptr
-       integer(kind(hipSuccess)) :: MemGetAddressRange
-    end function hipMemGetAddressRange
-
-    !---------------------------------------------
-    ! hipMemcpyBatchAsync
-    !---------------------------------------------
-    function hipMemcpyBatchAsync(dsts, srcs, sizes, count, attrs, attrsIdxs, numAttrs, failIdx, &
-                                 stream) &
-       result(MemcpyBatchAsync) &
-       bind(C, name="hipMemcpyBatchAsync")
-       import :: c_ptr, c_size_t, hipMemcpyAttributes, hipSuccess
-       type(c_ptr) :: dsts
-       type(c_ptr) :: srcs
-       type(c_ptr), value :: sizes
-       integer(c_size_t), value :: count
-       type(hipMemcpyAttributes) :: attrs
-       type(c_ptr), value :: attrsIdxs
-       integer(c_size_t), value :: numAttrs
-       type(c_ptr), value :: failIdx
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyBatchAsync
-    end function hipMemcpyBatchAsync
-
-    !---------------------------------------------
-    ! hipMemcpy3DBatchAsync
-    !---------------------------------------------
-    function hipMemcpy3DBatchAsync(numOps, opList, failIdx, flags, stream) &
-       result(Memcpy3DBatchAsync) &
-       bind(C, name="hipMemcpy3DBatchAsync")
-       import :: c_size_t, hipMemcpy3DBatchOp, c_ptr, c_int64_t, hipSuccess
-       integer(c_size_t), value :: numOps
-       type(hipMemcpy3DBatchOp) :: opList
-       type(c_ptr), value :: failIdx
-       integer(c_int64_t), value :: flags
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memcpy3DBatchAsync
-    end function hipMemcpy3DBatchAsync
-
-    !---------------------------------------------
-    ! hipMemcpy3DPeer
-    !---------------------------------------------
-    function hipMemcpy3DPeer(p) &
-       result(Memcpy3DPeer) &
-       bind(C, name="hipMemcpy3DPeer")
-       import :: hipMemcpy3DPeerParms, hipSuccess
-       type(hipMemcpy3DPeerParms) :: p
-       integer(kind(hipSuccess)) :: Memcpy3DPeer
-    end function hipMemcpy3DPeer
-
-    !---------------------------------------------
-    ! hipMemcpy3DPeerAsync
-    !---------------------------------------------
-    function hipMemcpy3DPeerAsync(p, stream) &
-       result(Memcpy3DPeerAsync) &
-       bind(C, name="hipMemcpy3DPeerAsync")
-       import :: hipMemcpy3DPeerParms, c_ptr, hipSuccess
-       type(hipMemcpy3DPeerParms) :: p
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memcpy3DPeerAsync
-    end function hipMemcpy3DPeerAsync
-
-    !---------------------------------------------
-    ! hipMipmappedArrayGetMemoryRequirements
-    !---------------------------------------------
-    function hipMipmappedArrayGetMemoryRequirements(memoryRequirements, mipmap, device) &
-       result(MipmappedArrayGetMemoryRequirements) &
-       bind(C, name="hipMipmappedArrayGetMemoryRequirements")
-       import :: hipArrayMemoryRequirements, c_ptr, c_int, hipSuccess
-       type(hipArrayMemoryRequirements) :: memoryRequirements
-       type(c_ptr), value :: mipmap
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: MipmappedArrayGetMemoryRequirements
-    end function hipMipmappedArrayGetMemoryRequirements
-
-    !---------------------------------------------
-    ! hipDeviceCanAccessPeer
-    !---------------------------------------------
-    function hipDeviceCanAccessPeer(canAccessPeer, deviceId, peerDeviceId) &
-       result(DeviceCanAccessPeer) &
-       bind(C, name="hipDeviceCanAccessPeer")
-       import :: c_int, hipSuccess
-       integer(c_int) :: canAccessPeer
-       integer(c_int), value :: deviceId
-       integer(c_int), value :: peerDeviceId
-       integer(kind(hipSuccess)) :: DeviceCanAccessPeer
-    end function hipDeviceCanAccessPeer
-
-    !---------------------------------------------
-    ! hipDeviceEnablePeerAccess
-    !---------------------------------------------
-    function hipDeviceEnablePeerAccess(peerDeviceId, flags) &
-       result(DeviceEnablePeerAccess) &
-       bind(C, name="hipDeviceEnablePeerAccess")
-       import :: c_int, hipSuccess
-       integer(c_int), value :: peerDeviceId
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: DeviceEnablePeerAccess
-    end function hipDeviceEnablePeerAccess
-
-    !---------------------------------------------
-    ! hipDeviceDisablePeerAccess
-    !---------------------------------------------
-    function hipDeviceDisablePeerAccess(peerDeviceId) &
-       result(DeviceDisablePeerAccess) &
-       bind(C, name="hipDeviceDisablePeerAccess")
-       import :: c_int, hipSuccess
-       integer(c_int), value :: peerDeviceId
-       integer(kind(hipSuccess)) :: DeviceDisablePeerAccess
-    end function hipDeviceDisablePeerAccess
-
-    !---------------------------------------------
-    ! hipMemcpyPeer
-    !---------------------------------------------
-    function hipMemcpyPeer(dst, dstDeviceId, src, srcDeviceId, sizeBytes) &
-       result(MemcpyPeer) &
-       bind(C, name="hipMemcpyPeer")
-       import :: c_ptr, c_int, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_int), value :: dstDeviceId
-       type(c_ptr), value :: src
-       integer(c_int), value :: srcDeviceId
-       integer(c_size_t), value :: sizeBytes
-       integer(kind(hipSuccess)) :: MemcpyPeer
-    end function hipMemcpyPeer
-
-    !---------------------------------------------
-    ! hipMemcpyPeerAsync
-    !---------------------------------------------
-    function hipMemcpyPeerAsync(dst, dstDeviceId, src, srcDevice, sizeBytes, stream) &
-       result(MemcpyPeerAsync) &
-       bind(C, name="hipMemcpyPeerAsync")
-       import :: c_ptr, c_int, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_int), value :: dstDeviceId
-       type(c_ptr), value :: src
-       integer(c_int), value :: srcDevice
-       integer(c_size_t), value :: sizeBytes
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyPeerAsync
-    end function hipMemcpyPeerAsync
-
-    !---------------------------------------------
-    ! hipDeviceGetDevResource
-    !---------------------------------------------
-    function hipDeviceGetDevResource(device, resource, myType) &
-       result(DeviceGetDevResource) &
-       bind(C, name="hipDeviceGetDevResource")
-       import :: c_int, hipDevResource, hipDevResourceTypeInvalid, hipSuccess
-       integer(c_int), value :: device
-       type(hipDevResource) :: resource
-       integer(kind(hipDevResourceTypeInvalid)), value :: myType
-       integer(kind(hipSuccess)) :: DeviceGetDevResource
-    end function hipDeviceGetDevResource
-
-    !---------------------------------------------
-    ! hipDevSmResourceSplitByCount
-    !---------------------------------------------
-    function hipDevSmResourceSplitByCount(myResult, nbGroups, input, remainder, flags, minCount) &
-       result(DevSmResourceSplitByCount) &
-       bind(C, name="hipDevSmResourceSplitByCount")
-       import :: hipDevResource, c_ptr, c_int, hipSuccess
-       type(hipDevResource) :: myResult
-       type(c_ptr), value :: nbGroups
-       type(hipDevResource) :: input
-       type(hipDevResource) :: remainder
-       integer(c_int), value :: flags
-       integer(c_int), value :: minCount
-       integer(kind(hipSuccess)) :: DevSmResourceSplitByCount
-    end function hipDevSmResourceSplitByCount
-
-    !---------------------------------------------
-    ! hipDevSmResourceSplit
-    !---------------------------------------------
-    function hipDevSmResourceSplit(myResult, nbGroups, input, remainder, flags, groupParams) &
-       result(DevSmResourceSplit) &
-       bind(C, name="hipDevSmResourceSplit")
-       import :: hipDevResource, c_int, hipDevSmResourceGroupParams, hipSuccess
-       type(hipDevResource) :: myResult
-       integer(c_int), value :: nbGroups
-       type(hipDevResource) :: input
-       type(hipDevResource) :: remainder
-       integer(c_int), value :: flags
-       type(hipDevSmResourceGroupParams) :: groupParams
-       integer(kind(hipSuccess)) :: DevSmResourceSplit
-    end function hipDevSmResourceSplit
-
-    !---------------------------------------------
-    ! hipDevResourceGenerateDesc
-    !---------------------------------------------
-    function hipDevResourceGenerateDesc(phDesc, resources, nbResources) &
-       result(DevResourceGenerateDesc) &
-       bind(C, name="hipDevResourceGenerateDesc")
-       import :: c_ptr, hipDevResource, c_int, hipSuccess
-       type(c_ptr) :: phDesc
-       type(hipDevResource) :: resources
-       integer(c_int), value :: nbResources
-       integer(kind(hipSuccess)) :: DevResourceGenerateDesc
-    end function hipDevResourceGenerateDesc
-
-    !---------------------------------------------
-    ! hipGreenCtxCreate
-    !---------------------------------------------
-    function hipGreenCtxCreate(ctx, desc, device, flags) &
-       result(GreenCtxCreate) &
-       bind(C, name="hipGreenCtxCreate")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: ctx
-       type(c_ptr), value :: desc
-       integer(c_int), value :: device
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: GreenCtxCreate
-    end function hipGreenCtxCreate
-
-    !---------------------------------------------
-    ! hipExecutionCtxDestroy
-    !---------------------------------------------
-    function hipExecutionCtxDestroy(ctx) &
-       result(ExecutionCtxDestroy) &
-       bind(C, name="hipExecutionCtxDestroy")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: ctx
-       integer(kind(hipSuccess)) :: ExecutionCtxDestroy
-    end function hipExecutionCtxDestroy
-
-    !---------------------------------------------
-    ! hipDeviceGetExecutionCtx
-    !---------------------------------------------
-    function hipDeviceGetExecutionCtx(ctx, device) &
-       result(DeviceGetExecutionCtx) &
-       bind(C, name="hipDeviceGetExecutionCtx")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: ctx
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: DeviceGetExecutionCtx
-    end function hipDeviceGetExecutionCtx
-
-    !---------------------------------------------
-    ! hipExecutionCtxStreamCreate
-    !---------------------------------------------
-    function hipExecutionCtxStreamCreate(stream, greenctx, flags, priority) &
-       result(ExecutionCtxStreamCreate) &
-       bind(C, name="hipExecutionCtxStreamCreate")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: stream
-       type(c_ptr), value :: greenctx
-       integer(c_int), value :: flags
-       integer(c_int), value :: priority
-       integer(kind(hipSuccess)) :: ExecutionCtxStreamCreate
-    end function hipExecutionCtxStreamCreate
-
-    !---------------------------------------------
-    ! hipExecutionCtxGetDevResource
-    !---------------------------------------------
-    function hipExecutionCtxGetDevResource(ctx, resource, myType) &
-       result(ExecutionCtxGetDevResource) &
-       bind(C, name="hipExecutionCtxGetDevResource")
-       import :: c_ptr, hipDevResource, hipDevResourceTypeInvalid, hipSuccess
-       type(c_ptr), value :: ctx
-       type(hipDevResource) :: resource
-       integer(kind(hipDevResourceTypeInvalid)), value :: myType
-       integer(kind(hipSuccess)) :: ExecutionCtxGetDevResource
-    end function hipExecutionCtxGetDevResource
-
-    !---------------------------------------------
-    ! hipExecutionCtxGetDevice
-    !---------------------------------------------
-    function hipExecutionCtxGetDevice(device, ctx) &
-       result(ExecutionCtxGetDevice) &
-       bind(C, name="hipExecutionCtxGetDevice")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: device
-       type(c_ptr), value :: ctx
-       integer(kind(hipSuccess)) :: ExecutionCtxGetDevice
-    end function hipExecutionCtxGetDevice
-
-    !---------------------------------------------
-    ! hipExecutionCtxGetId
-    !---------------------------------------------
-    function hipExecutionCtxGetId(ctx, ctxId) &
-       result(ExecutionCtxGetId) &
-       bind(C, name="hipExecutionCtxGetId")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: ctx
-       type(c_ptr), value :: ctxId
-       integer(kind(hipSuccess)) :: ExecutionCtxGetId
-    end function hipExecutionCtxGetId
-
-    !---------------------------------------------
-    ! hipStreamGetDevResource
-    !---------------------------------------------
-    function hipStreamGetDevResource(hStream, resource, myType) &
-       result(StreamGetDevResource) &
-       bind(C, name="hipStreamGetDevResource")
-       import :: c_ptr, hipDevResource, hipDevResourceTypeInvalid, hipSuccess
-       type(c_ptr), value :: hStream
-       type(hipDevResource) :: resource
-       integer(kind(hipDevResourceTypeInvalid)), value :: myType
-       integer(kind(hipSuccess)) :: StreamGetDevResource
-    end function hipStreamGetDevResource
-
-    !---------------------------------------------
-    ! hipExecutionCtxRecordEvent
-    !---------------------------------------------
-    function hipExecutionCtxRecordEvent(ctx, event) &
-       result(ExecutionCtxRecordEvent) &
-       bind(C, name="hipExecutionCtxRecordEvent")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: ctx
-       type(c_ptr), value :: event
-       integer(kind(hipSuccess)) :: ExecutionCtxRecordEvent
-    end function hipExecutionCtxRecordEvent
-
-    !---------------------------------------------
-    ! hipExecutionCtxSynchronize
-    !---------------------------------------------
-    function hipExecutionCtxSynchronize(ctx) &
-       result(ExecutionCtxSynchronize) &
-       bind(C, name="hipExecutionCtxSynchronize")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: ctx
-       integer(kind(hipSuccess)) :: ExecutionCtxSynchronize
-    end function hipExecutionCtxSynchronize
-
-    !---------------------------------------------
-    ! hipExecutionCtxWaitEvent
-    !---------------------------------------------
-    function hipExecutionCtxWaitEvent(ctx, event) &
-       result(ExecutionCtxWaitEvent) &
-       bind(C, name="hipExecutionCtxWaitEvent")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: ctx
-       type(c_ptr), value :: event
-       integer(kind(hipSuccess)) :: ExecutionCtxWaitEvent
-    end function hipExecutionCtxWaitEvent
-
-    !---------------------------------------------
-    ! hipCtxCreate
-    !---------------------------------------------
-    function hipCtxCreate(ctx, flags, device) &
-       result(CtxCreate) &
-       bind(C, name="hipCtxCreate")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: ctx
-       integer(c_int), value :: flags
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: CtxCreate
-    end function hipCtxCreate
-
-    !---------------------------------------------
-    ! hipCtxDestroy
-    !---------------------------------------------
-    function hipCtxDestroy(ctx) &
-       result(CtxDestroy) &
-       bind(C, name="hipCtxDestroy")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: ctx
-       integer(kind(hipSuccess)) :: CtxDestroy
-    end function hipCtxDestroy
-
-    !---------------------------------------------
-    ! hipCtxPopCurrent
-    !---------------------------------------------
-    function hipCtxPopCurrent(ctx) &
-       result(CtxPopCurrent) &
-       bind(C, name="hipCtxPopCurrent")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: ctx
-       integer(kind(hipSuccess)) :: CtxPopCurrent
-    end function hipCtxPopCurrent
-
-    !---------------------------------------------
-    ! hipCtxPushCurrent
-    !---------------------------------------------
-    function hipCtxPushCurrent(ctx) &
-       result(CtxPushCurrent) &
-       bind(C, name="hipCtxPushCurrent")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: ctx
-       integer(kind(hipSuccess)) :: CtxPushCurrent
-    end function hipCtxPushCurrent
-
-    !---------------------------------------------
-    ! hipCtxSetCurrent
-    !---------------------------------------------
-    function hipCtxSetCurrent(ctx) &
-       result(CtxSetCurrent) &
-       bind(C, name="hipCtxSetCurrent")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: ctx
-       integer(kind(hipSuccess)) :: CtxSetCurrent
-    end function hipCtxSetCurrent
-
-    !---------------------------------------------
-    ! hipCtxGetCurrent
-    !---------------------------------------------
-    function hipCtxGetCurrent(ctx) &
-       result(CtxGetCurrent) &
-       bind(C, name="hipCtxGetCurrent")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: ctx
-       integer(kind(hipSuccess)) :: CtxGetCurrent
-    end function hipCtxGetCurrent
-
-    !---------------------------------------------
-    ! hipCtxGetDevice
-    !---------------------------------------------
-    function hipCtxGetDevice(device) &
-       result(CtxGetDevice) &
-       bind(C, name="hipCtxGetDevice")
-       import :: c_int, hipSuccess
-       integer(c_int) :: device
-       integer(kind(hipSuccess)) :: CtxGetDevice
-    end function hipCtxGetDevice
-
-    !---------------------------------------------
-    ! hipCtxGetApiVersion
-    !---------------------------------------------
-    function hipCtxGetApiVersion(ctx, apiVersion) &
-       result(CtxGetApiVersion) &
-       bind(C, name="hipCtxGetApiVersion")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: ctx
-       integer(c_int) :: apiVersion
-       integer(kind(hipSuccess)) :: CtxGetApiVersion
-    end function hipCtxGetApiVersion
-
-    !---------------------------------------------
-    ! hipCtxGetCacheConfig
-    !---------------------------------------------
-    function hipCtxGetCacheConfig(cacheConfig) &
-       result(CtxGetCacheConfig) &
-       bind(C, name="hipCtxGetCacheConfig")
-       import :: hipFuncCachePreferNone, hipSuccess
-       integer(kind(hipFuncCachePreferNone)) :: cacheConfig
-       integer(kind(hipSuccess)) :: CtxGetCacheConfig
-    end function hipCtxGetCacheConfig
-
-    !---------------------------------------------
-    ! hipCtxSetCacheConfig
-    !---------------------------------------------
-    function hipCtxSetCacheConfig(cacheConfig) &
-       result(CtxSetCacheConfig) &
-       bind(C, name="hipCtxSetCacheConfig")
-       import :: hipFuncCachePreferNone, hipSuccess
-       integer(kind(hipFuncCachePreferNone)), value :: cacheConfig
-       integer(kind(hipSuccess)) :: CtxSetCacheConfig
-    end function hipCtxSetCacheConfig
-
-    !---------------------------------------------
-    ! hipCtxSetSharedMemConfig
-    !---------------------------------------------
-    function hipCtxSetSharedMemConfig(config) &
-       result(CtxSetSharedMemConfig) &
-       bind(C, name="hipCtxSetSharedMemConfig")
-       import :: hipSharedMemBankSizeDefault, hipSuccess
-       integer(kind(hipSharedMemBankSizeDefault)), value :: config
-       integer(kind(hipSuccess)) :: CtxSetSharedMemConfig
-    end function hipCtxSetSharedMemConfig
-
-    !---------------------------------------------
-    ! hipCtxGetSharedMemConfig
-    !---------------------------------------------
-    function hipCtxGetSharedMemConfig(pConfig) &
-       result(CtxGetSharedMemConfig) &
-       bind(C, name="hipCtxGetSharedMemConfig")
-       import :: hipSharedMemBankSizeDefault, hipSuccess
-       integer(kind(hipSharedMemBankSizeDefault)) :: pConfig
-       integer(kind(hipSuccess)) :: CtxGetSharedMemConfig
-    end function hipCtxGetSharedMemConfig
-
-    !---------------------------------------------
-    ! hipCtxSynchronize
-    !---------------------------------------------
-    function hipCtxSynchronize() &
-       result(CtxSynchronize) &
-       bind(C, name="hipCtxSynchronize")
-       import :: hipSuccess
-       integer(kind(hipSuccess)) :: CtxSynchronize
-    end function hipCtxSynchronize
-
-    !---------------------------------------------
-    ! hipCtxGetFlags
-    !---------------------------------------------
-    function hipCtxGetFlags(flags) &
-       result(CtxGetFlags) &
-       bind(C, name="hipCtxGetFlags")
-       import :: c_int, hipSuccess
-       integer(c_int) :: flags
-       integer(kind(hipSuccess)) :: CtxGetFlags
-    end function hipCtxGetFlags
-
-    !---------------------------------------------
-    ! hipCtxEnablePeerAccess
-    !---------------------------------------------
-    function hipCtxEnablePeerAccess(peerCtx, flags) &
-       result(CtxEnablePeerAccess) &
-       bind(C, name="hipCtxEnablePeerAccess")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: peerCtx
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: CtxEnablePeerAccess
-    end function hipCtxEnablePeerAccess
-
-    !---------------------------------------------
-    ! hipCtxDisablePeerAccess
-    !---------------------------------------------
-    function hipCtxDisablePeerAccess(peerCtx) &
-       result(CtxDisablePeerAccess) &
-       bind(C, name="hipCtxDisablePeerAccess")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: peerCtx
-       integer(kind(hipSuccess)) :: CtxDisablePeerAccess
-    end function hipCtxDisablePeerAccess
-
-    !---------------------------------------------
-    ! hipDevicePrimaryCtxGetState
-    !---------------------------------------------
-    function hipDevicePrimaryCtxGetState(dev, flags, active) &
-       result(DevicePrimaryCtxGetState) &
-       bind(C, name="hipDevicePrimaryCtxGetState")
-       import :: c_int, hipSuccess
-       integer(c_int), value :: dev
-       integer(c_int) :: flags
-       integer(c_int) :: active
-       integer(kind(hipSuccess)) :: DevicePrimaryCtxGetState
-    end function hipDevicePrimaryCtxGetState
-
-    !---------------------------------------------
-    ! hipDevicePrimaryCtxRelease
-    !---------------------------------------------
-    function hipDevicePrimaryCtxRelease(dev) &
-       result(DevicePrimaryCtxRelease) &
-       bind(C, name="hipDevicePrimaryCtxRelease")
-       import :: c_int, hipSuccess
-       integer(c_int), value :: dev
-       integer(kind(hipSuccess)) :: DevicePrimaryCtxRelease
-    end function hipDevicePrimaryCtxRelease
-
-    !---------------------------------------------
-    ! hipDevicePrimaryCtxRetain
-    !---------------------------------------------
-    function hipDevicePrimaryCtxRetain(pctx, dev) &
-       result(DevicePrimaryCtxRetain) &
-       bind(C, name="hipDevicePrimaryCtxRetain")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: pctx
-       integer(c_int), value :: dev
-       integer(kind(hipSuccess)) :: DevicePrimaryCtxRetain
-    end function hipDevicePrimaryCtxRetain
-
-    !---------------------------------------------
-    ! hipDevicePrimaryCtxReset
-    !---------------------------------------------
-    function hipDevicePrimaryCtxReset(dev) &
-       result(DevicePrimaryCtxReset) &
-       bind(C, name="hipDevicePrimaryCtxReset")
-       import :: c_int, hipSuccess
-       integer(c_int), value :: dev
-       integer(kind(hipSuccess)) :: DevicePrimaryCtxReset
-    end function hipDevicePrimaryCtxReset
-
-    !---------------------------------------------
-    ! hipDevicePrimaryCtxSetFlags
-    !---------------------------------------------
-    function hipDevicePrimaryCtxSetFlags(dev, flags) &
-       result(DevicePrimaryCtxSetFlags) &
-       bind(C, name="hipDevicePrimaryCtxSetFlags")
-       import :: c_int, hipSuccess
-       integer(c_int), value :: dev
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: DevicePrimaryCtxSetFlags
-    end function hipDevicePrimaryCtxSetFlags
-
-    !---------------------------------------------
-    ! hipModuleLoadFatBinary
-    !---------------------------------------------
-    function hipModuleLoadFatBinary(myModule, fatbin) &
-       result(ModuleLoadFatBinary) &
-       bind(C, name="hipModuleLoadFatBinary")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: myModule
-       type(c_ptr), value :: fatbin
-       integer(kind(hipSuccess)) :: ModuleLoadFatBinary
-    end function hipModuleLoadFatBinary
-
-    !---------------------------------------------
-    ! hipModuleLoad
-    !---------------------------------------------
-    function hipModuleLoad(myModule, fname) &
-       result(ModuleLoad) &
-       bind(C, name="hipModuleLoad")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: myModule
-       type(c_ptr), value :: fname
-       integer(kind(hipSuccess)) :: ModuleLoad
-    end function hipModuleLoad
-
-    !---------------------------------------------
-    ! hipModuleUnload
-    !---------------------------------------------
-    function hipModuleUnload(myModule) &
-       result(ModuleUnload) &
-       bind(C, name="hipModuleUnload")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: myModule
-       integer(kind(hipSuccess)) :: ModuleUnload
-    end function hipModuleUnload
-
-    !---------------------------------------------
-    ! hipModuleGetFunction
-    !---------------------------------------------
-    function hipModuleGetFunction(myFunction, myModule, kname) &
-       result(ModuleGetFunction) &
-       bind(C, name="hipModuleGetFunction")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: myFunction
-       type(c_ptr), value :: myModule
-       type(c_ptr), value :: kname
-       integer(kind(hipSuccess)) :: ModuleGetFunction
-    end function hipModuleGetFunction
-
-    !---------------------------------------------
-    ! hipModuleGetFunctionCount
-    !---------------------------------------------
-    function hipModuleGetFunctionCount(count, mod) &
-       result(ModuleGetFunctionCount) &
-       bind(C, name="hipModuleGetFunctionCount")
-       import :: c_int, c_ptr, hipSuccess
-       integer(c_int) :: count
-       type(c_ptr), value :: mod
-       integer(kind(hipSuccess)) :: ModuleGetFunctionCount
-    end function hipModuleGetFunctionCount
-
-    !---------------------------------------------
-    ! hipModuleEnumerateFunctions
-    !---------------------------------------------
-    function hipModuleEnumerateFunctions(functions, numFunctions, mod) &
-       result(ModuleEnumerateFunctions) &
-       bind(C, name="hipModuleEnumerateFunctions")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: functions
-       integer(c_int), value :: numFunctions
-       type(c_ptr), value :: mod
-       integer(kind(hipSuccess)) :: ModuleEnumerateFunctions
-    end function hipModuleEnumerateFunctions
-
-    !---------------------------------------------
-    ! hipKernelGetAttribute
-    !---------------------------------------------
-    function hipKernelGetAttribute(pi, attrib, kernel, dev) &
-       result(KernelGetAttribute) &
-       bind(C, name="hipKernelGetAttribute")
-       import :: c_ptr, HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK, c_int, hipSuccess
-       type(c_ptr), value :: pi
-       integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)), value :: attrib
-       type(c_ptr), value :: kernel
-       integer(c_int), value :: dev
-       integer(kind(hipSuccess)) :: KernelGetAttribute
-    end function hipKernelGetAttribute
-
-    !---------------------------------------------
-    ! hipLibraryLoadData
-    !---------------------------------------------
-    function hipLibraryLoadData(library, code, jitOptions, jitOptionsValues, numJitOptions, &
-                                libraryOptions, libraryOptionValues, numLibraryOptions) &
-       result(LibraryLoadData) &
-       bind(C, name="hipLibraryLoadData")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: library
-       type(c_ptr), value :: code
-       type(c_ptr), value :: jitOptions
-       type(c_ptr) :: jitOptionsValues
-       integer(c_int), value :: numJitOptions
-       type(c_ptr), value :: libraryOptions
-       type(c_ptr) :: libraryOptionValues
-       integer(c_int), value :: numLibraryOptions
-       integer(kind(hipSuccess)) :: LibraryLoadData
-    end function hipLibraryLoadData
-
-    !---------------------------------------------
-    ! hipLibraryLoadFromFile
-    !---------------------------------------------
-    function hipLibraryLoadFromFile(library, fileName, jitOptions, jitOptionsValues, &
-                                    numJitOptions, libraryOptions, libraryOptionValues, &
-                                    numLibraryOptions) &
-       result(LibraryLoadFromFile) &
-       bind(C, name="hipLibraryLoadFromFile")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: library
-       type(c_ptr), value :: fileName
-       type(c_ptr), value :: jitOptions
-       type(c_ptr) :: jitOptionsValues
-       integer(c_int), value :: numJitOptions
-       type(c_ptr), value :: libraryOptions
-       type(c_ptr) :: libraryOptionValues
-       integer(c_int), value :: numLibraryOptions
-       integer(kind(hipSuccess)) :: LibraryLoadFromFile
-    end function hipLibraryLoadFromFile
-
-    !---------------------------------------------
-    ! hipLibraryUnload
-    !---------------------------------------------
-    function hipLibraryUnload(library) &
-       result(LibraryUnload) &
-       bind(C, name="hipLibraryUnload")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: library
-       integer(kind(hipSuccess)) :: LibraryUnload
-    end function hipLibraryUnload
-
-    !---------------------------------------------
-    ! hipLibraryGetKernel
-    !---------------------------------------------
-    function hipLibraryGetKernel(pKernel, library, name) &
-       result(LibraryGetKernel) &
-       bind(C, name="hipLibraryGetKernel")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: pKernel
-       type(c_ptr), value :: library
-       type(c_ptr), value :: name
-       integer(kind(hipSuccess)) :: LibraryGetKernel
-    end function hipLibraryGetKernel
-
-    !---------------------------------------------
-    ! hipLibraryGetKernelCount
-    !---------------------------------------------
-    function hipLibraryGetKernelCount(count, library) &
-       result(LibraryGetKernelCount) &
-       bind(C, name="hipLibraryGetKernelCount")
-       import :: c_int, c_ptr, hipSuccess
-       integer(c_int) :: count
-       type(c_ptr), value :: library
-       integer(kind(hipSuccess)) :: LibraryGetKernelCount
-    end function hipLibraryGetKernelCount
-
-    !---------------------------------------------
-    ! hipLibraryGetGlobal
-    !---------------------------------------------
-    function hipLibraryGetGlobal(dptr, bytes, library, name) &
-       result(LibraryGetGlobal) &
-       bind(C, name="hipLibraryGetGlobal")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: dptr
-       type(c_ptr), value :: bytes
-       type(c_ptr), value :: library
-       type(c_ptr), value :: name
-       integer(kind(hipSuccess)) :: LibraryGetGlobal
-    end function hipLibraryGetGlobal
-
-    !---------------------------------------------
-    ! hipLibraryGetManaged
-    !---------------------------------------------
-    function hipLibraryGetManaged(dptr, bytes, library, name) &
-       result(LibraryGetManaged) &
-       bind(C, name="hipLibraryGetManaged")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: dptr
-       type(c_ptr), value :: bytes
-       type(c_ptr), value :: library
-       type(c_ptr), value :: name
-       integer(kind(hipSuccess)) :: LibraryGetManaged
-    end function hipLibraryGetManaged
-
-    !---------------------------------------------
-    ! hipLibraryEnumerateKernels
-    !---------------------------------------------
-    function hipLibraryEnumerateKernels(kernels, numKernels, library) &
-       result(LibraryEnumerateKernels) &
-       bind(C, name="hipLibraryEnumerateKernels")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: kernels
-       integer(c_int), value :: numKernels
-       type(c_ptr), value :: library
-       integer(kind(hipSuccess)) :: LibraryEnumerateKernels
-    end function hipLibraryEnumerateKernels
-
-    !---------------------------------------------
-    ! hipKernelGetLibrary
-    !---------------------------------------------
-    function hipKernelGetLibrary(library, kernel) &
-       result(KernelGetLibrary) &
-       bind(C, name="hipKernelGetLibrary")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: library
-       type(c_ptr), value :: kernel
-       integer(kind(hipSuccess)) :: KernelGetLibrary
-    end function hipKernelGetLibrary
-
-    !---------------------------------------------
-    ! hipKernelGetName
-    !---------------------------------------------
-    function hipKernelGetName(name, kernel) &
-       result(KernelGetName) &
-       bind(C, name="hipKernelGetName")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: name
-       type(c_ptr), value :: kernel
-       integer(kind(hipSuccess)) :: KernelGetName
-    end function hipKernelGetName
-
-    !---------------------------------------------
-    ! hipKernelGetParamInfo
-    !---------------------------------------------
-    function hipKernelGetParamInfo(kernel, paramIndex, paramOffset, paramSize) &
-       result(KernelGetParamInfo) &
-       bind(C, name="hipKernelGetParamInfo")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: kernel
-       integer(c_size_t), value :: paramIndex
-       type(c_ptr), value :: paramOffset
-       type(c_ptr), value :: paramSize
-       integer(kind(hipSuccess)) :: KernelGetParamInfo
-    end function hipKernelGetParamInfo
-
-    !---------------------------------------------
-    ! hipFuncGetAttributes
-    !---------------------------------------------
-    function hipFuncGetAttributes(attr, func) &
-       result(FuncGetAttributes) &
-       bind(C, name="hipFuncGetAttributes")
-       import :: hipFuncAttributes, c_ptr, hipSuccess
-       type(hipFuncAttributes) :: attr
-       type(c_ptr), value :: func
-       integer(kind(hipSuccess)) :: FuncGetAttributes
-    end function hipFuncGetAttributes
-
-    !---------------------------------------------
-    ! hipFuncGetAttribute
-    !---------------------------------------------
-    function hipFuncGetAttribute(myValue, attrib, hfunc) &
-       result(FuncGetAttribute) &
-       bind(C, name="hipFuncGetAttribute")
-       import :: c_int, HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK, c_ptr, hipSuccess
-       integer(c_int) :: myValue
-       integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)), value :: attrib
-       type(c_ptr), value :: hfunc
-       integer(kind(hipSuccess)) :: FuncGetAttribute
-    end function hipFuncGetAttribute
-
-    !---------------------------------------------
-    ! hipGetFuncBySymbol
-    !---------------------------------------------
-    function hipGetFuncBySymbol(functionPtr, symbolPtr) &
-       result(GetFuncBySymbol) &
-       bind(C, name="hipGetFuncBySymbol")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: functionPtr
-       type(c_ptr), value :: symbolPtr
-       integer(kind(hipSuccess)) :: GetFuncBySymbol
-    end function hipGetFuncBySymbol
-
-    !---------------------------------------------
-    ! hipGetDriverEntryPoint
-    !---------------------------------------------
-    function hipGetDriverEntryPoint(symbol, funcPtr, flags, driverStatus) &
-       result(GetDriverEntryPoint) &
-       bind(C, name="hipGetDriverEntryPoint")
-       import :: c_ptr, c_int64_t, hipSuccess
-       type(c_ptr), value :: symbol
-       type(c_ptr) :: funcPtr
-       integer(c_int64_t), value :: flags
-       type(c_ptr), value :: driverStatus
-       integer(kind(hipSuccess)) :: GetDriverEntryPoint
-    end function hipGetDriverEntryPoint
-
-    !---------------------------------------------
-    ! hipModuleGetTexRef
-    !---------------------------------------------
-    function hipModuleGetTexRef(texRef, hmod, name) &
-       result(ModuleGetTexRef) &
-       bind(C, name="hipModuleGetTexRef")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: texRef
-       type(c_ptr), value :: hmod
-       type(c_ptr), value :: name
-       integer(kind(hipSuccess)) :: ModuleGetTexRef
-    end function hipModuleGetTexRef
-
-    !---------------------------------------------
-    ! hipModuleLoadData
-    !---------------------------------------------
-    function hipModuleLoadData(myModule, image) &
-       result(ModuleLoadData) &
-       bind(C, name="hipModuleLoadData")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: myModule
-       type(c_ptr), value :: image
-       integer(kind(hipSuccess)) :: ModuleLoadData
-    end function hipModuleLoadData
-
-    !---------------------------------------------
-    ! hipModuleLoadDataEx
-    !---------------------------------------------
-    function hipModuleLoadDataEx(myModule, image, numOptions, options, optionValues) &
-       result(ModuleLoadDataEx) &
-       bind(C, name="hipModuleLoadDataEx")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: myModule
-       type(c_ptr), value :: image
-       integer(c_int), value :: numOptions
-       type(c_ptr), value :: options
-       type(c_ptr) :: optionValues
-       integer(kind(hipSuccess)) :: ModuleLoadDataEx
-    end function hipModuleLoadDataEx
-
-    !---------------------------------------------
-    ! hipLinkAddData
-    !---------------------------------------------
-    function hipLinkAddData(state, myType, myData, mySize, name, numOptions, options, &
-                            optionValues) &
-       result(LinkAddData) &
-       bind(C, name="hipLinkAddData")
-       import :: c_ptr, hipJitInputCubin, c_size_t, c_int, hipSuccess
-       type(c_ptr), value :: state
-       integer(kind(hipJitInputCubin)), value :: myType
-       type(c_ptr), value :: myData
-       integer(c_size_t), value :: mySize
-       type(c_ptr), value :: name
-       integer(c_int), value :: numOptions
-       type(c_ptr), value :: options
-       type(c_ptr) :: optionValues
-       integer(kind(hipSuccess)) :: LinkAddData
-    end function hipLinkAddData
-
-    !---------------------------------------------
-    ! hipLinkAddFile
-    !---------------------------------------------
-    function hipLinkAddFile(state, myType, path, numOptions, options, optionValues) &
-       result(LinkAddFile) &
-       bind(C, name="hipLinkAddFile")
-       import :: c_ptr, hipJitInputCubin, c_int, hipSuccess
-       type(c_ptr), value :: state
-       integer(kind(hipJitInputCubin)), value :: myType
-       type(c_ptr), value :: path
-       integer(c_int), value :: numOptions
-       type(c_ptr), value :: options
-       type(c_ptr) :: optionValues
-       integer(kind(hipSuccess)) :: LinkAddFile
-    end function hipLinkAddFile
-
-    !---------------------------------------------
-    ! hipLinkComplete
-    !---------------------------------------------
-    function hipLinkComplete(state, hipBinOut, sizeOut) &
-       result(LinkComplete) &
-       bind(C, name="hipLinkComplete")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: state
-       type(c_ptr) :: hipBinOut
-       type(c_ptr), value :: sizeOut
-       integer(kind(hipSuccess)) :: LinkComplete
-    end function hipLinkComplete
-
-    !---------------------------------------------
-    ! hipLinkCreate
-    !---------------------------------------------
-    function hipLinkCreate(numOptions, options, optionValues, stateOut) &
-       result(LinkCreate) &
-       bind(C, name="hipLinkCreate")
-       import :: c_int, c_ptr, hipSuccess
-       integer(c_int), value :: numOptions
-       type(c_ptr), value :: options
-       type(c_ptr) :: optionValues
-       type(c_ptr) :: stateOut
-       integer(kind(hipSuccess)) :: LinkCreate
-    end function hipLinkCreate
-
-    !---------------------------------------------
-    ! hipLinkDestroy
-    !---------------------------------------------
-    function hipLinkDestroy(state) &
-       result(LinkDestroy) &
-       bind(C, name="hipLinkDestroy")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: state
-       integer(kind(hipSuccess)) :: LinkDestroy
-    end function hipLinkDestroy
-
-    !---------------------------------------------
-    ! hipModuleLaunchKernel
-    !---------------------------------------------
-    function hipModuleLaunchKernel(f, gridDimX, gridDimY, gridDimZ, blockDimX, blockDimY, &
-                                   blockDimZ, sharedMemBytes, stream, kernelParams, extra) &
-       result(ModuleLaunchKernel) &
-       bind(C, name="hipModuleLaunchKernel")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: f
-       integer(c_int), value :: gridDimX
-       integer(c_int), value :: gridDimY
-       integer(c_int), value :: gridDimZ
-       integer(c_int), value :: blockDimX
-       integer(c_int), value :: blockDimY
-       integer(c_int), value :: blockDimZ
-       integer(c_int), value :: sharedMemBytes
-       type(c_ptr), value :: stream
-       type(c_ptr) :: kernelParams
-       type(c_ptr), value :: extra
-       integer(kind(hipSuccess)) :: ModuleLaunchKernel
-    end function hipModuleLaunchKernel
-
-    !---------------------------------------------
-    ! hipModuleLaunchCooperativeKernel
-    !---------------------------------------------
-    function hipModuleLaunchCooperativeKernel(f, gridDimX, gridDimY, gridDimZ, blockDimX, &
-                                              blockDimY, blockDimZ, sharedMemBytes, stream, &
-                                              kernelParams) &
-       result(ModuleLaunchCooperativeKernel) &
-       bind(C, name="hipModuleLaunchCooperativeKernel")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: f
-       integer(c_int), value :: gridDimX
-       integer(c_int), value :: gridDimY
-       integer(c_int), value :: gridDimZ
-       integer(c_int), value :: blockDimX
-       integer(c_int), value :: blockDimY
-       integer(c_int), value :: blockDimZ
-       integer(c_int), value :: sharedMemBytes
-       type(c_ptr), value :: stream
-       type(c_ptr) :: kernelParams
-       integer(kind(hipSuccess)) :: ModuleLaunchCooperativeKernel
-    end function hipModuleLaunchCooperativeKernel
-
-    !---------------------------------------------
-    ! hipModuleLaunchCooperativeKernelMultiDevice
-    !---------------------------------------------
-    function hipModuleLaunchCooperativeKernelMultiDevice(launchParamsList, numDevices, flags) &
-       result(ModuleLaunchCooperativeKernelMultiDevice) &
-       bind(C, name="hipModuleLaunchCooperativeKernelMultiDevice")
-       import :: hipFunctionLaunchParams, c_int, hipSuccess
-       type(hipFunctionLaunchParams) :: launchParamsList
-       integer(c_int), value :: numDevices
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: ModuleLaunchCooperativeKernelMultiDevice
-    end function hipModuleLaunchCooperativeKernelMultiDevice
-
-    !---------------------------------------------
-    ! hipLaunchCooperativeKernel
-    !---------------------------------------------
-    function hipLaunchCooperativeKernel(f, gridDim, blockDimX, kernelParams, sharedMemBytes, &
-                                        stream) &
-       result(LaunchCooperativeKernel) &
-       bind(C, name="hipLaunchCooperativeKernel")
-       import :: c_ptr, dim3, c_int, hipSuccess
-       type(c_ptr), value :: f
-       type(dim3), value :: gridDim
-       type(dim3), value :: blockDimX
-       type(c_ptr) :: kernelParams
-       integer(c_int), value :: sharedMemBytes
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: LaunchCooperativeKernel
-    end function hipLaunchCooperativeKernel
-
-    !---------------------------------------------
-    ! hipLaunchCooperativeKernelMultiDevice
-    !---------------------------------------------
-    function hipLaunchCooperativeKernelMultiDevice(launchParamsList, numDevices, flags) &
-       result(LaunchCooperativeKernelMultiDevice) &
-       bind(C, name="hipLaunchCooperativeKernelMultiDevice")
-       import :: hipLaunchParams, c_int, hipSuccess
-       type(hipLaunchParams) :: launchParamsList
-       integer(c_int), value :: numDevices
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: LaunchCooperativeKernelMultiDevice
-    end function hipLaunchCooperativeKernelMultiDevice
-
-    !---------------------------------------------
-    ! hipExtLaunchMultiKernelMultiDevice
-    !---------------------------------------------
-    function hipExtLaunchMultiKernelMultiDevice(launchParamsList, numDevices, flags) &
-       result(ExtLaunchMultiKernelMultiDevice) &
-       bind(C, name="hipExtLaunchMultiKernelMultiDevice")
-       import :: hipLaunchParams, c_int, hipSuccess
-       type(hipLaunchParams) :: launchParamsList
-       integer(c_int), value :: numDevices
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: ExtLaunchMultiKernelMultiDevice
-    end function hipExtLaunchMultiKernelMultiDevice
-
-    !---------------------------------------------
-    ! hipLaunchKernelExC
-    !---------------------------------------------
-    function hipLaunchKernelExC(config, fPtr, args) &
-       result(LaunchKernelExC) &
-       bind(C, name="hipLaunchKernelExC")
-       import :: hipLaunchConfig_t, c_ptr, hipSuccess
-       type(hipLaunchConfig_t) :: config
-       type(c_ptr), value :: fPtr
-       type(c_ptr) :: args
-       integer(kind(hipSuccess)) :: LaunchKernelExC
-    end function hipLaunchKernelExC
-
-    !---------------------------------------------
-    ! hipDrvLaunchKernelEx
-    !---------------------------------------------
-    function hipDrvLaunchKernelEx(config, f, params, extra) &
-       result(DrvLaunchKernelEx) &
-       bind(C, name="hipDrvLaunchKernelEx")
-       import :: HIP_LAUNCH_CONFIG, c_ptr, hipSuccess
-       type(HIP_LAUNCH_CONFIG) :: config
-       type(c_ptr), value :: f
-       type(c_ptr) :: params
-       type(c_ptr), value :: extra
-       integer(kind(hipSuccess)) :: DrvLaunchKernelEx
-    end function hipDrvLaunchKernelEx
-
-    !---------------------------------------------
-    ! hipMemGetHandleForAddressRange
-    !---------------------------------------------
-    function hipMemGetHandleForAddressRange(handle, dptr, mySize, handleType, flags) &
-       result(MemGetHandleForAddressRange) &
-       bind(C, name="hipMemGetHandleForAddressRange")
-       import :: c_ptr, c_size_t, hipMemRangeHandleTypeDmaBufFd, c_int64_t, hipSuccess
-       type(c_ptr), value :: handle
-       type(c_ptr), value :: dptr
-       integer(c_size_t), value :: mySize
-       integer(kind(hipMemRangeHandleTypeDmaBufFd)), value :: handleType
-       integer(c_int64_t), value :: flags
-       integer(kind(hipSuccess)) :: MemGetHandleForAddressRange
-    end function hipMemGetHandleForAddressRange
-
-    !---------------------------------------------
-    ! hipModuleOccupancyMaxPotentialBlockSize
-    !---------------------------------------------
-    function hipModuleOccupancyMaxPotentialBlockSize(gridSize, blockSize, f, dynSharedMemPerBlk, &
-                                                     blockSizeLimit) &
-       result(ModuleOccupancyMaxPotentialBlockSize) &
-       bind(C, name="hipModuleOccupancyMaxPotentialBlockSize")
-       import :: c_int, c_ptr, c_size_t, hipSuccess
-       integer(c_int) :: gridSize
-       integer(c_int) :: blockSize
-       type(c_ptr), value :: f
-       integer(c_size_t), value :: dynSharedMemPerBlk
-       integer(c_int), value :: blockSizeLimit
-       integer(kind(hipSuccess)) :: ModuleOccupancyMaxPotentialBlockSize
-    end function hipModuleOccupancyMaxPotentialBlockSize
-
-    !---------------------------------------------
-    ! hipModuleOccupancyMaxPotentialBlockSizeWithFlags
-    !---------------------------------------------
-    function hipModuleOccupancyMaxPotentialBlockSizeWithFlags(gridSize, blockSize, f, &
-                                                              dynSharedMemPerBlk, blockSizeLimit, &
-                                                              flags) &
-       result(ModuleOccupancyMaxPotentialBlockSizeWithFlags) &
-       bind(C, name="hipModuleOccupancyMaxPotentialBlockSizeWithFlags")
-       import :: c_int, c_ptr, c_size_t, hipSuccess
-       integer(c_int) :: gridSize
-       integer(c_int) :: blockSize
-       type(c_ptr), value :: f
-       integer(c_size_t), value :: dynSharedMemPerBlk
-       integer(c_int), value :: blockSizeLimit
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: ModuleOccupancyMaxPotentialBlockSizeWithFlags
-    end function hipModuleOccupancyMaxPotentialBlockSizeWithFlags
-
-    !---------------------------------------------
-    ! hipModuleOccupancyMaxActiveBlocksPerMultiprocessor
-    !---------------------------------------------
-    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks, f, blockSize, &
-                                                                dynSharedMemPerBlk) &
-       result(ModuleOccupancyMaxActiveBlocksPerMultiprocessor) &
-       bind(C, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessor")
-       import :: c_int, c_ptr, c_size_t, hipSuccess
-       integer(c_int) :: numBlocks
-       type(c_ptr), value :: f
-       integer(c_int), value :: blockSize
-       integer(c_size_t), value :: dynSharedMemPerBlk
-       integer(kind(hipSuccess)) :: ModuleOccupancyMaxActiveBlocksPerMultiprocessor
-    end function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor
-
-    !---------------------------------------------
-    ! hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
-    !---------------------------------------------
-    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks, f, blockSize, &
-                                                                         dynSharedMemPerBlk, &
-                                                                         flags) &
-       result(ModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags) &
-       bind(C, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
-       import :: c_int, c_ptr, c_size_t, hipSuccess
-       integer(c_int) :: numBlocks
-       type(c_ptr), value :: f
-       integer(c_int), value :: blockSize
-       integer(c_size_t), value :: dynSharedMemPerBlk
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: ModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
-    end function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
-
-    !---------------------------------------------
-    ! hipOccupancyMaxActiveBlocksPerMultiprocessor
-    !---------------------------------------------
-    function hipOccupancyMaxActiveBlocksPerMultiprocessor(numBlocks, f, blockSize, &
-                                                          dynSharedMemPerBlk) &
-       result(OccupancyMaxActiveBlocksPerMultiprocessor) &
-       bind(C, name="hipOccupancyMaxActiveBlocksPerMultiprocessor")
-       import :: c_ptr, c_funptr, c_int, c_size_t, hipSuccess
-       type(c_ptr), value :: numBlocks
-       type(c_funptr), value :: f
-       integer(c_int), value :: blockSize
-       integer(c_size_t), value :: dynSharedMemPerBlk
-       integer(kind(hipSuccess)) :: OccupancyMaxActiveBlocksPerMultiprocessor
-    end function hipOccupancyMaxActiveBlocksPerMultiprocessor
-
-    !---------------------------------------------
-    ! hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
-    !---------------------------------------------
-    function hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags(numBlocks, f, blockSize, &
-                                                                   dynSharedMemPerBlk, flags) &
-       result(OccupancyMaxActiveBlocksPerMultiprocessorWithFlags) &
-       bind(C, name="hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
-       import :: c_ptr, c_funptr, c_int, c_size_t, hipSuccess
-       type(c_ptr), value :: numBlocks
-       type(c_funptr), value :: f
-       integer(c_int), value :: blockSize
-       integer(c_size_t), value :: dynSharedMemPerBlk
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: OccupancyMaxActiveBlocksPerMultiprocessorWithFlags
-    end function hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
-
-    !---------------------------------------------
-    ! hipOccupancyMaxPotentialBlockSize
-    !---------------------------------------------
-    function hipOccupancyMaxPotentialBlockSize(gridSize, blockSize, f, dynSharedMemPerBlk, &
-                                               blockSizeLimit) &
-       result(OccupancyMaxPotentialBlockSize) &
-       bind(C, name="hipOccupancyMaxPotentialBlockSize")
-       import :: c_ptr, c_funptr, c_size_t, c_int, hipSuccess
-       type(c_ptr), value :: gridSize
-       type(c_ptr), value :: blockSize
-       type(c_funptr), value :: f
-       integer(c_size_t), value :: dynSharedMemPerBlk
-       integer(c_int), value :: blockSizeLimit
-       integer(kind(hipSuccess)) :: OccupancyMaxPotentialBlockSize
-    end function hipOccupancyMaxPotentialBlockSize
-
-    !---------------------------------------------
-    ! hipOccupancyAvailableDynamicSMemPerBlock
-    !---------------------------------------------
-    function hipOccupancyAvailableDynamicSMemPerBlock(dynamicSmemSize, f, numBlocks, blockSize) &
-       result(OccupancyAvailableDynamicSMemPerBlock) &
-       bind(C, name="hipOccupancyAvailableDynamicSMemPerBlock")
-       import :: c_ptr, c_funptr, c_int, hipSuccess
-       type(c_ptr), value :: dynamicSmemSize
-       type(c_funptr), value :: f
-       integer(c_int), value :: numBlocks
-       integer(c_int), value :: blockSize
-       integer(kind(hipSuccess)) :: OccupancyAvailableDynamicSMemPerBlock
-    end function hipOccupancyAvailableDynamicSMemPerBlock
-
-    !---------------------------------------------
-    ! hipOccupancyMaxActiveClusters
-    !---------------------------------------------
-    function hipOccupancyMaxActiveClusters(numClusters, f, config) &
-       result(OccupancyMaxActiveClusters) &
-       bind(C, name="hipOccupancyMaxActiveClusters")
-       import :: c_ptr, c_funptr, hipLaunchConfig_t, hipSuccess
-       type(c_ptr), value :: numClusters
-       type(c_funptr), value :: f
-       type(hipLaunchConfig_t) :: config
-       integer(kind(hipSuccess)) :: OccupancyMaxActiveClusters
-    end function hipOccupancyMaxActiveClusters
-
-    !---------------------------------------------
-    ! hipOccupancyMaxPotentialClusterSize
-    !---------------------------------------------
-    function hipOccupancyMaxPotentialClusterSize(clusterSize, f, config) &
-       result(OccupancyMaxPotentialClusterSize) &
-       bind(C, name="hipOccupancyMaxPotentialClusterSize")
-       import :: c_ptr, c_funptr, hipLaunchConfig_t, hipSuccess
-       type(c_ptr), value :: clusterSize
-       type(c_funptr), value :: f
-       type(hipLaunchConfig_t) :: config
-       integer(kind(hipSuccess)) :: OccupancyMaxPotentialClusterSize
-    end function hipOccupancyMaxPotentialClusterSize
-
-    !---------------------------------------------
-    ! hipProfilerStart
-    !---------------------------------------------
-    function hipProfilerStart() &
-       result(ProfilerStart) &
-       bind(C, name="hipProfilerStart")
-       import :: hipSuccess
-       integer(kind(hipSuccess)) :: ProfilerStart
-    end function hipProfilerStart
-
-    !---------------------------------------------
-    ! hipProfilerStop
-    !---------------------------------------------
-    function hipProfilerStop() &
-       result(ProfilerStop) &
-       bind(C, name="hipProfilerStop")
-       import :: hipSuccess
-       integer(kind(hipSuccess)) :: ProfilerStop
-    end function hipProfilerStop
-
-    !---------------------------------------------
-    ! hipConfigureCall
-    !---------------------------------------------
-    function hipConfigureCall(gridDim, blockDim, sharedMem, stream) &
-       result(ConfigureCall) &
-       bind(C, name="hipConfigureCall")
-       import :: dim3, c_size_t, c_ptr, hipSuccess
-       type(dim3), value :: gridDim
-       type(dim3), value :: blockDim
-       integer(c_size_t), value :: sharedMem
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: ConfigureCall
-    end function hipConfigureCall
-
-    !---------------------------------------------
-    ! hipSetupArgument
-    !---------------------------------------------
-    function hipSetupArgument(arg, mySize, offset) &
-       result(SetupArgument) &
-       bind(C, name="hipSetupArgument")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: arg
-       integer(c_size_t), value :: mySize
-       integer(c_size_t), value :: offset
-       integer(kind(hipSuccess)) :: SetupArgument
-    end function hipSetupArgument
-
-    !---------------------------------------------
-    ! hipLaunchByPtr
-    !---------------------------------------------
-    function hipLaunchByPtr(func) &
-       result(LaunchByPtr) &
-       bind(C, name="hipLaunchByPtr")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: func
-       integer(kind(hipSuccess)) :: LaunchByPtr
-    end function hipLaunchByPtr
-
-    !---------------------------------------------
-    ! hipLaunchKernel
-    !---------------------------------------------
-    function hipLaunchKernel(function_address, numBlocks, dimBlocks, args, sharedMemBytes, stream) &
-       result(LaunchKernel) &
-       bind(C, name="hipLaunchKernel")
-       import :: c_ptr, dim3, c_size_t, hipSuccess
-       type(c_ptr), value :: function_address
-       type(dim3), value :: numBlocks
-       type(dim3), value :: dimBlocks
-       type(c_ptr) :: args
-       integer(c_size_t), value :: sharedMemBytes
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: LaunchKernel
-    end function hipLaunchKernel
-
-    !---------------------------------------------
-    ! hipLaunchHostFunc
-    !---------------------------------------------
-    function hipLaunchHostFunc(stream, fn, userData) &
-       result(LaunchHostFunc) &
-       bind(C, name="hipLaunchHostFunc")
-       import :: c_ptr, c_funptr, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_funptr), value :: fn
-       type(c_ptr), value :: userData
-       integer(kind(hipSuccess)) :: LaunchHostFunc
-    end function hipLaunchHostFunc
-
-    !---------------------------------------------
-    ! hipDrvMemcpy2DUnaligned
-    !---------------------------------------------
-    function hipDrvMemcpy2DUnaligned(pCopy) &
-       result(DrvMemcpy2DUnaligned) &
-       bind(C, name="hipDrvMemcpy2DUnaligned")
-       import :: hip_Memcpy2D, hipSuccess
-       type(hip_Memcpy2D) :: pCopy
-       integer(kind(hipSuccess)) :: DrvMemcpy2DUnaligned
-    end function hipDrvMemcpy2DUnaligned
-
-    !---------------------------------------------
-    ! hipExtLaunchKernel
-    !---------------------------------------------
-    function hipExtLaunchKernel(function_address, numBlocks, dimBlocks, args, sharedMemBytes, &
-                                stream, startEvent, stopEvent, flags) &
-       result(ExtLaunchKernel) &
-       bind(C, name="hipExtLaunchKernel")
-       import :: c_ptr, dim3, c_size_t, c_int, hipSuccess
-       type(c_ptr), value :: function_address
-       type(dim3), value :: numBlocks
-       type(dim3), value :: dimBlocks
-       type(c_ptr) :: args
-       integer(c_size_t), value :: sharedMemBytes
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: startEvent
-       type(c_ptr), value :: stopEvent
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: ExtLaunchKernel
-    end function hipExtLaunchKernel
-
-    !---------------------------------------------
-    ! hipCreateTextureObject
-    !---------------------------------------------
-    function hipCreateTextureObject(pTexObject, pResDesc, pTexDesc, pResViewDesc) &
-       result(CreateTextureObject) &
-       bind(C, name="hipCreateTextureObject")
-       import :: c_ptr, hipResourceDesc, hipTextureDesc, hipResourceViewDesc, hipSuccess
-       type(c_ptr) :: pTexObject
-       type(hipResourceDesc) :: pResDesc
-       type(hipTextureDesc) :: pTexDesc
-       type(hipResourceViewDesc) :: pResViewDesc
-       integer(kind(hipSuccess)) :: CreateTextureObject
-    end function hipCreateTextureObject
-
-    !---------------------------------------------
-    ! hipDestroyTextureObject
-    !---------------------------------------------
-    function hipDestroyTextureObject(textureObject) &
-       result(DestroyTextureObject) &
-       bind(C, name="hipDestroyTextureObject")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: textureObject
-       integer(kind(hipSuccess)) :: DestroyTextureObject
-    end function hipDestroyTextureObject
-
-    !---------------------------------------------
-    ! hipGetChannelDesc
-    !---------------------------------------------
-    function hipGetChannelDesc(desc, array) &
-       result(GetChannelDesc) &
-       bind(C, name="hipGetChannelDesc")
-       import :: hipChannelFormatDesc, c_ptr, hipSuccess
-       type(hipChannelFormatDesc) :: desc
-       type(c_ptr), value :: array
-       integer(kind(hipSuccess)) :: GetChannelDesc
-    end function hipGetChannelDesc
-
-    !---------------------------------------------
-    ! hipGetTextureObjectResourceDesc
-    !---------------------------------------------
-    function hipGetTextureObjectResourceDesc(pResDesc, textureObject) &
-       result(GetTextureObjectResourceDesc) &
-       bind(C, name="hipGetTextureObjectResourceDesc")
-       import :: hipResourceDesc, c_ptr, hipSuccess
-       type(hipResourceDesc) :: pResDesc
-       type(c_ptr), value :: textureObject
-       integer(kind(hipSuccess)) :: GetTextureObjectResourceDesc
-    end function hipGetTextureObjectResourceDesc
-
-    !---------------------------------------------
-    ! hipGetTextureObjectResourceViewDesc
-    !---------------------------------------------
-    function hipGetTextureObjectResourceViewDesc(pResViewDesc, textureObject) &
-       result(GetTextureObjectResourceViewDesc) &
-       bind(C, name="hipGetTextureObjectResourceViewDesc")
-       import :: hipResourceViewDesc, c_ptr, hipSuccess
-       type(hipResourceViewDesc) :: pResViewDesc
-       type(c_ptr), value :: textureObject
-       integer(kind(hipSuccess)) :: GetTextureObjectResourceViewDesc
-    end function hipGetTextureObjectResourceViewDesc
-
-    !---------------------------------------------
-    ! hipGetTextureObjectTextureDesc
-    !---------------------------------------------
-    function hipGetTextureObjectTextureDesc(pTexDesc, textureObject) &
-       result(GetTextureObjectTextureDesc) &
-       bind(C, name="hipGetTextureObjectTextureDesc")
-       import :: hipTextureDesc, c_ptr, hipSuccess
-       type(hipTextureDesc) :: pTexDesc
-       type(c_ptr), value :: textureObject
-       integer(kind(hipSuccess)) :: GetTextureObjectTextureDesc
-    end function hipGetTextureObjectTextureDesc
-
-    !---------------------------------------------
-    ! hipTexObjectCreate
-    !---------------------------------------------
-    function hipTexObjectCreate(pTexObject, pResDesc, pTexDesc, pResViewDesc) &
-       result(TexObjectCreate) &
-       bind(C, name="hipTexObjectCreate")
-       import :: c_ptr, HIP_RESOURCE_DESC, HIP_TEXTURE_DESC, HIP_RESOURCE_VIEW_DESC, hipSuccess
-       type(c_ptr) :: pTexObject
-       type(HIP_RESOURCE_DESC) :: pResDesc
-       type(HIP_TEXTURE_DESC) :: pTexDesc
-       type(HIP_RESOURCE_VIEW_DESC) :: pResViewDesc
-       integer(kind(hipSuccess)) :: TexObjectCreate
-    end function hipTexObjectCreate
-
-    !---------------------------------------------
-    ! hipTexObjectDestroy
-    !---------------------------------------------
-    function hipTexObjectDestroy(texObject) &
-       result(TexObjectDestroy) &
-       bind(C, name="hipTexObjectDestroy")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: texObject
-       integer(kind(hipSuccess)) :: TexObjectDestroy
-    end function hipTexObjectDestroy
-
-    !---------------------------------------------
-    ! hipTexObjectGetResourceDesc
-    !---------------------------------------------
-    function hipTexObjectGetResourceDesc(pResDesc, texObject) &
-       result(TexObjectGetResourceDesc) &
-       bind(C, name="hipTexObjectGetResourceDesc")
-       import :: HIP_RESOURCE_DESC, c_ptr, hipSuccess
-       type(HIP_RESOURCE_DESC) :: pResDesc
-       type(c_ptr), value :: texObject
-       integer(kind(hipSuccess)) :: TexObjectGetResourceDesc
-    end function hipTexObjectGetResourceDesc
-
-    !---------------------------------------------
-    ! hipTexObjectGetResourceViewDesc
-    !---------------------------------------------
-    function hipTexObjectGetResourceViewDesc(pResViewDesc, texObject) &
-       result(TexObjectGetResourceViewDesc) &
-       bind(C, name="hipTexObjectGetResourceViewDesc")
-       import :: HIP_RESOURCE_VIEW_DESC, c_ptr, hipSuccess
-       type(HIP_RESOURCE_VIEW_DESC) :: pResViewDesc
-       type(c_ptr), value :: texObject
-       integer(kind(hipSuccess)) :: TexObjectGetResourceViewDesc
-    end function hipTexObjectGetResourceViewDesc
-
-    !---------------------------------------------
-    ! hipTexObjectGetTextureDesc
-    !---------------------------------------------
-    function hipTexObjectGetTextureDesc(pTexDesc, texObject) &
-       result(TexObjectGetTextureDesc) &
-       bind(C, name="hipTexObjectGetTextureDesc")
-       import :: HIP_TEXTURE_DESC, c_ptr, hipSuccess
-       type(HIP_TEXTURE_DESC) :: pTexDesc
-       type(c_ptr), value :: texObject
-       integer(kind(hipSuccess)) :: TexObjectGetTextureDesc
-    end function hipTexObjectGetTextureDesc
-
-    !---------------------------------------------
-    ! hipMallocMipmappedArray
-    !---------------------------------------------
-    function hipMallocMipmappedArray(mipmappedArray, desc, extent, numLevels, flags) &
-       result(MallocMipmappedArray) &
-       bind(C, name="hipMallocMipmappedArray")
-       import :: c_ptr, hipChannelFormatDesc, hipExtent, c_int, hipSuccess
-       type(c_ptr) :: mipmappedArray
-       type(hipChannelFormatDesc) :: desc
-       type(hipExtent), value :: extent
-       integer(c_int), value :: numLevels
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: MallocMipmappedArray
-    end function hipMallocMipmappedArray
-
-    !---------------------------------------------
-    ! hipFreeMipmappedArray
-    !---------------------------------------------
-    function hipFreeMipmappedArray(mipmappedArray) &
-       result(FreeMipmappedArray) &
-       bind(C, name="hipFreeMipmappedArray")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: mipmappedArray
-       integer(kind(hipSuccess)) :: FreeMipmappedArray
-    end function hipFreeMipmappedArray
-
-    !---------------------------------------------
-    ! hipGetMipmappedArrayLevel
-    !---------------------------------------------
-    function hipGetMipmappedArrayLevel(levelArray, mipmappedArray, level) &
-       result(GetMipmappedArrayLevel) &
-       bind(C, name="hipGetMipmappedArrayLevel")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: levelArray
-       type(c_ptr), value :: mipmappedArray
-       integer(c_int), value :: level
-       integer(kind(hipSuccess)) :: GetMipmappedArrayLevel
-    end function hipGetMipmappedArrayLevel
-
-    !---------------------------------------------
-    ! hipMipmappedArrayCreate
-    !---------------------------------------------
-    function hipMipmappedArrayCreate(pHandle, pMipmappedArrayDesc, numMipmapLevels) &
-       result(MipmappedArrayCreate) &
-       bind(C, name="hipMipmappedArrayCreate")
-       import :: c_ptr, HIP_ARRAY3D_DESCRIPTOR, c_int, hipSuccess
-       type(c_ptr) :: pHandle
-       type(HIP_ARRAY3D_DESCRIPTOR) :: pMipmappedArrayDesc
-       integer(c_int), value :: numMipmapLevels
-       integer(kind(hipSuccess)) :: MipmappedArrayCreate
-    end function hipMipmappedArrayCreate
-
-    !---------------------------------------------
-    ! hipMipmappedArrayDestroy
-    !---------------------------------------------
-    function hipMipmappedArrayDestroy(hMipmappedArray) &
-       result(MipmappedArrayDestroy) &
-       bind(C, name="hipMipmappedArrayDestroy")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: hMipmappedArray
-       integer(kind(hipSuccess)) :: MipmappedArrayDestroy
-    end function hipMipmappedArrayDestroy
-
-    !---------------------------------------------
-    ! hipMipmappedArrayGetLevel
-    !---------------------------------------------
-    function hipMipmappedArrayGetLevel(pLevelArray, hMipMappedArray, level) &
-       result(MipmappedArrayGetLevel) &
-       bind(C, name="hipMipmappedArrayGetLevel")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: pLevelArray
-       type(c_ptr), value :: hMipMappedArray
-       integer(c_int), value :: level
-       integer(kind(hipSuccess)) :: MipmappedArrayGetLevel
-    end function hipMipmappedArrayGetLevel
-
-    !---------------------------------------------
-    ! hipBindTextureToMipmappedArray
-    !---------------------------------------------
-    function hipBindTextureToMipmappedArray(tex, mipmappedArray, desc) &
-       result(BindTextureToMipmappedArray) &
-       bind(C, name="hipBindTextureToMipmappedArray")
-       import :: textureReference, c_ptr, hipChannelFormatDesc, hipSuccess
-       type(textureReference) :: tex
-       type(c_ptr), value :: mipmappedArray
-       type(hipChannelFormatDesc) :: desc
-       integer(kind(hipSuccess)) :: BindTextureToMipmappedArray
-    end function hipBindTextureToMipmappedArray
-
-    !---------------------------------------------
-    ! hipGetTextureReference
-    !---------------------------------------------
-    function hipGetTextureReference(texref, symbol) &
-       result(GetTextureReference) &
-       bind(C, name="hipGetTextureReference")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: texref
-       type(c_ptr), value :: symbol
-       integer(kind(hipSuccess)) :: GetTextureReference
-    end function hipGetTextureReference
-
-    !---------------------------------------------
-    ! hipTexRefGetBorderColor
-    !---------------------------------------------
-    function hipTexRefGetBorderColor(pBorderColor, texRef) &
-       result(TexRefGetBorderColor) &
-       bind(C, name="hipTexRefGetBorderColor")
-       import :: c_ptr, textureReference, hipSuccess
-       type(c_ptr), value :: pBorderColor
-       type(textureReference) :: texRef
-       integer(kind(hipSuccess)) :: TexRefGetBorderColor
-    end function hipTexRefGetBorderColor
-
-    !---------------------------------------------
-    ! hipTexRefGetArray
-    !---------------------------------------------
-    function hipTexRefGetArray(pArray, texRef) &
-       result(TexRefGetArray) &
-       bind(C, name="hipTexRefGetArray")
-       import :: c_ptr, textureReference, hipSuccess
-       type(c_ptr) :: pArray
-       type(textureReference) :: texRef
-       integer(kind(hipSuccess)) :: TexRefGetArray
-    end function hipTexRefGetArray
-
-    !---------------------------------------------
-    ! hipTexRefSetAddressMode
-    !---------------------------------------------
-    function hipTexRefSetAddressMode(texRef, dim, am) &
-       result(TexRefSetAddressMode) &
-       bind(C, name="hipTexRefSetAddressMode")
-       import :: textureReference, c_int, hipAddressModeWrap, hipSuccess
-       type(textureReference) :: texRef
-       integer(c_int), value :: dim
-       integer(kind(hipAddressModeWrap)), value :: am
-       integer(kind(hipSuccess)) :: TexRefSetAddressMode
-    end function hipTexRefSetAddressMode
-
-    !---------------------------------------------
-    ! hipTexRefSetArray
-    !---------------------------------------------
-    function hipTexRefSetArray(tex, array, flags) &
-       result(TexRefSetArray) &
-       bind(C, name="hipTexRefSetArray")
-       import :: textureReference, c_ptr, c_int, hipSuccess
-       type(textureReference) :: tex
-       type(c_ptr), value :: array
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: TexRefSetArray
-    end function hipTexRefSetArray
-
-    !---------------------------------------------
-    ! hipTexRefSetFilterMode
-    !---------------------------------------------
-    function hipTexRefSetFilterMode(texRef, fm) &
-       result(TexRefSetFilterMode) &
-       bind(C, name="hipTexRefSetFilterMode")
-       import :: textureReference, hipFilterModePoint, hipSuccess
-       type(textureReference) :: texRef
-       integer(kind(hipFilterModePoint)), value :: fm
-       integer(kind(hipSuccess)) :: TexRefSetFilterMode
-    end function hipTexRefSetFilterMode
-
-    !---------------------------------------------
-    ! hipTexRefSetFlags
-    !---------------------------------------------
-    function hipTexRefSetFlags(texRef, Flags) &
-       result(TexRefSetFlags) &
-       bind(C, name="hipTexRefSetFlags")
-       import :: textureReference, c_int, hipSuccess
-       type(textureReference) :: texRef
-       integer(c_int), value :: Flags
-       integer(kind(hipSuccess)) :: TexRefSetFlags
-    end function hipTexRefSetFlags
-
-    !---------------------------------------------
-    ! hipTexRefSetFormat
-    !---------------------------------------------
-    function hipTexRefSetFormat(texRef, fmt, NumPackedComponents) &
-       result(TexRefSetFormat) &
-       bind(C, name="hipTexRefSetFormat")
-       import :: textureReference, HIP_AD_FORMAT_UNSIGNED_INT8, c_int, hipSuccess
-       type(textureReference) :: texRef
-       integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)), value :: fmt
-       integer(c_int), value :: NumPackedComponents
-       integer(kind(hipSuccess)) :: TexRefSetFormat
-    end function hipTexRefSetFormat
-
-    !---------------------------------------------
-    ! hipBindTexture
-    !---------------------------------------------
-    function hipBindTexture(offset, tex, devPtr, desc, mySize) &
-       result(BindTexture) &
-       bind(C, name="hipBindTexture")
-       import :: c_size_t, textureReference, c_ptr, hipChannelFormatDesc, hipSuccess
-       integer(c_size_t) :: offset
-       type(textureReference) :: tex
-       type(c_ptr), value :: devPtr
-       type(hipChannelFormatDesc) :: desc
-       integer(c_size_t), value :: mySize
-       integer(kind(hipSuccess)) :: BindTexture
-    end function hipBindTexture
-
-    !---------------------------------------------
-    ! hipBindTexture2D
-    !---------------------------------------------
-    function hipBindTexture2D(offset, tex, devPtr, desc, width, height, pitch) &
-       result(BindTexture2D) &
-       bind(C, name="hipBindTexture2D")
-       import :: c_size_t, textureReference, c_ptr, hipChannelFormatDesc, hipSuccess
-       integer(c_size_t) :: offset
-       type(textureReference) :: tex
-       type(c_ptr), value :: devPtr
-       type(hipChannelFormatDesc) :: desc
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(c_size_t), value :: pitch
-       integer(kind(hipSuccess)) :: BindTexture2D
-    end function hipBindTexture2D
-
-    !---------------------------------------------
-    ! hipBindTextureToArray
-    !---------------------------------------------
-    function hipBindTextureToArray(tex, array, desc) &
-       result(BindTextureToArray) &
-       bind(C, name="hipBindTextureToArray")
-       import :: textureReference, c_ptr, hipChannelFormatDesc, hipSuccess
-       type(textureReference) :: tex
-       type(c_ptr), value :: array
-       type(hipChannelFormatDesc) :: desc
-       integer(kind(hipSuccess)) :: BindTextureToArray
-    end function hipBindTextureToArray
-
-    !---------------------------------------------
-    ! hipGetTextureAlignmentOffset
-    !---------------------------------------------
-    function hipGetTextureAlignmentOffset(offset, texref) &
-       result(GetTextureAlignmentOffset) &
-       bind(C, name="hipGetTextureAlignmentOffset")
-       import :: c_size_t, textureReference, hipSuccess
-       integer(c_size_t) :: offset
-       type(textureReference) :: texref
-       integer(kind(hipSuccess)) :: GetTextureAlignmentOffset
-    end function hipGetTextureAlignmentOffset
-
-    !---------------------------------------------
-    ! hipUnbindTexture
-    !---------------------------------------------
-    function hipUnbindTexture(tex) &
-       result(UnbindTexture) &
-       bind(C, name="hipUnbindTexture")
-       import :: textureReference, hipSuccess
-       type(textureReference) :: tex
-       integer(kind(hipSuccess)) :: UnbindTexture
-    end function hipUnbindTexture
-
-    !---------------------------------------------
-    ! hipTexRefGetAddress
-    !---------------------------------------------
-    function hipTexRefGetAddress(dev_ptr, texRef) &
-       result(TexRefGetAddress) &
-       bind(C, name="hipTexRefGetAddress")
-       import :: c_ptr, textureReference, hipSuccess
-       type(c_ptr) :: dev_ptr
-       type(textureReference) :: texRef
-       integer(kind(hipSuccess)) :: TexRefGetAddress
-    end function hipTexRefGetAddress
-
-    !---------------------------------------------
-    ! hipTexRefGetAddressMode
-    !---------------------------------------------
-    function hipTexRefGetAddressMode(pam, texRef, dim) &
-       result(TexRefGetAddressMode) &
-       bind(C, name="hipTexRefGetAddressMode")
-       import :: hipAddressModeWrap, textureReference, c_int, hipSuccess
-       integer(kind(hipAddressModeWrap)) :: pam
-       type(textureReference) :: texRef
-       integer(c_int), value :: dim
-       integer(kind(hipSuccess)) :: TexRefGetAddressMode
-    end function hipTexRefGetAddressMode
-
-    !---------------------------------------------
-    ! hipTexRefGetFilterMode
-    !---------------------------------------------
-    function hipTexRefGetFilterMode(pfm, texRef) &
-       result(TexRefGetFilterMode) &
-       bind(C, name="hipTexRefGetFilterMode")
-       import :: hipFilterModePoint, textureReference, hipSuccess
-       integer(kind(hipFilterModePoint)) :: pfm
-       type(textureReference) :: texRef
-       integer(kind(hipSuccess)) :: TexRefGetFilterMode
-    end function hipTexRefGetFilterMode
-
-    !---------------------------------------------
-    ! hipTexRefGetFlags
-    !---------------------------------------------
-    function hipTexRefGetFlags(pFlags, texRef) &
-       result(TexRefGetFlags) &
-       bind(C, name="hipTexRefGetFlags")
-       import :: c_ptr, textureReference, hipSuccess
-       type(c_ptr), value :: pFlags
-       type(textureReference) :: texRef
-       integer(kind(hipSuccess)) :: TexRefGetFlags
-    end function hipTexRefGetFlags
-
-    !---------------------------------------------
-    ! hipTexRefGetFormat
-    !---------------------------------------------
-    function hipTexRefGetFormat(pFormat, pNumChannels, texRef) &
-       result(TexRefGetFormat) &
-       bind(C, name="hipTexRefGetFormat")
-       import :: HIP_AD_FORMAT_UNSIGNED_INT8, c_ptr, textureReference, hipSuccess
-       integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)) :: pFormat
-       type(c_ptr), value :: pNumChannels
-       type(textureReference) :: texRef
-       integer(kind(hipSuccess)) :: TexRefGetFormat
-    end function hipTexRefGetFormat
-
-    !---------------------------------------------
-    ! hipTexRefGetMaxAnisotropy
-    !---------------------------------------------
-    function hipTexRefGetMaxAnisotropy(pmaxAnsio, texRef) &
-       result(TexRefGetMaxAnisotropy) &
-       bind(C, name="hipTexRefGetMaxAnisotropy")
-       import :: c_ptr, textureReference, hipSuccess
-       type(c_ptr), value :: pmaxAnsio
-       type(textureReference) :: texRef
-       integer(kind(hipSuccess)) :: TexRefGetMaxAnisotropy
-    end function hipTexRefGetMaxAnisotropy
-
-    !---------------------------------------------
-    ! hipTexRefGetMipmapFilterMode
-    !---------------------------------------------
-    function hipTexRefGetMipmapFilterMode(pfm, texRef) &
-       result(TexRefGetMipmapFilterMode) &
-       bind(C, name="hipTexRefGetMipmapFilterMode")
-       import :: hipFilterModePoint, textureReference, hipSuccess
-       integer(kind(hipFilterModePoint)) :: pfm
-       type(textureReference) :: texRef
-       integer(kind(hipSuccess)) :: TexRefGetMipmapFilterMode
-    end function hipTexRefGetMipmapFilterMode
-
-    !---------------------------------------------
-    ! hipTexRefGetMipmapLevelBias
-    !---------------------------------------------
-    function hipTexRefGetMipmapLevelBias(pbias, texRef) &
-       result(TexRefGetMipmapLevelBias) &
-       bind(C, name="hipTexRefGetMipmapLevelBias")
-       import :: c_ptr, textureReference, hipSuccess
-       type(c_ptr), value :: pbias
-       type(textureReference) :: texRef
-       integer(kind(hipSuccess)) :: TexRefGetMipmapLevelBias
-    end function hipTexRefGetMipmapLevelBias
-
-    !---------------------------------------------
-    ! hipTexRefGetMipmapLevelClamp
-    !---------------------------------------------
-    function hipTexRefGetMipmapLevelClamp(pminMipmapLevelClamp, pmaxMipmapLevelClamp, texRef) &
-       result(TexRefGetMipmapLevelClamp) &
-       bind(C, name="hipTexRefGetMipmapLevelClamp")
-       import :: c_ptr, textureReference, hipSuccess
-       type(c_ptr), value :: pminMipmapLevelClamp
-       type(c_ptr), value :: pmaxMipmapLevelClamp
-       type(textureReference) :: texRef
-       integer(kind(hipSuccess)) :: TexRefGetMipmapLevelClamp
-    end function hipTexRefGetMipmapLevelClamp
-
-    !---------------------------------------------
-    ! hipTexRefGetMipMappedArray
-    !---------------------------------------------
-    function hipTexRefGetMipMappedArray(pArray, texRef) &
-       result(TexRefGetMipMappedArray) &
-       bind(C, name="hipTexRefGetMipMappedArray")
-       import :: c_ptr, textureReference, hipSuccess
-       type(c_ptr) :: pArray
-       type(textureReference) :: texRef
-       integer(kind(hipSuccess)) :: TexRefGetMipMappedArray
-    end function hipTexRefGetMipMappedArray
-
-    !---------------------------------------------
-    ! hipTexRefSetAddress
-    !---------------------------------------------
-    function hipTexRefSetAddress(ByteOffset, texRef, dptr, bytes) &
-       result(TexRefSetAddress) &
-       bind(C, name="hipTexRefSetAddress")
-       import :: c_size_t, textureReference, c_ptr, hipSuccess
-       integer(c_size_t) :: ByteOffset
-       type(textureReference) :: texRef
-       type(c_ptr), value :: dptr
-       integer(c_size_t), value :: bytes
-       integer(kind(hipSuccess)) :: TexRefSetAddress
-    end function hipTexRefSetAddress
-
-    !---------------------------------------------
-    ! hipTexRefSetAddress2D
-    !---------------------------------------------
-    function hipTexRefSetAddress2D(texRef, desc, dptr, Pitch) &
-       result(TexRefSetAddress2D) &
-       bind(C, name="hipTexRefSetAddress2D")
-       import :: textureReference, HIP_ARRAY_DESCRIPTOR, c_ptr, c_size_t, hipSuccess
-       type(textureReference) :: texRef
-       type(HIP_ARRAY_DESCRIPTOR) :: desc
-       type(c_ptr), value :: dptr
-       integer(c_size_t), value :: Pitch
-       integer(kind(hipSuccess)) :: TexRefSetAddress2D
-    end function hipTexRefSetAddress2D
-
-    !---------------------------------------------
-    ! hipTexRefSetMaxAnisotropy
-    !---------------------------------------------
-    function hipTexRefSetMaxAnisotropy(texRef, maxAniso) &
-       result(TexRefSetMaxAnisotropy) &
-       bind(C, name="hipTexRefSetMaxAnisotropy")
-       import :: textureReference, c_int, hipSuccess
-       type(textureReference) :: texRef
-       integer(c_int), value :: maxAniso
-       integer(kind(hipSuccess)) :: TexRefSetMaxAnisotropy
-    end function hipTexRefSetMaxAnisotropy
-
-    !---------------------------------------------
-    ! hipTexRefSetBorderColor
-    !---------------------------------------------
-    function hipTexRefSetBorderColor(texRef, pBorderColor) &
-       result(TexRefSetBorderColor) &
-       bind(C, name="hipTexRefSetBorderColor")
-       import :: textureReference, c_ptr, hipSuccess
-       type(textureReference) :: texRef
-       type(c_ptr), value :: pBorderColor
-       integer(kind(hipSuccess)) :: TexRefSetBorderColor
-    end function hipTexRefSetBorderColor
-
-    !---------------------------------------------
-    ! hipTexRefSetMipmapFilterMode
-    !---------------------------------------------
-    function hipTexRefSetMipmapFilterMode(texRef, fm) &
-       result(TexRefSetMipmapFilterMode) &
-       bind(C, name="hipTexRefSetMipmapFilterMode")
-       import :: textureReference, hipFilterModePoint, hipSuccess
-       type(textureReference) :: texRef
-       integer(kind(hipFilterModePoint)), value :: fm
-       integer(kind(hipSuccess)) :: TexRefSetMipmapFilterMode
-    end function hipTexRefSetMipmapFilterMode
-
-    !---------------------------------------------
-    ! hipTexRefSetMipmapLevelBias
-    !---------------------------------------------
-    function hipTexRefSetMipmapLevelBias(texRef, bias) &
-       result(TexRefSetMipmapLevelBias) &
-       bind(C, name="hipTexRefSetMipmapLevelBias")
-       import :: textureReference, c_float, hipSuccess
-       type(textureReference) :: texRef
-       real(c_float), value :: bias
-       integer(kind(hipSuccess)) :: TexRefSetMipmapLevelBias
-    end function hipTexRefSetMipmapLevelBias
-
-    !---------------------------------------------
-    ! hipTexRefSetMipmapLevelClamp
-    !---------------------------------------------
-    function hipTexRefSetMipmapLevelClamp(texRef, minMipMapLevelClamp, maxMipMapLevelClamp) &
-       result(TexRefSetMipmapLevelClamp) &
-       bind(C, name="hipTexRefSetMipmapLevelClamp")
-       import :: textureReference, c_float, hipSuccess
-       type(textureReference) :: texRef
-       real(c_float), value :: minMipMapLevelClamp
-       real(c_float), value :: maxMipMapLevelClamp
-       integer(kind(hipSuccess)) :: TexRefSetMipmapLevelClamp
-    end function hipTexRefSetMipmapLevelClamp
-
-    !---------------------------------------------
-    ! hipTexRefSetMipmappedArray
-    !---------------------------------------------
-    function hipTexRefSetMipmappedArray(texRef, mipmappedArray, Flags) &
-       result(TexRefSetMipmappedArray) &
-       bind(C, name="hipTexRefSetMipmappedArray")
-       import :: textureReference, hipMipmappedArray, c_int, hipSuccess
-       type(textureReference) :: texRef
-       type(hipMipmappedArray) :: mipmappedArray
-       integer(c_int), value :: Flags
-       integer(kind(hipSuccess)) :: TexRefSetMipmappedArray
-    end function hipTexRefSetMipmappedArray
-
-    !---------------------------------------------
-    ! hipApiName
-    !---------------------------------------------
-    function hipApiName(id) &
-       result(ApiName) &
-       bind(C, name="hipApiName")
-       import :: c_int32_t, c_ptr
-       integer(c_int32_t), value :: id
-       type(c_ptr) :: ApiName
-    end function hipApiName
-
-    !---------------------------------------------
-    ! hipKernelNameRef
-    !---------------------------------------------
-    function hipKernelNameRef(f) &
-       result(KernelNameRef) &
-       bind(C, name="hipKernelNameRef")
-       import :: c_ptr
-       type(c_ptr), value :: f
-       type(c_ptr) :: KernelNameRef
-    end function hipKernelNameRef
-
-    !---------------------------------------------
-    ! hipKernelNameRefByPtr
-    !---------------------------------------------
-    function hipKernelNameRefByPtr(hostFunction, stream) &
-       result(KernelNameRefByPtr) &
-       bind(C, name="hipKernelNameRefByPtr")
-       import :: c_ptr
-       type(c_ptr), value :: hostFunction
-       type(c_ptr), value :: stream
-       type(c_ptr) :: KernelNameRefByPtr
-    end function hipKernelNameRefByPtr
-
-    !---------------------------------------------
-    ! hipGetStreamDeviceId
-    !---------------------------------------------
-    function hipGetStreamDeviceId(stream) &
-       result(GetStreamDeviceId) &
-       bind(C, name="hipGetStreamDeviceId")
-       import :: c_ptr, c_int
-       type(c_ptr), value :: stream
-       integer(c_int) :: GetStreamDeviceId
-    end function hipGetStreamDeviceId
-
-    !---------------------------------------------
-    ! hipStreamBeginCapture
-    !---------------------------------------------
-    function hipStreamBeginCapture(stream, mode) &
-       result(StreamBeginCapture) &
-       bind(C, name="hipStreamBeginCapture")
-       import :: c_ptr, hipStreamCaptureModeGlobal, hipSuccess
-       type(c_ptr), value :: stream
-       integer(kind(hipStreamCaptureModeGlobal)), value :: mode
-       integer(kind(hipSuccess)) :: StreamBeginCapture
-    end function hipStreamBeginCapture
-
-    !---------------------------------------------
-    ! hipStreamBeginCaptureToGraph
-    !---------------------------------------------
-    function hipStreamBeginCaptureToGraph(stream, graph, dependencies, dependencyData, &
-                                          numDependencies, mode) &
-       result(StreamBeginCaptureToGraph) &
-       bind(C, name="hipStreamBeginCaptureToGraph")
-       import :: c_ptr, hipGraphEdgeData, c_size_t, hipStreamCaptureModeGlobal, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: graph
-       type(c_ptr) :: dependencies
-       type(hipGraphEdgeData) :: dependencyData
-       integer(c_size_t), value :: numDependencies
-       integer(kind(hipStreamCaptureModeGlobal)), value :: mode
-       integer(kind(hipSuccess)) :: StreamBeginCaptureToGraph
-    end function hipStreamBeginCaptureToGraph
-
-    !---------------------------------------------
-    ! hipStreamEndCapture
-    !---------------------------------------------
-    function hipStreamEndCapture(stream, pGraph) &
-       result(StreamEndCapture) &
-       bind(C, name="hipStreamEndCapture")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr) :: pGraph
-       integer(kind(hipSuccess)) :: StreamEndCapture
-    end function hipStreamEndCapture
-
-    !---------------------------------------------
-    ! hipStreamGetCaptureInfo
-    !---------------------------------------------
-    function hipStreamGetCaptureInfo(stream, pCaptureStatus, pId) &
-       result(StreamGetCaptureInfo) &
-       bind(C, name="hipStreamGetCaptureInfo")
-       import :: c_ptr, hipStreamCaptureStatusNone, hipSuccess
-       type(c_ptr), value :: stream
-       integer(kind(hipStreamCaptureStatusNone)) :: pCaptureStatus
-       type(c_ptr), value :: pId
-       integer(kind(hipSuccess)) :: StreamGetCaptureInfo
-    end function hipStreamGetCaptureInfo
-
-    !---------------------------------------------
-    ! hipStreamGetCaptureInfo_v2
-    !---------------------------------------------
-    function hipStreamGetCaptureInfo_v2(stream, captureStatus_out, id_out, graph_out, &
-                                        dependencies_out, numDependencies_out) &
-       result(StreamGetCaptureInfo_v2) &
-       bind(C, name="hipStreamGetCaptureInfo_v2")
-       import :: c_ptr, hipStreamCaptureStatusNone, hipSuccess
-       type(c_ptr), value :: stream
-       integer(kind(hipStreamCaptureStatusNone)) :: captureStatus_out
-       type(c_ptr), value :: id_out
-       type(c_ptr) :: graph_out
-       type(c_ptr) :: dependencies_out
-       type(c_ptr), value :: numDependencies_out
-       integer(kind(hipSuccess)) :: StreamGetCaptureInfo_v2
-    end function hipStreamGetCaptureInfo_v2
-
-    !---------------------------------------------
-    ! hipStreamIsCapturing
-    !---------------------------------------------
-    function hipStreamIsCapturing(stream, pCaptureStatus) &
-       result(StreamIsCapturing) &
-       bind(C, name="hipStreamIsCapturing")
-       import :: c_ptr, hipStreamCaptureStatusNone, hipSuccess
-       type(c_ptr), value :: stream
-       integer(kind(hipStreamCaptureStatusNone)) :: pCaptureStatus
-       integer(kind(hipSuccess)) :: StreamIsCapturing
-    end function hipStreamIsCapturing
-
-    !---------------------------------------------
-    ! hipStreamUpdateCaptureDependencies
-    !---------------------------------------------
-    function hipStreamUpdateCaptureDependencies(stream, dependencies, numDependencies, flags) &
-       result(StreamUpdateCaptureDependencies) &
-       bind(C, name="hipStreamUpdateCaptureDependencies")
-       import :: c_ptr, c_size_t, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr) :: dependencies
-       integer(c_size_t), value :: numDependencies
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: StreamUpdateCaptureDependencies
-    end function hipStreamUpdateCaptureDependencies
-
-    !---------------------------------------------
-    ! hipThreadExchangeStreamCaptureMode
-    !---------------------------------------------
-    function hipThreadExchangeStreamCaptureMode(mode) &
-       result(ThreadExchangeStreamCaptureMode) &
-       bind(C, name="hipThreadExchangeStreamCaptureMode")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: mode
-       integer(kind(hipSuccess)) :: ThreadExchangeStreamCaptureMode
-    end function hipThreadExchangeStreamCaptureMode
-
-    !---------------------------------------------
-    ! hipGraphCreate
-    !---------------------------------------------
-    function hipGraphCreate(pGraph, flags) &
-       result(GraphCreate) &
-       bind(C, name="hipGraphCreate")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: pGraph
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: GraphCreate
-    end function hipGraphCreate
-
-    !---------------------------------------------
-    ! hipGraphDestroy
-    !---------------------------------------------
-    function hipGraphDestroy(graph) &
-       result(GraphDestroy) &
-       bind(C, name="hipGraphDestroy")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: graph
-       integer(kind(hipSuccess)) :: GraphDestroy
-    end function hipGraphDestroy
-
-    !---------------------------------------------
-    ! hipGraphAddDependencies
-    !---------------------------------------------
-    function hipGraphAddDependencies(graph, from, to, numDependencies) &
-       result(GraphAddDependencies) &
-       bind(C, name="hipGraphAddDependencies")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: graph
-       type(c_ptr) :: from
-       type(c_ptr) :: to
-       integer(c_size_t), value :: numDependencies
-       integer(kind(hipSuccess)) :: GraphAddDependencies
-    end function hipGraphAddDependencies
-
-    !---------------------------------------------
-    ! hipGraphRemoveDependencies
-    !---------------------------------------------
-    function hipGraphRemoveDependencies(graph, from, to, numDependencies) &
-       result(GraphRemoveDependencies) &
-       bind(C, name="hipGraphRemoveDependencies")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: graph
-       type(c_ptr) :: from
-       type(c_ptr) :: to
-       integer(c_size_t), value :: numDependencies
-       integer(kind(hipSuccess)) :: GraphRemoveDependencies
-    end function hipGraphRemoveDependencies
-
-    !---------------------------------------------
-    ! hipGraphGetEdges
-    !---------------------------------------------
-    function hipGraphGetEdges(graph, from, to, numEdges) &
-       result(GraphGetEdges) &
-       bind(C, name="hipGraphGetEdges")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: graph
-       type(c_ptr) :: from
-       type(c_ptr) :: to
-       type(c_ptr), value :: numEdges
-       integer(kind(hipSuccess)) :: GraphGetEdges
-    end function hipGraphGetEdges
-
-    !---------------------------------------------
-    ! hipGraphGetNodes
-    !---------------------------------------------
-    function hipGraphGetNodes(graph, nodes, numNodes) &
-       result(GraphGetNodes) &
-       bind(C, name="hipGraphGetNodes")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: graph
-       type(c_ptr) :: nodes
-       type(c_ptr), value :: numNodes
-       integer(kind(hipSuccess)) :: GraphGetNodes
-    end function hipGraphGetNodes
-
-    !---------------------------------------------
-    ! hipGraphGetRootNodes
-    !---------------------------------------------
-    function hipGraphGetRootNodes(graph, pRootNodes, pNumRootNodes) &
-       result(GraphGetRootNodes) &
-       bind(C, name="hipGraphGetRootNodes")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pRootNodes
-       type(c_ptr), value :: pNumRootNodes
-       integer(kind(hipSuccess)) :: GraphGetRootNodes
-    end function hipGraphGetRootNodes
-
-    !---------------------------------------------
-    ! hipGraphNodeGetDependencies
-    !---------------------------------------------
-    function hipGraphNodeGetDependencies(node, pDependencies, pNumDependencies) &
-       result(GraphNodeGetDependencies) &
-       bind(C, name="hipGraphNodeGetDependencies")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: node
-       type(c_ptr) :: pDependencies
-       type(c_ptr), value :: pNumDependencies
-       integer(kind(hipSuccess)) :: GraphNodeGetDependencies
-    end function hipGraphNodeGetDependencies
-
-    !---------------------------------------------
-    ! hipGraphNodeGetDependentNodes
-    !---------------------------------------------
-    function hipGraphNodeGetDependentNodes(node, pDependentNodes, pNumDependentNodes) &
-       result(GraphNodeGetDependentNodes) &
-       bind(C, name="hipGraphNodeGetDependentNodes")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: node
-       type(c_ptr) :: pDependentNodes
-       type(c_ptr), value :: pNumDependentNodes
-       integer(kind(hipSuccess)) :: GraphNodeGetDependentNodes
-    end function hipGraphNodeGetDependentNodes
-
-    !---------------------------------------------
-    ! hipGraphNodeGetType
-    !---------------------------------------------
-    function hipGraphNodeGetType(node, pType) &
-       result(GraphNodeGetType) &
-       bind(C, name="hipGraphNodeGetType")
-       import :: c_ptr, hipGraphNodeTypeKernel, hipSuccess
-       type(c_ptr), value :: node
-       integer(kind(hipGraphNodeTypeKernel)) :: pType
-       integer(kind(hipSuccess)) :: GraphNodeGetType
-    end function hipGraphNodeGetType
-
-    !---------------------------------------------
-    ! hipGraphDestroyNode
-    !---------------------------------------------
-    function hipGraphDestroyNode(node) &
-       result(GraphDestroyNode) &
-       bind(C, name="hipGraphDestroyNode")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: node
-       integer(kind(hipSuccess)) :: GraphDestroyNode
-    end function hipGraphDestroyNode
-
-    !---------------------------------------------
-    ! hipGraphClone
-    !---------------------------------------------
-    function hipGraphClone(pGraphClone, originalGraph) &
-       result(GraphClone) &
-       bind(C, name="hipGraphClone")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: pGraphClone
-       type(c_ptr), value :: originalGraph
-       integer(kind(hipSuccess)) :: GraphClone
-    end function hipGraphClone
-
-    !---------------------------------------------
-    ! hipGraphNodeFindInClone
-    !---------------------------------------------
-    function hipGraphNodeFindInClone(pNode, originalNode, clonedGraph) &
-       result(GraphNodeFindInClone) &
-       bind(C, name="hipGraphNodeFindInClone")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: pNode
-       type(c_ptr), value :: originalNode
-       type(c_ptr), value :: clonedGraph
-       integer(kind(hipSuccess)) :: GraphNodeFindInClone
-    end function hipGraphNodeFindInClone
-
-    !---------------------------------------------
-    ! hipGraphInstantiate
-    !---------------------------------------------
-    function hipGraphInstantiate(pGraphExec, graph, pErrorNode, pLogBuffer, bufferSize) &
-       result(GraphInstantiate) &
-       bind(C, name="hipGraphInstantiate")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: pGraphExec
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pErrorNode
-       type(c_ptr), value :: pLogBuffer
-       integer(c_size_t), value :: bufferSize
-       integer(kind(hipSuccess)) :: GraphInstantiate
-    end function hipGraphInstantiate
-
-    !---------------------------------------------
-    ! hipGraphInstantiateWithFlags
-    !---------------------------------------------
-    function hipGraphInstantiateWithFlags(pGraphExec, graph, flags) &
-       result(GraphInstantiateWithFlags) &
-       bind(C, name="hipGraphInstantiateWithFlags")
-       import :: c_ptr, c_int64_t, hipSuccess
-       type(c_ptr) :: pGraphExec
-       type(c_ptr), value :: graph
-       integer(c_int64_t), value :: flags
-       integer(kind(hipSuccess)) :: GraphInstantiateWithFlags
-    end function hipGraphInstantiateWithFlags
-
-    !---------------------------------------------
-    ! hipGraphInstantiateWithParams
-    !---------------------------------------------
-    function hipGraphInstantiateWithParams(pGraphExec, graph, instantiateParams) &
-       result(GraphInstantiateWithParams) &
-       bind(C, name="hipGraphInstantiateWithParams")
-       import :: c_ptr, hipGraphInstantiateParams, hipSuccess
-       type(c_ptr) :: pGraphExec
-       type(c_ptr), value :: graph
-       type(hipGraphInstantiateParams) :: instantiateParams
-       integer(kind(hipSuccess)) :: GraphInstantiateWithParams
-    end function hipGraphInstantiateWithParams
-
-    !---------------------------------------------
-    ! hipGraphLaunch
-    !---------------------------------------------
-    function hipGraphLaunch(graphExec, stream) &
-       result(GraphLaunch) &
-       bind(C, name="hipGraphLaunch")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: graphExec
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: GraphLaunch
-    end function hipGraphLaunch
-
-    !---------------------------------------------
-    ! hipGraphUpload
-    !---------------------------------------------
-    function hipGraphUpload(graphExec, stream) &
-       result(GraphUpload) &
-       bind(C, name="hipGraphUpload")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: graphExec
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: GraphUpload
-    end function hipGraphUpload
-
-    !---------------------------------------------
-    ! hipGraphAddNode
-    !---------------------------------------------
-    function hipGraphAddNode(pGraphNode, graph, pDependencies, numDependencies, nodeParams) &
-       result(GraphAddNode) &
-       bind(C, name="hipGraphAddNode")
-       import :: c_ptr, c_size_t, hipGraphNodeParams, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(hipGraphNodeParams) :: nodeParams
-       integer(kind(hipSuccess)) :: GraphAddNode
-    end function hipGraphAddNode
-
-    !---------------------------------------------
-    ! hipGraphExecGetFlags
-    !---------------------------------------------
-    function hipGraphExecGetFlags(graphExec, flags) &
-       result(GraphExecGetFlags) &
-       bind(C, name="hipGraphExecGetFlags")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: graphExec
-       type(c_ptr), value :: flags
-       integer(kind(hipSuccess)) :: GraphExecGetFlags
-    end function hipGraphExecGetFlags
-
-    !---------------------------------------------
-    ! hipGraphNodeSetParams
-    !---------------------------------------------
-    function hipGraphNodeSetParams(node, nodeParams) &
-       result(GraphNodeSetParams) &
-       bind(C, name="hipGraphNodeSetParams")
-       import :: c_ptr, hipGraphNodeParams, hipSuccess
-       type(c_ptr), value :: node
-       type(hipGraphNodeParams) :: nodeParams
-       integer(kind(hipSuccess)) :: GraphNodeSetParams
-    end function hipGraphNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphExecNodeSetParams
-    !---------------------------------------------
-    function hipGraphExecNodeSetParams(graphExec, node, nodeParams) &
-       result(GraphExecNodeSetParams) &
-       bind(C, name="hipGraphExecNodeSetParams")
-       import :: c_ptr, hipGraphNodeParams, hipSuccess
-       type(c_ptr), value :: graphExec
-       type(c_ptr), value :: node
-       type(hipGraphNodeParams) :: nodeParams
-       integer(kind(hipSuccess)) :: GraphExecNodeSetParams
-    end function hipGraphExecNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphExecDestroy
-    !---------------------------------------------
-    function hipGraphExecDestroy(graphExec) &
-       result(GraphExecDestroy) &
-       bind(C, name="hipGraphExecDestroy")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: graphExec
-       integer(kind(hipSuccess)) :: GraphExecDestroy
-    end function hipGraphExecDestroy
-
-    !---------------------------------------------
-    ! hipGraphExecUpdate
-    !---------------------------------------------
-    function hipGraphExecUpdate(hGraphExec, hGraph, hErrorNode_out, updateResult_out) &
-       result(GraphExecUpdate) &
-       bind(C, name="hipGraphExecUpdate")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: hGraph
-       type(c_ptr) :: hErrorNode_out
-       type(c_ptr), value :: updateResult_out
-       integer(kind(hipSuccess)) :: GraphExecUpdate
-    end function hipGraphExecUpdate
-
-    !---------------------------------------------
-    ! hipGraphAddKernelNode
-    !---------------------------------------------
-    function hipGraphAddKernelNode(pGraphNode, graph, pDependencies, numDependencies, pNodeParams) &
-       result(GraphAddKernelNode) &
-       bind(C, name="hipGraphAddKernelNode")
-       import :: c_ptr, c_size_t, hipKernelNodeParams, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(hipKernelNodeParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphAddKernelNode
-    end function hipGraphAddKernelNode
-
-    !---------------------------------------------
-    ! hipGraphKernelNodeGetParams
-    !---------------------------------------------
-    function hipGraphKernelNodeGetParams(node, pNodeParams) &
-       result(GraphKernelNodeGetParams) &
-       bind(C, name="hipGraphKernelNodeGetParams")
-       import :: c_ptr, hipKernelNodeParams, hipSuccess
-       type(c_ptr), value :: node
-       type(hipKernelNodeParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphKernelNodeGetParams
-    end function hipGraphKernelNodeGetParams
-
-    !---------------------------------------------
-    ! hipGraphKernelNodeSetParams
-    !---------------------------------------------
-    function hipGraphKernelNodeSetParams(node, pNodeParams) &
-       result(GraphKernelNodeSetParams) &
-       bind(C, name="hipGraphKernelNodeSetParams")
-       import :: c_ptr, hipKernelNodeParams, hipSuccess
-       type(c_ptr), value :: node
-       type(hipKernelNodeParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphKernelNodeSetParams
-    end function hipGraphKernelNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphExecKernelNodeSetParams
-    !---------------------------------------------
-    function hipGraphExecKernelNodeSetParams(hGraphExec, node, pNodeParams) &
-       result(GraphExecKernelNodeSetParams) &
-       bind(C, name="hipGraphExecKernelNodeSetParams")
-       import :: c_ptr, hipKernelNodeParams, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: node
-       type(hipKernelNodeParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphExecKernelNodeSetParams
-    end function hipGraphExecKernelNodeSetParams
-
-    !---------------------------------------------
-    ! hipDrvGraphAddMemcpyNode
-    !---------------------------------------------
-    function hipDrvGraphAddMemcpyNode(phGraphNode, hGraph, dependencies, numDependencies, &
-                                      copyParams, ctx) &
-       result(DrvGraphAddMemcpyNode) &
-       bind(C, name="hipDrvGraphAddMemcpyNode")
-       import :: c_ptr, c_size_t, HIP_MEMCPY3D, hipSuccess
-       type(c_ptr) :: phGraphNode
-       type(c_ptr), value :: hGraph
-       type(c_ptr) :: dependencies
-       integer(c_size_t), value :: numDependencies
-       type(HIP_MEMCPY3D) :: copyParams
-       type(c_ptr), value :: ctx
-       integer(kind(hipSuccess)) :: DrvGraphAddMemcpyNode
-    end function hipDrvGraphAddMemcpyNode
-
-    !---------------------------------------------
-    ! hipGraphAddMemcpyNode
-    !---------------------------------------------
-    function hipGraphAddMemcpyNode(pGraphNode, graph, pDependencies, numDependencies, pCopyParams) &
-       result(GraphAddMemcpyNode) &
-       bind(C, name="hipGraphAddMemcpyNode")
-       import :: c_ptr, c_size_t, hipMemcpy3DParms, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(hipMemcpy3DParms) :: pCopyParams
-       integer(kind(hipSuccess)) :: GraphAddMemcpyNode
-    end function hipGraphAddMemcpyNode
-
-    !---------------------------------------------
-    ! hipGraphMemcpyNodeGetParams
-    !---------------------------------------------
-    function hipGraphMemcpyNodeGetParams(node, pNodeParams) &
-       result(GraphMemcpyNodeGetParams) &
-       bind(C, name="hipGraphMemcpyNodeGetParams")
-       import :: c_ptr, hipMemcpy3DParms, hipSuccess
-       type(c_ptr), value :: node
-       type(hipMemcpy3DParms) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphMemcpyNodeGetParams
-    end function hipGraphMemcpyNodeGetParams
-
-    !---------------------------------------------
-    ! hipGraphMemcpyNodeSetParams
-    !---------------------------------------------
-    function hipGraphMemcpyNodeSetParams(node, pNodeParams) &
-       result(GraphMemcpyNodeSetParams) &
-       bind(C, name="hipGraphMemcpyNodeSetParams")
-       import :: c_ptr, hipMemcpy3DParms, hipSuccess
-       type(c_ptr), value :: node
-       type(hipMemcpy3DParms) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphMemcpyNodeSetParams
-    end function hipGraphMemcpyNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphKernelNodeSetAttribute
-    !---------------------------------------------
-    function hipGraphKernelNodeSetAttribute(hNode, attr, myValue) &
-       result(GraphKernelNodeSetAttribute) &
-       bind(C, name="hipGraphKernelNodeSetAttribute")
-       import :: c_ptr, hipLaunchAttributeIgnore, hipSuccess
-       type(c_ptr), value :: hNode
-       integer(kind(hipLaunchAttributeIgnore)), value :: attr
-       type(c_ptr), value :: myValue
-       integer(kind(hipSuccess)) :: GraphKernelNodeSetAttribute
-    end function hipGraphKernelNodeSetAttribute
-
-    !---------------------------------------------
-    ! hipGraphKernelNodeGetAttribute
-    !---------------------------------------------
-    function hipGraphKernelNodeGetAttribute(hNode, attr, myValue) &
-       result(GraphKernelNodeGetAttribute) &
-       bind(C, name="hipGraphKernelNodeGetAttribute")
-       import :: c_ptr, hipLaunchAttributeIgnore, hipSuccess
-       type(c_ptr), value :: hNode
-       integer(kind(hipLaunchAttributeIgnore)), value :: attr
-       type(c_ptr), value :: myValue
-       integer(kind(hipSuccess)) :: GraphKernelNodeGetAttribute
-    end function hipGraphKernelNodeGetAttribute
-
-    !---------------------------------------------
-    ! hipGraphExecMemcpyNodeSetParams
-    !---------------------------------------------
-    function hipGraphExecMemcpyNodeSetParams(hGraphExec, node, pNodeParams) &
-       result(GraphExecMemcpyNodeSetParams) &
-       bind(C, name="hipGraphExecMemcpyNodeSetParams")
-       import :: c_ptr, hipMemcpy3DParms, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: node
-       type(hipMemcpy3DParms) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphExecMemcpyNodeSetParams
-    end function hipGraphExecMemcpyNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphAddMemcpyNode1D
-    !---------------------------------------------
-    function hipGraphAddMemcpyNode1D(pGraphNode, graph, pDependencies, numDependencies, dst, src, &
-                                     count, myKind) &
-       result(GraphAddMemcpyNode1D) &
-       bind(C, name="hipGraphAddMemcpyNode1D")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: count
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: GraphAddMemcpyNode1D
-    end function hipGraphAddMemcpyNode1D
-
-    !---------------------------------------------
-    ! hipGraphMemcpyNodeSetParams1D
-    !---------------------------------------------
-    function hipGraphMemcpyNodeSetParams1D(node, dst, src, count, myKind) &
-       result(GraphMemcpyNodeSetParams1D) &
-       bind(C, name="hipGraphMemcpyNodeSetParams1D")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: node
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: count
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: GraphMemcpyNodeSetParams1D
-    end function hipGraphMemcpyNodeSetParams1D
-
-    !---------------------------------------------
-    ! hipGraphExecMemcpyNodeSetParams1D
-    !---------------------------------------------
-    function hipGraphExecMemcpyNodeSetParams1D(hGraphExec, node, dst, src, count, myKind) &
-       result(GraphExecMemcpyNodeSetParams1D) &
-       bind(C, name="hipGraphExecMemcpyNodeSetParams1D")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: node
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: count
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: GraphExecMemcpyNodeSetParams1D
-    end function hipGraphExecMemcpyNodeSetParams1D
-
-    !---------------------------------------------
-    ! hipGraphAddMemcpyNodeFromSymbol
-    !---------------------------------------------
-    function hipGraphAddMemcpyNodeFromSymbol(pGraphNode, graph, pDependencies, numDependencies, &
-                                             dst, symbol, count, offset, myKind) &
-       result(GraphAddMemcpyNodeFromSymbol) &
-       bind(C, name="hipGraphAddMemcpyNodeFromSymbol")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: symbol
-       integer(c_size_t), value :: count
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: GraphAddMemcpyNodeFromSymbol
-    end function hipGraphAddMemcpyNodeFromSymbol
-
-    !---------------------------------------------
-    ! hipGraphMemcpyNodeSetParamsFromSymbol
-    !---------------------------------------------
-    function hipGraphMemcpyNodeSetParamsFromSymbol(node, dst, symbol, count, offset, myKind) &
-       result(GraphMemcpyNodeSetParamsFromSymbol) &
-       bind(C, name="hipGraphMemcpyNodeSetParamsFromSymbol")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: node
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: symbol
-       integer(c_size_t), value :: count
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: GraphMemcpyNodeSetParamsFromSymbol
-    end function hipGraphMemcpyNodeSetParamsFromSymbol
-
-    !---------------------------------------------
-    ! hipGraphExecMemcpyNodeSetParamsFromSymbol
-    !---------------------------------------------
-    function hipGraphExecMemcpyNodeSetParamsFromSymbol(hGraphExec, node, dst, symbol, count, &
-                                                       offset, myKind) &
-       result(GraphExecMemcpyNodeSetParamsFromSymbol) &
-       bind(C, name="hipGraphExecMemcpyNodeSetParamsFromSymbol")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: node
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: symbol
-       integer(c_size_t), value :: count
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: GraphExecMemcpyNodeSetParamsFromSymbol
-    end function hipGraphExecMemcpyNodeSetParamsFromSymbol
-
-    !---------------------------------------------
-    ! hipGraphAddMemcpyNodeToSymbol
-    !---------------------------------------------
-    function hipGraphAddMemcpyNodeToSymbol(pGraphNode, graph, pDependencies, numDependencies, &
-                                           symbol, src, count, offset, myKind) &
-       result(GraphAddMemcpyNodeToSymbol) &
-       bind(C, name="hipGraphAddMemcpyNodeToSymbol")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(c_ptr), value :: symbol
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: count
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: GraphAddMemcpyNodeToSymbol
-    end function hipGraphAddMemcpyNodeToSymbol
-
-    !---------------------------------------------
-    ! hipGraphMemcpyNodeSetParamsToSymbol
-    !---------------------------------------------
-    function hipGraphMemcpyNodeSetParamsToSymbol(node, symbol, src, count, offset, myKind) &
-       result(GraphMemcpyNodeSetParamsToSymbol) &
-       bind(C, name="hipGraphMemcpyNodeSetParamsToSymbol")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: node
-       type(c_ptr), value :: symbol
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: count
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: GraphMemcpyNodeSetParamsToSymbol
-    end function hipGraphMemcpyNodeSetParamsToSymbol
-
-    !---------------------------------------------
-    ! hipGraphExecMemcpyNodeSetParamsToSymbol
-    !---------------------------------------------
-    function hipGraphExecMemcpyNodeSetParamsToSymbol(hGraphExec, node, symbol, src, count, offset, &
-                                                     myKind) &
-       result(GraphExecMemcpyNodeSetParamsToSymbol) &
-       bind(C, name="hipGraphExecMemcpyNodeSetParamsToSymbol")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: node
-       type(c_ptr), value :: symbol
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: count
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: GraphExecMemcpyNodeSetParamsToSymbol
-    end function hipGraphExecMemcpyNodeSetParamsToSymbol
-
-    !---------------------------------------------
-    ! hipGraphAddMemsetNode
-    !---------------------------------------------
-    function hipGraphAddMemsetNode(pGraphNode, graph, pDependencies, numDependencies, &
-                                   pMemsetParams) &
-       result(GraphAddMemsetNode) &
-       bind(C, name="hipGraphAddMemsetNode")
-       import :: c_ptr, c_size_t, hipMemsetParams, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(hipMemsetParams) :: pMemsetParams
-       integer(kind(hipSuccess)) :: GraphAddMemsetNode
-    end function hipGraphAddMemsetNode
-
-    !---------------------------------------------
-    ! hipGraphMemsetNodeGetParams
-    !---------------------------------------------
-    function hipGraphMemsetNodeGetParams(node, pNodeParams) &
-       result(GraphMemsetNodeGetParams) &
-       bind(C, name="hipGraphMemsetNodeGetParams")
-       import :: c_ptr, hipMemsetParams, hipSuccess
-       type(c_ptr), value :: node
-       type(hipMemsetParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphMemsetNodeGetParams
-    end function hipGraphMemsetNodeGetParams
-
-    !---------------------------------------------
-    ! hipGraphMemsetNodeSetParams
-    !---------------------------------------------
-    function hipGraphMemsetNodeSetParams(node, pNodeParams) &
-       result(GraphMemsetNodeSetParams) &
-       bind(C, name="hipGraphMemsetNodeSetParams")
-       import :: c_ptr, hipMemsetParams, hipSuccess
-       type(c_ptr), value :: node
-       type(hipMemsetParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphMemsetNodeSetParams
-    end function hipGraphMemsetNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphExecMemsetNodeSetParams
-    !---------------------------------------------
-    function hipGraphExecMemsetNodeSetParams(hGraphExec, node, pNodeParams) &
-       result(GraphExecMemsetNodeSetParams) &
-       bind(C, name="hipGraphExecMemsetNodeSetParams")
-       import :: c_ptr, hipMemsetParams, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: node
-       type(hipMemsetParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphExecMemsetNodeSetParams
-    end function hipGraphExecMemsetNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphAddHostNode
-    !---------------------------------------------
-    function hipGraphAddHostNode(pGraphNode, graph, pDependencies, numDependencies, pNodeParams) &
-       result(GraphAddHostNode) &
-       bind(C, name="hipGraphAddHostNode")
-       import :: c_ptr, c_size_t, hipHostNodeParams, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(hipHostNodeParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphAddHostNode
-    end function hipGraphAddHostNode
-
-    !---------------------------------------------
-    ! hipGraphHostNodeGetParams
-    !---------------------------------------------
-    function hipGraphHostNodeGetParams(node, pNodeParams) &
-       result(GraphHostNodeGetParams) &
-       bind(C, name="hipGraphHostNodeGetParams")
-       import :: c_ptr, hipHostNodeParams, hipSuccess
-       type(c_ptr), value :: node
-       type(hipHostNodeParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphHostNodeGetParams
-    end function hipGraphHostNodeGetParams
-
-    !---------------------------------------------
-    ! hipGraphHostNodeSetParams
-    !---------------------------------------------
-    function hipGraphHostNodeSetParams(node, pNodeParams) &
-       result(GraphHostNodeSetParams) &
-       bind(C, name="hipGraphHostNodeSetParams")
-       import :: c_ptr, hipHostNodeParams, hipSuccess
-       type(c_ptr), value :: node
-       type(hipHostNodeParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphHostNodeSetParams
-    end function hipGraphHostNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphExecHostNodeSetParams
-    !---------------------------------------------
-    function hipGraphExecHostNodeSetParams(hGraphExec, node, pNodeParams) &
-       result(GraphExecHostNodeSetParams) &
-       bind(C, name="hipGraphExecHostNodeSetParams")
-       import :: c_ptr, hipHostNodeParams, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: node
-       type(hipHostNodeParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphExecHostNodeSetParams
-    end function hipGraphExecHostNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphAddChildGraphNode
-    !---------------------------------------------
-    function hipGraphAddChildGraphNode(pGraphNode, graph, pDependencies, numDependencies, &
-                                       childGraph) &
-       result(GraphAddChildGraphNode) &
-       bind(C, name="hipGraphAddChildGraphNode")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(c_ptr), value :: childGraph
-       integer(kind(hipSuccess)) :: GraphAddChildGraphNode
-    end function hipGraphAddChildGraphNode
-
-    !---------------------------------------------
-    ! hipGraphChildGraphNodeGetGraph
-    !---------------------------------------------
-    function hipGraphChildGraphNodeGetGraph(node, pGraph) &
-       result(GraphChildGraphNodeGetGraph) &
-       bind(C, name="hipGraphChildGraphNodeGetGraph")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: node
-       type(c_ptr) :: pGraph
-       integer(kind(hipSuccess)) :: GraphChildGraphNodeGetGraph
-    end function hipGraphChildGraphNodeGetGraph
-
-    !---------------------------------------------
-    ! hipGraphExecChildGraphNodeSetParams
-    !---------------------------------------------
-    function hipGraphExecChildGraphNodeSetParams(hGraphExec, node, childGraph) &
-       result(GraphExecChildGraphNodeSetParams) &
-       bind(C, name="hipGraphExecChildGraphNodeSetParams")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: node
-       type(c_ptr), value :: childGraph
-       integer(kind(hipSuccess)) :: GraphExecChildGraphNodeSetParams
-    end function hipGraphExecChildGraphNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphAddEmptyNode
-    !---------------------------------------------
-    function hipGraphAddEmptyNode(pGraphNode, graph, pDependencies, numDependencies) &
-       result(GraphAddEmptyNode) &
-       bind(C, name="hipGraphAddEmptyNode")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       integer(kind(hipSuccess)) :: GraphAddEmptyNode
-    end function hipGraphAddEmptyNode
-
-    !---------------------------------------------
-    ! hipGraphAddEventRecordNode
-    !---------------------------------------------
-    function hipGraphAddEventRecordNode(pGraphNode, graph, pDependencies, numDependencies, event) &
-       result(GraphAddEventRecordNode) &
-       bind(C, name="hipGraphAddEventRecordNode")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(c_ptr), value :: event
-       integer(kind(hipSuccess)) :: GraphAddEventRecordNode
-    end function hipGraphAddEventRecordNode
-
-    !---------------------------------------------
-    ! hipGraphEventRecordNodeGetEvent
-    !---------------------------------------------
-    function hipGraphEventRecordNodeGetEvent(node, event_out) &
-       result(GraphEventRecordNodeGetEvent) &
-       bind(C, name="hipGraphEventRecordNodeGetEvent")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: node
-       type(c_ptr) :: event_out
-       integer(kind(hipSuccess)) :: GraphEventRecordNodeGetEvent
-    end function hipGraphEventRecordNodeGetEvent
-
-    !---------------------------------------------
-    ! hipGraphEventRecordNodeSetEvent
-    !---------------------------------------------
-    function hipGraphEventRecordNodeSetEvent(node, event) &
-       result(GraphEventRecordNodeSetEvent) &
-       bind(C, name="hipGraphEventRecordNodeSetEvent")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: node
-       type(c_ptr), value :: event
-       integer(kind(hipSuccess)) :: GraphEventRecordNodeSetEvent
-    end function hipGraphEventRecordNodeSetEvent
-
-    !---------------------------------------------
-    ! hipGraphExecEventRecordNodeSetEvent
-    !---------------------------------------------
-    function hipGraphExecEventRecordNodeSetEvent(hGraphExec, hNode, event) &
-       result(GraphExecEventRecordNodeSetEvent) &
-       bind(C, name="hipGraphExecEventRecordNodeSetEvent")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: hNode
-       type(c_ptr), value :: event
-       integer(kind(hipSuccess)) :: GraphExecEventRecordNodeSetEvent
-    end function hipGraphExecEventRecordNodeSetEvent
-
-    !---------------------------------------------
-    ! hipGraphAddEventWaitNode
-    !---------------------------------------------
-    function hipGraphAddEventWaitNode(pGraphNode, graph, pDependencies, numDependencies, event) &
-       result(GraphAddEventWaitNode) &
-       bind(C, name="hipGraphAddEventWaitNode")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(c_ptr), value :: event
-       integer(kind(hipSuccess)) :: GraphAddEventWaitNode
-    end function hipGraphAddEventWaitNode
-
-    !---------------------------------------------
-    ! hipGraphEventWaitNodeGetEvent
-    !---------------------------------------------
-    function hipGraphEventWaitNodeGetEvent(node, event_out) &
-       result(GraphEventWaitNodeGetEvent) &
-       bind(C, name="hipGraphEventWaitNodeGetEvent")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: node
-       type(c_ptr) :: event_out
-       integer(kind(hipSuccess)) :: GraphEventWaitNodeGetEvent
-    end function hipGraphEventWaitNodeGetEvent
-
-    !---------------------------------------------
-    ! hipGraphEventWaitNodeSetEvent
-    !---------------------------------------------
-    function hipGraphEventWaitNodeSetEvent(node, event) &
-       result(GraphEventWaitNodeSetEvent) &
-       bind(C, name="hipGraphEventWaitNodeSetEvent")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: node
-       type(c_ptr), value :: event
-       integer(kind(hipSuccess)) :: GraphEventWaitNodeSetEvent
-    end function hipGraphEventWaitNodeSetEvent
-
-    !---------------------------------------------
-    ! hipGraphExecEventWaitNodeSetEvent
-    !---------------------------------------------
-    function hipGraphExecEventWaitNodeSetEvent(hGraphExec, hNode, event) &
-       result(GraphExecEventWaitNodeSetEvent) &
-       bind(C, name="hipGraphExecEventWaitNodeSetEvent")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: hNode
-       type(c_ptr), value :: event
-       integer(kind(hipSuccess)) :: GraphExecEventWaitNodeSetEvent
-    end function hipGraphExecEventWaitNodeSetEvent
-
-    !---------------------------------------------
-    ! hipGraphAddMemAllocNode
-    !---------------------------------------------
-    function hipGraphAddMemAllocNode(pGraphNode, graph, pDependencies, numDependencies, &
-                                     pNodeParams) &
-       result(GraphAddMemAllocNode) &
-       bind(C, name="hipGraphAddMemAllocNode")
-       import :: c_ptr, c_size_t, hipMemAllocNodeParams, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(hipMemAllocNodeParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphAddMemAllocNode
-    end function hipGraphAddMemAllocNode
-
-    !---------------------------------------------
-    ! hipGraphMemAllocNodeGetParams
-    !---------------------------------------------
-    function hipGraphMemAllocNodeGetParams(node, pNodeParams) &
-       result(GraphMemAllocNodeGetParams) &
-       bind(C, name="hipGraphMemAllocNodeGetParams")
-       import :: c_ptr, hipMemAllocNodeParams, hipSuccess
-       type(c_ptr), value :: node
-       type(hipMemAllocNodeParams) :: pNodeParams
-       integer(kind(hipSuccess)) :: GraphMemAllocNodeGetParams
-    end function hipGraphMemAllocNodeGetParams
-
-    !---------------------------------------------
-    ! hipGraphAddMemFreeNode
-    !---------------------------------------------
-    function hipGraphAddMemFreeNode(pGraphNode, graph, pDependencies, numDependencies, dev_ptr) &
-       result(GraphAddMemFreeNode) &
-       bind(C, name="hipGraphAddMemFreeNode")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(c_ptr), value :: dev_ptr
-       integer(kind(hipSuccess)) :: GraphAddMemFreeNode
-    end function hipGraphAddMemFreeNode
-
-    !---------------------------------------------
-    ! hipGraphMemFreeNodeGetParams
-    !---------------------------------------------
-    function hipGraphMemFreeNodeGetParams(node, dev_ptr) &
-       result(GraphMemFreeNodeGetParams) &
-       bind(C, name="hipGraphMemFreeNodeGetParams")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: node
-       type(c_ptr), value :: dev_ptr
-       integer(kind(hipSuccess)) :: GraphMemFreeNodeGetParams
-    end function hipGraphMemFreeNodeGetParams
-
-    !---------------------------------------------
-    ! hipDeviceGetGraphMemAttribute
-    !---------------------------------------------
-    function hipDeviceGetGraphMemAttribute(device, attr, myValue) &
-       result(DeviceGetGraphMemAttribute) &
-       bind(C, name="hipDeviceGetGraphMemAttribute")
-       import :: c_int, hipGraphMemAttrUsedMemCurrent, c_ptr, hipSuccess
-       integer(c_int), value :: device
-       integer(kind(hipGraphMemAttrUsedMemCurrent)), value :: attr
-       type(c_ptr), value :: myValue
-       integer(kind(hipSuccess)) :: DeviceGetGraphMemAttribute
-    end function hipDeviceGetGraphMemAttribute
-
-    !---------------------------------------------
-    ! hipDeviceSetGraphMemAttribute
-    !---------------------------------------------
-    function hipDeviceSetGraphMemAttribute(device, attr, myValue) &
-       result(DeviceSetGraphMemAttribute) &
-       bind(C, name="hipDeviceSetGraphMemAttribute")
-       import :: c_int, hipGraphMemAttrUsedMemCurrent, c_ptr, hipSuccess
-       integer(c_int), value :: device
-       integer(kind(hipGraphMemAttrUsedMemCurrent)), value :: attr
-       type(c_ptr), value :: myValue
-       integer(kind(hipSuccess)) :: DeviceSetGraphMemAttribute
-    end function hipDeviceSetGraphMemAttribute
-
-    !---------------------------------------------
-    ! hipDeviceGraphMemTrim
-    !---------------------------------------------
-    function hipDeviceGraphMemTrim(device) &
-       result(DeviceGraphMemTrim) &
-       bind(C, name="hipDeviceGraphMemTrim")
-       import :: c_int, hipSuccess
-       integer(c_int), value :: device
-       integer(kind(hipSuccess)) :: DeviceGraphMemTrim
-    end function hipDeviceGraphMemTrim
-
-    !---------------------------------------------
-    ! hipUserObjectCreate
-    !---------------------------------------------
-    function hipUserObjectCreate(object_out, ptr, destroy, initialRefcount, flags) &
-       result(UserObjectCreate) &
-       bind(C, name="hipUserObjectCreate")
-       import :: c_ptr, c_funptr, c_int, hipSuccess
-       type(c_ptr) :: object_out
-       type(c_ptr), value :: ptr
-       type(c_funptr), value :: destroy
-       integer(c_int), value :: initialRefcount
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: UserObjectCreate
-    end function hipUserObjectCreate
-
-    !---------------------------------------------
-    ! hipUserObjectRelease
-    !---------------------------------------------
-    function hipUserObjectRelease(object, count) &
-       result(UserObjectRelease) &
-       bind(C, name="hipUserObjectRelease")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: object
-       integer(c_int), value :: count
-       integer(kind(hipSuccess)) :: UserObjectRelease
-    end function hipUserObjectRelease
-
-    !---------------------------------------------
-    ! hipUserObjectRetain
-    !---------------------------------------------
-    function hipUserObjectRetain(object, count) &
-       result(UserObjectRetain) &
-       bind(C, name="hipUserObjectRetain")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: object
-       integer(c_int), value :: count
-       integer(kind(hipSuccess)) :: UserObjectRetain
-    end function hipUserObjectRetain
-
-    !---------------------------------------------
-    ! hipGraphRetainUserObject
-    !---------------------------------------------
-    function hipGraphRetainUserObject(graph, object, count, flags) &
-       result(GraphRetainUserObject) &
-       bind(C, name="hipGraphRetainUserObject")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: graph
-       type(c_ptr), value :: object
-       integer(c_int), value :: count
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: GraphRetainUserObject
-    end function hipGraphRetainUserObject
-
-    !---------------------------------------------
-    ! hipGraphReleaseUserObject
-    !---------------------------------------------
-    function hipGraphReleaseUserObject(graph, object, count) &
-       result(GraphReleaseUserObject) &
-       bind(C, name="hipGraphReleaseUserObject")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: graph
-       type(c_ptr), value :: object
-       integer(c_int), value :: count
-       integer(kind(hipSuccess)) :: GraphReleaseUserObject
-    end function hipGraphReleaseUserObject
-
-    !---------------------------------------------
-    ! hipGraphDebugDotPrint
-    !---------------------------------------------
-    function hipGraphDebugDotPrint(graph, path, flags) &
-       result(GraphDebugDotPrint) &
-       bind(C, name="hipGraphDebugDotPrint")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: graph
-       type(c_ptr), value :: path
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: GraphDebugDotPrint
-    end function hipGraphDebugDotPrint
-
-    !---------------------------------------------
-    ! hipGraphKernelNodeCopyAttributes
-    !---------------------------------------------
-    function hipGraphKernelNodeCopyAttributes(hSrc, hDst) &
-       result(GraphKernelNodeCopyAttributes) &
-       bind(C, name="hipGraphKernelNodeCopyAttributes")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: hSrc
-       type(c_ptr), value :: hDst
-       integer(kind(hipSuccess)) :: GraphKernelNodeCopyAttributes
-    end function hipGraphKernelNodeCopyAttributes
-
-    !---------------------------------------------
-    ! hipGraphNodeSetEnabled
-    !---------------------------------------------
-    function hipGraphNodeSetEnabled(hGraphExec, hNode, isEnabled) &
-       result(GraphNodeSetEnabled) &
-       bind(C, name="hipGraphNodeSetEnabled")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: hNode
-       integer(c_int), value :: isEnabled
-       integer(kind(hipSuccess)) :: GraphNodeSetEnabled
-    end function hipGraphNodeSetEnabled
-
-    !---------------------------------------------
-    ! hipGraphNodeGetEnabled
-    !---------------------------------------------
-    function hipGraphNodeGetEnabled(hGraphExec, hNode, isEnabled) &
-       result(GraphNodeGetEnabled) &
-       bind(C, name="hipGraphNodeGetEnabled")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: hNode
-       integer(c_int) :: isEnabled
-       integer(kind(hipSuccess)) :: GraphNodeGetEnabled
-    end function hipGraphNodeGetEnabled
-
-    !---------------------------------------------
-    ! hipGraphAddExternalSemaphoresWaitNode
-    !---------------------------------------------
-    function hipGraphAddExternalSemaphoresWaitNode(pGraphNode, graph, pDependencies, &
-                                                   numDependencies, nodeParams) &
-       result(GraphAddExternalSemaphoresWaitNode) &
-       bind(C, name="hipGraphAddExternalSemaphoresWaitNode")
-       import :: c_ptr, c_size_t, hipExternalSemaphoreWaitNodeParams, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(hipExternalSemaphoreWaitNodeParams) :: nodeParams
-       integer(kind(hipSuccess)) :: GraphAddExternalSemaphoresWaitNode
-    end function hipGraphAddExternalSemaphoresWaitNode
-
-    !---------------------------------------------
-    ! hipGraphAddExternalSemaphoresSignalNode
-    !---------------------------------------------
-    function hipGraphAddExternalSemaphoresSignalNode(pGraphNode, graph, pDependencies, &
-                                                     numDependencies, nodeParams) &
-       result(GraphAddExternalSemaphoresSignalNode) &
-       bind(C, name="hipGraphAddExternalSemaphoresSignalNode")
-       import :: c_ptr, c_size_t, hipExternalSemaphoreSignalNodeParams, hipSuccess
-       type(c_ptr) :: pGraphNode
-       type(c_ptr), value :: graph
-       type(c_ptr) :: pDependencies
-       integer(c_size_t), value :: numDependencies
-       type(hipExternalSemaphoreSignalNodeParams) :: nodeParams
-       integer(kind(hipSuccess)) :: GraphAddExternalSemaphoresSignalNode
-    end function hipGraphAddExternalSemaphoresSignalNode
-
-    !---------------------------------------------
-    ! hipGraphExternalSemaphoresSignalNodeSetParams
-    !---------------------------------------------
-    function hipGraphExternalSemaphoresSignalNodeSetParams(hNode, nodeParams) &
-       result(GraphExternalSemaphoresSignalNodeSetParams) &
-       bind(C, name="hipGraphExternalSemaphoresSignalNodeSetParams")
-       import :: c_ptr, hipExternalSemaphoreSignalNodeParams, hipSuccess
-       type(c_ptr), value :: hNode
-       type(hipExternalSemaphoreSignalNodeParams) :: nodeParams
-       integer(kind(hipSuccess)) :: GraphExternalSemaphoresSignalNodeSetParams
-    end function hipGraphExternalSemaphoresSignalNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphExternalSemaphoresWaitNodeSetParams
-    !---------------------------------------------
-    function hipGraphExternalSemaphoresWaitNodeSetParams(hNode, nodeParams) &
-       result(GraphExternalSemaphoresWaitNodeSetParams) &
-       bind(C, name="hipGraphExternalSemaphoresWaitNodeSetParams")
-       import :: c_ptr, hipExternalSemaphoreWaitNodeParams, hipSuccess
-       type(c_ptr), value :: hNode
-       type(hipExternalSemaphoreWaitNodeParams) :: nodeParams
-       integer(kind(hipSuccess)) :: GraphExternalSemaphoresWaitNodeSetParams
-    end function hipGraphExternalSemaphoresWaitNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphExternalSemaphoresSignalNodeGetParams
-    !---------------------------------------------
-    function hipGraphExternalSemaphoresSignalNodeGetParams(hNode, params_out) &
-       result(GraphExternalSemaphoresSignalNodeGetParams) &
-       bind(C, name="hipGraphExternalSemaphoresSignalNodeGetParams")
-       import :: c_ptr, hipExternalSemaphoreSignalNodeParams, hipSuccess
-       type(c_ptr), value :: hNode
-       type(hipExternalSemaphoreSignalNodeParams) :: params_out
-       integer(kind(hipSuccess)) :: GraphExternalSemaphoresSignalNodeGetParams
-    end function hipGraphExternalSemaphoresSignalNodeGetParams
-
-    !---------------------------------------------
-    ! hipGraphExternalSemaphoresWaitNodeGetParams
-    !---------------------------------------------
-    function hipGraphExternalSemaphoresWaitNodeGetParams(hNode, params_out) &
-       result(GraphExternalSemaphoresWaitNodeGetParams) &
-       bind(C, name="hipGraphExternalSemaphoresWaitNodeGetParams")
-       import :: c_ptr, hipExternalSemaphoreWaitNodeParams, hipSuccess
-       type(c_ptr), value :: hNode
-       type(hipExternalSemaphoreWaitNodeParams) :: params_out
-       integer(kind(hipSuccess)) :: GraphExternalSemaphoresWaitNodeGetParams
-    end function hipGraphExternalSemaphoresWaitNodeGetParams
-
-    !---------------------------------------------
-    ! hipGraphExecExternalSemaphoresSignalNodeSetParams
-    !---------------------------------------------
-    function hipGraphExecExternalSemaphoresSignalNodeSetParams(hGraphExec, hNode, nodeParams) &
-       result(GraphExecExternalSemaphoresSignalNodeSetParams) &
-       bind(C, name="hipGraphExecExternalSemaphoresSignalNodeSetParams")
-       import :: c_ptr, hipExternalSemaphoreSignalNodeParams, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: hNode
-       type(hipExternalSemaphoreSignalNodeParams) :: nodeParams
-       integer(kind(hipSuccess)) :: GraphExecExternalSemaphoresSignalNodeSetParams
-    end function hipGraphExecExternalSemaphoresSignalNodeSetParams
-
-    !---------------------------------------------
-    ! hipGraphExecExternalSemaphoresWaitNodeSetParams
-    !---------------------------------------------
-    function hipGraphExecExternalSemaphoresWaitNodeSetParams(hGraphExec, hNode, nodeParams) &
-       result(GraphExecExternalSemaphoresWaitNodeSetParams) &
-       bind(C, name="hipGraphExecExternalSemaphoresWaitNodeSetParams")
-       import :: c_ptr, hipExternalSemaphoreWaitNodeParams, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: hNode
-       type(hipExternalSemaphoreWaitNodeParams) :: nodeParams
-       integer(kind(hipSuccess)) :: GraphExecExternalSemaphoresWaitNodeSetParams
-    end function hipGraphExecExternalSemaphoresWaitNodeSetParams
-
-    !---------------------------------------------
-    ! hipDrvGraphMemcpyNodeGetParams
-    !---------------------------------------------
-    function hipDrvGraphMemcpyNodeGetParams(hNode, nodeParams) &
-       result(DrvGraphMemcpyNodeGetParams) &
-       bind(C, name="hipDrvGraphMemcpyNodeGetParams")
-       import :: c_ptr, HIP_MEMCPY3D, hipSuccess
-       type(c_ptr), value :: hNode
-       type(HIP_MEMCPY3D) :: nodeParams
-       integer(kind(hipSuccess)) :: DrvGraphMemcpyNodeGetParams
-    end function hipDrvGraphMemcpyNodeGetParams
-
-    !---------------------------------------------
-    ! hipDrvGraphMemcpyNodeSetParams
-    !---------------------------------------------
-    function hipDrvGraphMemcpyNodeSetParams(hNode, nodeParams) &
-       result(DrvGraphMemcpyNodeSetParams) &
-       bind(C, name="hipDrvGraphMemcpyNodeSetParams")
-       import :: c_ptr, HIP_MEMCPY3D, hipSuccess
-       type(c_ptr), value :: hNode
-       type(HIP_MEMCPY3D) :: nodeParams
-       integer(kind(hipSuccess)) :: DrvGraphMemcpyNodeSetParams
-    end function hipDrvGraphMemcpyNodeSetParams
-
-    !---------------------------------------------
-    ! hipDrvGraphAddMemsetNode
-    !---------------------------------------------
-    function hipDrvGraphAddMemsetNode(phGraphNode, hGraph, dependencies, numDependencies, &
-                                      memsetParams, ctx) &
-       result(DrvGraphAddMemsetNode) &
-       bind(C, name="hipDrvGraphAddMemsetNode")
-       import :: c_ptr, c_size_t, hipMemsetParams, hipSuccess
-       type(c_ptr) :: phGraphNode
-       type(c_ptr), value :: hGraph
-       type(c_ptr) :: dependencies
-       integer(c_size_t), value :: numDependencies
-       type(hipMemsetParams) :: memsetParams
-       type(c_ptr), value :: ctx
-       integer(kind(hipSuccess)) :: DrvGraphAddMemsetNode
-    end function hipDrvGraphAddMemsetNode
-
-    !---------------------------------------------
-    ! hipDrvGraphAddMemFreeNode
-    !---------------------------------------------
-    function hipDrvGraphAddMemFreeNode(phGraphNode, hGraph, dependencies, numDependencies, dptr) &
-       result(DrvGraphAddMemFreeNode) &
-       bind(C, name="hipDrvGraphAddMemFreeNode")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr) :: phGraphNode
-       type(c_ptr), value :: hGraph
-       type(c_ptr) :: dependencies
-       integer(c_size_t), value :: numDependencies
-       type(c_ptr), value :: dptr
-       integer(kind(hipSuccess)) :: DrvGraphAddMemFreeNode
-    end function hipDrvGraphAddMemFreeNode
-
-    !---------------------------------------------
-    ! hipDrvGraphExecMemcpyNodeSetParams
-    !---------------------------------------------
-    function hipDrvGraphExecMemcpyNodeSetParams(hGraphExec, hNode, copyParams, ctx) &
-       result(DrvGraphExecMemcpyNodeSetParams) &
-       bind(C, name="hipDrvGraphExecMemcpyNodeSetParams")
-       import :: c_ptr, HIP_MEMCPY3D, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: hNode
-       type(HIP_MEMCPY3D) :: copyParams
-       type(c_ptr), value :: ctx
-       integer(kind(hipSuccess)) :: DrvGraphExecMemcpyNodeSetParams
-    end function hipDrvGraphExecMemcpyNodeSetParams
-
-    !---------------------------------------------
-    ! hipDrvGraphExecMemsetNodeSetParams
-    !---------------------------------------------
-    function hipDrvGraphExecMemsetNodeSetParams(hGraphExec, hNode, memsetParams, ctx) &
-       result(DrvGraphExecMemsetNodeSetParams) &
-       bind(C, name="hipDrvGraphExecMemsetNodeSetParams")
-       import :: c_ptr, hipMemsetParams, hipSuccess
-       type(c_ptr), value :: hGraphExec
-       type(c_ptr), value :: hNode
-       type(hipMemsetParams) :: memsetParams
-       type(c_ptr), value :: ctx
-       integer(kind(hipSuccess)) :: DrvGraphExecMemsetNodeSetParams
-    end function hipDrvGraphExecMemsetNodeSetParams
-
-    !---------------------------------------------
-    ! hipMemAddressFree
-    !---------------------------------------------
-    function hipMemAddressFree(devPtr, mySize) &
-       result(MemAddressFree) &
-       bind(C, name="hipMemAddressFree")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: devPtr
-       integer(c_size_t), value :: mySize
-       integer(kind(hipSuccess)) :: MemAddressFree
-    end function hipMemAddressFree
-
-    !---------------------------------------------
-    ! hipMemAddressReserve
-    !---------------------------------------------
-    function hipMemAddressReserve(ptr, mySize, alignment, addr, flags) &
-       result(MemAddressReserve) &
-       bind(C, name="hipMemAddressReserve")
-       import :: c_ptr, c_size_t, c_int64_t, hipSuccess
-       type(c_ptr) :: ptr
-       integer(c_size_t), value :: mySize
-       integer(c_size_t), value :: alignment
-       type(c_ptr), value :: addr
-       integer(c_int64_t), value :: flags
-       integer(kind(hipSuccess)) :: MemAddressReserve
-    end function hipMemAddressReserve
-
-    !---------------------------------------------
-    ! hipMemCreate
-    !---------------------------------------------
-    function hipMemCreate(handle, mySize, prop, flags) &
-       result(MemCreate) &
-       bind(C, name="hipMemCreate")
-       import :: c_ptr, c_size_t, hipMemAllocationProp, c_int64_t, hipSuccess
-       type(c_ptr) :: handle
-       integer(c_size_t), value :: mySize
-       type(hipMemAllocationProp) :: prop
-       integer(c_int64_t), value :: flags
-       integer(kind(hipSuccess)) :: MemCreate
-    end function hipMemCreate
-
-    !---------------------------------------------
-    ! hipMemExportToShareableHandle
-    !---------------------------------------------
-    function hipMemExportToShareableHandle(shareableHandle, handle, handleType, flags) &
-       result(MemExportToShareableHandle) &
-       bind(C, name="hipMemExportToShareableHandle")
-       import :: c_ptr, hipMemHandleTypeNone, c_int64_t, hipSuccess
-       type(c_ptr), value :: shareableHandle
-       type(c_ptr), value :: handle
-       integer(kind(hipMemHandleTypeNone)), value :: handleType
-       integer(c_int64_t), value :: flags
-       integer(kind(hipSuccess)) :: MemExportToShareableHandle
-    end function hipMemExportToShareableHandle
-
-    !---------------------------------------------
-    ! hipMemGetAccess
-    !---------------------------------------------
-    function hipMemGetAccess(flags, location, ptr) &
-       result(MemGetAccess) &
-       bind(C, name="hipMemGetAccess")
-       import :: c_ptr, hipMemLocation, hipSuccess
-       type(c_ptr), value :: flags
-       type(hipMemLocation) :: location
-       type(c_ptr), value :: ptr
-       integer(kind(hipSuccess)) :: MemGetAccess
-    end function hipMemGetAccess
-
-    !---------------------------------------------
-    ! hipMemGetAllocationGranularity
-    !---------------------------------------------
-    function hipMemGetAllocationGranularity(granularity, prop, option) &
-       result(MemGetAllocationGranularity) &
-       bind(C, name="hipMemGetAllocationGranularity")
-       import :: c_ptr, hipMemAllocationProp, hipMemAllocationGranularityMinimum, hipSuccess
-       type(c_ptr), value :: granularity
-       type(hipMemAllocationProp) :: prop
-       integer(kind(hipMemAllocationGranularityMinimum)), value :: option
-       integer(kind(hipSuccess)) :: MemGetAllocationGranularity
-    end function hipMemGetAllocationGranularity
-
-    !---------------------------------------------
-    ! hipMemGetAllocationPropertiesFromHandle
-    !---------------------------------------------
-    function hipMemGetAllocationPropertiesFromHandle(prop, handle) &
-       result(MemGetAllocationPropertiesFromHandle) &
-       bind(C, name="hipMemGetAllocationPropertiesFromHandle")
-       import :: hipMemAllocationProp, c_ptr, hipSuccess
-       type(hipMemAllocationProp) :: prop
-       type(c_ptr), value :: handle
-       integer(kind(hipSuccess)) :: MemGetAllocationPropertiesFromHandle
-    end function hipMemGetAllocationPropertiesFromHandle
-
-    !---------------------------------------------
-    ! hipMemImportFromShareableHandle
-    !---------------------------------------------
-    function hipMemImportFromShareableHandle(handle, osHandle, shHandleType) &
-       result(MemImportFromShareableHandle) &
-       bind(C, name="hipMemImportFromShareableHandle")
-       import :: c_ptr, hipMemHandleTypeNone, hipSuccess
-       type(c_ptr) :: handle
-       type(c_ptr), value :: osHandle
-       integer(kind(hipMemHandleTypeNone)), value :: shHandleType
-       integer(kind(hipSuccess)) :: MemImportFromShareableHandle
-    end function hipMemImportFromShareableHandle
-
-    !---------------------------------------------
-    ! hipMemMap
-    !---------------------------------------------
-    function hipMemMap(ptr, mySize, offset, handle, flags) &
-       result(MemMap) &
-       bind(C, name="hipMemMap")
-       import :: c_ptr, c_size_t, c_int64_t, hipSuccess
-       type(c_ptr), value :: ptr
-       integer(c_size_t), value :: mySize
-       integer(c_size_t), value :: offset
-       type(c_ptr), value :: handle
-       integer(c_int64_t), value :: flags
-       integer(kind(hipSuccess)) :: MemMap
-    end function hipMemMap
-
-    !---------------------------------------------
-    ! hipMemMapArrayAsync
-    !---------------------------------------------
-    function hipMemMapArrayAsync(mapInfoList, count, stream) &
-       result(MemMapArrayAsync) &
-       bind(C, name="hipMemMapArrayAsync")
-       import :: hipArrayMapInfo, c_int, c_ptr, hipSuccess
-       type(hipArrayMapInfo) :: mapInfoList
-       integer(c_int), value :: count
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemMapArrayAsync
-    end function hipMemMapArrayAsync
-
-    !---------------------------------------------
-    ! hipMemRelease
-    !---------------------------------------------
-    function hipMemRelease(handle) &
-       result(MemRelease) &
-       bind(C, name="hipMemRelease")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: handle
-       integer(kind(hipSuccess)) :: MemRelease
-    end function hipMemRelease
-
-    !---------------------------------------------
-    ! hipMemRetainAllocationHandle
-    !---------------------------------------------
-    function hipMemRetainAllocationHandle(handle, addr) &
-       result(MemRetainAllocationHandle) &
-       bind(C, name="hipMemRetainAllocationHandle")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: handle
-       type(c_ptr), value :: addr
-       integer(kind(hipSuccess)) :: MemRetainAllocationHandle
-    end function hipMemRetainAllocationHandle
-
-    !---------------------------------------------
-    ! hipMemSetAccess
-    !---------------------------------------------
-    function hipMemSetAccess(ptr, mySize, desc, count) &
-       result(MemSetAccess) &
-       bind(C, name="hipMemSetAccess")
-       import :: c_ptr, c_size_t, hipMemAccessDesc, hipSuccess
-       type(c_ptr), value :: ptr
-       integer(c_size_t), value :: mySize
-       type(hipMemAccessDesc) :: desc
-       integer(c_size_t), value :: count
-       integer(kind(hipSuccess)) :: MemSetAccess
-    end function hipMemSetAccess
-
-    !---------------------------------------------
-    ! hipMemUnmap
-    !---------------------------------------------
-    function hipMemUnmap(ptr, mySize) &
-       result(MemUnmap) &
-       bind(C, name="hipMemUnmap")
-       import :: c_ptr, c_size_t, hipSuccess
-       type(c_ptr), value :: ptr
-       integer(c_size_t), value :: mySize
-       integer(kind(hipSuccess)) :: MemUnmap
-    end function hipMemUnmap
-
-    !---------------------------------------------
-    ! hipGraphicsMapResources
-    !---------------------------------------------
-    function hipGraphicsMapResources(count, resources, stream) &
-       result(GraphicsMapResources) &
-       bind(C, name="hipGraphicsMapResources")
-       import :: c_int, c_ptr, hipSuccess
-       integer(c_int), value :: count
-       type(c_ptr) :: resources
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: GraphicsMapResources
-    end function hipGraphicsMapResources
-
-    !---------------------------------------------
-    ! hipGraphicsSubResourceGetMappedArray
-    !---------------------------------------------
-    function hipGraphicsSubResourceGetMappedArray(array, resource, arrayIndex, mipLevel) &
-       result(GraphicsSubResourceGetMappedArray) &
-       bind(C, name="hipGraphicsSubResourceGetMappedArray")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr) :: array
-       type(c_ptr), value :: resource
-       integer(c_int), value :: arrayIndex
-       integer(c_int), value :: mipLevel
-       integer(kind(hipSuccess)) :: GraphicsSubResourceGetMappedArray
-    end function hipGraphicsSubResourceGetMappedArray
-
-    !---------------------------------------------
-    ! hipGraphicsResourceGetMappedPointer
-    !---------------------------------------------
-    function hipGraphicsResourceGetMappedPointer(devPtr, mySize, resource) &
-       result(GraphicsResourceGetMappedPointer) &
-       bind(C, name="hipGraphicsResourceGetMappedPointer")
-       import :: c_ptr, hipSuccess
-       type(c_ptr) :: devPtr
-       type(c_ptr), value :: mySize
-       type(c_ptr), value :: resource
-       integer(kind(hipSuccess)) :: GraphicsResourceGetMappedPointer
-    end function hipGraphicsResourceGetMappedPointer
-
-    !---------------------------------------------
-    ! hipGraphicsUnmapResources
-    !---------------------------------------------
-    function hipGraphicsUnmapResources(count, resources, stream) &
-       result(GraphicsUnmapResources) &
-       bind(C, name="hipGraphicsUnmapResources")
-       import :: c_int, c_ptr, hipSuccess
-       integer(c_int), value :: count
-       type(c_ptr) :: resources
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: GraphicsUnmapResources
-    end function hipGraphicsUnmapResources
-
-    !---------------------------------------------
-    ! hipGraphicsUnregisterResource
-    !---------------------------------------------
-    function hipGraphicsUnregisterResource(resource) &
-       result(GraphicsUnregisterResource) &
-       bind(C, name="hipGraphicsUnregisterResource")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: resource
-       integer(kind(hipSuccess)) :: GraphicsUnregisterResource
-    end function hipGraphicsUnregisterResource
-
-    !---------------------------------------------
-    ! hipCreateSurfaceObject
-    !---------------------------------------------
-    function hipCreateSurfaceObject(pSurfObject, pResDesc) &
-       result(CreateSurfaceObject) &
-       bind(C, name="hipCreateSurfaceObject")
-       import :: c_ptr, hipResourceDesc, hipSuccess
-       type(c_ptr) :: pSurfObject
-       type(hipResourceDesc) :: pResDesc
-       integer(kind(hipSuccess)) :: CreateSurfaceObject
-    end function hipCreateSurfaceObject
-
-    !---------------------------------------------
-    ! hipDestroySurfaceObject
-    !---------------------------------------------
-    function hipDestroySurfaceObject(surfaceObject) &
-       result(DestroySurfaceObject) &
-       bind(C, name="hipDestroySurfaceObject")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: surfaceObject
-       integer(kind(hipSuccess)) :: DestroySurfaceObject
-    end function hipDestroySurfaceObject
-
-    !---------------------------------------------
-    ! hipExtEnableLogging
-    !---------------------------------------------
-    function hipExtEnableLogging() &
-       result(ExtEnableLogging) &
-       bind(C, name="hipExtEnableLogging")
-       import :: hipSuccess
-       integer(kind(hipSuccess)) :: ExtEnableLogging
-    end function hipExtEnableLogging
-
-    !---------------------------------------------
-    ! hipExtDisableLogging
-    !---------------------------------------------
-    function hipExtDisableLogging() &
-       result(ExtDisableLogging) &
-       bind(C, name="hipExtDisableLogging")
-       import :: hipSuccess
-       integer(kind(hipSuccess)) :: ExtDisableLogging
-    end function hipExtDisableLogging
-
-    !---------------------------------------------
-    ! hipExtSetLoggingParams
-    !---------------------------------------------
-    function hipExtSetLoggingParams(log_level, log_size, log_mask) &
-       result(ExtSetLoggingParams) &
-       bind(C, name="hipExtSetLoggingParams")
-       import :: c_size_t, hipSuccess
-       integer(c_size_t), value :: log_level
-       integer(c_size_t), value :: log_size
-       integer(c_size_t), value :: log_mask
-       integer(kind(hipSuccess)) :: ExtSetLoggingParams
-    end function hipExtSetLoggingParams
-
-    !---------------------------------------------
-    ! hipMemcpy_spt
-    !---------------------------------------------
-    function hipMemcpy_spt(dst, src, sizeBytes, myKind) &
-       result(Memcpy_spt) &
-       bind(C, name="hipMemcpy_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: Memcpy_spt
-    end function hipMemcpy_spt
-
-    !---------------------------------------------
-    ! hipMemcpyToSymbol_spt
-    !---------------------------------------------
-    function hipMemcpyToSymbol_spt(symbol, src, sizeBytes, offset, myKind) &
-       result(MemcpyToSymbol_spt) &
-       bind(C, name="hipMemcpyToSymbol_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: symbol
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: MemcpyToSymbol_spt
-    end function hipMemcpyToSymbol_spt
-
-    !---------------------------------------------
-    ! hipMemcpyFromSymbol_spt
-    !---------------------------------------------
-    function hipMemcpyFromSymbol_spt(dst, symbol, sizeBytes, offset, myKind) &
-       result(MemcpyFromSymbol_spt) &
-       bind(C, name="hipMemcpyFromSymbol_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: symbol
-       integer(c_size_t), value :: sizeBytes
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: MemcpyFromSymbol_spt
-    end function hipMemcpyFromSymbol_spt
-
-    !---------------------------------------------
-    ! hipMemcpy2D_spt
-    !---------------------------------------------
-    function hipMemcpy2D_spt(dst, dpitch, src, spitch, width, height, myKind) &
-       result(Memcpy2D_spt) &
-       bind(C, name="hipMemcpy2D_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: dpitch
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: spitch
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: Memcpy2D_spt
-    end function hipMemcpy2D_spt
-
-    !---------------------------------------------
-    ! hipMemcpy2DFromArray_spt
-    !---------------------------------------------
-    function hipMemcpy2DFromArray_spt(dst, dpitch, src, wOffset, hOffset, width, height, myKind) &
-       result(Memcpy2DFromArray_spt) &
-       bind(C, name="hipMemcpy2DFromArray_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: dpitch
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: wOffset
-       integer(c_size_t), value :: hOffset
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: Memcpy2DFromArray_spt
-    end function hipMemcpy2DFromArray_spt
-
-    !---------------------------------------------
-    ! hipMemcpy3D_spt
-    !---------------------------------------------
-    function hipMemcpy3D_spt(p) &
-       result(Memcpy3D_spt) &
-       bind(C, name="hipMemcpy3D_spt")
-       import :: hipMemcpy3DParms, hipSuccess
-       type(hipMemcpy3DParms) :: p
-       integer(kind(hipSuccess)) :: Memcpy3D_spt
-    end function hipMemcpy3D_spt
-
-    !---------------------------------------------
-    ! hipMemset_spt
-    !---------------------------------------------
-    function hipMemset_spt(dst, myValue, sizeBytes) &
-       result(Memset_spt) &
-       bind(C, name="hipMemset_spt")
-       import :: c_ptr, c_int, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_int), value :: myValue
-       integer(c_size_t), value :: sizeBytes
-       integer(kind(hipSuccess)) :: Memset_spt
-    end function hipMemset_spt
-
-    !---------------------------------------------
-    ! hipMemsetAsync_spt
-    !---------------------------------------------
-    function hipMemsetAsync_spt(dst, myValue, sizeBytes, stream) &
-       result(MemsetAsync_spt) &
-       bind(C, name="hipMemsetAsync_spt")
-       import :: c_ptr, c_int, c_size_t, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_int), value :: myValue
-       integer(c_size_t), value :: sizeBytes
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemsetAsync_spt
-    end function hipMemsetAsync_spt
-
-    !---------------------------------------------
-    ! hipMemset2D_spt
-    !---------------------------------------------
-    function hipMemset2D_spt(dst, pitch, myValue, width, height) &
-       result(Memset2D_spt) &
-       bind(C, name="hipMemset2D_spt")
-       import :: c_ptr, c_size_t, c_int, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: pitch
-       integer(c_int), value :: myValue
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipSuccess)) :: Memset2D_spt
-    end function hipMemset2D_spt
-
-    !---------------------------------------------
-    ! hipMemset2DAsync_spt
-    !---------------------------------------------
-    function hipMemset2DAsync_spt(dst, pitch, myValue, width, height, stream) &
-       result(Memset2DAsync_spt) &
-       bind(C, name="hipMemset2DAsync_spt")
-       import :: c_ptr, c_size_t, c_int, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: pitch
-       integer(c_int), value :: myValue
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memset2DAsync_spt
-    end function hipMemset2DAsync_spt
-
-    !---------------------------------------------
-    ! hipMemset3DAsync_spt
-    !---------------------------------------------
-    function hipMemset3DAsync_spt(pitchedDevPtr, myValue, extent, stream) &
-       result(Memset3DAsync_spt) &
-       bind(C, name="hipMemset3DAsync_spt")
-       import :: hipPitchedPtr, c_int, hipExtent, c_ptr, hipSuccess
-       type(hipPitchedPtr), value :: pitchedDevPtr
-       integer(c_int), value :: myValue
-       type(hipExtent), value :: extent
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memset3DAsync_spt
-    end function hipMemset3DAsync_spt
-
-    !---------------------------------------------
-    ! hipMemset3D_spt
-    !---------------------------------------------
-    function hipMemset3D_spt(pitchedDevPtr, myValue, extent) &
-       result(Memset3D_spt) &
-       bind(C, name="hipMemset3D_spt")
-       import :: hipPitchedPtr, c_int, hipExtent, hipSuccess
-       type(hipPitchedPtr), value :: pitchedDevPtr
-       integer(c_int), value :: myValue
-       type(hipExtent), value :: extent
-       integer(kind(hipSuccess)) :: Memset3D_spt
-    end function hipMemset3D_spt
-
-    !---------------------------------------------
-    ! hipMemcpyAsync_spt
-    !---------------------------------------------
-    function hipMemcpyAsync_spt(dst, src, sizeBytes, myKind, stream) &
-       result(MemcpyAsync_spt) &
-       bind(C, name="hipMemcpyAsync_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyAsync_spt
-    end function hipMemcpyAsync_spt
-
-    !---------------------------------------------
-    ! hipMemcpy3DAsync_spt
-    !---------------------------------------------
-    function hipMemcpy3DAsync_spt(p, stream) &
-       result(Memcpy3DAsync_spt) &
-       bind(C, name="hipMemcpy3DAsync_spt")
-       import :: hipMemcpy3DParms, c_ptr, hipSuccess
-       type(hipMemcpy3DParms) :: p
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memcpy3DAsync_spt
-    end function hipMemcpy3DAsync_spt
-
-    !---------------------------------------------
-    ! hipMemcpy2DAsync_spt
-    !---------------------------------------------
-    function hipMemcpy2DAsync_spt(dst, dpitch, src, spitch, width, height, myKind, stream) &
-       result(Memcpy2DAsync_spt) &
-       bind(C, name="hipMemcpy2DAsync_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: dpitch
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: spitch
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memcpy2DAsync_spt
-    end function hipMemcpy2DAsync_spt
-
-    !---------------------------------------------
-    ! hipMemcpyFromSymbolAsync_spt
-    !---------------------------------------------
-    function hipMemcpyFromSymbolAsync_spt(dst, symbol, sizeBytes, offset, myKind, stream) &
-       result(MemcpyFromSymbolAsync_spt) &
-       bind(C, name="hipMemcpyFromSymbolAsync_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: symbol
-       integer(c_size_t), value :: sizeBytes
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyFromSymbolAsync_spt
-    end function hipMemcpyFromSymbolAsync_spt
-
-    !---------------------------------------------
-    ! hipMemcpyToSymbolAsync_spt
-    !---------------------------------------------
-    function hipMemcpyToSymbolAsync_spt(symbol, src, sizeBytes, offset, myKind, stream) &
-       result(MemcpyToSymbolAsync_spt) &
-       bind(C, name="hipMemcpyToSymbolAsync_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: symbol
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: sizeBytes
-       integer(c_size_t), value :: offset
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: MemcpyToSymbolAsync_spt
-    end function hipMemcpyToSymbolAsync_spt
-
-    !---------------------------------------------
-    ! hipMemcpyFromArray_spt
-    !---------------------------------------------
-    function hipMemcpyFromArray_spt(dst, src, wOffsetSrc, hOffset, count, myKind) &
-       result(MemcpyFromArray_spt) &
-       bind(C, name="hipMemcpyFromArray_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: wOffsetSrc
-       integer(c_size_t), value :: hOffset
-       integer(c_size_t), value :: count
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: MemcpyFromArray_spt
-    end function hipMemcpyFromArray_spt
-
-    !---------------------------------------------
-    ! hipMemcpy2DToArray_spt
-    !---------------------------------------------
-    function hipMemcpy2DToArray_spt(dst, wOffset, hOffset, src, spitch, width, height, myKind) &
-       result(Memcpy2DToArray_spt) &
-       bind(C, name="hipMemcpy2DToArray_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: wOffset
-       integer(c_size_t), value :: hOffset
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: spitch
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       integer(kind(hipSuccess)) :: Memcpy2DToArray_spt
-    end function hipMemcpy2DToArray_spt
-
-    !---------------------------------------------
-    ! hipMemcpy2DFromArrayAsync_spt
-    !---------------------------------------------
-    function hipMemcpy2DFromArrayAsync_spt(dst, dpitch, src, wOffsetSrc, hOffsetSrc, width, &
-                                           height, myKind, stream) &
-       result(Memcpy2DFromArrayAsync_spt) &
-       bind(C, name="hipMemcpy2DFromArrayAsync_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: dpitch
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: wOffsetSrc
-       integer(c_size_t), value :: hOffsetSrc
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memcpy2DFromArrayAsync_spt
-    end function hipMemcpy2DFromArrayAsync_spt
-
-    !---------------------------------------------
-    ! hipMemcpy2DToArrayAsync_spt
-    !---------------------------------------------
-    function hipMemcpy2DToArrayAsync_spt(dst, wOffset, hOffset, src, spitch, width, height, &
-                                         myKind, stream) &
-       result(Memcpy2DToArrayAsync_spt) &
-       bind(C, name="hipMemcpy2DToArrayAsync_spt")
-       import :: c_ptr, c_size_t, hipMemcpyHostToHost, hipSuccess
-       type(c_ptr), value :: dst
-       integer(c_size_t), value :: wOffset
-       integer(c_size_t), value :: hOffset
-       type(c_ptr), value :: src
-       integer(c_size_t), value :: spitch
-       integer(c_size_t), value :: width
-       integer(c_size_t), value :: height
-       integer(kind(hipMemcpyHostToHost)), value :: myKind
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: Memcpy2DToArrayAsync_spt
-    end function hipMemcpy2DToArrayAsync_spt
-
-    !---------------------------------------------
-    ! hipStreamQuery_spt
-    !---------------------------------------------
-    function hipStreamQuery_spt(stream) &
-       result(StreamQuery_spt) &
-       bind(C, name="hipStreamQuery_spt")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: StreamQuery_spt
-    end function hipStreamQuery_spt
-
-    !---------------------------------------------
-    ! hipStreamSynchronize_spt
-    !---------------------------------------------
-    function hipStreamSynchronize_spt(stream) &
-       result(StreamSynchronize_spt) &
-       bind(C, name="hipStreamSynchronize_spt")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: StreamSynchronize_spt
-    end function hipStreamSynchronize_spt
-
-    !---------------------------------------------
-    ! hipStreamGetPriority_spt
-    !---------------------------------------------
-    function hipStreamGetPriority_spt(stream, priority) &
-       result(StreamGetPriority_spt) &
-       bind(C, name="hipStreamGetPriority_spt")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: priority
-       integer(kind(hipSuccess)) :: StreamGetPriority_spt
-    end function hipStreamGetPriority_spt
-
-    !---------------------------------------------
-    ! hipStreamWaitEvent_spt
-    !---------------------------------------------
-    function hipStreamWaitEvent_spt(stream, event, flags) &
-       result(StreamWaitEvent_spt) &
-       bind(C, name="hipStreamWaitEvent_spt")
-       import :: c_ptr, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: event
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: StreamWaitEvent_spt
-    end function hipStreamWaitEvent_spt
-
-    !---------------------------------------------
-    ! hipStreamGetFlags_spt
-    !---------------------------------------------
-    function hipStreamGetFlags_spt(stream, flags) &
-       result(StreamGetFlags_spt) &
-       bind(C, name="hipStreamGetFlags_spt")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: flags
-       integer(kind(hipSuccess)) :: StreamGetFlags_spt
-    end function hipStreamGetFlags_spt
-
-    !---------------------------------------------
-    ! hipStreamAddCallback_spt
-    !---------------------------------------------
-    function hipStreamAddCallback_spt(stream, callback, userData, flags) &
-       result(StreamAddCallback_spt) &
-       bind(C, name="hipStreamAddCallback_spt")
-       import :: c_ptr, c_funptr, c_int, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_funptr), value :: callback
-       type(c_ptr), value :: userData
-       integer(c_int), value :: flags
-       integer(kind(hipSuccess)) :: StreamAddCallback_spt
-    end function hipStreamAddCallback_spt
-
-    !---------------------------------------------
-    ! hipEventRecord_spt
-    !---------------------------------------------
-    function hipEventRecord_spt(event, stream) &
-       result(EventRecord_spt) &
-       bind(C, name="hipEventRecord_spt")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: event
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: EventRecord_spt
-    end function hipEventRecord_spt
-
-    !---------------------------------------------
-    ! hipLaunchCooperativeKernel_spt
-    !---------------------------------------------
-    function hipLaunchCooperativeKernel_spt(f, gridDim, blockDim, kernelParams, sharedMemBytes, &
-                                            hStream) &
-       result(LaunchCooperativeKernel_spt) &
-       bind(C, name="hipLaunchCooperativeKernel_spt")
-       import :: c_ptr, dim3, c_int32_t, hipSuccess
-       type(c_ptr), value :: f
-       type(dim3), value :: gridDim
-       type(dim3), value :: blockDim
-       type(c_ptr) :: kernelParams
-       integer(c_int32_t), value :: sharedMemBytes
-       type(c_ptr), value :: hStream
-       integer(kind(hipSuccess)) :: LaunchCooperativeKernel_spt
-    end function hipLaunchCooperativeKernel_spt
-
-    !---------------------------------------------
-    ! hipLaunchKernel_spt
-    !---------------------------------------------
-    function hipLaunchKernel_spt(function_address, numBlocks, dimBlocks, args, sharedMemBytes, &
-                                 stream) &
-       result(LaunchKernel_spt) &
-       bind(C, name="hipLaunchKernel_spt")
-       import :: c_ptr, dim3, c_size_t, hipSuccess
-       type(c_ptr), value :: function_address
-       type(dim3), value :: numBlocks
-       type(dim3), value :: dimBlocks
-       type(c_ptr) :: args
-       integer(c_size_t), value :: sharedMemBytes
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: LaunchKernel_spt
-    end function hipLaunchKernel_spt
-
-    !---------------------------------------------
-    ! hipGraphLaunch_spt
-    !---------------------------------------------
-    function hipGraphLaunch_spt(graphExec, stream) &
-       result(GraphLaunch_spt) &
-       bind(C, name="hipGraphLaunch_spt")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: graphExec
-       type(c_ptr), value :: stream
-       integer(kind(hipSuccess)) :: GraphLaunch_spt
-    end function hipGraphLaunch_spt
-
-    !---------------------------------------------
-    ! hipStreamBeginCapture_spt
-    !---------------------------------------------
-    function hipStreamBeginCapture_spt(stream, mode) &
-       result(StreamBeginCapture_spt) &
-       bind(C, name="hipStreamBeginCapture_spt")
-       import :: c_ptr, hipStreamCaptureModeGlobal, hipSuccess
-       type(c_ptr), value :: stream
-       integer(kind(hipStreamCaptureModeGlobal)), value :: mode
-       integer(kind(hipSuccess)) :: StreamBeginCapture_spt
-    end function hipStreamBeginCapture_spt
-
-    !---------------------------------------------
-    ! hipStreamEndCapture_spt
-    !---------------------------------------------
-    function hipStreamEndCapture_spt(stream, pGraph) &
-       result(StreamEndCapture_spt) &
-       bind(C, name="hipStreamEndCapture_spt")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr) :: pGraph
-       integer(kind(hipSuccess)) :: StreamEndCapture_spt
-    end function hipStreamEndCapture_spt
-
-    !---------------------------------------------
-    ! hipStreamIsCapturing_spt
-    !---------------------------------------------
-    function hipStreamIsCapturing_spt(stream, pCaptureStatus) &
-       result(StreamIsCapturing_spt) &
-       bind(C, name="hipStreamIsCapturing_spt")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: pCaptureStatus
-       integer(kind(hipSuccess)) :: StreamIsCapturing_spt
-    end function hipStreamIsCapturing_spt
-
-    !---------------------------------------------
-    ! hipStreamGetCaptureInfo_spt
-    !---------------------------------------------
-    function hipStreamGetCaptureInfo_spt(stream, pCaptureStatus, pId) &
-       result(StreamGetCaptureInfo_spt) &
-       bind(C, name="hipStreamGetCaptureInfo_spt")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: pCaptureStatus
-       type(c_ptr), value :: pId
-       integer(kind(hipSuccess)) :: StreamGetCaptureInfo_spt
-    end function hipStreamGetCaptureInfo_spt
-
-    !---------------------------------------------
-    ! hipStreamGetCaptureInfo_v2_spt
-    !---------------------------------------------
-    function hipStreamGetCaptureInfo_v2_spt(stream, captureStatus_out, id_out, graph_out, &
-                                            dependencies_out, numDependencies_out) &
-       result(StreamGetCaptureInfo_v2_spt) &
-       bind(C, name="hipStreamGetCaptureInfo_v2_spt")
-       import :: c_ptr, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_ptr), value :: captureStatus_out
-       type(c_ptr), value :: id_out
-       type(c_ptr) :: graph_out
-       type(c_ptr) :: dependencies_out
-       type(c_ptr), value :: numDependencies_out
-       integer(kind(hipSuccess)) :: StreamGetCaptureInfo_v2_spt
-    end function hipStreamGetCaptureInfo_v2_spt
-
-    !---------------------------------------------
-    ! hipLaunchHostFunc_spt
-    !---------------------------------------------
-    function hipLaunchHostFunc_spt(stream, fn, userData) &
-       result(LaunchHostFunc_spt) &
-       bind(C, name="hipLaunchHostFunc_spt")
-       import :: c_ptr, c_funptr, hipSuccess
-       type(c_ptr), value :: stream
-       type(c_funptr), value :: fn
-       type(c_ptr), value :: userData
-       integer(kind(hipSuccess)) :: LaunchHostFunc_spt
-    end function hipLaunchHostFunc_spt
-
-    !---------------------------------------------
-    ! hipGetDriverEntryPoint_spt
-    !---------------------------------------------
-    function hipGetDriverEntryPoint_spt(symbol, funcPtr, flags, status) &
-       result(GetDriverEntryPoint_spt) &
-       bind(C, name="hipGetDriverEntryPoint_spt")
-       import :: c_ptr, c_int64_t, hipSuccess
-       type(c_ptr), value :: symbol
-       type(c_ptr) :: funcPtr
-       integer(c_int64_t), value :: flags
-       type(c_ptr), value :: status
-       integer(kind(hipSuccess)) :: GetDriverEntryPoint_spt
-    end function hipGetDriverEntryPoint_spt
-
-    !---------------------------------------------
-    ! hipGetProcAddress_spt
-    !---------------------------------------------
-    function hipGetProcAddress_spt(symbol, pfn, hipVersion, flags, symbolStatus) &
-       result(GetProcAddress_spt) &
-       bind(C, name="hipGetProcAddress_spt")
-       import :: c_ptr, c_int, c_int64_t, hipSuccess
-       type(c_ptr), value :: symbol
-       type(c_ptr) :: pfn
-       integer(c_int), value :: hipVersion
-       integer(c_int64_t), value :: flags
-       type(c_ptr), value :: symbolStatus
-       integer(kind(hipSuccess)) :: GetProcAddress_spt
-    end function hipGetProcAddress_spt
-
+    function hipModuleGetGlobal_(dptr,bytes,hmod,name) bind(c, name="hipModuleGetGlobal")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleGetGlobal_
+      type(c_ptr),value :: dptr
+      type(c_ptr),value :: bytes
+      type(c_ptr),value :: hmod
+      type(c_ptr),value :: name
+    end function
+  end interface
+
+  interface hipModuleGetGlobal
+
+    module procedure &
+      hipModuleGetGlobal_opt,&
+      hipModuleGetGlobal_typed
+  end interface
+
+  interface hipGetSymbolAddress
+    function hipGetSymbolAddress_(devPtr,symbol) bind(c, name="hipGetSymbolAddress")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetSymbolAddress_
+      type(c_ptr) :: devPtr
+      type(c_ptr),value :: symbol
+    end function
+  end interface
+
+  interface hipGetSymbolSize
+    function hipGetSymbolSize_(mySize,symbol) bind(c, name="hipGetSymbolSize")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetSymbolSize_
+      type(c_ptr),value :: mySize
+      type(c_ptr),value :: symbol
+    end function
+
+    module procedure hipGetSymbolSize_typed
+  end interface
+
+  interface hipGetProcAddress
+    function hipGetProcAddress_(symbol,pfn,hipVersion,flags,symbolStatus) &
+        bind(c, name="hipGetProcAddress")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetProcAddress_
+      type(c_ptr),value :: symbol
+      type(c_ptr) :: pfn
+      integer(c_int),value :: hipVersion
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: symbolStatus
+    end function
+
+    module procedure hipGetProcAddress_typed
+  end interface
+
+  interface hipMemcpyToSymbol
+    function hipMemcpyToSymbol_(symbol,src,sizeBytes,offset,myKind) &
+        bind(c, name="hipMemcpyToSymbol")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyToSymbol_
+      type(c_ptr),value :: symbol
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpyToSymbolAsync
+    function hipMemcpyToSymbolAsync_(symbol,src,sizeBytes,offset,myKind,stream) &
+        bind(c, name="hipMemcpyToSymbolAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyToSymbolAsync_
+      type(c_ptr),value :: symbol
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpyFromSymbol
+    function hipMemcpyFromSymbol_(dst,symbol,sizeBytes,offset,myKind) &
+        bind(c, name="hipMemcpyFromSymbol")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyFromSymbol_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: symbol
+      integer(c_size_t),value :: sizeBytes
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpyFromSymbolAsync
+    function hipMemcpyFromSymbolAsync_(dst,symbol,sizeBytes,offset,myKind,stream) &
+        bind(c, name="hipMemcpyFromSymbolAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyFromSymbolAsync_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: symbol
+      integer(c_size_t),value :: sizeBytes
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemset
+    function hipMemset_(dst,myValue,sizeBytes) bind(c, name="hipMemset")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemset_
+      type(c_ptr),value :: dst
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: sizeBytes
+    end function
+  end interface
+
+  interface hipMemsetD8
+    function hipMemsetD8_(dest,myValue,count) bind(c, name="hipMemsetD8")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetD8_
+      type(c_ptr),value :: dest
+      character(c_char),value :: myValue
+      integer(c_size_t),value :: count
+    end function
+  end interface
+
+  interface hipMemsetD8Async
+    function hipMemsetD8Async_(dest,myValue,count,stream) bind(c, name="hipMemsetD8Async")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetD8Async_
+      type(c_ptr),value :: dest
+      character(c_char),value :: myValue
+      integer(c_size_t),value :: count
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemsetD16
+    function hipMemsetD16_(dest,myValue,count) bind(c, name="hipMemsetD16")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetD16_
+      type(c_ptr),value :: dest
+      integer(c_short),value :: myValue
+      integer(c_size_t),value :: count
+    end function
+  end interface
+
+  interface hipMemsetD16Async
+    function hipMemsetD16Async_(dest,myValue,count,stream) bind(c, name="hipMemsetD16Async")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetD16Async_
+      type(c_ptr),value :: dest
+      integer(c_short),value :: myValue
+      integer(c_size_t),value :: count
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemsetD32
+    function hipMemsetD32_(dest,myValue,count) bind(c, name="hipMemsetD32")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetD32_
+      type(c_ptr),value :: dest
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: count
+    end function
+  end interface
+
+  interface hipMemsetAsync
+    function hipMemsetAsync_(dst,myValue,sizeBytes,stream) bind(c, name="hipMemsetAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetAsync_
+      type(c_ptr),value :: dst
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: sizeBytes
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemsetD32Async
+    function hipMemsetD32Async_(dst,myValue,count,stream) bind(c, name="hipMemsetD32Async")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetD32Async_
+      type(c_ptr),value :: dst
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: count
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemset2D
+    function hipMemset2D_(dst,pitch,myValue,width,height) bind(c, name="hipMemset2D")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemset2D_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: pitch
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+    end function
+  end interface
+
+  interface hipMemset2DAsync
+    function hipMemset2DAsync_(dst,pitch,myValue,width,height,stream) &
+        bind(c, name="hipMemset2DAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemset2DAsync_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: pitch
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemset3D
+    function hipMemset3D_(pitchedDevPtr,myValue,extent) bind(c, name="hipMemset3D")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemset3D_
+      type(hipPitchedPtr),value :: pitchedDevPtr
+      integer(c_int),value :: myValue
+      type(hipExtent),value :: extent
+    end function
+  end interface
+
+  interface hipMemset3DAsync
+    function hipMemset3DAsync_(pitchedDevPtr,myValue,extent,stream) bind(c, name="hipMemset3DAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemset3DAsync_
+      type(hipPitchedPtr),value :: pitchedDevPtr
+      integer(c_int),value :: myValue
+      type(hipExtent),value :: extent
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemsetD2D8
+    function hipMemsetD2D8_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D8")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetD2D8_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dstPitch
+      character(c_char),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+    end function
+  end interface
+
+  interface hipMemsetD2D8Async
+    function hipMemsetD2D8Async_(dst,dstPitch,myValue,width,height,stream) &
+        bind(c, name="hipMemsetD2D8Async")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetD2D8Async_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dstPitch
+      character(c_char),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemsetD2D16
+    function hipMemsetD2D16_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D16")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetD2D16_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dstPitch
+      integer(c_short),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+    end function
+  end interface
+
+  interface hipMemsetD2D16Async
+    function hipMemsetD2D16Async_(dst,dstPitch,myValue,width,height,stream) &
+        bind(c, name="hipMemsetD2D16Async")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetD2D16Async_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dstPitch
+      integer(c_short),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemsetD2D32
+    function hipMemsetD2D32_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D32")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetD2D32_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dstPitch
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+    end function
+  end interface
+
+  interface hipMemsetD2D32Async
+    function hipMemsetD2D32Async_(dst,dstPitch,myValue,width,height,stream) &
+        bind(c, name="hipMemsetD2D32Async")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetD2D32Async_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dstPitch
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemGetInfo
+    function hipMemGetInfo_(free,total) bind(c, name="hipMemGetInfo")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemGetInfo_
+      type(c_ptr),value :: free
+      type(c_ptr),value :: total
+    end function
+
+    module procedure hipMemGetInfo_typed
+  end interface
+
+  interface hipMemPtrGetInfo
+    function hipMemPtrGetInfo_(ptr,mySize) bind(c, name="hipMemPtrGetInfo")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemPtrGetInfo_
+      type(c_ptr),value :: ptr
+      type(c_ptr),value :: mySize
+    end function
+
+    module procedure hipMemPtrGetInfo_typed
+  end interface
+
+  interface hipMallocArray
+    function hipMallocArray_(array,desc,width,height,flags) bind(c, name="hipMallocArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMallocArray_
+      type(c_ptr) :: array
+      type(hipChannelFormatDesc) :: desc
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipArrayCreate
+    function hipArrayCreate_(pHandle,pAllocateArray) bind(c, name="hipArrayCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipArrayCreate_
+      type(c_ptr) :: pHandle
+      type(HIP_ARRAY_DESCRIPTOR) :: pAllocateArray
+    end function
+  end interface
+
+  interface hipArrayDestroy
+    function hipArrayDestroy_(array) bind(c, name="hipArrayDestroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipArrayDestroy_
+      type(c_ptr),value :: array
+    end function
+  end interface
+
+  interface hipArray3DCreate
+    function hipArray3DCreate_(array,pAllocateArray) bind(c, name="hipArray3DCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipArray3DCreate_
+      type(c_ptr) :: array
+      type(HIP_ARRAY3D_DESCRIPTOR) :: pAllocateArray
+    end function
+  end interface
+
+  interface hipMalloc3D
+    function hipMalloc3D_(pitchedDevPtr,extent) bind(c, name="hipMalloc3D")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMalloc3D_
+      type(hipPitchedPtr) :: pitchedDevPtr
+      type(hipExtent),value :: extent
+    end function
+  end interface
+
+  interface hipFreeArray
+    function hipFreeArray_(array) bind(c, name="hipFreeArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipFreeArray_
+      type(c_ptr),value :: array
+    end function
+  end interface
+
+  interface hipMalloc3DArray
+    function hipMalloc3DArray_(array,desc,extent,flags) bind(c, name="hipMalloc3DArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMalloc3DArray_
+      type(c_ptr) :: array
+      type(hipChannelFormatDesc) :: desc
+      type(hipExtent),value :: extent
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipArrayGetInfo
+    function hipArrayGetInfo_(desc,extent,flags,array) bind(c, name="hipArrayGetInfo")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipArrayGetInfo_
+      type(hipChannelFormatDesc) :: desc
+      type(hipExtent) :: extent
+      type(c_ptr),value :: flags
+      type(c_ptr),value :: array
+    end function
+
+    module procedure hipArrayGetInfo_typed
+  end interface
+
+  interface hipArrayGetDescriptor
+    function hipArrayGetDescriptor_(pArrayDescriptor,array) bind(c, name="hipArrayGetDescriptor")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipArrayGetDescriptor_
+      type(HIP_ARRAY_DESCRIPTOR) :: pArrayDescriptor
+      type(c_ptr),value :: array
+    end function
+  end interface
+
+  interface hipArray3DGetDescriptor
+    function hipArray3DGetDescriptor_(pArrayDescriptor,array) &
+        bind(c, name="hipArray3DGetDescriptor")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipArray3DGetDescriptor_
+      type(HIP_ARRAY3D_DESCRIPTOR) :: pArrayDescriptor
+      type(c_ptr),value :: array
+    end function
+  end interface
+
+  interface hipMemcpyParam2D
+    function hipMemcpyParam2D_(pCopy) bind(c, name="hipMemcpyParam2D")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyParam2D_
+      type(hip_Memcpy2D) :: pCopy
+    end function
+  end interface
+
+  interface hipMemcpyParam2DAsync
+    function hipMemcpyParam2DAsync_(pCopy,stream) bind(c, name="hipMemcpyParam2DAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyParam2DAsync_
+      type(hip_Memcpy2D) :: pCopy
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpy2DToArray
+    function hipMemcpy2DToArray_(dst,wOffset,hOffset,src,spitch,width,height,myKind) &
+        bind(c, name="hipMemcpy2DToArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy2DToArray_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: wOffset
+      integer(c_size_t),value :: hOffset
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: spitch
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpy2DToArrayAsync
+    function hipMemcpy2DToArrayAsync_(dst,wOffset,hOffset,src,spitch,width,height,myKind,stream) &
+        bind(c, name="hipMemcpy2DToArrayAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy2DToArrayAsync_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: wOffset
+      integer(c_size_t),value :: hOffset
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: spitch
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_int),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpy2DArrayToArray
+    function hipMemcpy2DArrayToArray_(dst,wOffsetDst,hOffsetDst,src,wOffsetSrc,hOffsetSrc,width, &
+        height,myKind) &
+        bind(c, name="hipMemcpy2DArrayToArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy2DArrayToArray_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: wOffsetDst
+      integer(c_size_t),value :: hOffsetDst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: wOffsetSrc
+      integer(c_size_t),value :: hOffsetSrc
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpyToArray
+    function hipMemcpyToArray_(dst,wOffset,hOffset,src,count,myKind) &
+        bind(c, name="hipMemcpyToArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyToArray_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: wOffset
+      integer(c_size_t),value :: hOffset
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: count
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpyFromArray
+    function hipMemcpyFromArray_(dst,srcArray,wOffset,hOffset,count,myKind) &
+        bind(c, name="hipMemcpyFromArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyFromArray_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: srcArray
+      integer(c_size_t),value :: wOffset
+      integer(c_size_t),value :: hOffset
+      integer(c_size_t),value :: count
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpy2DFromArray
+    function hipMemcpy2DFromArray_(dst,dpitch,src,wOffset,hOffset,width,height,myKind) &
+        bind(c, name="hipMemcpy2DFromArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy2DFromArray_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dpitch
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: wOffset
+      integer(c_size_t),value :: hOffset
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpy2DFromArrayAsync
+    function hipMemcpy2DFromArrayAsync_(dst,dpitch,src,wOffset,hOffset,width,height,myKind,stream) &
+        bind(c, name="hipMemcpy2DFromArrayAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy2DFromArrayAsync_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dpitch
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: wOffset
+      integer(c_size_t),value :: hOffset
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_int),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpyAtoH
+    function hipMemcpyAtoH_(dst,srcArray,srcOffset,count) bind(c, name="hipMemcpyAtoH")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyAtoH_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: srcArray
+      integer(c_size_t),value :: srcOffset
+      integer(c_size_t),value :: count
+    end function
+  end interface
+
+  interface hipMemcpyHtoA
+    function hipMemcpyHtoA_(dstArray,dstOffset,srcHost,count) bind(c, name="hipMemcpyHtoA")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyHtoA_
+      type(c_ptr),value :: dstArray
+      integer(c_size_t),value :: dstOffset
+      type(c_ptr),value :: srcHost
+      integer(c_size_t),value :: count
+    end function
+  end interface
+
+  interface hipMemcpy3D
+    function hipMemcpy3D_(p) bind(c, name="hipMemcpy3D")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy3D_
+      type(hipMemcpy3DParms) :: p
+    end function
+  end interface
+
+  interface hipMemcpy3DAsync
+    function hipMemcpy3DAsync_(p,stream) bind(c, name="hipMemcpy3DAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy3DAsync_
+      type(hipMemcpy3DParms) :: p
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipDrvMemcpy3D
+    function hipDrvMemcpy3D_(pCopy) bind(c, name="hipDrvMemcpy3D")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvMemcpy3D_
+      type(HIP_MEMCPY3D) :: pCopy
+    end function
+  end interface
+
+  interface hipDrvMemcpy3DAsync
+    function hipDrvMemcpy3DAsync_(pCopy,stream) bind(c, name="hipDrvMemcpy3DAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvMemcpy3DAsync_
+      type(HIP_MEMCPY3D) :: pCopy
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemGetAddressRange
+    function hipMemGetAddressRange_(pbase,psize,dptr) bind(c, name="hipMemGetAddressRange")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemGetAddressRange_
+      type(c_ptr) :: pbase
+      type(c_ptr),value :: psize
+      type(c_ptr),value :: dptr
+    end function
+
+    module procedure hipMemGetAddressRange_typed
+  end interface
+
+  interface hipMemcpyBatchAsync
+    function hipMemcpyBatchAsync_(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx,stream) &
+        bind(c, name="hipMemcpyBatchAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyBatchAsync_
+      type(c_ptr) :: dsts
+      type(c_ptr) :: srcs
+      type(c_ptr),value :: sizes
+      integer(c_size_t),value :: count
+      type(hipMemcpyAttributes) :: attrs
+      type(c_ptr),value :: attrsIdxs
+      integer(c_size_t),value :: numAttrs
+      type(c_ptr),value :: failIdx
+      type(c_ptr),value :: stream
+    end function
+
+    module procedure hipMemcpyBatchAsync_typed
+  end interface
+
+  interface hipMemcpy3DBatchAsync
+    function hipMemcpy3DBatchAsync_(numOps,opList,failIdx,flags,stream) &
+        bind(c, name="hipMemcpy3DBatchAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy3DBatchAsync_
+      integer(c_size_t),value :: numOps
+      type(hipMemcpy3DBatchOp) :: opList
+      type(c_ptr),value :: failIdx
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: stream
+    end function
+
+    module procedure hipMemcpy3DBatchAsync_typed
+  end interface
+
+  interface hipMemcpy3DPeer
+    function hipMemcpy3DPeer_(p) bind(c, name="hipMemcpy3DPeer")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy3DPeer_
+      type(hipMemcpy3DPeerParms) :: p
+    end function
+  end interface
+
+  interface hipMemcpy3DPeerAsync
+    function hipMemcpy3DPeerAsync_(p,stream) bind(c, name="hipMemcpy3DPeerAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy3DPeerAsync_
+      type(hipMemcpy3DPeerParms) :: p
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMipmappedArrayGetMemoryRequirements
+    function hipMipmappedArrayGetMemoryRequirements_(memoryRequirements,mipmap,device) &
+        bind(c, name="hipMipmappedArrayGetMemoryRequirements")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMipmappedArrayGetMemoryRequirements_
+      type(hipArrayMemoryRequirements) :: memoryRequirements
+      type(c_ptr),value :: mipmap
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  interface hipDeviceCanAccessPeer
+    function hipDeviceCanAccessPeer_(canAccessPeer,deviceId,peerDeviceId) &
+        bind(c, name="hipDeviceCanAccessPeer")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceCanAccessPeer_
+      type(c_ptr),value :: canAccessPeer
+      integer(c_int),value :: deviceId
+      integer(c_int),value :: peerDeviceId
+    end function
+
+    module procedure hipDeviceCanAccessPeer_typed
+  end interface
+
+  interface hipDeviceEnablePeerAccess
+    function hipDeviceEnablePeerAccess_(peerDeviceId,flags) &
+        bind(c, name="hipDeviceEnablePeerAccess")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceEnablePeerAccess_
+      integer(c_int),value :: peerDeviceId
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipDeviceDisablePeerAccess
+    function hipDeviceDisablePeerAccess_(peerDeviceId) bind(c, name="hipDeviceDisablePeerAccess")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceDisablePeerAccess_
+      integer(c_int),value :: peerDeviceId
+    end function
+  end interface
+
+  interface hipMemcpyPeer
+    function hipMemcpyPeer_(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="hipMemcpyPeer")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyPeer_
+      type(c_ptr),value :: dst
+      integer(c_int),value :: dstDeviceId
+      type(c_ptr),value :: src
+      integer(c_int),value :: srcDeviceId
+      integer(c_size_t),value :: sizeBytes
+    end function
+  end interface
+
+  interface hipMemcpyPeerAsync
+    function hipMemcpyPeerAsync_(dst,dstDeviceId,src,srcDevice,sizeBytes,stream) &
+        bind(c, name="hipMemcpyPeerAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyPeerAsync_
+      type(c_ptr),value :: dst
+      integer(c_int),value :: dstDeviceId
+      type(c_ptr),value :: src
+      integer(c_int),value :: srcDevice
+      integer(c_size_t),value :: sizeBytes
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipDeviceGetDevResource
+    function hipDeviceGetDevResource_(device,resource,myType) &
+        bind(c, name="hipDeviceGetDevResource")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetDevResource_
+      integer(c_int),value :: device
+      type(hipDevResource) :: resource
+      integer(c_int),value :: myType
+    end function
+  end interface
+
+  interface hipDevSmResourceSplitByCount
+    function hipDevSmResourceSplitByCount_(myResult,nbGroups,input,remainder,flags,minCount) &
+        bind(c, name="hipDevSmResourceSplitByCount")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDevSmResourceSplitByCount_
+      type(hipDevResource) :: myResult
+      type(c_ptr),value :: nbGroups
+      type(hipDevResource) :: input
+      type(hipDevResource) :: remainder
+      integer(c_int),value :: flags
+      integer(c_int),value :: minCount
+    end function
+
+    module procedure hipDevSmResourceSplitByCount_typed
+  end interface
+
+  interface hipDevSmResourceSplit
+    function hipDevSmResourceSplit_(myResult,nbGroups,input,remainder,flags,groupParams) &
+        bind(c, name="hipDevSmResourceSplit")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDevSmResourceSplit_
+      type(hipDevResource) :: myResult
+      integer(c_int),value :: nbGroups
+      type(hipDevResource) :: input
+      type(hipDevResource) :: remainder
+      integer(c_int),value :: flags
+      type(hipDevSmResourceGroupParams) :: groupParams
+    end function
+  end interface
+
+  interface hipDevResourceGenerateDesc
+    function hipDevResourceGenerateDesc_(phDesc,resources,nbResources) &
+        bind(c, name="hipDevResourceGenerateDesc")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDevResourceGenerateDesc_
+      type(c_ptr) :: phDesc
+      type(hipDevResource) :: resources
+      integer(c_int),value :: nbResources
+    end function
+  end interface
+
+  interface hipGreenCtxCreate
+    function hipGreenCtxCreate_(ctx,desc,device,flags) bind(c, name="hipGreenCtxCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGreenCtxCreate_
+      type(c_ptr) :: ctx
+      type(c_ptr),value :: desc
+      integer(c_int),value :: device
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipExecutionCtxDestroy
+    function hipExecutionCtxDestroy_(ctx) bind(c, name="hipExecutionCtxDestroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExecutionCtxDestroy_
+      type(c_ptr),value :: ctx
+    end function
+  end interface
+
+  interface hipDeviceGetExecutionCtx
+    function hipDeviceGetExecutionCtx_(ctx,device) bind(c, name="hipDeviceGetExecutionCtx")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetExecutionCtx_
+      type(c_ptr) :: ctx
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  interface hipExecutionCtxStreamCreate
+    function hipExecutionCtxStreamCreate_(stream,greenctx,flags,priority) &
+        bind(c, name="hipExecutionCtxStreamCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExecutionCtxStreamCreate_
+      type(c_ptr) :: stream
+      type(c_ptr),value :: greenctx
+      integer(c_int),value :: flags
+      integer(c_int),value :: priority
+    end function
+  end interface
+
+  interface hipExecutionCtxGetDevResource
+    function hipExecutionCtxGetDevResource_(ctx,resource,myType) &
+        bind(c, name="hipExecutionCtxGetDevResource")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExecutionCtxGetDevResource_
+      type(c_ptr),value :: ctx
+      type(hipDevResource) :: resource
+      integer(c_int),value :: myType
+    end function
+  end interface
+
+  interface hipExecutionCtxGetDevice
+    function hipExecutionCtxGetDevice_(device,ctx) bind(c, name="hipExecutionCtxGetDevice")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExecutionCtxGetDevice_
+      type(c_ptr),value :: device
+      type(c_ptr),value :: ctx
+    end function
+
+    module procedure hipExecutionCtxGetDevice_typed
+  end interface
+
+  interface hipExecutionCtxGetId
+    function hipExecutionCtxGetId_(ctx,ctxId) bind(c, name="hipExecutionCtxGetId")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExecutionCtxGetId_
+      type(c_ptr),value :: ctx
+      type(c_ptr),value :: ctxId
+    end function
+
+    module procedure hipExecutionCtxGetId_typed
+  end interface
+
+  interface hipStreamGetDevResource
+    function hipStreamGetDevResource_(hStream,resource,myType) &
+        bind(c, name="hipStreamGetDevResource")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamGetDevResource_
+      type(c_ptr),value :: hStream
+      type(hipDevResource) :: resource
+      integer(c_int),value :: myType
+    end function
+  end interface
+
+  interface hipExecutionCtxRecordEvent
+    function hipExecutionCtxRecordEvent_(ctx,event) bind(c, name="hipExecutionCtxRecordEvent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExecutionCtxRecordEvent_
+      type(c_ptr),value :: ctx
+      type(c_ptr),value :: event
+    end function
+  end interface
+
+  interface hipExecutionCtxSynchronize
+    function hipExecutionCtxSynchronize_(ctx) bind(c, name="hipExecutionCtxSynchronize")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExecutionCtxSynchronize_
+      type(c_ptr),value :: ctx
+    end function
+  end interface
+
+  interface hipExecutionCtxWaitEvent
+    function hipExecutionCtxWaitEvent_(ctx,event) bind(c, name="hipExecutionCtxWaitEvent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExecutionCtxWaitEvent_
+      type(c_ptr),value :: ctx
+      type(c_ptr),value :: event
+    end function
+  end interface
+
+  interface hipCtxCreate
+    function hipCtxCreate_(ctx,flags,device) bind(c, name="hipCtxCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxCreate_
+      type(c_ptr) :: ctx
+      integer(c_int),value :: flags
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  interface hipCtxDestroy
+    function hipCtxDestroy_(ctx) bind(c, name="hipCtxDestroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxDestroy_
+      type(c_ptr),value :: ctx
+    end function
+  end interface
+
+  interface hipCtxPopCurrent
+    function hipCtxPopCurrent_(ctx) bind(c, name="hipCtxPopCurrent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxPopCurrent_
+      type(c_ptr) :: ctx
+    end function
+  end interface
+
+  interface hipCtxPushCurrent
+    function hipCtxPushCurrent_(ctx) bind(c, name="hipCtxPushCurrent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxPushCurrent_
+      type(c_ptr),value :: ctx
+    end function
+  end interface
+
+  interface hipCtxSetCurrent
+    function hipCtxSetCurrent_(ctx) bind(c, name="hipCtxSetCurrent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxSetCurrent_
+      type(c_ptr),value :: ctx
+    end function
+  end interface
+
+  interface hipCtxGetCurrent
+    function hipCtxGetCurrent_(ctx) bind(c, name="hipCtxGetCurrent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxGetCurrent_
+      type(c_ptr) :: ctx
+    end function
+  end interface
+
+  interface hipCtxGetDevice
+    function hipCtxGetDevice_(device) bind(c, name="hipCtxGetDevice")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxGetDevice_
+      type(c_ptr),value :: device
+    end function
+
+    module procedure hipCtxGetDevice_typed
+  end interface
+
+  interface hipCtxGetApiVersion
+    function hipCtxGetApiVersion_(ctx,apiVersion) bind(c, name="hipCtxGetApiVersion")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxGetApiVersion_
+      type(c_ptr),value :: ctx
+      type(c_ptr),value :: apiVersion
+    end function
+
+    module procedure hipCtxGetApiVersion_typed
+  end interface
+
+  interface hipCtxGetCacheConfig
+    function hipCtxGetCacheConfig_(cacheConfig) bind(c, name="hipCtxGetCacheConfig")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxGetCacheConfig_
+      type(c_ptr),value :: cacheConfig
+    end function
+
+    module procedure hipCtxGetCacheConfig_typed
+  end interface
+
+  interface hipCtxSetCacheConfig
+    function hipCtxSetCacheConfig_(cacheConfig) bind(c, name="hipCtxSetCacheConfig")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxSetCacheConfig_
+      integer(c_int),value :: cacheConfig
+    end function
+  end interface
+
+  interface hipCtxSetSharedMemConfig
+    function hipCtxSetSharedMemConfig_(config) bind(c, name="hipCtxSetSharedMemConfig")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxSetSharedMemConfig_
+      integer(c_int),value :: config
+    end function
+  end interface
+
+  interface hipCtxGetSharedMemConfig
+    function hipCtxGetSharedMemConfig_(pConfig) bind(c, name="hipCtxGetSharedMemConfig")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxGetSharedMemConfig_
+      type(c_ptr),value :: pConfig
+    end function
+
+    module procedure hipCtxGetSharedMemConfig_typed
+  end interface
+
+  interface hipCtxSynchronize
+    function hipCtxSynchronize_() bind(c, name="hipCtxSynchronize")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxSynchronize_
+    end function
+  end interface
+
+  interface hipCtxGetFlags
+    function hipCtxGetFlags_(flags) bind(c, name="hipCtxGetFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxGetFlags_
+      type(c_ptr),value :: flags
+    end function
+
+    module procedure hipCtxGetFlags_typed
+  end interface
+
+  interface hipCtxEnablePeerAccess
+    function hipCtxEnablePeerAccess_(peerCtx,flags) bind(c, name="hipCtxEnablePeerAccess")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxEnablePeerAccess_
+      type(c_ptr),value :: peerCtx
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipCtxDisablePeerAccess
+    function hipCtxDisablePeerAccess_(peerCtx) bind(c, name="hipCtxDisablePeerAccess")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCtxDisablePeerAccess_
+      type(c_ptr),value :: peerCtx
+    end function
+  end interface
+
+  interface hipDevicePrimaryCtxGetState
+    function hipDevicePrimaryCtxGetState_(dev,flags,active) &
+        bind(c, name="hipDevicePrimaryCtxGetState")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDevicePrimaryCtxGetState_
+      integer(c_int),value :: dev
+      type(c_ptr),value :: flags
+      type(c_ptr),value :: active
+    end function
+
+    module procedure hipDevicePrimaryCtxGetState_typed
+  end interface
+
+  interface hipDevicePrimaryCtxRelease
+    function hipDevicePrimaryCtxRelease_(dev) bind(c, name="hipDevicePrimaryCtxRelease")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDevicePrimaryCtxRelease_
+      integer(c_int),value :: dev
+    end function
+  end interface
+
+  interface hipDevicePrimaryCtxRetain
+    function hipDevicePrimaryCtxRetain_(pctx,dev) bind(c, name="hipDevicePrimaryCtxRetain")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDevicePrimaryCtxRetain_
+      type(c_ptr) :: pctx
+      integer(c_int),value :: dev
+    end function
+  end interface
+
+  interface hipDevicePrimaryCtxReset
+    function hipDevicePrimaryCtxReset_(dev) bind(c, name="hipDevicePrimaryCtxReset")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDevicePrimaryCtxReset_
+      integer(c_int),value :: dev
+    end function
+  end interface
+
+  interface hipDevicePrimaryCtxSetFlags
+    function hipDevicePrimaryCtxSetFlags_(dev,flags) bind(c, name="hipDevicePrimaryCtxSetFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDevicePrimaryCtxSetFlags_
+      integer(c_int),value :: dev
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipModuleLoadFatBinary
+    function hipModuleLoadFatBinary_(myModule,fatbin) bind(c, name="hipModuleLoadFatBinary")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleLoadFatBinary_
+      type(c_ptr) :: myModule
+      type(c_ptr),value :: fatbin
+    end function
+  end interface
+
+  interface hipModuleLoad
+    function hipModuleLoad_(myModule,fname) bind(c, name="hipModuleLoad")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleLoad_
+      type(c_ptr) :: myModule
+      type(c_ptr),value :: fname
+    end function
+  end interface
+
+  interface hipModuleUnload
+    function hipModuleUnload_(myModule) bind(c, name="hipModuleUnload")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleUnload_
+      type(c_ptr),value :: myModule
+    end function
+  end interface
+
+  interface hipModuleGetFunction
+    function hipModuleGetFunction_(myFunction,myModule,kname) bind(c, name="hipModuleGetFunction")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleGetFunction_
+      type(c_ptr) :: myFunction
+      type(c_ptr),value :: myModule
+      type(c_ptr),value :: kname
+    end function
+  end interface
+
+  interface hipModuleGetFunctionCount
+    function hipModuleGetFunctionCount_(count,mod) bind(c, name="hipModuleGetFunctionCount")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleGetFunctionCount_
+      type(c_ptr),value :: count
+      type(c_ptr),value :: mod
+    end function
+
+    module procedure hipModuleGetFunctionCount_typed
+  end interface
+
+  interface hipModuleEnumerateFunctions
+    function hipModuleEnumerateFunctions_(functions,numFunctions,mod) &
+        bind(c, name="hipModuleEnumerateFunctions")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleEnumerateFunctions_
+      type(c_ptr) :: functions
+      integer(c_int),value :: numFunctions
+      type(c_ptr),value :: mod
+    end function
+  end interface
+
+  interface hipKernelGetAttribute
+    function hipKernelGetAttribute_(pi,attrib,kernel,dev) bind(c, name="hipKernelGetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipKernelGetAttribute_
+      type(c_ptr),value :: pi
+      integer(c_int),value :: attrib
+      type(c_ptr),value :: kernel
+      integer(c_int),value :: dev
+    end function
+
+    module procedure hipKernelGetAttribute_typed
+  end interface
+
+  interface hipLibraryLoadData
+    function hipLibraryLoadData_(library,code,jitOptions,jitOptionsValues,numJitOptions, &
+        libraryOptions,libraryOptionValues,numLibraryOptions) &
+        bind(c, name="hipLibraryLoadData")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLibraryLoadData_
+      type(c_ptr) :: library
+      type(c_ptr),value :: code
+      type(c_ptr),value :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int),value :: numJitOptions
+      type(c_ptr),value :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int),value :: numLibraryOptions
+    end function
+  end interface
+
+  interface hipLibraryLoadFromFile
+    function hipLibraryLoadFromFile_(library,fileName,jitOptions,jitOptionsValues,numJitOptions, &
+        libraryOptions,libraryOptionValues,numLibraryOptions) &
+        bind(c, name="hipLibraryLoadFromFile")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLibraryLoadFromFile_
+      type(c_ptr) :: library
+      type(c_ptr),value :: fileName
+      type(c_ptr),value :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int),value :: numJitOptions
+      type(c_ptr),value :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int),value :: numLibraryOptions
+    end function
+  end interface
+
+  interface hipLibraryUnload
+    function hipLibraryUnload_(library) bind(c, name="hipLibraryUnload")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLibraryUnload_
+      type(c_ptr),value :: library
+    end function
+  end interface
+
+  interface hipLibraryGetKernel
+    function hipLibraryGetKernel_(pKernel,library,name) bind(c, name="hipLibraryGetKernel")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLibraryGetKernel_
+      type(c_ptr) :: pKernel
+      type(c_ptr),value :: library
+      type(c_ptr),value :: name
+    end function
+  end interface
+
+  interface hipLibraryGetKernelCount
+    function hipLibraryGetKernelCount_(count,library) bind(c, name="hipLibraryGetKernelCount")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLibraryGetKernelCount_
+      type(c_ptr),value :: count
+      type(c_ptr),value :: library
+    end function
+
+    module procedure hipLibraryGetKernelCount_typed
+  end interface
+
+  interface
+    function hipLibraryGetGlobal_(dptr,bytes,library,name) bind(c, name="hipLibraryGetGlobal")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLibraryGetGlobal_
+      type(c_ptr),value :: dptr
+      type(c_ptr),value :: bytes
+      type(c_ptr),value :: library
+      type(c_ptr),value :: name
+    end function
+  end interface
+
+  interface hipLibraryGetGlobal
+
+    module procedure &
+      hipLibraryGetGlobal_opt,&
+      hipLibraryGetGlobal_typed
+  end interface
+
+  interface
+    function hipLibraryGetManaged_(dptr,bytes,library,name) bind(c, name="hipLibraryGetManaged")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLibraryGetManaged_
+      type(c_ptr),value :: dptr
+      type(c_ptr),value :: bytes
+      type(c_ptr),value :: library
+      type(c_ptr),value :: name
+    end function
+  end interface
+
+  interface hipLibraryGetManaged
+
+    module procedure &
+      hipLibraryGetManaged_opt,&
+      hipLibraryGetManaged_typed
+  end interface
+
+  interface hipLibraryGetModule
+    function hipLibraryGetModule_(pMod,library) bind(c, name="hipLibraryGetModule")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLibraryGetModule_
+      type(c_ptr) :: pMod
+      type(c_ptr),value :: library
+    end function
+  end interface
+
+  interface hipLibraryEnumerateKernels
+    function hipLibraryEnumerateKernels_(kernels,numKernels,library) &
+        bind(c, name="hipLibraryEnumerateKernels")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLibraryEnumerateKernels_
+      type(c_ptr) :: kernels
+      integer(c_int),value :: numKernels
+      type(c_ptr),value :: library
+    end function
+  end interface
+
+  interface hipKernelGetLibrary
+    function hipKernelGetLibrary_(library,kernel) bind(c, name="hipKernelGetLibrary")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipKernelGetLibrary_
+      type(c_ptr) :: library
+      type(c_ptr),value :: kernel
+    end function
+  end interface
+
+  interface hipKernelGetName
+    function hipKernelGetName_(name,kernel) bind(c, name="hipKernelGetName")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipKernelGetName_
+      type(c_ptr) :: name
+      type(c_ptr),value :: kernel
+    end function
+  end interface
+
+  interface hipKernelGetParamInfo
+    function hipKernelGetParamInfo_(kernel,paramIndex,paramOffset,paramSize) &
+        bind(c, name="hipKernelGetParamInfo")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipKernelGetParamInfo_
+      type(c_ptr),value :: kernel
+      integer(c_size_t),value :: paramIndex
+      type(c_ptr),value :: paramOffset
+      type(c_ptr),value :: paramSize
+    end function
+
+    module procedure hipKernelGetParamInfo_typed
+  end interface
+
+  interface hipFuncGetAttributes
+    function hipFuncGetAttributes_(attr,func) bind(c, name="hipFuncGetAttributes")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipFuncGetAttributes_
+      type(hipFuncAttributes) :: attr
+      type(c_ptr),value :: func
+    end function
+  end interface
+
+  interface hipFuncGetAttribute
+    function hipFuncGetAttribute_(myValue,attrib,hfunc) bind(c, name="hipFuncGetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipFuncGetAttribute_
+      type(c_ptr),value :: myValue
+      integer(c_int),value :: attrib
+      type(c_ptr),value :: hfunc
+    end function
+
+    module procedure hipFuncGetAttribute_typed
+  end interface
+
+  interface hipGetFuncBySymbol
+    function hipGetFuncBySymbol_(functionPtr,symbolPtr) bind(c, name="hipGetFuncBySymbol")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetFuncBySymbol_
+      type(c_ptr) :: functionPtr
+      type(c_ptr),value :: symbolPtr
+    end function
+  end interface
+
+  interface hipGetDriverEntryPoint
+    function hipGetDriverEntryPoint_(symbol,funcPtr,flags,driverStatus) &
+        bind(c, name="hipGetDriverEntryPoint")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetDriverEntryPoint_
+      type(c_ptr),value :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: driverStatus
+    end function
+
+    module procedure hipGetDriverEntryPoint_typed
+  end interface
+
+  interface hipModuleGetTexRef
+    function hipModuleGetTexRef_(texRef,hmod,name) bind(c, name="hipModuleGetTexRef")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleGetTexRef_
+      type(c_ptr) :: texRef
+      type(c_ptr),value :: hmod
+      type(c_ptr),value :: name
+    end function
+  end interface
+
+  interface hipModuleLoadData
+    function hipModuleLoadData_(myModule,image) bind(c, name="hipModuleLoadData")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleLoadData_
+      type(c_ptr) :: myModule
+      type(c_ptr),value :: image
+    end function
+  end interface
+
+  interface hipModuleLoadDataEx
+    function hipModuleLoadDataEx_(myModule,image,numOptions,options,optionValues) &
+        bind(c, name="hipModuleLoadDataEx")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleLoadDataEx_
+      type(c_ptr) :: myModule
+      type(c_ptr),value :: image
+      integer(c_int),value :: numOptions
+      type(c_ptr),value :: options
+      type(c_ptr) :: optionValues
+    end function
+  end interface
+
+  interface hipLinkAddData
+    function hipLinkAddData_(state,myType,myData,mySize,name,numOptions,options,optionValues) &
+        bind(c, name="hipLinkAddData")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLinkAddData_
+      type(c_ptr),value :: state
+      integer(c_int),value :: myType
+      type(c_ptr),value :: myData
+      integer(c_size_t),value :: mySize
+      type(c_ptr),value :: name
+      integer(c_int),value :: numOptions
+      type(c_ptr),value :: options
+      type(c_ptr) :: optionValues
+    end function
+  end interface
+
+  interface hipLinkAddFile
+    function hipLinkAddFile_(state,myType,path,numOptions,options,optionValues) &
+        bind(c, name="hipLinkAddFile")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLinkAddFile_
+      type(c_ptr),value :: state
+      integer(c_int),value :: myType
+      type(c_ptr),value :: path
+      integer(c_int),value :: numOptions
+      type(c_ptr),value :: options
+      type(c_ptr) :: optionValues
+    end function
+  end interface
+
+  interface hipLinkComplete
+    function hipLinkComplete_(state,hipBinOut,sizeOut) bind(c, name="hipLinkComplete")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLinkComplete_
+      type(c_ptr),value :: state
+      type(c_ptr) :: hipBinOut
+      type(c_ptr),value :: sizeOut
+    end function
+
+    module procedure hipLinkComplete_typed
+  end interface
+
+  interface hipLinkCreate
+    function hipLinkCreate_(numOptions,options,optionValues,stateOut) bind(c, name="hipLinkCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLinkCreate_
+      integer(c_int),value :: numOptions
+      type(c_ptr),value :: options
+      type(c_ptr) :: optionValues
+      type(c_ptr) :: stateOut
+    end function
+  end interface
+
+  interface hipLinkDestroy
+    function hipLinkDestroy_(state) bind(c, name="hipLinkDestroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLinkDestroy_
+      type(c_ptr),value :: state
+    end function
+  end interface
+
+  interface hipModuleLaunchKernel
+    function hipModuleLaunchKernel_(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ, &
+        sharedMemBytes,stream,kernelParams,extra) &
+        bind(c, name="hipModuleLaunchKernel")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleLaunchKernel_
+      type(c_ptr),value :: f
+      integer(c_int),value :: gridDimX
+      integer(c_int),value :: gridDimY
+      integer(c_int),value :: gridDimZ
+      integer(c_int),value :: blockDimX
+      integer(c_int),value :: blockDimY
+      integer(c_int),value :: blockDimZ
+      integer(c_int),value :: sharedMemBytes
+      type(c_ptr),value :: stream
+      type(c_ptr) :: kernelParams
+      type(c_ptr),value :: extra
+    end function
+  end interface
+
+  interface hipModuleLaunchCooperativeKernel
+    function hipModuleLaunchCooperativeKernel_(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY, &
+        blockDimZ,sharedMemBytes,stream,kernelParams) &
+        bind(c, name="hipModuleLaunchCooperativeKernel")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleLaunchCooperativeKernel_
+      type(c_ptr),value :: f
+      integer(c_int),value :: gridDimX
+      integer(c_int),value :: gridDimY
+      integer(c_int),value :: gridDimZ
+      integer(c_int),value :: blockDimX
+      integer(c_int),value :: blockDimY
+      integer(c_int),value :: blockDimZ
+      integer(c_int),value :: sharedMemBytes
+      type(c_ptr),value :: stream
+      type(c_ptr) :: kernelParams
+    end function
+  end interface
+
+  interface hipModuleLaunchCooperativeKernelMultiDevice
+    function hipModuleLaunchCooperativeKernelMultiDevice_(launchParamsList,numDevices,flags) &
+        bind(c, name="hipModuleLaunchCooperativeKernelMultiDevice")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleLaunchCooperativeKernelMultiDevice_
+      type(hipFunctionLaunchParams) :: launchParamsList
+      integer(c_int),value :: numDevices
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipLaunchCooperativeKernel
+    function hipLaunchCooperativeKernel_(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) &
+        bind(c, name="hipLaunchCooperativeKernel")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLaunchCooperativeKernel_
+      type(c_ptr),value :: f
+      type(dim3),value :: gridDim
+      type(dim3),value :: blockDimX
+      type(c_ptr) :: kernelParams
+      integer(c_int),value :: sharedMemBytes
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipLaunchCooperativeKernelMultiDevice
+    function hipLaunchCooperativeKernelMultiDevice_(launchParamsList,numDevices,flags) &
+        bind(c, name="hipLaunchCooperativeKernelMultiDevice")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLaunchCooperativeKernelMultiDevice_
+      type(hipLaunchParams) :: launchParamsList
+      integer(c_int),value :: numDevices
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipExtLaunchMultiKernelMultiDevice
+    function hipExtLaunchMultiKernelMultiDevice_(launchParamsList,numDevices,flags) &
+        bind(c, name="hipExtLaunchMultiKernelMultiDevice")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExtLaunchMultiKernelMultiDevice_
+      type(hipLaunchParams) :: launchParamsList
+      integer(c_int),value :: numDevices
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipLaunchKernelExC
+    function hipLaunchKernelExC_(config,fPtr,args) bind(c, name="hipLaunchKernelExC")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLaunchKernelExC_
+      type(hipLaunchConfig_t) :: config
+      type(c_ptr),value :: fPtr
+      type(c_ptr) :: args
+    end function
+  end interface
+
+  interface hipDrvLaunchKernelEx
+    function hipDrvLaunchKernelEx_(config,f,params,extra) bind(c, name="hipDrvLaunchKernelEx")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvLaunchKernelEx_
+      type(HIP_LAUNCH_CONFIG) :: config
+      type(c_ptr),value :: f
+      type(c_ptr) :: params
+      type(c_ptr),value :: extra
+    end function
+  end interface
+
+  interface hipMemGetHandleForAddressRange
+    function hipMemGetHandleForAddressRange_(handle,dptr,mySize,handleType,flags) &
+        bind(c, name="hipMemGetHandleForAddressRange")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemGetHandleForAddressRange_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: dptr
+      integer(c_size_t),value :: mySize
+      integer(c_int),value :: handleType
+      integer(c_int64_t),value :: flags
+    end function
+  end interface
+
+  interface hipModuleOccupancyMaxPotentialBlockSize
+    function hipModuleOccupancyMaxPotentialBlockSize_(gridSize,blockSize,f,dynSharedMemPerBlk, &
+        blockSizeLimit) &
+        bind(c, name="hipModuleOccupancyMaxPotentialBlockSize")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleOccupancyMaxPotentialBlockSize_
+      type(c_ptr),value :: gridSize
+      type(c_ptr),value :: blockSize
+      type(c_ptr),value :: f
+      integer(c_size_t),value :: dynSharedMemPerBlk
+      integer(c_int),value :: blockSizeLimit
+    end function
+
+    module procedure hipModuleOccupancyMaxPotentialBlockSize_typed
+  end interface
+
+  interface hipModuleOccupancyMaxPotentialBlockSizeWithFlags
+    function hipModuleOccupancyMaxPotentialBlockSizeWithFlags_(gridSize,blockSize,f, &
+        dynSharedMemPerBlk,blockSizeLimit,flags) &
+        bind(c, name="hipModuleOccupancyMaxPotentialBlockSizeWithFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleOccupancyMaxPotentialBlockSizeWithFlags_
+      type(c_ptr),value :: gridSize
+      type(c_ptr),value :: blockSize
+      type(c_ptr),value :: f
+      integer(c_size_t),value :: dynSharedMemPerBlk
+      integer(c_int),value :: blockSizeLimit
+      integer(c_int),value :: flags
+    end function
+
+    module procedure hipModuleOccupancyMaxPotentialBlockSizeWithFlags_typed
+  end interface
+
+  interface hipModuleOccupancyMaxActiveBlocksPerMultiprocessor
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_(numBlocks,f,blockSize, &
+        dynSharedMemPerBlk) &
+        bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessor")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_
+      type(c_ptr),value :: numBlocks
+      type(c_ptr),value :: f
+      integer(c_int),value :: blockSize
+      integer(c_size_t),value :: dynSharedMemPerBlk
+    end function
+
+    module procedure hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_typed
+  end interface
+
+  interface hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(numBlocks,f,blockSize, &
+        dynSharedMemPerBlk,flags) &
+        bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_
+      type(c_ptr),value :: numBlocks
+      type(c_ptr),value :: f
+      integer(c_int),value :: blockSize
+      integer(c_size_t),value :: dynSharedMemPerBlk
+      integer(c_int),value :: flags
+    end function
+
+    module procedure hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFla_typed
+  end interface
+
+  interface hipOccupancyMaxActiveBlocksPerMultiprocessor
+    function hipOccupancyMaxActiveBlocksPerMultiprocessor_(numBlocks,f,blockSize, &
+        dynSharedMemPerBlk) &
+        bind(c, name="hipOccupancyMaxActiveBlocksPerMultiprocessor")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipOccupancyMaxActiveBlocksPerMultiprocessor_
+      type(c_ptr),value :: numBlocks
+      type(c_funptr),value :: f
+      integer(c_int),value :: blockSize
+      integer(c_size_t),value :: dynSharedMemPerBlk
+    end function
+
+    module procedure hipOccupancyMaxActiveBlocksPerMultiprocessor_typed
+  end interface
+
+  interface hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
+    function hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(numBlocks,f,blockSize, &
+        dynSharedMemPerBlk,flags) &
+        bind(c, name="hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_
+      type(c_ptr),value :: numBlocks
+      type(c_funptr),value :: f
+      integer(c_int),value :: blockSize
+      integer(c_size_t),value :: dynSharedMemPerBlk
+      integer(c_int),value :: flags
+    end function
+
+    module procedure hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_typed
+  end interface
+
+  interface hipOccupancyMaxPotentialBlockSize
+    function hipOccupancyMaxPotentialBlockSize_(gridSize,blockSize,f,dynSharedMemPerBlk, &
+        blockSizeLimit) &
+        bind(c, name="hipOccupancyMaxPotentialBlockSize")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipOccupancyMaxPotentialBlockSize_
+      type(c_ptr),value :: gridSize
+      type(c_ptr),value :: blockSize
+      type(c_funptr),value :: f
+      integer(c_size_t),value :: dynSharedMemPerBlk
+      integer(c_int),value :: blockSizeLimit
+    end function
+
+    module procedure hipOccupancyMaxPotentialBlockSize_typed
+  end interface
+
+  interface hipOccupancyAvailableDynamicSMemPerBlock
+    function hipOccupancyAvailableDynamicSMemPerBlock_(dynamicSmemSize,f,numBlocks,blockSize) &
+        bind(c, name="hipOccupancyAvailableDynamicSMemPerBlock")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipOccupancyAvailableDynamicSMemPerBlock_
+      type(c_ptr),value :: dynamicSmemSize
+      type(c_funptr),value :: f
+      integer(c_int),value :: numBlocks
+      integer(c_int),value :: blockSize
+    end function
+
+    module procedure hipOccupancyAvailableDynamicSMemPerBlock_typed
+  end interface
+
+  interface hipOccupancyMaxActiveClusters
+    function hipOccupancyMaxActiveClusters_(numClusters,f,config) &
+        bind(c, name="hipOccupancyMaxActiveClusters")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipOccupancyMaxActiveClusters_
+      type(c_ptr),value :: numClusters
+      type(c_funptr),value :: f
+      type(hipLaunchConfig_t) :: config
+    end function
+
+    module procedure hipOccupancyMaxActiveClusters_typed
+  end interface
+
+  interface hipOccupancyMaxPotentialClusterSize
+    function hipOccupancyMaxPotentialClusterSize_(clusterSize,f,config) &
+        bind(c, name="hipOccupancyMaxPotentialClusterSize")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipOccupancyMaxPotentialClusterSize_
+      type(c_ptr),value :: clusterSize
+      type(c_funptr),value :: f
+      type(hipLaunchConfig_t) :: config
+    end function
+
+    module procedure hipOccupancyMaxPotentialClusterSize_typed
+  end interface
+
+  interface hipProfilerStart
+    function hipProfilerStart_() bind(c, name="hipProfilerStart")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipProfilerStart_
+    end function
+  end interface
+
+  interface hipProfilerStop
+    function hipProfilerStop_() bind(c, name="hipProfilerStop")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipProfilerStop_
+    end function
+  end interface
+
+  interface hipConfigureCall
+    function hipConfigureCall_(gridDim,blockDim,sharedMem,stream) bind(c, name="hipConfigureCall")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipConfigureCall_
+      type(dim3),value :: gridDim
+      type(dim3),value :: blockDim
+      integer(c_size_t),value :: sharedMem
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipSetupArgument
+    function hipSetupArgument_(arg,mySize,offset) bind(c, name="hipSetupArgument")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipSetupArgument_
+      type(c_ptr),value :: arg
+      integer(c_size_t),value :: mySize
+      integer(c_size_t),value :: offset
+    end function
+  end interface
+
+  interface hipLaunchByPtr
+    function hipLaunchByPtr_(func) bind(c, name="hipLaunchByPtr")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLaunchByPtr_
+      type(c_ptr),value :: func
+    end function
+  end interface
+
+  interface hipLaunchKernel
+    function hipLaunchKernel_(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream) &
+        bind(c, name="hipLaunchKernel")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLaunchKernel_
+      type(c_ptr),value :: function_address
+      type(dim3),value :: numBlocks
+      type(dim3),value :: dimBlocks
+      type(c_ptr) :: args
+      integer(c_size_t),value :: sharedMemBytes
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipLaunchHostFunc
+    function hipLaunchHostFunc_(stream,fn,userData) bind(c, name="hipLaunchHostFunc")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLaunchHostFunc_
+      type(c_ptr),value :: stream
+      type(c_funptr),value :: fn
+      type(c_ptr),value :: userData
+    end function
+  end interface
+
+  interface hipDrvMemcpy2DUnaligned
+    function hipDrvMemcpy2DUnaligned_(pCopy) bind(c, name="hipDrvMemcpy2DUnaligned")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvMemcpy2DUnaligned_
+      type(hip_Memcpy2D) :: pCopy
+    end function
+  end interface
+
+  interface hipExtLaunchKernel
+    function hipExtLaunchKernel_(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream, &
+        startEvent,stopEvent,flags) &
+        bind(c, name="hipExtLaunchKernel")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExtLaunchKernel_
+      type(c_ptr),value :: function_address
+      type(dim3),value :: numBlocks
+      type(dim3),value :: dimBlocks
+      type(c_ptr) :: args
+      integer(c_size_t),value :: sharedMemBytes
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: startEvent
+      type(c_ptr),value :: stopEvent
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipCreateTextureObject
+    function hipCreateTextureObject_(pTexObject,pResDesc,pTexDesc,pResViewDesc) &
+        bind(c, name="hipCreateTextureObject")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCreateTextureObject_
+      type(c_ptr) :: pTexObject
+      type(hipResourceDesc) :: pResDesc
+      type(hipTextureDesc) :: pTexDesc
+      type(hipResourceViewDesc) :: pResViewDesc
+    end function
+  end interface
+
+  interface hipDestroyTextureObject
+    function hipDestroyTextureObject_(textureObject) bind(c, name="hipDestroyTextureObject")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDestroyTextureObject_
+      type(c_ptr),value :: textureObject
+    end function
+  end interface
+
+  interface hipGetChannelDesc
+    function hipGetChannelDesc_(desc,array) bind(c, name="hipGetChannelDesc")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetChannelDesc_
+      type(hipChannelFormatDesc) :: desc
+      type(c_ptr),value :: array
+    end function
+  end interface
+
+  interface hipGetTextureObjectResourceDesc
+    function hipGetTextureObjectResourceDesc_(pResDesc,textureObject) &
+        bind(c, name="hipGetTextureObjectResourceDesc")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetTextureObjectResourceDesc_
+      type(hipResourceDesc) :: pResDesc
+      type(c_ptr),value :: textureObject
+    end function
+  end interface
+
+  interface hipGetTextureObjectResourceViewDesc
+    function hipGetTextureObjectResourceViewDesc_(pResViewDesc,textureObject) &
+        bind(c, name="hipGetTextureObjectResourceViewDesc")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetTextureObjectResourceViewDesc_
+      type(hipResourceViewDesc) :: pResViewDesc
+      type(c_ptr),value :: textureObject
+    end function
+  end interface
+
+  interface hipGetTextureObjectTextureDesc
+    function hipGetTextureObjectTextureDesc_(pTexDesc,textureObject) &
+        bind(c, name="hipGetTextureObjectTextureDesc")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetTextureObjectTextureDesc_
+      type(hipTextureDesc) :: pTexDesc
+      type(c_ptr),value :: textureObject
+    end function
+  end interface
+
+  interface hipTexObjectCreate
+    function hipTexObjectCreate_(pTexObject,pResDesc,pTexDesc,pResViewDesc) &
+        bind(c, name="hipTexObjectCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexObjectCreate_
+      type(c_ptr) :: pTexObject
+      type(HIP_RESOURCE_DESC) :: pResDesc
+      type(HIP_TEXTURE_DESC) :: pTexDesc
+      type(HIP_RESOURCE_VIEW_DESC) :: pResViewDesc
+    end function
+  end interface
+
+  interface hipTexObjectDestroy
+    function hipTexObjectDestroy_(texObject) bind(c, name="hipTexObjectDestroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexObjectDestroy_
+      type(c_ptr),value :: texObject
+    end function
+  end interface
+
+  interface hipTexObjectGetResourceDesc
+    function hipTexObjectGetResourceDesc_(pResDesc,texObject) &
+        bind(c, name="hipTexObjectGetResourceDesc")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexObjectGetResourceDesc_
+      type(HIP_RESOURCE_DESC) :: pResDesc
+      type(c_ptr),value :: texObject
+    end function
+  end interface
+
+  interface hipTexObjectGetResourceViewDesc
+    function hipTexObjectGetResourceViewDesc_(pResViewDesc,texObject) &
+        bind(c, name="hipTexObjectGetResourceViewDesc")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexObjectGetResourceViewDesc_
+      type(HIP_RESOURCE_VIEW_DESC) :: pResViewDesc
+      type(c_ptr),value :: texObject
+    end function
+  end interface
+
+  interface hipTexObjectGetTextureDesc
+    function hipTexObjectGetTextureDesc_(pTexDesc,texObject) &
+        bind(c, name="hipTexObjectGetTextureDesc")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexObjectGetTextureDesc_
+      type(HIP_TEXTURE_DESC) :: pTexDesc
+      type(c_ptr),value :: texObject
+    end function
+  end interface
+
+  interface hipMallocMipmappedArray
+    function hipMallocMipmappedArray_(mipmappedArray,desc,extent,numLevels,flags) &
+        bind(c, name="hipMallocMipmappedArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMallocMipmappedArray_
+      type(c_ptr) :: mipmappedArray
+      type(hipChannelFormatDesc) :: desc
+      type(hipExtent),value :: extent
+      integer(c_int),value :: numLevels
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipFreeMipmappedArray
+    function hipFreeMipmappedArray_(mipmappedArray) bind(c, name="hipFreeMipmappedArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipFreeMipmappedArray_
+      type(c_ptr),value :: mipmappedArray
+    end function
+  end interface
+
+  interface hipGetMipmappedArrayLevel
+    function hipGetMipmappedArrayLevel_(levelArray,mipmappedArray,level) &
+        bind(c, name="hipGetMipmappedArrayLevel")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetMipmappedArrayLevel_
+      type(c_ptr) :: levelArray
+      type(c_ptr),value :: mipmappedArray
+      integer(c_int),value :: level
+    end function
+  end interface
+
+  interface hipMipmappedArrayCreate
+    function hipMipmappedArrayCreate_(pHandle,pMipmappedArrayDesc,numMipmapLevels) &
+        bind(c, name="hipMipmappedArrayCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMipmappedArrayCreate_
+      type(c_ptr) :: pHandle
+      type(HIP_ARRAY3D_DESCRIPTOR) :: pMipmappedArrayDesc
+      integer(c_int),value :: numMipmapLevels
+    end function
+  end interface
+
+  interface hipMipmappedArrayDestroy
+    function hipMipmappedArrayDestroy_(hMipmappedArray) bind(c, name="hipMipmappedArrayDestroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMipmappedArrayDestroy_
+      type(c_ptr),value :: hMipmappedArray
+    end function
+  end interface
+
+  interface hipMipmappedArrayGetLevel
+    function hipMipmappedArrayGetLevel_(pLevelArray,hMipMappedArray,level) &
+        bind(c, name="hipMipmappedArrayGetLevel")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMipmappedArrayGetLevel_
+      type(c_ptr) :: pLevelArray
+      type(c_ptr),value :: hMipMappedArray
+      integer(c_int),value :: level
+    end function
+  end interface
+
+  interface hipBindTextureToMipmappedArray
+    function hipBindTextureToMipmappedArray_(tex,mipmappedArray,desc) &
+        bind(c, name="hipBindTextureToMipmappedArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipBindTextureToMipmappedArray_
+      type(textureReference) :: tex
+      type(c_ptr),value :: mipmappedArray
+      type(hipChannelFormatDesc) :: desc
+    end function
+  end interface
+
+  interface hipGetTextureReference
+    function hipGetTextureReference_(texref,symbol) bind(c, name="hipGetTextureReference")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetTextureReference_
+      type(c_ptr) :: texref
+      type(c_ptr),value :: symbol
+    end function
+  end interface
+
+  interface hipTexRefGetBorderColor
+    function hipTexRefGetBorderColor_(pBorderColor,texRef) bind(c, name="hipTexRefGetBorderColor")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefGetBorderColor_
+      type(c_ptr),value :: pBorderColor
+      type(textureReference) :: texRef
+    end function
+  end interface
+
+  interface hipTexRefGetArray
+    function hipTexRefGetArray_(pArray,texRef) bind(c, name="hipTexRefGetArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefGetArray_
+      type(c_ptr) :: pArray
+      type(textureReference) :: texRef
+    end function
+  end interface
+
+  interface hipTexRefSetAddressMode
+    function hipTexRefSetAddressMode_(texRef,dim,am) bind(c, name="hipTexRefSetAddressMode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetAddressMode_
+      type(textureReference) :: texRef
+      integer(c_int),value :: dim
+      integer(c_int),value :: am
+    end function
+  end interface
+
+  interface hipTexRefSetArray
+    function hipTexRefSetArray_(tex,array,flags) bind(c, name="hipTexRefSetArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetArray_
+      type(textureReference) :: tex
+      type(c_ptr),value :: array
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipTexRefSetFilterMode
+    function hipTexRefSetFilterMode_(texRef,fm) bind(c, name="hipTexRefSetFilterMode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetFilterMode_
+      type(textureReference) :: texRef
+      integer(c_int),value :: fm
+    end function
+  end interface
+
+  interface hipTexRefSetFlags
+    function hipTexRefSetFlags_(texRef,Flags) bind(c, name="hipTexRefSetFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetFlags_
+      type(textureReference) :: texRef
+      integer(c_int),value :: Flags
+    end function
+  end interface
+
+  interface hipTexRefSetFormat
+    function hipTexRefSetFormat_(texRef,fmt,NumPackedComponents) bind(c, name="hipTexRefSetFormat")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetFormat_
+      type(textureReference) :: texRef
+      integer(c_int),value :: fmt
+      integer(c_int),value :: NumPackedComponents
+    end function
+  end interface
+
+  interface hipBindTexture
+    function hipBindTexture_(offset,tex,devPtr,desc,mySize) bind(c, name="hipBindTexture")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipBindTexture_
+      type(c_ptr),value :: offset
+      type(textureReference) :: tex
+      type(c_ptr),value :: devPtr
+      type(hipChannelFormatDesc) :: desc
+      integer(c_size_t),value :: mySize
+    end function
+
+    module procedure hipBindTexture_typed
+  end interface
+
+  interface hipBindTexture2D
+    function hipBindTexture2D_(offset,tex,devPtr,desc,width,height,pitch) &
+        bind(c, name="hipBindTexture2D")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipBindTexture2D_
+      type(c_ptr),value :: offset
+      type(textureReference) :: tex
+      type(c_ptr),value :: devPtr
+      type(hipChannelFormatDesc) :: desc
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_size_t),value :: pitch
+    end function
+
+    module procedure hipBindTexture2D_typed
+  end interface
+
+  interface hipBindTextureToArray
+    function hipBindTextureToArray_(tex,array,desc) bind(c, name="hipBindTextureToArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipBindTextureToArray_
+      type(textureReference) :: tex
+      type(c_ptr),value :: array
+      type(hipChannelFormatDesc) :: desc
+    end function
+  end interface
+
+  interface hipGetTextureAlignmentOffset
+    function hipGetTextureAlignmentOffset_(offset,texref) &
+        bind(c, name="hipGetTextureAlignmentOffset")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetTextureAlignmentOffset_
+      type(c_ptr),value :: offset
+      type(textureReference) :: texref
+    end function
+
+    module procedure hipGetTextureAlignmentOffset_typed
+  end interface
+
+  interface hipUnbindTexture
+    function hipUnbindTexture_(tex) bind(c, name="hipUnbindTexture")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipUnbindTexture_
+      type(textureReference) :: tex
+    end function
+  end interface
+
+  interface hipTexRefGetAddress
+    function hipTexRefGetAddress_(dev_ptr,texRef) bind(c, name="hipTexRefGetAddress")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefGetAddress_
+      type(c_ptr) :: dev_ptr
+      type(textureReference) :: texRef
+    end function
+  end interface
+
+  interface hipTexRefGetAddressMode
+    function hipTexRefGetAddressMode_(pam,texRef,dim) bind(c, name="hipTexRefGetAddressMode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefGetAddressMode_
+      type(c_ptr),value :: pam
+      type(textureReference) :: texRef
+      integer(c_int),value :: dim
+    end function
+
+    module procedure hipTexRefGetAddressMode_typed
+  end interface
+
+  interface hipTexRefGetFilterMode
+    function hipTexRefGetFilterMode_(pfm,texRef) bind(c, name="hipTexRefGetFilterMode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefGetFilterMode_
+      type(c_ptr),value :: pfm
+      type(textureReference) :: texRef
+    end function
+
+    module procedure hipTexRefGetFilterMode_typed
+  end interface
+
+  interface hipTexRefGetFlags
+    function hipTexRefGetFlags_(pFlags,texRef) bind(c, name="hipTexRefGetFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefGetFlags_
+      type(c_ptr),value :: pFlags
+      type(textureReference) :: texRef
+    end function
+
+    module procedure hipTexRefGetFlags_typed
+  end interface
+
+  interface hipTexRefGetFormat
+    function hipTexRefGetFormat_(pFormat,pNumChannels,texRef) bind(c, name="hipTexRefGetFormat")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefGetFormat_
+      type(c_ptr),value :: pFormat
+      type(c_ptr),value :: pNumChannels
+      type(textureReference) :: texRef
+    end function
+
+    module procedure hipTexRefGetFormat_typed
+  end interface
+
+  interface hipTexRefGetMaxAnisotropy
+    function hipTexRefGetMaxAnisotropy_(pmaxAnsio,texRef) bind(c, name="hipTexRefGetMaxAnisotropy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefGetMaxAnisotropy_
+      type(c_ptr),value :: pmaxAnsio
+      type(textureReference) :: texRef
+    end function
+
+    module procedure hipTexRefGetMaxAnisotropy_typed
+  end interface
+
+  interface hipTexRefGetMipmapFilterMode
+    function hipTexRefGetMipmapFilterMode_(pfm,texRef) bind(c, name="hipTexRefGetMipmapFilterMode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefGetMipmapFilterMode_
+      type(c_ptr),value :: pfm
+      type(textureReference) :: texRef
+    end function
+
+    module procedure hipTexRefGetMipmapFilterMode_typed
+  end interface
+
+  interface hipTexRefGetMipmapLevelBias
+    function hipTexRefGetMipmapLevelBias_(pbias,texRef) bind(c, name="hipTexRefGetMipmapLevelBias")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefGetMipmapLevelBias_
+      type(c_ptr),value :: pbias
+      type(textureReference) :: texRef
+    end function
+
+    module procedure hipTexRefGetMipmapLevelBias_typed
+  end interface
+
+  interface hipTexRefGetMipmapLevelClamp
+    function hipTexRefGetMipmapLevelClamp_(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) &
+        bind(c, name="hipTexRefGetMipmapLevelClamp")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefGetMipmapLevelClamp_
+      type(c_ptr),value :: pminMipmapLevelClamp
+      type(c_ptr),value :: pmaxMipmapLevelClamp
+      type(textureReference) :: texRef
+    end function
+
+    module procedure hipTexRefGetMipmapLevelClamp_typed
+  end interface
+
+  interface hipTexRefGetMipMappedArray
+    function hipTexRefGetMipMappedArray_(pArray,texRef) bind(c, name="hipTexRefGetMipMappedArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefGetMipMappedArray_
+      type(c_ptr) :: pArray
+      type(textureReference) :: texRef
+    end function
+  end interface
+
+  interface hipTexRefSetAddress
+    function hipTexRefSetAddress_(ByteOffset,texRef,dptr,bytes) bind(c, name="hipTexRefSetAddress")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetAddress_
+      type(c_ptr),value :: ByteOffset
+      type(textureReference) :: texRef
+      type(c_ptr),value :: dptr
+      integer(c_size_t),value :: bytes
+    end function
+
+    module procedure hipTexRefSetAddress_typed
+  end interface
+
+  interface hipTexRefSetAddress2D
+    function hipTexRefSetAddress2D_(texRef,desc,dptr,Pitch) bind(c, name="hipTexRefSetAddress2D")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetAddress2D_
+      type(textureReference) :: texRef
+      type(HIP_ARRAY_DESCRIPTOR) :: desc
+      type(c_ptr),value :: dptr
+      integer(c_size_t),value :: Pitch
+    end function
+  end interface
+
+  interface hipTexRefSetMaxAnisotropy
+    function hipTexRefSetMaxAnisotropy_(texRef,maxAniso) bind(c, name="hipTexRefSetMaxAnisotropy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetMaxAnisotropy_
+      type(textureReference) :: texRef
+      integer(c_int),value :: maxAniso
+    end function
+  end interface
+
+  interface hipTexRefSetBorderColor
+    function hipTexRefSetBorderColor_(texRef,pBorderColor) bind(c, name="hipTexRefSetBorderColor")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetBorderColor_
+      type(textureReference) :: texRef
+      type(c_ptr),value :: pBorderColor
+    end function
+  end interface
+
+  interface hipTexRefSetMipmapFilterMode
+    function hipTexRefSetMipmapFilterMode_(texRef,fm) bind(c, name="hipTexRefSetMipmapFilterMode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetMipmapFilterMode_
+      type(textureReference) :: texRef
+      integer(c_int),value :: fm
+    end function
+  end interface
+
+  interface hipTexRefSetMipmapLevelBias
+    function hipTexRefSetMipmapLevelBias_(texRef,bias) bind(c, name="hipTexRefSetMipmapLevelBias")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetMipmapLevelBias_
+      type(textureReference) :: texRef
+      real(c_float),value :: bias
+    end function
+  end interface
+
+  interface hipTexRefSetMipmapLevelClamp
+    function hipTexRefSetMipmapLevelClamp_(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) &
+        bind(c, name="hipTexRefSetMipmapLevelClamp")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetMipmapLevelClamp_
+      type(textureReference) :: texRef
+      real(c_float),value :: minMipMapLevelClamp
+      real(c_float),value :: maxMipMapLevelClamp
+    end function
+  end interface
+
+  interface hipTexRefSetMipmappedArray
+    function hipTexRefSetMipmappedArray_(texRef,mipmappedArray,Flags) &
+        bind(c, name="hipTexRefSetMipmappedArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipTexRefSetMipmappedArray_
+      type(textureReference) :: texRef
+      type(hipMipmappedArray) :: mipmappedArray
+      integer(c_int),value :: Flags
+    end function
+  end interface
+
+  interface hipApiName
+    function hipApiName_(id) bind(c, name="hipApiName")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: hipApiName_
+      integer(c_int32_t),value :: id
+    end function
+  end interface
+
+  interface hipKernelNameRef
+    function hipKernelNameRef_(f) bind(c, name="hipKernelNameRef")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: hipKernelNameRef_
+      type(c_ptr),value :: f
+    end function
+  end interface
+
+  interface hipKernelNameRefByPtr
+    function hipKernelNameRefByPtr_(hostFunction,stream) bind(c, name="hipKernelNameRefByPtr")
+      use iso_c_binding
+      import
+      implicit none
+      type(c_ptr) :: hipKernelNameRefByPtr_
+      type(c_ptr),value :: hostFunction
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipGetStreamDeviceId
+    function hipGetStreamDeviceId_(stream) bind(c, name="hipGetStreamDeviceId")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetStreamDeviceId_
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipStreamBeginCapture
+    function hipStreamBeginCapture_(stream,mode) bind(c, name="hipStreamBeginCapture")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamBeginCapture_
+      type(c_ptr),value :: stream
+      integer(c_int),value :: mode
+    end function
+  end interface
+
+  interface hipStreamBeginCaptureToGraph
+    function hipStreamBeginCaptureToGraph_(stream,graph,dependencies,dependencyData, &
+        numDependencies,mode) &
+        bind(c, name="hipStreamBeginCaptureToGraph")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamBeginCaptureToGraph_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: graph
+      type(c_ptr) :: dependencies
+      type(hipGraphEdgeData) :: dependencyData
+      integer(c_size_t),value :: numDependencies
+      integer(c_int),value :: mode
+    end function
+  end interface
+
+  interface hipStreamEndCapture
+    function hipStreamEndCapture_(stream,pGraph) bind(c, name="hipStreamEndCapture")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamEndCapture_
+      type(c_ptr),value :: stream
+      type(c_ptr) :: pGraph
+    end function
+  end interface
+
+  interface hipStreamGetCaptureInfo
+    function hipStreamGetCaptureInfo_(stream,pCaptureStatus,pId) &
+        bind(c, name="hipStreamGetCaptureInfo")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamGetCaptureInfo_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: pCaptureStatus
+      type(c_ptr),value :: pId
+    end function
+
+    module procedure hipStreamGetCaptureInfo_typed
+  end interface
+
+  interface
+    function hipStreamGetCaptureInfo_v2_(stream,captureStatus_out,id_out,graph_out, &
+        dependencies_out,numDependencies_out) &
+        bind(c, name="hipStreamGetCaptureInfo_v2")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamGetCaptureInfo_v2_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: captureStatus_out
+      type(c_ptr),value :: id_out
+      type(c_ptr),value :: graph_out
+      type(c_ptr),value :: dependencies_out
+      type(c_ptr),value :: numDependencies_out
+    end function
+  end interface
+
+  interface hipStreamGetCaptureInfo_v2
+
+    module procedure &
+      hipStreamGetCaptureInfo_v2_opt,&
+      hipStreamGetCaptureInfo_v2_typed
+  end interface
+
+  interface hipStreamIsCapturing
+    function hipStreamIsCapturing_(stream,pCaptureStatus) bind(c, name="hipStreamIsCapturing")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamIsCapturing_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: pCaptureStatus
+    end function
+
+    module procedure hipStreamIsCapturing_typed
+  end interface
+
+  interface hipStreamUpdateCaptureDependencies
+    function hipStreamUpdateCaptureDependencies_(stream,dependencies,numDependencies,flags) &
+        bind(c, name="hipStreamUpdateCaptureDependencies")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamUpdateCaptureDependencies_
+      type(c_ptr),value :: stream
+      type(c_ptr) :: dependencies
+      integer(c_size_t),value :: numDependencies
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipThreadExchangeStreamCaptureMode
+    function hipThreadExchangeStreamCaptureMode_(mode) &
+        bind(c, name="hipThreadExchangeStreamCaptureMode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipThreadExchangeStreamCaptureMode_
+      type(c_ptr),value :: mode
+    end function
+
+    module procedure hipThreadExchangeStreamCaptureMode_typed
+  end interface
+
+  interface hipGraphCreate
+    function hipGraphCreate_(pGraph,flags) bind(c, name="hipGraphCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphCreate_
+      type(c_ptr) :: pGraph
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipGraphDestroy
+    function hipGraphDestroy_(graph) bind(c, name="hipGraphDestroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphDestroy_
+      type(c_ptr),value :: graph
+    end function
+  end interface
+
+  interface hipGraphAddDependencies
+    function hipGraphAddDependencies_(graph,from,to,numDependencies) &
+        bind(c, name="hipGraphAddDependencies")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddDependencies_
+      type(c_ptr),value :: graph
+      type(c_ptr) :: from
+      type(c_ptr) :: to
+      integer(c_size_t),value :: numDependencies
+    end function
+  end interface
+
+  interface hipGraphRemoveDependencies
+    function hipGraphRemoveDependencies_(graph,from,to,numDependencies) &
+        bind(c, name="hipGraphRemoveDependencies")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphRemoveDependencies_
+      type(c_ptr),value :: graph
+      type(c_ptr) :: from
+      type(c_ptr) :: to
+      integer(c_size_t),value :: numDependencies
+    end function
+  end interface
+
+  interface
+    function hipGraphGetEdges_(graph,from,to,numEdges) bind(c, name="hipGraphGetEdges")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphGetEdges_
+      type(c_ptr),value :: graph
+      type(c_ptr),value :: from
+      type(c_ptr),value :: to
+      type(c_ptr),value :: numEdges
+    end function
+  end interface
+
+  interface hipGraphGetEdges
+
+    module procedure &
+      hipGraphGetEdges_opt,&
+      hipGraphGetEdges_typed
+  end interface
+
+  interface
+    function hipGraphGetNodes_(graph,nodes,numNodes) bind(c, name="hipGraphGetNodes")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphGetNodes_
+      type(c_ptr),value :: graph
+      type(c_ptr),value :: nodes
+      type(c_ptr),value :: numNodes
+    end function
+  end interface
+
+  interface hipGraphGetNodes
+
+    module procedure &
+      hipGraphGetNodes_opt,&
+      hipGraphGetNodes_typed
+  end interface
+
+  interface
+    function hipGraphGetRootNodes_(graph,pRootNodes,pNumRootNodes) &
+        bind(c, name="hipGraphGetRootNodes")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphGetRootNodes_
+      type(c_ptr),value :: graph
+      type(c_ptr),value :: pRootNodes
+      type(c_ptr),value :: pNumRootNodes
+    end function
+  end interface
+
+  interface hipGraphGetRootNodes
+
+    module procedure &
+      hipGraphGetRootNodes_opt,&
+      hipGraphGetRootNodes_typed
+  end interface
+
+  interface
+    function hipGraphNodeGetDependencies_(node,pDependencies,pNumDependencies) &
+        bind(c, name="hipGraphNodeGetDependencies")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphNodeGetDependencies_
+      type(c_ptr),value :: node
+      type(c_ptr),value :: pDependencies
+      type(c_ptr),value :: pNumDependencies
+    end function
+  end interface
+
+  interface hipGraphNodeGetDependencies
+
+    module procedure &
+      hipGraphNodeGetDependencies_opt,&
+      hipGraphNodeGetDependencies_typed
+  end interface
+
+  interface
+    function hipGraphNodeGetDependentNodes_(node,pDependentNodes,pNumDependentNodes) &
+        bind(c, name="hipGraphNodeGetDependentNodes")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphNodeGetDependentNodes_
+      type(c_ptr),value :: node
+      type(c_ptr),value :: pDependentNodes
+      type(c_ptr),value :: pNumDependentNodes
+    end function
+  end interface
+
+  interface hipGraphNodeGetDependentNodes
+
+    module procedure &
+      hipGraphNodeGetDependentNodes_opt,&
+      hipGraphNodeGetDependentNodes_typed
+  end interface
+
+  interface hipGraphNodeGetType
+    function hipGraphNodeGetType_(node,pType) bind(c, name="hipGraphNodeGetType")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphNodeGetType_
+      type(c_ptr),value :: node
+      type(c_ptr),value :: pType
+    end function
+
+    module procedure hipGraphNodeGetType_typed
+  end interface
+
+  interface hipGraphDestroyNode
+    function hipGraphDestroyNode_(node) bind(c, name="hipGraphDestroyNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphDestroyNode_
+      type(c_ptr),value :: node
+    end function
+  end interface
+
+  interface hipGraphClone
+    function hipGraphClone_(pGraphClone,originalGraph) bind(c, name="hipGraphClone")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphClone_
+      type(c_ptr) :: pGraphClone
+      type(c_ptr),value :: originalGraph
+    end function
+  end interface
+
+  interface hipGraphNodeFindInClone
+    function hipGraphNodeFindInClone_(pNode,originalNode,clonedGraph) &
+        bind(c, name="hipGraphNodeFindInClone")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphNodeFindInClone_
+      type(c_ptr) :: pNode
+      type(c_ptr),value :: originalNode
+      type(c_ptr),value :: clonedGraph
+    end function
+  end interface
+
+  interface hipGraphInstantiate
+    function hipGraphInstantiate_(pGraphExec,graph,pErrorNode,pLogBuffer,bufferSize) &
+        bind(c, name="hipGraphInstantiate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphInstantiate_
+      type(c_ptr) :: pGraphExec
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pErrorNode
+      type(c_ptr),value :: pLogBuffer
+      integer(c_size_t),value :: bufferSize
+    end function
+  end interface
+
+  interface hipGraphInstantiateWithFlags
+    function hipGraphInstantiateWithFlags_(pGraphExec,graph,flags) &
+        bind(c, name="hipGraphInstantiateWithFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphInstantiateWithFlags_
+      type(c_ptr) :: pGraphExec
+      type(c_ptr),value :: graph
+      integer(c_int64_t),value :: flags
+    end function
+  end interface
+
+  interface hipGraphInstantiateWithParams
+    function hipGraphInstantiateWithParams_(pGraphExec,graph,instantiateParams) &
+        bind(c, name="hipGraphInstantiateWithParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphInstantiateWithParams_
+      type(c_ptr) :: pGraphExec
+      type(c_ptr),value :: graph
+      type(hipGraphInstantiateParams) :: instantiateParams
+    end function
+  end interface
+
+  interface hipGraphLaunch
+    function hipGraphLaunch_(graphExec,stream) bind(c, name="hipGraphLaunch")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphLaunch_
+      type(c_ptr),value :: graphExec
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipGraphUpload
+    function hipGraphUpload_(graphExec,stream) bind(c, name="hipGraphUpload")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphUpload_
+      type(c_ptr),value :: graphExec
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipGraphAddNode
+    function hipGraphAddNode_(pGraphNode,graph,pDependencies,numDependencies,nodeParams) &
+        bind(c, name="hipGraphAddNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(hipGraphNodeParams) :: nodeParams
+    end function
+  end interface
+
+  interface hipGraphExecGetFlags
+    function hipGraphExecGetFlags_(graphExec,flags) bind(c, name="hipGraphExecGetFlags")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecGetFlags_
+      type(c_ptr),value :: graphExec
+      type(c_ptr),value :: flags
+    end function
+
+    module procedure hipGraphExecGetFlags_typed
+  end interface
+
+  interface hipGraphNodeSetParams
+    function hipGraphNodeSetParams_(node,nodeParams) bind(c, name="hipGraphNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphNodeSetParams_
+      type(c_ptr),value :: node
+      type(hipGraphNodeParams) :: nodeParams
+    end function
+  end interface
+
+  interface hipGraphExecNodeSetParams
+    function hipGraphExecNodeSetParams_(graphExec,node,nodeParams) &
+        bind(c, name="hipGraphExecNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecNodeSetParams_
+      type(c_ptr),value :: graphExec
+      type(c_ptr),value :: node
+      type(hipGraphNodeParams) :: nodeParams
+    end function
+  end interface
+
+  interface hipGraphExecDestroy
+    function hipGraphExecDestroy_(graphExec) bind(c, name="hipGraphExecDestroy")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecDestroy_
+      type(c_ptr),value :: graphExec
+    end function
+  end interface
+
+  interface hipGraphExecUpdate
+    function hipGraphExecUpdate_(hGraphExec,hGraph,hErrorNode_out,updateResult_out) &
+        bind(c, name="hipGraphExecUpdate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecUpdate_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: hGraph
+      type(c_ptr) :: hErrorNode_out
+      type(c_ptr),value :: updateResult_out
+    end function
+
+    module procedure hipGraphExecUpdate_typed
+  end interface
+
+  interface hipGraphAddKernelNode
+    function hipGraphAddKernelNode_(pGraphNode,graph,pDependencies,numDependencies,pNodeParams) &
+        bind(c, name="hipGraphAddKernelNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddKernelNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(hipKernelNodeParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphKernelNodeGetParams
+    function hipGraphKernelNodeGetParams_(node,pNodeParams) &
+        bind(c, name="hipGraphKernelNodeGetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphKernelNodeGetParams_
+      type(c_ptr),value :: node
+      type(hipKernelNodeParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphKernelNodeSetParams
+    function hipGraphKernelNodeSetParams_(node,pNodeParams) &
+        bind(c, name="hipGraphKernelNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphKernelNodeSetParams_
+      type(c_ptr),value :: node
+      type(hipKernelNodeParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphExecKernelNodeSetParams
+    function hipGraphExecKernelNodeSetParams_(hGraphExec,node,pNodeParams) &
+        bind(c, name="hipGraphExecKernelNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecKernelNodeSetParams_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: node
+      type(hipKernelNodeParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipDrvGraphAddMemcpyNode
+    function hipDrvGraphAddMemcpyNode_(phGraphNode,hGraph,dependencies,numDependencies,copyParams, &
+        ctx) &
+        bind(c, name="hipDrvGraphAddMemcpyNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvGraphAddMemcpyNode_
+      type(c_ptr) :: phGraphNode
+      type(c_ptr),value :: hGraph
+      type(c_ptr) :: dependencies
+      integer(c_size_t),value :: numDependencies
+      type(HIP_MEMCPY3D) :: copyParams
+      type(c_ptr),value :: ctx
+    end function
+  end interface
+
+  interface hipGraphAddMemcpyNode
+    function hipGraphAddMemcpyNode_(pGraphNode,graph,pDependencies,numDependencies,pCopyParams) &
+        bind(c, name="hipGraphAddMemcpyNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddMemcpyNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(hipMemcpy3DParms) :: pCopyParams
+    end function
+  end interface
+
+  interface hipGraphMemcpyNodeGetParams
+    function hipGraphMemcpyNodeGetParams_(node,pNodeParams) &
+        bind(c, name="hipGraphMemcpyNodeGetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphMemcpyNodeGetParams_
+      type(c_ptr),value :: node
+      type(hipMemcpy3DParms) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphMemcpyNodeSetParams
+    function hipGraphMemcpyNodeSetParams_(node,pNodeParams) &
+        bind(c, name="hipGraphMemcpyNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphMemcpyNodeSetParams_
+      type(c_ptr),value :: node
+      type(hipMemcpy3DParms) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphKernelNodeSetAttribute
+    function hipGraphKernelNodeSetAttribute_(hNode,attr,myValue) &
+        bind(c, name="hipGraphKernelNodeSetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphKernelNodeSetAttribute_
+      type(c_ptr),value :: hNode
+      integer(c_int),value :: attr
+      type(c_ptr),value :: myValue
+    end function
+  end interface
+
+  interface hipGraphKernelNodeGetAttribute
+    function hipGraphKernelNodeGetAttribute_(hNode,attr,myValue) &
+        bind(c, name="hipGraphKernelNodeGetAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphKernelNodeGetAttribute_
+      type(c_ptr),value :: hNode
+      integer(c_int),value :: attr
+      type(c_ptr),value :: myValue
+    end function
+  end interface
+
+  interface hipGraphExecMemcpyNodeSetParams
+    function hipGraphExecMemcpyNodeSetParams_(hGraphExec,node,pNodeParams) &
+        bind(c, name="hipGraphExecMemcpyNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecMemcpyNodeSetParams_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: node
+      type(hipMemcpy3DParms) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphAddMemcpyNode1D
+    function hipGraphAddMemcpyNode1D_(pGraphNode,graph,pDependencies,numDependencies,dst,src, &
+        count,myKind) &
+        bind(c, name="hipGraphAddMemcpyNode1D")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddMemcpyNode1D_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: count
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipGraphMemcpyNodeSetParams1D
+    function hipGraphMemcpyNodeSetParams1D_(node,dst,src,count,myKind) &
+        bind(c, name="hipGraphMemcpyNodeSetParams1D")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphMemcpyNodeSetParams1D_
+      type(c_ptr),value :: node
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: count
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipGraphExecMemcpyNodeSetParams1D
+    function hipGraphExecMemcpyNodeSetParams1D_(hGraphExec,node,dst,src,count,myKind) &
+        bind(c, name="hipGraphExecMemcpyNodeSetParams1D")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecMemcpyNodeSetParams1D_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: node
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: count
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipGraphAddMemcpyNodeFromSymbol
+    function hipGraphAddMemcpyNodeFromSymbol_(pGraphNode,graph,pDependencies,numDependencies,dst, &
+        symbol,count,offset,myKind) &
+        bind(c, name="hipGraphAddMemcpyNodeFromSymbol")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddMemcpyNodeFromSymbol_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: symbol
+      integer(c_size_t),value :: count
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipGraphMemcpyNodeSetParamsFromSymbol
+    function hipGraphMemcpyNodeSetParamsFromSymbol_(node,dst,symbol,count,offset,myKind) &
+        bind(c, name="hipGraphMemcpyNodeSetParamsFromSymbol")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphMemcpyNodeSetParamsFromSymbol_
+      type(c_ptr),value :: node
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: symbol
+      integer(c_size_t),value :: count
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipGraphExecMemcpyNodeSetParamsFromSymbol
+    function hipGraphExecMemcpyNodeSetParamsFromSymbol_(hGraphExec,node,dst,symbol,count,offset, &
+        myKind) &
+        bind(c, name="hipGraphExecMemcpyNodeSetParamsFromSymbol")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecMemcpyNodeSetParamsFromSymbol_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: node
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: symbol
+      integer(c_size_t),value :: count
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipGraphAddMemcpyNodeToSymbol
+    function hipGraphAddMemcpyNodeToSymbol_(pGraphNode,graph,pDependencies,numDependencies,symbol, &
+        src,count,offset,myKind) &
+        bind(c, name="hipGraphAddMemcpyNodeToSymbol")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddMemcpyNodeToSymbol_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(c_ptr),value :: symbol
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: count
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipGraphMemcpyNodeSetParamsToSymbol
+    function hipGraphMemcpyNodeSetParamsToSymbol_(node,symbol,src,count,offset,myKind) &
+        bind(c, name="hipGraphMemcpyNodeSetParamsToSymbol")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphMemcpyNodeSetParamsToSymbol_
+      type(c_ptr),value :: node
+      type(c_ptr),value :: symbol
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: count
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipGraphExecMemcpyNodeSetParamsToSymbol
+    function hipGraphExecMemcpyNodeSetParamsToSymbol_(hGraphExec,node,symbol,src,count,offset, &
+        myKind) &
+        bind(c, name="hipGraphExecMemcpyNodeSetParamsToSymbol")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecMemcpyNodeSetParamsToSymbol_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: node
+      type(c_ptr),value :: symbol
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: count
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipGraphAddMemsetNode
+    function hipGraphAddMemsetNode_(pGraphNode,graph,pDependencies,numDependencies,pMemsetParams) &
+        bind(c, name="hipGraphAddMemsetNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddMemsetNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(hipMemsetParams) :: pMemsetParams
+    end function
+  end interface
+
+  interface hipGraphMemsetNodeGetParams
+    function hipGraphMemsetNodeGetParams_(node,pNodeParams) &
+        bind(c, name="hipGraphMemsetNodeGetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphMemsetNodeGetParams_
+      type(c_ptr),value :: node
+      type(hipMemsetParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphMemsetNodeSetParams
+    function hipGraphMemsetNodeSetParams_(node,pNodeParams) &
+        bind(c, name="hipGraphMemsetNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphMemsetNodeSetParams_
+      type(c_ptr),value :: node
+      type(hipMemsetParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphExecMemsetNodeSetParams
+    function hipGraphExecMemsetNodeSetParams_(hGraphExec,node,pNodeParams) &
+        bind(c, name="hipGraphExecMemsetNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecMemsetNodeSetParams_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: node
+      type(hipMemsetParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphAddHostNode
+    function hipGraphAddHostNode_(pGraphNode,graph,pDependencies,numDependencies,pNodeParams) &
+        bind(c, name="hipGraphAddHostNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddHostNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(hipHostNodeParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphHostNodeGetParams
+    function hipGraphHostNodeGetParams_(node,pNodeParams) bind(c, name="hipGraphHostNodeGetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphHostNodeGetParams_
+      type(c_ptr),value :: node
+      type(hipHostNodeParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphHostNodeSetParams
+    function hipGraphHostNodeSetParams_(node,pNodeParams) bind(c, name="hipGraphHostNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphHostNodeSetParams_
+      type(c_ptr),value :: node
+      type(hipHostNodeParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphExecHostNodeSetParams
+    function hipGraphExecHostNodeSetParams_(hGraphExec,node,pNodeParams) &
+        bind(c, name="hipGraphExecHostNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecHostNodeSetParams_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: node
+      type(hipHostNodeParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphAddChildGraphNode
+    function hipGraphAddChildGraphNode_(pGraphNode,graph,pDependencies,numDependencies,childGraph) &
+        bind(c, name="hipGraphAddChildGraphNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddChildGraphNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(c_ptr),value :: childGraph
+    end function
+  end interface
+
+  interface hipGraphChildGraphNodeGetGraph
+    function hipGraphChildGraphNodeGetGraph_(node,pGraph) &
+        bind(c, name="hipGraphChildGraphNodeGetGraph")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphChildGraphNodeGetGraph_
+      type(c_ptr),value :: node
+      type(c_ptr) :: pGraph
+    end function
+  end interface
+
+  interface hipGraphExecChildGraphNodeSetParams
+    function hipGraphExecChildGraphNodeSetParams_(hGraphExec,node,childGraph) &
+        bind(c, name="hipGraphExecChildGraphNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecChildGraphNodeSetParams_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: node
+      type(c_ptr),value :: childGraph
+    end function
+  end interface
+
+  interface hipGraphAddEmptyNode
+    function hipGraphAddEmptyNode_(pGraphNode,graph,pDependencies,numDependencies) &
+        bind(c, name="hipGraphAddEmptyNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddEmptyNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+    end function
+  end interface
+
+  interface hipGraphAddEventRecordNode
+    function hipGraphAddEventRecordNode_(pGraphNode,graph,pDependencies,numDependencies,event) &
+        bind(c, name="hipGraphAddEventRecordNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddEventRecordNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(c_ptr),value :: event
+    end function
+  end interface
+
+  interface hipGraphEventRecordNodeGetEvent
+    function hipGraphEventRecordNodeGetEvent_(node,event_out) &
+        bind(c, name="hipGraphEventRecordNodeGetEvent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphEventRecordNodeGetEvent_
+      type(c_ptr),value :: node
+      type(c_ptr) :: event_out
+    end function
+  end interface
+
+  interface hipGraphEventRecordNodeSetEvent
+    function hipGraphEventRecordNodeSetEvent_(node,event) &
+        bind(c, name="hipGraphEventRecordNodeSetEvent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphEventRecordNodeSetEvent_
+      type(c_ptr),value :: node
+      type(c_ptr),value :: event
+    end function
+  end interface
+
+  interface hipGraphExecEventRecordNodeSetEvent
+    function hipGraphExecEventRecordNodeSetEvent_(hGraphExec,hNode,event) &
+        bind(c, name="hipGraphExecEventRecordNodeSetEvent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecEventRecordNodeSetEvent_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: hNode
+      type(c_ptr),value :: event
+    end function
+  end interface
+
+  interface hipGraphAddEventWaitNode
+    function hipGraphAddEventWaitNode_(pGraphNode,graph,pDependencies,numDependencies,event) &
+        bind(c, name="hipGraphAddEventWaitNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddEventWaitNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(c_ptr),value :: event
+    end function
+  end interface
+
+  interface hipGraphEventWaitNodeGetEvent
+    function hipGraphEventWaitNodeGetEvent_(node,event_out) &
+        bind(c, name="hipGraphEventWaitNodeGetEvent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphEventWaitNodeGetEvent_
+      type(c_ptr),value :: node
+      type(c_ptr) :: event_out
+    end function
+  end interface
+
+  interface hipGraphEventWaitNodeSetEvent
+    function hipGraphEventWaitNodeSetEvent_(node,event) &
+        bind(c, name="hipGraphEventWaitNodeSetEvent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphEventWaitNodeSetEvent_
+      type(c_ptr),value :: node
+      type(c_ptr),value :: event
+    end function
+  end interface
+
+  interface hipGraphExecEventWaitNodeSetEvent
+    function hipGraphExecEventWaitNodeSetEvent_(hGraphExec,hNode,event) &
+        bind(c, name="hipGraphExecEventWaitNodeSetEvent")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecEventWaitNodeSetEvent_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: hNode
+      type(c_ptr),value :: event
+    end function
+  end interface
+
+  interface hipGraphAddMemAllocNode
+    function hipGraphAddMemAllocNode_(pGraphNode,graph,pDependencies,numDependencies,pNodeParams) &
+        bind(c, name="hipGraphAddMemAllocNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddMemAllocNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(hipMemAllocNodeParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphMemAllocNodeGetParams
+    function hipGraphMemAllocNodeGetParams_(node,pNodeParams) &
+        bind(c, name="hipGraphMemAllocNodeGetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphMemAllocNodeGetParams_
+      type(c_ptr),value :: node
+      type(hipMemAllocNodeParams) :: pNodeParams
+    end function
+  end interface
+
+  interface hipGraphAddMemFreeNode
+    function hipGraphAddMemFreeNode_(pGraphNode,graph,pDependencies,numDependencies,dev_ptr) &
+        bind(c, name="hipGraphAddMemFreeNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddMemFreeNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(c_ptr),value :: dev_ptr
+    end function
+  end interface
+
+  interface hipGraphMemFreeNodeGetParams
+    function hipGraphMemFreeNodeGetParams_(node,dev_ptr) &
+        bind(c, name="hipGraphMemFreeNodeGetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphMemFreeNodeGetParams_
+      type(c_ptr),value :: node
+      type(c_ptr),value :: dev_ptr
+    end function
+  end interface
+
+  interface hipDeviceGetGraphMemAttribute
+    function hipDeviceGetGraphMemAttribute_(device,attr,myValue) &
+        bind(c, name="hipDeviceGetGraphMemAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGetGraphMemAttribute_
+      integer(c_int),value :: device
+      integer(c_int),value :: attr
+      type(c_ptr),value :: myValue
+    end function
+  end interface
+
+  interface hipDeviceSetGraphMemAttribute
+    function hipDeviceSetGraphMemAttribute_(device,attr,myValue) &
+        bind(c, name="hipDeviceSetGraphMemAttribute")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceSetGraphMemAttribute_
+      integer(c_int),value :: device
+      integer(c_int),value :: attr
+      type(c_ptr),value :: myValue
+    end function
+  end interface
+
+  interface hipDeviceGraphMemTrim
+    function hipDeviceGraphMemTrim_(device) bind(c, name="hipDeviceGraphMemTrim")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDeviceGraphMemTrim_
+      integer(c_int),value :: device
+    end function
+  end interface
+
+  interface hipUserObjectCreate
+    function hipUserObjectCreate_(object_out,ptr,destroy,initialRefcount,flags) &
+        bind(c, name="hipUserObjectCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipUserObjectCreate_
+      type(c_ptr) :: object_out
+      type(c_ptr),value :: ptr
+      type(c_funptr),value :: destroy
+      integer(c_int),value :: initialRefcount
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipUserObjectRelease
+    function hipUserObjectRelease_(object,count) bind(c, name="hipUserObjectRelease")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipUserObjectRelease_
+      type(c_ptr),value :: object
+      integer(c_int),value :: count
+    end function
+  end interface
+
+  interface hipUserObjectRetain
+    function hipUserObjectRetain_(object,count) bind(c, name="hipUserObjectRetain")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipUserObjectRetain_
+      type(c_ptr),value :: object
+      integer(c_int),value :: count
+    end function
+  end interface
+
+  interface hipGraphRetainUserObject
+    function hipGraphRetainUserObject_(graph,object,count,flags) &
+        bind(c, name="hipGraphRetainUserObject")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphRetainUserObject_
+      type(c_ptr),value :: graph
+      type(c_ptr),value :: object
+      integer(c_int),value :: count
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipGraphReleaseUserObject
+    function hipGraphReleaseUserObject_(graph,object,count) &
+        bind(c, name="hipGraphReleaseUserObject")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphReleaseUserObject_
+      type(c_ptr),value :: graph
+      type(c_ptr),value :: object
+      integer(c_int),value :: count
+    end function
+  end interface
+
+  interface hipGraphDebugDotPrint
+    function hipGraphDebugDotPrint_(graph,path,flags) bind(c, name="hipGraphDebugDotPrint")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphDebugDotPrint_
+      type(c_ptr),value :: graph
+      type(c_ptr),value :: path
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipGraphKernelNodeCopyAttributes
+    function hipGraphKernelNodeCopyAttributes_(hSrc,hDst) &
+        bind(c, name="hipGraphKernelNodeCopyAttributes")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphKernelNodeCopyAttributes_
+      type(c_ptr),value :: hSrc
+      type(c_ptr),value :: hDst
+    end function
+  end interface
+
+  interface hipGraphNodeSetEnabled
+    function hipGraphNodeSetEnabled_(hGraphExec,hNode,isEnabled) &
+        bind(c, name="hipGraphNodeSetEnabled")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphNodeSetEnabled_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: hNode
+      integer(c_int),value :: isEnabled
+    end function
+  end interface
+
+  interface hipGraphNodeGetEnabled
+    function hipGraphNodeGetEnabled_(hGraphExec,hNode,isEnabled) &
+        bind(c, name="hipGraphNodeGetEnabled")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphNodeGetEnabled_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: hNode
+      type(c_ptr),value :: isEnabled
+    end function
+
+    module procedure hipGraphNodeGetEnabled_typed
+  end interface
+
+  interface hipGraphAddExternalSemaphoresWaitNode
+    function hipGraphAddExternalSemaphoresWaitNode_(pGraphNode,graph,pDependencies, &
+        numDependencies,nodeParams) &
+        bind(c, name="hipGraphAddExternalSemaphoresWaitNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddExternalSemaphoresWaitNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(hipExternalSemaphoreWaitNodeParams) :: nodeParams
+    end function
+  end interface
+
+  interface hipGraphAddExternalSemaphoresSignalNode
+    function hipGraphAddExternalSemaphoresSignalNode_(pGraphNode,graph,pDependencies, &
+        numDependencies,nodeParams) &
+        bind(c, name="hipGraphAddExternalSemaphoresSignalNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphAddExternalSemaphoresSignalNode_
+      type(c_ptr) :: pGraphNode
+      type(c_ptr),value :: graph
+      type(c_ptr) :: pDependencies
+      integer(c_size_t),value :: numDependencies
+      type(hipExternalSemaphoreSignalNodeParams) :: nodeParams
+    end function
+  end interface
+
+  interface hipGraphExternalSemaphoresSignalNodeSetParams
+    function hipGraphExternalSemaphoresSignalNodeSetParams_(hNode,nodeParams) &
+        bind(c, name="hipGraphExternalSemaphoresSignalNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExternalSemaphoresSignalNodeSetParams_
+      type(c_ptr),value :: hNode
+      type(hipExternalSemaphoreSignalNodeParams) :: nodeParams
+    end function
+  end interface
+
+  interface hipGraphExternalSemaphoresWaitNodeSetParams
+    function hipGraphExternalSemaphoresWaitNodeSetParams_(hNode,nodeParams) &
+        bind(c, name="hipGraphExternalSemaphoresWaitNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExternalSemaphoresWaitNodeSetParams_
+      type(c_ptr),value :: hNode
+      type(hipExternalSemaphoreWaitNodeParams) :: nodeParams
+    end function
+  end interface
+
+  interface hipGraphExternalSemaphoresSignalNodeGetParams
+    function hipGraphExternalSemaphoresSignalNodeGetParams_(hNode,params_out) &
+        bind(c, name="hipGraphExternalSemaphoresSignalNodeGetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExternalSemaphoresSignalNodeGetParams_
+      type(c_ptr),value :: hNode
+      type(hipExternalSemaphoreSignalNodeParams) :: params_out
+    end function
+  end interface
+
+  interface hipGraphExternalSemaphoresWaitNodeGetParams
+    function hipGraphExternalSemaphoresWaitNodeGetParams_(hNode,params_out) &
+        bind(c, name="hipGraphExternalSemaphoresWaitNodeGetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExternalSemaphoresWaitNodeGetParams_
+      type(c_ptr),value :: hNode
+      type(hipExternalSemaphoreWaitNodeParams) :: params_out
+    end function
+  end interface
+
+  interface hipGraphExecExternalSemaphoresSignalNodeSetParams
+    function hipGraphExecExternalSemaphoresSignalNodeSetParams_(hGraphExec,hNode,nodeParams) &
+        bind(c, name="hipGraphExecExternalSemaphoresSignalNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecExternalSemaphoresSignalNodeSetParams_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: hNode
+      type(hipExternalSemaphoreSignalNodeParams) :: nodeParams
+    end function
+  end interface
+
+  interface hipGraphExecExternalSemaphoresWaitNodeSetParams
+    function hipGraphExecExternalSemaphoresWaitNodeSetParams_(hGraphExec,hNode,nodeParams) &
+        bind(c, name="hipGraphExecExternalSemaphoresWaitNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphExecExternalSemaphoresWaitNodeSetParams_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: hNode
+      type(hipExternalSemaphoreWaitNodeParams) :: nodeParams
+    end function
+  end interface
+
+  interface hipDrvGraphMemcpyNodeGetParams
+    function hipDrvGraphMemcpyNodeGetParams_(hNode,nodeParams) &
+        bind(c, name="hipDrvGraphMemcpyNodeGetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvGraphMemcpyNodeGetParams_
+      type(c_ptr),value :: hNode
+      type(HIP_MEMCPY3D) :: nodeParams
+    end function
+  end interface
+
+  interface hipDrvGraphMemcpyNodeSetParams
+    function hipDrvGraphMemcpyNodeSetParams_(hNode,nodeParams) &
+        bind(c, name="hipDrvGraphMemcpyNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvGraphMemcpyNodeSetParams_
+      type(c_ptr),value :: hNode
+      type(HIP_MEMCPY3D) :: nodeParams
+    end function
+  end interface
+
+  interface hipDrvGraphAddMemsetNode
+    function hipDrvGraphAddMemsetNode_(phGraphNode,hGraph,dependencies,numDependencies, &
+        memsetParams,ctx) &
+        bind(c, name="hipDrvGraphAddMemsetNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvGraphAddMemsetNode_
+      type(c_ptr) :: phGraphNode
+      type(c_ptr),value :: hGraph
+      type(c_ptr) :: dependencies
+      integer(c_size_t),value :: numDependencies
+      type(hipMemsetParams) :: memsetParams
+      type(c_ptr),value :: ctx
+    end function
+  end interface
+
+  interface hipDrvGraphAddMemFreeNode
+    function hipDrvGraphAddMemFreeNode_(phGraphNode,hGraph,dependencies,numDependencies,dptr) &
+        bind(c, name="hipDrvGraphAddMemFreeNode")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvGraphAddMemFreeNode_
+      type(c_ptr) :: phGraphNode
+      type(c_ptr),value :: hGraph
+      type(c_ptr) :: dependencies
+      integer(c_size_t),value :: numDependencies
+      type(c_ptr),value :: dptr
+    end function
+  end interface
+
+  interface hipDrvGraphExecMemcpyNodeSetParams
+    function hipDrvGraphExecMemcpyNodeSetParams_(hGraphExec,hNode,copyParams,ctx) &
+        bind(c, name="hipDrvGraphExecMemcpyNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvGraphExecMemcpyNodeSetParams_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: hNode
+      type(HIP_MEMCPY3D) :: copyParams
+      type(c_ptr),value :: ctx
+    end function
+  end interface
+
+  interface hipDrvGraphExecMemsetNodeSetParams
+    function hipDrvGraphExecMemsetNodeSetParams_(hGraphExec,hNode,memsetParams,ctx) &
+        bind(c, name="hipDrvGraphExecMemsetNodeSetParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDrvGraphExecMemsetNodeSetParams_
+      type(c_ptr),value :: hGraphExec
+      type(c_ptr),value :: hNode
+      type(hipMemsetParams) :: memsetParams
+      type(c_ptr),value :: ctx
+    end function
+  end interface
+
+  interface hipMemAddressFree
+    function hipMemAddressFree_(devPtr,mySize) bind(c, name="hipMemAddressFree")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemAddressFree_
+      type(c_ptr),value :: devPtr
+      integer(c_size_t),value :: mySize
+    end function
+  end interface
+
+  interface hipMemAddressReserve
+    function hipMemAddressReserve_(ptr,mySize,alignment,addr,flags) &
+        bind(c, name="hipMemAddressReserve")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemAddressReserve_
+      type(c_ptr) :: ptr
+      integer(c_size_t),value :: mySize
+      integer(c_size_t),value :: alignment
+      type(c_ptr),value :: addr
+      integer(c_int64_t),value :: flags
+    end function
+  end interface
+
+  interface hipMemCreate
+    function hipMemCreate_(handle,mySize,prop,flags) bind(c, name="hipMemCreate")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemCreate_
+      type(c_ptr) :: handle
+      integer(c_size_t),value :: mySize
+      type(hipMemAllocationProp) :: prop
+      integer(c_int64_t),value :: flags
+    end function
+  end interface
+
+  interface hipMemExportToShareableHandle
+    function hipMemExportToShareableHandle_(shareableHandle,handle,handleType,flags) &
+        bind(c, name="hipMemExportToShareableHandle")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemExportToShareableHandle_
+      type(c_ptr),value :: shareableHandle
+      type(c_ptr),value :: handle
+      integer(c_int),value :: handleType
+      integer(c_int64_t),value :: flags
+    end function
+  end interface
+
+  interface hipMemGetAccess
+    function hipMemGetAccess_(flags,location,ptr) bind(c, name="hipMemGetAccess")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemGetAccess_
+      type(c_ptr),value :: flags
+      type(hipMemLocation) :: location
+      type(c_ptr),value :: ptr
+    end function
+
+    module procedure hipMemGetAccess_typed
+  end interface
+
+  interface hipMemGetAllocationGranularity
+    function hipMemGetAllocationGranularity_(granularity,prop,option) &
+        bind(c, name="hipMemGetAllocationGranularity")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemGetAllocationGranularity_
+      type(c_ptr),value :: granularity
+      type(hipMemAllocationProp) :: prop
+      integer(c_int),value :: option
+    end function
+
+    module procedure hipMemGetAllocationGranularity_typed
+  end interface
+
+  interface hipMemGetAllocationPropertiesFromHandle
+    function hipMemGetAllocationPropertiesFromHandle_(prop,handle) &
+        bind(c, name="hipMemGetAllocationPropertiesFromHandle")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemGetAllocationPropertiesFromHandle_
+      type(hipMemAllocationProp) :: prop
+      type(c_ptr),value :: handle
+    end function
+  end interface
+
+  interface hipMemImportFromShareableHandle
+    function hipMemImportFromShareableHandle_(handle,osHandle,shHandleType) &
+        bind(c, name="hipMemImportFromShareableHandle")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemImportFromShareableHandle_
+      type(c_ptr) :: handle
+      type(c_ptr),value :: osHandle
+      integer(c_int),value :: shHandleType
+    end function
+  end interface
+
+  interface hipMemMap
+    function hipMemMap_(ptr,mySize,offset,handle,flags) bind(c, name="hipMemMap")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemMap_
+      type(c_ptr),value :: ptr
+      integer(c_size_t),value :: mySize
+      integer(c_size_t),value :: offset
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: flags
+    end function
+  end interface
+
+  interface hipMemMapArrayAsync
+    function hipMemMapArrayAsync_(mapInfoList,count,stream) bind(c, name="hipMemMapArrayAsync")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemMapArrayAsync_
+      type(hipArrayMapInfo) :: mapInfoList
+      integer(c_int),value :: count
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemRelease
+    function hipMemRelease_(handle) bind(c, name="hipMemRelease")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemRelease_
+      type(c_ptr),value :: handle
+    end function
+  end interface
+
+  interface hipMemRetainAllocationHandle
+    function hipMemRetainAllocationHandle_(handle,addr) bind(c, name="hipMemRetainAllocationHandle")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemRetainAllocationHandle_
+      type(c_ptr) :: handle
+      type(c_ptr),value :: addr
+    end function
+  end interface
+
+  interface hipMemSetAccess
+    function hipMemSetAccess_(ptr,mySize,desc,count) bind(c, name="hipMemSetAccess")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemSetAccess_
+      type(c_ptr),value :: ptr
+      integer(c_size_t),value :: mySize
+      type(hipMemAccessDesc) :: desc
+      integer(c_size_t),value :: count
+    end function
+  end interface
+
+  interface hipMemUnmap
+    function hipMemUnmap_(ptr,mySize) bind(c, name="hipMemUnmap")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemUnmap_
+      type(c_ptr),value :: ptr
+      integer(c_size_t),value :: mySize
+    end function
+  end interface
+
+  interface hipGraphicsMapResources
+    function hipGraphicsMapResources_(count,resources,stream) &
+        bind(c, name="hipGraphicsMapResources")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphicsMapResources_
+      integer(c_int),value :: count
+      type(c_ptr) :: resources
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipGraphicsSubResourceGetMappedArray
+    function hipGraphicsSubResourceGetMappedArray_(array,resource,arrayIndex,mipLevel) &
+        bind(c, name="hipGraphicsSubResourceGetMappedArray")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphicsSubResourceGetMappedArray_
+      type(c_ptr) :: array
+      type(c_ptr),value :: resource
+      integer(c_int),value :: arrayIndex
+      integer(c_int),value :: mipLevel
+    end function
+  end interface
+
+  interface hipGraphicsResourceGetMappedPointer
+    function hipGraphicsResourceGetMappedPointer_(devPtr,mySize,resource) &
+        bind(c, name="hipGraphicsResourceGetMappedPointer")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphicsResourceGetMappedPointer_
+      type(c_ptr) :: devPtr
+      type(c_ptr),value :: mySize
+      type(c_ptr),value :: resource
+    end function
+
+    module procedure hipGraphicsResourceGetMappedPointer_typed
+  end interface
+
+  interface hipGraphicsUnmapResources
+    function hipGraphicsUnmapResources_(count,resources,stream) &
+        bind(c, name="hipGraphicsUnmapResources")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphicsUnmapResources_
+      integer(c_int),value :: count
+      type(c_ptr) :: resources
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipGraphicsUnregisterResource
+    function hipGraphicsUnregisterResource_(resource) bind(c, name="hipGraphicsUnregisterResource")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphicsUnregisterResource_
+      type(c_ptr),value :: resource
+    end function
+  end interface
+
+  interface hipCreateSurfaceObject
+    function hipCreateSurfaceObject_(pSurfObject,pResDesc) bind(c, name="hipCreateSurfaceObject")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipCreateSurfaceObject_
+      type(c_ptr) :: pSurfObject
+      type(hipResourceDesc) :: pResDesc
+    end function
+  end interface
+
+  interface hipDestroySurfaceObject
+    function hipDestroySurfaceObject_(surfaceObject) bind(c, name="hipDestroySurfaceObject")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipDestroySurfaceObject_
+      type(c_ptr),value :: surfaceObject
+    end function
+  end interface
+
+  interface hipExtEnableLogging
+    function hipExtEnableLogging_() bind(c, name="hipExtEnableLogging")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExtEnableLogging_
+    end function
+  end interface
+
+  interface hipExtDisableLogging
+    function hipExtDisableLogging_() bind(c, name="hipExtDisableLogging")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExtDisableLogging_
+    end function
+  end interface
+
+  interface hipExtSetLoggingParams
+    function hipExtSetLoggingParams_(log_level,log_size,log_mask) &
+        bind(c, name="hipExtSetLoggingParams")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipExtSetLoggingParams_
+      integer(c_size_t),value :: log_level
+      integer(c_size_t),value :: log_size
+      integer(c_size_t),value :: log_mask
+    end function
+  end interface
+
+  interface hipMemcpy_spt
+    function hipMemcpy_spt_(dst,src,sizeBytes,myKind) bind(c, name="hipMemcpy_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy_spt_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpyToSymbol_spt
+    function hipMemcpyToSymbol_spt_(symbol,src,sizeBytes,offset,myKind) &
+        bind(c, name="hipMemcpyToSymbol_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyToSymbol_spt_
+      type(c_ptr),value :: symbol
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpyFromSymbol_spt
+    function hipMemcpyFromSymbol_spt_(dst,symbol,sizeBytes,offset,myKind) &
+        bind(c, name="hipMemcpyFromSymbol_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyFromSymbol_spt_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: symbol
+      integer(c_size_t),value :: sizeBytes
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpy2D_spt
+    function hipMemcpy2D_spt_(dst,dpitch,src,spitch,width,height,myKind) &
+        bind(c, name="hipMemcpy2D_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy2D_spt_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dpitch
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: spitch
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpy2DFromArray_spt
+    function hipMemcpy2DFromArray_spt_(dst,dpitch,src,wOffset,hOffset,width,height,myKind) &
+        bind(c, name="hipMemcpy2DFromArray_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy2DFromArray_spt_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dpitch
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: wOffset
+      integer(c_size_t),value :: hOffset
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpy3D_spt
+    function hipMemcpy3D_spt_(p) bind(c, name="hipMemcpy3D_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy3D_spt_
+      type(hipMemcpy3DParms) :: p
+    end function
+  end interface
+
+  interface hipMemset_spt
+    function hipMemset_spt_(dst,myValue,sizeBytes) bind(c, name="hipMemset_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemset_spt_
+      type(c_ptr),value :: dst
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: sizeBytes
+    end function
+  end interface
+
+  interface hipMemsetAsync_spt
+    function hipMemsetAsync_spt_(dst,myValue,sizeBytes,stream) bind(c, name="hipMemsetAsync_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemsetAsync_spt_
+      type(c_ptr),value :: dst
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: sizeBytes
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemset2D_spt
+    function hipMemset2D_spt_(dst,pitch,myValue,width,height) bind(c, name="hipMemset2D_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemset2D_spt_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: pitch
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+    end function
+  end interface
+
+  interface hipMemset2DAsync_spt
+    function hipMemset2DAsync_spt_(dst,pitch,myValue,width,height,stream) &
+        bind(c, name="hipMemset2DAsync_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemset2DAsync_spt_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: pitch
+      integer(c_int),value :: myValue
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemset3DAsync_spt
+    function hipMemset3DAsync_spt_(pitchedDevPtr,myValue,extent,stream) &
+        bind(c, name="hipMemset3DAsync_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemset3DAsync_spt_
+      type(hipPitchedPtr),value :: pitchedDevPtr
+      integer(c_int),value :: myValue
+      type(hipExtent),value :: extent
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemset3D_spt
+    function hipMemset3D_spt_(pitchedDevPtr,myValue,extent) bind(c, name="hipMemset3D_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemset3D_spt_
+      type(hipPitchedPtr),value :: pitchedDevPtr
+      integer(c_int),value :: myValue
+      type(hipExtent),value :: extent
+    end function
+  end interface
+
+  interface hipMemcpyAsync_spt
+    function hipMemcpyAsync_spt_(dst,src,sizeBytes,myKind,stream) bind(c, name="hipMemcpyAsync_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyAsync_spt_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      integer(c_int),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpy3DAsync_spt
+    function hipMemcpy3DAsync_spt_(p,stream) bind(c, name="hipMemcpy3DAsync_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy3DAsync_spt_
+      type(hipMemcpy3DParms) :: p
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpy2DAsync_spt
+    function hipMemcpy2DAsync_spt_(dst,dpitch,src,spitch,width,height,myKind,stream) &
+        bind(c, name="hipMemcpy2DAsync_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy2DAsync_spt_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dpitch
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: spitch
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_int),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpyFromSymbolAsync_spt
+    function hipMemcpyFromSymbolAsync_spt_(dst,symbol,sizeBytes,offset,myKind,stream) &
+        bind(c, name="hipMemcpyFromSymbolAsync_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyFromSymbolAsync_spt_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: symbol
+      integer(c_size_t),value :: sizeBytes
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpyToSymbolAsync_spt
+    function hipMemcpyToSymbolAsync_spt_(symbol,src,sizeBytes,offset,myKind,stream) &
+        bind(c, name="hipMemcpyToSymbolAsync_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyToSymbolAsync_spt_
+      type(c_ptr),value :: symbol
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: sizeBytes
+      integer(c_size_t),value :: offset
+      integer(c_int),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpyFromArray_spt
+    function hipMemcpyFromArray_spt_(dst,src,wOffsetSrc,hOffset,count,myKind) &
+        bind(c, name="hipMemcpyFromArray_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpyFromArray_spt_
+      type(c_ptr),value :: dst
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: wOffsetSrc
+      integer(c_size_t),value :: hOffset
+      integer(c_size_t),value :: count
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpy2DToArray_spt
+    function hipMemcpy2DToArray_spt_(dst,wOffset,hOffset,src,spitch,width,height,myKind) &
+        bind(c, name="hipMemcpy2DToArray_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy2DToArray_spt_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: wOffset
+      integer(c_size_t),value :: hOffset
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: spitch
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_int),value :: myKind
+    end function
+  end interface
+
+  interface hipMemcpy2DFromArrayAsync_spt
+    function hipMemcpy2DFromArrayAsync_spt_(dst,dpitch,src,wOffsetSrc,hOffsetSrc,width,height, &
+        myKind,stream) &
+        bind(c, name="hipMemcpy2DFromArrayAsync_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy2DFromArrayAsync_spt_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: dpitch
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: wOffsetSrc
+      integer(c_size_t),value :: hOffsetSrc
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_int),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipMemcpy2DToArrayAsync_spt
+    function hipMemcpy2DToArrayAsync_spt_(dst,wOffset,hOffset,src,spitch,width,height,myKind, &
+        stream) &
+        bind(c, name="hipMemcpy2DToArrayAsync_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipMemcpy2DToArrayAsync_spt_
+      type(c_ptr),value :: dst
+      integer(c_size_t),value :: wOffset
+      integer(c_size_t),value :: hOffset
+      type(c_ptr),value :: src
+      integer(c_size_t),value :: spitch
+      integer(c_size_t),value :: width
+      integer(c_size_t),value :: height
+      integer(c_int),value :: myKind
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipStreamQuery_spt
+    function hipStreamQuery_spt_(stream) bind(c, name="hipStreamQuery_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamQuery_spt_
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipStreamSynchronize_spt
+    function hipStreamSynchronize_spt_(stream) bind(c, name="hipStreamSynchronize_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamSynchronize_spt_
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipStreamGetPriority_spt
+    function hipStreamGetPriority_spt_(stream,priority) bind(c, name="hipStreamGetPriority_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamGetPriority_spt_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: priority
+    end function
+  end interface
+
+  interface hipStreamWaitEvent_spt
+    function hipStreamWaitEvent_spt_(stream,event,flags) bind(c, name="hipStreamWaitEvent_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamWaitEvent_spt_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: event
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipStreamGetFlags_spt
+    function hipStreamGetFlags_spt_(stream,flags) bind(c, name="hipStreamGetFlags_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamGetFlags_spt_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: flags
+    end function
+  end interface
+
+  interface hipStreamAddCallback_spt
+    function hipStreamAddCallback_spt_(stream,callback,userData,flags) &
+        bind(c, name="hipStreamAddCallback_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamAddCallback_spt_
+      type(c_ptr),value :: stream
+      type(c_funptr),value :: callback
+      type(c_ptr),value :: userData
+      integer(c_int),value :: flags
+    end function
+  end interface
+
+  interface hipEventRecord_spt
+    function hipEventRecord_spt_(event,stream) bind(c, name="hipEventRecord_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipEventRecord_spt_
+      type(c_ptr),value :: event
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipLaunchCooperativeKernel_spt
+    function hipLaunchCooperativeKernel_spt_(f,gridDim,blockDim,kernelParams,sharedMemBytes, &
+        hStream) &
+        bind(c, name="hipLaunchCooperativeKernel_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLaunchCooperativeKernel_spt_
+      type(c_ptr),value :: f
+      type(dim3),value :: gridDim
+      type(dim3),value :: blockDim
+      type(c_ptr) :: kernelParams
+      integer(c_int32_t),value :: sharedMemBytes
+      type(c_ptr),value :: hStream
+    end function
+  end interface
+
+  interface hipLaunchKernel_spt
+    function hipLaunchKernel_spt_(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream) &
+        bind(c, name="hipLaunchKernel_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLaunchKernel_spt_
+      type(c_ptr),value :: function_address
+      type(dim3),value :: numBlocks
+      type(dim3),value :: dimBlocks
+      type(c_ptr) :: args
+      integer(c_size_t),value :: sharedMemBytes
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipGraphLaunch_spt
+    function hipGraphLaunch_spt_(graphExec,stream) bind(c, name="hipGraphLaunch_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGraphLaunch_spt_
+      type(c_ptr),value :: graphExec
+      type(c_ptr),value :: stream
+    end function
+  end interface
+
+  interface hipStreamBeginCapture_spt
+    function hipStreamBeginCapture_spt_(stream,mode) bind(c, name="hipStreamBeginCapture_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamBeginCapture_spt_
+      type(c_ptr),value :: stream
+      integer(c_int),value :: mode
+    end function
+  end interface
+
+  interface hipStreamEndCapture_spt
+    function hipStreamEndCapture_spt_(stream,pGraph) bind(c, name="hipStreamEndCapture_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamEndCapture_spt_
+      type(c_ptr),value :: stream
+      type(c_ptr) :: pGraph
+    end function
+  end interface
+
+  interface hipStreamIsCapturing_spt
+    function hipStreamIsCapturing_spt_(stream,pCaptureStatus) &
+        bind(c, name="hipStreamIsCapturing_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamIsCapturing_spt_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: pCaptureStatus
+    end function
+  end interface
+
+  interface hipStreamGetCaptureInfo_spt
+    function hipStreamGetCaptureInfo_spt_(stream,pCaptureStatus,pId) &
+        bind(c, name="hipStreamGetCaptureInfo_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamGetCaptureInfo_spt_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: pCaptureStatus
+      type(c_ptr),value :: pId
+    end function
+  end interface
+
+  interface hipStreamGetCaptureInfo_v2_spt
+    function hipStreamGetCaptureInfo_v2_spt_(stream,captureStatus_out,id_out,graph_out, &
+        dependencies_out,numDependencies_out) &
+        bind(c, name="hipStreamGetCaptureInfo_v2_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipStreamGetCaptureInfo_v2_spt_
+      type(c_ptr),value :: stream
+      type(c_ptr),value :: captureStatus_out
+      type(c_ptr),value :: id_out
+      type(c_ptr) :: graph_out
+      type(c_ptr) :: dependencies_out
+      type(c_ptr),value :: numDependencies_out
+    end function
+  end interface
+
+  interface hipLaunchHostFunc_spt
+    function hipLaunchHostFunc_spt_(stream,fn,userData) bind(c, name="hipLaunchHostFunc_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipLaunchHostFunc_spt_
+      type(c_ptr),value :: stream
+      type(c_funptr),value :: fn
+      type(c_ptr),value :: userData
+    end function
+  end interface
+
+  interface hipGetDriverEntryPoint_spt
+    function hipGetDriverEntryPoint_spt_(symbol,funcPtr,flags,status) &
+        bind(c, name="hipGetDriverEntryPoint_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetDriverEntryPoint_spt_
+      type(c_ptr),value :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: status
+    end function
+  end interface
+
+  interface hipGetProcAddress_spt
+    function hipGetProcAddress_spt_(symbol,pfn,hipVersion,flags,symbolStatus) &
+        bind(c, name="hipGetProcAddress_spt")
+      use iso_c_binding
+      import
+      implicit none
+      integer(c_int) :: hipGetProcAddress_spt_
+      type(c_ptr),value :: symbol
+      type(c_ptr) :: pfn
+      integer(c_int),value :: hipVersion
+      integer(c_int64_t),value :: flags
+      type(c_ptr),value :: symbolStatus
+    end function
+  end interface
+
+  interface hipChooseDevice
+    procedure hipChooseDeviceR0600_
+
+    module procedure hipChooseDeviceR0600_typed
   end interface
 
   interface hipMemcpy
@@ -8791,6 +8767,7 @@ module hip
     module procedure hipMemcpy_l_assumed_rank_c_size_t
     module procedure hipMemcpy_l_assumed_rank_c_int
 #else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipMemcpy_i4_0
     module procedure hipMemcpy_i4_0_c_size_t
     module procedure hipMemcpy_i4_0_c_int
@@ -8960,6 +8937,7 @@ module hip
     module procedure hipMemcpy_l_7_c_size_t
     module procedure hipMemcpy_l_7_c_int
 #endif
+#endif
   end interface hipMemcpy
 
   interface hipMemcpyAsync
@@ -8996,6 +8974,7 @@ module hip
     module procedure hipMemcpyAsync_l_assumed_rank_c_size_t
     module procedure hipMemcpyAsync_l_assumed_rank_c_int
 #else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipMemcpyAsync_i4_0
     module procedure hipMemcpyAsync_i4_0_c_size_t
     module procedure hipMemcpyAsync_i4_0_c_int
@@ -9165,6 +9144,7 @@ module hip
     module procedure hipMemcpyAsync_l_7_c_size_t
     module procedure hipMemcpyAsync_l_7_c_int
 #endif
+#endif
   end interface hipMemcpyAsync
 
   interface hipMemcpy2D
@@ -9197,6 +9177,7 @@ module hip
     module procedure hipMemcpy2D_l_assumed_rank_c_size_t
     module procedure hipMemcpy2D_l_assumed_rank_c_int
 #else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipMemcpy2D_i4_0_c_size_t
     module procedure hipMemcpy2D_i4_0_c_int
     module procedure hipMemcpy2D_i4_1_c_size_t
@@ -9310,6 +9291,7 @@ module hip
     module procedure hipMemcpy2D_l_7_c_size_t
     module procedure hipMemcpy2D_l_7_c_int
 #endif
+#endif
   end interface hipMemcpy2D
 
   interface hipMemcpy2DAsync
@@ -9343,6 +9325,7 @@ module hip
     module procedure hipMemcpy2DAsync_l_assumed_rank_c_size_t
     module procedure hipMemcpy2DAsync_l_assumed_rank_c_int
 #else
+#ifdef USE_ASSUMED_SHAPE
     module procedure hipMemcpy2DAsync_i4_0_c_size_t
     module procedure hipMemcpy2DAsync_i4_0_c_int
     module procedure hipMemcpy2DAsync_i4_1_c_size_t
@@ -9456,6 +9439,7 @@ module hip
     module procedure hipMemcpy2DAsync_l_7_c_size_t
     module procedure hipMemcpy2DAsync_l_7_c_int
 #endif
+#endif
   end interface hipMemcpy2DAsync
 
   interface hipMalloc
@@ -9466,6 +9450,7 @@ module hip
       type(c_ptr) :: ptr
       integer(c_size_t), value :: sizeBytes
     end function hipMalloc_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipMalloc_i4_0_source
     module procedure hipMalloc_i4_1
     module procedure hipMalloc_i4_1_c_size_t
@@ -9620,6 +9605,7 @@ module hip
     module procedure hipMalloc_l_7
     module procedure hipMalloc_l_7_c_size_t
     module procedure hipMalloc_l_7_source
+#endif
   end interface hipMalloc
 
   interface hipMallocManaged
@@ -9631,6 +9617,7 @@ module hip
       integer(c_size_t), value :: sizeBytes
       integer(c_int), value :: flags
     end function hipMallocManaged_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipMallocManaged_i4_0_source
     module procedure hipMallocManaged_i4_1
     module procedure hipMallocManaged_i4_1_c_size_t
@@ -9785,6 +9772,7 @@ module hip
     module procedure hipMallocManaged_l_7
     module procedure hipMallocManaged_l_7_c_size_t
     module procedure hipMallocManaged_l_7_source
+#endif
   end interface hipMallocManaged
 
   interface hipHostMalloc
@@ -9796,6 +9784,7 @@ module hip
       integer(c_size_t), value :: sizeBytes
       integer(c_int), value :: flags
     end function hipHostMalloc_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipHostMalloc_i4_0_source
     module procedure hipHostMalloc_i4_1
     module procedure hipHostMalloc_i4_1_c_size_t
@@ -9950,6 +9939,7 @@ module hip
     module procedure hipHostMalloc_l_7
     module procedure hipHostMalloc_l_7_c_size_t
     module procedure hipHostMalloc_l_7_source
+#endif
   end interface hipHostMalloc
 
   interface hipFree
@@ -9959,6 +9949,7 @@ module hip
       integer(c_int) :: hipFree_
       type(c_ptr), value :: ptr
     end function hipFree_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipFree_i4_0
     module procedure hipFree_i4_1
     module procedure hipFree_i4_2
@@ -10015,6 +10006,7 @@ module hip
     module procedure hipFree_l_5
     module procedure hipFree_l_6
     module procedure hipFree_l_7
+#endif
   end interface hipFree
 
   interface hipHostFree
@@ -10024,6 +10016,7 @@ module hip
       integer(c_int) :: hipHostFree_
       type(c_ptr), value :: ptr
     end function hipHostFree_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipHostFree_i4_0
     module procedure hipHostFree_i4_1
     module procedure hipHostFree_i4_2
@@ -10080,6 +10073,7 @@ module hip
     module procedure hipHostFree_l_5
     module procedure hipHostFree_l_6
     module procedure hipHostFree_l_7
+#endif
   end interface hipHostFree
 
   interface hipHostRegister
@@ -10091,6 +10085,7 @@ module hip
       integer(c_size_t), value :: sizeBytes
       integer(c_int), value :: flags
     end function hipHostRegister_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipHostRegister_i4_0_nosize
     module procedure hipHostRegister_i4_1_nosize
     module procedure hipHostRegister_i4_1
@@ -10245,6 +10240,7 @@ module hip
     module procedure hipHostRegister_l_7_nosize
     module procedure hipHostRegister_l_7
     module procedure hipHostRegister_l_7_c_size_t
+#endif
   end interface hipHostRegister
 
   interface hipHostUnregister
@@ -10254,6 +10250,7 @@ module hip
       integer(c_int) :: hipHostUnregister_
       type(c_ptr), value :: hostPtr
     end function hipHostUnregister_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipHostUnregister_i4_0
     module procedure hipHostUnregister_i4_1
     module procedure hipHostUnregister_i4_2
@@ -10310,6 +10307,7 @@ module hip
     module procedure hipHostUnregister_l_5
     module procedure hipHostUnregister_l_6
     module procedure hipHostUnregister_l_7
+#endif
   end interface hipHostUnregister
 
   interface hipHostGetDevicePointer
@@ -10321,6 +10319,7 @@ module hip
       type(c_ptr), value :: hstPtr
       integer(c_int), value :: flags
     end function hipHostGetDevicePointer_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipHostGetDevicePointer_i4_0
     module procedure hipHostGetDevicePointer_i4_1
     module procedure hipHostGetDevicePointer_i4_2
@@ -10377,6 +10376,7 @@ module hip
     module procedure hipHostGetDevicePointer_l_5
     module procedure hipHostGetDevicePointer_l_6
     module procedure hipHostGetDevicePointer_l_7
+#endif
   end interface hipHostGetDevicePointer
 
   interface hipHostGetFlags
@@ -10387,6 +10387,7 @@ module hip
       integer(c_int) :: flagsPtr
       type(c_ptr), value :: hostPtr
     end function hipHostGetFlags_
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
     module procedure hipHostGetFlags_i4_0
     module procedure hipHostGetFlags_i4_1
     module procedure hipHostGetFlags_i4_2
@@ -10443,6 +10444,7 @@ module hip
     module procedure hipHostGetFlags_l_5
     module procedure hipHostGetFlags_l_6
     module procedure hipHostGetFlags_l_7
+#endif
   end interface hipHostGetFlags
 
   interface hipGetDeviceProperties
@@ -10450,7 +10452,7 @@ module hip
       use iso_c_binding
       import
       implicit none
-      integer(kind(hipSuccess)) :: hipGetDeviceProperties_
+      integer(c_int) :: hipGetDeviceProperties_
       type(hipDeviceProp_t),intent(out) :: prop
       integer(c_int),value :: deviceId
     end function
@@ -10461,12 +10463,1452 @@ module hip
 
     subroutine hipCheck(status)
       implicit none
-      integer(kind(HIP_SUCCESS)) :: status
-      if (status /= HIP_SUCCESS) then
-        write (*, *) "HIP ERROR: code = ", status
+      integer(kind(hipSuccess)) :: status
+      character(len=:), allocatable :: name
+      if (status /= hipSuccess) then
+        select case (status)
+        case (hipErrorInvalidValue)
+          name = "hipErrorInvalidValue"
+        case (hipErrorOutOfMemory)
+          name = "hipErrorOutOfMemory"
+        case (hipErrorNotInitialized)
+          name = "hipErrorNotInitialized"
+        case (hipErrorDeinitialized)
+          name = "hipErrorDeinitialized"
+        case (hipErrorProfilerDisabled)
+          name = "hipErrorProfilerDisabled"
+        case (hipErrorProfilerNotInitialized)
+          name = "hipErrorProfilerNotInitialized"
+        case (hipErrorProfilerAlreadyStarted)
+          name = "hipErrorProfilerAlreadyStarted"
+        case (hipErrorProfilerAlreadyStopped)
+          name = "hipErrorProfilerAlreadyStopped"
+        case (hipErrorInvalidConfiguration)
+          name = "hipErrorInvalidConfiguration"
+        case (hipErrorInvalidPitchValue)
+          name = "hipErrorInvalidPitchValue"
+        case (hipErrorInvalidSymbol)
+          name = "hipErrorInvalidSymbol"
+        case (hipErrorInvalidDevicePointer)
+          name = "hipErrorInvalidDevicePointer"
+        case (hipErrorInvalidMemcpyDirection)
+          name = "hipErrorInvalidMemcpyDirection"
+        case (hipErrorInsufficientDriver)
+          name = "hipErrorInsufficientDriver"
+        case (hipErrorMissingConfiguration)
+          name = "hipErrorMissingConfiguration"
+        case (hipErrorPriorLaunchFailure)
+          name = "hipErrorPriorLaunchFailure"
+        case (hipErrorInvalidDeviceFunction)
+          name = "hipErrorInvalidDeviceFunction"
+        case (hipErrorNoDevice)
+          name = "hipErrorNoDevice"
+        case (hipErrorInvalidDevice)
+          name = "hipErrorInvalidDevice"
+        case (hipErrorInvalidImage)
+          name = "hipErrorInvalidImage"
+        case (hipErrorInvalidContext)
+          name = "hipErrorInvalidContext"
+        case (hipErrorContextAlreadyCurrent)
+          name = "hipErrorContextAlreadyCurrent"
+        case (hipErrorMapFailed)
+          name = "hipErrorMapFailed"
+        case (hipErrorUnmapFailed)
+          name = "hipErrorUnmapFailed"
+        case (hipErrorArrayIsMapped)
+          name = "hipErrorArrayIsMapped"
+        case (hipErrorAlreadyMapped)
+          name = "hipErrorAlreadyMapped"
+        case (hipErrorNoBinaryForGpu)
+          name = "hipErrorNoBinaryForGpu"
+        case (hipErrorAlreadyAcquired)
+          name = "hipErrorAlreadyAcquired"
+        case (hipErrorNotMapped)
+          name = "hipErrorNotMapped"
+        case (hipErrorNotMappedAsArray)
+          name = "hipErrorNotMappedAsArray"
+        case (hipErrorNotMappedAsPointer)
+          name = "hipErrorNotMappedAsPointer"
+        case (hipErrorECCNotCorrectable)
+          name = "hipErrorECCNotCorrectable"
+        case (hipErrorUnsupportedLimit)
+          name = "hipErrorUnsupportedLimit"
+        case (hipErrorContextAlreadyInUse)
+          name = "hipErrorContextAlreadyInUse"
+        case (hipErrorPeerAccessUnsupported)
+          name = "hipErrorPeerAccessUnsupported"
+        case (hipErrorInvalidKernelFile)
+          name = "hipErrorInvalidKernelFile"
+        case (hipErrorInvalidGraphicsContext)
+          name = "hipErrorInvalidGraphicsContext"
+        case (hipErrorInvalidSource)
+          name = "hipErrorInvalidSource"
+        case (hipErrorFileNotFound)
+          name = "hipErrorFileNotFound"
+        case (hipErrorSharedObjectSymbolNotFound)
+          name = "hipErrorSharedObjectSymbolNotFound"
+        case (hipErrorSharedObjectInitFailed)
+          name = "hipErrorSharedObjectInitFailed"
+        case (hipErrorOperatingSystem)
+          name = "hipErrorOperatingSystem"
+        case (hipErrorInvalidHandle)
+          name = "hipErrorInvalidHandle"
+        case (hipErrorIllegalState)
+          name = "hipErrorIllegalState"
+        case (hipErrorNotFound)
+          name = "hipErrorNotFound"
+        case (hipErrorNotReady)
+          name = "hipErrorNotReady"
+        case (hipErrorIllegalAddress)
+          name = "hipErrorIllegalAddress"
+        case (hipErrorLaunchOutOfResources)
+          name = "hipErrorLaunchOutOfResources"
+        case (hipErrorLaunchTimeOut)
+          name = "hipErrorLaunchTimeOut"
+        case (hipErrorPeerAccessAlreadyEnabled)
+          name = "hipErrorPeerAccessAlreadyEnabled"
+        case (hipErrorPeerAccessNotEnabled)
+          name = "hipErrorPeerAccessNotEnabled"
+        case (hipErrorSetOnActiveProcess)
+          name = "hipErrorSetOnActiveProcess"
+        case (hipErrorContextIsDestroyed)
+          name = "hipErrorContextIsDestroyed"
+        case (hipErrorAssert)
+          name = "hipErrorAssert"
+        case (hipErrorHostMemoryAlreadyRegistered)
+          name = "hipErrorHostMemoryAlreadyRegistered"
+        case (hipErrorHostMemoryNotRegistered)
+          name = "hipErrorHostMemoryNotRegistered"
+        case (hipErrorLaunchFailure)
+          name = "hipErrorLaunchFailure"
+        case (hipErrorCooperativeLaunchTooLarge)
+          name = "hipErrorCooperativeLaunchTooLarge"
+        case (hipErrorNotPermitted)
+          name = "hipErrorNotPermitted"
+        case (hipErrorNotSupported)
+          name = "hipErrorNotSupported"
+        case (hipErrorStreamCaptureUnsupported)
+          name = "hipErrorStreamCaptureUnsupported"
+        case (hipErrorStreamCaptureInvalidated)
+          name = "hipErrorStreamCaptureInvalidated"
+        case (hipErrorStreamCaptureMerge)
+          name = "hipErrorStreamCaptureMerge"
+        case (hipErrorStreamCaptureUnmatched)
+          name = "hipErrorStreamCaptureUnmatched"
+        case (hipErrorStreamCaptureUnjoined)
+          name = "hipErrorStreamCaptureUnjoined"
+        case (hipErrorStreamCaptureIsolation)
+          name = "hipErrorStreamCaptureIsolation"
+        case (hipErrorStreamCaptureImplicit)
+          name = "hipErrorStreamCaptureImplicit"
+        case (hipErrorCapturedEvent)
+          name = "hipErrorCapturedEvent"
+        case (hipErrorStreamCaptureWrongThread)
+          name = "hipErrorStreamCaptureWrongThread"
+        case (hipErrorGraphExecUpdateFailure)
+          name = "hipErrorGraphExecUpdateFailure"
+        case (hipErrorInvalidChannelDescriptor)
+          name = "hipErrorInvalidChannelDescriptor"
+        case (hipErrorInvalidTexture)
+          name = "hipErrorInvalidTexture"
+        case (hipErrorInvalidResourceType)
+          name = "hipErrorInvalidResourceType"
+        case (hipErrorInvalidResourceConfiguration)
+          name = "hipErrorInvalidResourceConfiguration"
+        case (hipErrorStreamDetached)
+          name = "hipErrorStreamDetached"
+        case (hipErrorUnknown)
+          name = "hipErrorUnknown"
+        case (hipErrorRuntimeMemory)
+          name = "hipErrorRuntimeMemory"
+        case (hipErrorRuntimeOther)
+          name = "hipErrorRuntimeOther"
+        case (hipErrorInvalidClusterSize)
+          name = "hipErrorInvalidClusterSize"
+        case (hipErrorTbd)
+          name = "hipErrorTbd"
+        case default
+          name = "unknown status"
+        end select
+        write (*, "(a,i0,a)") "HIP ERROR: " // name // " (code ", status, ")"
         stop 1
       end if
     end subroutine hipCheck
+    function hipDriverGetVersion_typed(driverVersion)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDriverGetVersion_typed
+      integer(c_int),target :: driverVersion
+      !
+      hipDriverGetVersion_typed = hipDriverGetVersion_(c_loc(driverVersion))
+    end function
+
+    function hipRuntimeGetVersion_typed(runtimeVersion)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipRuntimeGetVersion_typed
+      integer(c_int),target :: runtimeVersion
+      !
+      hipRuntimeGetVersion_typed = hipRuntimeGetVersion_(c_loc(runtimeVersion))
+    end function
+
+    function hipDeviceGet_typed(device,ordinal)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGet_typed
+      integer(c_int),target :: device
+      integer(c_int) :: ordinal
+      !
+      hipDeviceGet_typed = hipDeviceGet_(c_loc(device),ordinal)
+    end function
+
+    function hipDeviceComputeCapability_typed(major,minor,device)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceComputeCapability_typed
+      integer(c_int),target :: major
+      integer(c_int),target :: minor
+      integer(c_int) :: device
+      !
+      hipDeviceComputeCapability_typed = hipDeviceComputeCapability_(c_loc(major),c_loc(minor), &
+        device)
+    end function
+
+    function hipDeviceGetLuid_typed(luid,deviceNodeMask,device)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetLuid_typed
+      type(c_ptr), value :: luid
+      integer(c_int),target :: deviceNodeMask
+      integer(c_int) :: device
+      !
+      hipDeviceGetLuid_typed = hipDeviceGetLuid_(luid,c_loc(deviceNodeMask),device)
+    end function
+
+    function hipDeviceGetP2PAttribute_typed(myValue,attr,srcDevice,dstDevice)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetP2PAttribute_typed
+      integer(c_int),target :: myValue
+      integer(kind(hipDevP2PAttrPerformanceRank)) :: attr
+      integer(c_int) :: srcDevice
+      integer(c_int) :: dstDevice
+      !
+      hipDeviceGetP2PAttribute_typed = hipDeviceGetP2PAttribute_(c_loc(myValue),attr,srcDevice, &
+        dstDevice)
+    end function
+
+    function hipDeviceGetByPCIBusId_typed(device,pciBusId)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetByPCIBusId_typed
+      integer(c_int),target :: device
+      type(c_ptr), value :: pciBusId
+      !
+      hipDeviceGetByPCIBusId_typed = hipDeviceGetByPCIBusId_(c_loc(device),pciBusId)
+    end function
+
+    function hipDeviceTotalMem_typed(bytes,device)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceTotalMem_typed
+      integer(c_size_t),target :: bytes
+      integer(c_int) :: device
+      !
+      hipDeviceTotalMem_typed = hipDeviceTotalMem_(c_loc(bytes),device)
+    end function
+
+    function hipGetDevice_typed(deviceId)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDevice_typed
+      integer(c_int),target :: deviceId
+      !
+      hipGetDevice_typed = hipGetDevice_(c_loc(deviceId))
+    end function
+
+    function hipGetDeviceCount_typed(count)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDeviceCount_typed
+      integer(c_int),target :: count
+      !
+      hipGetDeviceCount_typed = hipGetDeviceCount_(c_loc(count))
+    end function
+
+    function hipDeviceGetAttribute_typed(pi,attr,deviceId)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetAttribute_typed
+      integer(c_int),target :: pi
+      integer(kind(hipDeviceAttributeCudaCompatibleBegin)) :: attr
+      integer(c_int) :: deviceId
+      !
+      hipDeviceGetAttribute_typed = hipDeviceGetAttribute_(c_loc(pi),attr,deviceId)
+    end function
+
+    function hipDeviceGetTexture1DLinearMaxWidth_typed(max_width,desc,device)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetTexture1DLinearMaxWidth_typed
+      integer(c_size_t),target :: max_width
+      type(hipChannelFormatDesc) :: desc
+      integer(c_int) :: device
+      !
+      hipDeviceGetTexture1DLinearMaxWidth_typed = hipDeviceGetTexture1DLinearMaxWidth_(c_loc( &
+        max_width),desc,device)
+    end function
+
+    function hipDeviceGetCacheConfig_typed(cacheConfig)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetCacheConfig_typed
+      integer(kind(hipFuncCachePreferNone)),target :: cacheConfig
+      !
+      hipDeviceGetCacheConfig_typed = hipDeviceGetCacheConfig_(c_loc(cacheConfig))
+    end function
+
+    function hipDeviceGetLimit_typed(pValue,limit)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetLimit_typed
+      integer(c_size_t),target :: pValue
+      integer(kind(hipLimitStackSize)) :: limit
+      !
+      hipDeviceGetLimit_typed = hipDeviceGetLimit_(c_loc(pValue),limit)
+    end function
+
+    function hipDeviceGetSharedMemConfig_typed(pConfig)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetSharedMemConfig_typed
+      integer(kind(hipSharedMemBankSizeDefault)),target :: pConfig
+      !
+      hipDeviceGetSharedMemConfig_typed = hipDeviceGetSharedMemConfig_(c_loc(pConfig))
+    end function
+
+    function hipGetDeviceFlags_typed(flags)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDeviceFlags_typed
+      integer(c_int),target :: flags
+      !
+      hipGetDeviceFlags_typed = hipGetDeviceFlags_(c_loc(flags))
+    end function
+
+    function hipChooseDeviceR0600_typed(device,prop)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipChooseDeviceR0600_typed
+      integer(c_int),target :: device
+      type(hipDeviceProp_t) :: prop
+      !
+      hipChooseDeviceR0600_typed = hipChooseDeviceR0600_(c_loc(device),prop)
+    end function
+
+    function hipExtGetLinkTypeAndHopCount_typed(device1,device2,linktype,hopcount)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtGetLinkTypeAndHopCount_typed
+      integer(c_int) :: device1
+      integer(c_int) :: device2
+      integer(c_int32_t),target :: linktype
+      integer(c_int32_t),target :: hopcount
+      !
+      hipExtGetLinkTypeAndHopCount_typed = hipExtGetLinkTypeAndHopCount_(device1,device2, &
+        c_loc(linktype),c_loc(hopcount))
+    end function
+
+    function hipDeviceGetStreamPriorityRange_typed(leastPriority,greatestPriority)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceGetStreamPriorityRange_typed
+      integer(c_int),target :: leastPriority
+      integer(c_int),target :: greatestPriority
+      !
+      hipDeviceGetStreamPriorityRange_typed = hipDeviceGetStreamPriorityRange_(c_loc( &
+        leastPriority),c_loc(greatestPriority))
+    end function
+
+    function hipStreamGetFlags_typed(stream,flags)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetFlags_typed
+      type(c_ptr), value :: stream
+      integer(c_int),target :: flags
+      !
+      hipStreamGetFlags_typed = hipStreamGetFlags_(stream,c_loc(flags))
+    end function
+
+    function hipStreamGetId_typed(stream,streamId)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetId_typed
+      type(c_ptr), value :: stream
+      integer(c_int64_t),target :: streamId
+      !
+      hipStreamGetId_typed = hipStreamGetId_(stream,c_loc(streamId))
+    end function
+
+    function hipStreamGetPriority_typed(stream,priority)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetPriority_typed
+      type(c_ptr), value :: stream
+      integer(c_int),target :: priority
+      !
+      hipStreamGetPriority_typed = hipStreamGetPriority_(stream,c_loc(priority))
+    end function
+
+    function hipStreamGetDevice_typed(stream,device)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetDevice_typed
+      type(c_ptr), value :: stream
+      integer(c_int),target :: device
+      !
+      hipStreamGetDevice_typed = hipStreamGetDevice_(stream,c_loc(device))
+    end function
+
+    function hipEventElapsedTime_typed(ms,start,myStop)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipEventElapsedTime_typed
+      real(c_float),target :: ms
+      type(c_ptr), value :: start
+      type(c_ptr), value :: myStop
+      !
+      hipEventElapsedTime_typed = hipEventElapsedTime_(c_loc(ms),start,myStop)
+    end function
+
+    function hipMemPoolGetAccess_typed(flags,mem_pool,location)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPoolGetAccess_typed
+      integer(kind(hipMemAccessFlagsProtNone)),target :: flags
+      type(c_ptr), value :: mem_pool
+      type(hipMemLocation) :: location
+      !
+      hipMemPoolGetAccess_typed = hipMemPoolGetAccess_(c_loc(flags),mem_pool,location)
+    end function
+
+    function hipMallocPitch_typed(ptr,pitch,width,height)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipMallocPitch_typed
+      type(c_ptr) :: ptr
+      integer(c_size_t),target :: pitch
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      !
+      hipMallocPitch_typed = hipMallocPitch_(ptr,c_loc(pitch),width,height)
+    end function
+
+    function hipMemAllocPitch_typed(dptr,pitch,widthInBytes,height,elementSizeBytes)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemAllocPitch_typed
+      type(c_ptr) :: dptr
+      integer(c_size_t),target :: pitch
+      integer(c_size_t) :: widthInBytes
+      integer(c_size_t) :: height
+      integer(c_int) :: elementSizeBytes
+      !
+      hipMemAllocPitch_typed = hipMemAllocPitch_(dptr,c_loc(pitch),widthInBytes,height, &
+        elementSizeBytes)
+    end function
+
+    function hipModuleGetGlobal_opt(dptr,bytes,hmod,name)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleGetGlobal_opt
+      type(c_ptr),optional,target :: dptr
+      type(c_ptr),value :: bytes
+      type(c_ptr), value :: hmod
+      type(c_ptr), value :: name
+      type(c_ptr) :: dptr__p
+      !
+      dptr__p = c_null_ptr
+      if (present(dptr)) dptr__p = c_loc(dptr)
+      hipModuleGetGlobal_opt = hipModuleGetGlobal_(dptr__p,bytes,hmod,name)
+    end function
+
+    function hipModuleGetGlobal_typed(dptr,bytes,hmod,name)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleGetGlobal_typed
+      type(c_ptr),optional,target :: dptr
+      integer(c_size_t),optional,target :: bytes
+      type(c_ptr), value :: hmod
+      type(c_ptr), value :: name
+      type(c_ptr) :: dptr__p
+      type(c_ptr) :: bytes__p
+      !
+      dptr__p = c_null_ptr
+      if (present(dptr)) dptr__p = c_loc(dptr)
+      bytes__p = c_null_ptr
+      if (present(bytes)) bytes__p = c_loc(bytes)
+      hipModuleGetGlobal_typed = hipModuleGetGlobal_(dptr__p,bytes__p,hmod,name)
+    end function
+
+    function hipGetSymbolSize_typed(mySize,symbol)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetSymbolSize_typed
+      integer(c_size_t),target :: mySize
+      type(c_ptr), value :: symbol
+      !
+      hipGetSymbolSize_typed = hipGetSymbolSize_(c_loc(mySize),symbol)
+    end function
+
+    function hipGetProcAddress_typed(symbol,pfn,hipVersion,flags,symbolStatus)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetProcAddress_typed
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: pfn
+      integer(c_int) :: hipVersion
+      integer(c_int64_t) :: flags
+      integer(kind(HIP_GET_PROC_ADDRESS_SUCCESS)),optional,target :: symbolStatus
+      type(c_ptr) :: symbolStatus__p
+      !
+      symbolStatus__p = c_null_ptr
+      if (present(symbolStatus)) symbolStatus__p = c_loc(symbolStatus)
+      hipGetProcAddress_typed = hipGetProcAddress_(symbol,pfn,hipVersion,flags,symbolStatus__p)
+    end function
+
+    function hipMemGetInfo_typed(free,total)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemGetInfo_typed
+      integer(c_size_t),target :: free
+      integer(c_size_t),target :: total
+      !
+      hipMemGetInfo_typed = hipMemGetInfo_(c_loc(free),c_loc(total))
+    end function
+
+    function hipMemPtrGetInfo_typed(ptr,mySize)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPtrGetInfo_typed
+      type(c_ptr), value :: ptr
+      integer(c_size_t),target :: mySize
+      !
+      hipMemPtrGetInfo_typed = hipMemPtrGetInfo_(ptr,c_loc(mySize))
+    end function
+
+    function hipArrayGetInfo_typed(desc,extent,flags,array)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipArrayGetInfo_typed
+      type(hipChannelFormatDesc) :: desc
+      type(hipExtent) :: extent
+      integer(c_int),target :: flags
+      type(c_ptr), value :: array
+      !
+      hipArrayGetInfo_typed = hipArrayGetInfo_(desc,extent,c_loc(flags),array)
+    end function
+
+    function hipMemGetAddressRange_typed(pbase,psize,dptr)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemGetAddressRange_typed
+      type(c_ptr) :: pbase
+      integer(c_size_t),target :: psize
+      type(c_ptr), value :: dptr
+      !
+      hipMemGetAddressRange_typed = hipMemGetAddressRange_(pbase,c_loc(psize),dptr)
+    end function
+
+    function hipMemcpyBatchAsync_typed(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx, &
+        stream)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyBatchAsync_typed
+      type(c_ptr) :: dsts
+      type(c_ptr) :: srcs
+      type(c_ptr) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemcpyAttributes) :: attrs
+      type(c_ptr) :: attrsIdxs
+      integer(c_size_t) :: numAttrs
+      integer(c_size_t),target :: failIdx
+      type(c_ptr), value :: stream
+      !
+      hipMemcpyBatchAsync_typed = hipMemcpyBatchAsync_(dsts,srcs,sizes,count,attrs,attrsIdxs, &
+        numAttrs,c_loc(failIdx),stream)
+    end function
+
+    function hipMemcpy3DBatchAsync_typed(numOps,opList,failIdx,flags,stream)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpy3DBatchAsync_typed
+      integer(c_size_t) :: numOps
+      type(hipMemcpy3DBatchOp) :: opList
+      integer(c_size_t),target :: failIdx
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemcpy3DBatchAsync_typed = hipMemcpy3DBatchAsync_(numOps,opList,c_loc(failIdx),flags, &
+        stream)
+    end function
+
+    function hipDeviceCanAccessPeer_typed(canAccessPeer,deviceId,peerDeviceId)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDeviceCanAccessPeer_typed
+      integer(c_int),target :: canAccessPeer
+      integer(c_int) :: deviceId
+      integer(c_int) :: peerDeviceId
+      !
+      hipDeviceCanAccessPeer_typed = hipDeviceCanAccessPeer_(c_loc(canAccessPeer),deviceId, &
+        peerDeviceId)
+    end function
+
+    function hipDevSmResourceSplitByCount_typed(myResult,nbGroups,input,remainder,flags,minCount)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDevSmResourceSplitByCount_typed
+      type(hipDevResource) :: myResult
+      integer(c_int),target :: nbGroups
+      type(hipDevResource) :: input
+      type(hipDevResource) :: remainder
+      integer(c_int) :: flags
+      integer(c_int) :: minCount
+      !
+      hipDevSmResourceSplitByCount_typed = hipDevSmResourceSplitByCount_(myResult,c_loc(nbGroups), &
+        input,remainder,flags,minCount)
+    end function
+
+    function hipExecutionCtxGetDevice_typed(device,ctx)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipExecutionCtxGetDevice_typed
+      integer(c_int),target :: device
+      type(c_ptr), value :: ctx
+      !
+      hipExecutionCtxGetDevice_typed = hipExecutionCtxGetDevice_(c_loc(device),ctx)
+    end function
+
+    function hipExecutionCtxGetId_typed(ctx,ctxId)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipExecutionCtxGetId_typed
+      type(c_ptr), value :: ctx
+      integer(c_int64_t),target :: ctxId
+      !
+      hipExecutionCtxGetId_typed = hipExecutionCtxGetId_(ctx,c_loc(ctxId))
+    end function
+
+    function hipCtxGetDevice_typed(device)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetDevice_typed
+      integer(c_int),target :: device
+      !
+      hipCtxGetDevice_typed = hipCtxGetDevice_(c_loc(device))
+    end function
+
+    function hipCtxGetApiVersion_typed(ctx,apiVersion)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetApiVersion_typed
+      type(c_ptr), value :: ctx
+      integer(c_int),target :: apiVersion
+      !
+      hipCtxGetApiVersion_typed = hipCtxGetApiVersion_(ctx,c_loc(apiVersion))
+    end function
+
+    function hipCtxGetCacheConfig_typed(cacheConfig)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetCacheConfig_typed
+      integer(kind(hipFuncCachePreferNone)),target :: cacheConfig
+      !
+      hipCtxGetCacheConfig_typed = hipCtxGetCacheConfig_(c_loc(cacheConfig))
+    end function
+
+    function hipCtxGetSharedMemConfig_typed(pConfig)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetSharedMemConfig_typed
+      integer(kind(hipSharedMemBankSizeDefault)),target :: pConfig
+      !
+      hipCtxGetSharedMemConfig_typed = hipCtxGetSharedMemConfig_(c_loc(pConfig))
+    end function
+
+    function hipCtxGetFlags_typed(flags)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipCtxGetFlags_typed
+      integer(c_int),target :: flags
+      !
+      hipCtxGetFlags_typed = hipCtxGetFlags_(c_loc(flags))
+    end function
+
+    function hipDevicePrimaryCtxGetState_typed(dev,flags,active)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipDevicePrimaryCtxGetState_typed
+      integer(c_int) :: dev
+      integer(c_int),target :: flags
+      integer(c_int),target :: active
+      !
+      hipDevicePrimaryCtxGetState_typed = hipDevicePrimaryCtxGetState_(dev,c_loc(flags), &
+        c_loc(active))
+    end function
+
+    function hipModuleGetFunctionCount_typed(count,mod)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleGetFunctionCount_typed
+      integer(c_int),target :: count
+      type(c_ptr), value :: mod
+      !
+      hipModuleGetFunctionCount_typed = hipModuleGetFunctionCount_(c_loc(count),mod)
+    end function
+
+    function hipKernelGetAttribute_typed(pi,attrib,kernel,dev)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipKernelGetAttribute_typed
+      integer(c_int),target :: pi
+      integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)) :: attrib
+      type(c_ptr), value :: kernel
+      integer(c_int) :: dev
+      !
+      hipKernelGetAttribute_typed = hipKernelGetAttribute_(c_loc(pi),attrib,kernel,dev)
+    end function
+
+    function hipLibraryGetKernelCount_typed(count,library)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetKernelCount_typed
+      integer(c_int),target :: count
+      type(c_ptr), value :: library
+      !
+      hipLibraryGetKernelCount_typed = hipLibraryGetKernelCount_(c_loc(count),library)
+    end function
+
+    function hipLibraryGetGlobal_opt(dptr,bytes,library,name)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetGlobal_opt
+      type(c_ptr),optional,target :: dptr
+      type(c_ptr),value :: bytes
+      type(c_ptr), value :: library
+      type(c_ptr), value :: name
+      type(c_ptr) :: dptr__p
+      !
+      dptr__p = c_null_ptr
+      if (present(dptr)) dptr__p = c_loc(dptr)
+      hipLibraryGetGlobal_opt = hipLibraryGetGlobal_(dptr__p,bytes,library,name)
+    end function
+
+    function hipLibraryGetGlobal_typed(dptr,bytes,library,name)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetGlobal_typed
+      type(c_ptr),optional,target :: dptr
+      integer(c_size_t),optional,target :: bytes
+      type(c_ptr), value :: library
+      type(c_ptr), value :: name
+      type(c_ptr) :: dptr__p
+      type(c_ptr) :: bytes__p
+      !
+      dptr__p = c_null_ptr
+      if (present(dptr)) dptr__p = c_loc(dptr)
+      bytes__p = c_null_ptr
+      if (present(bytes)) bytes__p = c_loc(bytes)
+      hipLibraryGetGlobal_typed = hipLibraryGetGlobal_(dptr__p,bytes__p,library,name)
+    end function
+
+    function hipLibraryGetManaged_opt(dptr,bytes,library,name)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetManaged_opt
+      type(c_ptr),optional,target :: dptr
+      type(c_ptr),value :: bytes
+      type(c_ptr), value :: library
+      type(c_ptr), value :: name
+      type(c_ptr) :: dptr__p
+      !
+      dptr__p = c_null_ptr
+      if (present(dptr)) dptr__p = c_loc(dptr)
+      hipLibraryGetManaged_opt = hipLibraryGetManaged_(dptr__p,bytes,library,name)
+    end function
+
+    function hipLibraryGetManaged_typed(dptr,bytes,library,name)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryGetManaged_typed
+      type(c_ptr),optional,target :: dptr
+      integer(c_size_t),optional,target :: bytes
+      type(c_ptr), value :: library
+      type(c_ptr), value :: name
+      type(c_ptr) :: dptr__p
+      type(c_ptr) :: bytes__p
+      !
+      dptr__p = c_null_ptr
+      if (present(dptr)) dptr__p = c_loc(dptr)
+      bytes__p = c_null_ptr
+      if (present(bytes)) bytes__p = c_loc(bytes)
+      hipLibraryGetManaged_typed = hipLibraryGetManaged_(dptr__p,bytes__p,library,name)
+    end function
+
+    function hipKernelGetParamInfo_typed(kernel,paramIndex,paramOffset,paramSize)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipKernelGetParamInfo_typed
+      type(c_ptr), value :: kernel
+      integer(c_size_t) :: paramIndex
+      integer(c_size_t),target :: paramOffset
+      integer(c_size_t),optional,target :: paramSize
+      type(c_ptr) :: paramSize__p
+      !
+      paramSize__p = c_null_ptr
+      if (present(paramSize)) paramSize__p = c_loc(paramSize)
+      hipKernelGetParamInfo_typed = hipKernelGetParamInfo_(kernel,paramIndex,c_loc(paramOffset), &
+        paramSize__p)
+    end function
+
+    function hipFuncGetAttribute_typed(myValue,attrib,hfunc)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipFuncGetAttribute_typed
+      integer(c_int),target :: myValue
+      integer(kind(HIP_FUNC_ATTRIBUTE_MAX_THREADS_PER_BLOCK)) :: attrib
+      type(c_ptr), value :: hfunc
+      !
+      hipFuncGetAttribute_typed = hipFuncGetAttribute_(c_loc(myValue),attrib,hfunc)
+    end function
+
+    function hipGetDriverEntryPoint_typed(symbol,funcPtr,flags,driverStatus)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDriverEntryPoint_typed
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t) :: flags
+      integer(kind(hipDriverEntryPointSuccess)),optional,target :: driverStatus
+      type(c_ptr) :: driverStatus__p
+      !
+      driverStatus__p = c_null_ptr
+      if (present(driverStatus)) driverStatus__p = c_loc(driverStatus)
+      hipGetDriverEntryPoint_typed = hipGetDriverEntryPoint_(symbol,funcPtr,flags,driverStatus__p)
+    end function
+
+    function hipLinkComplete_typed(state,hipBinOut,sizeOut)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkComplete_typed
+      type(c_ptr), value :: state
+      type(c_ptr) :: hipBinOut
+      integer(c_size_t),optional,target :: sizeOut
+      type(c_ptr) :: sizeOut__p
+      !
+      sizeOut__p = c_null_ptr
+      if (present(sizeOut)) sizeOut__p = c_loc(sizeOut)
+      hipLinkComplete_typed = hipLinkComplete_(state,hipBinOut,sizeOut__p)
+    end function
+
+    function hipModuleOccupancyMaxPotentialBlockSize_typed(gridSize,blockSize,f, &
+        dynSharedMemPerBlk,blockSizeLimit)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSize_typed
+      integer(c_int),target :: gridSize
+      integer(c_int),target :: blockSize
+      type(c_ptr), value :: f
+      integer(c_size_t) :: dynSharedMemPerBlk
+      integer(c_int) :: blockSizeLimit
+      !
+      hipModuleOccupancyMaxPotentialBlockSize_typed = hipModuleOccupancyMaxPotentialBlockSize_( &
+        c_loc(gridSize),c_loc(blockSize),f,dynSharedMemPerBlk,blockSizeLimit)
+    end function
+
+    function hipModuleOccupancyMaxPotentialBlockSizeWithFlags_typed(gridSize,blockSize,f, &
+        dynSharedMemPerBlk,blockSizeLimit,flags)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSizeWithFlags_typed
+      integer(c_int),target :: gridSize
+      integer(c_int),target :: blockSize
+      type(c_ptr), value :: f
+      integer(c_size_t) :: dynSharedMemPerBlk
+      integer(c_int) :: blockSizeLimit
+      integer(c_int) :: flags
+      !
+      hipModuleOccupancyMaxPotentialBlockSizeWithFlags_typed = &
+        hipModuleOccupancyMaxPotentialBlockSizeWithFlags_(c_loc(gridSize),c_loc(blockSize),f, &
+        dynSharedMemPerBlk,blockSizeLimit,flags)
+    end function
+
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_typed(numBlocks,f,blockSize, &
+        dynSharedMemPerBlk)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_typed
+      integer(c_int),target :: numBlocks
+      type(c_ptr), value :: f
+      integer(c_int) :: blockSize
+      integer(c_size_t) :: dynSharedMemPerBlk
+      !
+      hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_typed = &
+        hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_(c_loc(numBlocks),f,blockSize, &
+        dynSharedMemPerBlk)
+    end function
+
+    function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFla_typed(numBlocks,f, &
+        blockSize,dynSharedMemPerBlk,flags)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFla_typed
+      integer(c_int),target :: numBlocks
+      type(c_ptr), value :: f
+      integer(c_int) :: blockSize
+      integer(c_size_t) :: dynSharedMemPerBlk
+      integer(c_int) :: flags
+      !
+      hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFla_typed = &
+        hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(c_loc(numBlocks),f,blockSize, &
+        dynSharedMemPerBlk,flags)
+    end function
+
+    function hipOccupancyMaxActiveBlocksPerMultiprocessor_typed(numBlocks,f,blockSize, &
+        dynSharedMemPerBlk)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessor_typed
+      integer(c_int),target :: numBlocks
+      type(c_funptr), value :: f
+      integer(c_int) :: blockSize
+      integer(c_size_t) :: dynSharedMemPerBlk
+      !
+      hipOccupancyMaxActiveBlocksPerMultiprocessor_typed = &
+        hipOccupancyMaxActiveBlocksPerMultiprocessor_(c_loc(numBlocks),f,blockSize, &
+        dynSharedMemPerBlk)
+    end function
+
+    function hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_typed(numBlocks,f,blockSize, &
+        dynSharedMemPerBlk,flags)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_typed
+      integer(c_int),target :: numBlocks
+      type(c_funptr), value :: f
+      integer(c_int) :: blockSize
+      integer(c_size_t) :: dynSharedMemPerBlk
+      integer(c_int) :: flags
+      !
+      hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_typed = &
+        hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(c_loc(numBlocks),f,blockSize, &
+        dynSharedMemPerBlk,flags)
+    end function
+
+    function hipOccupancyMaxPotentialBlockSize_typed(gridSize,blockSize,f,dynSharedMemPerBlk, &
+        blockSizeLimit)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialBlockSize_typed
+      integer(c_int),target :: gridSize
+      integer(c_int),target :: blockSize
+      type(c_funptr), value :: f
+      integer(c_size_t) :: dynSharedMemPerBlk
+      integer(c_int) :: blockSizeLimit
+      !
+      hipOccupancyMaxPotentialBlockSize_typed = hipOccupancyMaxPotentialBlockSize_(c_loc( &
+        gridSize),c_loc(blockSize),f,dynSharedMemPerBlk,blockSizeLimit)
+    end function
+
+    function hipOccupancyAvailableDynamicSMemPerBlock_typed(dynamicSmemSize,f,numBlocks,blockSize)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyAvailableDynamicSMemPerBlock_typed
+      integer(c_size_t),target :: dynamicSmemSize
+      type(c_funptr), value :: f
+      integer(c_int) :: numBlocks
+      integer(c_int) :: blockSize
+      !
+      hipOccupancyAvailableDynamicSMemPerBlock_typed = hipOccupancyAvailableDynamicSMemPerBlock_( &
+        c_loc(dynamicSmemSize),f,numBlocks,blockSize)
+    end function
+
+    function hipOccupancyMaxActiveClusters_typed(numClusters,f,config)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyMaxActiveClusters_typed
+      integer(c_int),target :: numClusters
+      type(c_funptr), value :: f
+      type(hipLaunchConfig_t) :: config
+      !
+      hipOccupancyMaxActiveClusters_typed = hipOccupancyMaxActiveClusters_(c_loc(numClusters),f, &
+        config)
+    end function
+
+    function hipOccupancyMaxPotentialClusterSize_typed(clusterSize,f,config)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialClusterSize_typed
+      integer(c_int),target :: clusterSize
+      type(c_funptr), value :: f
+      type(hipLaunchConfig_t) :: config
+      !
+      hipOccupancyMaxPotentialClusterSize_typed = hipOccupancyMaxPotentialClusterSize_(c_loc( &
+        clusterSize),f,config)
+    end function
+
+    function hipBindTexture_typed(offset,tex,devPtr,desc,mySize)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipBindTexture_typed
+      integer(c_size_t),target :: offset
+      type(textureReference) :: tex
+      type(c_ptr), value :: devPtr
+      type(hipChannelFormatDesc) :: desc
+      integer(c_size_t) :: mySize
+      !
+      hipBindTexture_typed = hipBindTexture_(c_loc(offset),tex,devPtr,desc,mySize)
+    end function
+
+    function hipBindTexture2D_typed(offset,tex,devPtr,desc,width,height,pitch)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipBindTexture2D_typed
+      integer(c_size_t),target :: offset
+      type(textureReference) :: tex
+      type(c_ptr), value :: devPtr
+      type(hipChannelFormatDesc) :: desc
+      integer(c_size_t) :: width
+      integer(c_size_t) :: height
+      integer(c_size_t) :: pitch
+      !
+      hipBindTexture2D_typed = hipBindTexture2D_(c_loc(offset),tex,devPtr,desc,width,height,pitch)
+    end function
+
+    function hipGetTextureAlignmentOffset_typed(offset,texref)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetTextureAlignmentOffset_typed
+      integer(c_size_t),target :: offset
+      type(textureReference) :: texref
+      !
+      hipGetTextureAlignmentOffset_typed = hipGetTextureAlignmentOffset_(c_loc(offset),texref)
+    end function
+
+    function hipTexRefGetAddressMode_typed(pam,texRef,dim)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetAddressMode_typed
+      integer(kind(hipAddressModeWrap)),target :: pam
+      type(textureReference) :: texRef
+      integer(c_int) :: dim
+      !
+      hipTexRefGetAddressMode_typed = hipTexRefGetAddressMode_(c_loc(pam),texRef,dim)
+    end function
+
+    function hipTexRefGetFilterMode_typed(pfm,texRef)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetFilterMode_typed
+      integer(kind(hipFilterModePoint)),target :: pfm
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetFilterMode_typed = hipTexRefGetFilterMode_(c_loc(pfm),texRef)
+    end function
+
+    function hipTexRefGetFlags_typed(pFlags,texRef)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetFlags_typed
+      integer(c_int),target :: pFlags
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetFlags_typed = hipTexRefGetFlags_(c_loc(pFlags),texRef)
+    end function
+
+    function hipTexRefGetFormat_typed(pFormat,pNumChannels,texRef)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetFormat_typed
+      integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)),target :: pFormat
+      integer(c_int),target :: pNumChannels
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetFormat_typed = hipTexRefGetFormat_(c_loc(pFormat),c_loc(pNumChannels),texRef)
+    end function
+
+    function hipTexRefGetMaxAnisotropy_typed(pmaxAnsio,texRef)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetMaxAnisotropy_typed
+      integer(c_int),target :: pmaxAnsio
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetMaxAnisotropy_typed = hipTexRefGetMaxAnisotropy_(c_loc(pmaxAnsio),texRef)
+    end function
+
+    function hipTexRefGetMipmapFilterMode_typed(pfm,texRef)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetMipmapFilterMode_typed
+      integer(kind(hipFilterModePoint)),target :: pfm
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetMipmapFilterMode_typed = hipTexRefGetMipmapFilterMode_(c_loc(pfm),texRef)
+    end function
+
+    function hipTexRefGetMipmapLevelBias_typed(pbias,texRef)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelBias_typed
+      real(c_float),target :: pbias
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetMipmapLevelBias_typed = hipTexRefGetMipmapLevelBias_(c_loc(pbias),texRef)
+    end function
+
+    function hipTexRefGetMipmapLevelClamp_typed(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelClamp_typed
+      real(c_float),target :: pminMipmapLevelClamp
+      real(c_float),target :: pmaxMipmapLevelClamp
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetMipmapLevelClamp_typed = hipTexRefGetMipmapLevelClamp_(c_loc( &
+        pminMipmapLevelClamp),c_loc(pmaxMipmapLevelClamp),texRef)
+    end function
+
+    function hipTexRefSetAddress_typed(ByteOffset,texRef,dptr,bytes)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetAddress_typed
+      integer(c_size_t),target :: ByteOffset
+      type(textureReference) :: texRef
+      type(c_ptr), value :: dptr
+      integer(c_size_t) :: bytes
+      !
+      hipTexRefSetAddress_typed = hipTexRefSetAddress_(c_loc(ByteOffset),texRef,dptr,bytes)
+    end function
+
+    function hipStreamGetCaptureInfo_typed(stream,pCaptureStatus,pId)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_typed
+      type(c_ptr), value :: stream
+      integer(kind(hipStreamCaptureStatusNone)),target :: pCaptureStatus
+      integer(c_int64_t),optional,target :: pId
+      type(c_ptr) :: pId__p
+      !
+      pId__p = c_null_ptr
+      if (present(pId)) pId__p = c_loc(pId)
+      hipStreamGetCaptureInfo_typed = hipStreamGetCaptureInfo_(stream,c_loc(pCaptureStatus),pId__p)
+    end function
+
+    function hipStreamGetCaptureInfo_v2_opt(stream,captureStatus_out,id_out,graph_out, &
+        dependencies_out,numDependencies_out)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_v2_opt
+      type(c_ptr), value :: stream
+      type(c_ptr),value :: captureStatus_out
+      type(c_ptr),value :: id_out
+      type(c_ptr),optional,target :: graph_out
+      type(c_ptr),optional,target :: dependencies_out
+      type(c_ptr),value :: numDependencies_out
+      type(c_ptr) :: graph_out__p
+      type(c_ptr) :: dependencies_out__p
+      !
+      graph_out__p = c_null_ptr
+      if (present(graph_out)) graph_out__p = c_loc(graph_out)
+      dependencies_out__p = c_null_ptr
+      if (present(dependencies_out)) dependencies_out__p = c_loc(dependencies_out)
+      hipStreamGetCaptureInfo_v2_opt = hipStreamGetCaptureInfo_v2_(stream,captureStatus_out, &
+        id_out,graph_out__p,dependencies_out__p,numDependencies_out)
+    end function
+
+    function hipStreamGetCaptureInfo_v2_typed(stream,captureStatus_out,id_out,graph_out, &
+        dependencies_out,numDependencies_out)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_v2_typed
+      type(c_ptr), value :: stream
+      integer(kind(hipStreamCaptureStatusNone)),target :: captureStatus_out
+      integer(c_int64_t),optional,target :: id_out
+      type(c_ptr),optional,target :: graph_out
+      type(c_ptr),optional,target :: dependencies_out
+      integer(c_size_t),optional,target :: numDependencies_out
+      type(c_ptr) :: id_out__p
+      type(c_ptr) :: graph_out__p
+      type(c_ptr) :: dependencies_out__p
+      type(c_ptr) :: numDependencies_out__p
+      !
+      id_out__p = c_null_ptr
+      if (present(id_out)) id_out__p = c_loc(id_out)
+      graph_out__p = c_null_ptr
+      if (present(graph_out)) graph_out__p = c_loc(graph_out)
+      dependencies_out__p = c_null_ptr
+      if (present(dependencies_out)) dependencies_out__p = c_loc(dependencies_out)
+      numDependencies_out__p = c_null_ptr
+      if (present(numDependencies_out)) numDependencies_out__p = c_loc(numDependencies_out)
+      hipStreamGetCaptureInfo_v2_typed = hipStreamGetCaptureInfo_v2_(stream, &
+        c_loc(captureStatus_out),id_out__p,graph_out__p,dependencies_out__p,numDependencies_out__p)
+    end function
+
+    function hipStreamIsCapturing_typed(stream,pCaptureStatus)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamIsCapturing_typed
+      type(c_ptr), value :: stream
+      integer(kind(hipStreamCaptureStatusNone)),target :: pCaptureStatus
+      !
+      hipStreamIsCapturing_typed = hipStreamIsCapturing_(stream,c_loc(pCaptureStatus))
+    end function
+
+    function hipThreadExchangeStreamCaptureMode_typed(mode)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipThreadExchangeStreamCaptureMode_typed
+      integer(kind(hipStreamCaptureModeGlobal)),target :: mode
+      !
+      hipThreadExchangeStreamCaptureMode_typed = hipThreadExchangeStreamCaptureMode_(c_loc(mode))
+    end function
+
+    function hipGraphGetEdges_opt(graph,from,to,numEdges)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphGetEdges_opt
+      type(c_ptr), value :: graph
+      type(c_ptr),optional,target :: from
+      type(c_ptr),optional,target :: to
+      type(c_ptr),value :: numEdges
+      type(c_ptr) :: from__p
+      type(c_ptr) :: to__p
+      !
+      from__p = c_null_ptr
+      if (present(from)) from__p = c_loc(from)
+      to__p = c_null_ptr
+      if (present(to)) to__p = c_loc(to)
+      hipGraphGetEdges_opt = hipGraphGetEdges_(graph,from__p,to__p,numEdges)
+    end function
+
+    function hipGraphGetEdges_typed(graph,from,to,numEdges)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphGetEdges_typed
+      type(c_ptr), value :: graph
+      type(c_ptr),optional,target :: from
+      type(c_ptr),optional,target :: to
+      integer(c_size_t),target :: numEdges
+      type(c_ptr) :: from__p
+      type(c_ptr) :: to__p
+      !
+      from__p = c_null_ptr
+      if (present(from)) from__p = c_loc(from)
+      to__p = c_null_ptr
+      if (present(to)) to__p = c_loc(to)
+      hipGraphGetEdges_typed = hipGraphGetEdges_(graph,from__p,to__p,c_loc(numEdges))
+    end function
+
+    function hipGraphGetNodes_opt(graph,nodes,numNodes)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphGetNodes_opt
+      type(c_ptr), value :: graph
+      type(c_ptr),optional,target :: nodes
+      type(c_ptr),value :: numNodes
+      type(c_ptr) :: nodes__p
+      !
+      nodes__p = c_null_ptr
+      if (present(nodes)) nodes__p = c_loc(nodes)
+      hipGraphGetNodes_opt = hipGraphGetNodes_(graph,nodes__p,numNodes)
+    end function
+
+    function hipGraphGetNodes_typed(graph,nodes,numNodes)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphGetNodes_typed
+      type(c_ptr), value :: graph
+      type(c_ptr),optional,target :: nodes
+      integer(c_size_t),target :: numNodes
+      type(c_ptr) :: nodes__p
+      !
+      nodes__p = c_null_ptr
+      if (present(nodes)) nodes__p = c_loc(nodes)
+      hipGraphGetNodes_typed = hipGraphGetNodes_(graph,nodes__p,c_loc(numNodes))
+    end function
+
+    function hipGraphGetRootNodes_opt(graph,pRootNodes,pNumRootNodes)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphGetRootNodes_opt
+      type(c_ptr), value :: graph
+      type(c_ptr),optional,target :: pRootNodes
+      type(c_ptr),value :: pNumRootNodes
+      type(c_ptr) :: pRootNodes__p
+      !
+      pRootNodes__p = c_null_ptr
+      if (present(pRootNodes)) pRootNodes__p = c_loc(pRootNodes)
+      hipGraphGetRootNodes_opt = hipGraphGetRootNodes_(graph,pRootNodes__p,pNumRootNodes)
+    end function
+
+    function hipGraphGetRootNodes_typed(graph,pRootNodes,pNumRootNodes)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphGetRootNodes_typed
+      type(c_ptr), value :: graph
+      type(c_ptr),optional,target :: pRootNodes
+      integer(c_size_t),target :: pNumRootNodes
+      type(c_ptr) :: pRootNodes__p
+      !
+      pRootNodes__p = c_null_ptr
+      if (present(pRootNodes)) pRootNodes__p = c_loc(pRootNodes)
+      hipGraphGetRootNodes_typed = hipGraphGetRootNodes_(graph,pRootNodes__p,c_loc(pNumRootNodes))
+    end function
+
+    function hipGraphNodeGetDependencies_opt(node,pDependencies,pNumDependencies)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetDependencies_opt
+      type(c_ptr), value :: node
+      type(c_ptr),optional,target :: pDependencies
+      type(c_ptr),value :: pNumDependencies
+      type(c_ptr) :: pDependencies__p
+      !
+      pDependencies__p = c_null_ptr
+      if (present(pDependencies)) pDependencies__p = c_loc(pDependencies)
+      hipGraphNodeGetDependencies_opt = hipGraphNodeGetDependencies_(node,pDependencies__p, &
+        pNumDependencies)
+    end function
+
+    function hipGraphNodeGetDependencies_typed(node,pDependencies,pNumDependencies)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetDependencies_typed
+      type(c_ptr), value :: node
+      type(c_ptr),optional,target :: pDependencies
+      integer(c_size_t),target :: pNumDependencies
+      type(c_ptr) :: pDependencies__p
+      !
+      pDependencies__p = c_null_ptr
+      if (present(pDependencies)) pDependencies__p = c_loc(pDependencies)
+      hipGraphNodeGetDependencies_typed = hipGraphNodeGetDependencies_(node,pDependencies__p, &
+        c_loc(pNumDependencies))
+    end function
+
+    function hipGraphNodeGetDependentNodes_opt(node,pDependentNodes,pNumDependentNodes)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetDependentNodes_opt
+      type(c_ptr), value :: node
+      type(c_ptr),optional,target :: pDependentNodes
+      type(c_ptr),value :: pNumDependentNodes
+      type(c_ptr) :: pDependentNodes__p
+      !
+      pDependentNodes__p = c_null_ptr
+      if (present(pDependentNodes)) pDependentNodes__p = c_loc(pDependentNodes)
+      hipGraphNodeGetDependentNodes_opt = hipGraphNodeGetDependentNodes_(node,pDependentNodes__p, &
+        pNumDependentNodes)
+    end function
+
+    function hipGraphNodeGetDependentNodes_typed(node,pDependentNodes,pNumDependentNodes)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetDependentNodes_typed
+      type(c_ptr), value :: node
+      type(c_ptr),optional,target :: pDependentNodes
+      integer(c_size_t),target :: pNumDependentNodes
+      type(c_ptr) :: pDependentNodes__p
+      !
+      pDependentNodes__p = c_null_ptr
+      if (present(pDependentNodes)) pDependentNodes__p = c_loc(pDependentNodes)
+      hipGraphNodeGetDependentNodes_typed = hipGraphNodeGetDependentNodes_(node, &
+        pDependentNodes__p,c_loc(pNumDependentNodes))
+    end function
+
+    function hipGraphNodeGetType_typed(node,pType)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetType_typed
+      type(c_ptr), value :: node
+      integer(kind(hipGraphNodeTypeKernel)),target :: pType
+      !
+      hipGraphNodeGetType_typed = hipGraphNodeGetType_(node,c_loc(pType))
+    end function
+
+    function hipGraphExecGetFlags_typed(graphExec,flags)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphExecGetFlags_typed
+      type(c_ptr), value :: graphExec
+      integer(c_int64_t),target :: flags
+      !
+      hipGraphExecGetFlags_typed = hipGraphExecGetFlags_(graphExec,c_loc(flags))
+    end function
+
+    function hipGraphExecUpdate_typed(hGraphExec,hGraph,hErrorNode_out,updateResult_out)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphExecUpdate_typed
+      type(c_ptr), value :: hGraphExec
+      type(c_ptr), value :: hGraph
+      type(c_ptr) :: hErrorNode_out
+      integer(kind(hipGraphExecUpdateSuccess)),target :: updateResult_out
+      !
+      hipGraphExecUpdate_typed = hipGraphExecUpdate_(hGraphExec,hGraph,hErrorNode_out, &
+        c_loc(updateResult_out))
+    end function
+
+    function hipGraphNodeGetEnabled_typed(hGraphExec,hNode,isEnabled)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphNodeGetEnabled_typed
+      type(c_ptr), value :: hGraphExec
+      type(c_ptr), value :: hNode
+      integer(c_int),target :: isEnabled
+      !
+      hipGraphNodeGetEnabled_typed = hipGraphNodeGetEnabled_(hGraphExec,hNode,c_loc(isEnabled))
+    end function
+
+    function hipMemGetAccess_typed(flags,location,ptr)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemGetAccess_typed
+      integer(c_int64_t),target :: flags
+      type(hipMemLocation) :: location
+      type(c_ptr), value :: ptr
+      !
+      hipMemGetAccess_typed = hipMemGetAccess_(c_loc(flags),location,ptr)
+    end function
+
+    function hipMemGetAllocationGranularity_typed(granularity,prop,option)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemGetAllocationGranularity_typed
+      integer(c_size_t),target :: granularity
+      type(hipMemAllocationProp) :: prop
+      integer(kind(hipMemAllocationGranularityMinimum)) :: option
+      !
+      hipMemGetAllocationGranularity_typed = hipMemGetAllocationGranularity_(c_loc(granularity), &
+        prop,option)
+    end function
+
+    function hipGraphicsResourceGetMappedPointer_typed(devPtr,mySize,resource)
+      use iso_c_binding
+      implicit none
+      integer(kind(hipSuccess)) :: hipGraphicsResourceGetMappedPointer_typed
+      type(c_ptr) :: devPtr
+      integer(c_size_t),target :: mySize
+      type(c_ptr), value :: resource
+      !
+      hipGraphicsResourceGetMappedPointer_typed = hipGraphicsResourceGetMappedPointer_(devPtr, &
+        c_loc(mySize),resource)
+    end function
+
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
+
 #ifdef USE_ASSUMED_RANK
   function hipMemcpy_i4_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
     use iso_c_binding
@@ -10502,7 +11944,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_i4_assumed_rank
 
@@ -10540,7 +11982,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_i8_assumed_rank
 
@@ -10578,7 +12020,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_r4_assumed_rank
 
@@ -10616,7 +12058,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_r8_assumed_rank
 
@@ -10654,7 +12096,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_c4_assumed_rank
 
@@ -10692,7 +12134,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_c8_assumed_rank
 
@@ -10730,7 +12172,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest), c_loc(src), nbytes, myKind)
   end function hipMemcpy_l_assumed_rank
 
@@ -10771,7 +12213,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_assumed_rank
 
@@ -10812,7 +12254,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_assumed_rank
 
@@ -10853,7 +12295,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_assumed_rank
 
@@ -10894,7 +12336,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_assumed_rank
 
@@ -10935,7 +12377,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_assumed_rank
 
@@ -10976,7 +12418,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_assumed_rank
 
@@ -11017,7 +12459,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest), c_loc(src), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_assumed_rank
 
@@ -11528,7 +12970,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_i4_1
 
@@ -11566,7 +13008,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_i4_2
 
@@ -11604,7 +13046,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_3
 
@@ -11642,7 +13084,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_4
 
@@ -11680,7 +13122,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_5
 
@@ -11718,7 +13160,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_6
 
@@ -11756,7 +13198,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_7
 
@@ -11832,7 +13274,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_i8_1
 
@@ -11870,7 +13312,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_i8_2
 
@@ -11908,7 +13350,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_3
 
@@ -11946,7 +13388,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_4
 
@@ -11984,7 +13426,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_5
 
@@ -12022,7 +13464,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_6
 
@@ -12060,7 +13502,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_7
 
@@ -12136,7 +13578,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_r4_1
 
@@ -12174,7 +13616,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_r4_2
 
@@ -12212,7 +13654,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_3
 
@@ -12250,7 +13692,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_4
 
@@ -12288,7 +13730,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_5
 
@@ -12326,7 +13768,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_6
 
@@ -12364,7 +13806,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_7
 
@@ -12440,7 +13882,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_r8_1
 
@@ -12478,7 +13920,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_r8_2
 
@@ -12516,7 +13958,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_3
 
@@ -12554,7 +13996,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_4
 
@@ -12592,7 +14034,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_5
 
@@ -12630,7 +14072,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_6
 
@@ -12668,7 +14110,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_7
 
@@ -12744,7 +14186,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_c4_1
 
@@ -12782,7 +14224,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_c4_2
 
@@ -12820,7 +14262,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_3
 
@@ -12858,7 +14300,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_4
 
@@ -12896,7 +14338,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_5
 
@@ -12934,7 +14376,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_6
 
@@ -12972,7 +14414,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_7
 
@@ -13048,7 +14490,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_c8_1
 
@@ -13086,7 +14528,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_c8_2
 
@@ -13124,7 +14566,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_3
 
@@ -13162,7 +14604,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_4
 
@@ -13200,7 +14642,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_5
 
@@ -13238,7 +14680,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_6
 
@@ -13276,7 +14718,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_7
 
@@ -13352,7 +14794,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_l_1
 
@@ -13390,7 +14832,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_l_2
 
@@ -13428,7 +14870,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_l_3
 
@@ -13466,7 +14908,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_l_4
 
@@ -13504,7 +14946,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_l_5
 
@@ -13542,7 +14984,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_l_6
 
@@ -13580,7 +15022,7 @@ module hip
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpy_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_l_7
 
@@ -13662,7 +15104,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_1
 
@@ -13703,7 +15145,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_2
 
@@ -13744,7 +15186,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_3
 
@@ -13785,7 +15227,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_4
 
@@ -13826,7 +15268,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_5
 
@@ -13867,7 +15309,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_6
 
@@ -13908,7 +15350,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_7
 
@@ -13990,7 +15432,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_1
 
@@ -14031,7 +15473,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_2
 
@@ -14072,7 +15514,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_3
 
@@ -14113,7 +15555,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_4
 
@@ -14154,7 +15596,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_5
 
@@ -14195,7 +15637,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_6
 
@@ -14236,7 +15678,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_7
 
@@ -14318,7 +15760,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_1
 
@@ -14359,7 +15801,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_2
 
@@ -14400,7 +15842,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_3
 
@@ -14441,7 +15883,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_4
 
@@ -14482,7 +15924,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_5
 
@@ -14523,7 +15965,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_6
 
@@ -14564,7 +16006,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 4_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 4_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_7
 
@@ -14646,7 +16088,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_1
 
@@ -14687,7 +16129,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_2
 
@@ -14728,7 +16170,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_3
 
@@ -14769,7 +16211,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_4
 
@@ -14810,7 +16252,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_5
 
@@ -14851,7 +16293,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_6
 
@@ -14892,7 +16334,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_7
 
@@ -14974,7 +16416,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_1
 
@@ -15015,7 +16457,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_2
 
@@ -15056,7 +16498,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_3
 
@@ -15097,7 +16539,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_4
 
@@ -15138,7 +16580,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_5
 
@@ -15179,7 +16621,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_6
 
@@ -15220,7 +16662,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 8_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_7
 
@@ -15302,7 +16744,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_1
 
@@ -15343,7 +16785,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_2
 
@@ -15384,7 +16826,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_3
 
@@ -15425,7 +16867,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_4
 
@@ -15466,7 +16908,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_5
 
@@ -15507,7 +16949,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_6
 
@@ -15548,7 +16990,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 16_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_7
 
@@ -15630,7 +17072,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_1
 
@@ -15671,7 +17113,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_2
 
@@ -15712,7 +17154,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_3
 
@@ -15753,7 +17195,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_4
 
@@ -15794,7 +17236,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_5
 
@@ -15835,7 +17277,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_6
 
@@ -15876,7 +17318,7 @@ module hip
     type(c_ptr), value :: stream
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = int(size(dest), c_size_t) * 1_c_size_t
+    nbytes = size(dest, kind=c_size_t) * 1_c_size_t
     res = hipMemcpyAsync_(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_l_7
 
@@ -21033,11 +22475,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 4_c_size_t)
@@ -21067,17 +22509,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -21121,17 +22563,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -21175,17 +22617,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -21229,17 +22671,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -21283,17 +22725,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -21337,8 +22779,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -21347,12 +22789,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -21396,8 +22838,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -21407,8 +22849,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -21418,7 +22860,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -21460,11 +22902,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 8_c_size_t)
@@ -21494,17 +22936,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -21548,17 +22990,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -21602,17 +23044,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -21656,17 +23098,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -21710,17 +23152,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -21764,8 +23206,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -21774,12 +23216,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -21823,8 +23265,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -21834,8 +23276,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -21845,7 +23287,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -21887,11 +23329,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 4_c_size_t)
@@ -21921,17 +23363,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -21975,17 +23417,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -22029,17 +23471,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -22083,17 +23525,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -22137,17 +23579,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -22191,8 +23633,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -22201,12 +23643,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -22250,8 +23692,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -22261,8 +23703,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -22272,7 +23714,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -22314,11 +23756,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 8_c_size_t)
@@ -22348,17 +23790,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -22402,17 +23844,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -22456,17 +23898,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -22510,17 +23952,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -22564,17 +24006,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -22618,8 +24060,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -22628,12 +24070,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -22677,8 +24119,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -22688,8 +24130,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -22699,7 +24141,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -22741,11 +24183,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 8_c_size_t)
@@ -22775,17 +24217,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -22829,17 +24271,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -22883,17 +24325,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -22937,17 +24379,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -22991,17 +24433,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -23045,8 +24487,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -23055,12 +24497,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -23104,8 +24546,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -23115,8 +24557,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -23126,7 +24568,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -23168,11 +24610,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 16_c_size_t)
@@ -23202,17 +24644,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -23256,17 +24698,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -23310,17 +24752,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -23364,17 +24806,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -23418,17 +24860,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -23472,8 +24914,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -23482,12 +24924,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -23531,8 +24973,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -23542,8 +24984,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -23553,7 +24995,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -23595,11 +25037,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMalloc_(cptr, 1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), 1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMalloc_(cptr, 1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), 1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMalloc_(cptr, 1_c_size_t)
@@ -23629,17 +25071,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -23683,17 +25125,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -23737,17 +25179,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -23791,17 +25233,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -23845,17 +25287,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -23899,8 +25341,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -23909,12 +25351,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -23958,8 +25400,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -23969,8 +25411,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -23980,7 +25422,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t)
+      res = hipMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -26081,11 +27523,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 4_c_size_t, flags)
@@ -26116,17 +27558,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -26171,17 +27613,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -26226,17 +27668,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -26281,17 +27723,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -26336,17 +27778,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -26391,8 +27833,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -26401,12 +27843,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -26451,8 +27893,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -26462,8 +27904,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -26473,7 +27915,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -26516,11 +27958,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
@@ -26551,17 +27993,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -26606,17 +28048,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -26661,17 +28103,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -26716,17 +28158,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -26771,17 +28213,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -26826,8 +28268,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -26836,12 +28278,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -26886,8 +28328,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -26897,8 +28339,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -26908,7 +28350,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -26951,11 +28393,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 4_c_size_t, flags)
@@ -26986,17 +28428,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -27041,17 +28483,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -27096,17 +28538,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -27151,17 +28593,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -27206,17 +28648,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -27261,8 +28703,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -27271,12 +28713,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -27321,8 +28763,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -27332,8 +28774,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -27343,7 +28785,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -27386,11 +28828,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
@@ -27421,17 +28863,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -27476,17 +28918,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -27531,17 +28973,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -27586,17 +29028,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -27641,17 +29083,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -27696,8 +29138,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -27706,12 +29148,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -27756,8 +29198,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -27767,8 +29209,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -27778,7 +29220,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -27821,11 +29263,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 8_c_size_t, flags)
@@ -27856,17 +29298,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -27911,17 +29353,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -27966,17 +29408,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -28021,17 +29463,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -28076,17 +29518,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -28131,8 +29573,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -28141,12 +29583,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -28191,8 +29633,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -28202,8 +29644,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -28213,7 +29655,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -28256,11 +29698,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 16_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 16_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 16_c_size_t, flags)
@@ -28291,17 +29733,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -28346,17 +29788,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -28401,17 +29843,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -28456,17 +29898,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -28511,17 +29953,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -28566,8 +30008,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -28576,12 +30018,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -28626,8 +30068,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -28637,8 +30079,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -28648,7 +30090,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -28691,11 +30133,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipMallocManaged: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipMallocManaged_(cptr, 1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 1_c_size_t, hipMemcpyDeviceToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipMallocManaged_(cptr, 1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 1_c_size_t, hipMemcpyHostToDevice)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, ptr)
     else
       res = hipMallocManaged_(cptr, 1_c_size_t, flags)
@@ -28726,17 +30168,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -28781,17 +30223,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -28836,17 +30278,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -28891,17 +30333,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -28946,17 +30388,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -29001,8 +30443,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -29011,12 +30453,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -29061,8 +30503,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipMallocManaged: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipMallocManaged: lbounds requires dims"
     if (present(dsource)) then
-      res = hipMallocManaged_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
+      res = hipMallocManaged_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -29072,8 +30514,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipMallocManaged_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
+      res = hipMallocManaged_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToDevice)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -29083,7 +30525,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipMallocManaged_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipMallocManaged_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -31184,11 +32626,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 4_c_size_t, flags)
@@ -31219,17 +32661,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -31274,17 +32716,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -31329,17 +32771,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -31384,17 +32826,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -31439,17 +32881,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -31494,8 +32936,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -31504,12 +32946,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -31554,8 +32996,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -31565,8 +33007,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -31576,7 +33018,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -31619,11 +33061,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
@@ -31654,17 +33096,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -31709,17 +33151,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -31764,17 +33206,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -31819,17 +33261,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -31874,17 +33316,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -31929,8 +33371,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -31939,12 +33381,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -31989,8 +33431,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -32000,8 +33442,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -32011,7 +33453,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -32054,11 +33496,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 4_c_size_t, flags)
@@ -32089,17 +33531,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -32144,17 +33586,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -32199,17 +33641,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -32254,17 +33696,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -32309,17 +33751,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -32364,8 +33806,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -32374,12 +33816,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -32424,8 +33866,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*4_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -32435,8 +33877,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*4_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*4_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*4_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*4_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -32446,7 +33888,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*4_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*4_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -32489,11 +33931,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
@@ -32524,17 +33966,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -32579,17 +34021,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -32634,17 +34076,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -32689,17 +34131,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -32744,17 +34186,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -32799,8 +34241,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -32809,12 +34251,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -32859,8 +34301,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -32870,8 +34312,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -32881,7 +34323,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -32924,11 +34366,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 8_c_size_t, flags)
@@ -32959,17 +34401,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -33014,17 +34456,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -33069,17 +34511,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -33124,17 +34566,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -33179,17 +34621,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -33234,8 +34676,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -33244,12 +34686,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -33294,8 +34736,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*8_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -33305,8 +34747,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*8_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*8_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*8_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*8_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -33316,7 +34758,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*8_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*8_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -33359,11 +34801,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 16_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 16_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 16_c_size_t, flags)
@@ -33394,17 +34836,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -33449,17 +34891,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -33504,17 +34946,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -33559,17 +35001,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -33614,17 +35056,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -33669,8 +35111,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -33679,12 +35121,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -33729,8 +35171,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*16_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -33740,8 +35182,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*16_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*16_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*16_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*16_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -33751,7 +35193,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*16_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*16_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -33794,11 +35236,11 @@ module hip
     if (nOptArgs > 1) ERROR STOP "hipHostMalloc: specify only one of dsource/source"
     if (present(dsource)) then
       res = hipHostMalloc_(cptr, 1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), 1_c_size_t, hipMemcpyDeviceToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), 1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, ptr)
     else if (present(source)) then
       res = hipHostMalloc_(cptr, 1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), 1_c_size_t, hipMemcpyHostToHost)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), 1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, ptr)
     else
       res = hipHostMalloc_(cptr, 1_c_size_t, flags)
@@ -33829,17 +35271,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):) => tmp
     else if (present(dims8)) then
@@ -33884,17 +35326,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):) => tmp
     else if (present(dims8)) then
@@ -33939,17 +35381,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):) => tmp
     else if (present(dims8)) then
@@ -33994,17 +35436,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):) => tmp
     else if (present(dims8)) then
@@ -34049,17 +35491,17 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,LBOUND(dsource,2):,LBOUND(dsource,3):,LBOUND(dsource,4):,LBOUND(dsource,5):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):) => tmp
     else if (present(dims8)) then
@@ -34104,8 +35546,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -34114,12 +35556,12 @@ module hip
         LBOUND(dsource,5):,&
         LBOUND(dsource,6):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,LBOUND(source,2):,LBOUND(source,3):,LBOUND(source,4):,LBOUND(source,5):,LBOUND(source,6):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,LBOUND(mold,2):,LBOUND(mold,3):,LBOUND(mold,4):,LBOUND(mold,5):,LBOUND(mold,6):) => tmp
     else if (present(dims8)) then
@@ -34164,8 +35606,8 @@ module hip
     if (present(lbounds8) .and. .not. present(dims8)) ERROR STOP "hipHostMalloc: lbounds8 requires dims8"
     if (present(lbounds)  .and. .not. present(dims))  ERROR STOP "hipHostMalloc: lbounds requires dims"
     if (present(dsource)) then
-      res = hipHostMalloc_(cptr, int(size(dsource), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(dsource), int(size(dsource), c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
+      res = hipHostMalloc_(cptr, size(dsource, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(dsource), size(dsource, kind=c_size_t)*1_c_size_t, hipMemcpyDeviceToHost)
       call c_f_pointer(cptr, tmp, shape=shape(dsource))
       ptr(LBOUND(dsource,1):,&
         LBOUND(dsource,2):,&
@@ -34175,8 +35617,8 @@ module hip
         LBOUND(dsource,6):,&
         LBOUND(dsource,7):) => tmp
     else if (present(source)) then
-      res = hipHostMalloc_(cptr, int(size(source), c_size_t)*1_c_size_t, flags)
-      res = hipMemcpy(cptr, c_loc(source), int(size(source), c_size_t)*1_c_size_t, hipMemcpyHostToHost)
+      res = hipHostMalloc_(cptr, size(source, kind=c_size_t)*1_c_size_t, flags)
+      if (res == 0) res = hipMemcpy(cptr, c_loc(source), size(source, kind=c_size_t)*1_c_size_t, hipMemcpyHostToHost)
       call c_f_pointer(cptr, tmp, shape=shape(source))
       ptr(LBOUND(source,1):,&
         LBOUND(source,2):,&
@@ -34186,7 +35628,7 @@ module hip
         LBOUND(source,6):,&
         LBOUND(source,7):) => tmp
     else if (present(mold)) then
-      res = hipHostMalloc_(cptr, int(size(mold), c_size_t)*1_c_size_t, flags)
+      res = hipHostMalloc_(cptr, size(mold, kind=c_size_t)*1_c_size_t, flags)
       call c_f_pointer(cptr, tmp, shape=shape(mold))
       ptr(LBOUND(mold,1):,&
         LBOUND(mold,2):,&
@@ -34241,7 +35683,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i4_1
@@ -34257,7 +35699,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i4_2
@@ -34273,7 +35715,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i4_3
@@ -34289,7 +35731,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i4_4
@@ -34305,7 +35747,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i4_5
@@ -34321,7 +35763,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i4_6
@@ -34337,7 +35779,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i4_7
@@ -34369,7 +35811,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i8_1
@@ -34385,7 +35827,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i8_2
@@ -34401,7 +35843,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i8_3
@@ -34417,7 +35859,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i8_4
@@ -34433,7 +35875,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i8_5
@@ -34449,7 +35891,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i8_6
@@ -34465,7 +35907,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_i8_7
@@ -34497,7 +35939,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r4_1
@@ -34513,7 +35955,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r4_2
@@ -34529,7 +35971,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r4_3
@@ -34545,7 +35987,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r4_4
@@ -34561,7 +36003,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r4_5
@@ -34577,7 +36019,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r4_6
@@ -34593,7 +36035,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r4_7
@@ -34625,7 +36067,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r8_1
@@ -34641,7 +36083,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r8_2
@@ -34657,7 +36099,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r8_3
@@ -34673,7 +36115,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r8_4
@@ -34689,7 +36131,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r8_5
@@ -34705,7 +36147,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r8_6
@@ -34721,7 +36163,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_r8_7
@@ -34753,7 +36195,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c4_1
@@ -34769,7 +36211,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c4_2
@@ -34785,7 +36227,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c4_3
@@ -34801,7 +36243,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c4_4
@@ -34817,7 +36259,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c4_5
@@ -34833,7 +36275,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c4_6
@@ -34849,7 +36291,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c4_7
@@ -34881,7 +36323,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c8_1
@@ -34897,7 +36339,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c8_2
@@ -34913,7 +36355,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c8_3
@@ -34929,7 +36371,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c8_4
@@ -34945,7 +36387,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c8_5
@@ -34961,7 +36403,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c8_6
@@ -34977,7 +36419,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_c8_7
@@ -35009,7 +36451,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_l_1
@@ -35025,7 +36467,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_l_2
@@ -35041,7 +36483,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_l_3
@@ -35057,7 +36499,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_l_4
@@ -35073,7 +36515,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_l_5
@@ -35089,7 +36531,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_l_6
@@ -35105,7 +36547,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipFree_l_7
@@ -35137,7 +36579,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i4_1
@@ -35153,7 +36595,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i4_2
@@ -35169,7 +36611,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i4_3
@@ -35185,7 +36627,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i4_4
@@ -35201,7 +36643,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i4_5
@@ -35217,7 +36659,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i4_6
@@ -35233,7 +36675,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i4_7
@@ -35265,7 +36707,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i8_1
@@ -35281,7 +36723,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i8_2
@@ -35297,7 +36739,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i8_3
@@ -35313,7 +36755,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i8_4
@@ -35329,7 +36771,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i8_5
@@ -35345,7 +36787,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i8_6
@@ -35361,7 +36803,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_i8_7
@@ -35393,7 +36835,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r4_1
@@ -35409,7 +36851,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r4_2
@@ -35425,7 +36867,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r4_3
@@ -35441,7 +36883,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r4_4
@@ -35457,7 +36899,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r4_5
@@ -35473,7 +36915,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r4_6
@@ -35489,7 +36931,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r4_7
@@ -35521,7 +36963,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r8_1
@@ -35537,7 +36979,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r8_2
@@ -35553,7 +36995,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r8_3
@@ -35569,7 +37011,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r8_4
@@ -35585,7 +37027,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r8_5
@@ -35601,7 +37043,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r8_6
@@ -35617,7 +37059,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_r8_7
@@ -35649,7 +37091,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c4_1
@@ -35665,7 +37107,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c4_2
@@ -35681,7 +37123,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c4_3
@@ -35697,7 +37139,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c4_4
@@ -35713,7 +37155,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c4_5
@@ -35729,7 +37171,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c4_6
@@ -35745,7 +37187,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c4_7
@@ -35777,7 +37219,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c8_1
@@ -35793,7 +37235,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c8_2
@@ -35809,7 +37251,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c8_3
@@ -35825,7 +37267,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c8_4
@@ -35841,7 +37283,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c8_5
@@ -35857,7 +37299,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c8_6
@@ -35873,7 +37315,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_c8_7
@@ -35905,7 +37347,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_l_1
@@ -35921,7 +37363,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_l_2
@@ -35937,7 +37379,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_l_3
@@ -35953,7 +37395,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_l_4
@@ -35969,7 +37411,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_l_5
@@ -35985,7 +37427,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_l_6
@@ -36001,7 +37443,7 @@ module hip
     if (present(only_if_allocated)) guard = only_if_allocated
     res = 0
     if (.not. guard .or. associated(ptr)) then
-      res = hipHostFree_(c_loc(ptr(1,1,1,1,1,1,1)))
+      res = hipHostFree_(c_loc(ptr))
       ptr => null()
     end if
   end function hipHostFree_l_7
@@ -36021,7 +37463,7 @@ module hip
     integer(c_int), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_1_nosize
 
   function hipHostRegister_i4_1(hostPtr, length1, flags) result(res)
@@ -36056,7 +37498,7 @@ module hip
     integer(c_int), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_2_nosize
 
   function hipHostRegister_i4_2(hostPtr, length1, length2, flags) result(res)
@@ -36093,7 +37535,7 @@ module hip
     integer(c_int), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_3_nosize
 
   function hipHostRegister_i4_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -36132,7 +37574,7 @@ module hip
     integer(c_int), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_4_nosize
 
   function hipHostRegister_i4_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -36173,7 +37615,7 @@ module hip
     integer(c_int), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_5_nosize
 
   function hipHostRegister_i4_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -36216,7 +37658,7 @@ module hip
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_6_nosize
 
   function hipHostRegister_i4_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -36261,7 +37703,7 @@ module hip
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_i4_7_nosize
 
   function hipHostRegister_i4_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -36317,7 +37759,7 @@ module hip
     integer(c_int64_t), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_1_nosize
 
   function hipHostRegister_i8_1(hostPtr, length1, flags) result(res)
@@ -36352,7 +37794,7 @@ module hip
     integer(c_int64_t), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_2_nosize
 
   function hipHostRegister_i8_2(hostPtr, length1, length2, flags) result(res)
@@ -36389,7 +37831,7 @@ module hip
     integer(c_int64_t), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_3_nosize
 
   function hipHostRegister_i8_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -36428,7 +37870,7 @@ module hip
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_4_nosize
 
   function hipHostRegister_i8_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -36469,7 +37911,7 @@ module hip
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_5_nosize
 
   function hipHostRegister_i8_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -36512,7 +37954,7 @@ module hip
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_6_nosize
 
   function hipHostRegister_i8_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -36557,7 +37999,7 @@ module hip
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_i8_7_nosize
 
   function hipHostRegister_i8_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -36613,7 +38055,7 @@ module hip
     real(c_float), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_1_nosize
 
   function hipHostRegister_r4_1(hostPtr, length1, flags) result(res)
@@ -36648,7 +38090,7 @@ module hip
     real(c_float), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_2_nosize
 
   function hipHostRegister_r4_2(hostPtr, length1, length2, flags) result(res)
@@ -36685,7 +38127,7 @@ module hip
     real(c_float), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_3_nosize
 
   function hipHostRegister_r4_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -36724,7 +38166,7 @@ module hip
     real(c_float), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_4_nosize
 
   function hipHostRegister_r4_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -36765,7 +38207,7 @@ module hip
     real(c_float), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_5_nosize
 
   function hipHostRegister_r4_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -36808,7 +38250,7 @@ module hip
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_6_nosize
 
   function hipHostRegister_r4_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -36853,7 +38295,7 @@ module hip
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*4_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*4_c_size_t, flags)
   end function hipHostRegister_r4_7_nosize
 
   function hipHostRegister_r4_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -36909,7 +38351,7 @@ module hip
     real(c_double), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_1_nosize
 
   function hipHostRegister_r8_1(hostPtr, length1, flags) result(res)
@@ -36944,7 +38386,7 @@ module hip
     real(c_double), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_2_nosize
 
   function hipHostRegister_r8_2(hostPtr, length1, length2, flags) result(res)
@@ -36981,7 +38423,7 @@ module hip
     real(c_double), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_3_nosize
 
   function hipHostRegister_r8_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -37020,7 +38462,7 @@ module hip
     real(c_double), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_4_nosize
 
   function hipHostRegister_r8_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -37061,7 +38503,7 @@ module hip
     real(c_double), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_5_nosize
 
   function hipHostRegister_r8_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -37104,7 +38546,7 @@ module hip
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_6_nosize
 
   function hipHostRegister_r8_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -37149,7 +38591,7 @@ module hip
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_r8_7_nosize
 
   function hipHostRegister_r8_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -37205,7 +38647,7 @@ module hip
     complex(c_float_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_1_nosize
 
   function hipHostRegister_c4_1(hostPtr, length1, flags) result(res)
@@ -37240,7 +38682,7 @@ module hip
     complex(c_float_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_2_nosize
 
   function hipHostRegister_c4_2(hostPtr, length1, length2, flags) result(res)
@@ -37277,7 +38719,7 @@ module hip
     complex(c_float_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_3_nosize
 
   function hipHostRegister_c4_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -37316,7 +38758,7 @@ module hip
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_4_nosize
 
   function hipHostRegister_c4_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -37357,7 +38799,7 @@ module hip
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_5_nosize
 
   function hipHostRegister_c4_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -37400,7 +38842,7 @@ module hip
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_6_nosize
 
   function hipHostRegister_c4_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -37445,7 +38887,7 @@ module hip
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*8_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*8_c_size_t, flags)
   end function hipHostRegister_c4_7_nosize
 
   function hipHostRegister_c4_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -37501,7 +38943,7 @@ module hip
     complex(c_double_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_1_nosize
 
   function hipHostRegister_c8_1(hostPtr, length1, flags) result(res)
@@ -37536,7 +38978,7 @@ module hip
     complex(c_double_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_2_nosize
 
   function hipHostRegister_c8_2(hostPtr, length1, length2, flags) result(res)
@@ -37573,7 +39015,7 @@ module hip
     complex(c_double_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_3_nosize
 
   function hipHostRegister_c8_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -37612,7 +39054,7 @@ module hip
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_4_nosize
 
   function hipHostRegister_c8_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -37653,7 +39095,7 @@ module hip
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_5_nosize
 
   function hipHostRegister_c8_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -37696,7 +39138,7 @@ module hip
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_6_nosize
 
   function hipHostRegister_c8_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -37741,7 +39183,7 @@ module hip
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*16_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*16_c_size_t, flags)
   end function hipHostRegister_c8_7_nosize
 
   function hipHostRegister_c8_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -37797,7 +39239,7 @@ module hip
     logical(c_bool), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_1_nosize
 
   function hipHostRegister_l_1(hostPtr, length1, flags) result(res)
@@ -37832,7 +39274,7 @@ module hip
     logical(c_bool), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_2_nosize
 
   function hipHostRegister_l_2(hostPtr, length1, length2, flags) result(res)
@@ -37869,7 +39311,7 @@ module hip
     logical(c_bool), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_3_nosize
 
   function hipHostRegister_l_3(hostPtr, length1, length2, length3, flags) result(res)
@@ -37908,7 +39350,7 @@ module hip
     logical(c_bool), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_4_nosize
 
   function hipHostRegister_l_4(hostPtr, length1, length2, length3, length4, flags) result(res)
@@ -37949,7 +39391,7 @@ module hip
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_5_nosize
 
   function hipHostRegister_l_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
@@ -37992,7 +39434,7 @@ module hip
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_6_nosize
 
   function hipHostRegister_l_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
@@ -38037,7 +39479,7 @@ module hip
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
     integer(c_int) :: res
-    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), int(size(hostPtr), c_size_t)*1_c_size_t, flags)
+    res = hipHostRegister_(c_loc(hostPtr(1,1,1,1,1,1,1)), size(hostPtr, kind=c_size_t)*1_c_size_t, flags)
   end function hipHostRegister_l_7_nosize
 
   function hipHostRegister_l_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
@@ -39590,4 +41032,5 @@ module hip
     res = hipHostGetFlags_(flagsPtr, c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostGetFlags_l_7
 
+#endif
 end module hip
