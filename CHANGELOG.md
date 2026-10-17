@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+### Deprecated
+
+* hipFORT is deprecated: it is maintained through the ROCm 10.x series and
+  removed in ROCm 11.0. From ROCm 10.3, ROCm ships Fortran bindings for HIP,
+  ROCTx and the math libraries, one module and one CMake package per library
+  (`use hip`, `use rocblas`, `find_package(rocblas-fortran)`); see the
+  migration guide. Configuring hipFORT now prints a CMake deprecation warning
+  saying so, which `-Wno-deprecated` silences.
+
 ### Changed
 
 * **Breaking.** The array overloads of `hipMalloc`, `hipMallocManaged`,
