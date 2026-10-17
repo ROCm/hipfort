@@ -52,6 +52,13 @@ if(BUILD_FORTRAN_CLIENTS)
            CMAKE_Fortran_PREPROCESS_SOURCE "${CMAKE_Fortran_PREPROCESS_SOURCE}")
   endif()
 
+  # Keep only the binding wrappers a test calls (the archives are built with one
+  # section per procedure), so a test links even when another wrapper names a C
+  # symbol the installed library does not have yet.
+  if(NOT APPLE AND NOT WIN32)
+    add_link_options("LINKER:--gc-sections")
+  endif()
+
   # rocm_add_fortran_binding() publishes the name to link for each binding it
   # built, in ROCM_FORTRAN_TARGET_<lib>. Ask for that rather than rebuilding
   # <namespace>::<lib>_fortran here, for two reasons: the namespace is the C
@@ -1450,11 +1457,16 @@ if(BUILD_FORTRAN_CLIENTS)
     # hipblasCheck on a failing status: it must name the status, then stop.
     # PASS_REGULAR_EXPRESSION replaces the exit-status check, so the stop is not
     # a failure here.
-    hipfort_add_test(hip check_message f2003)
-    set(_hipfort_check_regex "HIPBLAS ERROR: HIPBLAS_STATUS_INVALID_VALUE \\(code 3\\)")
-    set_tests_properties(hipfort_test_f2003_hip_check_message PROPERTIES
-      PASS_REGULAR_EXPRESSION "${_hipfort_check_regex}"
-      FAIL_REGULAR_EXPRESSION "FAILED!")
+    # It also uses hipblas, so it links that binding too.
+    if(ROCM_FORTRAN_TARGET_hipblas)
+      hipfort_add_test(hip check_message f2003)
+      target_link_libraries(hipfort_test_f2003_hip_check_message
+        PRIVATE ${ROCM_FORTRAN_TARGET_hipblas})
+      set(_hipfort_check_regex "HIPBLAS ERROR: HIPBLAS_STATUS_INVALID_VALUE \\(code 3\\)")
+      set_tests_properties(hipfort_test_f2003_hip_check_message PROPERTIES
+        PASS_REGULAR_EXPRESSION "${_hipfort_check_regex}"
+        FAIL_REGULAR_EXPRESSION "FAILED!")
+    endif()
     hipfort_add_test(hip pointer_attributes f2003)
     hipfort_add_test(hip mem_advise f2003)
     hipfort_add_test(hip virtual_memory f2003)

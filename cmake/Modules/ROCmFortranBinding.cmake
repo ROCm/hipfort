@@ -374,6 +374,13 @@ function(rocm_add_fortran_binding)
 
   # ---- the archive --------------------------------------------------------
   add_library(${_target} STATIC "${_rfb_SOURCE}")
+  # The module compiles to one object, and a linker extracts whole objects from
+  # an archive, so without this a program that calls one wrapper links them all,
+  # and an unresolved C symbol in any of them (a header newer than the installed
+  # library) breaks every link. One section per procedure lets a consumer that
+  # links with --gc-sections keep only the wrappers it calls.
+  target_compile_options(${_target} PRIVATE
+    "$<$<COMPILE_LANG_AND_ID:Fortran,GNU,LLVMFlang,Flang>:-ffunction-sections;-fdata-sections>")
 
   # Normally the namespaced alias is the name everything links. It can already
   # be taken: hipSOLVER is the one library that ALREADY exports
