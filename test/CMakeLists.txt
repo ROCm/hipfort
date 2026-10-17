@@ -37,7 +37,7 @@ endif()
 
 # cmake-based test infrastructure
 
-if(BUILD_TESTING)
+if(BUILD_FORTRAN_CLIENTS)
   # The Intel compilers (ifx/ifort) do not recognize the .f03/.f08 source
   # extensions and skip such files ("no action performed"). Force Fortran
   # compilation by inserting -Tf immediately before the source in the compile
@@ -52,143 +52,33 @@ if(BUILD_TESTING)
            CMAKE_Fortran_PREPROCESS_SOURCE "${CMAKE_Fortran_PREPROCESS_SOURCE}")
   endif()
 
-  # Which backend the tests link: hipfort::hip carries the archive of the one
-  # lib/ built the components for (nvptx when HIPFORT_BUILD_AMDGCN is OFF, even on
-  # an AMD host). On the CUDA backend the symbol tests are compiled with
-  # -DUSE_CUDA_NAMES and the ROCm-only tests below are skipped. Without the
-  # in-tree target (test/ configured on its own), fall back to HIP_PLATFORM, as
-  # lib/CMakeLists.txt does: CUDAToolkit alone is often found on an AMD box too.
-  set(_hipfort_cuda_backend FALSE)
-  if(TARGET hipfort-hip)
-    get_target_property(_hipfort_hip_links hipfort-hip INTERFACE_LINK_LIBRARIES)
-    if("hipfort-nvptx" IN_LIST _hipfort_hip_links)
-      set(_hipfort_cuda_backend TRUE)
-    endif()
-  else()
-    find_package(hip QUIET PATHS ${ROCM_PATH})
-    find_package(CUDAToolkit QUIET)
-    if(NOT HIP_PLATFORM STREQUAL "amd" AND CUDAToolkit_FOUND)
-      set(_hipfort_cuda_backend TRUE)
-    endif()
+  # Keep only the binding wrappers a test calls (the archives are built with one
+  # section per procedure), so a test links even when another wrapper names a C
+  # symbol the installed library does not have yet.
+  if(NOT APPLE AND NOT WIN32)
+    add_link_options("LINKER:--gc-sections")
   endif()
 
-  # Tests that only build on the ROCm backend. Under USE_CUDA_NAMES a routine
-  # with no CUDA counterpart of the same signature is left out of the bindings
-  # (see audit_cuda_mappings.jl in rocm-fortran), and so is the typed form of a
-  # routine bound to the CUDA driver API; a test calling one cannot compile there.
-  # Keyed <dir>/<lib>/<test>, since the f2003 and f2008 variants differ.
-  set(HIPFORT_TESTS_ROCM_ONLY
-    # hipSOLVER compat API (hipsolverX, no Dn): getrf, getrs, potrs, potrfBatched
-    # and gesvd_bufferSize take a workspace cuSOLVER does not, and the Rf getter
-    # hipsolverRfGet_Algs has no cuSOLVER counterpart.
-    f2003/hipsolver/hipsolver_cgesvd
-    f2003/hipsolver/hipsolver_cgetrf
-    f2003/hipsolver/hipsolver_cpotrfbatched
-    f2003/hipsolver/hipsolver_cpotrs
-    f2003/hipsolver/hipsolver_dgetrf
-    f2003/hipsolver/hipsolver_dpotrfbatched
-    f2003/hipsolver/hipsolver_dpotrs
-    f2003/hipsolver/hipsolver_rf_params
-    f2003/hipsolver/hipsolver_sgesvd
-    f2003/hipsolver/hipsolver_sgetrf
-    f2003/hipsolver/hipsolver_spotrfbatched
-    f2003/hipsolver/hipsolver_spotrs
-    f2003/hipsolver/hipsolver_zgesvd
-    f2003/hipsolver/hipsolver_zgetrf
-    f2003/hipsolver/hipsolver_zpotrfbatched
-    f2003/hipsolver/hipsolver_zpotrs
-    f2008/hipsolver/hipsolver_cgesvd
-    f2008/hipsolver/hipsolver_cgetrf
-    f2008/hipsolver/hipsolver_cpotrfbatched
-    f2008/hipsolver/hipsolver_cpotrs
-    f2008/hipsolver/hipsolver_dgesvd
-    f2008/hipsolver/hipsolver_dgetrf
-    f2008/hipsolver/hipsolver_dgetrs
-    f2008/hipsolver/hipsolver_dpotrfbatched
-    f2008/hipsolver/hipsolver_dpotrs
-    f2008/hipsolver/hipsolver_rf_params
-    f2008/hipsolver/hipsolver_sgesvd
-    f2008/hipsolver/hipsolver_sgetrf
-    f2008/hipsolver/hipsolver_spotrfbatched
-    f2008/hipsolver/hipsolver_spotrs
-    f2008/hipsolver/hipsolver_zgesvd
-    f2008/hipsolver/hipsolver_zgetrf
-    f2008/hipsolver/hipsolver_zpotrfbatched
-    f2008/hipsolver/hipsolver_zpotrs
-    # hipSPARSE routines cuSPARSE 12 removed: csrsv2, csrgemm, gthr, sctr,
-    # csr2csc; and hipsparseGetGitRevision, which is hipSPARSE's own.
-    f2003/hipsparse/hipsparse_ccsr2csc
-    f2003/hipsparse/hipsparse_ccsrgemm
-    f2003/hipsparse/hipsparse_ccsrsv2
-    f2003/hipsparse/hipsparse_ccsrsv2_devptr
-    f2003/hipsparse/hipsparse_cgthr
-    f2003/hipsparse/hipsparse_csctr
-    f2003/hipsparse/hipsparse_dcsr2csc
-    f2003/hipsparse/hipsparse_dcsrgemm
-    f2003/hipsparse/hipsparse_dcsrsv2
-    f2003/hipsparse/hipsparse_dcsrsv2_devptr
-    f2003/hipsparse/hipsparse_dgthr
-    f2003/hipsparse/hipsparse_dsctr
-    f2003/hipsparse/hipsparse_scsrgemm
-    f2003/hipsparse/hipsparse_scsrsv2
-    f2003/hipsparse/hipsparse_scsrsv2_devptr
-    f2003/hipsparse/hipsparse_sgthr
-    f2003/hipsparse/hipsparse_ssctr
-    f2003/hipsparse/hipsparse_version
-    f2003/hipsparse/hipsparse_zcsr2csc
-    f2003/hipsparse/hipsparse_zcsrgemm
-    f2003/hipsparse/hipsparse_zcsrsv2
-    f2003/hipsparse/hipsparse_zcsrsv2_devptr
-    f2003/hipsparse/hipsparse_zcsrsv2_typed
-    f2003/hipsparse/hipsparse_zgthr
-    f2003/hipsparse/hipsparse_zsctr
-    f2008/hipsparse/hipsparse_ccsr2csc
-    f2008/hipsparse/hipsparse_ccsrgemm
-    f2008/hipsparse/hipsparse_ccsrsv2
-    f2008/hipsparse/hipsparse_cgthr
-    f2008/hipsparse/hipsparse_csctr
-    f2008/hipsparse/hipsparse_dcsr2csc
-    f2008/hipsparse/hipsparse_dcsrgemm
-    f2008/hipsparse/hipsparse_dcsrsv2
-    f2008/hipsparse/hipsparse_dgthr
-    f2008/hipsparse/hipsparse_dsctr
-    f2008/hipsparse/hipsparse_scsr2csc
-    f2008/hipsparse/hipsparse_scsrgemm
-    f2008/hipsparse/hipsparse_scsrsv2
-    f2008/hipsparse/hipsparse_sgthr
-    f2008/hipsparse/hipsparse_ssctr
-    f2008/hipsparse/hipsparse_version
-    f2008/hipsparse/hipsparse_zcsr2csc
-    f2008/hipsparse/hipsparse_zcsrgemm
-    f2008/hipsparse/hipsparse_zcsrsv2
-    f2008/hipsparse/hipsparse_zgthr
-    f2008/hipsparse/hipsparse_zsctr
-    # HIP runtime
-    f2003/hip/device_management              # hipDeviceTotalMem typed form (driver API: c_ptr form only)
-    f2003/hip/device_properties              # hipDeviceProp_t%clockRate (gone from CUDA 13)
-    f2003/hip/event_timing                   # hipMemcpyWithStream
-    f2003/hip/graph_empty_node               # hipGraphAddDependencies (CUDA 13 adds edgeData)
-    f2003/hip/graph_nodes                    # hipGraphAddDependencies (CUDA 13 adds edgeData)
-    f2003/hip/mem_advise                     # hipMemAdvise, hipMemPrefetchAsync (CUDA 13 takes a location)
-    f2003/hip/memcpy_async                   # hipMemcpyWithStream
-    f2003/hip/pointer_attributes             # hipPointerAttribute_t%isManaged
-    f2003/hip/stream_capture_info            # hipStreamGetCaptureInfo (CUDA 13 takes 6 arguments)
-    f2003/hip/virtual_memory                 # typed hipMemGetAllocationGranularity (driver API)
-    f2008/hip/mem_advise                     # hipMemAdvise, hipMemPrefetchAsync (CUDA 13 takes a location)
-    f2008/hip/pointer_attributes             # hipPointerAttribute_t%isManaged
-  )
+  # rocm_add_fortran_binding() publishes the name to link for each binding it
+  # built, in ROCM_FORTRAN_TARGET_<lib>. Ask for that rather than rebuilding
+  # <namespace>::<lib>_fortran here, for two reasons: the namespace is the C
+  # library's own (roc:: or hip::) and does not follow from the library name,
+  # and the namespaced name is not always ours. On a ROCm whose hipSOLVER still
+  # exports its pre-split roc::hipsolver_fortran, that target exists whether or
+  # not we built anything, so testing it would both mis-guard the tests and
+  # silently link the hand-written binding instead of the generated one.
+  function(hipfort_test_target lib out)
+    set(${out} "${ROCM_FORTRAN_TARGET_${lib}}" PARENT_SCOPE)
+  endfunction()
 
   function(hipfort_add_test lib func dir)
-    # The f2008 tests exercise the per-rank array overloads and
-    # the f2018 tests the assumed-rank overloads; skip each when its interface
-    # level is disabled so a plain C-binding build still tests cleanly.
-    if(dir STREQUAL "f2008" AND NOT HIPFORT_USE_FPOINTER_INTERFACES)
+    # The f2008 tests exercise the per-rank array overloads and the f2018 tests
+    # the assumed-rank ones; skip each when FORTRAN_ARRAY_INTERFACES did not
+    # select its tier, so a plain C-binding build still tests cleanly.
+    if(dir STREQUAL "f2008" AND NOT FORTRAN_ARRAY_INTERFACES STREQUAL "assumed-shape")
       return()
     endif()
-    if(dir STREQUAL "f2018" AND NOT HIPFORT_ASSUMED_RANK)
-      return()
-    endif()
-    if(_hipfort_cuda_backend AND "${dir}/${lib}/${func}" IN_LIST HIPFORT_TESTS_ROCM_ONLY)
+    if(dir STREQUAL "f2018" AND NOT FORTRAN_ARRAY_INTERFACES STREQUAL "assumed-rank")
       return()
     endif()
     if(dir STREQUAL "f2008")
@@ -210,7 +100,9 @@ if(BUILD_TESTING)
     add_executable(hipfort_test_${dir}_${lib}_${func} "${src}")
     set_target_properties(hipfort_test_${dir}_${lib}_${func}
       PROPERTIES LINKER_LANGUAGE Fortran)
-    target_link_libraries(hipfort_test_${dir}_${lib}_${func} PRIVATE hipfort::${lib} hipfort::hip)
+    hipfort_test_target(${lib} _fortran_target)
+    target_link_libraries(hipfort_test_${dir}_${lib}_${func}
+      PRIVATE ${_fortran_target} ${ROCM_FORTRAN_TARGET_hip})
 
     # the tests call EXIT, which is a GNU extension in gfortran
     target_compile_options(hipfort_test_${dir}_${lib}_${func} PRIVATE $<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=gnu>)
@@ -221,56 +113,8 @@ if(BUILD_TESTING)
     )
   endfunction()
 
-  # Extended, exhaustive per-library "symbol" tests (test_<lib>.F03),
-  # auto-generated by the rocm-fortran generator
-  # (src/tools/gen_symbol_tests.jl, run with LAYOUT=hipfort). Each references
-  # *every* bind(c) routine of a library through its generic name, guarded
-  # so nothing executes: the point is purely to prove each interface compiles
-  # and each C symbol links. Because they reference every symbol, enabling them
-  # turns an undefined-symbol (missing in the installed ROCm) into a build error
-  # -- handy to audit a specific ROCm version, but off by default so a
-  # partial/older ROCm does not break the normal test build. Reuses the
-  # HIPFORT_EXTENDED_TESTS option declared in the top-level CMakeLists.txt:
-  # like the undefined-symbol shared-link test it gates, this needs a recent,
-  # complete ROCm/CUDA install to be certain it passes.
-  #
-  # The sources are preprocessed .F03: routines with no CUDA counterpart are
-  # wrapped in #ifndef USE_CUDA_NAMES, so the same file also builds on the NVIDIA
-  # backend, where the interfaces bind to cu* symbols. On that backend the test
-  # must be compiled with -DUSE_CUDA_NAMES to match the nvptx library it links.
-  #
-  # The backend comes from _hipfort_cuda_backend, set above. The symbol tests
-  # build whenever HIPFORT_EXTENDED_TESTS is on and the backend's runtime
-  # libraries are found (the per-test if(TARGET hipfort::<lib>) guards handle
-  # that); the backend only decides the symbol naming.
-  function(hipfort_add_symbol_test lib)
-    if(NOT HIPFORT_EXTENDED_TESTS)
-      return()
-    endif()
-    set(src "${CMAKE_CURRENT_SOURCE_DIR}/f2003/${lib}/test_${lib}.F03")
-    if(NOT EXISTS "${src}")
-      message(FATAL_ERROR "Missing symbol test source: ${src}")
-    endif()
-    set(tgt hipfort_test_f2003_${lib}_test_${lib})
-    set_source_files_properties("${src}" PROPERTIES
-      LANGUAGE Fortran Fortran_PREPROCESS ON)
-    add_executable(${tgt} "${src}")
-    set_target_properties(${tgt} PROPERTIES LINKER_LANGUAGE Fortran)
-    target_link_libraries(${tgt} PRIVATE hipfort::${lib} hipfort::hip)
-    if(_hipfort_cuda_backend)
-      target_compile_definitions(${tgt} PRIVATE USE_CUDA_NAMES)
-      # The HIP runtime maps ~50 routines to the CUDA *driver* API (cu*), which
-      # live in libcuda, not libcudart (hipfort::hip -> CUDA::cudart). Link the
-      # driver stub so the exhaustive runtime symbol test resolves them.
-      if(lib STREQUAL "hip" AND TARGET CUDA::cuda_driver)
-        target_link_libraries(${tgt} PRIVATE CUDA::cuda_driver)
-      endif()
-    endif()
-    add_test(NAME ${tgt} COMMAND ${tgt})
-  endfunction()
 
-  if(TARGET hipfort::hipblas)
-    hipfort_add_symbol_test(hipblas)
+  if(ROCM_FORTRAN_TARGET_hipblas)
     hipfort_add_test(hipblas cgemm f2003)
     hipfort_add_test(hipblas dgemm f2003)
     hipfort_add_test(hipblas sgemm f2003)
@@ -481,8 +325,7 @@ if(BUILD_TESTING)
     endforeach()
   endif()
 
-  if(TARGET hipfort::hipfft)
-    hipfort_add_symbol_test(hipfft)
+  if(ROCM_FORTRAN_TARGET_hipfft)
     hipfort_add_test(hipfft hipfft f2003)
     hipfort_add_test(hipfft hipfft f2008)
     hipfort_add_test(hipfft hipfft_c2c_1d_z f2003)
@@ -507,12 +350,20 @@ if(BUILD_TESTING)
     hipfort_add_test(hipfft hipfft_estimate_getsize_d f2008)
     hipfort_add_test(hipfft hipfft_setstream_z f2003)
     hipfort_add_test(hipfft hipfft_setstream_z f2008)
-    hipfort_add_test(hipfft hipfft_version f2003)
+    # hipfft_version passes its output scalars straight to hipfftGetProperty.
+    # That generic only resolves through the assumed-shape/assumed-rank module
+    # procedures; with FORTRAN_ARRAY_INTERFACES=none the interface is reduced to
+    # the raw bind(C) specific, whose dummy is type(c_ptr),value, so the call has
+    # no matching specific and the test does not compile.  The f2008 copy is
+    # already skipped by hipfort_add_test unless the tier is assumed-shape; the
+    # f2003 copy needs the same guard spelled out.
+    if(NOT FORTRAN_ARRAY_INTERFACES STREQUAL "none")
+      hipfort_add_test(hipfft hipfft_version f2003)
+    endif()
     hipfort_add_test(hipfft hipfft_version f2008)
   endif()
 
-  if(TARGET hipfort::hipfftw)
-    hipfort_add_symbol_test(hipfftw)
+  if(ROCM_FORTRAN_TARGET_hipfftw)
     # Detect hipfftw API features based on hipfft version.
     # Version-to-feature mapping (based on ROCm releases):
     #   hipfft < 1.0.21: no hipfftw library
@@ -562,8 +413,7 @@ if(BUILD_TESTING)
     endif()
   endif()
 
-  if(TARGET hipfort::hipsolver)
-    hipfort_add_symbol_test(hipsolver)
+  if(ROCM_FORTRAN_TARGET_hipsolver)
     hipfort_add_test(hipsolver hipsolver_sgetrf f2003)
     hipfort_add_test(hipsolver hipsolver_dgetrf f2003)
     hipfort_add_test(hipsolver hipsolver_cgetrf f2003)
@@ -673,8 +523,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hipsolver hipsolver_rf_params f2008)
   endif()
 
-  if(TARGET hipfort::hipsparse)
-    hipfort_add_symbol_test(hipsparse)
+  if(ROCM_FORTRAN_TARGET_hipsparse)
     hipfort_add_test(hipsparse hipsparse_sgtsv f2008)
     hipfort_add_test(hipsparse hipsparse_scsr2csc f2008)
     hipfort_add_test(hipsparse hipsparse_xcsr2coo f2008)
@@ -817,8 +666,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hipsparse hipsparse_descr_get f2008)
   endif()
 
-  if(TARGET hipfort::rocblas)
-    hipfort_add_symbol_test(rocblas)
+  if(ROCM_FORTRAN_TARGET_rocblas)
     hipfort_add_test(rocblas saxpy f2003)
     hipfort_add_test(rocblas daxpy f2003)
     hipfort_add_test(rocblas caxpy f2003)
@@ -1058,8 +906,7 @@ if(BUILD_TESTING)
     endforeach()
   endif()
 
-  if(TARGET hipfort::rocrand)
-    hipfort_add_symbol_test(rocrand)
+  if(ROCM_FORTRAN_TARGET_rocrand)
     hipfort_add_test(rocrand mrg32k3a_uniform f2003)
     hipfort_add_test(rocrand mrg32k3a_uniform_double f2003)
     hipfort_add_test(rocrand mrg32k3a_normal f2003)
@@ -1110,8 +957,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocrand rocrand_version f2008)
   endif()
 
-  if(TARGET hipfort::hiprand)
-    hipfort_add_symbol_test(hiprand)
+  if(ROCM_FORTRAN_TARGET_hiprand)
     hipfort_add_test(hiprand mrg32k3a_uniform f2003)
     hipfort_add_test(hiprand mrg32k3a_uniform_double f2003)
     hipfort_add_test(hiprand mrg32k3a_normal f2003)
@@ -1162,8 +1008,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hiprand hiprand_version f2008)
   endif()
 
-  if(TARGET hipfort::rocfft)
-    hipfort_add_symbol_test(rocfft)
+  if(ROCM_FORTRAN_TARGET_rocfft)
     hipfort_add_test(rocfft rocfft f2003)
     hipfort_add_test(rocfft rocfft f2008)
     hipfort_add_test(rocfft rocfft_c2c_1d_z f2003)
@@ -1203,8 +1048,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocfft rocfft_field_brick_z f2008)
   endif()
 
-  if(TARGET hipfort::rocsolver)
-    hipfort_add_symbol_test(rocsolver)
+  if(ROCM_FORTRAN_TARGET_rocsolver)
     hipfort_add_test(rocsolver rocsolver_dgeqrf f2003)
     hipfort_add_test(rocsolver rocsolver_dgeqrf f2008)
     hipfort_add_test(rocsolver rocsolver_dsterf f2003)
@@ -1392,8 +1236,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsolver rocsolver_alg_mode f2008)
   endif()
 
-  if(TARGET hipfort::rocsparse)
-    hipfort_add_symbol_test(rocsparse)
+  if(ROCM_FORTRAN_TARGET_rocsparse)
     hipfort_add_test(rocsparse ddoti f2003)
     hipfort_add_test(rocsparse ddoti_typed f2003)
     hipfort_add_test(rocsparse rocsparse_handle_create f2003)
@@ -1586,8 +1429,7 @@ if(BUILD_TESTING)
 
   # HIP runtime API tests: device management, streams, events, memset,
   # asynchronous copies, unified-memory hints and the module/kernel API.
-  if(TARGET hipfort::hip)
-    hipfort_add_symbol_test(hip)
+  if(ROCM_FORTRAN_TARGET_hip)
     hipfort_add_test(hip device_management f2003)
     hipfort_add_test(hip stream f2003)
     hipfort_add_test(hip event f2003)
@@ -1612,20 +1454,19 @@ if(BUILD_TESTING)
     hipfort_add_test(hip memory_ops f2003)
     hipfort_add_test(hip device_properties f2003)
     hipfort_add_test(hip error_version f2003)
-    # hipblasCheck on a failing status: it must name the status, then stop. The
-    # nvptx build reports CUDA statuses, which the HIP names do not describe, so
-    # it prints the code alone, and HIPBLAS_STATUS_INVALID_VALUE there carries
-    # cuBLAS's value, 7. PASS_REGULAR_EXPRESSION replaces the exit-status check,
-    # so the stop is not a failure here.
-    hipfort_add_test(hip check_message f2003)
-    if(_hipfort_cuda_backend)
-      set(_hipfort_check_regex "HIPBLAS ERROR: code = +7")
-    else()
+    # hipblasCheck on a failing status: it must name the status, then stop.
+    # PASS_REGULAR_EXPRESSION replaces the exit-status check, so the stop is not
+    # a failure here.
+    # It also uses hipblas, so it links that binding too.
+    if(ROCM_FORTRAN_TARGET_hipblas)
+      hipfort_add_test(hip check_message f2003)
+      target_link_libraries(hipfort_test_f2003_hip_check_message
+        PRIVATE ${ROCM_FORTRAN_TARGET_hipblas})
       set(_hipfort_check_regex "HIPBLAS ERROR: HIPBLAS_STATUS_INVALID_VALUE \\(code 3\\)")
+      set_tests_properties(hipfort_test_f2003_hip_check_message PROPERTIES
+        PASS_REGULAR_EXPRESSION "${_hipfort_check_regex}"
+        FAIL_REGULAR_EXPRESSION "FAILED!")
     endif()
-    set_tests_properties(hipfort_test_f2003_hip_check_message PROPERTIES
-      PASS_REGULAR_EXPRESSION "${_hipfort_check_regex}"
-      FAIL_REGULAR_EXPRESSION "FAILED!")
     hipfort_add_test(hip pointer_attributes f2003)
     hipfort_add_test(hip mem_advise f2003)
     hipfort_add_test(hip virtual_memory f2003)
@@ -1640,7 +1481,7 @@ if(BUILD_TESTING)
     # it for AMD, hence the ROCm-backend guard.
     find_package(hip QUIET PATHS ${ROCM_PATH})
     find_program(HIPFORT_HIPCC hipcc HINTS ${ROCM_PATH}/bin)
-    if(HIPFORT_HIPCC AND HIP_PLATFORM STREQUAL "amd" AND NOT _hipfort_cuda_backend)
+    if(HIPFORT_HIPCC AND HIP_PLATFORM STREQUAL "amd")
       # --offload-arch=native and `rocm_agent_enumerator -name` both append the
       # :xnack suffix, which pins the code object to one XNACK mode and makes
       # hipModuleLoad fail in the other. The bare gfxNNN loads under both.
@@ -1697,7 +1538,7 @@ if(BUILD_TESTING)
         ${std}/vecadd/hip_implementation.cpp)
       set_source_files_properties(${std}/vecadd/main.${ext} PROPERTIES LANGUAGE Fortran)
       set_source_files_properties(${std}/vecadd/hip_implementation.cpp PROPERTIES LANGUAGE HIP)
-      target_link_libraries(${vecadd_target} PRIVATE hipfort::hip)
+      target_link_libraries(${vecadd_target} PRIVATE ${ROCM_FORTRAN_TARGET_hip})
       set_target_properties(${vecadd_target}
         PROPERTIES
           LINKER_LANGUAGE Fortran
@@ -1710,8 +1551,7 @@ if(BUILD_TESTING)
 
   # hipOccupancy* and hipLaunchCooperativeKernel take the host stub of a kernel.
   # Like module_kernel, these need the ROCm backend: the kernel is built for AMD.
-  if(CMAKE_HIP_COMPILER AND TARGET hipfort::hip AND HIP_PLATFORM STREQUAL "amd"
-     AND NOT _hipfort_cuda_backend)
+  if(CMAKE_HIP_COMPILER AND ROCM_FORTRAN_TARGET_hip AND HIP_PLATFORM STREQUAL "amd")
     foreach(kernel_test IN ITEMS occupancy cooperative_launch)
       hipfort_add_test(hip ${kernel_test} f2003)
       target_sources(hipfort_test_f2003_hip_${kernel_test}
@@ -1725,8 +1565,11 @@ if(BUILD_TESTING)
     endforeach()
   endif()
 
-  if(TARGET hipfort::roctx)
-    hipfort_add_symbol_test(roctx)
+  # rocTX carries over into this layout as `module roctx`. It had been left out
+  # while the bindings were generated from roctracer/roctx.h, which is not the API
+  # roc::roctx_fortran links; they are now generated from rocprofiler-sdk-roctx/roctx.h,
+  # so the side is picked and the tests build again.
+  if(ROCM_FORTRAN_TARGET_roctx)
     include(CheckLanguage)
     check_language(HIP)
     if(CMAKE_HIP_COMPILER)
@@ -1745,16 +1588,25 @@ if(BUILD_TESTING)
     endif()
   endif()
 
-  # Regression test for SWDEV-427498: installing hipfort and calling
-  # find_package(hipfort) from the install prefix must succeed. This guards the
-  # multitoolchain-layout shim (lib/cmake/hipfort forwarding to
-  # lib/fortran/<compiler>/cmake/hipfort) and the flat-layout config alike.
+  # Regression test for SWDEV-427498: installing the bindings and calling
+  # find_package(<lib>-fortran) from the install prefix must succeed. This
+  # guards the per-compiler shim (lib/cmake/<lib>-fortran forwarding to
+  # lib/fortran/<compiler>/cmake/<lib>-fortran).
+  #
+  # ROCM_PATH is passed because the consumer genuinely needs it: each
+  # <lib>-fortran config find_dependency()s the C library it wraps, so
+  # find_package(hip-fortran) pulls in hip. That is a real difference from the
+  # old hipfort package, which only resolved dependencies for the components you
+  # asked for and so needed nothing beyond its own prefix when asked for none.
+  # In production the question does not arise, ROCm being the install prefix;
+  # here the prefix is a scratch directory, so ROCm has to be named separately.
   add_test(NAME hipfort_find_package_install
     COMMAND ${CMAKE_COMMAND}
       -DHIPFORT_BUILD_DIR=${CMAKE_BINARY_DIR}
       -DCONSUMER_SRC=${CMAKE_CURRENT_SOURCE_DIR}/find_package
       -DWORK_DIR=${CMAKE_CURRENT_BINARY_DIR}/find_package_work
       -DFORTRAN_COMPILER=${CMAKE_Fortran_COMPILER}
+      -DROCM_PATH=${ROCM_PATH}
       -P ${CMAKE_CURRENT_SOURCE_DIR}/find_package/run_find_package_test.cmake)
 
   # test/openmp needs offload (LLVM Flang) and a host LAPACK for the reference.
@@ -1787,8 +1639,8 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
     elseif(NOT LAPACK_FOUND)
       message(STATUS "Skipping OpenMP offload tests: no host LAPACK for the reference result")
     else()
-      # openmp/<library>/test_<name>.f90 builds against hipfort::<library>, so a
-      # new file is picked up on the next configure with no edit here.
+      # openmp/<library>/test_<name>.f90 builds against that library's binding,
+      # so a new file is picked up on the next configure with no edit here.
       file(GLOB _omp_sources CONFIGURE_DEPENDS
         "${CMAKE_CURRENT_SOURCE_DIR}/openmp/*/test_*.f90")
       foreach(_src IN LISTS _omp_sources)
@@ -1796,15 +1648,16 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
         get_filename_component(_lib "${_lib}" NAME)
         get_filename_component(_name "${_src}" NAME_WE)
         string(REGEX REPLACE "^test_" "" _name "${_name}")
-        if(NOT TARGET hipfort::${_lib})
-          message(STATUS "Skipping OpenMP offload test ${_name}: no hipfort::${_lib}")
+        hipfort_test_target(${_lib} _fortran_target)
+        if(NOT _fortran_target)
+          message(STATUS "Skipping OpenMP offload test ${_name}: no ${_lib} Fortran binding")
           continue()
         endif()
         add_executable(hipfort_test_openmp_${_name} "${_src}")
         target_compile_options(hipfort_test_openmp_${_name} PRIVATE ${_offload_flags})
         target_link_options(hipfort_test_openmp_${_name} PRIVATE ${_offload_flags})
         target_link_libraries(hipfort_test_openmp_${_name}
-          PRIVATE hipfort::${_lib} ${LAPACK_LIBRARIES})
+          PRIVATE ${_fortran_target} ${LAPACK_LIBRARIES})
         set_target_properties(hipfort_test_openmp_${_name}
           PROPERTIES LINKER_LANGUAGE Fortran)
         add_test(NAME hipfort_test_openmp_${_name}
@@ -1812,6 +1665,65 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
       endforeach()
     endif()
   endif()
+  # ---------------------------------------------------------------------------
+  # Upstream client samples, built against the generated bindings.
+  #
+  # Each library already ships Fortran samples in its own repository, written
+  # against the hand-written module it installs as source. They are copied into
+  # test/rocm-libraries/ verbatim (see the README there) and compiled here with
+  # nothing changed, which is the point: they open with `use rocblas` /
+  # `use rocsparse`, the very name the generated binding provides, so building
+  # them unedited is what shows the generated module is a drop-in replacement
+  # for the one it supersedes at 10.2.
+  #
+  # After the split these build inside their own library under
+  # BUILD_FORTRAN_CLIENTS, linking roc::<lib>_fortran instead of compiling the
+  # in-tree .f90. Here they stand in for that.
+  #
+  # OFF by default because the answer, today, is that 2 of the 18 build. The
+  # other 16 fail on two source-level differences between the hand-written module
+  # and the generated one, catalogued in test/rocm-libraries/README.md: a `use
+  # <lib>_enums` that no longer exists, and a version string the hand-written
+  # module takes as character. Neither is a call-boundary problem. That is the
+  # finding, not a regression to fix here, so the sources stay in the tree as
+  # reproducible evidence and the targets are opt-in rather than a permanently
+  # red suite. Turn it on to reproduce:  -DBUILD_FORTRAN_CLIENT_SAMPLES=ON
+  option(BUILD_FORTRAN_CLIENT_SAMPLES
+    "Build each library's own upstream Fortran samples against the generated bindings" OFF)
+
+  function(hipfort_add_client_sample lib src)
+    if(NOT BUILD_FORTRAN_CLIENT_SAMPLES)
+      return()
+    endif()
+    hipfort_test_target(${lib} _fortran_target)
+    if(NOT _fortran_target)
+      return()
+    endif()
+    get_filename_component(_name "${src}" NAME_WE)
+    set(tgt hipfort_sample_${lib}_${_name})
+    set_source_files_properties("${src}" PROPERTIES
+      LANGUAGE Fortran Fortran_PREPROCESS ON)
+    add_executable(${tgt} "${src}")
+    set_target_properties(${tgt} PROPERTIES LINKER_LANGUAGE Fortran)
+    # The HIP runtime, but not the HIP binding's module: these samples declare
+    # their own hipMalloc/hipFree/hipMemcpy interfaces inline and bind those C
+    # symbols directly, so they need the library and never `use hip`.
+    target_link_libraries(${tgt} PRIVATE ${_fortran_target} ${ROCM_FORTRAN_TARGET_hip})
+    add_test(NAME ${tgt} COMMAND ${tgt})
+    # They report failure with a bare Fortran `stop`, which exits 0, so without
+    # this a runtime failure would be recorded as a pass. Matching the prefix
+    # they print keeps the sources verbatim.
+    set_tests_properties(${tgt} PROPERTIES FAIL_REGULAR_EXPRESSION "Error:")
+  endfunction()
+
+  foreach(_lib rocblas rocsparse)
+    file(GLOB _samples CONFIGURE_DEPENDS
+      "${CMAKE_CURRENT_SOURCE_DIR}/rocm-libraries/${_lib}/*.[fF]90")
+    foreach(_s IN LISTS _samples)
+      hipfort_add_client_sample(${_lib} "${_s}")
+    endforeach()
+  endforeach()
+
   # Source-only lint. Needs bash, so not on Windows.
   if(NOT CMAKE_HOST_WIN32)
     add_test(NAME hipfort_fortran_line_length

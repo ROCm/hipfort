@@ -31,9 +31,8 @@ program hipblas_sgemm_trans_test
   ! all change the result. The padding rows of C must come back untouched.
 
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipblas
+  use hip
+  use hipblas
 
   implicit none
 

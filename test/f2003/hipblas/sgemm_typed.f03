@@ -30,9 +30,8 @@
 program hip_sgemm_typed
 
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipblas
+  use hip
+  use hipblas
 
   implicit none
 

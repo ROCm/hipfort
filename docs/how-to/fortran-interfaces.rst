@@ -46,7 +46,7 @@ bytes:
 .. code-block:: fortran
 
    use iso_c_binding
-   use hipfort
+   use hip
    integer      :: ierr       ! error code
    real, target :: a_h(5,6)   ! host array ('target' is required by c_loc)
    type(c_ptr)  :: a_d        ! device array pointer
@@ -61,7 +61,7 @@ elements rather than bytes:
 
 .. code-block:: fortran
 
-   use hipfort
+   use hip
    integer       :: ierr      ! error code
    real          :: a_h(5,6)  ! host array
    real, pointer :: a_d(:,:)  ! device array pointer
@@ -85,9 +85,9 @@ device.
 
 Like the array interfaces of the math libraries, these ``hipMalloc`` and
 ``hipMemcpy`` overloads are part of the Fortran 2008 array overloads: a build with
-``-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`` has only the ``type(c_ptr)`` forms.
+``-DFORTRAN_ARRAY_INTERFACES=none`` has only the ``type(c_ptr)`` forms.
 ``hipMalloc``, ``hipFree`` and ``hipHostRegister`` have no assumed-rank form, so
-their per-rank overloads stay available with ``-DHIPFORT_ASSUMED_RANK=ON``.
+their per-rank overloads stay available with ``-DFORTRAN_ARRAY_INTERFACES=assumed-rank``.
 
 Scalar arguments passed by pointer
 ==================================
@@ -174,20 +174,22 @@ Assumed-rank interfaces (Fortran 2018)
 ======================================
 
 The Fortran 2008 array interfaces are generated once per rank, so each generic
-carries a fixed set of ranks. Building hipFORT with
-``-DHIPFORT_ASSUMED_RANK=ON`` replaces those per-rank overloads with a single
+carries a fixed set of ranks. Building the bindings with
+``-DFORTRAN_ARRAY_INTERFACES=assumed-rank`` replaces those per-rank overloads with a single
 Fortran 2018 ``dimension(..)`` overload that accepts an actual argument of any
 rank. This is what lets a rank-3 array be passed to a routine whose per-rank
 overloads stop at rank 1, such as ``rocblas_saxpy``.
 
-The option is experimental and ``OFF`` by default. Note the following:
+The tier is experimental, and ``assumed-shape`` is the default. Note the
+following:
 
 * It is **mutually exclusive** with the classic per-rank interfaces rather than
-  additive: enabling it replaces them.
-* It requires a Fortran 2018 compiler (hipFORT probes for ``c_loc()`` of a
-  ``dimension(..)`` argument) and the Fortran 2008 interfaces. If either is
-  missing, hipFORT warns and falls back to the per-rank interfaces instead of
-  failing the build.
+  additive: selecting it replaces them. That is why the three tiers are one
+  option with three values rather than two booleans, which could express the
+  combination the language forbids.
+* It requires a Fortran 2018 compiler (the build probes for ``c_loc()`` of a
+  ``dimension(..)`` argument). If the compiler is not one, the build warns and
+  falls back to ``assumed-shape`` instead of failing.
 * Only **contiguous** arrays may be passed.
 * ``hipMalloc`` keeps its per-rank overloads either way; ``hipMemcpy``,
   ``hipMemcpyAsync`` and ``hipMemcpy2D`` gain assumed-rank forms.

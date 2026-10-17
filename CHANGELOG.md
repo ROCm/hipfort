@@ -4,11 +4,46 @@
 
 ### Changed
 
+* **Breaking: one module per library, with no `hipfort_` prefix.** The flat
+  `lib/hipfort/` directory is replaced by one directory per library, grouped by
+  the upstream repository the bindings will be co-located with
+  (`lib/rocm-systems/`, `lib/rocm-libraries/`), and each library ships a single
+  self-contained module named after itself. The enums, derived types, opaque
+  handles and the `<lib>Check` helper are folded into it, so thirteen modules
+  replace thirty-three files.
+
+  Every `use` statement changes. `hipfort_rocblas` and its `_enums` companion
+  become `rocblas`; the HIP runtime modules (`hipfort`, `hipfort_check`,
+  `hipfort_enums`, `hipfort_types`, `hipfort_auxiliary`, `hipfort_hipmalloc`,
+  `hipfort_hipmemcpy`, `hipfort_hiphostregister`) all become `hip`:
+
+  ```fortran
+  ! before                 ! after
+  use hipfort              use hip
+  use hipfort_check        use rocblas
+  use hipfort_rocblas
+  ```
+
+  The `<lib>Check` helpers travel with their library: `rocblasCheck` now comes
+  from `rocblas`, and only `hipCheck` is in `hip`. `find_package(hipfort)`
+  and the `hipfort::*` targets are gone: each library has its own package and
+  target, for example `find_package(rocblas-fortran)` and `roc::rocblas_fortran`.
+* **Breaking: the CUDA (nvptx) backend is dropped.** These bindings are
+  generated for ROCm only and carry no `USE_CUDA_NAMES` branch, so an nvptx
+  build would compile cleanly while binding `hip*`/`roc*` symbols.
+  `HIPFORT_BUILD_NVPTX` now defaults to `OFF` and raises a fatal error if
+  enabled, rather than producing a silently wrong archive.
 * **Breaking.** The array overloads of `hipMalloc`, `hipMallocManaged`,
   `hipHostMalloc`, `hipFree`, `hipHostFree`, the `hipMemcpy` families and the
   `hipHostRegister` family are now part of the Fortran 2008 array overloads, like
-  those of the math libraries. A build with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`
+  those of the math libraries. A build with `-DFORTRAN_ARRAY_INTERFACES=none`
   no longer has them: pass a `type(c_ptr)` and a byte count.
+* Each binding archive is compiled with one section per procedure
+  (`-ffunction-sections -fdata-sections`). A program linked with
+  `-Wl,--gc-sections` keeps only the wrappers it calls, instead of all of a
+  library's wrappers, and still links when another wrapper names a C function
+  that the installed library does not export yet. The tests link that way.
+  A shared library that links an archive also needs `-Wl,--exclude-libs,ALL`.
 * `fftw_iodim64` declares its fields `integer(c_intptr_t)` instead of
   `integer(c_ptrdiff_t)`, which is Fortran 2008. Both kinds are equal on every
   platform ROCm supports, so existing code is unaffected.
