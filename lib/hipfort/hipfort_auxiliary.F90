@@ -24,17 +24,6 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_auxiliary
-  !>  @brief Returns device properties.
-  !>
-  !>  @param [out] prop written with device properties
-  !>  @param [in]  deviceId which device to query for information
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidDevice`
-  !>  @bug HIP-Clang always returns 0 for maxThreadsPerMultiProcessor
-  !>  @bug HIP-Clang always returns 0 for regsPerBlock
-  !>  @bug HIP-Clang always returns 0 for l2CacheSize
-  !>
-  !>  Populates hipGetDeviceProperties with information for the specified device.
   interface hipGetDeviceProperties
 #ifdef USE_CUDA_NAMES
     function hipGetDeviceProperties_(prop,deviceId) bind(c, name="cudaGetDeviceProperties")

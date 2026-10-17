@@ -173,7 +173,7 @@ module hipfort_enums
     enumerator :: hipLibraryBinaryIsPreserved = 1
   end enum
 
-  ! enum (unnamed at hip/hip_runtime_api.h:33:1)
+  ! enum (unnamed at hip/hip_runtime_api.h:37:1)
   enum, bind(c)
     enumerator :: HIP_SUCCESS = 0
     enumerator :: HIP_ERROR_INVALID_VALUE = 1
@@ -187,20 +187,6 @@ module hipfort_enums
 #else
     enumerator :: HIP_ERROR_LAUNCH_OUT_OF_RESOURCES = 3
 #endif
-  end enum
-
-  ! hipMemoryType
-  enum, bind(c)
-    enumerator :: hipMemoryTypeUnregistered = 0
-    enumerator :: hipMemoryTypeHost = 1
-    enumerator :: hipMemoryTypeDevice = 2
-    enumerator :: hipMemoryTypeManaged = 3
-#ifdef USE_CUDA_NAMES
-    enumerator :: hipMemoryTypeArray = 3
-#else
-    enumerator :: hipMemoryTypeArray = 10
-#endif
-    enumerator :: hipMemoryTypeUnified = 11
   end enum
 
   ! hipError_t
@@ -305,6 +291,20 @@ module hipfort_enums
     enumerator :: hipErrorInvalidClusterSize = 1054
 #endif
     enumerator :: hipErrorTbd = 1055
+  end enum
+
+  ! hipMemoryType
+  enum, bind(c)
+    enumerator :: hipMemoryTypeUnregistered = 0
+    enumerator :: hipMemoryTypeHost = 1
+    enumerator :: hipMemoryTypeDevice = 2
+    enumerator :: hipMemoryTypeManaged = 3
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipMemoryTypeArray = 3
+#else
+    enumerator :: hipMemoryTypeArray = 10
+#endif
+    enumerator :: hipMemoryTypeUnified = 11
   end enum
 
   ! hipDeviceAttribute_t
@@ -1537,7 +1537,7 @@ module hipfort_enums
   end enum
 
   integer(c_int), parameter :: HIP_VERSION_MAJOR = 7
-  integer(c_int), parameter :: HIP_VERSION_MINOR = 16
+  integer(c_int), parameter :: HIP_VERSION_MINOR = 17
   integer(c_int), parameter :: HIP_VERSION_PATCH = 26385
   integer(c_int), parameter :: HIP_VERSION_BUILD_ID = 0
   integer(c_int), parameter :: HIP_GET_PROC_ADDRESS_DEFAULT = 0

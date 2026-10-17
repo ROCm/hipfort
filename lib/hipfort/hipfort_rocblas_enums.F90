@@ -161,7 +161,7 @@ module hipfort_rocblas_enums
   end enum
 
   integer(c_int), parameter :: ROCBLAS_VERSION_MAJOR = 5
-  integer(c_int), parameter :: ROCBLAS_VERSION_MINOR = 7
+  integer(c_int), parameter :: ROCBLAS_VERSION_MINOR = 8
   integer(c_int), parameter :: ROCBLAS_VERSION_PATCH = 0
 
 end module hipfort_rocblas_enums
