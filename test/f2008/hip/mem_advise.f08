@@ -47,6 +47,7 @@ program mem_advise
   type(c_ptr) :: stream = c_null_ptr
   integer(c_size_t) :: nbytes
   integer(c_int), target :: qattr
+  integer(c_int) :: managed
   integer :: i
 
   write(*,"(a)",advance="no") "-- Running test 'hip mem_advise' (Fortran 2008 interfaces) - "
@@ -54,6 +55,13 @@ program mem_advise
   nbytes = int(n, c_size_t) * 8
 
   call hipCheck(hipSetDevice(0))
+  ! Without concurrent managed access (for example under WSL), the runtime
+  ! accepts the advice but reports no range attribute.
+  call hipCheck(hipDeviceGetAttribute(managed, hipDeviceAttributeConcurrentManagedAccess, 0))
+  if (managed == 0) then
+     write(*,*) "PASSED! (concurrent managed access unsupported on this device)"
+     stop
+  end if
   call hipCheck(hipStreamCreate(stream))
   call hipCheck(hipMallocManaged(mdata, int(n,c_size_t), hipMemAttachGlobal))
 
