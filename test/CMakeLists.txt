@@ -509,6 +509,10 @@ if(BUILD_TESTING)
     hipfort_add_test(hipfft hipfft_setstream_z f2008)
     hipfort_add_test(hipfft hipfft_version f2003)
     hipfort_add_test(hipfft hipfft_version f2008)
+    # The Xt API: a hipDataType plan on one GPU, and multi-GPU descriptors
+    # (the descriptor test passes trivially with fewer than two GPUs).
+    hipfort_add_test(hipfft hipfft_xt_makeplanmany_c f2003)
+    hipfort_add_test(hipfft hipfft_xt_descriptor_z f2003)
   endif()
 
   if(TARGET hipfort::hipfftw)

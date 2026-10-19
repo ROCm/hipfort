@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+### Added
+
+* The hipFFT Xt API in `hipfort_hipfft`, as `bind(C)` interfaces: the multi-GPU
+  routines (`hipfftXtSetGPUs`, `hipfftXtMalloc`, `hipfftXtMemcpy`, `hipfftXtFree`,
+  the `hipfftXtExecDescriptor*` family), `hipfftXtMakePlanMany`,
+  `hipfftXtGetSizeMany` and `hipfftXtExec` on `hipDataType`, and the callback
+  routines. The `hipXtDesc` and `hipLibXtDesc` types are in the new
+  `hipfort_hipfft_types` module, and the Xt enums in `hipfort_hipfft_enums`.
+  On AMD GPUs the descriptor routines need a plan spread over two or more GPUs,
+  and a multi-GPU plan writes one work size per GPU. The routines of
+  `hipfftMp.h` are not bound: they exist only in a hipFFT built with MPI. On the
+  CUDA backend the Xt routines are not available.
+
 ### Changed
 
 * **Breaking.** The array overloads of `hipMalloc`, `hipMallocManaged`,
