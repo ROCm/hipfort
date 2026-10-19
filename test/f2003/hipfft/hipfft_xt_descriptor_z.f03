@@ -49,9 +49,10 @@ program hipfft_xt_descriptor_z
 
   ! The descriptor API needs a plan spread over at least two GPUs.
   call hipCheck(hipGetDeviceCount(ndev))
+  ! Exit 77, which CTest reports as skipped: nothing was checked.
   if (ndev < 2) then
-     write(*,*) "PASSED! (needs two GPUs, found ", ndev, ")"
-     stop
+     write(*,*) "SKIPPED (needs two GPUs, found ", ndev, ")"
+     stop 77
   end if
 
   do j = 1, NY
