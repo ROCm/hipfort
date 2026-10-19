@@ -101,6 +101,12 @@ module hipfort_hipfft_enums
     enumerator :: HIPFFT_FORMAT_UNDEFINED = 5
   end enum
 
+  ! hipfftMpCommType_t
+  enum, bind(c)
+    enumerator :: HIPFFT_COMM_MPI = 0
+    enumerator :: HIPFFT_COMM_NONE = 1
+  end enum
+
   integer(c_int), parameter :: hipfftVersionMajor = 1
   integer(c_int), parameter :: hipfftVersionMinor = 0
   integer(c_int), parameter :: hipfftVersionPatch = 26

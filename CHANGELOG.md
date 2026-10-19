@@ -11,9 +11,12 @@
   routines. The `hipXtDesc` and `hipLibXtDesc` types are in the new
   `hipfort_hipfft_types` module, and the Xt enums in `hipfort_hipfft_enums`.
   On AMD GPUs the descriptor routines need a plan spread over two or more GPUs,
-  and a multi-GPU plan writes one work size per GPU. The routines of
-  `hipfftMp.h` are not bound: they exist only in a hipFFT built with MPI. On the
-  CUDA backend the Xt routines are not available.
+  and a multi-GPU plan writes one work size per GPU. The multi-process routines
+  of `hipfftMp.h` (`hipfftMpAttachComm`, `hipfftXtSetDistribution`,
+  `hipfftXtSetSubformatDefault`) are bound too, but exist only in a hipFFT built
+  with MPI support, which the ROCm packages are not. On the CUDA backend the Xt
+  and multi-process routines are not available. The hipFFT examples document
+  the multi-GPU and MPI workflows.
 
 ### Changed
 
