@@ -1326,7 +1326,7 @@ module hipfort_hipfft
   !>     rank-dimensional plan, with specified input, output, execution
   !>     data types.
   !>
-  !>  @details See ::hipfftXtMakePlanMany for restrictions on inputType,
+  !>  @details See `hipfftXtMakePlanMany` for restrictions on inputType,
   !>  outputType, executionType parameters.
   !>
   !>   @param[in] plan - Pointer to the FFT plan.
@@ -1430,9 +1430,9 @@ module hipfort_hipfft
   end interface
 #endif
 
-  !>  @brief Allocates a multi-device descriptor (i.e., a ::hipLibXtDesc instance),
+  !>  @brief Allocates a multi-device descriptor (i.e., a `hipLibXtDesc` instance),
   !>   tailored to a specific multi-device plan's needs. The allocated descriptor
-  !>   must be freed using ::hipfftXtFree when no longer needed.
+  !>   must be freed using `hipfftXtFree` when no longer needed.
   !>
   !>   @details The data set of interest that is considered for the definition of
   !>   the desired descriptor is the plan's expected input data set, unless
@@ -1443,7 +1443,7 @@ module hipfort_hipfft
   !>
   !>   @note Multi-device descriptors resulting in a division of real data sets
   !>     along their fastest dimension are not supported. As a result,
-  !>     ::hipfftXtMalloc does not produce usable descriptors for requests to
+  !>     `hipfftXtMalloc` does not produce usable descriptors for requests to
   !>     create a multi-device descriptor of subformat value
   !>     `HIPFFT_XT_FORMAT_INPLACE_SHUFFLED` (resp. `HIPFFT_XT_FORMAT_INPLACE`)
   !>     given a plan initialized for an unbatched two-dimensional real forward
@@ -1452,7 +1452,7 @@ module hipfort_hipfft
   !>  @param[in] plan - Multi-device FFT plan to allocate descriptor memory for.
   !>  @param[out] desc - Address of the pointer to the created descriptor.
   !>  @param[in] myFormat - Desired descriptor's subformat, identifying the plan's
-  !>  I/O data set of interest (see ::hipfftXtSubFormat for more details).
+  !>  I/O data set of interest (see `hipfftXtSubFormat` for more details).
   !>
   !>  @warning Experimental
 #ifndef USE_CUDA_NAMES
@@ -1469,14 +1469,14 @@ module hipfort_hipfft
   end interface
 #endif
 
-  !>  @brief Copy data to/from \ref hipLibXtDesc descriptors.
+  !>  @brief Copy data to/from `hipLibXtDesc` descriptors.
   !>
   !>  @details If `type` is `HIPFFT_COPY_HOST_TO_DEVICE` (resp.
   !>  `HIPFFT_COPY_DEVICE_TO_HOST`), `src` (resp. `dest`) must point to a
   !>  host-residing memory buffer and `dest` (resp. `src`) must point to a
-  !>  ::hipLibXtDesc descriptor. That descriptor must be fit for storing the plan's
+  !>  `hipLibXtDesc` descriptor. That descriptor must be fit for storing the plan's
   !>  input (resp. output) data set assuming it's distributed consistently with the
-  !>  descriptor's own `subFormat` value (see ::hipfftXtSubFormat for more details).
+  !>  descriptor's own `subFormat` value (see `hipfftXtSubFormat` for more details).
   !>  The host buffer must be large enough to hold the plan's input (resp. output)
   !>  data (accounting for possible padding in real domain for plans and descriptors
   !>  specific to data for in-place real transforms).
@@ -1506,7 +1506,7 @@ module hipfort_hipfft
   end interface
 #endif
 
-  !>  @brief Free memory allocated by \ref hipfftXtMalloc.
+  !>  @brief Free memory allocated by `hipfftXtMalloc`.
   !>
   !>  @param[in] desc - Descriptor whose memory will be freed.
   !>
