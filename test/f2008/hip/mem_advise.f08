@@ -59,8 +59,8 @@ program mem_advise
   ! accepts the advice but reports no range attribute.
   call hipCheck(hipDeviceGetAttribute(managed, hipDeviceAttributeConcurrentManagedAccess, 0))
   if (managed == 0) then
-     write(*,*) "PASSED! (concurrent managed access unsupported on this device)"
-     stop
+     write(*,*) "SKIPPED (concurrent managed access unsupported on this device)"
+     stop 77
   end if
   call hipCheck(hipStreamCreate(stream))
   call hipCheck(hipMallocManaged(mdata, int(n,c_size_t), hipMemAttachGlobal))

@@ -71,8 +71,8 @@ program cooperative_launch
   call hipCheck(hipSetDevice(0))
   call hipCheck(hipDeviceGetAttribute(coop, hipDeviceAttributeCooperativeLaunch, 0))
   if (coop == 0) then
-     write(*,*) "PASSED! (cooperative launch unsupported on this device)"
-     stop
+     write(*,*) "SKIPPED (cooperative launch unsupported on this device)"
+     stop 77
   end if
 
   nbytes = int(n, c_size_t) * 8
