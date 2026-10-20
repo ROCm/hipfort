@@ -74,7 +74,7 @@ or by setting the CMake cache variables:
 Toolchain files
 ---------------
 
-Rather than setting the compiler and backend cache variables by hand, you can select a
+Rather than setting the compiler cache variables by hand, you can select a
 ready-made CMake toolchain file from ``cmake/toolchains/`` with ``-DCMAKE_TOOLCHAIN_FILE``:
 
 .. code-block:: shell
@@ -87,8 +87,8 @@ options above. hipFORT is pure Fortran, so no C++ compiler is required.
 Linking against hipFORT
 =======================
 
-To use hipFORT in your project, invoke your Fortran and HIP compilers directly and link
-against the appropriate ROCm libraries. hipFORT provides exported CMake targets (such as
+To use hipFORT in your project, compile your code with your Fortran compiler and link
+against hipFORT and the appropriate ROCm libraries. hipFORT provides exported CMake targets (such as
 ``hipfort::hip``, ``hipfort::rocblas``, and ``hipfort::hipblas``) to make this straightforward:
 
 .. code-block:: cmake
@@ -107,9 +107,11 @@ component list.
 
 The installed CMake package follows the backend the components were exported for.
 On ROCm, ``hipfort-config.cmake`` pulls in ``libhipfort-amdgcn`` and resolves each
-component against its ROCm package. When only the optional CUDA (``nvptx``) archive
-is built, it pulls in ``libhipfort-nvptx`` instead, offers only the ``hip*``
-components, and resolves them against ``CUDAToolkit``.
+component against its ROCm package. On a host where HIP does not target
+the AMD platform, and provided the CUDA Toolkit is found and the ``nvptx`` archive is
+built, it pulls in ``libhipfort-nvptx`` instead, offers only the ``hip``,
+``hipblas``, ``hipfft``, ``hiprand``, ``hipsolver`` and ``hipsparse`` components, and
+resolves them against ``CUDAToolkit``.
 
 With the ``nvptx`` archive, a ``complex(8)`` host scalar passed by address, such as
 ``alpha`` or ``beta`` given as ``c_loc(alpha)``, must be 16-byte aligned: the CUDA
@@ -125,11 +127,11 @@ The examples in the ``f2003`` and ``f2008`` subdirectories of the ``test`` folde
 also serve as tests. The two collections largely overlap, but they are not identical: some tests exist
 only in one of them. The ``f2008`` tests require the Fortran compiler to support the Fortran 2008
 standard or newer. The ``f2003`` tests only require support for the Fortran 2003 standard.
-The ``f2003`` and ``f2008`` subdirectories are further subdivided into tests for the various hip* and roc* libraries.
+The ``f2003`` and ``f2008`` subdirectories are further subdivided into tests for the various ``hip*`` and ``roc*`` libraries.
 The ``test`` folder also contains an ``f2018`` subdirectory holding an experimental example built on the
 Fortran 2018 assumed-rank interfaces. That example is only registered with CTest when hipFORT is configured
 with ``-DHIPFORT_ASSUMED_RANK=ON`` (off by default). The ``openmp`` subdirectory holds OpenMP target-offload
-tests, which require an offload-capable compiler.
+tests, which require an offload-capable compiler (LLVM Flang) and a host LAPACK.
 
 Building and running the tests
 ------------------------------

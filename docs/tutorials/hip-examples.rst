@@ -10,9 +10,10 @@ The `HIP runtime <https://rocm.docs.amd.com/projects/HIP/en/latest/>`_ is the
 API used to manage devices, memory, streams, events, graphs and kernel
 launches. hipFORT exposes it through the ``hipfort`` module, with enumerators in
 ``hipfort_enums``, derived types in ``hipfort_types``, and the status-checking
-helpers in ``hipfort_check``. A few routines live in their own modules:
-``hipGetDeviceProperties`` in ``hipfort_auxiliary``, ``hipMemcpy2DAsync`` in
-``hipfort_hipmemcpy`` and ``hipHostRegister`` in ``hipfort_hiphostregister``.
+helpers in ``hipfort_check``. A few routines live in their own modules,
+which ``hipfort`` re-exports: ``hipGetDeviceProperties`` in ``hipfort_auxiliary``,
+``hipMemcpy2DAsync`` in ``hipfort_hipmemcpy`` and ``hipHostRegister`` in
+``hipfort_hiphostregister``.
 
 Every program on this page is complete and self-contained, and is built and run
 as part of the hipFORT test suite. Each program lives in ``test/f2003/hip``,
@@ -27,9 +28,10 @@ Conventions
   ``type(c_ptr)`` and pass byte counts, as in ``hipMalloc(dx, nbytes)`` and
   ``hipMemcpy(dx, c_loc(hx(1)), nbytes, hipMemcpyHostToDevice)``. The array
   overloads instead accept a Fortran array pointer and a shape, as in
-  ``hipMalloc(dx, n)`` or ``hipMalloc(dx, source=hx)``. Unlike the math
-  libraries, these overloads are unconditional, so they are available in every
-  hipFORT build.
+  ``hipMalloc(dx, n)`` or ``hipMalloc(dx, source=hx)``. Like the array
+  interfaces of the math libraries, these overloads exist only when the Fortran
+  2008 interfaces are enabled, so a build with ``-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`` has
+  only the ``type(c_ptr)`` forms.
 * **Every call returns a status code.** The programs wrap calls in ``hipCheck``
   from the ``hipfort_check`` module, which on failure prints the status by name
   and its code, for example ``HIP ERROR: hipErrorInvalidDevice (code 101)``,
@@ -53,7 +55,7 @@ The programs only need the ``hip`` hipFORT component:
    add_executable(my_app device_management.f03)
    target_link_libraries(my_app PRIVATE hipfort::hip)
 
-See :doc:`../how-to/using-hipfort` for the full set of build options.
+See :doc:`../how-to/using-hipfort` for the full list of components.
 
 Device management
 =================

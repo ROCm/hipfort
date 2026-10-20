@@ -21,7 +21,7 @@ The three variants
   ``type(c_ptr)`` and sizes are counted in bytes. These only require the
   ``iso_c_binding`` module.
 * **Fortran 2008 array overloads.** Generated once per rank, they take a Fortran
-  array pointer and a number of elements instead of a ``type(c_ptr)`` and a byte
+  array and a number of elements instead of a ``type(c_ptr)`` and a byte
   count. They reduce the chance of compile-time and runtime errors and make the
   call site easier to read. hipFORT enables them automatically once it detects
   Fortran 2008 support in the compiler.
@@ -84,9 +84,11 @@ Use ``dsource`` instead of ``source`` when the source array already lives on the
 device.
 
 Like the array interfaces of the math libraries, these ``hipMalloc`` and
-``hipMemcpy`` overloads are part of the Fortran 2008 array overloads: a build with
+``hipMemcpy`` overloads exist only when the Fortran 2008 interfaces are enabled: a
+build with
 ``-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`` has only the ``type(c_ptr)`` forms.
-``hipMalloc``, ``hipFree`` and ``hipHostRegister`` have no assumed-rank form, so
+The allocation routines (``hipMalloc``, ``hipMallocManaged``, ``hipHostMalloc``,
+``hipFree``, ``hipHostFree``) and ``hipHostRegister`` have no assumed-rank form, so
 their per-rank overloads stay available with ``-DHIPFORT_ASSUMED_RANK=ON``.
 
 Scalar arguments passed by pointer
@@ -167,7 +169,9 @@ hipSOLVER's ``devInfo`` is written by the GPU, so it is always device memory.
 
    In the API reference and the supported-API tables, the Fortran-variable form
    of a routine ``X`` appears as the module procedure ``X_typed``, and the
-   device-pointer-mode form of the routines that mix both kinds of scalar as
+   forms that take a device scalar as a ``type(c_ptr)`` where another form of
+   the same routine takes it as a variable (the routines that mix both kinds of
+   scalar, and the array overloads of routines such as ``rocblas_sdot``) as
    ``X_devptr``. Call them through the generic name ``X``.
 
 Assumed-rank interfaces (Fortran 2018)
@@ -186,11 +190,13 @@ The option is experimental and ``OFF`` by default. Note the following:
   additive: enabling it replaces them.
 * It requires a Fortran 2018 compiler (hipFORT probes for ``c_loc()`` of a
   ``dimension(..)`` argument) and the Fortran 2008 interfaces. If either is
-  missing, hipFORT warns and falls back to the per-rank interfaces instead of
-  failing the build.
+  missing, hipFORT warns and falls back to the per-rank interfaces (or to the
+  ``type(c_ptr)`` interfaces only, if the Fortran 2008 interfaces are off)
+  instead of failing the build.
 * Only **contiguous** arrays may be passed.
 * ``hipMalloc`` keeps its per-rank overloads either way; ``hipMemcpy``,
-  ``hipMemcpyAsync`` and ``hipMemcpy2D`` gain assumed-rank forms.
+  ``hipMemcpyAsync``, ``hipMemcpy2D`` and ``hipMemcpy2DAsync`` gain assumed-rank
+  forms.
 
 ``test/f2018/rocblas/saxpy.f90`` is the one program that exercises this mode; it
 is skipped unless the option is enabled. See the

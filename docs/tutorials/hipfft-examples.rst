@@ -14,7 +14,8 @@ Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
 program lives in ``test/f2008/hipfft``, and the equivalent Fortran 2003 version,
 which uses ``type(c_ptr)`` device pointers and explicit byte counts instead of
-Fortran array pointers, lives in ``test/f2003/hipfft``.
+Fortran array pointers, lives in ``test/f2003/hipfft``. The Xt programs exist
+only in the Fortran 2003 form.
 
 If you want direct access to rocFFT rather than a cuFFT-style interface, see
 the :doc:`rocFFT examples <rocfft-examples>`. For FFTW3-compatible code, see the
@@ -76,7 +77,7 @@ demonstrates that hipFFT does not normalize.
 .. literalinclude:: ../../test/f2008/hipfft/hipfft_c2c_1d_z.f08
    :language: fortran
 
-Use ``HIPFFT_C2C`` and ``complex(4)`` host data for a single precision
+Use ``HIPFFT_C2C`` and ``complex(4)`` host data for a single-precision
 transform, as in ``test/f2008/hipfft/hipfft_c2c_1d_c.f08``.
 
 Real-to-complex and complex-to-real transforms
@@ -88,7 +89,7 @@ real data is Hermitian symmetric, the complex buffer holds ``N/2 + 1`` elements.
 .. literalinclude:: ../../test/f2008/hipfft/hipfft_r2c_c2r_1d_d.f08
    :language: fortran
 
-``test/f2008/hipfft/hipfft_r2c_c2r_1d_s.f08`` is the single precision
+``test/f2008/hipfft/hipfft_r2c_c2r_1d_s.f08`` is the single-precision
 equivalent, using ``HIPFFT_R2C`` and ``HIPFFT_C2R``.
 
 Multi-dimensional transforms
@@ -217,7 +218,7 @@ On AMD GPUs a descriptor needs a plan over two or more GPUs, and unbatched
 one-dimensional transforms are not supported. This program runs a
 two-dimensional transform on two GPUs, forward then inverse, and checks the
 result against the input; on a machine with fewer than two GPUs it reports so
-and passes.
+and the test is skipped.
 
 .. literalinclude:: ../../test/f2003/hipfft/hipfft_xt_descriptor_z.f03
    :language: fortran

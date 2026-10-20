@@ -12,7 +12,7 @@ layer over rocSOLVER whose API follows cuSOLVER. hipFORT exposes it through the
 
 Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 programs live in
-``test/f2008/hipsolver``, and the Fortran 2003 versions, which use
+``test/f2008/hipsolver``, and Fortran 2003 versions of most of them, which use
 ``type(c_ptr)`` device pointers and explicit byte counts instead of Fortran
 array pointers, live in ``test/f2003/hipsolver``.
 
@@ -37,7 +37,7 @@ as cuSOLVER:
 #. Query the workspace size with the routine's ``_bufferSize`` companion (for
    example ``hipsolverDgetrf_bufferSize``). The query returns a number of
    *elements*, so allocate ``lwork * sizeof(element)`` bytes on the device —
-   ``lwork * 8`` for a double precision routine.
+   ``lwork * 8`` for a double-precision routine.
 #. Run the routine, passing the workspace and its size.
 #. Read back the device ``info`` output to check for success.
 #. Release the handle with ``hipsolverDestroy``.
@@ -57,8 +57,8 @@ Keep the following conventions in mind:
 * **Enumerators select variants.** ``HIPSOLVER_FILL_MODE_UPPER`` /
   ``HIPSOLVER_FILL_MODE_LOWER`` choose the stored triangle, and
   ``HIPSOLVER_EIG_MODE_NOVECTOR`` / ``HIPSOLVER_EIG_MODE_VECTOR`` choose whether
-  eigenvectors are computed. The SVD job arguments are ``character(c_char)`` job
-  codes (``'N'``, ``'A'``, ``'S'``, ``'O'``) passed by value.
+  eigenvectors are computed. The ``gesvd`` job arguments are ``character(c_char)``
+  job codes (``'N'``, ``'A'``, ``'S'``, ``'O'``) passed by value.
 * **Every call returns a status code.** The programs wrap hipSOLVER calls in
   ``hipsolverCheck`` and HIP calls in ``hipCheck`` from the ``hipfort_check``
   module, both of which abort on failure.
@@ -89,7 +89,8 @@ and checks the packed factors and the pivot indices against reference values.
    :language: fortran
 
 ``getrs`` uses the factors and pivots from ``getrf`` to solve ``A*X = B``. The
-program picks a known solution ``x``, forms ``b = A*x``, factorizes, solves, and
+program uses a right-hand side ``b = A*x`` for a known solution ``x``,
+factorizes, solves, and
 checks that the recovered ``X`` matches ``x``.
 
 .. literalinclude:: ../../test/f2008/hipsolver/hipsolver_dgetrs.f08
@@ -152,7 +153,7 @@ Symmetric eigenvalues
 optionally the eigenvectors, of a symmetric matrix with a divide-and-conquer
 algorithm. The ``HIPSOLVER_EIG_MODE_*`` argument selects whether eigenvectors are
 produced; the program requests eigenvalues only and checks their sum against the
-trace.
+trace and the sum of their squares against ``||A||_F**2``.
 
 .. literalinclude:: ../../test/f2008/hipsolver/hipsolver_dsyevd.f08
    :language: fortran

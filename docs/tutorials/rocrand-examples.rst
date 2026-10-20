@@ -98,8 +98,9 @@ XORWOW
 ------
 
 ``ROCRAND_RNG_PSEUDO_XORWOW`` selects the xorshift-based XORWOW generator.
-This example generates uniform single-precision values and checks the sample
-mean.
+This example generates uniform single-precision values and checks that they
+lie in ``(0, 1]`` and that the sample mean and standard deviation are close to
+0.5 and 1/sqrt(12).
 
 .. literalinclude:: ../../test/f2008/rocrand/xorwow_uniform.f08
    :language: fortran
@@ -184,13 +185,15 @@ Poisson
 ``lambda``. Unlike the other distributions it produces **unsigned 32-bit
 integers** rather than floating-point values, so the host and device buffers
 are ``integer(c_int)`` while ``lambda`` remains ``real(c_double)``. A Poisson
-distribution has mean ``lambda``, which is what the program checks.
+distribution has both mean and variance ``lambda``, which is what the program
+checks.
 
 .. literalinclude:: ../../test/f2008/rocrand/philox_poisson.f08
    :language: fortran
    :start-at: program rocrand_philox_poisson_test
 
-This is the only Poisson program in the test suite.
+This is the only rocRAND Poisson program; its Fortran 2003 version is
+``test/f2003/rocrand/philox_poisson.f03``.
 
 Log-normal
 ----------
@@ -206,3 +209,14 @@ taking logs and checking the resulting mean and standard deviation.
 
 ``rocrand_generate_log_normal_double`` is the double-precision form; see
 ``test/f2008/rocrand/philox_log_normal_double.f08``.
+
+Querying the rocRAND version
+============================
+
+``rocrand_get_version`` writes the library version to a plain ``integer(c_int)``
+argument, so the variable is passed directly rather than through ``c_loc``. The
+value is encoded as ``major*100000 + minor*100 + patch``.
+
+.. literalinclude:: ../../test/f2008/rocrand/rocrand_version.f08
+   :language: fortran
+   :start-at: program rocrand_version_test
