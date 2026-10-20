@@ -25,9 +25,8 @@
 
 program hipfftw_r2c_c2r_test
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipfftw
+  use hip
+  use hipfftw
 
   implicit none
 

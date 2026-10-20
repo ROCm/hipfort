@@ -40,9 +40,8 @@
 !
 program zbsrmv_devptr
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
   implicit none
   integer :: i, ib, k, r, jc
   integer(c_int), parameter :: mb = 2, nb = 2, nnzb = 2, block_dim = 2

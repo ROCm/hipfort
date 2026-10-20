@@ -38,9 +38,8 @@
 program rocrand_version_test
 
     use iso_c_binding
-    use hipfort_check
-    use hipfort_rocrand
-    use hipfort_rocrand_enums
+    use hip
+    use rocrand
 
     implicit none
 
