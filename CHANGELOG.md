@@ -20,6 +20,13 @@
 
 ### Changed
 
+* Each backend archive (`libhipfort-amdgcn.a`, `libhipfort-nvptx.a`) is
+  compiled with one section per procedure (`-ffunction-sections
+  -fdata-sections`). A program linked with `-Wl,--gc-sections` keeps only the
+  wrappers it calls, instead of all of a library's wrappers, and still links
+  when another wrapper names a C function that the installed library does not
+  export. The tests link that way. A shared library that links an archive also
+  needs `-Wl,--exclude-libs,ALL`.
 * **Breaking.** The array overloads of `hipMalloc`, `hipMallocManaged`,
   `hipHostMalloc`, `hipFree`, `hipHostFree`, the `hipMemcpy` families and the
   `hipHostRegister` family are now part of the Fortran 2008 array overloads, like
