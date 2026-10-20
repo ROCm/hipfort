@@ -127,8 +127,13 @@ Without CMake, add ``-Wl,--gc-sections`` to the command that links your program.
 
 .. note::
 
-   A shared library that links hipFORT also needs ``-Wl,--exclude-libs,ALL``:
-   otherwise it exports the wrappers, and an exported symbol is never removed.
+   If you build a shared library rather than an executable, also link it with
+   ``-Wl,--exclude-libs,libhipfort-amdgcn.a``. A shared library exports its
+   global symbols by default, including the hipFORT wrappers it links, and the
+   linker never removes an exported symbol, so ``-Wl,--gc-sections`` alone keeps
+   them all. ``--exclude-libs`` keeps the wrappers in your library, where your
+   code calls them as before, but stops exporting them, so the unused ones can
+   be removed.
 
 Multiple Fortran toolchains
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -182,8 +182,12 @@ if(NOT APPLE AND NOT WIN32)
 endif()
 ```
 
-Without CMake, add `-Wl,--gc-sections` to the link command. A shared library that
-links hipfort also needs `-Wl,--exclude-libs,ALL`.
+Without CMake, add `-Wl,--gc-sections` to the link command. If you build a shared
+library rather than an executable, also link it with
+`-Wl,--exclude-libs,libhipfort-amdgcn.a`: a shared library exports the hipfort
+wrappers it links by default, and an exported symbol is never removed. The option
+keeps the wrappers in your library, where your code calls them as before, but
+stops exporting them, so the unused ones can be removed.
 
 ## Examples and tests
 
