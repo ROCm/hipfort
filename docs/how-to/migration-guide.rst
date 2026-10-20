@@ -278,9 +278,16 @@ procedure, so the option removes nothing from them.
 Write ``-Wl,--gc-sections`` rather than ``LINKER:--gc-sections``: CMake 3.27
 passes the latter to ``amdflang`` without the ``-Wl,`` prefix, and the link
 fails. Without CMake, add ``-Wl,--gc-sections`` to the command that links your
-program. A shared library that links a binding also needs
-``-Wl,--exclude-libs,ALL``: otherwise it exports the wrappers, and an exported
-symbol is never removed.
+program.
+
+If you build a shared library rather than an executable, also link it with
+``-Wl,--exclude-libs`` and the archive of each binding you use, separated by
+colons, for example ``-Wl,--exclude-libs,librocblas_fortran.a:libhip_fortran.a``.
+A shared library exports its global symbols by default, including the wrappers
+it links, and the linker never removes an exported symbol, so
+``-Wl,--gc-sections`` alone keeps them all. ``--exclude-libs`` keeps the wrappers
+in your library, where your code calls them as before, but stops exporting them,
+so the unused ones can be removed.
 
 What you change
 ===============
