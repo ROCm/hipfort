@@ -44,18 +44,19 @@ program cbsrmv_devptr
   use hipfort_check
   use hipfort_rocsparse
   implicit none
-  integer :: i
+  integer :: i, ib, k, r, jc
   integer(c_int), parameter :: mb = 2, nb = 2, nnzb = 2, block_dim = 2
   integer(c_int), parameter :: mdim = mb * block_dim   ! 4
-  ! two 2x2 blocks, each stored row-major: B1=[1,2,3,4], B2=[5,6,7,8]
+  ! two 2x2 complex blocks, each stored row-major
   complex(c_float_complex), target :: hVal(8) = (/ &
-    (1.0,0.0), (2.0,0.0), (3.0,0.0), (4.0,0.0), &
-    (5.0,0.0), (6.0,0.0), (7.0,0.0), (8.0,0.0)/)
+    (1.0,1.0), (2.0,-1.0), (3.0,0.5), (4.0,-2.0), &
+    (5.0,2.0), (6.0,-0.5), (7.0,1.0), (8.0,-3.0)/)
   integer(c_int), target :: hRowPtr(3) = (/0, 1, 2/)   ! one block per block-row
   integer(c_int), target :: hColInd(2) = (/0, 1/)      ! block cols 0 and 1
-  complex(c_float_complex), target :: hX(4) = (/(1.0,0.0), (2.0,0.0), (3.0,0.0), (4.0,0.0)/)
+  complex(c_float_complex), target :: hX(4) = (/(1.0,-1.0), (2.0,0.5), (3.0,1.0), (4.0,-2.0)/)
   complex(c_float_complex), target :: hY(4) = (/(0.0,0.0), (0.0,0.0), (0.0,0.0), (0.0,0.0)/)
   complex(c_float_complex) :: hRef(4)
+  complex(c_float_complex) :: hA(mdim, nb*block_dim)
   complex(c_float_complex), target :: alpha = (1.0,0.0), beta = (0.0,0.0)
   
   ! Device-resident copies of the dual-mode scalars; the library reads them
@@ -67,11 +68,18 @@ program cbsrmv_devptr
   type(c_ptr) :: dVal, dRowPtr, dColInd, dX, dY
   write(*,"(a)",advance="no") "-- Running test 'rocsparse_cbsrmv_devptr' (Fortran 2003 interfaces) - "
 
-  ! Dense reference: y = A * x, A = blkdiag([1 2;3 4],[5 6;7 8]).
-  hRef(1) = 1.0*hX(1) + 2.0*hX(2)
-  hRef(2) = 3.0*hX(1) + 4.0*hX(2)
-  hRef(3) = 5.0*hX(3) + 6.0*hX(4)
-  hRef(4) = 7.0*hX(3) + 8.0*hX(4)
+  ! Dense reference: expand the BSR blocks (row-major inside a block), then y = A * x.
+  hA = (0.0,0.0)
+  do ib = 1, mb
+     do k = hRowPtr(ib) + 1, hRowPtr(ib+1)
+        do r = 1, block_dim
+           do jc = 1, block_dim
+              hA((ib-1)*block_dim + r, hColInd(k)*block_dim + jc) = hVal((k-1)*block_dim*block_dim + (r-1)*block_dim + jc)
+           end do
+        end do
+     end do
+  end do
+  hRef = matmul(hA, hX)
 
   call hipCheck(hipMalloc(dVal,    int(8,c_size_t) * 8))
   call hipCheck(hipMalloc(dRowPtr, int(mb+1,c_size_t) * 4))

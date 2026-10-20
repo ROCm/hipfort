@@ -27,16 +27,17 @@
 ! rocsparse zcsric0 example (incomplete Cholesky, double complex, Fortran 2003)
 ! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
-! Computes the IC(0) factorization of an SPD sparse matrix in place
-! (buffer_size -> analysis -> compute, with a mat descriptor and a mat info
-! object). For an SPD tridiagonal matrix there is no fill-in, so IC(0) equals the
-! exact Cholesky factor L (A = L*L^H). csric0 overwrites the lower-triangular
-! part (including the diagonal) with L; the strict upper part is left unchanged.
-! The lower/diagonal CSR entries are checked against the hand-computed L.
+! Computes the IC(0) factorization of a Hermitian positive definite sparse matrix
+! in place (buffer_size -> analysis -> compute, with a mat descriptor and a mat
+! info object). For an HPD tridiagonal matrix there is no fill-in, so IC(0)
+! equals the exact Cholesky factor L (A = L*L^H). csric0 overwrites the
+! lower-triangular part (including the diagonal) with L; the strict upper part is
+! left unchanged. The lower/diagonal CSR entries are checked against the exact
+! complex Cholesky factor computed on the host from the same values:
 !
-!   A = [ 4 1 0 ]   L = [ 2       0        0      ]
-!       [ 1 4 1 ]       [ 1/2     sqrt(15)/2   0  ]
-!       [ 0 1 4 ]       [ 0       2/sqrt(15) l33  ]
+!   A = [ 4    1+i  0    ]   l11 = sqrt(a11), l21 = a21/l11, l22 = sqrt(a22 - |l21|^2)
+!       [ 1-i  4    1-2i ]   l32 = a32/l22,   l33 = sqrt(a33 - |l32|^2)
+!       [ 0    1+2i 5    ]
 !
 ! f2003 style: device buffers are type(c_ptr) allocated by byte count; host data
 ! is moved with hipMemcpy + c_loc.
@@ -54,22 +55,22 @@ program zcsric0
   integer(c_int), target :: hRowPtr(4) = (/0, 2, 5, 7/)
   integer(c_int), target :: hColInd(7) = (/0, 1, 0, 1, 2, 1, 2/)
   complex(c_double_complex), target :: hVal(7) = (/ &
-    (4.0d0,0.0d0), (1.0d0,0.0d0), (1.0d0,0.0d0), (4.0d0,0.0d0), &
-    (1.0d0,0.0d0), (1.0d0,0.0d0), (4.0d0,0.0d0)/)
+    (4.0d0,0.0d0), (1.0d0,1.0d0), (1.0d0,-1.0d0), (4.0d0,0.0d0), &
+    (1.0d0,-2.0d0), (1.0d0,2.0d0), (5.0d0,0.0d0)/)
   complex(c_double_complex), target :: hOut(7)
-  real(c_double) :: L11, L21, L22, L32, L33
+  complex(c_double_complex) :: L11, L21, L22, L32, L33
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr, info = c_null_ptr
   type(c_ptr) :: dRowPtr, dColInd, dVal, dBuf
   integer(c_size_t) :: bufSize
   write(*,"(a)",advance="no") "-- Running test 'rocsparse_zcsric0' (Fortran 2003 interfaces) - "
 
-  ! Exact Cholesky of the SPD tridiagonal (lower factor L).
-  L11 = sqrt(4.0d0)
-  L21 = 1.0d0 / L11
-  L22 = sqrt(4.0d0 - L21*L21)
-  L32 = 1.0d0 / L22
-  L33 = sqrt(4.0d0 - L32*L32)
+  ! Exact Cholesky of the HPD tridiagonal (lower factor L, A = L*L^H).
+  L11 = sqrt(real(hVal(1)))
+  L21 = hVal(3) / L11
+  L22 = sqrt(real(hVal(4)) - abs(L21)**2)
+  L32 = hVal(6) / L22
+  L33 = sqrt(real(hVal(7)) - abs(L32)**2)
 
   call hipCheck(hipMalloc(dRowPtr, int(m+1,c_size_t) * 4))
   call hipCheck(hipMalloc(dColInd, int(nnz,c_size_t) * 4))

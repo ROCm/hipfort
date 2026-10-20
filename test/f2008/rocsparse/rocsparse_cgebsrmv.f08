@@ -41,17 +41,18 @@ program cgebsrmv
   use hipfort_check
   use hipfort_rocsparse
   implicit none
-  integer :: i
+  integer :: i, ib, k, r, jc
   integer(c_int), parameter :: mb = 2, nb = 2, nnzb = 2, block_dim = 2
   integer(c_int), parameter :: mdim = mb * block_dim
   complex(c_float_complex) :: hVal(8) = (/ &
-    (1.0,0.0), (2.0,0.0), (3.0,0.0), (4.0,0.0), &
-    (5.0,0.0), (6.0,0.0), (7.0,0.0), (8.0,0.0)/)
+    (1.0,1.0), (2.0,-1.0), (3.0,0.5), (4.0,-2.0), &
+    (5.0,2.0), (6.0,-0.5), (7.0,1.0), (8.0,-3.0)/)
   integer(c_int) :: hRowPtr(3) = (/0, 1, 2/)
   integer(c_int) :: hColInd(2) = (/0, 1/)
-  complex(c_float_complex) :: hX(4) = (/(1.0,0.0), (2.0,0.0), (3.0,0.0), (4.0,0.0)/)
+  complex(c_float_complex) :: hX(4) = (/(1.0,-1.0), (2.0,0.5), (3.0,1.0), (4.0,-2.0)/)
   complex(c_float_complex) :: hY(4) = (/(0.0,0.0), (0.0,0.0), (0.0,0.0), (0.0,0.0)/)
   complex(c_float_complex) :: hRef(4)
+  complex(c_float_complex) :: hA(mdim, nb*block_dim)
   complex(c_float_complex), target :: alpha = (1.0,0.0), beta = (0.0,0.0)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr
@@ -59,10 +60,18 @@ program cgebsrmv
   integer(c_int), pointer :: dRowPtr(:), dColInd(:)
   write(*,"(a)",advance="no") "-- Running test 'rocsparse_cgebsrmv' (Fortran 2008 interfaces) - "
 
-  hRef(1) = 1.0*hX(1) + 2.0*hX(2)
-  hRef(2) = 3.0*hX(1) + 4.0*hX(2)
-  hRef(3) = 5.0*hX(3) + 6.0*hX(4)
-  hRef(4) = 7.0*hX(3) + 8.0*hX(4)
+  ! Dense reference: expand the BSR blocks (row-major inside a block), then y = A * x.
+  hA = (0.0,0.0)
+  do ib = 1, mb
+     do k = hRowPtr(ib) + 1, hRowPtr(ib+1)
+        do r = 1, block_dim
+           do jc = 1, block_dim
+              hA((ib-1)*block_dim + r, hColInd(k)*block_dim + jc) = hVal((k-1)*block_dim*block_dim + (r-1)*block_dim + jc)
+           end do
+        end do
+     end do
+  end do
+  hRef = matmul(hA, hX)
 
   call hipCheck(hipMalloc(dVal,    source=hVal))
   call hipCheck(hipMalloc(dRowPtr, source=hRowPtr))

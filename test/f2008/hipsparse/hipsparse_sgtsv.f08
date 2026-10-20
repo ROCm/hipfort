@@ -84,7 +84,7 @@ program hipsparse_sgtsv
   call hipCheck(hipMalloc(ddu, source=hdu))
   call hipCheck(hipMalloc(dB,  source=hB))
 
-  ! Query the temporary buffer size. dl/d/du/B are passed as Fortran arrays —
+  ! Query the temporary buffer size. dl/d/du/B are passed as Fortran arrays -
   ! this is the generic array form that used to fail to compile because the
   ! diagonals were declared type(c_ptr) (SWDEV-485451).
   call hipsparseCheck(hipsparseSgtsv2_bufferSizeExt(handle, m, n, ddl, dd, ddu, dB, m, buffer_size))

@@ -49,12 +49,12 @@ program csddmm
   integer(c_int), parameter :: M = 3, N = 2, K = 3, nnz = 4
 
   complex(c_float_complex) :: h_A(3,3) = reshape((/ &
-       (1.,0.),(4.,0.),(7.,0.), &
-       (2.,0.),(5.,0.),(8.,0.), &
-       (3.,0.),(6.,0.),(10.,0.) /), (/3,3/))
+       (1.,1.),(4.,-2.),(7.,0.5), &
+       (2.,-1.),(5.,3.),(8.,-0.5), &
+       (3.,2.),(6.,-1.),(10.,1.) /), (/3,3/))
   complex(c_float_complex) :: h_B(3,2) = reshape((/ &
-       (1.,0.),(3.,0.),(5.,0.), &
-       (2.,0.),(4.,0.),(6.,0.) /), (/3,2/))
+       (1.,-1.),(3.,2.),(5.,-0.5), &
+       (2.,1.),(4.,-3.),(6.,0.5) /), (/3,2/))
 
   integer(c_int) :: h_csr_row_ptr(4) = (/0, 1, 2, 4/)
   integer(c_int) :: h_csr_col_ind(4) = (/0, 1, 0, 1/)
@@ -121,6 +121,10 @@ program csddmm
     end if
   end do
 
+  ! Clean up
+  call rocsparseCheck(rocsparse_destroy_dnmat_descr(matA))
+  call rocsparseCheck(rocsparse_destroy_dnmat_descr(matB))
+  call rocsparseCheck(rocsparse_destroy_spmat_descr(matC))
   call rocsparseCheck(rocsparse_destroy_handle(handle))
   call hipCheck(hipFree(d_csr_row_ptr))
   call hipCheck(hipFree(d_csr_col_ind))
