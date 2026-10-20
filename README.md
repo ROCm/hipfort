@@ -127,6 +127,8 @@ In addition to `source`, there is also `dsource` in case the source is a device 
 ### Supported HIP and ROCm API
 
 The current batch of hipfort interfaces is derived from ROCm 10.1.0.
+With an older ROCm, link with `-Wl,--gc-sections` (see [Linking against hipfort](#linking-against-hipfort))
+so that routines missing from the installed libraries do not break the link.
 The following tables list the supported API:
 
 * [HIP](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hip.html)
@@ -166,6 +168,22 @@ target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
 List each library you use as a `COMPONENTS` entry: a `hipfort::<component>` target is
 only defined when that component is requested. The Fortran language must be enabled
 before `find_package(hipfort)`.
+
+Each hipfort module compiles to one object, and a linker takes whole objects from an
+archive, so a program that calls one rocBLAS routine links every rocBLAS wrapper.
+hipfort compiles each procedure into its own section, so on Linux you can link with
+`-Wl,--gc-sections` to keep only the wrappers you call. This also lets your program
+link against a ROCm release older than hipfort, as long as it does not call routines
+that release lacks:
+
+```cmake
+if(NOT APPLE AND NOT WIN32)
+  target_link_options(my_app PRIVATE -Wl,--gc-sections)
+endif()
+```
+
+Without CMake, add `-Wl,--gc-sections` to the link command. A shared library that
+links hipfort also needs `-Wl,--exclude-libs,ALL`.
 
 ## Examples and tests
 
