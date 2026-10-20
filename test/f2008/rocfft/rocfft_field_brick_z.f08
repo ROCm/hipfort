@@ -104,7 +104,7 @@ program rocfft_field_brick_z
 
     blower  = [0_c_size_t,  brick_lower1, 0_c_size_t]
     bupper  = [N0,           brick_upper1, 1_c_size_t]
-    bstride = [1_c_size_t,  N0,           brick_len1]
+    bstride = [1_c_size_t,  N0,           N0*brick_len1]
 
     ! rocfft_brick_create has no rank-N array wrapper;
     ! c_loc is used for the coordinate arrays in both dialect files.
@@ -147,7 +147,7 @@ program rocfft_field_brick_z
 
     blower  = [0_c_size_t,  brick_lower1, 0_c_size_t]
     bupper  = [N0,           brick_upper1, 1_c_size_t]
-    bstride = [1_c_size_t,  N0,           brick_len1]
+    bstride = [1_c_size_t,  N0,           N0*brick_len1]
 
     call rocfftCheck(rocfft_brick_create(abrick, &
       c_loc(blower(1)), c_loc(bupper(1)), c_loc(bstride(1)), &

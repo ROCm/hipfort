@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! hipsparse Dcsrilu02 example (incomplete LU, single, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! hipsparse Dcsrilu02 example (incomplete LU, double, Fortran 2003)
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Computes the ILU(0) factorization of a sparse matrix in place using the legacy
 ! csrilu02 API (bufferSize -> analysis -> compute, with a mat descriptor and a

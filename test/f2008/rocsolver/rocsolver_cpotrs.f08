@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! cpotrs example (single-precision complex Cholesky solve)
-! see: https:!www.netlib.org/lapack/explore-html/d1/d7a/group__double_p_ocomputational.html
+! see: https://www.netlib.org/lapack/explore-html/d1/d7a/group__double_p_ocomputational.html
 !
 ! Self-verifying: pick a known solution x, form b = A*x, factorize A with
 ! potrf, solve A*X = b with potrs, and confirm X recovers x.

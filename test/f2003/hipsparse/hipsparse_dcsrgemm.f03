@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! dcsrgemm example (double-precision sparse-matrix sparse-matrix multiply,
 ! C = A*B, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Two-phase flow with the classic hipSPARSE API: XcsrgemmNnz fills row_ptr_C and
 ! the total nnz, then Xcsrgemm computes the values. Here B = A, so C = A*A,
@@ -37,7 +37,7 @@
 ! pointer mode). csrgemm's mat-descr/array args are c_ptr-only.
 !!!!!!!!!!!!!!/
 !
-program dcsrgemm
+program hipsparse_dcsrgemm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -152,4 +152,4 @@ program dcsrgemm
 
   write(*,*) "PASSED!"
 
-end program dcsrgemm
+end program hipsparse_dcsrgemm

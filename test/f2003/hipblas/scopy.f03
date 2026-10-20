@@ -58,7 +58,7 @@ program hip_scopy
   write(*,"(a)",advance="no") "-- Running test 'Scopy' (Fortran 2003 interfaces) - "
 
   do j = 1,n
-    y(j) = x(j)
+    y(j) = -1.0
    ! write(*,*) "value of y(j)" , y(j)
   end do
   

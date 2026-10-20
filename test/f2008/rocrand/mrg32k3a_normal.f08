@@ -52,7 +52,7 @@ program rocrand_mrg32k3a_normal_test
     call rocrandCheck(rocrand_set_seed(gen, seed))
 
     allocate(hx(N))
-    call hipCheck(hipMalloc(dx, source=hx))
+    call hipCheck(hipMalloc(dx, mold=hx))
 
     ! Normal(mean, stddev) samples recover both moments.
     call rocrandCheck(rocrand_generate_normal(gen, c_loc(dx(1)), N, mean, stddev))

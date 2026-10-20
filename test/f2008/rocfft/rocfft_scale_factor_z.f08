@@ -77,6 +77,17 @@ program rocfft_scale_factor_z
   call hipCheck(hipDeviceSynchronize())
   call rocfftCheck(rocfft_plan_destroy(plan_fwd))
 
+  ! The round trip alone would pass even if no transform ran, so check that the
+  ! forward transform did run: its DC bin must equal the sum of the input.
+  call hipCheck(hipMemcpy(hx, dx, hipMemcpyDeviceToHost))
+  error = abs(hx(1) - sum(hx_input))
+  if (error > error_max * N * abs(sum(hx_input))) then
+     write(*,*) "FAILED! forward DC bin error=", error, " got=", hx(1), &
+                " expected=", sum(hx_input)
+     call rocfftCheck(rocfft_cleanup())
+     STOP 1
+  end if
+
   ! rocFFT transforms are unnormalized. Attaching a scale factor of 1/N to the
   ! inverse plan folds the normalization into the transform itself, so the
   ! round trip reproduces the input instead of N*input.

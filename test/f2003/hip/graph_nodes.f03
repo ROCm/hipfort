@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime graphs built from explicit nodes (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Builds a graph by hand rather than by stream capture: two 1-D memcpy nodes
 ! (H2D then D2H) linked with an explicit dependency, then instantiated and

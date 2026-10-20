@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsolver dpotrf example (Cholesky factorization, Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Native-array f2008 form: A is a Fortran array pointer; the workspace is a
 ! type(c_ptr) sized by hipsolverDpotrf_bufferSize; devInfo is device-backed.

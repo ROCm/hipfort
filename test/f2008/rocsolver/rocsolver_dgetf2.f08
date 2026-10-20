@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dgetf2 example (double-precision unblocked LU factorization)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! getf2 is the unblocked variant of getrf and produces the same packed LU.
 ! rocSOLVER writes `info` to DEVICE memory, so it is backed by a device

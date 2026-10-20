@@ -23,11 +23,10 @@
 !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-! Note: hipfort's Fortran 2008 pointer-convenience interfaces for
-! rocblas_?gemm_batched call c_loc() on a plain array and therefore pass a
-! single pointer, not the array of device pointers the routine requires. This
-! test consequently uses the type(c_ptr) array-of-pointers idiom (as in f2003);
-! only the per-batch device allocation uses the f2008 hipMalloc(source=) style.
+! Note: rocblas_?gemm_batched takes A, B and C as device arrays of device
+! pointers (one per batch), which this program builds itself. It therefore
+! uses the type(c_ptr) array-of-pointers form (as in f2003); only the
+! per-batch device allocation uses the f2008 hipMalloc(source=) style.
 
 program rocblas_sgemm_batched_test
 

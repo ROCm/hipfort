@@ -82,7 +82,7 @@ program rocblas_caxpy_test
         hz(i) = cmplx(n - i, 0)
     end do
 
-    ! Transfer data from host to deivce memory
+    ! Transfer data from host to device memory
     call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes, hipMemcpyHostToDevice))
     call hipCheck(hipmemcpy(dy, c_loc(hy(1)), Nbytes, hipMemcpyHostToDevice))
 

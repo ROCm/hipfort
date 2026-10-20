@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse cgemvi example (dense matrix * sparse vector, single complex)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! rocsparse zgemvi example (dense matrix * sparse vector, double complex)
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y, where A is a dense m-by-n matrix and x
 ! is a sparse vector. The result is checked against a dense host reference

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! scsrgeam example (single-precision sparse matrix addition, C = alpha*A + beta*B)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/extra.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/extra.html
 !
 ! Two-phase flow: csrgeam_nnz (fills row_ptr_C and nnz_C) -> allocate
 ! col_ind_C/val_C -> csrgeam (computes C). csrgeam needs no workspace buffer.

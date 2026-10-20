@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! hipsolverZgeqrf example (double-complex QR factorization)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: geqrf overwrites the upper triangle of A with R. Because
 ! A = Q*R with Q unitary, A**H * A = R**H * R, so we recover R from the output,

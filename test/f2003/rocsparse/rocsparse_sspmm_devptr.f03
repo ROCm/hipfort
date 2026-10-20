@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! sspmm example (single-precision sparse-matrix times dense-matrix, C = alpha*A*B + beta*C, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic API: build a CSR descriptor for A and dense-matrix
 ! descriptors for B and C, then run the three spmm stages
@@ -36,7 +36,7 @@
 ! with hipMemcpy + c_loc.
 !!!!!!!!!!!!!!/
 !
-program sspmm
+program sspmm_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -155,4 +155,4 @@ program sspmm
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
 
-end program sspmm
+end program sspmm_devptr

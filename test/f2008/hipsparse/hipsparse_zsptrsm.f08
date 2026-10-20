@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zsptrsm example (double-complex sparse triangular solve with multiple rhs)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Uses the generic SpSM API on a lower-triangular L with a dense rhs matrix.
 ! Self-verifying: pick a known Y, form X = L*Y (dense), solve L*C = X, and
@@ -37,7 +37,7 @@
 ! size_t.
 !!!!!!!!!!!!!!/
 !
-program zsptrsm
+program hipsparse_zsptrsm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -153,4 +153,4 @@ program zsptrsm
 
   write(*,*) "PASSED!"
 
-end program zsptrsm
+end program hipsparse_zsptrsm

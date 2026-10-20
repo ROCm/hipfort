@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! chegvdx example (complex partial generalized Hermitian-definite eigensolver, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! hegvdx solves a selected subset of A*x = lambda*B*x (itype=eform_ax). erange=index
 ! with il=1, iu=N requests the full spectrum. f2003 style: device buffers are

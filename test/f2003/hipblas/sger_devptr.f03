@@ -98,7 +98,7 @@ program hip_sger
   call hipCheck(hipMemcpy(dx, c_loc(x(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(y(1)), Nybytes, hipMemcpyHostToDevice)) 
 
-  call hipCheck(hipblasSger(handle,m,n,d_alpha,dx,1,dy,1,da,m))
+  call hipblasCheck(hipblasSger(handle,m,n,d_alpha,dx,1,dy,1,da,m))
   
   !call hipCheck(hipblasGetMatrix(m,n,bytes_per_element,da,m,a,m));
   call hipCheck(hipDeviceSynchronize())

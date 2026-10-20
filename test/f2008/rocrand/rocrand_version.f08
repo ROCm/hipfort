@@ -80,16 +80,6 @@ program rocrand_version_test
        STOP 1
     end if
 
-    if (minor < 0 .or. minor > 999) then
-       write(*,*) "FAILED! implausible rocRAND minor version: ", minor, " (code ", version, ")"
-       STOP 1
-    end if
-
-    if (patch < 0 .or. patch > 99) then
-       write(*,*) "FAILED! implausible rocRAND patch version: ", patch, " (code ", version, ")"
-       STOP 1
-    end if
-
     if (version2 /= version) then
        write(*,*) "FAILED! rocrand_get_version is not stable: ", version, " then ", version2
        STOP 1

@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! hipsparse Zcsrilu02 example (incomplete LU, single complex, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! hipsparse Zcsrilu02 example (incomplete LU, double complex, Fortran 2003)
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Computes the ILU(0) factorization of a complex tridiagonal matrix in place
 ! using the legacy csrilu02 API (bufferSize -> analysis -> compute, with a mat

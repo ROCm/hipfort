@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! hipsolverSsyevj example (single-precision Jacobi symmetric eigensolver)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: with jobz=vector, A is overwritten with the eigenvectors (as
 ! columns) and W holds the eigenvalues. We confirm A0*v_k = lambda_k*v_k.

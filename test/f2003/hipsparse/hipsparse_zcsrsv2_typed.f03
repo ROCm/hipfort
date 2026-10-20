@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! hipsparse Zcsrsv2 example (sparse triangular solve v2, single complex, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! hipsparse Zcsrsv2 example (sparse triangular solve v2, double complex, Fortran 2003)
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Solves the lower-triangular system L*x = alpha*f for x using the legacy
 ! csrsv2 API (bufferSize -> analysis -> solve, with a mat descriptor and a
@@ -64,7 +64,7 @@ program hipsparse_zcsrsv2_typed
   type(c_ptr) :: info = c_null_ptr
   type(c_ptr) :: dRowPtr, dColInd, dVal, dF, dX, dBuf
   integer(c_int) :: bufSize
-  write(*,"(a)",advance="no") "-- Running test 'hipsparse_zcsrsv2 typed' (Fortran 2003 interfaces) - "
+  write(*,"(a)",advance="no") "-- Running test 'hipsparse_zcsrsv2_typed' (Fortran 2003 interfaces) - "
 
   ! f = L*x (row by row from the CSR structure above).
   hF(1) = hVal(1)*hExp(1)

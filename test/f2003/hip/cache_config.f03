@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime cache / shared-memory configuration (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Exercises hipDeviceSetCacheConfig / hipDeviceGetCacheConfig and
 ! hipDeviceSetSharedMemConfig / hipDeviceGetSharedMemConfig. Both getters take

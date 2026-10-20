@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dcsr2csc example (double-precision CSR -> CSC conversion / sparse transpose, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/conversion.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/conversion.html
 !
 ! Converting A from CSR to CSC is equivalent to producing the CSR of A**T.
 ! We check the resulting csc_col_ptr / csc_row_ind / csc_val against the known

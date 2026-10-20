@@ -70,7 +70,8 @@ program graph_empty_node
   do i = 1, n
     hsrc(i) = i
   end do
-  hdst = 0
+  ! Sentinel that differs from the expected zeros, so a D2H node that never runs fails.
+  hdst = -1
 
   call hipCheck(hipSetDevice(0))
   call hipCheck(hipMalloc(dptr, nbytes))

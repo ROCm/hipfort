@@ -41,6 +41,7 @@ program hip_dger
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr, dA = c_null_ptr
   integer(c_size_t), parameter :: Nbytes = m*bytes_per_element
+  integer(c_size_t), parameter :: Nybytes = n*bytes_per_element
 
   integer :: i
   double precision :: error
@@ -59,12 +60,12 @@ program hip_dger
 
   ! Allocate device memory
   call hipCheck(hipMalloc(dx,Nbytes))
-  call hipCheck(hipMalloc(dy,Nbytes))
+  call hipCheck(hipMalloc(dy,Nybytes))
   call hipCheck(hipMalloc(dA,Nbytes*n))
 
   !Transfer from host to device
   call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dy, c_loc(hy(1)), Nbytes, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dy, c_loc(hy(1)), Nybytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1)), Nbytes*n, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasDger(handle,m,n,c_loc(alpha),dx,1,dy,1,dA,m))

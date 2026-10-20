@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsolver zgetrf example (double-precision complex LU factorization, Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! f2008 style: device buffers are native Fortran array pointers allocated with
 ! hipMalloc(source=/mold=); A and the pivots are passed as typed arrays. The

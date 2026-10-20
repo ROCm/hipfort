@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! hipsolverSorgqr example (single-precision generation of Q from a QR
 ! factorization, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: factorize A with geqrf, generate the orthogonal factor Q with
 ! orgqr, and confirm Q**T * Q = I. Orthogonality is sign-convention independent,

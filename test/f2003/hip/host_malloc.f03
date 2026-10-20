@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime hipHostMalloc (pinned host memory, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Allocates pinned host memory, uses it as the source of a host->device copy,
 ! copies back into a plain host array and verifies the round trip.

@@ -52,7 +52,7 @@ program hiprand_mrg32k3a_normal_test
     call hiprandCheck(hiprandSetPseudoRandomGeneratorSeed(gen, seed))
 
     allocate(hx(N))
-    call hipCheck(hipMalloc(dx, source=hx))
+    call hipCheck(hipMalloc(dx, mold=hx))
 
     ! Normal(mean, stddev) samples recover both moments.
     call hiprandCheck(hiprandGenerateNormal(gen, c_loc(dx(1)), N, mean, stddev))

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! hipsolverSgeqrf example (single-precision QR factorization)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: geqrf overwrites the upper triangle of A with R. Because
 ! A = Q*R with Q orthogonal, A**T * A = R**T * R, so we recover R from the

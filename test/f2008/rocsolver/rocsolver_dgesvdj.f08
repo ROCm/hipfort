@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dgesvdj example (double-precision Jacobi SVD)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: compute the singular value decomposition A = U*S*V**T with the
 ! Jacobi method and confirm the factors reconstruct the original matrix. Using

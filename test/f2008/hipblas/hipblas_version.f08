@@ -27,8 +27,8 @@
 !   hipblasCreate / hipblasGetVersion / hipblasGetProperty / hipblasDestroy.
 !
 ! hipblasGetVersion now takes an `integer(c_int) :: version` output dummy by
-! reference, so the variable is passed DIRECTLY (no c_loc). hipblasGetProperty
-! still takes `type(c_ptr),value :: myValue`, so c_loc IS required there.
+! reference, so the variable is passed DIRECTLY (no c_loc).
+! The variable is likewise passed directly to hipblasGetProperty, through the generic's _typed form.
 !
 ! The test passes when:
 !   1. hipblasGetVersion overwrites the sentinel with a positive version,

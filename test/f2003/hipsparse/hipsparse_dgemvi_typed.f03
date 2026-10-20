@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse Dgemvi example (dense matrix * sparse vector, double, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y, where A is a dense m-by-n matrix and x
 ! is a sparse vector (nnz values xVal at indices xInd). The result is checked
@@ -57,7 +57,7 @@ program hipsparse_dgemvi_typed
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dA, dXval, dXind, dY, dBuf
   integer(c_int) :: bufSize
-  write(*,"(a)",advance="no") "-- Running test 'hipsparse_dgemvi typed' (Fortran 2003 interfaces) - "
+  write(*,"(a)",advance="no") "-- Running test 'hipsparse_dgemvi_typed' (Fortran 2003 interfaces) - "
 
   ! Dense host reference.
   xDense = 0.0d0

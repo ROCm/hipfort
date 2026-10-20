@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! ssptrsm example (single-precision sparse triangular solve with multiple rhs,
 ! Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Uses the generic SpSM API on a lower-triangular L with a dense rhs matrix.
 ! Self-verifying: pick a known Y, form X = L*Y, solve L*C = X, and confirm C
@@ -37,7 +37,7 @@
 ! is moved with hipMemcpy + c_loc. Descriptor/array args are c_ptr-only.
 !!!!!!!!!!!!!!/
 !
-program ssptrsm
+program hipsparse_ssptrsm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -86,12 +86,12 @@ program ssptrsm
   ! Allocate device memory and copy inputs
   call hipCheck(hipMalloc(d_csr_row_ptr, size_rp * 4))
   call hipCheck(hipMalloc(d_csr_col_ind, size_nz * 4))
-  call hipCheck(hipMalloc(d_csr_val,     size_nz * 8))
+  call hipCheck(hipMalloc(d_csr_val,     size_nz * 4))
   call hipCheck(hipMalloc(d_X,           size_mat * 4))
   call hipCheck(hipMalloc(d_C,           size_mat * 4))
   call hipCheck(hipMemcpy(d_csr_row_ptr, c_loc(h_csr_row_ptr(1)), size_rp * 4, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(d_csr_col_ind, c_loc(h_csr_col_ind(1)), size_nz * 4, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(d_csr_val,     c_loc(h_csr_val(1)),     size_nz * 8, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(d_csr_val,     c_loc(h_csr_val(1)),     size_nz * 4, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(d_X,           c_loc(h_X(1,1)),         size_mat * 4, hipMemcpyHostToDevice))
 
   ! Create handle, CSR descriptor for L (lower / non-unit diag), dense matrices
@@ -150,4 +150,4 @@ program ssptrsm
 
   write(*,*) "PASSED!"
 
-end program ssptrsm
+end program hipsparse_ssptrsm

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dgebrd example (double-precision bidiagonal reduction, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! gebrd reduces A to bidiagonal form B = Q**T * A * P. We check the diagonal D
 ! and superdiagonal E of B against reference values, and confirm the reduction

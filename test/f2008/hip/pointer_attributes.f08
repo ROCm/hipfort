@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime hipPointerGetAttributes (Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Same checks as the Fortran 2003 test, but the buffers are allocated through
 ! the native-array interfaces, so this also confirms those hand back real

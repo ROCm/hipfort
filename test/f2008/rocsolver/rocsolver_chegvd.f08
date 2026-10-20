@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! chegvd example (complex generalized Hermitian-definite eigensolver)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! hegvd solves A*x = lambda*B*x (itype=eform_ax) for Hermitian A and
 ! Hermitian positive-definite B. With evect=original, A is overwritten with the

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zspmm example (double-precision complex sparse-matrix times dense-matrix, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic API: build a CSR descriptor for A and dense-matrix
 ! descriptors for B and C, then run the three spmm stages
@@ -36,7 +36,7 @@
 ! with hipMemcpy + c_loc.
 !!!!!!!!!!!!!!/
 !
-program zspmm
+program zspmm_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -164,4 +164,4 @@ program zspmm
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
 
-end program zspmm
+end program zspmm_devptr

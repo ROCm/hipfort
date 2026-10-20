@@ -72,7 +72,7 @@ program dgeqrf
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 8, hipMemcpyHostToDevice))
 
-  ! Compute the QR factorization on the devi ce
+  ! Compute the QR factorization on the device
   call rocsolverCheck(rocsolver_dgeqrf(handle, M, N, dA, lda, dIpiv))
 
   ! Copy result from device to host

@@ -33,7 +33,7 @@
 ! vector rather than pass.
 !!!!!!!!!!!!!!
 !
-program ssptrsv_devptr
+program hipsparse_ssptrsv_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -146,4 +146,4 @@ program ssptrsv_devptr
   call hipCheck(hipFree(d_alpha))
   call hipCheck(hipDeviceReset())
   write(*,*) "PASSED!"
-end program ssptrsv_devptr
+end program hipsparse_ssptrsv_devptr

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse SpMV example (single, y = alpha*A*x + beta*y, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Generic API: build a CSR descriptor for A and dense-vector descriptors for x
 ! and y, query the workspace with SpMV_bufferSize, then run SpMV. Result is

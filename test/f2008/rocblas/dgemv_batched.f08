@@ -25,14 +25,14 @@
 
 !!!!!!!!!!!!!!
 ! dgemv_batched example (batched matrix-vector, array-of-pointers form)
-! see: https:!rocm.docs.amd.com/projects/rocBLAS/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocBLAS/en/latest/
 !
 ! Exercises the "array of device pointers" argument class for rocBLAS: A, x and
 ! y are each a device array of pointers, one per batch. Computes y = A*x for two
 ! batches (alpha=1, beta=0) and checks the result.
 !!!!!!!!!!!!!!
 !
-program dgemv_batched
+program rocblas_dgemv_batched_test
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -54,7 +54,7 @@ program dgemv_batched
   real(c_double) :: error
   real(c_double), parameter :: error_max = 10 * epsilon(error_max)
 
-  write(*,"(a)",advance="no") "-- Running test 'rocblas_dgemv_batched' (Fortran 2008 interfaces) - "
+  write(*,"(a)",advance="no") "-- Running test 'DGEMV_BATCHED' (Fortran 2008 interfaces) - "
 
   mbytes = int(M,c_size_t) * int(N,c_size_t) * 8
   vbytes = int(M,c_size_t) * 8
@@ -107,4 +107,4 @@ program dgemv_batched
 
   write(*,*) "PASSED!"
 
-end program dgemv_batched
+end program rocblas_dgemv_batched_test

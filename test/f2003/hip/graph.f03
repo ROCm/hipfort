@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime graphs via stream capture (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Captures a device memset into a HIP graph, instantiates it, launches the
 ! executable graph and verifies the buffer was written. Exercises

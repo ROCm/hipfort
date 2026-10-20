@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zsddmm example (complex sampled dense-dense matrix multiplication, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! SDDMM computes C = alpha * (A * B) .* spy(C) + beta * C, where A and B are
 ! dense and C is sparse (CSR): the dense product A*B is only evaluated at the
@@ -36,7 +36,7 @@
 ! passed directly to the descriptor constructors / sddmm.
 !!!!!!!!!!!!!!/
 !
-program zsddmm
+program zsddmm_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -152,4 +152,4 @@ program zsddmm
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
 
-end program zsddmm
+end program zsddmm_devptr

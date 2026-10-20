@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! ssytrs example (solve A*X = B for a symmetric matrix, double, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/
+! ssytrs example (solve A*X = B for a symmetric matrix, single, Fortran 2003)
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/
 !
 ! Self-verifying: factorize a symmetric A with sytrf (Bunch-Kaufman), then solve
 ! A*x = b with sytrs for a right-hand side built from a known solution, and check

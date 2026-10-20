@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dsygvd example (generalized symmetric-definite eigensolver, Fortran 2008)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! sygvd solves A*x = lambda*B*x (itype=1) for symmetric A and
 ! positive-definite B. jobz=vector overwrites A with the

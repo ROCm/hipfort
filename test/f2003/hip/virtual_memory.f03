@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime virtual memory management (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Reserves a virtual address range, backs it with a physical allocation, makes
 ! it accessible to the device, uses it as ordinary device memory, and unwinds

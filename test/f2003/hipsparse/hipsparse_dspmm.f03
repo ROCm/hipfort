@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse SpMM example (double, C = alpha*A*B + beta*C, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Generic API: build a CSR descriptor for the sparse A and dense-matrix
 ! descriptors for B and C, query the workspace with SpMM_bufferSize, then run

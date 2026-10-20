@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! hipsolverDpotrs example (double-precision Cholesky solve)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: pick a known solution x, form b = A*x for a symmetric positive
 ! definite A, factorize with potrf, solve A*X = b with potrs, and confirm X

@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse sgemvi example (dense matrix * sparse vector, single, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! rocsparse dgemvi example (dense matrix * sparse vector, double, Fortran 2003)
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y, where A is a dense m-by-n matrix and x
 ! is a sparse vector (nnz values x_val at indices x_ind). The result is checked

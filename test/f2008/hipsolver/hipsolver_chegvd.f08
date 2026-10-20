@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! chegvd example (complex generalized Hermitian-definite eigensolver, Fortran 2008)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! hegvd solves A*x = lambda*B*x (itype=1) for Hermitian A and
 ! Hermitian positive-definite B. jobz=vector overwrites A with the

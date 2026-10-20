@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! rocsparse sbsrmv example (block-sparse matrix-vector multiply, single, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y for a BSR matrix A. Here A is
 ! block-diagonal with mb=nb=2 blocks of block_dim=2 (a 4x4 dense equivalent):
@@ -35,10 +35,10 @@
 ! against the dense reference y = A_dense * x.
 !
 ! f2003 style: device buffers are type(c_ptr) allocated by byte count; host data
-! is moved with hipMemcpy + c_loc. alpha/beta are host scalars (by reference).
+! is moved with hipMemcpy + c_loc. alpha/beta are staged in device memory (device pointer mode).
 !!!!!!!!!!!!!!
 !
-program sbsrmv
+program sbsrmv_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -109,4 +109,4 @@ program sbsrmv
   call hipCheck(hipFree(d_alpha))
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
-end program sbsrmv
+end program sbsrmv_devptr

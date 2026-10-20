@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zcsr2csc example (double-precision complex CSR -> CSC conversion / sparse transpose)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/conversion.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/conversion.html
 !
 ! Converting A from CSR to CSC is equivalent to producing the CSR of A**T
 ! (csr2csc permutes values without conjugation). We check the resulting

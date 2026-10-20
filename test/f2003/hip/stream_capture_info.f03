@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime stream-capture introspection (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Exercises the three capture-status queries -- hipStreamIsCapturing,
 ! hipStreamGetCaptureInfo and hipStreamGetCaptureInfo_v2 -- plus

@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! hipsolver dpotrfBatched example (batched Cholesky factorization)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! hipsolver spotrfBatched example (batched Cholesky factorization)
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Factorizes a batch of SPD matrices. The batched API takes A as an array of
 ! device pointers that itself lives in DEVICE memory: each matrix is allocated on

@@ -54,7 +54,7 @@ program rocrand_sobol32_normal_test
     call rocrandCheck(rocrand_set_quasi_random_generator_dimensions(gen, dimensions))
 
     allocate(hx(N))
-    call hipCheck(hipMalloc(dx, source=hx))
+    call hipCheck(hipMalloc(dx, mold=hx))
 
     ! Normal(mean, stddev) samples recover both moments.
     call rocrandCheck(rocrand_generate_normal(gen, c_loc(dx(1)), N, mean, stddev))

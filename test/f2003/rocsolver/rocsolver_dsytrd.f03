@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dsytrd example (rocSOLVER)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Reduces a real symmetric matrix A to symmetric tridiagonal form
 ! (A = Q T Q**T). The device buffers are passed as type(c_ptr), which resolves

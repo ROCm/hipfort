@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dspmv example (double-precision sparse-matrix dense-vector multiply, y = alpha*A*x + beta*y, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic API: build a CSR descriptor for A and dense-vector
 ! descriptors for x and y, then run the three spmv stages
@@ -36,7 +36,7 @@
 ! with hipMemcpy + c_loc.
 !!!!!!!!!!!!!!/
 !
-program dspmv
+program dspmv_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -151,4 +151,4 @@ program dspmv
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
 
-end program dspmv
+end program dspmv_devptr

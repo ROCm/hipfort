@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! rocsparse dgemvi example (dense matrix * sparse vector, double)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y, where A is a dense m-by-n matrix and x
 ! is a sparse vector (nnz values x_val at indices x_ind). The result is checked

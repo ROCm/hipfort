@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse SpMV example (double, y = alpha*A*x + beta*y, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Generic API: build a CSR descriptor for A and dense-vector descriptors for x
 ! and y, query the workspace with SpMV_bufferSize, then run SpMV. Result is
@@ -35,7 +35,7 @@
 ! is moved with hipMemcpy + c_loc.
 !!!!!!!!!!!!!!
 !
-program hipsparse_dspmv
+program hipsparse_dspmv_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -120,4 +120,4 @@ program hipsparse_dspmv
   call hipCheck(hipFree(d_alpha))
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
-end program hipsparse_dspmv
+end program hipsparse_dspmv_devptr

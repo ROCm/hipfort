@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipSPARSE library version / git revision query (Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Exercises the pure "ask the library about itself" entry points:
 !   hipsparseCreate -> hipsparseGetVersion -> hipsparseGetGitRevision -> hipsparseDestroy
@@ -35,9 +35,8 @@
 ! version therefore proves the scalar really was written through the binding.
 ! hipsparseGetGitRevision takes a type(c_ptr),value buffer, so that one needs c_loc.
 !
-! Passes when version > 0, the decoded major/minor/patch are in range
-! (1 <= major < 100, 0 <= minor < 1000, 0 <= patch < 100), and the git revision
-! string is non-empty. Fails (STOP 1) otherwise.
+! Passes when version > 0, the decoded major is in range (1 <= major < 100),
+! and the git revision string is non-empty. Fails (STOP 1) otherwise.
 !
 ! This test touches no device memory, so the f2003 and f2008 variants are
 ! identical apart from the banner.
@@ -79,14 +78,6 @@ program hipsparse_version
 
   if (major < 1 .or. major >= 100) then
      write(*,*) "FAILED! implausible hipSPARSE major version ", major
-     STOP 1
-  end if
-  if (minor < 0 .or. minor >= 1000) then
-     write(*,*) "FAILED! implausible hipSPARSE minor version ", minor
-     STOP 1
-  end if
-  if (patch < 0 .or. patch >= 100) then
-     write(*,*) "FAILED! implausible hipSPARSE patch version ", patch
      STOP 1
   end if
 

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! scsrgeam example (single-precision sparse matrix addition, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/extra.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/extra.html
 !
 ! Two-phase flow: csrgeam_nnz (fills row_ptr_C and nnz_C) -> allocate
 ! col_ind_C/val_C -> csrgeam (computes C = alpha*A + beta*B). csrgeam needs no
@@ -35,7 +35,7 @@
 ! data is moved with hipMemcpy + c_loc.
 !!!!!!!!!!!!!!/
 !
-program scsrgeam
+program scsrgeam_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -188,4 +188,4 @@ program scsrgeam
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
 
-end program scsrgeam
+end program scsrgeam_devptr

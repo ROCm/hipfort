@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dsyev example (rocSOLVER)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Computes the eigenvalues of a real symmetric matrix. rocSOLVER writes `info`
 ! to DEVICE memory, so it is backed by a device allocation and passed as a
@@ -60,12 +60,13 @@ program dsyev
   type(c_ptr) :: dA, dD, dE, dInfo
   type(c_ptr) :: handle ! rocblas_handle
 
-  real(c_double) :: trace_A, error
+  real(c_double) :: trace_A, frob2_A, error
   real(c_double), parameter :: rtol = 1.0d-9
 
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_dsyev' (Fortran 2003 interfaces) - "
 
   trace_A = hA(1,1) + hA(2,2) + hA(3,3) + hA(4,4)   ! = 46
+  frob2_A = sum(hA**2)   ! ||A||_F**2, from the original A
 
   call hipCheck(hipMalloc(dA,    size_A * 8))
   call hipCheck(hipMalloc(dD,    size_D * 8))
@@ -88,6 +89,13 @@ program dsyev
   error = abs(sum(hD) - trace_A) / abs(trace_A)
   if (error > rtol) then
      write(*,*) "FAILED! sum(eigenvalues) = ", sum(hD), " expected trace(A) = ", trace_A
+     call exit(1)
+  end if
+
+  ! The squared Frobenius norm is also invariant: sum of squared eigenvalues = ||A||_F**2.
+  error = abs(sum(hD**2) - frob2_A) / abs(frob2_A)
+  if (error > rtol) then
+     write(*,*) "FAILED! sum(eigenvalues**2) = ", sum(hD**2), " expected ||A||_F**2 = ", frob2_A
      call exit(1)
   end if
 

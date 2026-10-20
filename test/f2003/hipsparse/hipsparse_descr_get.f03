@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipSPARSE generic-API descriptor getters (Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Builds the four generic-API descriptors from known data and reads every
 ! attribute back out:

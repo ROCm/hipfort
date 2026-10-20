@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime host-side stream callbacks
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Exercises hipStreamAddCallback and hipLaunchHostFunc. Queues an async memset
 ! on a stream, then registers one callback of each kind via c_funloc. After

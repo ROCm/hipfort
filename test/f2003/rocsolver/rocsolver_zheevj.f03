@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zheevj example (double-complex Hermitian Jacobi eigensolver, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: with evect=original, A is overwritten with the (complex)
 ! eigenvectors and the real vector W holds the eigenvalues. We confirm

@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! ssytrf example (Bunch-Kaufman symmetric factorization, double, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/
+! ssytrf example (Bunch-Kaufman symmetric factorization, single, Fortran 2003)
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/
 !
 ! Factorizes a symmetric matrix and checks the algorithm succeeded (info == 0).
 ! rocSOLVER writes info to DEVICE memory, so it is read back from a device

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! rocsparse spildlt0 example (incomplete LDL^H factorization, level 0)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Exercises the generic staged SpILDLT0 preconditioner API: create the config
 ! descriptor, set inputs (algorithm, compute datatype, analysis policy), then run
@@ -94,6 +94,7 @@ program spildlt0
   call hipCheck(hipDeviceSynchronize())
 
   call rocsparseCheck(rocsparse_set_pointer_mode(handle, rocsparse_pointer_mode_host))
+  sing = -1   ! sentinel: must be overwritten with rocsparse_singularity_none
   call rocsparseCheck(rocsparse_spildlt0_get_output(handle, descr, rocsparse_spildlt0_output_singularity, &
        c_loc(sing), int(c_sizeof(sing),c_size_t), c_null_ptr))
 

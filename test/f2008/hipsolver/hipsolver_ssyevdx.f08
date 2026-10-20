@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! ssyevdx example (partial symmetric eigensolver, Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! syevdx computes a selected subset of eigenvalues/eigenvectors. range=all requests
 ! the full spectrum, so nev returns N and A is overwritten with the eigenvectors.

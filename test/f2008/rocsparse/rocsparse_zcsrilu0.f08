@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse scsrilu0 example (incomplete LU, single)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! rocsparse zcsrilu0 example (incomplete LU, double complex)
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes the ILU(0) factorization of a sparse matrix in place
 ! (buffer_size -> analysis -> compute, with a mat descriptor and a mat info

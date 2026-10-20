@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! dsptrsm example (double-precision sparse triangular solve with multiple rhs,
 ! Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Uses the generic SpSM API on a lower-triangular L with a dense rhs matrix.
 ! Self-verifying: pick a known Y, form X = L*Y, solve L*C = X, and confirm C
@@ -37,7 +37,7 @@
 ! is moved with hipMemcpy + c_loc. Descriptor/array args are c_ptr-only.
 !!!!!!!!!!!!!!/
 !
-program dsptrsm
+program hipsparse_dsptrsm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -150,4 +150,4 @@ program dsptrsm
 
   write(*,*) "PASSED!"
 
-end program dsptrsm
+end program hipsparse_dsptrsm

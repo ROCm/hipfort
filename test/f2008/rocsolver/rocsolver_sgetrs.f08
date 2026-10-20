@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! sgetrs example (single-precision LU solve)
-! see: https:!www.netlib.org/lapack/explore-html/d6/d49/group__double_g_ecomputational_gafa35ce1d7865b80563bbed6317050ad7.html
+! see: https://www.netlib.org/lapack/explore-html/d6/d49/group__double_g_ecomputational_gafa35ce1d7865b80563bbed6317050ad7.html
 !
 ! Self-verifying: pick a known solution x, form b = A*x, factorize A with
 ! getrf, solve A*X = b with getrs, and confirm X recovers x.

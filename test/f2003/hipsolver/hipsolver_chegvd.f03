@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! chegvd example (complex generalized Hermitian-definite eigensolver, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! hegvd solves A*x = lambda*B*x (itype=1). f2003 style: device buffers are
 ! type(c_ptr). Self-verifying: A0*v_k = lambda_k * B0*v_k.

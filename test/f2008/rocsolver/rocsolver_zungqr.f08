@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zungqr example (double-complex generation of Q from a QR factorization)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: factorize A with geqrf, generate the unitary factor Q with
 ! ungqr, and confirm Q**H * Q = I. Unitarity is phase-convention independent,

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! hipsolverZgesvdj example (double-complex Jacobi SVD, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: compute the singular value decomposition A = U*S*V**H with the
 ! Jacobi method and confirm the factors reconstruct the original matrix. Using

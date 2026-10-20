@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse SDDMM example (d, sampled dense-dense matmul, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! SDDMM computes C = alpha * (A * B) .* spy(C) + beta * C: the dense product
 ! A*B is evaluated only at the nonzero positions of the sparse (CSR) C. Generic
@@ -35,7 +35,7 @@
 ! passed directly to the descriptor constructors / SDDMM.
 !!!!!!!!!!!!!!
 !
-program hipsparse_dsddmm
+program hipsparse_dsddmm_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -138,4 +138,4 @@ program hipsparse_dsddmm
   call hipCheck(hipFree(d_alpha))
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
-end program hipsparse_dsddmm
+end program hipsparse_dsddmm_devptr

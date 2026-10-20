@@ -66,7 +66,7 @@ program rocblas_saxpy_test
         hx(i) = i
         hy(i) = N - i
         hz(i) = N - i
-    eNd do
+    end do
 
     ! Allocate device-side memory
     ! Transfer data from host to device memory

@@ -63,7 +63,7 @@ program dsterf
   ! Allocate device-side memory
   call hipCheck(hipMalloc(dD, size_D * 8))
   call hipCheck(hipMalloc(dE, size_E * 8)) 
-  call hipCheck(hipMalloc(dInfo, size_Info * 8))
+  call hipCheck(hipMalloc(dInfo, size_Info * 4))
 
   ! Create rocBLAS handle
   call rocblasCheck(rocblas_create_handle(handle))
@@ -77,11 +77,11 @@ program dsterf
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(c_loc(hD(1)), dD,    size_D * 8,    hipMemcpyDeviceToHost))
-  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, size_Info * 8, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, size_Info * 4, hipMemcpyDeviceToHost))
 
   ! Check and output results
   if(hInfo .gt. 0) then
-    write(*,*) "FAILED! ", n, " elements of E did not converge to 0."
+    write(*,*) "FAILED! ", hInfo, " elements of E did not converge to 0."
     call exit(1)
   else
     do i = 1,n

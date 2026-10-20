@@ -52,7 +52,7 @@ program rocrand_philox_normal_double_test
 
     ! Allocate host- and device-side memory
     allocate(hx(N))
-    call hipCheck(hipMalloc(dx, source=hx))
+    call hipCheck(hipMalloc(dx, mold=hx))
 
     ! Generate normally distributed doubles on the device.
     ! output_data is type(c_ptr); take the address of the device pointer target.

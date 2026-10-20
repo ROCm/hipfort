@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! csptrsm example (single-precision complex sparse triangular solve, multiple rhs, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic spsm API on a lower-triangular L with a dense rhs matrix.
 ! Self-verifying: pick a known Y, form X = L*Y (host dense product), solve
@@ -37,7 +37,7 @@
 ! hipMemcpy + c_loc.
 !!!!!!!!!!!!!!/
 !
-program csptrsm
+program csptrsm_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -165,4 +165,4 @@ program csptrsm
   call hipCheck(hipFree(d_alpha))
   write(*,*) "PASSED!"
 
-end program csptrsm
+end program csptrsm_devptr

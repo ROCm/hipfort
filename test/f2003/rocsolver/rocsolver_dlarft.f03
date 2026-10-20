@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dlarft example (rocSOLVER)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/auxiliary.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/auxiliary.html
 !
 ! Forms the triangular factor T of a block Householder reflector
 ! H = I - V T V**T from the reflectors V and their scalar factors tau. The

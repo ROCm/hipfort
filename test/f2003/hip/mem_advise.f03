@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime hipMemAdvise / hipMemPrefetchAsync (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Applies unified-memory hints to a managed allocation, reads them back with
 ! hipMemRangeGetAttribute, then prefetches the range to the device and back to
@@ -59,8 +59,8 @@ program mem_advise
   ! accepts the advice but reports no range attribute.
   call hipCheck(hipDeviceGetAttribute(managed, hipDeviceAttributeConcurrentManagedAccess, 0))
   if (managed == 0) then
-     write(*,*) "PASSED! (concurrent managed access unsupported on this device)"
-     stop
+     write(*,*) "SKIPPED (concurrent managed access unsupported on this device)"
+     stop 77
   end if
   call hipCheck(hipStreamCreate(stream))
   call hipCheck(hipMallocManaged(mptr, nbytes, hipMemAttachGlobal))

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsolver dgetrs example (solve A*X=B after LU, Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Factorizes A with getrf, then solves A*X=B with getrs and checks X.
 ! Native-array f2008 form; workspaces via *_bufferSize; devInfo device-backed.

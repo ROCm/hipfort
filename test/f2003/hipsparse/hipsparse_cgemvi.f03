@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse Cgemvi example (dense matrix * sparse vector, single complex, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y, where A is a dense m-by-n matrix and x
 ! is a sparse vector (nnz values xVal at indices xInd). The result is checked

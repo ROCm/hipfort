@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime stream-ordered memory pools (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Exercises hipDeviceGetDefaultMemPool, hipMemPoolGetAccess and the
 ! stream-ordered allocator (hipMallocAsync / hipFreeAsync) that draws from the
@@ -99,6 +99,8 @@ program mem_pool
      hbuf(i) = i
   end do
   call hipCheck(hipMemcpyAsync(dptr, c_loc(hbuf(1)), nbytes, hipMemcpyHostToDevice, stream))
+  ! hbuf is pageable: wait for the H2D copy before overwriting it.
+  call hipCheck(hipStreamSynchronize(stream))
 
   hbuf = 0
   call hipCheck(hipMemcpyAsync(c_loc(hbuf(1)), dptr, nbytes, hipMemcpyDeviceToHost, stream))

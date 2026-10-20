@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! rocSPARSE generic descriptor getters (Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Builds four descriptors over the same device buffers -- a zero-based CSR
 ! matrix, a one-based COO matrix, a dense vector and a sparse vector -- and

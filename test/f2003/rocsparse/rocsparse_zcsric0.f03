@@ -24,13 +24,13 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse scsric0 example (incomplete Cholesky, single, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! rocsparse zcsric0 example (incomplete Cholesky, double complex, Fortran 2003)
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes the IC(0) factorization of an SPD sparse matrix in place
 ! (buffer_size -> analysis -> compute, with a mat descriptor and a mat info
 ! object). For an SPD tridiagonal matrix there is no fill-in, so IC(0) equals the
-! exact Cholesky factor L (A = L*L^T). csric0 overwrites the lower-triangular
+! exact Cholesky factor L (A = L*L^H). csric0 overwrites the lower-triangular
 ! part (including the diagonal) with L; the strict upper part is left unchanged.
 ! The lower/diagonal CSR entries are checked against the hand-computed L.
 !

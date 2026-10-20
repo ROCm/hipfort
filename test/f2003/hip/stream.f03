@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime stream management
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Exercises hipStreamCreate, hipStreamGetDevice, hipStreamSynchronize and
 ! hipStreamDestroy.

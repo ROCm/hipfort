@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! ssyevdx example (partial symmetric eigensolver, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! syevdx computes a selected subset of eigenvalues/eigenvectors. erange=index with
 ! il=1, iu=N requests the full spectrum. f2003 style: device buffers are

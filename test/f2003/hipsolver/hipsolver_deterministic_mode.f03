@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipSOLVER handle attribute round-trip (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Exercises the pure "query the handle" entry points, which have no test
 ! coverage otherwise:

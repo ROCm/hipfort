@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime cooperative kernel launch (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Launches the kernel of the existing vecadd test with
 ! hipLaunchCooperativeKernel on an occupancy-sized grid, checks the result, and
@@ -71,8 +71,8 @@ program cooperative_launch
   call hipCheck(hipSetDevice(0))
   call hipCheck(hipDeviceGetAttribute(coop, hipDeviceAttributeCooperativeLaunch, 0))
   if (coop == 0) then
-     write(*,*) "PASSED! (cooperative launch unsupported on this device)"
-     stop
+     write(*,*) "SKIPPED (cooperative launch unsupported on this device)"
+     stop 77
   end if
 
   nbytes = int(n, c_size_t) * 8

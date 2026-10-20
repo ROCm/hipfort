@@ -65,12 +65,12 @@ program rocsparse_ddoti_test_typed
     h_y    = (/1, 2, 3, 4, 5, 6, 7, 8, 9/)
 
 !   Allocate device memory
-    call hipCheck(hipMalloc(d_xind, (int(nnz, c_size_t) + 1) * 4))
+    call hipCheck(hipMalloc(d_xind, int(nnz, c_size_t) * 4))
     call hipCheck(hipMalloc(d_xval, int(nnz, c_size_t) * 8))
     call hipCheck(hipMalloc(d_y, int(M, c_size_t) * 8))
 
 !   Copy host data to device
-    call hipCheck(hipMemcpy(d_xind, c_loc(h_xind(1)), (int(nnz, c_size_t) + 1) * 4, hipMemcpyHostToDevice))
+    call hipCheck(hipMemcpy(d_xind, c_loc(h_xind(1)), int(nnz, c_size_t) * 4, hipMemcpyHostToDevice))
     call hipCheck(hipMemcpy(d_xval, c_loc(h_xval(1)), int(nnz, c_size_t) * 8, hipMemcpyHostToDevice))
     call hipCheck(hipMemcpy(d_y, c_loc(h_y(1)), int(M, c_size_t) * 8, hipMemcpyHostToDevice))
 
