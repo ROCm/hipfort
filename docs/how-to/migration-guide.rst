@@ -41,9 +41,9 @@ bindings into ROCm fixes that at the root:
 *  **Nothing extra to build.** The bindings arrive precompiled with ROCm, in
    its development packages. There is no separate project to clone,
    configure, and keep in step.
-*  **Pay for what you use.** One module and one archive per library instead of
-   one archive for everything, so a code that only calls rocBLAS links only
-   rocBLAS's binding.
+*  **Pay for what you use.** One module and one archive per library, built and
+   shipped with that library, instead of one hipFORT build for everything, so a
+   code that only calls rocBLAS needs only rocBLAS's binding.
 *  **One way to build and find them.** The same CMake options, install layout,
    and ``find_package`` pattern across all thirteen bindings, where today each
    library that has a Fortran module does it differently.
@@ -97,9 +97,11 @@ but if something does behave differently you want releases to spare, and an
 early report gets fixed for everyone.
 
 A binding is versioned with its library and stays valid across a major ROCm
-series: a ``rocblas.mod`` built for 10.3 is still the right one on any later 10.x,
-and the CMake package accepts any version with the same major number. You
-revisit your build at a major release, not at every point release.
+series in one direction: a binding built for 10.3 still links against the
+libraries of any later 10.x, and the CMake package accepts any version with the
+same major number. A binding newer than the libraries it links against is
+another matter (`Binding and library versions`_). You revisit your build at a
+major release, not at every point release.
 
 Codes that build on several ROCm versions
 -----------------------------------------
@@ -114,6 +116,9 @@ you have two options:
    its ROCm (hipFORT tags them ``rocm-<version>``, for example ``rocm-6.3.3``):
    a binding declares the entry points of the ROCm it was generated from, and a
    newer one can reference routines an older ``.so`` does not export.
+   hipFORT's ``develop`` branch is compiled with one section per procedure, so
+   a program linked with ``-Wl,--gc-sections`` also builds against an older
+   ROCm, as long as it calls only routines that ROCm exports.
 *  **Switch per system with a thin wrapper module.** Both bindings export the
    same names, so a module of your own can pick one at compile time, and the
    rest of your code ``use``\ s the wrapper and never sees the difference:
@@ -242,6 +247,40 @@ archive of each library you ``use`` before the C libraries:
 With another compiler, replace ``amdflang`` in both paths with that compiler's
 directory (``gfortran``, ``ftn``, and so on; see `Where the files install`_)
 and use the prefix you installed your build of the bindings into.
+
+Binding and library versions
+----------------------------
+
+A binding declares the routines of the headers it was generated from. Linked
+against the libraries of its own release, or of a later 10.x, every routine it
+declares exists. Linked against older libraries, it can declare routines they
+do not export: a binding built from a newer branch, for example, or a newer
+``<library>-fortran`` package found first on ``CMAKE_PREFIX_PATH``. Each
+library's binding compiles to one object, and a linker takes whole objects
+from an archive, so a single such routine makes every link against that
+library fail, even if your program never calls it. Take a binding and its
+library from the same release.
+
+If you have to mix them, build the binding yourself (`Building a binding with
+your compiler`_) with one section per procedure
+(``-ffunction-sections -fdata-sections``), and link your program with
+``-Wl,--gc-sections``. The linker then keeps only the wrappers you call, so the
+program links as long as it calls only routines the libraries export, and it
+is smaller. The archives ROCm ships are not compiled with one section per
+procedure, so the option removes nothing from them.
+
+.. code-block:: cmake
+
+   if(NOT APPLE AND NOT WIN32)
+     target_link_options(app PRIVATE -Wl,--gc-sections)
+   endif()
+
+Write ``-Wl,--gc-sections`` rather than ``LINKER:--gc-sections``: CMake 3.27
+passes the latter to ``amdflang`` without the ``-Wl,`` prefix, and the link
+fails. Without CMake, add ``-Wl,--gc-sections`` to the command that links your
+program. A shared library that links a binding also needs
+``-Wl,--exclude-libs,ALL``: otherwise it exports the wrappers, and an exported
+symbol is never removed.
 
 What you change
 ===============
@@ -453,7 +492,8 @@ Which compiler?
 The bindings support ``amdflang`` (ROCm's bundled LLVM Flang, the recommended
 default), ``gfortran``, and Cray Fortran, and each ``fortran/`` project carries
 toolchain files for Intel ``ifx`` and ``ifort`` and NVIDIA ``nvfortran``. Any
-compiler with Fortran 2003 ``iso_c_binding`` should work.
+compiler with Fortran 2003 ``iso_c_binding`` should work for the raw
+``type(c_ptr)`` forms; the default array overloads need Fortran 2008.
 
 One catch is worth knowing: there is no portable Fortran ABI, so a ``.mod``
 (and its compiled ``.a``) is tied to one compiler, and even one compiler
@@ -576,9 +616,9 @@ The source is there for three reasons:
    other repository to track.
 *  **It cannot disagree with your libraries.** It was generated from the same
    headers as the installed ``.so`` and ships in the same release, so it
-   declares exactly the entry points your ROCm exports. A copy taken from another release or
-   branch can declare routines your ``.so`` does not have, and fail at link
-   time.
+   declares exactly the entry points your ROCm exports. A copy taken from a
+   later release or a branch can declare routines your ``.so`` does not have,
+   and then fails at link time (`Binding and library versions`_).
 *  **It is the reference.** It is the authoritative list of what the binding
    declares, with the argument types, readable without a ``.mod`` viewer. It
    carries no documentation comments: the C headers' documentation applies.
@@ -611,6 +651,10 @@ optional arguments:
    gfortran app.f90 -Imods mods/rocblas.o mods/hip.o \
      -L/opt/rocm/lib -lrocblas -lamdhip64 -o app
 
+To keep only the wrappers you call, add ``-ffunction-sections -fdata-sections``
+to the first command and ``-Wl,--gc-sections`` to the second
+(`Binding and library versions`_).
+
 **With CMake**, which also installs the result in the per-compiler layout with
 its CMake package, so that ``find_package(rocblas-fortran)`` works as for the
 shipped bindings. Each library's ``fortran/`` directory is a self-contained
@@ -624,6 +668,10 @@ project; build it against your installed ROCm, into a prefix of your own:
      -DCMAKE_INSTALL_PREFIX=$HOME/rocm-fortran
    cmake --build build/rocblas-fortran
    cmake --install build/rocblas-fortran
+
+Add ``-DCMAKE_Fortran_FLAGS="-ffunction-sections -fdata-sections"`` to the
+first command to compile one section per procedure, for a program linked with
+``-Wl,--gc-sections`` (`Binding and library versions`_).
 
 The ``fortran/`` project lives in
 `rocm-libraries <https://github.com/ROCm/rocm-libraries>`_ under
@@ -726,7 +774,10 @@ Trying the bindings before ROCm 10.3
 The bindings are under review in one pull request per library. Until they ship
 in a ROCm release, you can try them by building a binding from its pull request
 branch against a recent ROCm, such as a TheRock nightly, with the commands in
-`Building a binding with your compiler`_. Build HIP's binding first: the other
+`Building a binding with your compiler`_. A branch can be newer than your
+nightly: compile it with one section per procedure and link with
+``-Wl,--gc-sections`` (`Binding and library versions`_), so that a routine the
+nightly does not have yet fails only if you call it. Build HIP's binding first: the other
 bindings' tests ``use hip``. ROCTx's branch still has its binding under
 ``projects/rocprofiler-sdk/fortran/``; it moves to ``projects/fortran/``
 beside HIP's before it merges.

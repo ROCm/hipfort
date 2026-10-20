@@ -196,8 +196,8 @@ before ``-lrocblas -lamdhip64``.
 The target naming, the per-compiler install layout, what to build with a
 compiler other than ``amdflang``, and the build options are identical to the
 hipFORT migration and are not repeated here. See :doc:`migration-guide`,
-sections **Do I need to build anything?**, **Compile and link**,
-**Compiler support** and **Build options**.
+sections **Do I need to build anything?**, **Compile and link** (including
+**Binding and library versions**), **Compiler support** and **Build options**.
 
 What changes at your call sites
 ===============================
