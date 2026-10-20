@@ -52,6 +52,14 @@ if(BUILD_TESTING)
            CMAKE_Fortran_PREPROCESS_SOURCE "${CMAKE_Fortran_PREPROCESS_SOURCE}")
   endif()
 
+  # Keep only the binding wrappers a test calls (the archives are built with one
+  # section per procedure), so a test links even when another wrapper names a C
+  # symbol the installed library does not export. Spelled -Wl, rather than
+  # LINKER:, which CMake 3.27 passes to LLVMFlang as a bare --gc-sections.
+  if(NOT APPLE AND NOT WIN32)
+    add_link_options(-Wl,--gc-sections)
+  endif()
+
   # Which backend the tests link: hipfort::hip carries the archive of the one
   # lib/ built the components for (nvptx when HIPFORT_BUILD_AMDGCN is OFF, even on
   # an AMD host). On the CUDA backend the symbol tests are compiled with

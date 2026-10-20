@@ -115,6 +115,14 @@ if(HIPFORT_ASSUMED_RANK AND NOT (HIPFORT_USE_FPOINTER_INTERFACES AND CMAKE_Fortr
     "Use the F2018 assumed-rank array interfaces" FORCE)
 endif()
 
+# Each module compiles to one object, and a linker extracts whole objects from an
+# archive, so a program that calls one wrapper links all of that module's. One
+# section per procedure lets a program linked with -Wl,--gc-sections keep only
+# the wrappers it calls; without that flag it changes nothing. Only these
+# compilers split the sections (the Intel ones accept the flags but do not).
+set(HIPFORT_SECTION_FLAGS
+  "$<$<COMPILE_LANG_AND_ID:Fortran,GNU,LLVMFlang,Flang,NVHPC>:-ffunction-sections;-fdata-sections>")
+
 if(HIPFORT_BUILD_AMDGCN)
 set(HIPFORT_ARCH "amdgcn")
     # amdgcn
@@ -138,6 +146,7 @@ set(HIPFORT_ARCH "amdgcn")
     	target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_ASSUMED_SHAPE)
     ENDIF()
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
+    target_compile_options(${HIPFORT_LIB} PRIVATE "${HIPFORT_SECTION_FLAGS}")
     # Install Target hipfort-amdgcn
     # CMAKE_INSTALL_LIBDIR/INCLUDEDIR already carry the toolchain-specific
     # subdirectory (see HIPFORT_MULTITOOLCHAIN_LAYOUT in the top-level
@@ -183,6 +192,7 @@ set(HIPFORT_ARCH "nvptx")
     ENDIF()
     target_compile_definitions(${HIPFORT_LIB} PRIVATE USE_CUDA_NAMES)
     target_compile_definitions(${HIPFORT_LIB} PRIVATE _HIPFORT_ARCH='${HIPFORT_ARCH}')
+    target_compile_options(${HIPFORT_LIB} PRIVATE "${HIPFORT_SECTION_FLAGS}")
     # Install Target hipfort-nvptx
     rocm_install_targets(
         TARGETS ${HIPFORT_LIB}
