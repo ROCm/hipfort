@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dsygvdx example (partial generalized symmetric-definite eigensolver, Fortran 2008)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! sygvdx solves a selected subset of A*x = lambda*B*x (itype=1). range=all requests
 ! the full spectrum, so nev returns N and A is overwritten with the eigenvectors.

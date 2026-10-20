@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! sormqr example (single-precision multiplication by Q from a QR factorization,
 ! Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: factorize A with geqrf to obtain Q (as Householder vectors),
 ! then apply Q and Q**T successively to a matrix C. Since Q**T * Q = I, the

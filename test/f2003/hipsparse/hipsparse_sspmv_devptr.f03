@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse SpMV example, device pointer mode (single, y = alpha*A*x + beta*y)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Device-pointer-mode variant of hipsparse_sspmv.f03. The handle is switched to
 ! HIPSPARSE_POINTER_MODE_DEVICE and alpha/beta are staged in device memory, so

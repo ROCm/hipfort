@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zcsr2csc example (double-complex CSR -> CSC conversion / sparse transpose)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Converting A from CSR to CSC is equivalent to producing the CSR of A**T
 ! (structural transpose; values are permuted, not conjugated). We check the

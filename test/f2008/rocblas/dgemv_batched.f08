@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dgemv_batched example (batched matrix-vector, array-of-pointers form)
-! see: https:!rocm.docs.amd.com/projects/rocBLAS/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocBLAS/en/latest/
 !
 ! Exercises the "array of device pointers" argument class for rocBLAS: A, x and
 ! y are each a device array of pointers, one per batch. Computes y = A*x for two

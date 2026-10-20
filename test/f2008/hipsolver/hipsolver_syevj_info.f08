@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsolver syevjInfo query test (Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Exercises the Jacobi-convergence getters hipsolverXsyevjGetResidual and
 ! hipsolverXsyevjGetSweeps (plus their hipsolverDnXsyevj* aliases), whose

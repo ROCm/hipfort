@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime cooperative kernel launch (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Launches the kernel of the existing vecadd test with
 ! hipLaunchCooperativeKernel on an occupancy-sized grid, checks the result, and

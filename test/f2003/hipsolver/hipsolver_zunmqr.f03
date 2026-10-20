@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! hipsolverZunmqr example (double-complex multiply by Q from a QR
 ! factorization, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: factorize A with geqrf to obtain Q (as Householder vectors),
 ! then form Q*C with unmqr. Q is unitary, so it preserves the Frobenius norm:

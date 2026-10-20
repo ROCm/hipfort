@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP graph memset node built from a hipMemsetParams struct (Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Adds a memset node to a graph via hipGraphAddMemsetNode (which takes a
 ! hipMemsetParams derived type), instantiates and launches it, and verifies the

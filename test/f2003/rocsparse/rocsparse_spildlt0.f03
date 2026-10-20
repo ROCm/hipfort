@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! rocsparse spildlt0 example (incomplete LDL^H factorization, level 0, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Exercises the generic staged SpILDLT0 preconditioner API: create the config
 ! descriptor, set inputs (algorithm, compute datatype, analysis policy), then run

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dspmm example (double-precision sparse-matrix times dense-matrix, C = alpha*A*B + beta*C)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic API: build a CSR descriptor for A and dense-matrix
 ! descriptors for B and C, then run the three spmm stages

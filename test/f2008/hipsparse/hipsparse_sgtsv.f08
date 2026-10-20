@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! sgtsv example (single-precision tridiagonal solve, hipSPARSE)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Solves A x = b for a tridiagonal system. Here A is the identity tridiagonal
 ! (dl = du = 0, d = 1), so the exact solution of A x = b is x = b. dl/d/du/B are

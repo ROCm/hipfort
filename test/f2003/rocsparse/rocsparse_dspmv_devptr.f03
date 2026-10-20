@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dspmv example (double-precision sparse-matrix dense-vector multiply, y = alpha*A*x + beta*y, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic API: build a CSR descriptor for A and dense-vector
 ! descriptors for x and y, then run the three spmv stages

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! rocsparse dsctr example (scatter x_val -> y[x_ind], double)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Scatters the packed vector x_val into the dense vector y at the sparse index
 ! set x_ind, then checks the resulting dense vector.

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zsptrsv example (double-precision complex sparse triangular solve, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic spsv API on a lower-triangular L. Self-verifying: pick a
 ! known y, form x = L*y (dense product on host), solve L*y' = x, and confirm

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dposv example (rocSOLVER)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Solves the symmetric positive-definite system A*X = B (X overwrites B).
 ! rocSOLVER writes `info` to DEVICE memory, so it is backed by a device

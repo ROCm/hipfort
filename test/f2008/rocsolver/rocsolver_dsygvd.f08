@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dsygvd example (generalized symmetric-definite eigensolver)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! sygvd solves A*x = lambda*B*x (itype=eform_ax) for symmetric A and
 ! positive-definite B. With evect=original, A is overwritten with the

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dsyev example (rocSOLVER)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Computes the eigenvalues of a real symmetric matrix. rocSOLVER writes `info`
 ! to DEVICE memory, so it is backed by a device allocation and passed as

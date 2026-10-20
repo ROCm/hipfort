@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! csptrsm example (single-complex sparse triangular solve with multiple rhs,
 ! Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Uses the generic SpSM API on a lower-triangular L with a dense rhs matrix.
 ! Self-verifying: pick a known Y, form X = L*Y (dense), solve L*C = X, and

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! ssyevd example (symmetric eigenvalues, Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Checks sum(eigenvalues) == trace(A). Native-array f2008 form; workspace via
 ! hipsolverSsyevd_bufferSize; devInfo device-backed.

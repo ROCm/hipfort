@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! zheevd example (complex Hermitian eigenvalues, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Checks sum(eigenvalues) == trace(A). f2003 style: device buffers are type(c_ptr).
 !!!!!!!!!!!!!!

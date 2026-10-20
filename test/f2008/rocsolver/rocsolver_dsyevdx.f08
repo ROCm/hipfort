@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dsyevdx example (partial symmetric eigensolver)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! syevdx computes a selected subset of eigenvalues/eigenvectors. erange=index with
 ! il=1, iu=N requests the full spectrum, so nev returns N; eigenvectors go to Z.

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! sspmv example, device pointer mode (y = alpha*A*x + beta*y, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Device-pointer-mode variant of rocsparse_sspmv.f03. The handle is switched to
 ! rocsparse_pointer_mode_device and alpha/beta are staged in device memory, so

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dtrtri example (rocSOLVER)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Inverts an upper-triangular matrix in place and checks U * U^-1 == I.
 ! rocSOLVER writes `info` to DEVICE memory, so it is backed by a device

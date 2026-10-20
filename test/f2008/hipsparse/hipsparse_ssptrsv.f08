@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! ssptrsv example (single-precision sparse triangular solve, op(A)*y = alpha*x)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Uses the generic SpSV API on a lower-triangular L. Self-verifying: pick a
 ! known y, form x = L*y, solve L*y' = x, and confirm y' recovers y. The

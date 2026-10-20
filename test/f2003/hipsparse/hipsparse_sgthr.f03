@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse Sgthr example (gather y[xInd] -> xVal, single, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Gathers the entries of a dense vector y at the sparse index set xInd into the
 ! packed vector xVal, then checks the gathered values.

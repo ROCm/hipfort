@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! csptrsm example (single-precision complex sparse triangular solve, multiple rhs)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic spsm API on a lower-triangular L with a dense rhs matrix.
 ! Self-verifying: pick a known Y, form X = L*Y (host dense product), solve

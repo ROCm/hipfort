@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! sgtsv example (single-precision tridiagonal solve, rocSPARSE)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/precond.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/precond.html
 !
 ! Solves A x = b for a tridiagonal system. Here A is the identity tridiagonal
 ! (dl = du = 0, d = 1), so the exact solution of A x = b is x = b. dl/d/du/B are

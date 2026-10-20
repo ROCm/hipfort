@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! chegvdx example (complex partial generalized Hermitian-definite eigensolver, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! hegvdx solves a selected subset of A*x = lambda*B*x (itype=1, range=all). f2003
 ! style: device buffers are type(c_ptr); nev is a host integer, devInfo is

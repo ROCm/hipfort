@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime module / kernel API (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Loads a separately compiled code object, looks up the kernel it contains,
 ! queries its attributes and occupancy, then runs it as a graph kernel node,

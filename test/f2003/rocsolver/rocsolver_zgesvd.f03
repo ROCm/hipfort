@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zgesvd example (double-precision complex singular value decomposition, Fortran 2003 interfaces)
-! see: https:!www.netlib.org/lapack/explore-html/d1/d7e/group__double_g_esing_ga84fdf22a62b12ff364621e4713ce02f2.html
+! see: https://www.netlib.org/lapack/explore-html/d1/d7e/group__double_g_esing_ga84fdf22a62b12ff364621e4713ce02f2.html
 !
 ! Self-verifying: compute A = U * S * V (rocSOLVER returns V as V**H), then
 ! confirm the reconstruction matches the original A.

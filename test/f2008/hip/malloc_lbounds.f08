@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!!
 ! HIP runtime hipFree/hipHostFree on arrays with non-default lower bounds
 ! (Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Allocates device memory with hipMalloc(dims=, lbounds=) and pinned host memory
 ! with hipHostMalloc, remaps the pinned array to lower bounds of zero, then

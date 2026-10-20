@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! cheevj example (single-complex Hermitian Jacobi eigensolver)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: with evect=original, A is overwritten with the (complex)
 ! eigenvectors and the real vector W holds the eigenvalues. We confirm

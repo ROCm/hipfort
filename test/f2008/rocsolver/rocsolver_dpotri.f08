@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dpotri example (double-precision inverse of an SPD matrix via Cholesky)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Factorizes A = U**T U with potrf, then inverts it in place with potri, and
 ! checks A * A^-1 == I. rocSOLVER writes `info` to DEVICE memory (passed as

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dcsr2csc example (double-precision CSR -> CSC conversion / sparse transpose)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Converting A from CSR to CSC is equivalent to producing the CSR of A**T.
 ! We check the resulting csc_col_ptr / csc_row_ind / csc_val against the known

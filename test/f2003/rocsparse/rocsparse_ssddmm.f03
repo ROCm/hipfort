@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! ssddmm example (sampled dense-dense matrix multiplication, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! SDDMM computes C = alpha * (A * B) .* spy(C) + beta * C, where A and B are
 ! dense and C is sparse (CSR): the dense product A*B is only evaluated at the

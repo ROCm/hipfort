@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipSPARSE library version / git revision query (Fortran 2008)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Exercises the pure "ask the library about itself" entry points:
 !   hipsparseCreate -> hipsparseGetVersion -> hipsparseGetGitRevision -> hipsparseDestroy

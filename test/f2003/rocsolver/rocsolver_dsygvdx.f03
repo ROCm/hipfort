@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dsygvdx example (partial generalized symmetric-definite eigensolver, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! sygvdx solves a selected subset of A*x = lambda*B*x (itype=eform_ax). erange=index
 ! with il=1, iu=N requests the full spectrum. f2003 style: device buffers are

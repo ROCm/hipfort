@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zgebrd example (double-complex bidiagonal reduction)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! gebrd reduces A to (real) bidiagonal form; D holds the diagonal and E the
 ! superdiagonal. We check D and E against reference values and confirm the

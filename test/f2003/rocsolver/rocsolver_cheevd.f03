@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! cheevd example (single-precision Hermitian eigensolver, Fortran 2003 interfaces)
-! see: https:!www.netlib.org/lapack/explore-html/d9/de3/group__complex_h_eeigen.html
+! see: https://www.netlib.org/lapack/explore-html/d9/de3/group__complex_h_eeigen.html
 !
 ! Self-verifying: with evect=original, A is overwritten with the eigenvectors
 ! (as columns) and D holds the (real) eigenvalues. We confirm A0*v_k = lambda_k*v_k.

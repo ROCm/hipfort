@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!!
 ! hipsparseGetPointerMode / hipsparseSetPointerMode round trip
 ! (Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! hipsparseSetPointerMode takes the mode by value, while hipsparseGetPointerMode
 ! receives it as a plain scalar output argument (not a type(c_ptr)), so the

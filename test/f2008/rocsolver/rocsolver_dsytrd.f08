@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dsytrd example (rocSOLVER)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Reduces a real symmetric matrix A to symmetric tridiagonal form
 ! (A = Q T Q**T). This test passes A, D, E and tau as native Fortran device

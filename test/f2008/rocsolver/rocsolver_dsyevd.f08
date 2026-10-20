@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dsyevd example (double-precision symmetric eigensolver)
-! see: https:!www.netlib.org/lapack/explore-html/d2/d8a/group__double_s_yeigen_ga694ddc6e5527b6223748e3462013d867.html
+! see: https://www.netlib.org/lapack/explore-html/d2/d8a/group__double_s_yeigen_ga694ddc6e5527b6223748e3462013d867.html
 !
 ! Self-verifying: with evect=original, A is overwritten with the eigenvectors
 ! (as columns) and D holds the eigenvalues. We confirm A0*v_k = lambda_k*v_k.

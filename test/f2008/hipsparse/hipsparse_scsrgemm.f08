@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! scsrgemm example (single-precision sparse-matrix sparse-matrix multiply,
 ! C = A*B)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Two-phase flow with the classic hipSPARSE API: XcsrgemmNnz fills row_ptr_C and
 ! the total nnz, then Xcsrgemm computes the values. Here B = A, so C = A*A,

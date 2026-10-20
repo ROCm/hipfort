@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dpotf2 example (double-precision unblocked Cholesky factorization)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! potf2 is the unblocked variant of potrf and produces the same factor.
 ! rocSOLVER writes `info` to DEVICE memory, so it is backed by a device

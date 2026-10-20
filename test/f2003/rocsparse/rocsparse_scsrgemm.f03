@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! scsrgemm example (single-precision sparse-matrix sparse-matrix multiply, C = alpha*A*B, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/extra.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/extra.html
 !
 ! Two-phase flow: csrgemm_buffer_size -> csrgemm_nnz (fills row_ptr_C and
 ! nnz_C) -> allocate col_ind_C/val_C -> csrgemm (computes C). Here B = A, so

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! cgels example (single-complex least-squares solve, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: pick a known solution x, form b = A*x for a square
 ! nonsingular A, solve the least-squares problem with gels, and confirm the

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! csr2coo example (CSR -> COO row-index conversion, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/conversion.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/conversion.html
 !
 ! csr2coo expands the CSR row-pointer array into per-nonzero COO row indices.
 ! It is integer-only (no s/d/c/z variants).

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! zheev example (double-precision complex Hermitian eigenvalues)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Computes the eigenvalues of a Hermitian matrix. rocSOLVER writes `info` to
 ! DEVICE memory (passed as c_loc(dInfo)). A Hermitian matrix has a real trace

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dlatrd example (rocSOLVER)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/auxiliary.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/auxiliary.html
 !
 ! Reduces the first k columns of a symmetric matrix A to symmetric tridiagonal
 ! form (uplo = lower). The device buffers are passed as type(c_ptr), which

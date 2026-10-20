@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime hipMemAdvise / hipMemPrefetchAsync (Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Applies unified-memory hints to a managed allocation obtained as a native
 ! Fortran array pointer, reads them back with hipMemRangeGetAttribute, then

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime hipMemcpy2D (Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Copies a contiguous MxN matrix host -> device -> host with the native-array
 ! hipMemcpy2D overload (pitch/width in ELEMENTS) and verifies the round trip.

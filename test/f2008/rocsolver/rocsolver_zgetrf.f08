@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zgetrf example (double-precision complex LU factorization)
-! see: https:!www.netlib.org/lapack/explore-html/dd/d9a/group__double_g_ecomputational_ga0019443faea08275ca60a734d0593e60.html
+! see: https://www.netlib.org/lapack/explore-html/dd/d9a/group__double_g_ecomputational_ga0019443faea08275ca60a734d0593e60.html
 !
 ! NOTE: rocSOLVER writes the `info` output to DEVICE memory. The hipfort
 ! binding types the info argument as a device pointer (type(c_ptr)), so it must be backed

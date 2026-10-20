@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! ssyevdx example (partial symmetric eigensolver, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! syevdx computes a selected subset of eigenvalues/eigenvectors (range=all -> full
 ! spectrum). f2003 style: device buffers are type(c_ptr); nev is a host integer.

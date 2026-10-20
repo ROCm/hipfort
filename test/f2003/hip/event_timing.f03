@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime event timing and cross-stream ordering (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Exercises hipEventCreateWithFlags, hipEventQuery, hipEventElapsedTime and
 ! hipStreamWaitEvent. The ordering check poisons a buffer and keeps the

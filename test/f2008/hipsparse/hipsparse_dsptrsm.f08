@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dsptrsm example (double-precision sparse triangular solve with multiple rhs)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Uses the generic SpSM API on a lower-triangular L with a dense rhs matrix.
 ! Self-verifying: pick a known Y, form X = L*Y, solve L*C = X, and confirm C

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! ssygvd example (generalized symmetric-definite eigensolver, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! sygvd solves A*x = lambda*B*x (itype=eform_ax). f2003 style: device buffers are
 ! type(c_ptr). Self-verifying: A0*v_k = lambda_k * B0*v_k.
