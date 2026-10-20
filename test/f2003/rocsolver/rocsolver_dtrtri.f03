@@ -54,6 +54,7 @@ program dtrtri
 
   integer(c_size_t) :: size_A = n*n
 
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dA, dInfo
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -72,6 +73,10 @@ program dtrtri
 
   call rocsolverCheck(rocsolver_dtrtri(handle, rocblas_fill_upper, rocblas_diagonal_non_unit, &
                                        n, dA, lda, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! dtrtri info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hUinv(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))

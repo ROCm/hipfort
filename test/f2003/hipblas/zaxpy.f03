@@ -98,6 +98,7 @@ program hip_zaxpy
   deallocate(x)
   deallocate(y)
   deallocate(y_exact)
+  deallocate(alpha)
 
   write(*,*) "PASSED!"
 

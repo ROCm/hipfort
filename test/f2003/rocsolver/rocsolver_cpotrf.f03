@@ -66,6 +66,7 @@ program cpotrf
   integer(c_size_t) :: size_A = size(hA)
 
   type(c_ptr) :: dA     ! GPU buffer for A
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dInfo  ! GPU buffer for info (rocSOLVER writes to device)
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -88,6 +89,10 @@ program cpotrf
 
   ! Compute the Cholesky factorization on the device (upper triangle)
   call rocsolverCheck(rocsolver_cpotrf(handle, rocblas_fill_upper, N, dA, lda, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! cpotrf info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))

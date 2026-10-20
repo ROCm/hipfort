@@ -107,6 +107,7 @@ program hip_zaxpy
   deallocate(x)
   deallocate(y)
   deallocate(y_exact)
+  deallocate(alpha)
 
   call hipCheck(hipFree(d_alpha))
   write(*,*) "PASSED!"

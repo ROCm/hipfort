@@ -133,6 +133,8 @@ program hip_zgemm_strided_batched
   deallocate(hb)
   deallocate(hc)
   deallocate(hc_exact)
+  deallocate(alpha)
+  deallocate(beta)
 
   call hipCheck(hipFree(d_alpha))
   call hipCheck(hipFree(d_beta))

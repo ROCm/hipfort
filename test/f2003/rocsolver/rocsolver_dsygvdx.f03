@@ -83,6 +83,10 @@ program dsygvdx
   call rocsolverCheck(rocsolver_dsygvdx(handle, rocblas_eform_ax, rocblas_evect_original, &
        rocblas_erange_index, rocblas_fill_upper, N, dA, lda, dB, ldb, &
        0.0d0, 0.0d0, 1, N, dNev, dW, dZ, ldz, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! dsygvdx info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(c_loc(hNev), dNev, 4_c_size_t, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 8, hipMemcpyDeviceToHost))
@@ -101,6 +105,14 @@ program dsygvdx
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " eigenpair ", k; call exit(1)
         end if
     end do
+  end do
+
+  ! Each eigenvector must be B-normalised (v^T*B0*v = 1), which v = 0 would fail
+  do k = 1,N
+    error = abs(real(dot_product(hZ(:,k), matmul(hB0, hZ(:,k)))) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! Eigenvector not B-normalised! Error = ", error, " eigenvector ", k; call exit(1)
+    end if
   end do
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dB)); call hipCheck(hipFree(dW))

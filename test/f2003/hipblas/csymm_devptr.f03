@@ -32,9 +32,10 @@ program hip_csymm
 
   implicit none
 
-  ! C := alpha*A*B + beta*C with A symmetric (upper triangle referenced).
-  ! A = [1 2; 2 3] and B = I, so C = A.
-  integer, parameter :: ld = 2
+  ! C := alpha*A*B + beta*C with A symmetric (upper triangle referenced) on the left.
+  ! B is m x n with m /= n and A(2,1) holds junk, so swapping A and B, the side
+  ! or the triangle changes the result.
+  integer, parameter :: m = 2, n = 3
   integer(c_size_t) :: Nbytes
   complex(c_float_complex), target :: alpha = (1.0, 0.0), beta = (0.0, 0.0)
   
@@ -43,10 +44,11 @@ program hip_csymm
   type(c_ptr) :: d_alpha = c_null_ptr
   type(c_ptr) :: d_beta = c_null_ptr
 
-  complex(c_float_complex), target :: hA(ld,ld) = reshape([(1.0, 0.0), (2.0, 0.0), (2.0, 0.0), (3.0, 0.0)], [ld,ld])
-  complex(c_float_complex), target :: hB(ld,ld) = reshape([(1.0, 0.0), (0.0, 0.0), (0.0, 0.0), (1.0, 0.0)], [ld,ld])
-  complex(c_float_complex), target :: hC(ld,ld)
-  complex(c_float_complex) :: expected(ld,ld) = reshape([(1.0, 0.0), (2.0, 0.0), (2.0, 0.0), (3.0, 0.0)], [ld,ld])
+  complex(c_float_complex), target :: hA(m,m) = reshape([(1.0, 1.0), (7.0, -7.0), (2.0, -1.0), (3.0, 0.5)], [m,m])
+  complex(c_float_complex), target :: hB(m,n) = reshape([(1.0, 0.0), (4.0, 1.0), (2.0, -2.0), &
+       (5.0, 0.0), (3.0, 1.0), (-6.0, 0.0)], [m,n])
+  complex(c_float_complex), target :: hC(m,n)
+  complex(c_float_complex) :: expected(m,n), Aref(m,m)
   type(c_ptr) :: dA = c_null_ptr, dB = c_null_ptr, dC = c_null_ptr
   type(c_ptr) :: handle = c_null_ptr
   integer :: i, j
@@ -66,21 +68,30 @@ program hip_csymm
 
   hC = (0.0, 0.0)
 
-  Nbytes = int(ld*ld, c_size_t) * 8
+  ! Host reference built from the upper triangle only, A(2,1) is junk
+  do j = 1, m
+    do i = 1, m
+      Aref(i,j) = hA(min(i,j), max(i,j))
+    end do
+  end do
+  expected = alpha*matmul(Aref, hB)
+
+  Nbytes = int(m*m, c_size_t) * 8
   call hipCheck(hipMalloc(dA, Nbytes))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), Nbytes, hipMemcpyHostToDevice))
+  Nbytes = int(m*n, c_size_t) * 8
   call hipCheck(hipMalloc(dB, Nbytes))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), Nbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMalloc(dC, Nbytes))
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), Nbytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasCsymm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, ld, ld, &
-       d_alpha, dA, ld, dB, ld, d_beta, dC, ld))
+  call hipblasCheck(hipblasCsymm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, m, n, &
+       d_alpha, dA, m, dB, m, d_beta, dC, m))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, Nbytes, hipMemcpyDeviceToHost))
 
-  do j = 1, ld
-    do i = 1, ld
+  do j = 1, n
+    do i = 1, m
       error = abs(expected(i,j) - hC(i,j))
       if (error > error_max) then
         write(*,*) "FAILED! error = ", error, " at ", i, j

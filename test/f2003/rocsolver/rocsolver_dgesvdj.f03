@@ -68,6 +68,7 @@ program dgesvdj
   integer(c_size_t) :: szv = 3
 
   type(c_ptr) :: dA, dS, dU, dV
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dResidual, dNsweeps, dInfo
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -97,6 +98,10 @@ program dgesvdj
   ! Compute the singular value decomposition
   call rocsolverCheck(rocsolver_dgesvdj(handle, rocblas_svect_singular, rocblas_svect_singular, &
        M, N, dA, lda, abstol, dResidual, max_sweeps, dNsweeps, dS, dU, ldu, dV, ldv, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! dgesvdj info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(c_loc(hS(1)), dS, szv * 8, hipMemcpyDeviceToHost))

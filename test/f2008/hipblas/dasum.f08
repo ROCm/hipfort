@@ -65,6 +65,8 @@ program hip_dasum
   call hipCheck(hipFree(dx))
   call hipblasCheck(hipblasDestroy(handle))
 
+  deallocate(hx)
+
   write(*,*) "PASSED!"
 
 end program hip_dasum

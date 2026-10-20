@@ -32,11 +32,11 @@ program hip_sgeam
 
   implicit none
 
-  ! C := alpha*op(A) + beta*op(B) with alpha = beta = 1 and no
-  ! transposition, so C is the elementwise sum A + B.
+  ! C := alpha*op(A) + beta*op(B) with alpha = 2, beta = -1 and no
+  ! transposition, so C = 2*A - B (a swap of alpha and beta, or of A and B, shows).
   integer, parameter :: ld = 2
   integer(c_size_t) :: Nbytes
-  real(c_float), target :: alpha = 1.0, beta = 1.0
+  real(c_float), target :: alpha = 2.0, beta = -1.0
   
   ! Device-resident copies of the dual-mode scalars; the library reads them
   ! from device memory because the handle is in device pointer mode.
@@ -46,7 +46,7 @@ program hip_sgeam
   real(c_float), target :: hA(ld,ld) = reshape([1.0, 2.0, 3.0, 4.0], [ld,ld])
   real(c_float), target :: hB(ld,ld) = reshape([10.0, 20.0, 30.0, 40.0], [ld,ld])
   real(c_float), target :: hC(ld,ld)
-  real(c_float) :: expected(ld,ld) = reshape([11.0, 22.0, 33.0, 44.0], [ld,ld])
+  real(c_float) :: expected(ld,ld) = reshape([-8.0, -16.0, -24.0, -32.0], [ld,ld])
   type(c_ptr) :: dA = c_null_ptr, dB = c_null_ptr, dC = c_null_ptr
   type(c_ptr) :: handle = c_null_ptr
   integer :: i, j

@@ -62,6 +62,7 @@ program zpotrs
 
   type(c_ptr) :: dA
   type(c_ptr) :: dB
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dInfo
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -88,6 +89,10 @@ program zpotrs
 
   ! Factorize (Cholesky), then solve A*X = B in place (B overwritten with solution)
   call rocsolverCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, dA, lda, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! zpotrf info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
   call rocsolverCheck(rocsolver_zpotrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dB, ldb))
 
   ! Copy result from device to host

@@ -78,7 +78,7 @@ program hipblas_zgemv_test
   call hipCheck(hipFree(dx))
   call hipCheck(hipFree(dy))
   call hipblasCheck(hipblasDestroy(handle))
-  deallocate(hA, hx, hy)
+  deallocate(hA, hx, hy, alpha, beta)
   write(*,*) "PASSED!"
 
 end program hipblas_zgemv_test

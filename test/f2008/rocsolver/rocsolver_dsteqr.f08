@@ -44,6 +44,7 @@ program dsteqr
   real(c_double) :: hE(N-1) = (/1.0d0, 1.0d0, 1.0d0/)          ! off-diagonal
   real(c_double), pointer :: dD(:), dE(:), dC(:,:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
   type(c_ptr) :: handle
   real(c_double) :: trace, frob2, error
   real(c_double), parameter :: rtol = 1.0d-9
@@ -56,6 +57,10 @@ program dsteqr
   call hipCheck(hipMalloc(dInfo, 1))
   call rocblasCheck(rocblas_create_handle(handle))
   call rocsolverCheck(rocsolver_dsteqr(handle, rocblas_evect_none, N, dD, dE, dC, ldc, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
   error = abs(sum(hD) - trace) / abs(trace)
   if (error > rtol) then

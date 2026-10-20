@@ -63,6 +63,7 @@ program zheevd
   real(c_double), pointer :: dD(:)
   real(c_double), pointer :: dE(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -84,6 +85,10 @@ program zheevd
 
   ! Compute eigenvalues and eigenvectors (A overwritten with eigenvectors)
   call rocsolverCheck(rocsolver_zheevd(handle, rocblas_evect_original, rocblas_fill_upper, N, dA, lda, dD, dE, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
@@ -100,6 +105,11 @@ program zheevd
             call exit(1)
         end if
     end do
+    ! Eigenvectors are normalised: ||v_k|| = 1
+    error = abs(sqrt(sum(abs(hA(:,k))**2)) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! ||v|| - 1 = ", error, " eigenvector ", k; call exit(1)
+    end if
   end do
 
   ! Clean up

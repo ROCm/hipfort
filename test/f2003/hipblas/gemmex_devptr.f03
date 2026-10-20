@@ -33,8 +33,9 @@ program hip_gemmex
   implicit none
 
   ! C := alpha*op(A)*op(B) + beta*C through the extended-precision entry point,
-  ! with all buffers f32 and an f32 compute type. A = I and beta = 0, so C = B.
-  integer, parameter :: ld = 2
+  ! with all buffers f32 and an f32 compute type. A is m x k and B is k x n with
+  ! m, n, k distinct, so swapping A and B or the dimensions changes the result.
+  integer, parameter :: m = 2, n = 3, k = 4
   integer(c_size_t) :: Nbytes
   real(c_float), target :: alpha = 1.0, beta = 0.0
   
@@ -43,10 +44,10 @@ program hip_gemmex
   type(c_ptr) :: d_alpha = c_null_ptr
   type(c_ptr) :: d_beta = c_null_ptr
 
-  real(c_float), target :: hA(ld,ld) = reshape([1.0, 0.0, 0.0, 1.0], [ld,ld])
-  real(c_float), target :: hB(ld,ld) = reshape([1.0, 2.0, 3.0, 4.0], [ld,ld])
-  real(c_float), target :: hC(ld,ld)
-  real(c_float) :: expected(ld,ld) = reshape([1.0, 2.0, 3.0, 4.0], [ld,ld])
+  real(c_float), target :: hA(m,k) = reshape([1.0, -1.0, 2.0, 0.0, 3.0, 1.0, -2.0, 4.0], [m,k])
+  real(c_float), target :: hB(k,n) = reshape([1.0, 2.0, 0.0, -1.0, 3.0, -2.0, 1.0, 0.0, 0.0, 1.0, 2.0, -3.0], [k,n])
+  real(c_float), target :: hC(m,n)
+  real(c_float) :: expected(m,n)
   type(c_ptr) :: dA = c_null_ptr, dB = c_null_ptr, dC = c_null_ptr
   type(c_ptr) :: handle = c_null_ptr
   integer :: i, j
@@ -65,24 +66,27 @@ program hip_gemmex
   call hipCheck(hipMemcpy(d_beta, c_loc(beta), c_sizeof(beta), hipMemcpyHostToDevice))
 
   hC = 0.0
+  expected = alpha*matmul(hA, hB)
 
-  Nbytes = int(ld*ld, c_size_t) * 4
+  Nbytes = int(m*k, c_size_t) * 4
   call hipCheck(hipMalloc(dA, Nbytes))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), Nbytes, hipMemcpyHostToDevice))
+  Nbytes = int(k*n, c_size_t) * 4
   call hipCheck(hipMalloc(dB, Nbytes))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), Nbytes, hipMemcpyHostToDevice))
+  Nbytes = int(m*n, c_size_t) * 4
   call hipCheck(hipMalloc(dC, Nbytes))
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), Nbytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasGemmEx(handle, HIPBLAS_OP_N, HIPBLAS_OP_N, ld, ld, ld, &
-       d_alpha, dA, HIP_R_32F, ld, &
-       dB, HIP_R_32F, ld, d_beta, &
-       dC, HIP_R_32F, ld, HIPBLAS_COMPUTE_32F, HIPBLAS_GEMM_DEFAULT))
+  call hipblasCheck(hipblasGemmEx(handle, HIPBLAS_OP_N, HIPBLAS_OP_N, m, n, k, &
+       d_alpha, dA, HIP_R_32F, m, &
+       dB, HIP_R_32F, k, d_beta, &
+       dC, HIP_R_32F, m, HIPBLAS_COMPUTE_32F, HIPBLAS_GEMM_DEFAULT))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, Nbytes, hipMemcpyDeviceToHost))
 
-  do j = 1, ld
-    do i = 1, ld
+  do j = 1, n
+    do i = 1, m
       error = abs(expected(i,j) - hC(i,j))
       if (error > error_max) then
         write(*,*) "FAILED! error = ", error, " at ", i, j

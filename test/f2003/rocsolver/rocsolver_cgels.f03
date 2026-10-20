@@ -67,6 +67,7 @@ program cgels
 
   type(c_ptr) :: dA
   type(c_ptr) :: dB
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dInfo
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -93,6 +94,10 @@ program cgels
 
   ! Solve min || A*X - B || in place (B is overwritten with the solution)
   call rocsolverCheck(rocsolver_cgels(handle, rocblas_operation_none, M, N, nrhs, dA, lda, dB, ldb, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! cgels info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(c_loc(hB(1,1)), dB, size_B * 8, hipMemcpyDeviceToHost))

@@ -34,16 +34,19 @@ program rocblas_gemm_ex_test
   implicit none
 
   ! D := alpha*op(A)*op(B) + beta*C through the extended-precision entry point.
-  ! All buffers are f32_r and the compute type is f32_r. With A = I, alpha = 1
-  ! and beta = 0 the result is D = B.
-  integer, parameter :: m = 2, n = 2, k = 2
+  ! All buffers are f32_r and the compute type is f32_r. A and B are not the
+  ! identity and m, n, k all differ, so an A/B or dimension swap is caught; every
+  ! buffer is sized from its own dimensions. The expected result is computed on
+  ! the host.
+  integer, parameter :: m = 3, n = 2, k = 4
   real(c_float), target :: alpha = 1.0, beta = 0.0
 
-  real(c_float), target :: hA(m,k) = reshape([1.0, 0.0, 0.0, 1.0], [m,k])
-  real(c_float), target :: hB(k,n) = reshape([1.0, 2.0, 3.0, 4.0], [k,n])
+  real(c_float), target :: hA(m,k) = reshape([1.0, -2.0, 3.0, 0.5, 1.0, -1.0, &
+      2.0, 0.0, 4.0, -3.0, 1.0, 2.0], [m,k])
+  real(c_float), target :: hB(k,n) = reshape([2.0, 1.0, 0.0, -1.0, 1.0, 3.0, -2.0, 0.5], [k,n])
   real(c_float), target :: hC(m,n)
   real(c_float), target :: hD(m,n)
-  real(c_float) :: expected(m,n) = reshape([1.0, 2.0, 3.0, 4.0], [m,n])
+  real(c_float) :: expected(m,n)
 
   type(c_ptr) :: dA, dB, dC, dD
   type(c_ptr) :: handle = c_null_ptr
@@ -58,13 +61,14 @@ program rocblas_gemm_ex_test
 
   hC = 0.0
   hD = 0.0
+  expected = alpha * matmul(hA, hB) + beta * hC
 
-  call hipCheck(hipMalloc(dA, int(m*n,c_size_t) * 4))
-  call hipCheck(hipMalloc(dB, int(m*n,c_size_t) * 4))
+  call hipCheck(hipMalloc(dA, int(m*k,c_size_t) * 4))
+  call hipCheck(hipMalloc(dB, int(k*n,c_size_t) * 4))
   call hipCheck(hipMalloc(dC, int(m*n,c_size_t) * 4))
   call hipCheck(hipMalloc(dD, int(m*n,c_size_t) * 4))
-  call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), int(m*n,c_size_t) * 4, hipMemcpyHostToDevice))
-  call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), int(m*n,c_size_t) * 4, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), int(m*k,c_size_t) * 4, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), int(k*n,c_size_t) * 4, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), int(m*n,c_size_t) * 4, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dD, c_loc(hD(1,1)), int(m*n,c_size_t) * 4, hipMemcpyHostToDevice))
 

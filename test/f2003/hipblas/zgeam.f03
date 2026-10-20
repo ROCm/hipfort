@@ -32,8 +32,8 @@ program hip_zgeam
 
   implicit none
 
-  ! C := alpha*op(A) + beta*op(B) with alpha = beta = 1 and no
-  ! transposition, so C is the elementwise sum A + B.
+  ! C := alpha*op(A) + beta*op(B) with alpha = 2, beta = -1 and no
+  ! transposition, so C = 2*A - B (a swap of alpha and beta, or of A and B, shows).
   integer, parameter :: ld = 2
   integer(c_size_t) :: Nbytes
   complex(c_double_complex), allocatable, target :: alpha, beta
@@ -41,7 +41,7 @@ program hip_zgeam
   complex(c_double_complex), target :: hA(ld,ld) = reshape([(1.0, 0.0), (2.0, 0.0), (3.0, 0.0), (4.0, 0.0)], [ld,ld])
   complex(c_double_complex), target :: hB(ld,ld) = reshape([(10.0, 0.0), (20.0, 0.0), (30.0, 0.0), (40.0, 0.0)], [ld,ld])
   complex(c_double_complex), target :: hC(ld,ld)
-  complex(c_double_complex) :: expected(ld,ld) = reshape([(11.0, 0.0), (22.0, 0.0), (33.0, 0.0), (44.0, 0.0)], [ld,ld])
+  complex(c_double_complex) :: expected(ld,ld) = reshape([(-8.0, 0.0), (-16.0, 0.0), (-24.0, 0.0), (-32.0, 0.0)], [ld,ld])
   type(c_ptr) :: dA = c_null_ptr, dB = c_null_ptr, dC = c_null_ptr
   type(c_ptr) :: handle = c_null_ptr
   integer :: i, j
@@ -50,8 +50,8 @@ program hip_zgeam
   ! On the heap, so 16-byte aligned: the CUDA backend accesses a
   ! cuDoubleComplex scalar with an aligned load or store.
   allocate(alpha, beta)
-  alpha = (1.0, 0.0)
-  beta = (1.0, 0.0)
+  alpha = (2.0, 0.0)
+  beta = (-1.0, 0.0)
 
   write(*,"(a)",advance="no") "-- Running test 'zgeam' (Fortran 2003 interfaces) - "
 
@@ -86,6 +86,8 @@ program hip_zgeam
   call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dC))
   call hipblasCheck(hipblasDestroy(handle))
+
+  deallocate(alpha, beta)
 
   write(*,*) "PASSED!"
 

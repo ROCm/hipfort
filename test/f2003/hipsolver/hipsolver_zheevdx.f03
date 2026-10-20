@@ -29,7 +29,7 @@
 !
 ! heevdx computes a selected subset of eigenvalues/eigenvectors (range=all -> full
 ! spectrum). f2003 style: device buffers are type(c_ptr); nev is a host integer.
-! Self-verifying: A0*v_k = lambda_k*v_k.
+! Self-verifying: A0*v_k = lambda_k*v_k and ||v_k|| = 1.
 !!!!!!!!!!!!!!
 !
 program hipsolver_zheevdx
@@ -43,8 +43,9 @@ program hipsolver_zheevdx
 
   integer(c_int), parameter :: N = 3, lda = 3
 
+  ! Hermitian with complex off-diagonals, both triangles stored (A(j,i) = conj(A(i,j)))
   complex(c_double_complex), target :: hA(3,3) = reshape((/ &
-       (2.,0.),(-1.,0.),(0.,0.), (-1.,0.),(2.,0.),(-1.,0.), (0.,0.),(-1.,0.),(2.,0.) /), (/3,3/))
+       (2.,0.),(-1.,-1.),(0.,1.), (-1.,1.),(2.,0.),(-1.,-1.), (0.,-1.),(-1.,1.),(2.,0.) /), (/3,3/))
   complex(c_double_complex) :: hA0(3,3)
   real(c_double), target :: hW(3)
   integer(c_int) :: hNev
@@ -55,6 +56,7 @@ program hipsolver_zheevdx
 
   type(c_ptr) :: dA, dW
   type(c_ptr) :: dInfo
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
 
@@ -83,6 +85,11 @@ program hipsolver_zheevdx
 
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sizeA * 16, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 8, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+     write(*,*) "FAILED! info = ", hInfo, " (expected 0)"
+     call exit(1)
+  end if
 
   if (hNev /= N) then
     write(*,*) "FAILED! nev = ", hNev, " expected ", N; call exit(1)
@@ -97,6 +104,14 @@ program hipsolver_zheevdx
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " eigenpair ", k; call exit(1)
         end if
     end do
+  end do
+
+  ! Each returned eigenvector must have unit 2-norm
+  do k = 1,N
+    error = abs(sqrt(sum(abs(hA(:,k))**2)) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! eigenvector ", k, " has norm ", sqrt(sum(abs(hA(:,k))**2)), " expected 1"; call exit(1)
+    end if
   end do
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dW))

@@ -96,7 +96,7 @@ program device_properties
     call exit(1)
   end if
 
-  ! cross-check via hipDeviceGetAttribute — agreement between the two APIs
+  ! cross-check via hipDeviceGetAttribute: agreement between the two APIs
   call hipCheck(hipDeviceGetAttribute(warp_attr, hipDeviceAttributeWarpSize, 0))
   if (warp_attr /= prop%warpSize) then
     write(*,*) "FAILED! warpSize mismatch: prop=", prop%warpSize, " attr=", warp_attr

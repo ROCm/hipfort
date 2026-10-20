@@ -62,6 +62,7 @@ program sorgqr
   type(c_ptr) :: dA, dTau, dInfo, dWork
   real(c_float), pointer :: dTau_p(:)
   integer(c_int), pointer :: dInfo_p(:)
+  integer(c_int), target :: hInfo
   integer(c_int) :: lwork_qr, lwork_or, lwork
 
   real(c_float) :: error
@@ -89,7 +90,17 @@ program sorgqr
 
   ! Factorize A = Q*R, then form the explicit Q in place
   call hipsolverCheck(hipsolverSgeqrf(handle, M, N, dA, lda, c_loc(dTau_p(1)), dWork, lwork, c_loc(dInfo_p(1))))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! geqrf info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
   call hipsolverCheck(hipsolverSorgqr(handle, M, N, K, dA, lda, c_loc(dTau_p(1)), dWork, lwork, c_loc(dInfo_p(1))))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! orgqr info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
 
   ! Copy Q back to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 4, hipMemcpyDeviceToHost))

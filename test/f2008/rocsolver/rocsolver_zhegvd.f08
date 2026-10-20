@@ -46,10 +46,12 @@ program zhegvd
 
   integer(c_int), parameter :: N = 3, lda = 3, ldb = 3
 
+  ! Hermitian A with complex off-diagonals (A(j,i) = conjg(A(i,j)), real diagonal)
+  ! and Hermitian positive definite B (diagonally dominant)
   complex(c_double_complex) :: hA(3,3) = reshape((/ &
-       (2.,0.),(-1.,0.),(0.,0.), (-1.,0.),(2.,0.),(-1.,0.), (0.,0.),(-1.,0.),(2.,0.) /), (/3,3/))
+       (2.,0.),(-1.,1.),(0.,0.), (-1.,-1.),(2.,0.),(0.,1.), (0.,0.),(0.,-1.),(2.,0.) /), (/3,3/))
   complex(c_double_complex) :: hB(3,3) = reshape((/ &
-       (2.,0.),(0.,0.),(0.,0.), (0.,0.),(2.,0.),(0.,0.), (0.,0.),(0.,0.),(2.,0.) /), (/3,3/))
+       (4.,0.),(1.,1.),(0.,0.), (1.,-1.),(4.,0.),(0.,-1.), (0.,0.),(0.,1.),(4.,0.) /), (/3,3/))
   complex(c_double_complex) :: hA0(3,3), hB0(3,3)
   real(c_double) :: hD(3)
   real(c_double) :: hE(3)
@@ -58,6 +60,7 @@ program zhegvd
   complex(c_double_complex), pointer :: dA(:,:), dB(:,:)
   real(c_double), pointer :: dD(:), dE(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle
 
@@ -80,6 +83,10 @@ program zhegvd
   call rocsolverCheck(rocsolver_zhegvd(handle, rocblas_eform_ax, rocblas_evect_original, &
        rocblas_fill_upper, N, c_loc(dA(1,1)), lda, c_loc(dB(1,1)), ldb, &
        c_loc(dD(1)), c_loc(dE(1)), c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
@@ -93,6 +100,11 @@ program zhegvd
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " eigenpair ", k; call exit(1)
         end if
     end do
+    ! Eigenvectors are B-normalised (itype 1): v_k^H*B0*v_k = 1
+    error = abs(dot_product(hA(:,k), matmul(hB0, hA(:,k))) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! v^H*B*v - 1 = ", error, " eigenvector ", k; call exit(1)
+    end if
   end do
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dB))

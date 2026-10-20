@@ -45,7 +45,7 @@ program hipsolver_dgetrs
   real(c_double), pointer :: dA(:,:), dB(:,:)
   integer(c_int), pointer :: dIpiv(:)
   integer(c_int), pointer :: dInfo
-  integer(c_int) :: hIpiv(N)
+  integer(c_int) :: hIpiv(N), hInfo
   type(c_ptr) :: dWork1, dWork2, handle = c_null_ptr
   integer(c_int) :: lwork1, lwork2
   real(c_double) :: error
@@ -60,10 +60,20 @@ program hipsolver_dgetrs
   call hipsolverCheck(hipsolverDgetrf_bufferSize(handle, N, N, dA, lda, lwork1))
   call hipCheck(hipMalloc(dWork1, max(int(lwork1,c_size_t) * 8, 1_c_size_t)))
   call hipsolverCheck(hipsolverDgetrf(handle, N, N, dA, lda, dWork1, lwork1, dIpiv, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+     write(*,*) "FAILED! getrf info = ", hInfo, " (expected 0)"
+     call exit(1)
+  end if
   ! Solve
   call hipsolverCheck(hipsolverDgetrs_bufferSize(handle, HIPSOLVER_OP_N, N, nrhs, dA, lda, dIpiv, dB, ldb, lwork2))
   call hipCheck(hipMalloc(dWork2, max(int(lwork2,c_size_t) * 8, 1_c_size_t)))
   call hipsolverCheck(hipsolverDgetrs(handle, HIPSOLVER_OP_N, N, nrhs, dA, lda, dIpiv, dB, ldb, dWork2, lwork2, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+     write(*,*) "FAILED! getrs info = ", hInfo, " (expected 0)"
+     call exit(1)
+  end if
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))
   do i = 1, N
      error = abs(hB(i,1) - hX_ref(i)) / max(abs(hX_ref(i)), 1.0d0)

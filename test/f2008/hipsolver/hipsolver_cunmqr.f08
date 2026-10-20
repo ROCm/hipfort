@@ -63,6 +63,7 @@ program cunmqr
   complex(c_float_complex), pointer :: dC(:,:)
   complex(c_float_complex), pointer :: dTau(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
   type(c_ptr) :: dWork
   integer(c_int) :: lwork_qr, lwork_mq, lwork
 
@@ -87,8 +88,18 @@ program cunmqr
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 8))
 
   call hipsolverCheck(hipsolverCgeqrf(handle, M, K, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! geqrf info = ", hInfo(1), " (expected 0)"
+    call exit(1)
+  end if
   call hipsolverCheck(hipsolverCunmqr(handle, HIPSOLVER_SIDE_LEFT, HIPSOLVER_OP_N, &
        M, N, K, dA, lda, dTau, dC, ldc, dWork, lwork, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! unmqr info = ", hInfo(1), " (expected 0)"
+    call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

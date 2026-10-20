@@ -30,6 +30,7 @@
 ! sygvdx solves a selected subset of A*x = lambda*B*x (itype=1, range=all). f2003
 ! style: device buffers are type(c_ptr); nev is a host integer, devInfo is
 ! device-backed. Self-verifying: A0*v_k = lambda_k * B0*v_k.
+! Also checks devInfo = 0 and the B-normalisation v_k**T * B0 * v_k = 1.
 !!!!!!!!!!!!!!
 !
 program hipsolver_dsygvdx
@@ -56,8 +57,9 @@ program hipsolver_dsygvdx
   type(c_ptr) :: dInfo
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
+  integer(c_int), target :: hInfo
 
-  real(c_double) :: error
+  real(c_double) :: error, vBv
   real(c_double), parameter :: error_max = 1.0d-10
 
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_dsygvdx' (Fortran 2003 interfaces) - "
@@ -85,6 +87,11 @@ program hipsolver_dsygvdx
 
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sizeA * 8, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 8, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   if (hNev /= N) then
     write(*,*) "FAILED! nev = ", hNev, " expected ", N; call exit(1)
@@ -99,6 +106,12 @@ program hipsolver_dsygvdx
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " eigenpair ", k; call exit(1)
         end if
     end do
+    ! B-normalisation (itype 1): v_k**T * B0 * v_k = 1
+    vBv = real(dot_product(hA(:,k), matmul(hB0, hA(:,k))), kind(vBv))
+    error = abs(vBv - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! Eigenvector not B-normalised! v**T*B*v = ", vBv, " eigenpair ", k; call exit(1)
+    end if
   end do
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dB)); call hipCheck(hipFree(dW))

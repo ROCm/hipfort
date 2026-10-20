@@ -27,7 +27,8 @@
 ! ssyevd example (symmetric eigenvalues, Fortran 2008 interfaces)
 ! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
-! Checks sum(eigenvalues) == trace(A). Native-array f2008 form; workspace via
+! Checks sum(eigenvalues) == trace(A) and sum(eigenvalues**2) == ||A||_F**2.
+! Native-array f2008 form; workspace via
 ! hipsolverSsyevd_bufferSize; devInfo device-backed.
 !!!!!!!!!!!!!!
 !
@@ -45,12 +46,14 @@ program hipsolver_ssyevd
   real(c_float), pointer :: dA(:,:)
   real(c_float), pointer :: dD(:)
   integer(c_int), pointer :: dInfo
+  integer(c_int) :: hInfo
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
-  real(c_float) :: trace_A, error
+  real(c_float) :: trace_A, fro2_A, error
   real(c_float), parameter :: rtol = 1.0e-5
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_ssyevd' (Fortran 2008 interfaces) - "
   trace_A = real(hA(1,1)) + real(hA(2,2)) + real(hA(3,3)) + real(hA(4,4))
+  fro2_A = sum(hA**2)
   call hipsolverCheck(hipsolverCreate(handle))
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dD, source=hD))
@@ -61,9 +64,19 @@ program hipsolver_ssyevd
   call hipsolverCheck(hipsolverSsyevd(handle, HIPSOLVER_EIG_MODE_NOVECTOR, HIPSOLVER_FILL_MODE_UPPER, &
                                       N, dA, lda, dD, dWork, lwork, c_loc(dInfo)))
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+     write(*,*) "FAILED! info = ", hInfo, " (expected 0)"
+     call exit(1)
+  end if
   error = abs(sum(hD) - trace_A) / abs(trace_A)
   if (error > rtol) then
      write(*,*) "FAILED! sum(eigenvalues) = ", sum(hD), " expected trace = ", trace_A
+     call exit(1)
+  end if
+  error = abs(sum(hD**2) - fro2_A) / fro2_A
+  if (error > rtol) then
+     write(*,*) "FAILED! sum(eigenvalues**2) = ", sum(hD**2), " expected ||A||_F**2 = ", fro2_A
      call exit(1)
   end if
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dD)); call hipCheck(hipFree(dInfo)); call hipCheck(hipFree(dWork))

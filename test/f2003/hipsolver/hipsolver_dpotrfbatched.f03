@@ -84,17 +84,21 @@ program dpotrfbatched
   call hipCheck(hipDeviceSynchronize())
 
   call hipCheck(hipMemcpy(c_loc(hInfo(1)), dInfo, int(batch,c_size_t) * 4, hipMemcpyDeviceToHost))
-  call hipCheck(hipMemcpy(c_loc(hOut(1,1)), dA1, int(N*N,c_size_t) * 8, hipMemcpyDeviceToHost))
 
   do b = 1, batch
      if (hInfo(b) /= 0) then
         write(*,*) "FAILED! info(", b, ") = ", hInfo(b), " (expected 0)"; call exit(1)
      end if
   end do
-  if (abs(hOut(1,1)-2.0d0) > 1.0d-9 .or. abs(hOut(2,2)-3.0d0) > 1.0d-9 .or. &
-      abs(hOut(3,3)-4.0d0) > 1.0d-9) then
-     write(*,*) "FAILED! chol diag = ", hOut(1,1), hOut(2,2), hOut(3,3), " expected 2 3 4"; call exit(1)
-  end if
+
+  ! Check the Cholesky diagonal of every batch entry
+  do b = 1, batch
+     call hipCheck(hipMemcpy(c_loc(hOut(1,1)), hostPtrs(b), int(N*N,c_size_t) * 8, hipMemcpyDeviceToHost))
+     if (abs(hOut(1,1)-2.0d0) > 1.0d-9 .or. abs(hOut(2,2)-3.0d0) > 1.0d-9 .or. &
+         abs(hOut(3,3)-4.0d0) > 1.0d-9) then
+        write(*,*) "FAILED! batch ", b, " chol diag = ", hOut(1,1), hOut(2,2), hOut(3,3), " expected 2 3 4"; call exit(1)
+     end if
+  end do
 
   call hipCheck(hipFree(dA1)); call hipCheck(hipFree(dA2)); call hipCheck(hipFree(dPtrArray))
   call hipCheck(hipFree(dWork)); call hipCheck(hipFree(dInfo))

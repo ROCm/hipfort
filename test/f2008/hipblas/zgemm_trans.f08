@@ -137,6 +137,8 @@ program hipblas_zgemm_trans_test
 
   call hipblasCheck(hipblasDestroy(handle))
 
+  deallocate(alpha, beta)
+
   write(*,*) "PASSED!"
 
 contains

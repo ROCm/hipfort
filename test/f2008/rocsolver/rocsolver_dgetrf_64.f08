@@ -44,6 +44,7 @@ program dgetrf_64
   real(c_double), target :: hLU(3,3)
   integer(c_size_t) :: size_A = 9
   type(c_ptr) :: dA, dIpiv, dInfo, handle
+  integer(c_int64_t), target :: hInfo(1)
   integer :: i, j, k
   real(c_double) :: lij, recon, error
   real(c_double), parameter :: error_max = 1.0d-10
@@ -54,6 +55,10 @@ program dgetrf_64
   call rocblasCheck(rocblas_create_handle(handle))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 8, hipMemcpyHostToDevice))
   call rocsolverCheck(rocsolver_dgetrf_64(handle, M, N, dA, lda, dIpiv, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo(1)), dInfo, 8_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
   call hipCheck(hipMemcpy(c_loc(hLU(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))
   ! Reconstruct A = L*U (unit-lower L below the diagonal, U on/above).
   do j = 1, 3

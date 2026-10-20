@@ -56,6 +56,7 @@ program dgesv
   real(c_double), pointer :: dB(:,:)   ! GPU buffer for B (holds X on output)
   integer(c_int), pointer :: dIpiv(:)  ! GPU buffer for pivots
   integer(c_int), pointer :: dInfo(:)  ! GPU buffer for info (rocSOLVER writes to device)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -75,6 +76,10 @@ program dgesv
 
   ! Solve A*X = B on the device (X overwrites B)
   call rocsolverCheck(rocsolver_dgesv(handle, N, nrhs, dA, lda, dIpiv, dB, ldb, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   ! Copy the solution back to the host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))

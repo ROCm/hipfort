@@ -33,16 +33,18 @@ program rocblas_dsymm_test
 
   implicit none
 
-  ! C := alpha*A*B + beta*C with A symmetric (upper triangle referenced).
-  ! A = [1 2; 2 3], B = I, alpha = 1, beta = 0, so C = A. The data is
-  ! real-valued, so the symmetric and Hermitian forms agree.
-  integer, parameter :: m = 2, n = 2
+  ! C := alpha*A*B + beta*C with A symmetric, side left, upper triangle referenced.
+  ! A is m x m and B is m x n with m /= n and B not the identity, so a side or
+  ! m/n swap is caught. The strictly lower triangle of A holds junk that must not
+  ! be read, so a fill swap is caught.
+  ! The expected result is computed on the host from the upper triangle.
+  integer, parameter :: m = 3, n = 2
   real(c_double), target :: alpha = 1.0, beta = 0.0
 
-  real(c_double) :: hA(m,m) = reshape([1.0, 2.0, 2.0, 3.0], [m,m])
-  real(c_double) :: hB(m,n) = reshape([1.0, 0.0, 0.0, 1.0], [m,n])
+  real(c_double) :: hA(m,m)
+  real(c_double) :: hB(m,n) = reshape([1.0, 2.0, 0.0, -1.0, 3.0, 1.0], [m,n])
   real(c_double) :: hC(m,n)
-  real(c_double) :: expected(m,n) = reshape([1.0, 2.0, 2.0, 3.0], [m,n])
+  real(c_double) :: expected(m,n), Afull(m,m)
 
   real(c_double), pointer, dimension(:,:) :: dA, dB, dC
   type(c_ptr) :: handle = c_null_ptr
@@ -56,6 +58,27 @@ program rocblas_dsymm_test
   call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host)) ! host pointer mode
 
   hC = 0.0
+
+  ! Referenced upper triangle; the strictly lower triangle is junk.
+  hA = 99.0
+  hA(1,1) = 1.0
+  hA(1,2) = 2.0
+  hA(2,2) = 4.0
+  hA(1,3) = 3.0
+  hA(2,3) = 5.0
+  hA(3,3) = 6.0
+
+  ! Full symmetric A rebuilt from the upper triangle, for the host reference
+  do j = 1, m
+    do i = 1, m
+      if (i .le. j) then
+        Afull(i,j) = hA(i,j)
+      else
+        Afull(i,j) = hA(j,i)
+      end if
+    end do
+  end do
+  expected = alpha * matmul(Afull, hB) + beta * hC
 
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dB, source=hB))

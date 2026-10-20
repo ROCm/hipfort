@@ -33,9 +33,9 @@ program rocblas_zgeru_test
 
   implicit none
 
-  ! A := alpha*x*y**T + A  (rank-1 update). With A = 0 and alpha = 1 the result
-  ! is simply A(i,j) = x(i)*y(j); the data is real-valued so the 'u' and 'c'
-  ! (conjugated) forms agree.
+  ! A := alpha*x*y**T + A  (rank-1 update, y not conjugated). With A = 0 and
+  ! alpha = 1 the result is A(i,j) = x(i)*y(j); y has non-zero imaginary parts so a
+  ! binding that called the conjugated 'c' form instead would be caught.
   integer, parameter :: m = 3, n = 2
   complex(c_double_complex), target :: alpha = (1.0, 0.0)
   
@@ -44,7 +44,7 @@ program rocblas_zgeru_test
   type(c_ptr) :: d_alpha = c_null_ptr
 
   complex(c_double_complex), target :: hx(m) = [(1.0, 0.0), (2.0, 0.0), (3.0, 0.0)]
-  complex(c_double_complex), target :: hy(n) = [(10.0, 0.0), (20.0, 0.0)]
+  complex(c_double_complex), target :: hy(n) = [(10.0, 1.0), (20.0, -2.0)]
   complex(c_double_complex), target :: hA(m,n)
   complex(c_double_complex) :: expected(m,n)
 

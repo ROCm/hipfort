@@ -56,6 +56,7 @@ program dpotrs
   real(c_double), pointer :: dA(:,:)
   real(c_double), pointer :: dB(:,:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
   type(c_ptr) :: dWork
   integer(c_int) :: lwork_f, lwork_s, lwork
 
@@ -82,7 +83,17 @@ program dpotrs
 
   ! Factorize A = L*L**T, then solve A*X = B in place
   call hipsolverCheck(hipsolverDpotrf(handle, HIPSOLVER_FILL_MODE_LOWER, N, dA, lda, dWork, lwork, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! potrf info = ", hInfo(1), " (expected 0)"
+    call exit(1)
+  end if
   call hipsolverCheck(hipsolverDpotrs(handle, HIPSOLVER_FILL_MODE_LOWER, N, nrhs, dA, lda, dB, ldb, dWork, lwork, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! potrs info = ", hInfo(1), " (expected 0)"
+    call exit(1)
+  end if
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))

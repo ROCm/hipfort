@@ -71,6 +71,7 @@ program hipsolver_syevj_info
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: params = c_null_ptr
   type(c_ptr) :: dA, dW, dInfo, dWork
+  integer(c_int), target :: hInfo
   integer(c_int), pointer :: dInfo_p(:)
   integer(c_int) :: lwork
 
@@ -134,6 +135,11 @@ program hipsolver_syevj_info
   call hipsolverCheck(hipsolverDnXsyevjGetSweeps(handle, params, sweepsDn))
 
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, size_W * 8, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+     write(*,*) "FAILED! info = ", hInfo, " (expected 0)"
+     STOP 1
+  end if
 
   ! ---- Assertions -----------------------------------------------------------
   if (sweeps1 /= 1) then

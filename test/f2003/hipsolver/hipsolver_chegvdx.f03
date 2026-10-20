@@ -30,6 +30,9 @@
 ! hegvdx solves a selected subset of A*x = lambda*B*x (itype=1, range=all). f2003
 ! style: device buffers are type(c_ptr); nev is a host integer, devInfo is
 ! device-backed. Self-verifying: A0*v_k = lambda_k * B0*v_k.
+! Also checks devInfo = 0 and the B-normalisation v_k**H * B0 * v_k = 1.
+! A and B are Hermitian with non-zero imaginary off-diagonal entries (B is
+! diagonally dominant, hence positive definite); both triangles are filled.
 !!!!!!!!!!!!!!
 !
 program hipsolver_chegvdx
@@ -44,9 +47,9 @@ program hipsolver_chegvdx
   integer(c_int), parameter :: N = 3, lda = 3, ldb = 3
 
   complex(c_float_complex), target :: hA(3,3) = reshape((/ &
-       (2.,0.),(-1.,0.),(0.,0.), (-1.,0.),(2.,0.),(-1.,0.), (0.,0.),(-1.,0.),(2.,0.) /), (/3,3/))
+       (2.,0.),(-1.,-1.),(0.,0.), (-1.,1.),(3.,0.),(0.,1.), (0.,0.),(0.,-1.),(2.,0.) /), (/3,3/))
   complex(c_float_complex), target :: hB(3,3) = reshape((/ &
-       (2.,0.),(0.,0.),(0.,0.), (0.,0.),(2.,0.),(0.,0.), (0.,0.),(0.,0.),(2.,0.) /), (/3,3/))
+       (4.,0.),(1.,-1.),(0.,0.), (1.,1.),(4.,0.),(0.,-1.), (0.,0.),(0.,1.),(4.,0.) /), (/3,3/))
   complex(c_float_complex) :: hA0(3,3), hB0(3,3)
   real(c_float), target :: hW(3)
   integer(c_int) :: hNev, nevBuf
@@ -58,8 +61,9 @@ program hipsolver_chegvdx
   type(c_ptr) :: dInfo
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
+  integer(c_int), target :: hInfo
 
-  real(c_float) :: error
+  real(c_float) :: error, vBv
   real(c_float), parameter :: error_max = 1.0e-5
 
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_chegvdx' (Fortran 2003 interfaces) - "
@@ -87,6 +91,11 @@ program hipsolver_chegvdx
 
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sizeA * 8, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 4, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   if (hNev /= N) then
     write(*,*) "FAILED! nev = ", hNev, " expected ", N; call exit(1)
@@ -101,6 +110,12 @@ program hipsolver_chegvdx
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " eigenpair ", k; call exit(1)
         end if
     end do
+    ! B-normalisation (itype 1): v_k**H * B0 * v_k = 1
+    vBv = real(dot_product(hA(:,k), matmul(hB0, hA(:,k))), kind(vBv))
+    error = abs(vBv - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! Eigenvector not B-normalised! v**H*B*v = ", vBv, " eigenpair ", k; call exit(1)
+    end if
   end do
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dB)); call hipCheck(hipFree(dW))

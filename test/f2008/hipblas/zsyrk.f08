@@ -81,6 +81,8 @@ program hip_zsyrk
   call hipCheck(hipFree(dC))
   call hipblasCheck(hipblasDestroy(handle))
 
+  deallocate(alpha, beta)
+
   write(*,*) "PASSED!"
 
 end program hip_zsyrk

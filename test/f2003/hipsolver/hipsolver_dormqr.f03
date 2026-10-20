@@ -67,6 +67,7 @@ program dormqr
   type(c_ptr) :: dA, dC, dTau, dInfo, dWork
   real(c_double), pointer :: dTau_p(:)
   integer(c_int), pointer :: dInfo_p(:)
+  integer(c_int), target :: hInfo
   integer(c_int) :: lwork_qr, lwork_mq, lwork
 
   real(c_double) :: error
@@ -100,8 +101,18 @@ program dormqr
 
   ! Factorize A = Q*R (Q stored as reflectors), then form C <- Q*C in place
   call hipsolverCheck(hipsolverDgeqrf(handle, M, K, dA, lda, c_loc(dTau_p(1)), dWork, lwork, c_loc(dInfo_p(1))))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! geqrf info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
   call hipsolverCheck(hipsolverDormqr(handle, HIPSOLVER_SIDE_LEFT, HIPSOLVER_OP_N, &
        M, N, K, dA, lda, c_loc(dTau_p(1)), dC, ldc, dWork, lwork, c_loc(dInfo_p(1))))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! ormqr info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
 
   ! Copy the transformed C back to host
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, size_C * 8, hipMemcpyDeviceToHost))

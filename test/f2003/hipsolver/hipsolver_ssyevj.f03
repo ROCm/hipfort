@@ -29,7 +29,7 @@
 ! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: with jobz=vector, A is overwritten with the eigenvectors (as
-! columns) and W holds the eigenvalues. We confirm A0*v_k = lambda_k*v_k.
+! columns) and W holds the eigenvalues. We confirm A0*v_k = lambda_k*v_k and ||v_k|| = 1.
 !
 ! f2003 style: device buffers are type(c_ptr) allocated by byte count; host
 ! data is moved with hipMemcpy + c_loc. syevj takes a syevjInfo params handle,
@@ -62,6 +62,7 @@ program ssyevj
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: params = c_null_ptr
   type(c_ptr) :: dA, dW, dInfo, dWork
+  integer(c_int), target :: hInfo
   integer(c_int), pointer :: dInfo_p(:)
   integer(c_int) :: lwork
 
@@ -96,6 +97,11 @@ program ssyevj
   ! Copy results back to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 4, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, size_W * 4, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+     write(*,*) "FAILED! info = ", hInfo, " (expected 0)"
+     call exit(1)
+  end if
 
   ! Verify A0 * v_k = lambda_k * v_k for each eigenpair
   do k = 1,N
@@ -108,6 +114,15 @@ program ssyevj
             call exit(1)
         end if
     end do
+  end do
+
+  ! Each returned eigenvector must have unit 2-norm
+  do k = 1,N
+    error = abs(sqrt(sum(abs(hA(:,k))**2)) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! eigenvector ", k, " has norm ", sqrt(sum(abs(hA(:,k))**2)), " expected 1"
+        call exit(1)
+    end if
   end do
 
   ! Clean up
