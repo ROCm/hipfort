@@ -33,10 +33,13 @@ program rocblas_csymm_test
 
   implicit none
 
-  ! C := alpha*A*B + beta*C with A symmetric (upper triangle referenced).
-  ! A = [1 2; 2 3], B = I, alpha = 1, beta = 0, so C = A. The data is
-  ! real-valued, so the symmetric and Hermitian forms agree.
-  integer, parameter :: m = 2, n = 2
+  ! C := alpha*A*B + beta*C with A symmetric, side left, upper triangle referenced.
+  ! A is m x m and B is m x n with m /= n and B not the identity, so a side or
+  ! m/n swap is caught. The strictly lower triangle of A holds junk that must not
+  ! be read, so a fill swap is caught. A has complex off-diagonal entries, so a
+  ! hemm call in place of symm is caught.
+  ! The expected result is computed on the host from the upper triangle.
+  integer, parameter :: m = 3, n = 2
   complex(c_float_complex), target :: alpha = (1.0, 0.0), beta = (0.0, 0.0)
   
   ! Device-resident copies of the dual-mode scalars; the library reads them
@@ -44,10 +47,11 @@ program rocblas_csymm_test
   type(c_ptr) :: d_alpha = c_null_ptr
   type(c_ptr) :: d_beta = c_null_ptr
 
-  complex(c_float_complex), target :: hA(m,m) = reshape([(1.0, 0.0), (2.0, 0.0), (2.0, 0.0), (3.0, 0.0)], [m,m])
-  complex(c_float_complex), target :: hB(m,n) = reshape([(1.0, 0.0), (0.0, 0.0), (0.0, 0.0), (1.0, 0.0)], [m,n])
+  complex(c_float_complex), target :: hA(m,m)
+  complex(c_float_complex), target :: hB(m,n) = reshape([(1.0, 1.0), (2.0, 0.0), (0.0, -1.0), &
+      (-1.0, 0.0), (3.0, 2.0), (1.0, 1.0)], [m,n])
   complex(c_float_complex), target :: hC(m,n)
-  complex(c_float_complex) :: expected(m,n) = reshape([(1.0, 0.0), (2.0, 0.0), (2.0, 0.0), (3.0, 0.0)], [m,n])
+  complex(c_float_complex) :: expected(m,n), Afull(m,m)
 
   type(c_ptr) :: dA, dB, dC
   type(c_ptr) :: handle = c_null_ptr
@@ -68,10 +72,31 @@ program rocblas_csymm_test
 
   hC = (0.0, 0.0)
 
-  call hipCheck(hipMalloc(dA, int(m*n,c_size_t) * 8))
+  ! Referenced upper triangle (real diagonal); the strictly lower triangle is junk.
+  hA = (99.0, 99.0)
+  hA(1,1) = (1.0, 0.0)
+  hA(1,2) = (2.0, 1.0)
+  hA(2,2) = (4.0, 0.0)
+  hA(1,3) = (3.0, -1.0)
+  hA(2,3) = (5.0, 2.0)
+  hA(3,3) = (6.0, 0.0)
+
+  ! Full symmetric A rebuilt from the upper triangle, for the host reference
+  do j = 1, m
+    do i = 1, m
+      if (i .le. j) then
+        Afull(i,j) = hA(i,j)
+      else
+        Afull(i,j) = hA(j,i)
+      end if
+    end do
+  end do
+  expected = alpha * matmul(Afull, hB) + beta * hC
+
+  call hipCheck(hipMalloc(dA, int(m*m,c_size_t) * 8))
   call hipCheck(hipMalloc(dB, int(m*n,c_size_t) * 8))
   call hipCheck(hipMalloc(dC, int(m*n,c_size_t) * 8))
-  call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), int(m*n,c_size_t) * 8, hipMemcpyHostToDevice))
+  call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), int(m*m,c_size_t) * 8, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), int(m*n,c_size_t) * 8, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), int(m*n,c_size_t) * 8, hipMemcpyHostToDevice))
 

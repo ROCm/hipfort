@@ -73,7 +73,7 @@ program hip_zdotc
   call hipCheck(hipFree(dx))
   call hipCheck(hipFree(dy))
   call hipblasCheck(hipblasDestroy(handle))
-  deallocate(hx, hy)
+  deallocate(hx, hy, res)
   write(*,*) "PASSED!"
 
 end program hip_zdotc

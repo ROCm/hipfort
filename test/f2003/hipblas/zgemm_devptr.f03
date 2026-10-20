@@ -134,6 +134,8 @@ program hip_zgemm
   deallocate(hb)
   deallocate(hc)
   deallocate(hc_exact)
+  deallocate(alpha)
+  deallocate(beta)
 
   call hipCheck(hipFree(d_alpha))
   call hipCheck(hipFree(d_beta))

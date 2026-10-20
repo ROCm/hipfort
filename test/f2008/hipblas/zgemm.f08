@@ -102,7 +102,7 @@ program hip_zgemm
 
   call hipblasCheck(hipblasDestroy(handle))
 
-  deallocate(ha,hb,hc,hc_exact)
+  deallocate(ha,hb,hc,hc_exact, alpha, beta)
 
   write(*,*) "PASSED!"
 

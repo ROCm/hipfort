@@ -97,6 +97,9 @@ program hip_zsyrk
 
   call hipCheck(hipFree(d_alpha))
   call hipCheck(hipFree(d_beta))
+
+  deallocate(alpha, beta)
+
   write(*,*) "PASSED!"
 
 end program hip_zsyrk

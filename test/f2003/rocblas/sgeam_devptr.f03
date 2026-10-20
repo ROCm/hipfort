@@ -33,10 +33,10 @@ program rocblas_sgeam_test
 
   implicit none
 
-  ! C := alpha*op(A) + beta*op(B), both non-transposed, alpha = beta = 1,
-  ! so C is the elementwise sum A + B.
+  ! C := alpha*op(A) + beta*op(B), both non-transposed, alpha = 2, beta = -1,
+  ! so C = 2*A - B; distinct alpha and beta catch an alpha/beta or A/B swap.
   integer, parameter :: m = 2, n = 2
-  real(c_float), target :: alpha = 1.0, beta = 1.0
+  real(c_float), target :: alpha = 2.0, beta = -1.0
   
   ! Device-resident copies of the dual-mode scalars; the library reads them
   ! from device memory because the handle is in device pointer mode.
@@ -46,7 +46,7 @@ program rocblas_sgeam_test
   real(c_float), target :: hA(m,n) = reshape([1.0, 2.0, 3.0, 4.0], [m,n])
   real(c_float), target :: hB(m,n) = reshape([10.0, 20.0, 30.0, 40.0], [m,n])
   real(c_float), target :: hC(m,n)
-  real(c_float) :: expected(m,n) = reshape([11.0, 22.0, 33.0, 44.0], [m,n])
+  real(c_float) :: expected(m,n) = reshape([-8.0, -16.0, -24.0, -32.0], [m,n])
 
   type(c_ptr) :: dA, dB, dC
   type(c_ptr) :: handle = c_null_ptr

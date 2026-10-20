@@ -103,6 +103,7 @@ program hip_saxpy
 
   deallocate(x)
   deallocate(y)
+  deallocate(y_exact)
 
   call hipCheck(hipFree(d_alpha))
   write(*,*) "PASSED!"

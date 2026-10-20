@@ -84,7 +84,7 @@ program hip_daxpy
 
   call hipblasCheck(hipblasDestroy(handle))
 
-  deallocate(x, y)
+  deallocate(x, y, y_exact)
 
   write(*,*) "PASSED!"
 

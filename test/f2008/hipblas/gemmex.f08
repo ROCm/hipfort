@@ -33,14 +33,15 @@ program hip_gemmex
   implicit none
 
   ! C := alpha*op(A)*op(B) + beta*C through the extended-precision entry point,
-  ! with all buffers f32 and an f32 compute type. A = I and beta = 0, so C = B.
-  integer, parameter :: ld = 2
+  ! with all buffers f32 and an f32 compute type. A is m x k and B is k x n with
+  ! m, n, k distinct, so swapping A and B or the dimensions changes the result.
+  integer, parameter :: m = 2, n = 3, k = 4
   real(c_float), target :: alpha = 1.0, beta = 0.0
 
-  real(c_float) :: hA(ld,ld) = reshape([1.0, 0.0, 0.0, 1.0], [ld,ld])
-  real(c_float) :: hB(ld,ld) = reshape([1.0, 2.0, 3.0, 4.0], [ld,ld])
-  real(c_float) :: hC(ld,ld)
-  real(c_float) :: expected(ld,ld) = reshape([1.0, 2.0, 3.0, 4.0], [ld,ld])
+  real(c_float) :: hA(m,k) = reshape([1.0, -1.0, 2.0, 0.0, 3.0, 1.0, -2.0, 4.0], [m,k])
+  real(c_float) :: hB(k,n) = reshape([1.0, 2.0, 0.0, -1.0, 3.0, -2.0, 1.0, 0.0, 0.0, 1.0, 2.0, -3.0], [k,n])
+  real(c_float) :: hC(m,n)
+  real(c_float) :: expected(m,n)
   real(c_float), pointer, dimension(:,:) :: dA, dB, dC
   type(c_ptr) :: handle = c_null_ptr
   integer :: i, j
@@ -52,6 +53,7 @@ program hip_gemmex
   call hipblasCheck(hipblasCreate(handle))
 
   hC = 0.0
+  expected = alpha*matmul(hA, hB)
 
   call hipCheck(hipMalloc(dA, shape(hA)))
   call hipCheck(hipMemcpy(dA, hA, hipMemcpyHostToDevice))
@@ -60,15 +62,15 @@ program hip_gemmex
   call hipCheck(hipMalloc(dC, shape(hC)))
   call hipCheck(hipMemcpy(dC, hC, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasGemmEx(handle, HIPBLAS_OP_N, HIPBLAS_OP_N, ld, ld, ld, &
-       c_loc(alpha), c_loc(dA(1,1)), HIP_R_32F, ld, &
-       c_loc(dB(1,1)), HIP_R_32F, ld, c_loc(beta), &
-       c_loc(dC(1,1)), HIP_R_32F, ld, HIPBLAS_COMPUTE_32F, HIPBLAS_GEMM_DEFAULT))
+  call hipblasCheck(hipblasGemmEx(handle, HIPBLAS_OP_N, HIPBLAS_OP_N, m, n, k, &
+       c_loc(alpha), c_loc(dA(1,1)), HIP_R_32F, m, &
+       c_loc(dB(1,1)), HIP_R_32F, k, c_loc(beta), &
+       c_loc(dC(1,1)), HIP_R_32F, m, HIPBLAS_COMPUTE_32F, HIPBLAS_GEMM_DEFAULT))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 
-  do j = 1, ld
-    do i = 1, ld
+  do j = 1, n
+    do i = 1, m
       error = abs(expected(i,j) - hC(i,j))
       if (error > error_max) then
         write(*,*) "FAILED! error = ", error, " at ", i, j

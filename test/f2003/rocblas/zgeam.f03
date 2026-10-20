@@ -33,15 +33,15 @@ program rocblas_zgeam_test
 
   implicit none
 
-  ! C := alpha*op(A) + beta*op(B), both non-transposed, alpha = beta = 1,
-  ! so C is the elementwise sum A + B.
+  ! C := alpha*op(A) + beta*op(B), both non-transposed, alpha = 2, beta = -1,
+  ! so C = 2*A - B; distinct alpha and beta catch an alpha/beta or A/B swap.
   integer, parameter :: m = 2, n = 2
-  complex(c_double_complex), target :: alpha = (1.0, 0.0), beta = (1.0, 0.0)
+  complex(c_double_complex), target :: alpha = (2.0, 0.0), beta = (-1.0, 0.0)
 
   complex(c_double_complex), target :: hA(m,n) = reshape([(1.0, 0.0), (2.0, 0.0), (3.0, 0.0), (4.0, 0.0)], [m,n])
   complex(c_double_complex), target :: hB(m,n) = reshape([(10.0, 0.0), (20.0, 0.0), (30.0, 0.0), (40.0, 0.0)], [m,n])
   complex(c_double_complex), target :: hC(m,n)
-  complex(c_double_complex) :: expected(m,n) = reshape([(11.0, 0.0), (22.0, 0.0), (33.0, 0.0), (44.0, 0.0)], [m,n])
+  complex(c_double_complex) :: expected(m,n) = reshape([(-8.0, 0.0), (-16.0, 0.0), (-24.0, 0.0), (-32.0, 0.0)], [m,n])
 
   type(c_ptr) :: dA, dB, dC
   type(c_ptr) :: handle = c_null_ptr

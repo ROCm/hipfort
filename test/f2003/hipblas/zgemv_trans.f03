@@ -130,6 +130,8 @@ program hipblas_zgemv_trans_test
   end do
 
   deallocate(hA)
+  deallocate(alpha)
+  deallocate(beta)
 
   call hipblasCheck(hipblasDestroy(handle))
 

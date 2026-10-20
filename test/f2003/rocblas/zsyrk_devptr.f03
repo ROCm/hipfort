@@ -33,11 +33,10 @@ program rocblas_zsyrk_test
 
   implicit none
 
-  ! C := alpha*A*A**T + beta*C, upper triangle. With
-  !   A = [1 0; 2 3]  (column-major below), alpha = 1, beta = 0
-  ! the product is [1 2; 2 13], so the stored upper triangle is
-  ! C(1,1)=1, C(1,2)=2, C(2,2)=13. The data is real-valued, so the
-  ! symmetric and Hermitian forms agree.
+  ! C := alpha*A*A**T + beta*C, upper triangle, with alpha = 1, beta = 0.
+  ! A has non-zero imaginary parts, so A*A**T differs from A*A**H and a binding
+  ! that called the Hermitian 'herk' form instead would be caught. The expected
+  ! upper triangle is computed on the host.
   integer, parameter :: n = 2, k = 2
   complex(c_double_complex), target :: alpha = 1.0, beta = 0.0
   
@@ -46,9 +45,9 @@ program rocblas_zsyrk_test
   type(c_ptr) :: d_alpha = c_null_ptr
   type(c_ptr) :: d_beta = c_null_ptr
 
-  complex(c_double_complex), target :: hA(n,k) = reshape([(1.0, 0.0), (2.0, 0.0), (0.0, 0.0), (3.0, 0.0)], [n,k])
+  complex(c_double_complex), target :: hA(n,k) = reshape([(1.0, 1.0), (2.0, -1.0), (0.0, 2.0), (3.0, 1.0)], [n,k])
   complex(c_double_complex), target :: hC(n,n)
-  complex(c_double_complex) :: expected(n,n) = reshape([(1.0, 0.0), (0.0, 0.0), (2.0, 0.0), (13.0, 0.0)], [n,n])
+  complex(c_double_complex) :: expected(n,n)
 
   type(c_ptr) :: dA, dC
   type(c_ptr) :: handle = c_null_ptr
@@ -68,6 +67,7 @@ program rocblas_zsyrk_test
   call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_device)) ! device pointer mode
 
   hC = (0.0, 0.0)
+  expected = alpha * matmul(hA, transpose(hA)) + beta * hC
 
   call hipCheck(hipMalloc(dA, int(n*k,c_size_t) * 16))
   call hipCheck(hipMalloc(dC, int(n*n,c_size_t) * 16))

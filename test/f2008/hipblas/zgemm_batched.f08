@@ -142,6 +142,8 @@ program hip_zgemm_batched
   deallocate(hb)
   deallocate(hc)
   deallocate(hc_exact)
+  deallocate(alpha)
+  deallocate(beta)
 
   write(*,*) "PASSED!"
 

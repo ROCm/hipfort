@@ -33,14 +33,14 @@ program rocblas_zgerc_test
 
   implicit none
 
-  ! A := alpha*x*y**T + A  (rank-1 update). With A = 0 and alpha = 1 the result
-  ! is simply A(i,j) = x(i)*y(j); the data is real-valued so the 'u' and 'c'
-  ! (conjugated) forms agree.
+  ! A := alpha*x*y**H + A  (rank-1 update, y conjugated). With A = 0 and alpha = 1
+  ! the result is A(i,j) = x(i)*conjg(y(j)); y has non-zero imaginary parts so a
+  ! binding that called the unconjugated 'u' form instead would be caught.
   integer, parameter :: m = 3, n = 2
   complex(c_double_complex), target :: alpha = (1.0, 0.0)
 
   complex(c_double_complex), target :: hx(m) = [(1.0, 0.0), (2.0, 0.0), (3.0, 0.0)]
-  complex(c_double_complex), target :: hy(n) = [(10.0, 0.0), (20.0, 0.0)]
+  complex(c_double_complex), target :: hy(n) = [(10.0, 1.0), (20.0, -2.0)]
   complex(c_double_complex), target :: hA(m,n)
   complex(c_double_complex) :: expected(m,n)
 
@@ -58,7 +58,7 @@ program rocblas_zgerc_test
   hA = (0.0, 0.0)
   do j = 1, n
     do i = 1, m
-      expected(i,j) = hx(i) * hy(j)
+      expected(i,j) = hx(i) * conjg(hy(j))
     end do
   end do
 

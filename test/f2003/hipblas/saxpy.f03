@@ -94,6 +94,7 @@ program hip_saxpy
 
   deallocate(x)
   deallocate(y)
+  deallocate(y_exact)
 
   write(*,*) "PASSED!"
 

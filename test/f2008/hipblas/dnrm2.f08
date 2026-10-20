@@ -65,6 +65,8 @@ program hip_dnrm2
   call hipCheck(hipFree(dx))
   call hipblasCheck(hipblasDestroy(handle))
 
+  deallocate(hx)
+
   write(*,*) "PASSED!"
 
 end program hip_dnrm2

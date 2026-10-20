@@ -91,7 +91,7 @@ program hip_ztrsm
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dB))
   call hipblasCheck(hipblasDestroy(handle))
-  deallocate(hA, hB)
+  deallocate(hA, hB, alpha)
   write(*,*) "PASSED!"
 
 end program hip_ztrsm

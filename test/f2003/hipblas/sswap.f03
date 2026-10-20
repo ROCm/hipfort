@@ -88,6 +88,8 @@ program hip_sswap
   
   deallocate(x)
   deallocate(y)
+  deallocate(x_exact)
+  deallocate(y_exact)
   
   write(*,*) "PASSED!"
   
