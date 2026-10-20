@@ -23,7 +23,7 @@
 !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-program hip_dgemm
+program hip_cgemm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -135,4 +135,4 @@ program hip_dgemm
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
 
-end program hip_dgemm
+end program hip_cgemm

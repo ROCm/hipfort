@@ -32,7 +32,7 @@
 ! batches (alpha=1, beta=0) and checks the result.
 !!!!!!!!!!!!!!
 !
-program dgemv_batched
+program rocblas_dgemv_batched_test
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -54,7 +54,7 @@ program dgemv_batched
   real(c_double) :: error
   real(c_double), parameter :: error_max = 10 * epsilon(error_max)
 
-  write(*,"(a)",advance="no") "-- Running test 'rocblas_dgemv_batched' (Fortran 2008 interfaces) - "
+  write(*,"(a)",advance="no") "-- Running test 'DGEMV_BATCHED' (Fortran 2008 interfaces) - "
 
   mbytes = int(M,c_size_t) * int(N,c_size_t) * 8
   vbytes = int(M,c_size_t) * 8
@@ -107,4 +107,4 @@ program dgemv_batched
 
   write(*,*) "PASSED!"
 
-end program dgemv_batched
+end program rocblas_dgemv_batched_test

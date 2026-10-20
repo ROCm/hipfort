@@ -153,7 +153,7 @@ program hipblas_handle_state
      STOP 1
   end if
 
-  ! 8. Unbind before destroying, so no dead stream is left on the handle.
+  ! 8. The stream was unbound in step 6, so it can be destroyed.
   call hipCheck(hipStreamDestroy(stream))
   call hipblasCheck(hipblasDestroy(handle))
 

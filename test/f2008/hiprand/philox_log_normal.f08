@@ -52,7 +52,7 @@ program hiprand_philox_log_normal_test
     call hiprandCheck(hiprandSetPseudoRandomGeneratorSeed(gen, seed))
 
     allocate(hx(N))
-    call hipCheck(hipMalloc(dx, source=hx))
+    call hipCheck(hipMalloc(dx, mold=hx))
 
     ! If x is log-normal with parameters (mean, stddev) then log(x) is
     ! normal with those moments. Log-normal samples are strictly

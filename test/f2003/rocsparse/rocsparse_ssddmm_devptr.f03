@@ -36,7 +36,7 @@
 ! passed directly to the descriptor constructors / sddmm.
 !!!!!!!!!!!!!!/
 !
-program ssddmm
+program ssddmm_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -147,4 +147,4 @@ program ssddmm
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
 
-end program ssddmm
+end program ssddmm_devptr

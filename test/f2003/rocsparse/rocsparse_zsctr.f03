@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse ssctr example (scatter x_val -> y[x_ind], single, Fortran 2003)
+! rocsparse zsctr example (scatter x_val -> y[x_ind], double complex, Fortran 2003)
 ! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Scatters the packed vector x_val into the dense vector y at the sparse index

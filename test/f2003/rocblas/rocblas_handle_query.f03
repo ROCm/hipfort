@@ -141,8 +141,8 @@ program rocblas_handle_query
         STOP 1
     end if
 
-    call hipCheck(hipStreamDestroy(stream))
     call rocblasCheck(rocblas_destroy_handle(handle))
+    call hipCheck(hipStreamDestroy(stream))
 
     write(*,*) "PASSED! stream round-trip ok, pointer modes host/device ok, batch strides: ", astride, bstride
 

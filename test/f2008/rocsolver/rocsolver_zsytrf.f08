@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! zsytrf example (Bunch-Kaufman symmetric factorization, single complex)
+! zsytrf example (Bunch-Kaufman symmetric factorization, double complex)
 ! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/
 !
 ! Factorizes a complex SYMMETRIC matrix (A = A^T, not Hermitian) and checks the

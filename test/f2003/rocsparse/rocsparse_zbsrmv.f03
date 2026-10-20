@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse sbsrmv example (block-sparse matrix-vector multiply, single, Fortran 2003)
+! rocsparse zbsrmv example (block-sparse matrix-vector multiply, double complex, Fortran 2003)
 ! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y for a BSR matrix A. Here A is

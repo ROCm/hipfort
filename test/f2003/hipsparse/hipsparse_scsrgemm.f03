@@ -37,7 +37,7 @@
 ! pointer mode). csrgemm's mat-descr/array args are c_ptr-only.
 !!!!!!!!!!!!!!/
 !
-program scsrgemm
+program hipsparse_scsrgemm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -152,4 +152,4 @@ program scsrgemm
 
   write(*,*) "PASSED!"
 
-end program scsrgemm
+end program hipsparse_scsrgemm

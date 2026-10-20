@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse sbsrmv example (block-sparse matrix-vector multiply, single)
+! rocsparse cbsrmv example (block-sparse matrix-vector multiply, single complex)
 ! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y for a BSR matrix A. Here A is

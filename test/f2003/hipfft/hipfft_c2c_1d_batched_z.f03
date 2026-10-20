@@ -73,7 +73,7 @@ program hipfft_c2c_1d_batched_z
 
   ! NULL inembed/onembed selects the simple contiguous batched layout: each
   ! transform spans N consecutive complex doubles (istride=1, idist=N,
-  ! ostride=1, odist=N). Passing c_loc(n) and c_null_ptr routes to the raw
+  ! ostride=1, odist=N). Passing c_loc(nlen) and c_null_ptr routes to the raw
   ! hipfftPlanMany_ C interface rather than the Fortran array overloads.
   ! Unlike rocFFT, a single plan handle serves both directions; the direction
   ! is supplied at exec time via hipfftExecZ2Z.

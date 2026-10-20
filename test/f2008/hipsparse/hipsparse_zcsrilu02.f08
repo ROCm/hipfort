@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! hipsparse Zcsrilu02 example (incomplete LU, single complex)
+! hipsparse Zcsrilu02 example (incomplete LU, double complex)
 ! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Computes the ILU(0) factorization of a complex tridiagonal matrix in place

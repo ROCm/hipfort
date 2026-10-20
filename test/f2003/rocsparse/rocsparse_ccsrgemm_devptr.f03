@@ -35,7 +35,7 @@
 ! passed directly; host data is moved with hipMemcpy + c_loc.
 !!!!!!!!!!!!!!/
 !
-program ccsrgemm
+program ccsrgemm_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -199,4 +199,4 @@ program ccsrgemm
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
 
-end program ccsrgemm
+end program ccsrgemm_devptr

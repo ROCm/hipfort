@@ -74,7 +74,7 @@ program rocblas_daxpy_test
         hz(i) = n - i
     end do
 
-    ! Transfer data from host to deivce memory
+    ! Transfer data from host to device memory
     call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes, hipMemcpyHostToDevice))
     call hipCheck(hipmemcpy(dy, c_loc(hy(1)), Nbytes, hipMemcpyHostToDevice))
 

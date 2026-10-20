@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse sgthr example (gather y[x_ind] -> x_val, single, Fortran 2003)
+! rocsparse dgthr example (gather y[x_ind] -> x_val, double, Fortran 2003)
 ! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Gathers the entries of a dense vector y at the sparse index set x_ind into the

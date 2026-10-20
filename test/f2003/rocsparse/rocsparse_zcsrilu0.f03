@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse scsrilu0 example (incomplete LU, single, Fortran 2003)
+! rocsparse zcsrilu0 example (incomplete LU, double complex, Fortran 2003)
 ! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes the ILU(0) factorization of a sparse matrix in place

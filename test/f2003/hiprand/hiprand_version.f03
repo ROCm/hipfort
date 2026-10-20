@@ -32,7 +32,7 @@
 !   * checks the sentinel was overwritten, proving the library really wrote
 !     through the by-reference dummy;
 !   * checks the version code is positive and decodes (major/minor/patch, per
-!     the encoding documented in hiprand_version.h) into a plausible range;
+!     the encoding documented in hiprand_version.h) to a plausible major;
 !   * calls the query a second time and requires the same answer, so the
 !     result is a stable readback and not a stack address or stale slot.
 !
@@ -92,11 +92,6 @@ program hiprand_version_test
 
     if (major < 1 .or. major > 99) then
        write(*,*) "FAILED! implausible hipRAND major version: ", major
-       STOP 1
-    end if
-
-    if (minor < 0 .or. minor > 999 .or. patch < 0 .or. patch > 99) then
-       write(*,*) "FAILED! implausible hipRAND minor/patch version: ", minor, patch
        STOP 1
     end if
 

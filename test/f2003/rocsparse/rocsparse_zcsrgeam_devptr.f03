@@ -35,7 +35,7 @@
 ! data is moved with hipMemcpy + c_loc.
 !!!!!!!!!!!!!!/
 !
-program zcsrgeam
+program zcsrgeam_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -188,4 +188,4 @@ program zcsrgeam
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
 
-end program zcsrgeam
+end program zcsrgeam_devptr

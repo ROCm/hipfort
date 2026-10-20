@@ -66,7 +66,7 @@ program rocblas_caxpy_test
         hx(i) = cmplx(i, 0)
         hy(i) = cmplx(N - i, 0)
         hz(i) = cmplx(N - i, 0)
-    eNd do
+    end do
 
     ! Allocate device-side memory
     ! Transfer data from host to device memory

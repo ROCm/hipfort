@@ -34,7 +34,7 @@
 ! NOTE: csr2csc args are c_ptr-only, so device buffers are passed via c_loc(...).
 !!!!!!!!!!!!!!/
 !
-program ccsr2csc
+program hipsparse_ccsr2csc
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -125,4 +125,4 @@ program ccsr2csc
 
   write(*,*) "PASSED!"
 
-end program ccsr2csc
+end program hipsparse_ccsr2csc

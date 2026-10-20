@@ -86,7 +86,7 @@ program hip_sgemv
   call hipCheck(hipMemcpy(dx, c_loc(x(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(y(1)), Nybytes, hipMemcpyHostToDevice))
 
-  call hipCheck(hipblasSgemv(handle,HIPBLAS_OP_N,m,n,d_alpha,da,m,dx,1,d_beta,dy,1))
+  call hipblasCheck(hipblasSgemv(handle,HIPBLAS_OP_N,m,n,d_alpha,da,m,dx,1,d_beta,dy,1))
 
   call hipCheck(hipMemcpy(c_loc(y(1)), dy, Nybytes, hipMemcpyDeviceToHost))
 

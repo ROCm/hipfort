@@ -32,10 +32,10 @@
 ! against a dense host reference (alpha * matmul(A, x_dense) + beta * y).
 !
 ! f2003 style: device buffers are type(c_ptr) allocated by byte count; host data
-! is moved with hipMemcpy + c_loc. alpha/beta are host scalars (by reference).
+! is moved with hipMemcpy + c_loc. alpha/beta are staged in device memory (device pointer mode).
 !!!!!!!!!!!!!!
 !
-program sgemvi
+program sgemvi_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -101,4 +101,4 @@ program sgemvi
   call hipCheck(hipFree(d_alpha))
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
-end program sgemvi
+end program sgemvi_devptr

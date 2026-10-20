@@ -36,7 +36,7 @@
 ! hipMemcpy + c_loc.
 !!!!!!!!!!!!!!/
 !
-program zsptrsv
+program zsptrsv_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -159,4 +159,4 @@ program zsptrsv
   call hipCheck(hipFree(d_alpha))
   write(*,*) "PASSED!"
 
-end program zsptrsv
+end program zsptrsv_devptr

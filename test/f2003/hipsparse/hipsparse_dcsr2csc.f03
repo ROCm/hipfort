@@ -36,7 +36,7 @@
 ! is moved with hipMemcpy + c_loc. csr2csc args are c_ptr-only.
 !!!!!!!!!!!!!!/
 !
-program dcsr2csc
+program hipsparse_dcsr2csc
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -128,4 +128,4 @@ program dcsr2csc
 
   write(*,*) "PASSED!"
 
-end program dcsr2csc
+end program hipsparse_dcsr2csc

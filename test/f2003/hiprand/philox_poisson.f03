@@ -38,13 +38,15 @@ program hiprand_philox_poisson_test
     integer(c_size_t), parameter :: Nbytes = N * 4
     integer(c_int64_t), parameter :: seed = 12345_c_int64_t
     real(c_double), parameter :: lambda = 10.0_c_double
-    real(c_double), parameter :: delta = 0.5_c_double
+    real(c_double), parameter :: delta = 0.1_c_double
+    ! Poisson variance is lambda; allow 5% of lambda, but at least 0.5.
+    real(c_double), parameter :: var_delta = max(0.05_c_double * lambda, 0.5_c_double)
 
     type(c_ptr) :: gen = c_null_ptr
 
     integer(c_int), allocatable, target, dimension(:) :: hx
     type(c_ptr) :: dx = c_null_ptr
-    real(c_double) :: sample_mean
+    real(c_double) :: sample_mean, sample_var
 
     write(*,"(a)",advance="no") "-- Running test 'PHILOX_POISSON' (Fortran 2003 interfaces) - "
 
@@ -54,7 +56,7 @@ program hiprand_philox_poisson_test
     allocate(hx(N))
     call hipCheck(hipMalloc(dx, Nbytes))
 
-    ! Poisson(lambda) samples are unsigned 32-bit integers with mean lambda.
+    ! Poisson(lambda) samples are unsigned 32-bit integers with mean and variance lambda.
     call hiprandCheck(hiprandGeneratePoisson(gen, dx, N, lambda))
     call hipCheck(hipDeviceSynchronize())
     call hipCheck(hipMemcpy(c_loc(hx(1)), dx, Nbytes, hipMemcpyDeviceToHost))
@@ -62,6 +64,11 @@ program hiprand_philox_poisson_test
     sample_mean = real(sum(hx), c_double) / real(N, c_double)
     if (abs(sample_mean - lambda) > delta) then
         write(*,*) "FAILED! mean out of tolerance: ", sample_mean
+        call exit(1)
+    end if
+    sample_var = sum((real(hx, c_double) - sample_mean)**2) / real(N, c_double)
+    if (abs(sample_var - lambda) > var_delta) then
+        write(*,*) "FAILED! variance out of tolerance: ", sample_var
         call exit(1)
     end if
 

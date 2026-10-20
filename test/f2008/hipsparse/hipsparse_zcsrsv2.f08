@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! hipsparse Zcsrsv2 example (sparse triangular solve v2, single complex)
+! hipsparse Zcsrsv2 example (sparse triangular solve v2, double complex)
 ! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Solves the lower-triangular system L*x = alpha*f for x using the legacy

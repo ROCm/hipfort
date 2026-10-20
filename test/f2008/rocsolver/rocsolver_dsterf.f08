@@ -75,7 +75,7 @@ program dsterf
 
   ! Check and output results
   if(hInfo .gt. 0) then
-    write(*,*) "FAILED! ", n, " elements of E did not converge to 0."
+    write(*,*) "FAILED! ", hInfo, " elements of E did not converge to 0."
     call exit(1)
   else
     do i = 1,n

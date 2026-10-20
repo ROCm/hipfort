@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse sgemvi example (dense matrix * sparse vector, single, Fortran 2003)
+! rocsparse dgemvi example (dense matrix * sparse vector, double, Fortran 2003)
 ! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y, where A is a dense m-by-n matrix and x
@@ -32,10 +32,10 @@
 ! against a dense host reference (alpha * matmul(A, x_dense) + beta * y).
 !
 ! f2003 style: device buffers are type(c_ptr) allocated by byte count; host data
-! is moved with hipMemcpy + c_loc. alpha/beta are host scalars (by reference).
+! is moved with hipMemcpy + c_loc. alpha/beta are staged in device memory (device pointer mode).
 !!!!!!!!!!!!!!
 !
-program dgemvi
+program dgemvi_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -101,4 +101,4 @@ program dgemvi
   call hipCheck(hipFree(d_alpha))
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
-end program dgemvi
+end program dgemvi_devptr

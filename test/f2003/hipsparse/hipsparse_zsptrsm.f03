@@ -37,7 +37,7 @@
 ! is moved with hipMemcpy + c_loc. Descriptor/array args are c_ptr-only.
 !!!!!!!!!!!!!!/
 !
-program zsptrsm
+program hipsparse_zsptrsm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -156,4 +156,4 @@ program zsptrsm
 
   write(*,*) "PASSED!"
 
-end program zsptrsm
+end program hipsparse_zsptrsm

@@ -37,7 +37,7 @@
 ! size_t.
 !!!!!!!!!!!!!!/
 !
-program dsptrsm
+program hipsparse_dsptrsm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -147,4 +147,4 @@ program dsptrsm
 
   write(*,*) "PASSED!"
 
-end program dsptrsm
+end program hipsparse_dsptrsm

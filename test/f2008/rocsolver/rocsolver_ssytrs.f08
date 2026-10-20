@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! ssytrs example (solve A*X = B for a symmetric matrix, double)
+! ssytrs example (solve A*X = B for a symmetric matrix, single)
 ! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/
 !
 ! Self-verifying: factorize a symmetric A with sytrf (Bunch-Kaufman), then solve

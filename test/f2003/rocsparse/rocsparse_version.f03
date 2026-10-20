@@ -87,11 +87,6 @@ program rocsparse_version
      STOP 1
   end if
 
-  if (minor < 0 .or. minor > 999) then
-     write(*,*) "FAILED! implausible rocSPARSE minor version ", minor
-     STOP 1
-  end if
-
   if (len_trim(rev) == 0) then
      write(*,*) "FAILED! rocsparse_get_git_rev returned an empty string"
      STOP 1

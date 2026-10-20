@@ -36,7 +36,7 @@
 ! passed via c_loc(...). nnzTotal is a host int (hipSPARSE default pointer mode).
 !!!!!!!!!!!!!!/
 !
-program scsrgemm
+program hipsparse_scsrgemm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -153,4 +153,4 @@ program scsrgemm
 
   write(*,*) "PASSED!"
 
-end program scsrgemm
+end program hipsparse_scsrgemm

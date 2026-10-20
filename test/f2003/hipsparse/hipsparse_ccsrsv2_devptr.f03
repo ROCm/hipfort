@@ -38,7 +38,7 @@
 ! is moved with hipMemcpy + c_loc.
 !!!!!!!!!!!!!!
 !
-program hipsparse_ccsrsv2
+program hipsparse_ccsrsv2_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -116,4 +116,4 @@ program hipsparse_ccsrsv2
   call hipCheck(hipFree(dF)); call hipCheck(hipFree(dX)); call hipCheck(hipFree(dBuf))
   call hipCheck(hipFree(d_alpha))
   write(*,*) "PASSED!"
-end program hipsparse_ccsrsv2
+end program hipsparse_ccsrsv2_devptr

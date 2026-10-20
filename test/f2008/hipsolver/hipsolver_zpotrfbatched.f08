@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! hipsolver cpotrfBatched example (batched Cholesky factorization, single complex)
+! hipsolver zpotrfBatched example (batched Cholesky factorization, double complex)
 ! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Factorizes a batch of Hermitian positive-definite matrices. The batched API

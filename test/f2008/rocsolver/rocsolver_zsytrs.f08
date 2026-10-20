@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! zsytrs example (solve A*X = B for a symmetric matrix, single complex)
+! zsytrs example (solve A*X = B for a symmetric matrix, double complex)
 ! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/
 !
 ! Self-verifying: factorize a complex SYMMETRIC A (A = A^T) with sytrf, then solve

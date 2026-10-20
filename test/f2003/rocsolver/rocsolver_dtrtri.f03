@@ -29,7 +29,7 @@
 !
 ! Inverts an upper-triangular matrix in place and checks U * U^-1 == I.
 ! rocSOLVER writes `info` to DEVICE memory, so it is backed by a device
-! allocation and passed as c_loc(dInfo).
+! allocation and passed as a device pointer.
 !!!!!!!!!!!!!!
 !
 program dtrtri

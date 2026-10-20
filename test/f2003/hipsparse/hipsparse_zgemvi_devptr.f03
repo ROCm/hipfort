@@ -35,7 +35,7 @@
 ! is moved with hipMemcpy + c_loc. alpha/beta are host scalars (host pointer mode).
 !!!!!!!!!!!!!!
 !
-program hipsparse_zgemvi
+program hipsparse_zgemvi_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -110,4 +110,4 @@ program hipsparse_zgemvi
   call hipCheck(hipFree(d_alpha))
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
-end program hipsparse_zgemvi
+end program hipsparse_zgemvi_devptr

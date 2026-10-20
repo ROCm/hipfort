@@ -47,7 +47,6 @@ program fortran_hip
   integer, parameter :: bytes_per_element = 8 !double precision
   integer(c_size_t), parameter :: Nbytes = N*bytes_per_element
 
-  ! Plain real should be equivalent to float
   double precision,allocatable,target,dimension(:) :: a, b, out
   double precision :: error
   double precision, parameter :: error_max = 1.0d-10

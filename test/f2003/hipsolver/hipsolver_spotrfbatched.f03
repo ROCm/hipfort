@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! hipsolver dpotrfBatched example (batched Cholesky factorization, Fortran 2003)
+! hipsolver spotrfBatched example (batched Cholesky factorization, Fortran 2003)
 ! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Factorizes a batch of SPD matrices. The batched API takes A as an array of

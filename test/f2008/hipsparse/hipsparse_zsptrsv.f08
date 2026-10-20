@@ -36,7 +36,7 @@
 ! size_t.
 !!!!!!!!!!!!!!/
 !
-program zsptrsv
+program hipsparse_zsptrsv
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -146,4 +146,4 @@ program zsptrsv
 
   write(*,*) "PASSED!"
 
-end program zsptrsv
+end program hipsparse_zsptrsv

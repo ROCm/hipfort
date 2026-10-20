@@ -35,7 +35,7 @@
 ! is moved with hipMemcpy + c_loc.
 !!!!!!!!!!!!!!
 !
-program hipsparse_cspmv
+program hipsparse_cspmv_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -126,4 +126,4 @@ program hipsparse_cspmv
   call hipCheck(hipFree(d_alpha))
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
-end program hipsparse_cspmv
+end program hipsparse_cspmv_devptr

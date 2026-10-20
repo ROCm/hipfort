@@ -48,7 +48,7 @@ program test_rocsolver_zhegvdx
         integer(i32)              :: lwork, liwork, lrwork, lwork_gpu
         complex(r64), allocatable :: work(:)
         real(r64), allocatable    :: rwork(:)
-        integer(r64), allocatable :: iwork(:), ifail(:)
+        integer(i32), allocatable :: iwork(:)
         integer(i32) :: info, cerr, i, j
         integer(i32), target :: m
         real(r64), parameter      :: rtol = 1.0e-6_r64
@@ -110,7 +110,7 @@ program test_rocsolver_zhegvdx
         write(*,*) "Eigenvalues :",  W(:)
         write(*,*) "Eigenvector 0 ", A_lapack(:,1)
         write(*,*) "Eigenvector 1 ", A_lapack(:,2)
-        write(*,*) "Eigenvector 3 ", A_lapack(:,3)
+        write(*,*) "Eigenvector 2 ", A_lapack(:,3)
 
         call move_alloc(W, Wref)
         call move_alloc(A_lapack, Zref)
@@ -137,7 +137,7 @@ program test_rocsolver_zhegvdx
 
         ! NOTE: it will be better to get the stream of the rocblas handler and sync that instead of the whole device
         cerr = hipDeviceSynchronize()
-        if (cerr /= rocblas_status_success) error stop "hipDeviceSynchronize failed"
+        if (cerr /= hipSuccess) error stop "hipDeviceSynchronize failed"
         !$omp end target data
         !$omp end target data
 
@@ -157,7 +157,7 @@ program test_rocsolver_zhegvdx
 
         !$omp target exit data map(delete: A_rocsolver, B_rocsolver)
 
-        deallocate(A_lapack, B_lapack)
+        deallocate(B_lapack)
 
         write(*,*) "###CHECKS####"
         if (expected_m /= m) then
@@ -177,6 +177,8 @@ program test_rocsolver_zhegvdx
         else
             write(*,*) "Correct: eigenvectors"
         end if
+
+        deallocate(Zref)
 
 contains
 

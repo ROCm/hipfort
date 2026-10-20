@@ -36,13 +36,14 @@ program hiprand_mtgp32_uniform_test
 
     integer(c_size_t), parameter :: N = 65536
     integer(c_int64_t), parameter :: seed = 12345_c_int64_t
-    real(c_float), parameter :: expected_mean = 0.5, delta = 0.1
+    real(c_float), parameter :: expected_mean = 0.5, delta = 0.01
+    real(c_float), parameter :: expected_std = 0.28867513 ! 1/sqrt(12)
 
     type(c_ptr) :: gen = c_null_ptr
 
     real(c_float), allocatable, target, dimension(:) :: hx
     real(c_float), pointer, dimension(:) :: dx
-    real(c_float) :: sample_mean
+    real(c_float) :: sample_mean, sample_std
 
     write(*,"(a)",advance="no") "-- Running test 'MTGP32_UNIFORM' (Fortran 2008 interfaces) - "
 
@@ -50,16 +51,25 @@ program hiprand_mtgp32_uniform_test
     call hiprandCheck(hiprandSetPseudoRandomGeneratorSeed(gen, seed))
 
     allocate(hx(N))
-    call hipCheck(hipMalloc(dx, source=hx))
+    call hipCheck(hipMalloc(dx, mold=hx))
 
-    ! Uniform (0,1] samples have mean 1/2.
+    ! Uniform (0,1] samples have mean 1/2 and stddev 1/sqrt(12).
     call hiprandCheck(hiprandGenerateUniform(gen, c_loc(dx(1)), N))
     call hipCheck(hipDeviceSynchronize())
     call hipCheck(hipMemcpy(hx, dx, hipMemcpyDeviceToHost))
 
+    if (any(hx <= 0) .or. any(hx > 1)) then
+        write(*,*) "FAILED! value outside (0,1]: ", minval(hx), maxval(hx)
+        call exit(1)
+    end if
     sample_mean = sum(hx) / real(N, kind(sample_mean))
     if (abs(sample_mean - expected_mean) > delta) then
         write(*,*) "FAILED! mean out of tolerance: ", sample_mean
+        call exit(1)
+    end if
+    sample_std = sqrt(sum((hx - expected_mean)**2) / real(N, kind(sample_std)))
+    if (abs(sample_std - expected_std) > delta) then
+        write(*,*) "FAILED! stddev out of tolerance: ", sample_std
         call exit(1)
     end if
 

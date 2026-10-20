@@ -36,7 +36,7 @@
 ! with hipMemcpy + c_loc.
 !!!!!!!!!!!!!!/
 !
-program dspmv
+program dspmv_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -151,4 +151,4 @@ program dspmv
   call hipCheck(hipFree(d_beta))
   write(*,*) "PASSED!"
 
-end program dspmv
+end program dspmv_devptr

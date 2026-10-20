@@ -57,7 +57,7 @@ program rocblas_dgemv_test
 
   write(*,"(a)",advance="no") "-- Running test 'DGEMV_devptr' (Fortran 2003 interfaces) - "
 
-  ! Create rocblas handle and set host pointer mode for host alpha/beta
+  ! Create rocblas handle and set device pointer mode for device alpha/beta
   call rocblasCheck(rocblas_create_handle(handle))
   
   ! Stage the scalars in device memory for device pointer mode

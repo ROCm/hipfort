@@ -35,13 +35,14 @@ program rocrand_xorwow_uniform_double_test
 
     integer(c_size_t), parameter :: N = 65536
     integer(c_int64_t), parameter :: seed = 12345_c_int64_t
-    real(c_double), parameter :: expected_mean = 0.5_c_double, delta = 0.1_c_double
+    real(c_double), parameter :: expected_mean = 0.5_c_double, delta = 0.01_c_double
+    real(c_double), parameter :: expected_std = 0.28867513459481287_c_double ! 1/sqrt(12)
 
     type(c_ptr) :: gen = c_null_ptr
 
     real(c_double), allocatable, target, dimension(:) :: hx
     real(c_double), pointer, dimension(:) :: dx
-    real(c_double) :: sample_mean
+    real(c_double) :: sample_mean, sample_std
 
     write(*,"(a)",advance="no") "-- Running test 'XORWOW_UNIFORM_DOUBLE' (Fortran 2008 interfaces) - "
 
@@ -51,7 +52,7 @@ program rocrand_xorwow_uniform_double_test
 
     ! Allocate host- and device-side memory
     allocate(hx(N))
-    call hipCheck(hipMalloc(dx, source=hx))
+    call hipCheck(hipMalloc(dx, mold=hx))
 
     ! Generate uniformly distributed doubles on the device.
     ! output_data is type(c_ptr); take the address of the device pointer target.
@@ -61,10 +62,19 @@ program rocrand_xorwow_uniform_double_test
     ! Transfer data back to host memory
     call hipCheck(hipMemcpy(hx, dx, hipMemcpyDeviceToHost))
 
-    ! Verification: sample mean of (0,1] output should be near 0.5
+    ! Verification: output in (0,1], with mean 1/2 and stddev 1/sqrt(12)
+    if (any(hx <= 0) .or. any(hx > 1)) then
+        write(*,*) "FAILED! value outside (0,1]: ", minval(hx), maxval(hx)
+        call exit(1)
+    end if
     sample_mean = sum(hx) / real(N, c_double)
     if (abs(sample_mean - expected_mean) > delta) then
         write(*,*) "FAILED! mean out of tolerance: ", sample_mean
+        call exit(1)
+    end if
+    sample_std = sqrt(sum((hx - expected_mean)**2) / real(N, c_double))
+    if (abs(sample_std - expected_std) > delta) then
+        write(*,*) "FAILED! stddev out of tolerance: ", sample_std
         call exit(1)
     end if
 

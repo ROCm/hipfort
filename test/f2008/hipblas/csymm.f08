@@ -61,7 +61,7 @@ program hip_csymm
   call hipCheck(hipMemcpy(dC, hC, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasCsymm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, ld, ld, &
-       alpha, dA, size(dA,1), dB, size(dB,1), beta, dC, size(dA,1)))
+       alpha, dA, size(dA,1), dB, size(dB,1), beta, dC, size(dC,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

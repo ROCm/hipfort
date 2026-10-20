@@ -24,7 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! hipsparse Dcsrsv2 example (sparse triangular solve v2, single, Fortran 2003)
+! hipsparse Dcsrsv2 example (sparse triangular solve v2, double, Fortran 2003)
 ! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Solves the lower-triangular system L*x = alpha*f for x using the legacy
@@ -40,7 +40,7 @@
 ! is moved with hipMemcpy + c_loc.
 !!!!!!!!!!!!!!
 !
-program hipsparse_dcsrsv2
+program hipsparse_dcsrsv2_devptr
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -112,4 +112,4 @@ program hipsparse_dcsrsv2
   call hipCheck(hipFree(dF)); call hipCheck(hipFree(dX)); call hipCheck(hipFree(dBuf))
   call hipCheck(hipFree(d_alpha))
   write(*,*) "PASSED!"
-end program hipsparse_dcsrsv2
+end program hipsparse_dcsrsv2_devptr

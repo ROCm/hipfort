@@ -36,7 +36,7 @@
 ! size_t.
 !!!!!!!!!!!!!!/
 !
-program csptrsv
+program hipsparse_csptrsv
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -142,4 +142,4 @@ program csptrsv
 
   write(*,*) "PASSED!"
 
-end program csptrsv
+end program hipsparse_csptrsv
