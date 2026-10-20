@@ -59,6 +59,7 @@ program cpotrs
   complex(c_float_complex), pointer :: dA(:,:)
   complex(c_float_complex), pointer :: dB(:,:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -81,6 +82,10 @@ program cpotrs
 
   ! Factorize (Cholesky), then solve A*X = B in place (B overwritten with solution)
   call rocsolverCheck(rocsolver_cpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
   call rocsolverCheck(rocsolver_cpotrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dB, ldb))
 
   ! Copy result from device to host

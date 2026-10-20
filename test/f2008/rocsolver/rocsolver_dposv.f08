@@ -55,6 +55,7 @@ program dposv
   real(c_double), pointer :: dA(:,:)   ! GPU buffer for A
   real(c_double), pointer :: dB(:,:)   ! GPU buffer for B (holds X on output)
   integer(c_int), pointer :: dInfo(:)  ! GPU buffer for info
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -73,6 +74,10 @@ program dposv
   ! A/B passed as native Fortran device arrays; info as a device pointer.
   call rocsolverCheck(rocsolver_dposv(handle, rocblas_fill_upper, n, nrhs, dA, lda, dB, ldb, &
                                       c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))

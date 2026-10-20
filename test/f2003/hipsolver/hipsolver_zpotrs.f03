@@ -67,6 +67,7 @@ program zpotrs
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dA, dB, dInfo, dWork
   integer(c_int), pointer :: dInfo_p(:)
+  integer(c_int), target :: hInfo
   integer(c_int) :: lwork_f, lwork_s, lwork
 
   real(c_double) :: error
@@ -97,8 +98,18 @@ program zpotrs
 
   ! Factorize A = L*L**H, then solve A*X = B in place
   call hipsolverCheck(hipsolverZpotrf(handle, HIPSOLVER_FILL_MODE_LOWER, N, dA, lda, dWork, lwork, c_loc(dInfo_p(1))))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! potrf info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
   call hipsolverCheck(hipsolverZpotrs(handle, HIPSOLVER_FILL_MODE_LOWER, N, nrhs, dA, lda, dB, ldb, &
        dWork, lwork, c_loc(dInfo_p(1))))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! potrs info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(c_loc(hB(1,1)), dB, size_B * 16, hipMemcpyDeviceToHost))

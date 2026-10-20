@@ -65,6 +65,7 @@ program dsyevj
   type(c_ptr) :: dW
   type(c_ptr) :: dResidual
   type(c_ptr) :: dNsweeps
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dInfo
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -92,6 +93,10 @@ program dsyevj
   ! Compute eigenvalues and eigenvectors (A overwritten with eigenvectors)
   call rocsolverCheck(rocsolver_dsyevj(handle, rocblas_esort_ascending, rocblas_evect_original, &
        rocblas_fill_upper, N, dA, lda, abstol, dResidual, max_sweeps, dNsweeps, dW, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! dsyevj info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))
@@ -108,6 +113,14 @@ program dsyevj
             call exit(1)
         end if
     end do
+  end do
+
+  ! Each eigenvector must be normalised (||v|| = 1), which v = 0 would fail
+  do k = 1,N
+    error = abs(sqrt(sum(abs(hA(:,k))**2)) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! Eigenvector not normalised! Error = ", error, " eigenvector ", k; call exit(1)
+    end if
   end do
 
   ! Clean up

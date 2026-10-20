@@ -31,6 +31,7 @@
 ! the full spectrum, so nev returns N and A is overwritten with the eigenvectors.
 ! Workspace via bufferSize; nev is a host integer, devInfo is device-backed.
 ! Self-verifying: A0*v_k = lambda_k * B0*v_k.
+! Also checks devInfo = 0 and the B-normalisation v_k**T * B0 * v_k = 1.
 !!!!!!!!!!!!!!
 !
 program hipsolver_ssygvdx
@@ -56,8 +57,9 @@ program hipsolver_ssygvdx
   integer(c_int), pointer :: dInfo(:)
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
+  integer(c_int) :: hInfo(1)
 
-  real(c_float) :: error
+  real(c_float) :: error, vBv
   real(c_float), parameter :: error_max = 1.0e-5
 
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_ssygvdx' (Fortran 2008 interfaces) - "
@@ -83,6 +85,11 @@ program hipsolver_ssygvdx
 
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hW, dW, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   if (hNev /= N) then
     write(*,*) "FAILED! nev = ", hNev, " expected ", N; call exit(1)
@@ -97,6 +104,12 @@ program hipsolver_ssygvdx
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " eigenpair ", k; call exit(1)
         end if
     end do
+    ! B-normalisation (itype 1): v_k**T * B0 * v_k = 1
+    vBv = real(dot_product(hA(:,k), matmul(hB0, hA(:,k))), kind(vBv))
+    error = abs(vBv - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! Eigenvector not B-normalised! v**T*B*v = ", vBv, " eigenpair ", k; call exit(1)
+    end if
   end do
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dB)); call hipCheck(hipFree(dW))

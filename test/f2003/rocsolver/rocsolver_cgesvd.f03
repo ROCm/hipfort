@@ -75,6 +75,7 @@ program cgesvd
   type(c_ptr) :: dU
   type(c_ptr) :: dV
   type(c_ptr) :: dE
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dInfo
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -104,6 +105,10 @@ program cgesvd
   ! Compute the full SVD on the device
   call rocsolverCheck(rocsolver_cgesvd(handle, rocblas_svect_all, rocblas_svect_all, M, N, dA, lda, &
                                  dS, dU, ldu, dV, ldv, dE, rocblas_outofplace, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! cgesvd info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   ! Copy factors back to host
   call hipCheck(hipMemcpy(c_loc(hS(1)), dS, size_S * 4, hipMemcpyDeviceToHost))

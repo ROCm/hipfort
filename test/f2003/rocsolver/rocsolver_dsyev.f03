@@ -57,6 +57,7 @@ program dsyev
   integer(c_size_t) :: size_D = n
   integer(c_size_t) :: size_E = n
 
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dA, dD, dE, dInfo
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -80,6 +81,10 @@ program dsyev
   ! Device buffers passed as type(c_ptr) (resolves to the raw bind(c) interface).
   call rocsolverCheck(rocsolver_dsyev(handle, rocblas_evect_none, rocblas_fill_lower, n, dA, lda, &
                                       dD, dE, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! dsyev info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hD(1)), dD, size_D * 8, hipMemcpyDeviceToHost))

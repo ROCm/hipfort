@@ -60,6 +60,7 @@ program dgetrf
 
   type(c_ptr) :: dA     ! GPU buffer for A
   type(c_ptr) :: dIpiv  ! GPU buffer for pivots
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dInfo  ! GPU buffer for info (rocSOLVER writes to device)
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -82,6 +83,10 @@ program dgetrf
 
   ! Compute the LU factorization on the device
   call rocsolverCheck(rocsolver_dgetrf(handle, M, N, dA, lda, dIpiv, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! dgetrf info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))

@@ -46,6 +46,7 @@ program hipsolver_zgesvd
   integer(c_size_t) :: szA = M*N, szS = mn, szU = M*M, szV = N*N, szR = mn
   real(c_double) :: frob, ssum, error
   real(c_double), parameter :: rtol = 1.0d-10
+  integer(c_int), target :: hInfo
   integer :: i
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_zgesvd' (Fortran 2008 interfaces) - "
   call hipsolverCheck(hipsolverCreate(handle))
@@ -60,6 +61,11 @@ program hipsolver_zgesvd
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 16, 1_c_size_t)))
   call hipsolverCheck(hipsolverZgesvd(handle, 'N', 'N', M, N, dA, lda, dS, &
                                       dU, ldu, dV, ldv, dWork, lwork, dRwork, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+     write(*,*) "FAILED! info = ", hInfo, " (expected 0)"
+     call exit(1)
+  end if
   call hipCheck(hipMemcpy(c_loc(hS(1)), dS, szS * 8, hipMemcpyDeviceToHost))
   frob = 1.0 + 9.0 + 4.0 + 16.0
   ssum = 0.0

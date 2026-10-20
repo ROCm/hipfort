@@ -57,6 +57,7 @@ program zheev
   real(c_double), pointer :: dD(:)
   real(c_double), pointer :: dE(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle
 
@@ -77,6 +78,10 @@ program zheev
 
   call rocsolverCheck(rocsolver_zheev(handle, rocblas_evect_none, rocblas_fill_upper, N, dA, lda, &
                                 dD, dE, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
 

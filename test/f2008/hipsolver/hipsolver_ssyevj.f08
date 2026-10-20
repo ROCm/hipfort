@@ -28,7 +28,7 @@
 ! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: with jobz=vector, A is overwritten with the eigenvectors (as
-! columns) and W holds the eigenvalues. We confirm A0*v_k = lambda_k*v_k.
+! columns) and W holds the eigenvalues. We confirm A0*v_k = lambda_k*v_k and ||v_k|| = 1.
 !
 ! syevj has no generated array-pointer overload, so A and W are passed to the
 ! generic interface via c_loc of their device pointers.
@@ -58,6 +58,7 @@ program ssyevj
   real(c_float), pointer :: dA(:,:)
   real(c_float), pointer :: dW(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
   type(c_ptr) :: dWork
   integer(c_int) :: lwork
 
@@ -88,6 +89,11 @@ program ssyevj
   ! Copy results back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hW, dW, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+     write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"
+     call exit(1)
+  end if
 
   ! Verify A0 * v_k = lambda_k * v_k for each eigenpair
   do k = 1,N
@@ -100,6 +106,15 @@ program ssyevj
             call exit(1)
         end if
     end do
+  end do
+
+  ! Each returned eigenvector must have unit 2-norm
+  do k = 1,N
+    error = abs(sqrt(sum(abs(hA(:,k))**2)) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! eigenvector ", k, " has norm ", sqrt(sum(abs(hA(:,k))**2)), " expected 1"
+        call exit(1)
+    end if
   end do
 
   ! Clean up

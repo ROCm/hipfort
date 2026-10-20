@@ -59,6 +59,7 @@ program spotrf
 
   real(c_float), pointer :: dA(:,:)     ! GPU buffer for A
   integer(c_int), pointer :: dInfo(:)   ! GPU buffer for info (rocSOLVER writes to device)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -77,6 +78,10 @@ program spotrf
 
   ! Compute the Cholesky factorization on the device (upper triangle)
   call rocsolverCheck(rocsolver_spotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

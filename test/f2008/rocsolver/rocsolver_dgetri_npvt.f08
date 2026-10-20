@@ -41,6 +41,7 @@ program dgetri_npvt
   real(c_double) :: hAinv(3,3)
   real(c_double), pointer :: dA(:,:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
   type(c_ptr) :: handle
   integer :: i, j, k
   real(c_double) :: prod, error
@@ -50,7 +51,15 @@ program dgetri_npvt
   call hipCheck(hipMalloc(dInfo, 1))
   call rocblasCheck(rocblas_create_handle(handle))
   call rocsolverCheck(rocsolver_dgetrf_npvt(handle, N, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
   call rocsolverCheck(rocsolver_dgetri_npvt(handle, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
   call hipCheck(hipMemcpy(hAinv, dA, hipMemcpyDeviceToHost))
   do j = 1, N
      do i = 1, N

@@ -58,6 +58,7 @@ program dsyev
   real(c_double), pointer :: dD(:)     ! GPU buffer for the eigenvalues
   real(c_double), pointer :: dE(:)     ! GPU workspace
   integer(c_int), pointer :: dInfo(:)  ! GPU buffer for info
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -79,6 +80,10 @@ program dsyev
   ! Eigenvalues only (rocblas_evect_none); A/D/E as native arrays, info device.
   call rocsolverCheck(rocsolver_dsyev(handle, rocblas_evect_none, rocblas_fill_lower, n, dA, lda, &
                                       dD, dE, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))

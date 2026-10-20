@@ -61,6 +61,7 @@ program dgetrs
   real(c_double), pointer :: dB(:,:)
   integer(c_int), pointer :: dIpiv(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -83,6 +84,10 @@ program dgetrs
 
   ! Factorize, then solve A*X = B in place (B is overwritten with the solution)
   call rocsolverCheck(rocsolver_dgetrf(handle, N, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
   call rocsolverCheck(rocsolver_dgetrs(handle, rocblas_operation_none, N, nrhs, dA, lda, dIpiv, dB, ldb))
 
   ! Copy result from device to host

@@ -56,6 +56,7 @@ program dsyevdx
   real(c_double), pointer :: dA(:,:), dZ(:,:)
   real(c_double), pointer :: dW(:)
   integer(c_int), pointer :: dNev(:), dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle
 
@@ -77,6 +78,10 @@ program dsyevdx
   call rocsolverCheck(rocsolver_dsyevdx(handle, rocblas_evect_original, rocblas_erange_index, &
        rocblas_fill_upper, N, c_loc(dA(1,1)), lda, 0.0d0, 0.0d0, 1, N, c_loc(dNev(1)), &
        c_loc(dW(1)), c_loc(dZ(1,1)), ldz, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(hNev, dNev(1), hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hW, dW, hipMemcpyDeviceToHost))
@@ -95,6 +100,11 @@ program dsyevdx
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " eigenpair ", k; call exit(1)
         end if
     end do
+    ! Eigenvectors are normalised: ||v_k|| = 1
+    error = abs(sqrt(sum(abs(hZ(:,k))**2)) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! ||v|| - 1 = ", error, " eigenvector ", k; call exit(1)
+    end if
   end do
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dW)); call hipCheck(hipFree(dZ))

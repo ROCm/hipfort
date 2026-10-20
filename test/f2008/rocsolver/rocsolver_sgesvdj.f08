@@ -70,6 +70,7 @@ program sgesvdj
   real(c_float), pointer :: dResidual(:)
   integer(c_int), pointer :: dNsweeps(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -96,6 +97,10 @@ program sgesvdj
   call rocsolverCheck(rocsolver_sgesvdj(handle, rocblas_svect_singular, rocblas_svect_singular, &
        M, N, c_loc(dA(1,1)), lda, abstol, c_loc(dResidual(1)), max_sweeps, c_loc(dNsweeps(1)), &
        c_loc(dS(1)), c_loc(dU(1,1)), ldu, c_loc(dV(1,1)), ldv, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hS, dS, hipMemcpyDeviceToHost))

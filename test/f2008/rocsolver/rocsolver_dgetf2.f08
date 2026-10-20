@@ -55,6 +55,7 @@ program dgetf2
   real(c_double), pointer :: dA(:,:)
   integer(c_int), pointer :: dIpiv(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle
 
@@ -70,6 +71,10 @@ program dgetf2
   call rocblasCheck(rocblas_create_handle(handle))
 
   call rocsolverCheck(rocsolver_dgetf2(handle, M, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hIpiv, dIpiv, hipMemcpyDeviceToHost))
