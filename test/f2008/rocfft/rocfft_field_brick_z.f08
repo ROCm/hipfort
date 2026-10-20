@@ -74,9 +74,10 @@ program rocfft_field_brick_z
 
   ! Mandatory guard: need at least 2 GPUs
   call hipCheck(hipGetDeviceCount(ndev))
+  ! Exit 77, which CTest reports as skipped: nothing was checked.
   if (ndev < 2_c_int) then
     write(*,*) "SKIPPED (requires 2 GPUs)"
-    stop
+    stop 77
   end if
 
   ! The field/brick API is marked experimental in the rocFFT headers.

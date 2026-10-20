@@ -27,12 +27,15 @@ program test_hipfft
   use iso_c_binding
   use hipfort_hipfft
   use hipfort_hipfft_enums
+  use hipfort_hipfft_types
   implicit none
   logical :: never
   type(c_ptr) :: v0
   integer(c_int) :: v1
   real(c_double) :: v2
   integer(c_int64_t) :: v3
+  integer(c_size_t) :: v4
+  type(hipLibXtDesc) :: v5
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
@@ -74,6 +77,26 @@ program test_hipfft
     if (never) v1 = hipfftDestroy_(v0)
     if (never) v1 = hipfftGetVersion_(v0)
     if (never) v1 = hipfftGetProperty_(v1, v0)
+#ifndef USE_CUDA_NAMES
+    if (never) v1 = hipfftXtSetCallback_(v0, v0, v1, v0)
+    if (never) v1 = hipfftXtClearCallback_(v0, v1)
+    if (never) v1 = hipfftXtSetCallbackSharedSize_(v0, v1, v4)
+    if (never) v1 = hipfftXtSetJITCallback_(v0, v0, v0, v4, v1, v0)
+    if (never) v1 = hipfftXtMakePlanMany_(v0, v1, v0, v0, v3, v3, v1, v0, v3, v3, v1, v3, v0, v1)
+    if (never) v1 = hipfftXtGetSizeMany_(v0, v1, v0, v0, v3, v3, v1, v0, v3, v3, v1, v3, v0, v1)
+    if (never) v1 = hipfftXtExec_(v0, v0, v0, v1)
+    if (never) v1 = hipfftXtSetGPUs_(v0, v1, v0)
+    if (never) v1 = hipfftXtMalloc_(v0, v0, v1)
+    if (never) v1 = hipfftXtMemcpy_(v0, v0, v0, v1)
+    if (never) v1 = hipfftXtFree_(v5)
+    if (never) v1 = hipfftXtExecDescriptorC2C_(v0, v5, v5, v1)
+    if (never) v1 = hipfftXtExecDescriptorR2C_(v0, v5, v5)
+    if (never) v1 = hipfftXtExecDescriptorC2R_(v0, v5, v5)
+    if (never) v1 = hipfftXtExecDescriptorZ2Z_(v0, v5, v5, v1)
+    if (never) v1 = hipfftXtExecDescriptorD2Z_(v0, v5, v5)
+    if (never) v1 = hipfftXtExecDescriptorZ2D_(v0, v5, v5)
+    if (never) v1 = hipfftXtExecDescriptor_(v0, v5, v5, v1)
+#endif
 
   write(*,"(a)") "-- test_hipfft (bind(C) symbols): PASSED (compile+link only)!"
 end program test_hipfft

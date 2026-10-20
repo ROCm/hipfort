@@ -64,10 +64,54 @@ module hipfort_hipfft_enums
     enumerator :: HIPFFT_PATCH_LEVEL = 2
   end enum
 
+  ! hiplibFormat_t
+  enum, bind(c)
+    enumerator :: HIPLIB_FORMAT_HIPFFT = 0
+    enumerator :: HIPLIB_FORMAT_UNDEFINED = 1
+  end enum
+
+  ! hipfftXtCopyType_t
+  enum, bind(c)
+    enumerator :: HIPFFT_COPY_HOST_TO_DEVICE = 0
+    enumerator :: HIPFFT_COPY_DEVICE_TO_HOST = 1
+    enumerator :: HIPFFT_COPY_DEVICE_TO_DEVICE = 2
+    enumerator :: HIPFFT_COPY_UNDEFINED = 3
+  end enum
+
+  ! hipfftXtCallbackType_t
+  enum, bind(c)
+    enumerator :: HIPFFT_CB_LD_COMPLEX = 0
+    enumerator :: HIPFFT_CB_LD_COMPLEX_DOUBLE = 1
+    enumerator :: HIPFFT_CB_LD_REAL = 2
+    enumerator :: HIPFFT_CB_LD_REAL_DOUBLE = 3
+    enumerator :: HIPFFT_CB_ST_COMPLEX = 4
+    enumerator :: HIPFFT_CB_ST_COMPLEX_DOUBLE = 5
+    enumerator :: HIPFFT_CB_ST_REAL = 6
+    enumerator :: HIPFFT_CB_ST_REAL_DOUBLE = 7
+    enumerator :: HIPFFT_CB_UNDEFINED = 8
+  end enum
+
+  ! hipfftXtSubFormat_t
+  enum, bind(c)
+    enumerator :: HIPFFT_XT_FORMAT_INPUT = 0
+    enumerator :: HIPFFT_XT_FORMAT_OUTPUT = 1
+    enumerator :: HIPFFT_XT_FORMAT_INPLACE = 2
+    enumerator :: HIPFFT_XT_FORMAT_INPLACE_SHUFFLED = 3
+    enumerator :: HIPFFT_XT_FORMAT_1D_INPUT_SHUFFLED = 4
+    enumerator :: HIPFFT_FORMAT_UNDEFINED = 5
+  end enum
+
+  ! hipfftMpCommType_t
+  enum, bind(c)
+    enumerator :: HIPFFT_COMM_MPI = 0
+    enumerator :: HIPFFT_COMM_NONE = 1
+  end enum
+
   integer(c_int), parameter :: hipfftVersionMajor = 1
   integer(c_int), parameter :: hipfftVersionMinor = 0
   integer(c_int), parameter :: hipfftVersionPatch = 26
   integer(c_int), parameter :: HIPFFT_FORWARD = -1
   integer(c_int), parameter :: HIPFFT_BACKWARD = 1
+  integer(c_int), parameter :: MAX_HIP_DESCRIPTOR_GPUS = 64
 
 end module hipfort_hipfft_enums

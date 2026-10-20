@@ -163,6 +163,9 @@ if(BUILD_TESTING)
     f2008/hipsparse/hipsparse_zcsrsv2
     f2008/hipsparse/hipsparse_zgthr
     f2008/hipsparse/hipsparse_zsctr
+    # hipFFT Xt API: no cufftXt twin mapped yet, so not bound under USE_CUDA_NAMES.
+    f2003/hipfft/hipfft_xt_descriptor_z
+    f2003/hipfft/hipfft_xt_makeplanmany_c
     # HIP runtime
     f2003/hip/device_management              # hipDeviceTotalMem typed form (driver API: c_ptr form only)
     f2003/hip/device_properties              # hipDeviceProp_t%clockRate (gone from CUDA 13)
@@ -509,6 +512,14 @@ if(BUILD_TESTING)
     hipfort_add_test(hipfft hipfft_setstream_z f2008)
     hipfort_add_test(hipfft hipfft_version f2003)
     hipfort_add_test(hipfft hipfft_version f2008)
+    # The Xt API: a hipDataType plan on one GPU, and multi-GPU descriptors.
+    hipfort_add_test(hipfft hipfft_xt_makeplanmany_c f2003)
+    hipfort_add_test(hipfft hipfft_xt_descriptor_z f2003)
+    # Needs two visible GPUs, else exits 77: reported as skipped, not passed.
+    if(TEST hipfort_test_f2003_hipfft_hipfft_xt_descriptor_z)
+      set_tests_properties(hipfort_test_f2003_hipfft_hipfft_xt_descriptor_z
+        PROPERTIES SKIP_RETURN_CODE 77)
+    endif()
   endif()
 
   if(TARGET hipfort::hipfftw)
@@ -1201,6 +1212,13 @@ if(BUILD_TESTING)
     # Single-process multi-GPU field/brick decomposition; skips on < 2 GPUs.
     hipfort_add_test(rocfft rocfft_field_brick_z f2003)
     hipfort_add_test(rocfft rocfft_field_brick_z f2008)
+    # Needs two visible GPUs, else exits 77: reported as skipped, not passed.
+    foreach(std IN ITEMS f2003 f2008)
+      if(TEST hipfort_test_${std}_rocfft_rocfft_field_brick_z)
+        set_tests_properties(hipfort_test_${std}_rocfft_rocfft_field_brick_z
+          PROPERTIES SKIP_RETURN_CODE 77)
+      endif()
+    endforeach()
   endif()
 
   if(TARGET hipfort::rocsolver)
