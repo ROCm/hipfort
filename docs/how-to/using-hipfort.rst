@@ -107,7 +107,7 @@ the ``HIPFORT_MULTITOOLCHAIN_LAYOUT`` CMake option (``ON`` by default). The expo
 the right modules and library by using the hipFORT installation that was built with
 the same Fortran compiler.
 
-To build hipFORT itself with a specific compiler or backend, use one of the example
+To build hipFORT itself with a specific compiler, use one of the example
 toolchain files in ``cmake/toolchains`` via ``-DCMAKE_TOOLCHAIN_FILE=...``.
 
 Examples
