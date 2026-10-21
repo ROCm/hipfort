@@ -117,9 +117,10 @@ The 64-bit integer API
 
 The ``_64`` routines accept 64-bit problem dimensions, pivots, and ``info`` for
 problems that exceed the 32-bit range. ``getrf_64`` performs the same
-factorization as ``getrf`` with ``integer(c_int64_t)`` dimensions; the device
-buffers, including the int64 ``ipiv`` and ``info``, are passed as
-``type(c_ptr)`` because the ``_64`` routines have no native-array overloads.
+factorization as ``getrf`` with ``integer(c_int64_t)`` dimensions. The ``_64``
+routines have the same Fortran array overloads as the 32-bit ones; this example
+passes its device buffers, including the int64 ``ipiv`` and ``info``, as
+``type(c_ptr)``.
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dgetrf_64.f08
    :language: fortran

@@ -119,6 +119,34 @@ supported-API tables. Call them through the generic name ``X``.
        ``X_rank_N`` and ``X_full_rank`` specifics. See
        `Assumed-rank interfaces (Fortran 2018)`_.
 
+Other kinds of arguments
+------------------------
+
+* **Handles** (``rocblas_handle``, ``hipStream_t``, plan and descriptor handles)
+  are ``type(c_ptr)``, passed by value.
+* **Enumerations** are named constants of ``enum, bind(c)`` blocks, in the
+  ``hipfort_<lib>_enums`` modules (``hipfort_enums`` for HIP). Pass the constants,
+  such as ``rocblas_operation_none``; their kind is that of a C ``int``.
+* **Structures** of the C API (``hipDeviceProp_t``, ...) are ``bind(c)`` derived
+  types in ``hipfort_types`` and the ``hipfort_<lib>_types`` modules.
+* **Character strings:** a ``const char*`` input is a ``type(c_ptr)`` in ``X_``,
+  and a ``character(kind=c_char, len=*)`` in ``X_typed`` where the library takes
+  a name or a message (ROCTx). Terminate the string with ``c_null_char``, as C
+  expects: ``roctxRangePush("solve"//c_null_char)``.
+* **Callbacks** (``hipStreamAddCallback``, ``hipLaunchHostFunc``, ...) are
+  ``type(c_funptr)``: pass ``c_funloc`` of a ``bind(c)`` procedure.
+* **Batched routines** (``*_batched``) take ``A`` as a device array of device
+  pointers, one per matrix: pass the ``type(c_ptr)`` of that array, which you
+  fill with the ``type(c_ptr)`` of each matrix. The ``*_strided_batched`` forms
+  take one array and a stride instead.
+* **64-bit routines** (``*_64`` in rocBLAS, hipBLAS and rocSOLVER) take their
+  sizes, increments and leading dimensions as ``integer(c_int64_t)``, and have
+  the same variants as the 32-bit ones.
+
+Every routine returns its library's status. The ``hipfort_check`` module has a
+helper per library (``hipCheck``, ``rocblasCheck``, ``hipsolverCheck``, ...) that
+prints the status by name and stops the program when a call fails.
+
 Passing arrays to the array overloads
 -------------------------------------
 
