@@ -200,7 +200,11 @@ module hipfort_enums
 #else
     enumerator :: hipMemoryTypeArray = 10
 #endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipMemoryTypeUnified = 4
+#else
     enumerator :: hipMemoryTypeUnified = 11
+#endif
   end enum
 
   ! hipError_t
@@ -1054,11 +1058,7 @@ module hipfort_enums
     enumerator :: HIP_FUNC_ATTRIBUTE_CACHE_MODE_CA = 7
     enumerator :: HIP_FUNC_ATTRIBUTE_MAX_DYNAMIC_SHARED_SIZE_BYTES = 8
     enumerator :: HIP_FUNC_ATTRIBUTE_PREFERRED_SHARED_MEMORY_CARVEOUT = 9
-#ifdef USE_CUDA_NAMES
-    enumerator :: HIP_FUNC_ATTRIBUTE_CLUSTER_DIM_MUST_BE_SET = -1
-#else
     enumerator :: HIP_FUNC_ATTRIBUTE_CLUSTER_DIM_MUST_BE_SET = 10
-#endif
     enumerator :: HIP_FUNC_ATTRIBUTE_REQUIRED_CLUSTER_WIDTH = 11
     enumerator :: HIP_FUNC_ATTRIBUTE_REQUIRED_CLUSTER_HEIGHT = 12
     enumerator :: HIP_FUNC_ATTRIBUTE_REQUIRED_CLUSTER_DEPTH = 13
@@ -1082,11 +1082,7 @@ module hipfort_enums
     enumerator :: HIP_POINTER_ATTRIBUTE_BUFFER_ID = 7
     enumerator :: HIP_POINTER_ATTRIBUTE_IS_MANAGED = 8
     enumerator :: HIP_POINTER_ATTRIBUTE_DEVICE_ORDINAL = 9
-#ifdef USE_CUDA_NAMES
-    enumerator :: HIP_POINTER_ATTRIBUTE_IS_LEGACY_HIP_IPC_CAPABLE = -1
-#else
     enumerator :: HIP_POINTER_ATTRIBUTE_IS_LEGACY_HIP_IPC_CAPABLE = 10
-#endif
     enumerator :: HIP_POINTER_ATTRIBUTE_RANGE_START_ADDR = 11
     enumerator :: HIP_POINTER_ATTRIBUTE_RANGE_SIZE = 12
     enumerator :: HIP_POINTER_ATTRIBUTE_MAPPED = 13
