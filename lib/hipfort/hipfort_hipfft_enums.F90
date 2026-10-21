@@ -98,7 +98,11 @@ module hipfort_hipfft_enums
     enumerator :: HIPFFT_XT_FORMAT_INPLACE = 2
     enumerator :: HIPFFT_XT_FORMAT_INPLACE_SHUFFLED = 3
     enumerator :: HIPFFT_XT_FORMAT_1D_INPUT_SHUFFLED = 4
+#ifdef USE_CUDA_NAMES
+    enumerator :: HIPFFT_FORMAT_UNDEFINED = 7
+#else
     enumerator :: HIPFFT_FORMAT_UNDEFINED = 5
+#endif
   end enum
 
   ! hipfftMpCommType_t

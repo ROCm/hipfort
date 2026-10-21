@@ -221,12 +221,6 @@ module hipfort_hipsolver_enums
   ! hipsolverDirectMode_t
   enum, bind(c)
 #ifdef USE_CUDA_NAMES
-#else
-#endif
-#ifdef USE_CUDA_NAMES
-#else
-#endif
-#ifdef USE_CUDA_NAMES
     enumerator :: HIPSOLVER_DIRECT_FORWARD = 0
 #else
     enumerator :: HIPSOLVER_DIRECT_FORWARD = 251
@@ -240,12 +234,6 @@ module hipfort_hipsolver_enums
 
   ! hipsolverStorevMode_t
   enum, bind(c)
-#ifdef USE_CUDA_NAMES
-#else
-#endif
-#ifdef USE_CUDA_NAMES
-#else
-#endif
 #ifdef USE_CUDA_NAMES
     enumerator :: HIPSOLVER_STOREV_COLUMNWISE = 0
 #else

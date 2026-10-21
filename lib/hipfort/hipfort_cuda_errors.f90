@@ -102,6 +102,7 @@ module hipfort_cuda_errors
     enumerator :: cudaErrorUnsupportedExecAffinity = 224
     enumerator :: cudaErrorUnsupportedDevSideSync = 225
     enumerator :: cudaErrorContained = 226
+    enumerator :: cudaErrorInsufficientLoaderVersion = 227
     enumerator :: cudaErrorInvalidSource = 300
     enumerator :: cudaErrorFileNotFound = 301
     enumerator :: cudaErrorSharedObjectSymbolNotFound = 302
@@ -163,6 +164,7 @@ module hipfort_cuda_errors
     enumerator :: cudaErrorInvalidResourceConfiguration = 915
     enumerator :: cudaErrorStreamDetached = 917
     enumerator :: cudaErrorGraphRecaptureFailure = 918
+    enumerator :: cudaErrorFabricNotReady = 919
     enumerator :: cudaErrorUnknown = 999
     enumerator :: cudaErrorApiFailureBase = 10000
   end enum
