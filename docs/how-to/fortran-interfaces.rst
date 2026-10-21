@@ -120,7 +120,7 @@ them through the generic name ``X``.
        `Device-only scalars`_.
    * - ``X_assumed_rank``, ``X_assumed_rank_devptr``
      - Fortran 2018
-     - Buffers as ``contiguous, dimension(..)`` arrays of any rank, replacing the
+     - Buffers as ``dimension(..)`` arrays of any rank, replacing the
        ``X_rank_N`` and ``X_full_rank`` specifics. See
        `Assumed-rank interfaces (Fortran 2018)`_.
 
@@ -160,10 +160,12 @@ Passing arrays to the array overloads
 The array overloads hand the address of the array to the C library, which reads
 it as one contiguous block. Pass **contiguous** arrays: a whole array, or a
 section such as ``a(:, j)`` or ``a(i:j)``. A strided section such as
-``a(1:n:2)`` is not rejected by the Fortran 2008 overloads, but the library then
-reads the wrong elements. The Fortran 2018 overloads declare their arrays
-``contiguous``, so the compiler passes a contiguous copy of such a section,
-which is fatal for an array in device memory on GPUs without XNACK enabled.
+``a(1:n:2)`` is not rejected, but the library then reads the wrong elements.
+No overload, Fortran 2008 or Fortran 2018, declares its arrays ``contiguous``:
+the compiler would then pass a contiguous copy of such a section, made on the
+host, which is fatal for an array in device memory on GPUs without XNACK
+enabled, and which an asynchronous routine would still be reading after the
+call returns.
 
 The address is that of your array, valid as long as the array is. For an
 asynchronous routine, such as ``hipMemcpyAsync`` from a host array, keep the

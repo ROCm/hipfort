@@ -54,6 +54,12 @@
   arguments `integer(c_int)`, like their `bind(C)` interfaces, instead of
   `integer(kind(HIP_R_32F))`. Both are the C `int` kind, so existing code is
   unaffected, and these routines no longer `use hipfort_enums`.
+* The assumed-rank overloads (`-DHIPFORT_ASSUMED_RANK=ON`) no longer declare
+  their arrays `contiguous`, like the per-rank ones. Given a non-contiguous
+  section, the compiler used to pass a copy made in a host temporary: fatal for
+  an array in device memory on GPUs without XNACK enabled, and freed when the
+  call returns while an asynchronous routine is still reading it. Both forms
+  now take the address of the array as it is, so pass contiguous arrays.
 
 ### Fixed
 

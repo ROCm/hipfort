@@ -2150,11 +2150,11 @@ module hipfort_hipfft
       integer(kind(HIPFFT_SUCCESS)) :: hipfftPlanMany_assumed_rank
       type(c_ptr) :: plan
       integer(c_int) :: rank
-      integer(c_int),target,contiguous,dimension(..) :: n
-      integer(c_int),target,contiguous,dimension(..) :: inembed
+      integer(c_int),target,dimension(..) :: n
+      integer(c_int),target,dimension(..) :: inembed
       integer(c_int) :: istride
       integer(c_int) :: idist
-      integer(c_int),target,contiguous,dimension(..) :: onembed
+      integer(c_int),target,dimension(..) :: onembed
       integer(c_int) :: ostride
       integer(c_int) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
@@ -2219,11 +2219,11 @@ module hipfort_hipfft
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_assumed_rank
       type(c_ptr), value :: plan
       integer(c_int) :: rank
-      integer(c_int),target,contiguous,dimension(..) :: n
-      integer(c_int),target,contiguous,dimension(..) :: inembed
+      integer(c_int),target,dimension(..) :: n
+      integer(c_int),target,dimension(..) :: inembed
       integer(c_int) :: istride
       integer(c_int) :: idist
-      integer(c_int),target,contiguous,dimension(..) :: onembed
+      integer(c_int),target,dimension(..) :: onembed
       integer(c_int) :: ostride
       integer(c_int) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
@@ -2291,11 +2291,11 @@ module hipfort_hipfft
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_assumed_rank
       type(c_ptr), value :: plan
       integer(c_int) :: rank
-      integer(c_int64_t),target,contiguous,dimension(..) :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: inembed
+      integer(c_int64_t),target,dimension(..) :: n
+      integer(c_int64_t),target,dimension(..) :: inembed
       integer(c_int64_t) :: istride
       integer(c_int64_t) :: idist
-      integer(c_int64_t),target,contiguous,dimension(..) :: onembed
+      integer(c_int64_t),target,dimension(..) :: onembed
       integer(c_int64_t) :: ostride
       integer(c_int64_t) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
@@ -2362,11 +2362,11 @@ module hipfort_hipfft
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimateMany_assumed_rank
       integer(c_int) :: rank
-      integer(c_int),target,contiguous,dimension(..) :: n
-      integer(c_int),target,contiguous,dimension(..) :: inembed
+      integer(c_int),target,dimension(..) :: n
+      integer(c_int),target,dimension(..) :: inembed
       integer(c_int) :: istride
       integer(c_int) :: idist
-      integer(c_int),target,contiguous,dimension(..) :: onembed
+      integer(c_int),target,dimension(..) :: onembed
       integer(c_int) :: ostride
       integer(c_int) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
@@ -2432,11 +2432,11 @@ module hipfort_hipfft
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_assumed_rank
       type(c_ptr), value :: plan
       integer(c_int) :: rank
-      integer(c_int),target,contiguous,dimension(..) :: n
-      integer(c_int),target,contiguous,dimension(..) :: inembed
+      integer(c_int),target,dimension(..) :: n
+      integer(c_int),target,dimension(..) :: inembed
       integer(c_int) :: istride
       integer(c_int) :: idist
-      integer(c_int),target,contiguous,dimension(..) :: onembed
+      integer(c_int),target,dimension(..) :: onembed
       integer(c_int) :: ostride
       integer(c_int) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
@@ -2504,11 +2504,11 @@ module hipfort_hipfft
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_assumed_rank
       type(c_ptr), value :: plan
       integer(c_int) :: rank
-      integer(c_int64_t),target,contiguous,dimension(..) :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: inembed
+      integer(c_int64_t),target,dimension(..) :: n
+      integer(c_int64_t),target,dimension(..) :: inembed
       integer(c_int64_t) :: istride
       integer(c_int64_t) :: idist
-      integer(c_int64_t),target,contiguous,dimension(..) :: onembed
+      integer(c_int64_t),target,dimension(..) :: onembed
       integer(c_int64_t) :: ostride
       integer(c_int64_t) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
@@ -2574,8 +2574,8 @@ module hipfort_hipfft
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_assumed_rank
       type(c_ptr), value :: plan
-      complex(c_float_complex),target,contiguous,dimension(..) :: idata
-      complex(c_float_complex),target,contiguous,dimension(..) :: odata
+      complex(c_float_complex),target,dimension(..) :: idata
+      complex(c_float_complex),target,dimension(..) :: odata
       integer(c_int) :: direction
       !
       hipfftExecC2C_assumed_rank = hipfftExecC2C_(plan,c_loc(idata),c_loc(odata),direction)
@@ -2642,8 +2642,8 @@ module hipfort_hipfft
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_assumed_rank
       type(c_ptr), value :: plan
-      real(c_float),target,contiguous,dimension(..) :: idata
-      complex(c_float_complex),target,contiguous,dimension(..) :: odata
+      real(c_float),target,dimension(..) :: idata
+      complex(c_float_complex),target,dimension(..) :: odata
       !
       hipfftExecR2C_assumed_rank = hipfftExecR2C_(plan,c_loc(idata),c_loc(odata))
     end function
@@ -2705,8 +2705,8 @@ module hipfort_hipfft
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_assumed_rank
       type(c_ptr), value :: plan
-      complex(c_float_complex),target,contiguous,dimension(..) :: idata
-      real(c_float),target,contiguous,dimension(..) :: odata
+      complex(c_float_complex),target,dimension(..) :: idata
+      real(c_float),target,dimension(..) :: odata
       !
       hipfftExecC2R_assumed_rank = hipfftExecC2R_(plan,c_loc(idata),c_loc(odata))
     end function
@@ -2768,8 +2768,8 @@ module hipfort_hipfft
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_assumed_rank
       type(c_ptr), value :: plan
-      complex(c_double_complex),target,contiguous,dimension(..) :: idata
-      complex(c_double_complex),target,contiguous,dimension(..) :: odata
+      complex(c_double_complex),target,dimension(..) :: idata
+      complex(c_double_complex),target,dimension(..) :: odata
       integer(c_int) :: direction
       !
       hipfftExecZ2Z_assumed_rank = hipfftExecZ2Z_(plan,c_loc(idata),c_loc(odata),direction)
@@ -2836,8 +2836,8 @@ module hipfort_hipfft
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_assumed_rank
       type(c_ptr), value :: plan
-      real(c_double),target,contiguous,dimension(..) :: idata
-      complex(c_double_complex),target,contiguous,dimension(..) :: odata
+      real(c_double),target,dimension(..) :: idata
+      complex(c_double_complex),target,dimension(..) :: odata
       !
       hipfftExecD2Z_assumed_rank = hipfftExecD2Z_(plan,c_loc(idata),c_loc(odata))
     end function
@@ -2899,8 +2899,8 @@ module hipfort_hipfft
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_assumed_rank
       type(c_ptr), value :: plan
-      complex(c_double_complex),target,contiguous,dimension(..) :: idata
-      real(c_double),target,contiguous,dimension(..) :: odata
+      complex(c_double_complex),target,dimension(..) :: idata
+      real(c_double),target,dimension(..) :: odata
       !
       hipfftExecZ2D_assumed_rank = hipfftExecZ2D_(plan,c_loc(idata),c_loc(odata))
     end function

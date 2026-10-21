@@ -1076,7 +1076,7 @@ module hipfort_rocrand
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_assumed_rank
       type(c_ptr), value :: generator
-      integer(c_int),target,contiguous,dimension(..) :: output_data
+      integer(c_int),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
       rocrand_generate_assumed_rank = rocrand_generate_(generator,c_loc(output_data),n)
@@ -1115,7 +1115,7 @@ module hipfort_rocrand
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_assumed_rank
       type(c_ptr), value :: generator
-      integer(c_int64_t),target,contiguous,dimension(..) :: output_data
+      integer(c_int64_t),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
       rocrand_generate_long_long_assumed_rank = rocrand_generate_long_long_(generator, &
@@ -1157,7 +1157,7 @@ module hipfort_rocrand
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_assumed_rank
       type(c_ptr), value :: generator
-      real(c_float),target,contiguous,dimension(..) :: output_data
+      real(c_float),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
       rocrand_generate_uniform_assumed_rank = rocrand_generate_uniform_(generator, &
@@ -1197,7 +1197,7 @@ module hipfort_rocrand
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_assumed_rank
       type(c_ptr), value :: generator
-      real(c_double),target,contiguous,dimension(..) :: output_data
+      real(c_double),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
       rocrand_generate_uniform_double_assumed_rank = rocrand_generate_uniform_double_(generator, &
@@ -1239,7 +1239,7 @@ module hipfort_rocrand
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_assumed_rank
       type(c_ptr), value :: generator
-      real(c_float),target,contiguous,dimension(..) :: output_data
+      real(c_float),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
       real(c_float) :: stddev
@@ -1287,7 +1287,7 @@ module hipfort_rocrand
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_assumed_rank
       type(c_ptr), value :: generator
-      real(c_double),target,contiguous,dimension(..) :: output_data
+      real(c_double),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
       real(c_double) :: stddev
@@ -1335,7 +1335,7 @@ module hipfort_rocrand
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_assumed_rank
       type(c_ptr), value :: generator
-      real(c_float),target,contiguous,dimension(..) :: output_data
+      real(c_float),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
       real(c_float) :: stddev
@@ -1383,7 +1383,7 @@ module hipfort_rocrand
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_assumed_rank
       type(c_ptr), value :: generator
-      real(c_double),target,contiguous,dimension(..) :: output_data
+      real(c_double),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
       real(c_double) :: stddev
@@ -1431,7 +1431,7 @@ module hipfort_rocrand
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_assumed_rank
       type(c_ptr), value :: generator
-      integer(c_int),target,contiguous,dimension(..) :: output_data
+      integer(c_int),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda
       !
@@ -1476,7 +1476,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_discrete_distribution_assumed_rank
-      real(c_double),target,contiguous,dimension(..) :: probabilities
+      real(c_double),target,dimension(..) :: probabilities
       integer(c_int) :: mySize
       integer(c_int) :: offset
       type(c_ptr) :: discrete_distribution

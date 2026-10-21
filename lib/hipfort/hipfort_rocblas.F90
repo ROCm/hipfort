@@ -60007,7 +60007,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_sscal_assumed_rank = rocblas_sscal_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -60052,7 +60052,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_dscal_assumed_rank = rocblas_dscal_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -60097,7 +60097,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_cscal_assumed_rank = rocblas_cscal_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -60142,7 +60142,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_zscal_assumed_rank = rocblas_zscal_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -60187,7 +60187,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_csscal_assumed_rank = rocblas_csscal_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -60232,7 +60232,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_zdscal_assumed_rank = rocblas_zdscal_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -60277,7 +60277,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_sscal_64_assumed_rank = rocblas_sscal_64_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -60322,7 +60322,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_dscal_64_assumed_rank = rocblas_dscal_64_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -60367,7 +60367,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_cscal_64_assumed_rank = rocblas_cscal_64_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -60412,7 +60412,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_zscal_64_assumed_rank = rocblas_zscal_64_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -60457,7 +60457,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_csscal_64_assumed_rank = rocblas_csscal_64_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -60502,7 +60502,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_zdscal_64_assumed_rank = rocblas_zdscal_64_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -60547,7 +60547,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -60601,7 +60601,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -60655,7 +60655,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -60709,7 +60709,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -60763,7 +60763,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -60817,7 +60817,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -60872,7 +60872,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -60927,7 +60927,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -60982,7 +60982,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -61037,7 +61037,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -61092,7 +61092,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -61147,7 +61147,7 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -61200,9 +61200,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scopy_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_scopy_assumed_rank = rocblas_scopy_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -61248,9 +61248,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dcopy_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_dcopy_assumed_rank = rocblas_dcopy_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -61296,9 +61296,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ccopy_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_ccopy_assumed_rank = rocblas_ccopy_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -61344,9 +61344,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zcopy_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_zcopy_assumed_rank = rocblas_zcopy_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -61392,9 +61392,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scopy_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_scopy_64_assumed_rank = rocblas_scopy_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -61440,9 +61440,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dcopy_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_dcopy_64_assumed_rank = rocblas_dcopy_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -61488,9 +61488,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ccopy_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_ccopy_64_assumed_rank = rocblas_ccopy_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -61536,9 +61536,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zcopy_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_zcopy_64_assumed_rank = rocblas_zcopy_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -61585,10 +61585,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scopy_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -61648,10 +61648,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dcopy_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -61711,10 +61711,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ccopy_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -61774,10 +61774,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zcopy_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -61837,10 +61837,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scopy_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -61900,10 +61900,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dcopy_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -61963,10 +61963,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ccopy_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -62026,10 +62026,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zcopy_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -62088,9 +62088,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sdot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_float),target :: myResult
       !
@@ -62105,9 +62105,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sdot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: myResult
       !
@@ -62189,9 +62189,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ddot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_double),target :: myResult
       !
@@ -62206,9 +62206,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ddot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: myResult
       !
@@ -62290,9 +62290,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       complex(c_float_complex),target :: myResult
       !
@@ -62307,9 +62307,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: myResult
       !
@@ -62391,9 +62391,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       complex(c_double_complex),target :: myResult
       !
@@ -62408,9 +62408,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: myResult
       !
@@ -62492,9 +62492,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       complex(c_float_complex),target :: myResult
       !
@@ -62509,9 +62509,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: myResult
       !
@@ -62593,9 +62593,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       complex(c_double_complex),target :: myResult
       !
@@ -62610,9 +62610,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: myResult
       !
@@ -62694,9 +62694,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sdot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_float),target :: myResult
       !
@@ -62711,9 +62711,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sdot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: myResult
       !
@@ -62799,9 +62799,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ddot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_double),target :: myResult
       !
@@ -62816,9 +62816,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ddot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: myResult
       !
@@ -62904,9 +62904,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       complex(c_float_complex),target :: myResult
       !
@@ -62921,9 +62921,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: myResult
       !
@@ -63009,9 +63009,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       complex(c_double_complex),target :: myResult
       !
@@ -63026,9 +63026,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: myResult
       !
@@ -63114,9 +63114,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       complex(c_float_complex),target :: myResult
       !
@@ -63131,9 +63131,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: myResult
       !
@@ -63219,9 +63219,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       complex(c_double_complex),target :: myResult
       !
@@ -63236,9 +63236,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: myResult
       !
@@ -63325,10 +63325,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sdot_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -63391,10 +63391,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ddot_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -63457,10 +63457,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -63523,10 +63523,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -63589,10 +63589,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -63655,10 +63655,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -63721,10 +63721,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sdot_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -63787,10 +63787,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_ddot_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -63853,10 +63853,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotu_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -63919,10 +63919,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotu_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -63985,10 +63985,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cdotc_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -64051,10 +64051,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdotc_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -64116,9 +64116,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cswap_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_cswap_assumed_rank = rocblas_cswap_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -64164,9 +64164,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zswap_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_zswap_assumed_rank = rocblas_zswap_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -64212,9 +64212,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cswap_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_cswap_64_assumed_rank = rocblas_cswap_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -64260,9 +64260,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zswap_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_zswap_64_assumed_rank = rocblas_zswap_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -64309,10 +64309,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sswap_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -64372,10 +64372,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dswap_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -64435,10 +64435,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cswap_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -64498,10 +64498,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zswap_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -64561,10 +64561,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sswap_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -64624,10 +64624,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dswap_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -64687,10 +64687,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_cswap_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -64750,10 +64750,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zswap_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -64813,9 +64813,9 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_saxpy_assumed_rank = rocblas_saxpy_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(y),incy)
@@ -64864,9 +64864,9 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_daxpy_assumed_rank = rocblas_daxpy_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(y),incy)
@@ -64915,9 +64915,9 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_caxpy_assumed_rank = rocblas_caxpy_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(y),incy)
@@ -64966,9 +64966,9 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_zaxpy_assumed_rank = rocblas_zaxpy_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(y),incy)
@@ -65017,9 +65017,9 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_saxpy_64_assumed_rank = rocblas_saxpy_64_(handle,n,c_loc(alpha),c_loc(x),incx, &
@@ -65069,9 +65069,9 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_daxpy_64_assumed_rank = rocblas_daxpy_64_(handle,n,c_loc(alpha),c_loc(x),incx, &
@@ -65121,9 +65121,9 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_caxpy_64_assumed_rank = rocblas_caxpy_64_(handle,n,c_loc(alpha),c_loc(x),incx, &
@@ -65173,9 +65173,9 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_zaxpy_64_assumed_rank = rocblas_zaxpy_64_(handle,n,c_loc(alpha),c_loc(x),incx, &
@@ -65226,10 +65226,10 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -65292,10 +65292,10 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -65358,10 +65358,10 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -65424,10 +65424,10 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -65490,10 +65490,10 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -65556,10 +65556,10 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -65622,10 +65622,10 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -65688,10 +65688,10 @@ module hipfort_rocblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -65752,7 +65752,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scasum_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: myResult
       !
@@ -65766,7 +65766,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scasum_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -65839,7 +65839,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: myResult
       !
@@ -65853,7 +65853,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -65926,7 +65926,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scasum_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: myResult
       !
@@ -65940,7 +65940,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scasum_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66013,7 +66013,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: myResult
       !
@@ -66027,7 +66027,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66100,7 +66100,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sasum_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -66154,7 +66154,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dasum_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -66209,7 +66209,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scasum_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -66264,7 +66264,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -66319,7 +66319,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_sasum_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -66374,7 +66374,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dasum_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -66429,7 +66429,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scasum_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -66484,7 +66484,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dzasum_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -66538,7 +66538,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: myResult
       !
@@ -66552,7 +66552,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66625,7 +66625,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: myResult
       !
@@ -66639,7 +66639,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66712,7 +66712,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: myResult
       !
@@ -66726,7 +66726,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66799,7 +66799,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: myResult
       !
@@ -66813,7 +66813,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66886,7 +66886,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_snrm2_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -66940,7 +66940,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dnrm2_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -66995,7 +66995,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -67050,7 +67050,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -67105,7 +67105,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_snrm2_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -67160,7 +67160,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dnrm2_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -67215,7 +67215,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_scnrm2_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -67270,7 +67270,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_dznrm2_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -67324,7 +67324,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamax_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int),target :: myResult
       !
@@ -67338,7 +67338,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamax_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -67411,7 +67411,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamax_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int),target :: myResult
       !
@@ -67425,7 +67425,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamax_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -67498,7 +67498,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamax_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t),target :: myResult
       !
@@ -67512,7 +67512,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamax_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -67585,7 +67585,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamax_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t),target :: myResult
       !
@@ -67599,7 +67599,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamax_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -67673,7 +67673,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_isamax_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -67728,7 +67728,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_idamax_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -67783,7 +67783,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamax_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -67838,7 +67838,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamax_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -67893,7 +67893,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_isamax_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -67948,7 +67948,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_idamax_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -68003,7 +68003,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamax_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -68058,7 +68058,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamax_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -68112,7 +68112,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamin_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int),target :: myResult
       !
@@ -68126,7 +68126,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamin_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -68199,7 +68199,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamin_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int),target :: myResult
       !
@@ -68213,7 +68213,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamin_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -68286,7 +68286,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamin_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t),target :: myResult
       !
@@ -68300,7 +68300,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamin_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -68373,7 +68373,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamin_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t),target :: myResult
       !
@@ -68387,7 +68387,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamin_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -68461,7 +68461,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_isamin_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -68516,7 +68516,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_idamin_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -68571,7 +68571,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamin_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -68626,7 +68626,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamin_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batch_count
@@ -68681,7 +68681,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_isamin_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -68736,7 +68736,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_idamin_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -68791,7 +68791,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_icamin_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -68846,7 +68846,7 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_izamin_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batch_count
@@ -68900,9 +68900,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_float),target :: c
       real(c_float),target :: s
@@ -68918,9 +68918,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -69006,9 +69006,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_double),target :: c
       real(c_double),target :: s
@@ -69024,9 +69024,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -69112,9 +69112,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_crot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_float),target :: c
       complex(c_float_complex),target :: s
@@ -69130,9 +69130,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_crot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -69218,9 +69218,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_csrot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_float),target :: c
       real(c_float),target :: s
@@ -69236,9 +69236,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_csrot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -69324,9 +69324,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zrot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_double),target :: c
       complex(c_double_complex),target :: s
@@ -69342,9 +69342,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zrot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -69430,9 +69430,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_double),target :: c
       real(c_double),target :: s
@@ -69448,9 +69448,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -69536,9 +69536,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_float),target :: c
       real(c_float),target :: s
@@ -69554,9 +69554,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -69645,9 +69645,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_double),target :: c
       real(c_double),target :: s
@@ -69663,9 +69663,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -69754,9 +69754,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_crot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_float),target :: c
       complex(c_float_complex),target :: s
@@ -69772,9 +69772,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_crot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -69863,9 +69863,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_csrot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_float),target :: c
       real(c_float),target :: s
@@ -69881,9 +69881,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_csrot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -69972,9 +69972,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zrot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_double),target :: c
       complex(c_double_complex),target :: s
@@ -69990,9 +69990,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zrot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -70081,9 +70081,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_double),target :: c
       real(c_double),target :: s
@@ -70099,9 +70099,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -70191,10 +70191,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       real(c_float),target :: c
@@ -70213,10 +70213,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr),value :: c
@@ -70326,10 +70326,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       real(c_double),target :: c
@@ -70348,10 +70348,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr),value :: c
@@ -70461,10 +70461,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       real(c_float),target :: c
@@ -70483,10 +70483,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr),value :: c
@@ -70596,10 +70596,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       real(c_float),target :: c
@@ -70618,10 +70618,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr),value :: c
@@ -70731,10 +70731,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       real(c_double),target :: c
@@ -70753,10 +70753,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr),value :: c
@@ -70866,10 +70866,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       real(c_double),target :: c
@@ -70888,10 +70888,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr),value :: c
@@ -71001,10 +71001,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       real(c_float),target :: c
@@ -71023,10 +71023,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srot_strided_batched_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr),value :: c
@@ -71136,10 +71136,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       real(c_double),target :: c
@@ -71158,10 +71158,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drot_strided_batched_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr),value :: c
@@ -71271,10 +71271,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       real(c_float),target :: c
@@ -71293,10 +71293,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_crot_strided_batched_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr),value :: c
@@ -71406,10 +71406,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       real(c_float),target :: c
@@ -71428,10 +71428,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_csrot_strided_batched_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr),value :: c
@@ -71541,10 +71541,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       real(c_double),target :: c
@@ -71563,10 +71563,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zrot_strided_batched_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr),value :: c
@@ -71676,10 +71676,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       real(c_double),target :: c
@@ -71698,10 +71698,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_zdrot_strided_batched_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr),value :: c
@@ -71810,9 +71810,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srotm_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr) :: param
       !
@@ -71861,9 +71861,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drotm_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr) :: param
       !
@@ -71912,9 +71912,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srotm_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr) :: param
       !
@@ -71963,9 +71963,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drotm_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr) :: param
       !
@@ -72015,10 +72015,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srotm_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr) :: param
@@ -72084,10 +72084,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drotm_strided_batched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr) :: param
@@ -72153,10 +72153,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_srotm_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr) :: param
@@ -72222,10 +72222,10 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: rocblas_drotm_strided_batched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       type(c_ptr) :: param
@@ -72295,12 +72295,12 @@ module hipfort_rocblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_sgbmv_assumed_rank = rocblas_sgbmv_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(A), &
@@ -72394,12 +72394,12 @@ module hipfort_rocblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_dgbmv_assumed_rank = rocblas_dgbmv_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(A), &
@@ -72493,12 +72493,12 @@ module hipfort_rocblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_cgbmv_assumed_rank = rocblas_cgbmv_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(A), &
@@ -72592,12 +72592,12 @@ module hipfort_rocblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_zgbmv_assumed_rank = rocblas_zgbmv_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(A), &
@@ -72691,12 +72691,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_sgbmv_64_assumed_rank = rocblas_sgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha), &
@@ -72790,12 +72790,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_dgbmv_64_assumed_rank = rocblas_dgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha), &
@@ -72889,12 +72889,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_cgbmv_64_assumed_rank = rocblas_cgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha), &
@@ -72988,12 +72988,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_zgbmv_64_assumed_rank = rocblas_zgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha), &
@@ -73088,14 +73088,14 @@ module hipfort_rocblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
@@ -73211,14 +73211,14 @@ module hipfort_rocblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
@@ -73334,14 +73334,14 @@ module hipfort_rocblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
@@ -73457,14 +73457,14 @@ module hipfort_rocblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
@@ -73580,14 +73580,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int64_t) :: batch_count
@@ -73703,14 +73703,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int64_t) :: batch_count
@@ -73826,14 +73826,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int64_t) :: batch_count
@@ -73949,14 +73949,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int64_t) :: batch_count
@@ -74069,12 +74069,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_sgemv_assumed_rank = rocblas_sgemv_(handle,trans,m,n,c_loc(alpha),c_loc(A),lda, &
@@ -74160,12 +74160,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_dgemv_assumed_rank = rocblas_dgemv_(handle,trans,m,n,c_loc(alpha),c_loc(A),lda, &
@@ -74251,12 +74251,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_cgemv_assumed_rank = rocblas_cgemv_(handle,trans,m,n,c_loc(alpha),c_loc(A),lda, &
@@ -74342,12 +74342,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_zgemv_assumed_rank = rocblas_zgemv_(handle,trans,m,n,c_loc(alpha),c_loc(A),lda, &
@@ -74433,12 +74433,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_sgemv_64_assumed_rank = rocblas_sgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(A), &
@@ -74524,12 +74524,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_dgemv_64_assumed_rank = rocblas_dgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(A), &
@@ -74615,12 +74615,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_cgemv_64_assumed_rank = rocblas_cgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(A), &
@@ -74706,12 +74706,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_zgemv_64_assumed_rank = rocblas_zgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(A), &
@@ -74798,14 +74798,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -74913,14 +74913,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -75028,14 +75028,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -75143,14 +75143,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -75258,14 +75258,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -75373,14 +75373,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -75488,14 +75488,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -75603,14 +75603,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -75717,12 +75717,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_chbmv_assumed_rank = rocblas_chbmv_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
@@ -75808,12 +75808,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_zhbmv_assumed_rank = rocblas_zhbmv_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
@@ -75899,12 +75899,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_chbmv_64_assumed_rank = rocblas_chbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
@@ -75990,12 +75990,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_zhbmv_64_assumed_rank = rocblas_zhbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
@@ -76082,14 +76082,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
@@ -76197,14 +76197,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
@@ -76312,14 +76312,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int64_t) :: batch_count
@@ -76427,14 +76427,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int64_t) :: batch_count
@@ -76540,12 +76540,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_chemv_assumed_rank = rocblas_chemv_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
@@ -76627,12 +76627,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_zhemv_assumed_rank = rocblas_zhemv_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
@@ -76714,12 +76714,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_chemv_64_assumed_rank = rocblas_chemv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
@@ -76801,12 +76801,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_zhemv_64_assumed_rank = rocblas_zhemv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
@@ -76889,14 +76889,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
@@ -77000,14 +77000,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
@@ -77111,14 +77111,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int64_t) :: batch_count
@@ -77222,14 +77222,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int64_t) :: batch_count
@@ -77332,9 +77332,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_cher_assumed_rank = rocblas_cher_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(A), &
@@ -77404,9 +77404,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_zher_assumed_rank = rocblas_zher_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(A), &
@@ -77476,9 +77476,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_cher_64_assumed_rank = rocblas_cher_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -77551,9 +77551,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_zher_64_assumed_rank = rocblas_zher_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -77627,10 +77627,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
@@ -77718,10 +77718,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
@@ -77809,10 +77809,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
@@ -77900,10 +77900,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
@@ -77990,11 +77990,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_cher2_assumed_rank = rocblas_cher2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -78073,11 +78073,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_zher2_assumed_rank = rocblas_zher2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -78156,11 +78156,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_cher2_64_assumed_rank = rocblas_cher2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -78239,11 +78239,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_zher2_64_assumed_rank = rocblas_zher2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -78323,13 +78323,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
@@ -78430,13 +78430,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
@@ -78537,13 +78537,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
@@ -78644,13 +78644,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
@@ -78750,11 +78750,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_chpmv_assumed_rank = rocblas_chpmv_(handle,uplo,n,c_loc(alpha),c_loc(AP),c_loc(x), &
@@ -78813,11 +78813,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_zhpmv_assumed_rank = rocblas_zhpmv_(handle,uplo,n,c_loc(alpha),c_loc(AP),c_loc(x), &
@@ -78876,11 +78876,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_chpmv_64_assumed_rank = rocblas_chpmv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP), &
@@ -78939,11 +78939,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_zhpmv_64_assumed_rank = rocblas_zhpmv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP), &
@@ -79003,13 +79003,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
@@ -79084,13 +79084,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int) :: batch_count
@@ -79165,13 +79165,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int64_t) :: batch_count
@@ -79246,13 +79246,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
       integer(c_int64_t) :: batch_count
@@ -79326,9 +79326,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       !
       rocblas_chpr_assumed_rank = rocblas_chpr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP))
     end function
@@ -79377,9 +79377,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       !
       rocblas_zhpr_assumed_rank = rocblas_zhpr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP))
     end function
@@ -79428,9 +79428,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       !
       rocblas_chpr_64_assumed_rank = rocblas_chpr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(AP))
@@ -79480,9 +79480,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       !
       rocblas_zhpr_64_assumed_rank = rocblas_zhpr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(AP))
@@ -79533,10 +79533,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
@@ -79599,10 +79599,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
@@ -79665,10 +79665,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
       !
@@ -79731,10 +79731,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
       !
@@ -79796,11 +79796,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       !
       rocblas_chpr2_assumed_rank = rocblas_chpr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(AP))
@@ -79856,11 +79856,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       !
       rocblas_zhpr2_assumed_rank = rocblas_zhpr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(AP))
@@ -79916,11 +79916,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       !
       rocblas_chpr2_64_assumed_rank = rocblas_chpr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(AP))
@@ -79976,11 +79976,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       !
       rocblas_zhpr2_64_assumed_rank = rocblas_zhpr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(AP))
@@ -80037,13 +80037,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
@@ -80112,13 +80112,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
@@ -80187,13 +80187,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
       !
@@ -80263,13 +80263,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
       !
@@ -80339,9 +80339,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_strmv_assumed_rank = rocblas_strmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x), &
@@ -80415,9 +80415,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_dtrmv_assumed_rank = rocblas_dtrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x), &
@@ -80491,9 +80491,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_ctrmv_assumed_rank = rocblas_ctrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x), &
@@ -80567,9 +80567,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_ztrmv_assumed_rank = rocblas_ztrmv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x), &
@@ -80643,9 +80643,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_strmv_64_assumed_rank = rocblas_strmv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
@@ -80722,9 +80722,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_dtrmv_64_assumed_rank = rocblas_dtrmv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
@@ -80801,9 +80801,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_ctrmv_64_assumed_rank = rocblas_ctrmv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
@@ -80880,9 +80880,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_ztrmv_64_assumed_rank = rocblas_ztrmv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
@@ -80960,10 +80960,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -81055,10 +81055,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -81150,10 +81150,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -81245,10 +81245,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -81340,10 +81340,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -81435,10 +81435,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -81530,10 +81530,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -81625,10 +81625,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -81719,8 +81719,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: A
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_stpmv_assumed_rank = rocblas_stpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
@@ -81773,8 +81773,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: A
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_dtpmv_assumed_rank = rocblas_dtpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
@@ -81827,8 +81827,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_ctpmv_assumed_rank = rocblas_ctpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
@@ -81881,8 +81881,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_ztpmv_assumed_rank = rocblas_ztpmv_(handle,uplo,transA,diag,n,c_loc(A),c_loc(x),incx)
@@ -81935,8 +81935,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: A
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_stpmv_64_assumed_rank = rocblas_stpmv_64_(handle,uplo,transA,diag,n,c_loc(A), &
@@ -81990,8 +81990,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: A
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_dtpmv_64_assumed_rank = rocblas_dtpmv_64_(handle,uplo,transA,diag,n,c_loc(A), &
@@ -82045,8 +82045,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_ctpmv_64_assumed_rank = rocblas_ctpmv_64_(handle,uplo,transA,diag,n,c_loc(A), &
@@ -82100,8 +82100,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_ztpmv_64_assumed_rank = rocblas_ztpmv_64_(handle,uplo,transA,diag,n,c_loc(A), &
@@ -82156,9 +82156,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -82225,9 +82225,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -82294,9 +82294,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -82363,9 +82363,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -82432,9 +82432,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -82501,9 +82501,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -82570,9 +82570,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -82639,9 +82639,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -82708,9 +82708,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_stbmv_assumed_rank = rocblas_stbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
@@ -82789,9 +82789,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_dtbmv_assumed_rank = rocblas_dtbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
@@ -82870,9 +82870,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_ctbmv_assumed_rank = rocblas_ctbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
@@ -82951,9 +82951,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_ztbmv_assumed_rank = rocblas_ztbmv_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
@@ -83032,9 +83032,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_stbmv_64_assumed_rank = rocblas_stbmv_64_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
@@ -83115,9 +83115,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_dtbmv_64_assumed_rank = rocblas_dtbmv_64_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
@@ -83198,9 +83198,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_ctbmv_64_assumed_rank = rocblas_ctbmv_64_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
@@ -83281,9 +83281,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_ztbmv_64_assumed_rank = rocblas_ztbmv_64_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
@@ -83365,10 +83365,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -83464,10 +83464,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -83563,10 +83563,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -83662,10 +83662,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -83761,10 +83761,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -83860,10 +83860,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -83959,10 +83959,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -84058,10 +84058,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -84156,9 +84156,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_stbsv_assumed_rank = rocblas_stbsv_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
@@ -84237,9 +84237,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_dtbsv_assumed_rank = rocblas_dtbsv_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
@@ -84318,9 +84318,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_ctbsv_assumed_rank = rocblas_ctbsv_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
@@ -84399,9 +84399,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_ztbsv_assumed_rank = rocblas_ztbsv_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
@@ -84480,9 +84480,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_stbsv_64_assumed_rank = rocblas_stbsv_64_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
@@ -84563,9 +84563,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_dtbsv_64_assumed_rank = rocblas_dtbsv_64_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
@@ -84646,9 +84646,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_ctbsv_64_assumed_rank = rocblas_ctbsv_64_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
@@ -84729,9 +84729,9 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_ztbsv_64_assumed_rank = rocblas_ztbsv_64_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
@@ -84813,10 +84813,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -84912,10 +84912,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -85011,10 +85011,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -85110,10 +85110,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -85209,10 +85209,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -85308,10 +85308,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -85407,10 +85407,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -85506,10 +85506,10 @@ module hipfort_rocblas
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -85603,9 +85603,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_strsv_assumed_rank = rocblas_strsv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x), &
@@ -85679,9 +85679,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_dtrsv_assumed_rank = rocblas_dtrsv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x), &
@@ -85755,9 +85755,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_ctrsv_assumed_rank = rocblas_ctrsv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x), &
@@ -85831,9 +85831,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_ztrsv_assumed_rank = rocblas_ztrsv_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x), &
@@ -85907,9 +85907,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_strsv_64_assumed_rank = rocblas_strsv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
@@ -85986,9 +85986,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_dtrsv_64_assumed_rank = rocblas_dtrsv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
@@ -86065,9 +86065,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_ctrsv_64_assumed_rank = rocblas_ctrsv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
@@ -86144,9 +86144,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_ztrsv_64_assumed_rank = rocblas_ztrsv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
@@ -86224,10 +86224,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -86319,10 +86319,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -86414,10 +86414,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -86509,10 +86509,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -86604,10 +86604,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -86699,10 +86699,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -86794,10 +86794,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -86889,10 +86889,10 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -86983,8 +86983,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_stpsv_assumed_rank = rocblas_stpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
@@ -87037,8 +87037,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_dtpsv_assumed_rank = rocblas_dtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
@@ -87091,8 +87091,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_ctpsv_assumed_rank = rocblas_ctpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
@@ -87145,8 +87145,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       rocblas_ztpsv_assumed_rank = rocblas_ztpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
@@ -87199,8 +87199,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_stpsv_64_assumed_rank = rocblas_stpsv_64_(handle,uplo,transA,diag,n,c_loc(AP), &
@@ -87254,8 +87254,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_dtpsv_64_assumed_rank = rocblas_dtpsv_64_(handle,uplo,transA,diag,n,c_loc(AP), &
@@ -87309,8 +87309,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_ctpsv_64_assumed_rank = rocblas_ctpsv_64_(handle,uplo,transA,diag,n,c_loc(AP), &
@@ -87364,8 +87364,8 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       rocblas_ztpsv_64_assumed_rank = rocblas_ztpsv_64_(handle,uplo,transA,diag,n,c_loc(AP), &
@@ -87420,9 +87420,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -87489,9 +87489,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -87558,9 +87558,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -87627,9 +87627,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int) :: batch_count
@@ -87696,9 +87696,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -87765,9 +87765,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -87834,9 +87834,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -87903,9 +87903,9 @@ module hipfort_rocblas
       integer(kind(rocblas_operation_none)) :: transA
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
       integer(c_int64_t) :: batch_count
@@ -87970,12 +87970,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_ssymv_assumed_rank = rocblas_ssymv_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
@@ -88057,12 +88057,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_dsymv_assumed_rank = rocblas_dsymv_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
@@ -88144,12 +88144,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_csymv_assumed_rank = rocblas_csymv_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
@@ -88231,12 +88231,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_zsymv_assumed_rank = rocblas_zsymv_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
@@ -88318,12 +88318,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_ssymv_64_assumed_rank = rocblas_ssymv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
@@ -88405,12 +88405,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_dsymv_64_assumed_rank = rocblas_dsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
@@ -88492,12 +88492,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_csymv_64_assumed_rank = rocblas_csymv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
@@ -88579,12 +88579,12 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_zsymv_64_assumed_rank = rocblas_zsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
@@ -88667,14 +88667,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -88778,14 +88778,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -88889,14 +88889,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -89000,14 +89000,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -89111,14 +89111,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -89222,14 +89222,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -89333,14 +89333,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -89444,14 +89444,14 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -89554,11 +89554,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: A
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_sspmv_assumed_rank = rocblas_sspmv_(handle,uplo,n,c_loc(alpha),c_loc(A),c_loc(x), &
@@ -89617,11 +89617,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: A
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_dspmv_assumed_rank = rocblas_dspmv_(handle,uplo,n,c_loc(alpha),c_loc(A),c_loc(x), &
@@ -89680,11 +89680,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: A
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_sspmv_64_assumed_rank = rocblas_sspmv_64_(handle,uplo,n,c_loc(alpha),c_loc(A), &
@@ -89743,11 +89743,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: A
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_dspmv_64_assumed_rank = rocblas_dspmv_64_(handle,uplo,n,c_loc(alpha),c_loc(A), &
@@ -89807,13 +89807,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -89888,13 +89888,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -89969,13 +89969,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -90050,13 +90050,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -90131,12 +90131,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_ssbmv_assumed_rank = rocblas_ssbmv_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
@@ -90222,12 +90222,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       rocblas_dsbmv_assumed_rank = rocblas_dsbmv_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
@@ -90313,12 +90313,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_ssbmv_64_assumed_rank = rocblas_ssbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
@@ -90404,12 +90404,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       rocblas_dsbmv_64_assumed_rank = rocblas_dsbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
@@ -90496,14 +90496,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -90611,14 +90611,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batch_count
@@ -90726,14 +90726,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -90841,14 +90841,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batch_count
@@ -90954,11 +90954,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_sger_assumed_rank = rocblas_sger_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -91037,11 +91037,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_dger_assumed_rank = rocblas_dger_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -91120,11 +91120,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_cgeru_assumed_rank = rocblas_cgeru_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -91203,11 +91203,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_zgeru_assumed_rank = rocblas_zgeru_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -91286,11 +91286,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_cgerc_assumed_rank = rocblas_cgerc_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -91369,11 +91369,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_zgerc_assumed_rank = rocblas_zgerc_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -91452,11 +91452,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_sger_64_assumed_rank = rocblas_sger_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
@@ -91535,11 +91535,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_dger_64_assumed_rank = rocblas_dger_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
@@ -91618,11 +91618,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_cgeru_64_assumed_rank = rocblas_cgeru_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
@@ -91701,11 +91701,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_zgeru_64_assumed_rank = rocblas_zgeru_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
@@ -91784,11 +91784,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_cgerc_64_assumed_rank = rocblas_cgerc_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
@@ -91867,11 +91867,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_zgerc_64_assumed_rank = rocblas_zgerc_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
@@ -91951,13 +91951,13 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -92054,13 +92054,13 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -92157,13 +92157,13 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -92260,13 +92260,13 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -92363,13 +92363,13 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -92466,13 +92466,13 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -92569,13 +92569,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -92672,13 +92672,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -92775,13 +92775,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -92878,13 +92878,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -92981,13 +92981,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -93084,13 +93084,13 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -93186,9 +93186,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       !
       rocblas_sspr_assumed_rank = rocblas_sspr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP))
     end function
@@ -93237,9 +93237,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       !
       rocblas_dspr_assumed_rank = rocblas_dspr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP))
     end function
@@ -93288,9 +93288,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       !
       rocblas_cspr_assumed_rank = rocblas_cspr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP))
     end function
@@ -93339,9 +93339,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       !
       rocblas_zspr_assumed_rank = rocblas_zspr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP))
     end function
@@ -93390,9 +93390,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       !
       rocblas_sspr_64_assumed_rank = rocblas_sspr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(AP))
@@ -93442,9 +93442,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       !
       rocblas_dspr_64_assumed_rank = rocblas_dspr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(AP))
@@ -93494,9 +93494,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       !
       rocblas_cspr_64_assumed_rank = rocblas_cspr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(AP))
@@ -93546,9 +93546,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       !
       rocblas_zspr_64_assumed_rank = rocblas_zspr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(AP))
@@ -93599,10 +93599,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
@@ -93665,10 +93665,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
@@ -93731,10 +93731,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
@@ -93797,10 +93797,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
@@ -93863,10 +93863,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
       !
@@ -93929,10 +93929,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
       !
@@ -93995,10 +93995,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
       !
@@ -94061,10 +94061,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
       !
@@ -94126,11 +94126,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       !
       rocblas_sspr2_assumed_rank = rocblas_sspr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(AP))
@@ -94186,11 +94186,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       !
       rocblas_dspr2_assumed_rank = rocblas_dspr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(AP))
@@ -94246,11 +94246,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       !
       rocblas_sspr2_64_assumed_rank = rocblas_sspr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(AP))
@@ -94306,11 +94306,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       !
       rocblas_dspr2_64_assumed_rank = rocblas_dspr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(AP))
@@ -94367,13 +94367,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
@@ -94442,13 +94442,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stride_y
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int) :: batch_count
       !
@@ -94517,13 +94517,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
       !
@@ -94593,13 +94593,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stride_y
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: stride_A
       integer(c_int64_t) :: batch_count
       !
@@ -94668,9 +94668,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_ssyr_assumed_rank = rocblas_ssyr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(A), &
@@ -94740,9 +94740,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_dsyr_assumed_rank = rocblas_dsyr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(A), &
@@ -94812,9 +94812,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_csyr_assumed_rank = rocblas_csyr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(A), &
@@ -94884,9 +94884,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_zsyr_assumed_rank = rocblas_zsyr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(A), &
@@ -94956,9 +94956,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_ssyr_64_assumed_rank = rocblas_ssyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -95031,9 +95031,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_dsyr_64_assumed_rank = rocblas_dsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -95106,9 +95106,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_csyr_64_assumed_rank = rocblas_csyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -95181,9 +95181,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_zsyr_64_assumed_rank = rocblas_zsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -95257,10 +95257,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -95348,10 +95348,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -95439,10 +95439,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -95530,10 +95530,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -95621,10 +95621,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -95712,10 +95712,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -95803,10 +95803,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -95894,10 +95894,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -95984,11 +95984,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_ssyr2_assumed_rank = rocblas_ssyr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -96067,11 +96067,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_dsyr2_assumed_rank = rocblas_dsyr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -96150,11 +96150,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_csyr2_assumed_rank = rocblas_csyr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -96233,11 +96233,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       !
       rocblas_zsyr2_assumed_rank = rocblas_zsyr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -96316,11 +96316,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_ssyr2_64_assumed_rank = rocblas_ssyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -96399,11 +96399,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_dsyr2_64_assumed_rank = rocblas_dsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -96482,11 +96482,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_csyr2_64_assumed_rank = rocblas_csyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -96565,11 +96565,11 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       !
       rocblas_zsyr2_64_assumed_rank = rocblas_zsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -96649,13 +96649,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -96752,13 +96752,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -96855,13 +96855,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -96958,13 +96958,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batch_count
@@ -97061,13 +97061,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -97165,13 +97165,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -97269,13 +97269,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -97373,13 +97373,13 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batch_count
@@ -97478,12 +97478,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_chemm_assumed_rank = rocblas_chemm_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A),lda, &
@@ -97573,12 +97573,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_zhemm_assumed_rank = rocblas_zhemm_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A),lda, &
@@ -97668,12 +97668,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_chemm_64_assumed_rank = rocblas_chemm_64_(handle,side,uplo,m,n,c_loc(alpha), &
@@ -97763,12 +97763,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_zhemm_64_assumed_rank = rocblas_zhemm_64_(handle,side,uplo,m,n,c_loc(alpha), &
@@ -97859,14 +97859,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -97978,14 +97978,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -98097,14 +98097,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -98216,14 +98216,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -98334,10 +98334,10 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_cherk_assumed_rank = rocblas_cherk_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
@@ -98421,10 +98421,10 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_zherk_assumed_rank = rocblas_zherk_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
@@ -98508,10 +98508,10 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_cherk_64_assumed_rank = rocblas_cherk_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -98595,10 +98595,10 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_zherk_64_assumed_rank = rocblas_zherk_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -98683,11 +98683,11 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -98786,11 +98786,11 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -98889,11 +98889,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -98993,11 +98993,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -99096,12 +99096,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_cher2k_assumed_rank = rocblas_cher2k_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
@@ -99191,12 +99191,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_zher2k_assumed_rank = rocblas_zher2k_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
@@ -99286,12 +99286,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_cher2k_64_assumed_rank = rocblas_cher2k_64_(handle,uplo,trans,n,k,c_loc(alpha), &
@@ -99381,12 +99381,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_zher2k_64_assumed_rank = rocblas_zher2k_64_(handle,uplo,trans,n,k,c_loc(alpha), &
@@ -99477,14 +99477,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -99596,14 +99596,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -99715,14 +99715,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -99834,14 +99834,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -99952,12 +99952,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_cherkx_assumed_rank = rocblas_cherkx_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
@@ -100047,12 +100047,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_zherkx_assumed_rank = rocblas_zherkx_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
@@ -100142,12 +100142,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_cherkx_64_assumed_rank = rocblas_cherkx_64_(handle,uplo,trans,n,k,c_loc(alpha), &
@@ -100237,12 +100237,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_zherkx_64_assumed_rank = rocblas_zherkx_64_(handle,uplo,trans,n,k,c_loc(alpha), &
@@ -100333,14 +100333,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -100452,14 +100452,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -100571,14 +100571,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -100690,14 +100690,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -100808,12 +100808,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_ssymm_assumed_rank = rocblas_ssymm_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A),lda, &
@@ -100903,12 +100903,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_dsymm_assumed_rank = rocblas_dsymm_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A),lda, &
@@ -100998,12 +100998,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_csymm_assumed_rank = rocblas_csymm_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A),lda, &
@@ -101093,12 +101093,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_zsymm_assumed_rank = rocblas_zsymm_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A),lda, &
@@ -101188,12 +101188,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_ssymm_64_assumed_rank = rocblas_ssymm_64_(handle,side,uplo,m,n,c_loc(alpha), &
@@ -101283,12 +101283,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_dsymm_64_assumed_rank = rocblas_dsymm_64_(handle,side,uplo,m,n,c_loc(alpha), &
@@ -101378,12 +101378,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_csymm_64_assumed_rank = rocblas_csymm_64_(handle,side,uplo,m,n,c_loc(alpha), &
@@ -101473,12 +101473,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_zsymm_64_assumed_rank = rocblas_zsymm_64_(handle,side,uplo,m,n,c_loc(alpha), &
@@ -101569,14 +101569,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -101688,14 +101688,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -101807,14 +101807,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -101926,14 +101926,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -102045,14 +102045,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -102164,14 +102164,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -102283,14 +102283,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -102402,14 +102402,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -102520,10 +102520,10 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_ssyrk_assumed_rank = rocblas_ssyrk_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
@@ -102607,10 +102607,10 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_dsyrk_assumed_rank = rocblas_dsyrk_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
@@ -102694,10 +102694,10 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_csyrk_assumed_rank = rocblas_csyrk_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
@@ -102781,10 +102781,10 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_zsyrk_assumed_rank = rocblas_zsyrk_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
@@ -102868,10 +102868,10 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_ssyrk_64_assumed_rank = rocblas_ssyrk_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -102955,10 +102955,10 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_dsyrk_64_assumed_rank = rocblas_dsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -103042,10 +103042,10 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_csyrk_64_assumed_rank = rocblas_csyrk_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -103129,10 +103129,10 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_zsyrk_64_assumed_rank = rocblas_zsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -103217,11 +103217,11 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -103320,11 +103320,11 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -103423,11 +103423,11 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -103526,11 +103526,11 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -103629,11 +103629,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -103733,11 +103733,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -103837,11 +103837,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -103941,11 +103941,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -104044,12 +104044,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_ssyr2k_assumed_rank = rocblas_ssyr2k_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
@@ -104139,12 +104139,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_dsyr2k_assumed_rank = rocblas_dsyr2k_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
@@ -104234,12 +104234,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_csyr2k_assumed_rank = rocblas_csyr2k_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
@@ -104329,12 +104329,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_zsyr2k_assumed_rank = rocblas_zsyr2k_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
@@ -104424,12 +104424,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_ssyr2k_64_assumed_rank = rocblas_ssyr2k_64_(handle,uplo,trans,n,k,c_loc(alpha), &
@@ -104519,12 +104519,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_dsyr2k_64_assumed_rank = rocblas_dsyr2k_64_(handle,uplo,trans,n,k,c_loc(alpha), &
@@ -104614,12 +104614,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_csyr2k_64_assumed_rank = rocblas_csyr2k_64_(handle,uplo,trans,n,k,c_loc(alpha), &
@@ -104709,12 +104709,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_zsyr2k_64_assumed_rank = rocblas_zsyr2k_64_(handle,uplo,trans,n,k,c_loc(alpha), &
@@ -104805,14 +104805,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -104924,14 +104924,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -105043,14 +105043,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -105162,14 +105162,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -105281,14 +105281,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -105400,14 +105400,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -105519,14 +105519,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -105638,14 +105638,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -105756,12 +105756,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_ssyrkx_assumed_rank = rocblas_ssyrkx_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
@@ -105851,12 +105851,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_dsyrkx_assumed_rank = rocblas_dsyrkx_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
@@ -105946,12 +105946,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_csyrkx_assumed_rank = rocblas_csyrkx_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
@@ -106041,12 +106041,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_zsyrkx_assumed_rank = rocblas_zsyrkx_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
@@ -106136,12 +106136,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_ssyrkx_64_assumed_rank = rocblas_ssyrkx_64_(handle,uplo,trans,n,k,c_loc(alpha), &
@@ -106231,12 +106231,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_dsyrkx_64_assumed_rank = rocblas_dsyrkx_64_(handle,uplo,trans,n,k,c_loc(alpha), &
@@ -106326,12 +106326,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_csyrkx_64_assumed_rank = rocblas_csyrkx_64_(handle,uplo,trans,n,k,c_loc(alpha), &
@@ -106421,12 +106421,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_zsyrkx_64_assumed_rank = rocblas_zsyrkx_64_(handle,uplo,trans,n,k,c_loc(alpha), &
@@ -106517,14 +106517,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -106636,14 +106636,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -106755,14 +106755,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -106874,14 +106874,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -106993,14 +106993,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -107112,14 +107112,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -107231,14 +107231,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -107350,14 +107350,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -107470,11 +107470,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_strmm_assumed_rank = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -107569,11 +107569,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_dtrmm_assumed_rank = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -107668,11 +107668,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_ctrmm_assumed_rank = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -107767,11 +107767,11 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_ztrmm_assumed_rank = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -107866,11 +107866,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_strmm_64_assumed_rank = rocblas_strmm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -107965,11 +107965,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_dtrmm_64_assumed_rank = rocblas_dtrmm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -108064,11 +108064,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_ctrmm_64_assumed_rank = rocblas_ctrmm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -108163,11 +108163,11 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_ztrmm_64_assumed_rank = rocblas_ztrmm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -108258,9 +108258,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: invA
+      real(c_float),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       !
       rocblas_strtri_assumed_rank = rocblas_strtri_(handle,uplo,diag,n,c_loc(A),lda,c_loc(invA), &
@@ -108330,9 +108330,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: invA
+      real(c_double),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       !
       rocblas_dtrtri_assumed_rank = rocblas_dtrtri_(handle,uplo,diag,n,c_loc(A),lda,c_loc(invA), &
@@ -108402,9 +108402,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: invA
+      complex(c_float_complex),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       !
       rocblas_ctrtri_assumed_rank = rocblas_ctrtri_(handle,uplo,diag,n,c_loc(A),lda,c_loc(invA), &
@@ -108474,9 +108474,9 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: invA
+      complex(c_double_complex),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       !
       rocblas_ztrtri_assumed_rank = rocblas_ztrtri_(handle,uplo,diag,n,c_loc(A),lda,c_loc(invA), &
@@ -108547,10 +108547,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_a
-      real(c_float),target,contiguous,dimension(..) :: invA
+      real(c_float),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
@@ -108638,10 +108638,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_a
-      real(c_double),target,contiguous,dimension(..) :: invA
+      real(c_double),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
@@ -108729,10 +108729,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_a
-      complex(c_float_complex),target,contiguous,dimension(..) :: invA
+      complex(c_float_complex),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
@@ -108820,10 +108820,10 @@ module hipfort_rocblas
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(kind(rocblas_diagonal_non_unit)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_a
-      complex(c_double_complex),target,contiguous,dimension(..) :: invA
+      complex(c_double_complex),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batch_count
@@ -108914,9 +108914,9 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       !
       rocblas_strsm_assumed_rank = rocblas_strsm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -109005,9 +109005,9 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       !
       rocblas_dtrsm_assumed_rank = rocblas_dtrsm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -109096,9 +109096,9 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       !
       rocblas_ctrsm_assumed_rank = rocblas_ctrsm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -109187,9 +109187,9 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       !
       rocblas_ztrsm_assumed_rank = rocblas_ztrsm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -109278,9 +109278,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       !
       rocblas_strsm_64_assumed_rank = rocblas_strsm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -109369,9 +109369,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       !
       rocblas_dtrsm_64_assumed_rank = rocblas_dtrsm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -109460,9 +109460,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       !
       rocblas_ctrsm_64_assumed_rank = rocblas_ctrsm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -109551,9 +109551,9 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       !
       rocblas_ztrsm_64_assumed_rank = rocblas_ztrsm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -109643,10 +109643,10 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_a
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
@@ -109750,10 +109750,10 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_a
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
@@ -109857,10 +109857,10 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_a
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
@@ -109964,10 +109964,10 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_a
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_b
       integer(c_int) :: batch_count
@@ -110071,10 +110071,10 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_a
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_b
       integer(c_int64_t) :: batch_count
@@ -110179,10 +110179,10 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_a
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_b
       integer(c_int64_t) :: batch_count
@@ -110287,10 +110287,10 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_a
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_b
       integer(c_int64_t) :: batch_count
@@ -110395,10 +110395,10 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_a
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_b
       integer(c_int64_t) :: batch_count
@@ -110501,12 +110501,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_sgemm_assumed_rank = rocblas_sgemm_(handle,transA,transB,m,n,k,c_loc(alpha), &
@@ -110600,12 +110600,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_dgemm_assumed_rank = rocblas_dgemm_(handle,transA,transB,m,n,k,c_loc(alpha), &
@@ -110699,12 +110699,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_cgemm_assumed_rank = rocblas_cgemm_(handle,transA,transB,m,n,k,c_loc(alpha), &
@@ -110798,12 +110798,12 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_zgemm_assumed_rank = rocblas_zgemm_(handle,transA,transB,m,n,k,c_loc(alpha), &
@@ -110897,12 +110897,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_sgemm_64_assumed_rank = rocblas_sgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
@@ -110996,12 +110996,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_dgemm_64_assumed_rank = rocblas_dgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
@@ -111095,12 +111095,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_cgemm_64_assumed_rank = rocblas_cgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
@@ -111194,12 +111194,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_zgemm_64_assumed_rank = rocblas_zgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
@@ -111294,14 +111294,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_a
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_b
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
@@ -111417,14 +111417,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_a
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_b
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
@@ -111540,14 +111540,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_a
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_b
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
@@ -111663,14 +111663,14 @@ module hipfort_rocblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_a
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_b
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_c
       integer(c_int) :: batch_count
@@ -111786,14 +111786,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_a
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_b
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_c
       integer(c_int64_t) :: batch_count
@@ -111909,14 +111909,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_a
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_b
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_c
       integer(c_int64_t) :: batch_count
@@ -112032,14 +112032,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_a
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_b
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_c
       integer(c_int64_t) :: batch_count
@@ -112155,14 +112155,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_a
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_b
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_c
       integer(c_int64_t) :: batch_count
@@ -112274,11 +112274,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_sdgmm_assumed_rank = rocblas_sdgmm_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
@@ -112355,11 +112355,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_ddgmm_assumed_rank = rocblas_ddgmm_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
@@ -112436,11 +112436,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_cdgmm_assumed_rank = rocblas_cdgmm_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
@@ -112517,11 +112517,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_zdgmm_assumed_rank = rocblas_zdgmm_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
@@ -112598,11 +112598,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_sdgmm_64_assumed_rank = rocblas_sdgmm_64_(handle,side,m,n,c_loc(A),lda,c_loc(x), &
@@ -112681,11 +112681,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_ddgmm_64_assumed_rank = rocblas_ddgmm_64_(handle,side,m,n,c_loc(A),lda,c_loc(x), &
@@ -112764,11 +112764,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_cdgmm_64_assumed_rank = rocblas_cdgmm_64_(handle,side,m,n,c_loc(A),lda,c_loc(x), &
@@ -112847,11 +112847,11 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_zdgmm_64_assumed_rank = rocblas_zdgmm_64_(handle,side,m,n,c_loc(A),lda,c_loc(x), &
@@ -112931,13 +112931,13 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -113034,13 +113034,13 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -113137,13 +113137,13 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -113240,13 +113240,13 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -113343,13 +113343,13 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -113446,13 +113446,13 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -113549,13 +113549,13 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -113652,13 +113652,13 @@ module hipfort_rocblas
       integer(kind(rocblas_side_left)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stride_x
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -113756,12 +113756,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_sgeam_assumed_rank = rocblas_sgeam_(handle,transA,transB,m,n,c_loc(alpha),c_loc(A), &
@@ -113851,12 +113851,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_dgeam_assumed_rank = rocblas_dgeam_(handle,transA,transB,m,n,c_loc(alpha),c_loc(A), &
@@ -113946,12 +113946,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_cgeam_assumed_rank = rocblas_cgeam_(handle,transA,transB,m,n,c_loc(alpha),c_loc(A), &
@@ -114041,12 +114041,12 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       rocblas_zgeam_assumed_rank = rocblas_zgeam_(handle,transA,transB,m,n,c_loc(alpha),c_loc(A), &
@@ -114136,12 +114136,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_sgeam_64_assumed_rank = rocblas_sgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
@@ -114231,12 +114231,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_dgeam_64_assumed_rank = rocblas_dgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
@@ -114326,12 +114326,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_cgeam_64_assumed_rank = rocblas_cgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
@@ -114421,12 +114421,12 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       rocblas_zgeam_64_assumed_rank = rocblas_zgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
@@ -114517,14 +114517,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -114636,14 +114636,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -114755,14 +114755,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -114874,14 +114874,14 @@ module hipfort_rocblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: stride_A
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: stride_B
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int) :: batch_count
@@ -114993,14 +114993,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -115112,14 +115112,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -115231,14 +115231,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -115350,14 +115350,14 @@ module hipfort_rocblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: stride_A
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: stride_B
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: stride_C
       integer(c_int64_t) :: batch_count
@@ -115463,9 +115463,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
+      logical(c_bool),target,dimension(..) :: x
       integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
+      logical(c_bool),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
@@ -115477,9 +115477,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -115491,9 +115491,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -115505,9 +115505,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -115519,9 +115519,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -115533,9 +115533,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
@@ -115547,9 +115547,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_set_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
@@ -115561,9 +115561,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
+      logical(c_bool),target,dimension(..) :: x
       integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
+      logical(c_bool),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,1,c_loc(x),incx,c_loc(y),incy)
@@ -115575,9 +115575,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -115589,9 +115589,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -115603,9 +115603,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -115617,9 +115617,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -115631,9 +115631,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
@@ -115645,9 +115645,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = rocblas_get_vector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
@@ -115660,9 +115660,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
+      logical(c_bool),target,dimension(..) :: A
       integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
+      logical(c_bool),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
@@ -115675,9 +115675,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -115690,9 +115690,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -115705,9 +115705,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -115720,9 +115720,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -115735,9 +115735,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
@@ -115750,9 +115750,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_set_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
@@ -115765,9 +115765,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
+      logical(c_bool),target,dimension(..) :: A
       integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
+      logical(c_bool),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
@@ -115780,9 +115780,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -115795,9 +115795,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -115810,9 +115810,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -115825,9 +115825,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -115840,9 +115840,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
@@ -115855,9 +115855,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = rocblas_get_matrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
@@ -115869,9 +115869,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
+      logical(c_bool),target,dimension(..) :: x
       integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
+      logical(c_bool),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -115884,9 +115884,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -115899,9 +115899,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -115914,9 +115914,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -115929,9 +115929,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -115944,9 +115944,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -115959,9 +115959,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -115974,9 +115974,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
+      logical(c_bool),target,dimension(..) :: x
       integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
+      logical(c_bool),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -115989,9 +115989,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -116004,9 +116004,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -116019,9 +116019,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -116034,9 +116034,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -116049,9 +116049,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -116064,9 +116064,9 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -116080,9 +116080,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
+      logical(c_bool),target,dimension(..) :: A
       integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
+      logical(c_bool),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116096,9 +116096,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116112,9 +116112,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116128,9 +116128,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116144,9 +116144,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116160,9 +116160,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116176,9 +116176,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116192,9 +116192,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
+      logical(c_bool),target,dimension(..) :: A
       integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
+      logical(c_bool),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116208,9 +116208,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116224,9 +116224,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116240,9 +116240,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116256,9 +116256,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116272,9 +116272,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -116288,9 +116288,9 @@ module hipfort_rocblas
       integer(kind(rocblas_status_success)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
