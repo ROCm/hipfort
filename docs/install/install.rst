@@ -79,7 +79,7 @@ ready-made CMake toolchain file from ``cmake/toolchains/`` with ``-DCMAKE_TOOLCH
 
 .. code-block:: shell
 
-   cmake -S . -Bbuild -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
+   cmake -S . -Bbuild -DHIPFORT_BUILD_NVPTX=OFF -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
 
 Each file only sets the Fortran and C compilers, so they compose with the other build
 options above. hipFORT is pure Fortran, so no C++ compiler is required.

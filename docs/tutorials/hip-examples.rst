@@ -19,7 +19,9 @@ Every program on this page is complete and self-contained, and is built and run
 as part of the hipFORT test suite. Each program lives in ``test/f2003/hip``,
 except the kernel-launch example, which lives in ``test/f2003/vecadd``. The
 programs that benefit from Fortran array pointers have a Fortran 2008 twin in
-``test/f2008/hip``.
+``test/f2008/hip`` (``test/f2008/vecadd`` for the kernel launch). That directory
+also holds Fortran 2008-only tests, such as ``malloc_failure.f08``, which checks
+that a failed ``hipMalloc`` leaves the pointer unassociated.
 
 Conventions
 ===========
@@ -35,9 +37,10 @@ Conventions
 * **Every call returns a status code.** The programs wrap calls in ``hipCheck``
   from the ``hipfort_check`` module, which on failure prints the status by name
   and its code, for example ``HIP ERROR: hipErrorInvalidDevice (code 101)``,
-  then stops with exit code 1. A call whose non-success return is the thing
-  being tested, such as ``hipStreamQuery``, keeps the status in a variable
-  instead.
+  then stops with exit code 1. A call that may legitimately return a
+  non-success status, such as ``hipEventQuery`` returning ``hipErrorNotReady``,
+  or whose error is the thing being tested, such as the invalid ``hipSetDevice``
+  in the error-handling example, keeps the status in a variable instead.
 * **Enumerators are integers.** Declare status variables as
   ``integer(kind(hipSuccess))`` so they match the kind the interfaces return.
 * **Host callbacks and kernel stubs** are passed as ``c_funloc`` of a procedure

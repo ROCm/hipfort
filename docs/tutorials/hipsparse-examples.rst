@@ -24,8 +24,9 @@ programs are written against the ``hipfort_rocsparse`` module.
 Many routines come in the four precisions: ``s`` (real single), ``d`` (real
 double), ``c`` (complex single), and ``z`` (complex double). Where several are
 provided, this page shows the double-precision program of the group; the other
-precisions differ only in the host data type and the ``hipsparse`` prefix
-letter.
+precisions differ only in the host data type, the precision letter after the
+``hipsparse`` prefix and, in the generic API, the ``HIP_R_*``/``HIP_C_*`` value
+passed to the descriptors.
 
 Conventions
 ===========
@@ -43,7 +44,7 @@ hipSPARSE follows a small number of conventions that recur in every program:
   wraps the operands in matrix/vector descriptors (``hipsparseCreateCsr``,
   ``hipsparseCreateDnMat``, ``hipsparseCreateDnVec``) and runs in stages: query
   a workspace size, optionally preprocess/analyze, then compute. The older
-  level-2/level-3 API (``csrsv2``, ``csrilu02``) uses an info handle and a
+  API (``csrsv2``, ``csrilu02``) uses an info handle and a
   matrix descriptor (``hipsparseCreateMatDescr``), while ``gemvi`` only needs a
   plain workspace buffer.
 * **Zero-size buffers.** For SpMV, SpMM and SDDMM, when the workspace query

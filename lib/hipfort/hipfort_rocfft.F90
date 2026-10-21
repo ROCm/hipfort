@@ -1034,7 +1034,7 @@ module hipfort_rocfft
       integer(kind(rocfft_transform_type_complex_forward)) :: transform_type
       integer(kind(rocfft_precision_single)) :: myPrecision
       integer(c_size_t) :: dimensions
-      integer(c_size_t),target,contiguous,dimension(..) :: lengths
+      integer(c_size_t),target,dimension(..) :: lengths
       integer(c_size_t) :: number_of_transforms
       type(c_ptr), value :: description
       !
@@ -1093,13 +1093,13 @@ module hipfort_rocfft
       type(c_ptr), value :: description
       integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
-      integer(c_size_t),target,contiguous,dimension(..) :: in_offsets
-      integer(c_size_t),target,contiguous,dimension(..) :: out_offsets
+      integer(c_size_t),target,dimension(..) :: in_offsets
+      integer(c_size_t),target,dimension(..) :: out_offsets
       integer(c_size_t) :: in_strides_size
-      integer(c_size_t),target,contiguous,dimension(..) :: in_strides
+      integer(c_size_t),target,dimension(..) :: in_strides
       integer(c_size_t) :: in_distance
       integer(c_size_t) :: out_strides_size
-      integer(c_size_t),target,contiguous,dimension(..) :: out_strides
+      integer(c_size_t),target,dimension(..) :: out_strides
       integer(c_size_t) :: out_distance
       !
       rocfft_plan_description_set_data_layout_assumed_rank = &

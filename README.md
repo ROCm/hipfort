@@ -78,8 +78,8 @@ if the probe fails, it warns and falls back to the per-rank Fortran 2008 interfa
 It also requires `HIPFORT_USE_FPOINTER_INTERFACES` (on which the per-rank interfaces themselves depend); with that off there are no array interfaces at all, only the plain Fortran 2003 `type(c_ptr)` ones.
 Off by default.
 
-The assumed-rank wrapper takes the base address of the array with `c_loc`, so the actual argument must be contiguous (the dummy is declared `contiguous`).
-A non-contiguous section (e.g. `a(:,::2)`) would force the compiler to pass a temporary copy, so pass whole arrays or contiguous slices only.
+The assumed-rank wrapper takes the base address of the array with `c_loc`, so the actual argument must be contiguous: pass whole arrays or contiguous slices only.
+As in the per-rank wrappers, the dummy is not declared `contiguous`, so a non-contiguous section (e.g. `a(:,::2)`) is not copied into a host temporary, which would be fatal for an array in device memory; the library reads the wrong elements instead.
 
 ### Example
 
@@ -210,7 +210,7 @@ build hipfort, and run the suite with `ctest`.
 detected from `ROCM_PATH` or from `hipcc` on your `PATH`; override with `-DROCM_PATH=<path>`.
 
 ```shell
-cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_TESTING=ON
+cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DHIPFORT_BUILD_NVPTX=OFF -DBUILD_TESTING=ON
 cmake --build build
 ctest --test-dir build
 ```

@@ -11354,7 +11354,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgbmv_64_rank_0,&
-      hipblasSgbmv_64_rank_1
+      hipblasSgbmv_64_rank_1,&
+      hipblasSgbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -11395,7 +11396,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgbmv_64_rank_0,&
-      hipblasDgbmv_64_rank_1
+      hipblasDgbmv_64_rank_1,&
+      hipblasDgbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -11436,7 +11438,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgbmv_64_rank_0,&
-      hipblasCgbmv_64_rank_1
+      hipblasCgbmv_64_rank_1,&
+      hipblasCgbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -11477,7 +11480,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgbmv_64_rank_0,&
-      hipblasZgbmv_64_rank_1
+      hipblasZgbmv_64_rank_1,&
+      hipblasZgbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -12055,7 +12059,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgbmvStridedBatched_64_rank_0,&
-      hipblasSgbmvStridedBatched_64_rank_1
+      hipblasSgbmvStridedBatched_64_rank_1,&
+      hipblasSgbmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -12098,7 +12103,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgbmvStridedBatched_64_rank_0,&
-      hipblasDgbmvStridedBatched_64_rank_1
+      hipblasDgbmvStridedBatched_64_rank_1,&
+      hipblasDgbmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -12141,7 +12147,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgbmvStridedBatched_64_rank_0,&
-      hipblasCgbmvStridedBatched_64_rank_1
+      hipblasCgbmvStridedBatched_64_rank_1,&
+      hipblasCgbmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -12184,7 +12191,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgbmvStridedBatched_64_rank_0,&
-      hipblasZgbmvStridedBatched_64_rank_1
+      hipblasZgbmvStridedBatched_64_rank_1,&
+      hipblasZgbmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -12418,7 +12426,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgemv_64_rank_0,&
-      hipblasSgemv_64_rank_1
+      hipblasSgemv_64_rank_1,&
+      hipblasSgemv_64_full_rank
 #endif
 #endif
   end interface
@@ -12457,7 +12466,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgemv_64_rank_0,&
-      hipblasDgemv_64_rank_1
+      hipblasDgemv_64_rank_1,&
+      hipblasDgemv_64_full_rank
 #endif
 #endif
   end interface
@@ -12496,7 +12506,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgemv_64_rank_0,&
-      hipblasCgemv_64_rank_1
+      hipblasCgemv_64_rank_1,&
+      hipblasCgemv_64_full_rank
 #endif
 #endif
   end interface
@@ -12535,7 +12546,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgemv_64_rank_0,&
-      hipblasZgemv_64_rank_1
+      hipblasZgemv_64_rank_1,&
+      hipblasZgemv_64_full_rank
 #endif
 #endif
   end interface
@@ -13091,7 +13103,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgemvStridedBatched_64_rank_0,&
-      hipblasSgemvStridedBatched_64_rank_1
+      hipblasSgemvStridedBatched_64_rank_1,&
+      hipblasSgemvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -13136,7 +13149,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgemvStridedBatched_64_rank_0,&
-      hipblasDgemvStridedBatched_64_rank_1
+      hipblasDgemvStridedBatched_64_rank_1,&
+      hipblasDgemvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -13181,7 +13195,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgemvStridedBatched_64_rank_0,&
-      hipblasCgemvStridedBatched_64_rank_1
+      hipblasCgemvStridedBatched_64_rank_1,&
+      hipblasCgemvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -13226,7 +13241,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgemvStridedBatched_64_rank_0,&
-      hipblasZgemvStridedBatched_64_rank_1
+      hipblasZgemvStridedBatched_64_rank_1,&
+      hipblasZgemvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -13508,7 +13524,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSger_64_rank_0,&
-      hipblasSger_64_rank_1
+      hipblasSger_64_rank_1,&
+      hipblasSger_64_full_rank
 #endif
 #endif
   end interface
@@ -13543,7 +13560,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDger_64_rank_0,&
-      hipblasDger_64_rank_1
+      hipblasDger_64_rank_1,&
+      hipblasDger_64_full_rank
 #endif
 #endif
   end interface
@@ -13579,7 +13597,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgeru_64_rank_0,&
-      hipblasCgeru_64_rank_1
+      hipblasCgeru_64_rank_1,&
+      hipblasCgeru_64_full_rank
 #endif
 #endif
   end interface
@@ -13615,7 +13634,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgerc_64_rank_0,&
-      hipblasCgerc_64_rank_1
+      hipblasCgerc_64_rank_1,&
+      hipblasCgerc_64_full_rank
 #endif
 #endif
   end interface
@@ -13651,7 +13671,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgeru_64_rank_0,&
-      hipblasZgeru_64_rank_1
+      hipblasZgeru_64_rank_1,&
+      hipblasZgeru_64_full_rank
 #endif
 #endif
   end interface
@@ -13687,7 +13708,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgerc_64_rank_0,&
-      hipblasZgerc_64_rank_1
+      hipblasZgerc_64_rank_1,&
+      hipblasZgerc_64_full_rank
 #endif
 #endif
   end interface
@@ -14347,7 +14369,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgerStridedBatched_64_rank_0,&
-      hipblasSgerStridedBatched_64_rank_1
+      hipblasSgerStridedBatched_64_rank_1,&
+      hipblasSgerStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -14386,7 +14409,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgerStridedBatched_64_rank_0,&
-      hipblasDgerStridedBatched_64_rank_1
+      hipblasDgerStridedBatched_64_rank_1,&
+      hipblasDgerStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -14425,7 +14449,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgeruStridedBatched_64_rank_0,&
-      hipblasCgeruStridedBatched_64_rank_1
+      hipblasCgeruStridedBatched_64_rank_1,&
+      hipblasCgeruStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -14464,7 +14489,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgercStridedBatched_64_rank_0,&
-      hipblasCgercStridedBatched_64_rank_1
+      hipblasCgercStridedBatched_64_rank_1,&
+      hipblasCgercStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -14503,7 +14529,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgeruStridedBatched_64_rank_0,&
-      hipblasZgeruStridedBatched_64_rank_1
+      hipblasZgeruStridedBatched_64_rank_1,&
+      hipblasZgeruStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -14542,7 +14569,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgercStridedBatched_64_rank_0,&
-      hipblasZgercStridedBatched_64_rank_1
+      hipblasZgercStridedBatched_64_rank_1,&
+      hipblasZgercStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -14722,7 +14750,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChbmv_64_rank_0,&
-      hipblasChbmv_64_rank_1
+      hipblasChbmv_64_rank_1,&
+      hipblasChbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -14761,7 +14790,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhbmv_64_rank_0,&
-      hipblasZhbmv_64_rank_1
+      hipblasZhbmv_64_rank_1,&
+      hipblasZhbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -15131,7 +15161,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChbmvStridedBatched_64_rank_0,&
-      hipblasChbmvStridedBatched_64_rank_1
+      hipblasChbmvStridedBatched_64_rank_1,&
+      hipblasChbmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -15172,7 +15203,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhbmvStridedBatched_64_rank_0,&
-      hipblasZhbmvStridedBatched_64_rank_1
+      hipblasZhbmvStridedBatched_64_rank_1,&
+      hipblasZhbmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -15333,7 +15365,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChemv_64_rank_0,&
-      hipblasChemv_64_rank_1
+      hipblasChemv_64_rank_1,&
+      hipblasChemv_64_full_rank
 #endif
 #endif
   end interface
@@ -15371,7 +15404,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhemv_64_rank_0,&
-      hipblasZhemv_64_rank_1
+      hipblasZhemv_64_rank_1,&
+      hipblasZhemv_64_full_rank
 #endif
 #endif
   end interface
@@ -15697,7 +15731,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChemvStridedBatched_64_rank_0,&
-      hipblasChemvStridedBatched_64_rank_1
+      hipblasChemvStridedBatched_64_rank_1,&
+      hipblasChemvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -15737,7 +15772,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhemvStridedBatched_64_rank_0,&
-      hipblasZhemvStridedBatched_64_rank_1
+      hipblasZhemvStridedBatched_64_rank_1,&
+      hipblasZhemvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -15879,7 +15915,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCher_64_rank_0,&
-      hipblasCher_64_rank_1
+      hipblasCher_64_rank_1,&
+      hipblasCher_64_full_rank
 #endif
 #endif
   end interface
@@ -15912,7 +15949,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZher_64_rank_0,&
-      hipblasZher_64_rank_1
+      hipblasZher_64_rank_1,&
+      hipblasZher_64_full_rank
 #endif
 #endif
   end interface
@@ -16212,7 +16250,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCherStridedBatched_64_rank_0,&
-      hipblasCherStridedBatched_64_rank_1
+      hipblasCherStridedBatched_64_rank_1,&
+      hipblasCherStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -16248,7 +16287,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZherStridedBatched_64_rank_0,&
-      hipblasZherStridedBatched_64_rank_1
+      hipblasZherStridedBatched_64_rank_1,&
+      hipblasZherStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -16403,7 +16443,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCher2_64_rank_0,&
-      hipblasCher2_64_rank_1
+      hipblasCher2_64_rank_1,&
+      hipblasCher2_64_full_rank
 #endif
 #endif
   end interface
@@ -16440,7 +16481,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZher2_64_rank_0,&
-      hipblasZher2_64_rank_1
+      hipblasZher2_64_rank_1,&
+      hipblasZher2_64_full_rank
 #endif
 #endif
   end interface
@@ -16763,7 +16805,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCher2StridedBatched_64_rank_0,&
-      hipblasCher2StridedBatched_64_rank_1
+      hipblasCher2StridedBatched_64_rank_1,&
+      hipblasCher2StridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -16802,7 +16845,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZher2StridedBatched_64_rank_0,&
-      hipblasZher2StridedBatched_64_rank_1
+      hipblasZher2StridedBatched_64_rank_1,&
+      hipblasZher2StridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -18677,7 +18721,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsbmv_64_rank_0,&
-      hipblasSsbmv_64_rank_1
+      hipblasSsbmv_64_rank_1,&
+      hipblasSsbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -18716,7 +18761,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsbmv_64_rank_0,&
-      hipblasDsbmv_64_rank_1
+      hipblasDsbmv_64_rank_1,&
+      hipblasDsbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -19040,7 +19086,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsbmvStridedBatched_64_rank_0,&
-      hipblasSsbmvStridedBatched_64_rank_1
+      hipblasSsbmvStridedBatched_64_rank_1,&
+      hipblasSsbmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -19081,7 +19128,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsbmvStridedBatched_64_rank_0,&
-      hipblasDsbmvStridedBatched_64_rank_1
+      hipblasDsbmvStridedBatched_64_rank_1,&
+      hipblasDsbmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -21287,7 +21335,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsymv_64_rank_0,&
-      hipblasSsymv_64_rank_1
+      hipblasSsymv_64_rank_1,&
+      hipblasSsymv_64_full_rank
 #endif
 #endif
   end interface
@@ -21325,7 +21374,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsymv_64_rank_0,&
-      hipblasDsymv_64_rank_1
+      hipblasDsymv_64_rank_1,&
+      hipblasDsymv_64_full_rank
 #endif
 #endif
   end interface
@@ -21363,7 +21413,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsymv_64_rank_0,&
-      hipblasCsymv_64_rank_1
+      hipblasCsymv_64_rank_1,&
+      hipblasCsymv_64_full_rank
 #endif
 #endif
   end interface
@@ -21401,7 +21452,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsymv_64_rank_0,&
-      hipblasZsymv_64_rank_1
+      hipblasZsymv_64_rank_1,&
+      hipblasZsymv_64_full_rank
 #endif
 #endif
   end interface
@@ -21902,7 +21954,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsymvStridedBatched_64_rank_0,&
-      hipblasSsymvStridedBatched_64_rank_1
+      hipblasSsymvStridedBatched_64_rank_1,&
+      hipblasSsymvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -21942,7 +21995,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsymvStridedBatched_64_rank_0,&
-      hipblasDsymvStridedBatched_64_rank_1
+      hipblasDsymvStridedBatched_64_rank_1,&
+      hipblasDsymvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -21982,7 +22036,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsymvStridedBatched_64_rank_0,&
-      hipblasCsymvStridedBatched_64_rank_1
+      hipblasCsymvStridedBatched_64_rank_1,&
+      hipblasCsymvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -22022,7 +22077,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsymvStridedBatched_64_rank_0,&
-      hipblasZsymvStridedBatched_64_rank_1
+      hipblasZsymvStridedBatched_64_rank_1,&
+      hipblasZsymvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -22223,7 +22279,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyr_64_rank_0,&
-      hipblasSsyr_64_rank_1
+      hipblasSsyr_64_rank_1,&
+      hipblasSsyr_64_full_rank
 #endif
 #endif
   end interface
@@ -22256,7 +22313,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyr_64_rank_0,&
-      hipblasDsyr_64_rank_1
+      hipblasDsyr_64_rank_1,&
+      hipblasDsyr_64_full_rank
 #endif
 #endif
   end interface
@@ -22289,7 +22347,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyr_64_rank_0,&
-      hipblasCsyr_64_rank_1
+      hipblasCsyr_64_rank_1,&
+      hipblasCsyr_64_full_rank
 #endif
 #endif
   end interface
@@ -22322,7 +22381,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyr_64_rank_0,&
-      hipblasZsyr_64_rank_1
+      hipblasZsyr_64_rank_1,&
+      hipblasZsyr_64_full_rank
 #endif
 #endif
   end interface
@@ -22758,7 +22818,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyrStridedBatched_64_rank_0,&
-      hipblasSsyrStridedBatched_64_rank_1
+      hipblasSsyrStridedBatched_64_rank_1,&
+      hipblasSsyrStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -22794,7 +22855,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyrStridedBatched_64_rank_0,&
-      hipblasDsyrStridedBatched_64_rank_1
+      hipblasDsyrStridedBatched_64_rank_1,&
+      hipblasDsyrStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -22830,7 +22892,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyrStridedBatched_64_rank_0,&
-      hipblasCsyrStridedBatched_64_rank_1
+      hipblasCsyrStridedBatched_64_rank_1,&
+      hipblasCsyrStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -22866,7 +22929,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyrStridedBatched_64_rank_0,&
-      hipblasZsyrStridedBatched_64_rank_1
+      hipblasZsyrStridedBatched_64_rank_1,&
+      hipblasZsyrStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -23082,7 +23146,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyr2_64_rank_0,&
-      hipblasSsyr2_64_rank_1
+      hipblasSsyr2_64_rank_1,&
+      hipblasSsyr2_64_full_rank
 #endif
 #endif
   end interface
@@ -23119,7 +23184,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyr2_64_rank_0,&
-      hipblasDsyr2_64_rank_1
+      hipblasDsyr2_64_rank_1,&
+      hipblasDsyr2_64_full_rank
 #endif
 #endif
   end interface
@@ -23156,7 +23222,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyr2_64_rank_0,&
-      hipblasCsyr2_64_rank_1
+      hipblasCsyr2_64_rank_1,&
+      hipblasCsyr2_64_full_rank
 #endif
 #endif
   end interface
@@ -23193,7 +23260,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyr2_64_rank_0,&
-      hipblasZsyr2_64_rank_1
+      hipblasZsyr2_64_rank_1,&
+      hipblasZsyr2_64_full_rank
 #endif
 #endif
   end interface
@@ -23667,7 +23735,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyr2StridedBatched_64_rank_0,&
-      hipblasSsyr2StridedBatched_64_rank_1
+      hipblasSsyr2StridedBatched_64_rank_1,&
+      hipblasSsyr2StridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -23706,7 +23775,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyr2StridedBatched_64_rank_0,&
-      hipblasDsyr2StridedBatched_64_rank_1
+      hipblasDsyr2StridedBatched_64_rank_1,&
+      hipblasDsyr2StridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -23745,7 +23815,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyr2StridedBatched_64_rank_0,&
-      hipblasCsyr2StridedBatched_64_rank_1
+      hipblasCsyr2StridedBatched_64_rank_1,&
+      hipblasCsyr2StridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -23784,7 +23855,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyr2StridedBatched_64_rank_0,&
-      hipblasZsyr2StridedBatched_64_rank_1
+      hipblasZsyr2StridedBatched_64_rank_1,&
+      hipblasZsyr2StridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -24022,7 +24094,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStbmv_64_rank_0,&
-      hipblasStbmv_64_rank_1
+      hipblasStbmv_64_rank_1,&
+      hipblasStbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -24057,7 +24130,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtbmv_64_rank_0,&
-      hipblasDtbmv_64_rank_1
+      hipblasDtbmv_64_rank_1,&
+      hipblasDtbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -24092,7 +24166,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtbmv_64_rank_0,&
-      hipblasCtbmv_64_rank_1
+      hipblasCtbmv_64_rank_1,&
+      hipblasCtbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -24127,7 +24202,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtbmv_64_rank_0,&
-      hipblasZtbmv_64_rank_1
+      hipblasZtbmv_64_rank_1,&
+      hipblasZtbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -24637,7 +24713,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStbmvStridedBatched_64_rank_0,&
-      hipblasStbmvStridedBatched_64_rank_1
+      hipblasStbmvStridedBatched_64_rank_1,&
+      hipblasStbmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -24673,7 +24750,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtbmvStridedBatched_64_rank_0,&
-      hipblasDtbmvStridedBatched_64_rank_1
+      hipblasDtbmvStridedBatched_64_rank_1,&
+      hipblasDtbmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -24709,7 +24787,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtbmvStridedBatched_64_rank_0,&
-      hipblasCtbmvStridedBatched_64_rank_1
+      hipblasCtbmvStridedBatched_64_rank_1,&
+      hipblasCtbmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -24745,7 +24824,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtbmvStridedBatched_64_rank_0,&
-      hipblasZtbmvStridedBatched_64_rank_1
+      hipblasZtbmvStridedBatched_64_rank_1,&
+      hipblasZtbmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -24967,7 +25047,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStbsv_64_rank_0,&
-      hipblasStbsv_64_rank_1
+      hipblasStbsv_64_rank_1,&
+      hipblasStbsv_64_full_rank
 #endif
 #endif
   end interface
@@ -25002,7 +25083,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtbsv_64_rank_0,&
-      hipblasDtbsv_64_rank_1
+      hipblasDtbsv_64_rank_1,&
+      hipblasDtbsv_64_full_rank
 #endif
 #endif
   end interface
@@ -25037,7 +25119,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtbsv_64_rank_0,&
-      hipblasCtbsv_64_rank_1
+      hipblasCtbsv_64_rank_1,&
+      hipblasCtbsv_64_full_rank
 #endif
 #endif
   end interface
@@ -25072,7 +25155,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtbsv_64_rank_0,&
-      hipblasZtbsv_64_rank_1
+      hipblasZtbsv_64_rank_1,&
+      hipblasZtbsv_64_full_rank
 #endif
 #endif
   end interface
@@ -25554,7 +25638,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStbsvStridedBatched_64_rank_0,&
-      hipblasStbsvStridedBatched_64_rank_1
+      hipblasStbsvStridedBatched_64_rank_1,&
+      hipblasStbsvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -25590,7 +25675,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtbsvStridedBatched_64_rank_0,&
-      hipblasDtbsvStridedBatched_64_rank_1
+      hipblasDtbsvStridedBatched_64_rank_1,&
+      hipblasDtbsvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -25626,7 +25712,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtbsvStridedBatched_64_rank_0,&
-      hipblasCtbsvStridedBatched_64_rank_1
+      hipblasCtbsvStridedBatched_64_rank_1,&
+      hipblasCtbsvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -25662,7 +25749,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtbsvStridedBatched_64_rank_0,&
-      hipblasZtbsvStridedBatched_64_rank_1
+      hipblasZtbsvStridedBatched_64_rank_1,&
+      hipblasZtbsvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -27528,7 +27616,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrmv_64_rank_0,&
-      hipblasStrmv_64_rank_1
+      hipblasStrmv_64_rank_1,&
+      hipblasStrmv_64_full_rank
 #endif
 #endif
   end interface
@@ -27562,7 +27651,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrmv_64_rank_0,&
-      hipblasDtrmv_64_rank_1
+      hipblasDtrmv_64_rank_1,&
+      hipblasDtrmv_64_full_rank
 #endif
 #endif
   end interface
@@ -27596,7 +27686,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrmv_64_rank_0,&
-      hipblasCtrmv_64_rank_1
+      hipblasCtrmv_64_rank_1,&
+      hipblasCtrmv_64_full_rank
 #endif
 #endif
   end interface
@@ -27630,7 +27721,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrmv_64_rank_0,&
-      hipblasZtrmv_64_rank_1
+      hipblasZtrmv_64_rank_1,&
+      hipblasZtrmv_64_full_rank
 #endif
 #endif
   end interface
@@ -28082,7 +28174,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrmvStridedBatched_64_rank_0,&
-      hipblasStrmvStridedBatched_64_rank_1
+      hipblasStrmvStridedBatched_64_rank_1,&
+      hipblasStrmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -28117,7 +28210,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrmvStridedBatched_64_rank_0,&
-      hipblasDtrmvStridedBatched_64_rank_1
+      hipblasDtrmvStridedBatched_64_rank_1,&
+      hipblasDtrmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -28152,7 +28246,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrmvStridedBatched_64_rank_0,&
-      hipblasCtrmvStridedBatched_64_rank_1
+      hipblasCtrmvStridedBatched_64_rank_1,&
+      hipblasCtrmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -28187,7 +28282,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrmvStridedBatched_64_rank_0,&
-      hipblasZtrmvStridedBatched_64_rank_1
+      hipblasZtrmvStridedBatched_64_rank_1,&
+      hipblasZtrmvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -28395,7 +28491,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrsv_64_rank_0,&
-      hipblasStrsv_64_rank_1
+      hipblasStrsv_64_rank_1,&
+      hipblasStrsv_64_full_rank
 #endif
 #endif
   end interface
@@ -28429,7 +28526,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrsv_64_rank_0,&
-      hipblasDtrsv_64_rank_1
+      hipblasDtrsv_64_rank_1,&
+      hipblasDtrsv_64_full_rank
 #endif
 #endif
   end interface
@@ -28463,7 +28561,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrsv_64_rank_0,&
-      hipblasCtrsv_64_rank_1
+      hipblasCtrsv_64_rank_1,&
+      hipblasCtrsv_64_full_rank
 #endif
 #endif
   end interface
@@ -28497,7 +28596,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrsv_64_rank_0,&
-      hipblasZtrsv_64_rank_1
+      hipblasZtrsv_64_rank_1,&
+      hipblasZtrsv_64_full_rank
 #endif
 #endif
   end interface
@@ -28948,7 +29048,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrsvStridedBatched_64_rank_0,&
-      hipblasStrsvStridedBatched_64_rank_1
+      hipblasStrsvStridedBatched_64_rank_1,&
+      hipblasStrsvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -28983,7 +29084,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrsvStridedBatched_64_rank_0,&
-      hipblasDtrsvStridedBatched_64_rank_1
+      hipblasDtrsvStridedBatched_64_rank_1,&
+      hipblasDtrsvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -29018,7 +29120,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrsvStridedBatched_64_rank_0,&
-      hipblasCtrsvStridedBatched_64_rank_1
+      hipblasCtrsvStridedBatched_64_rank_1,&
+      hipblasCtrsvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -29053,7 +29156,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrsvStridedBatched_64_rank_0,&
-      hipblasZtrsvStridedBatched_64_rank_1
+      hipblasZtrsvStridedBatched_64_rank_1,&
+      hipblasZtrsvStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -29364,7 +29468,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgemm_64_rank_0,&
-      hipblasSgemm_64_rank_1
+      hipblasSgemm_64_rank_1,&
+      hipblasSgemm_64_full_rank
 #endif
 #endif
   end interface
@@ -29405,7 +29510,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgemm_64_rank_0,&
-      hipblasDgemm_64_rank_1
+      hipblasDgemm_64_rank_1,&
+      hipblasDgemm_64_full_rank
 #endif
 #endif
   end interface
@@ -29446,7 +29552,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgemm_64_rank_0,&
-      hipblasCgemm_64_rank_1
+      hipblasCgemm_64_rank_1,&
+      hipblasCgemm_64_full_rank
 #endif
 #endif
   end interface
@@ -29487,7 +29594,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgemm_64_rank_0,&
-      hipblasZgemm_64_rank_1
+      hipblasZgemm_64_rank_1,&
+      hipblasZgemm_64_full_rank
 #endif
 #endif
   end interface
@@ -30430,7 +30538,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgemmStridedBatched_64_rank_0,&
-      hipblasSgemmStridedBatched_64_rank_1
+      hipblasSgemmStridedBatched_64_rank_1,&
+      hipblasSgemmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -30477,7 +30586,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgemmStridedBatched_64_rank_0,&
-      hipblasDgemmStridedBatched_64_rank_1
+      hipblasDgemmStridedBatched_64_rank_1,&
+      hipblasDgemmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -30524,7 +30634,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgemmStridedBatched_64_rank_0,&
-      hipblasCgemmStridedBatched_64_rank_1
+      hipblasCgemmStridedBatched_64_rank_1,&
+      hipblasCgemmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -30571,7 +30682,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgemmStridedBatched_64_rank_0,&
-      hipblasZgemmStridedBatched_64_rank_1
+      hipblasZgemmStridedBatched_64_rank_1,&
+      hipblasZgemmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -30746,7 +30858,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCherk_64_rank_0,&
-      hipblasCherk_64_rank_1
+      hipblasCherk_64_rank_1,&
+      hipblasCherk_64_full_rank
 #endif
 #endif
   end interface
@@ -30784,7 +30897,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZherk_64_rank_0,&
-      hipblasZherk_64_rank_1
+      hipblasZherk_64_rank_1,&
+      hipblasZherk_64_full_rank
 #endif
 #endif
   end interface
@@ -31134,7 +31248,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCherkStridedBatched_64_rank_0,&
-      hipblasCherkStridedBatched_64_rank_1
+      hipblasCherkStridedBatched_64_rank_1,&
+      hipblasCherkStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -31173,7 +31288,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZherkStridedBatched_64_rank_0,&
-      hipblasZherkStridedBatched_64_rank_1
+      hipblasZherkStridedBatched_64_rank_1,&
+      hipblasZherkStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -31365,7 +31481,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCherkx_64_rank_0,&
-      hipblasCherkx_64_rank_1
+      hipblasCherkx_64_rank_1,&
+      hipblasCherkx_64_full_rank
 #endif
 #endif
   end interface
@@ -31405,7 +31522,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZherkx_64_rank_0,&
-      hipblasZherkx_64_rank_1
+      hipblasZherkx_64_rank_1,&
+      hipblasZherkx_64_full_rank
 #endif
 #endif
   end interface
@@ -31805,7 +31923,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCherkxStridedBatched_64_rank_0,&
-      hipblasCherkxStridedBatched_64_rank_1
+      hipblasCherkxStridedBatched_64_rank_1,&
+      hipblasCherkxStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -31847,7 +31966,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZherkxStridedBatched_64_rank_0,&
-      hipblasZherkxStridedBatched_64_rank_1
+      hipblasZherkxStridedBatched_64_rank_1,&
+      hipblasZherkxStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -32037,7 +32157,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCher2k_64_rank_0,&
-      hipblasCher2k_64_rank_1
+      hipblasCher2k_64_rank_1,&
+      hipblasCher2k_64_full_rank
 #endif
 #endif
   end interface
@@ -32077,7 +32198,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZher2k_64_rank_0,&
-      hipblasZher2k_64_rank_1
+      hipblasZher2k_64_rank_1,&
+      hipblasZher2k_64_full_rank
 #endif
 #endif
   end interface
@@ -32470,7 +32592,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCher2kStridedBatched_64_rank_0,&
-      hipblasCher2kStridedBatched_64_rank_1
+      hipblasCher2kStridedBatched_64_rank_1,&
+      hipblasCher2kStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -32512,7 +32635,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZher2kStridedBatched_64_rank_0,&
-      hipblasZher2kStridedBatched_64_rank_1
+      hipblasZher2kStridedBatched_64_rank_1,&
+      hipblasZher2kStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -32778,7 +32902,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsymm_64_rank_0,&
-      hipblasSsymm_64_rank_1
+      hipblasSsymm_64_rank_1,&
+      hipblasSsymm_64_full_rank
 #endif
 #endif
   end interface
@@ -32818,7 +32943,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsymm_64_rank_0,&
-      hipblasDsymm_64_rank_1
+      hipblasDsymm_64_rank_1,&
+      hipblasDsymm_64_full_rank
 #endif
 #endif
   end interface
@@ -32858,7 +32984,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsymm_64_rank_0,&
-      hipblasCsymm_64_rank_1
+      hipblasCsymm_64_rank_1,&
+      hipblasCsymm_64_full_rank
 #endif
 #endif
   end interface
@@ -32898,7 +33025,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsymm_64_rank_0,&
-      hipblasZsymm_64_rank_1
+      hipblasZsymm_64_rank_1,&
+      hipblasZsymm_64_full_rank
 #endif
 #endif
   end interface
@@ -33475,7 +33603,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsymmStridedBatched_64_rank_0,&
-      hipblasSsymmStridedBatched_64_rank_1
+      hipblasSsymmStridedBatched_64_rank_1,&
+      hipblasSsymmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -33517,7 +33646,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsymmStridedBatched_64_rank_0,&
-      hipblasDsymmStridedBatched_64_rank_1
+      hipblasDsymmStridedBatched_64_rank_1,&
+      hipblasDsymmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -33559,7 +33689,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsymmStridedBatched_64_rank_0,&
-      hipblasCsymmStridedBatched_64_rank_1
+      hipblasCsymmStridedBatched_64_rank_1,&
+      hipblasCsymmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -33601,7 +33732,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsymmStridedBatched_64_rank_0,&
-      hipblasZsymmStridedBatched_64_rank_1
+      hipblasZsymmStridedBatched_64_rank_1,&
+      hipblasZsymmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -33856,7 +33988,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyrk_64_rank_0,&
-      hipblasSsyrk_64_rank_1
+      hipblasSsyrk_64_rank_1,&
+      hipblasSsyrk_64_full_rank
 #endif
 #endif
   end interface
@@ -33894,7 +34027,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyrk_64_rank_0,&
-      hipblasDsyrk_64_rank_1
+      hipblasDsyrk_64_rank_1,&
+      hipblasDsyrk_64_full_rank
 #endif
 #endif
   end interface
@@ -33932,7 +34066,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyrk_64_rank_0,&
-      hipblasCsyrk_64_rank_1
+      hipblasCsyrk_64_rank_1,&
+      hipblasCsyrk_64_full_rank
 #endif
 #endif
   end interface
@@ -33970,7 +34105,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyrk_64_rank_0,&
-      hipblasZsyrk_64_rank_1
+      hipblasZsyrk_64_rank_1,&
+      hipblasZsyrk_64_full_rank
 #endif
 #endif
   end interface
@@ -34506,7 +34642,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyrkStridedBatched_64_rank_0,&
-      hipblasSsyrkStridedBatched_64_rank_1
+      hipblasSsyrkStridedBatched_64_rank_1,&
+      hipblasSsyrkStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -34545,7 +34682,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyrkStridedBatched_64_rank_0,&
-      hipblasDsyrkStridedBatched_64_rank_1
+      hipblasDsyrkStridedBatched_64_rank_1,&
+      hipblasDsyrkStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -34584,7 +34722,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyrkStridedBatched_64_rank_0,&
-      hipblasCsyrkStridedBatched_64_rank_1
+      hipblasCsyrkStridedBatched_64_rank_1,&
+      hipblasCsyrkStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -34623,7 +34762,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyrkStridedBatched_64_rank_0,&
-      hipblasZsyrkStridedBatched_64_rank_1
+      hipblasZsyrkStridedBatched_64_rank_1,&
+      hipblasZsyrkStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -34893,7 +35033,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyr2k_64_rank_0,&
-      hipblasSsyr2k_64_rank_1
+      hipblasSsyr2k_64_rank_1,&
+      hipblasSsyr2k_64_full_rank
 #endif
 #endif
   end interface
@@ -34933,7 +35074,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyr2k_64_rank_0,&
-      hipblasDsyr2k_64_rank_1
+      hipblasDsyr2k_64_rank_1,&
+      hipblasDsyr2k_64_full_rank
 #endif
 #endif
   end interface
@@ -34973,7 +35115,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyr2k_64_rank_0,&
-      hipblasCsyr2k_64_rank_1
+      hipblasCsyr2k_64_rank_1,&
+      hipblasCsyr2k_64_full_rank
 #endif
 #endif
   end interface
@@ -35013,7 +35156,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyr2k_64_rank_0,&
-      hipblasZsyr2k_64_rank_1
+      hipblasZsyr2k_64_rank_1,&
+      hipblasZsyr2k_64_full_rank
 #endif
 #endif
   end interface
@@ -35603,7 +35747,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyr2kStridedBatched_64_rank_0,&
-      hipblasSsyr2kStridedBatched_64_rank_1
+      hipblasSsyr2kStridedBatched_64_rank_1,&
+      hipblasSsyr2kStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -35645,7 +35790,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyr2kStridedBatched_64_rank_0,&
-      hipblasDsyr2kStridedBatched_64_rank_1
+      hipblasDsyr2kStridedBatched_64_rank_1,&
+      hipblasDsyr2kStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -35687,7 +35833,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyr2kStridedBatched_64_rank_0,&
-      hipblasCsyr2kStridedBatched_64_rank_1
+      hipblasCsyr2kStridedBatched_64_rank_1,&
+      hipblasCsyr2kStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -35729,7 +35876,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyr2kStridedBatched_64_rank_0,&
-      hipblasZsyr2kStridedBatched_64_rank_1
+      hipblasZsyr2kStridedBatched_64_rank_1,&
+      hipblasZsyr2kStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -36003,7 +36151,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyrkx_64_rank_0,&
-      hipblasSsyrkx_64_rank_1
+      hipblasSsyrkx_64_rank_1,&
+      hipblasSsyrkx_64_full_rank
 #endif
 #endif
   end interface
@@ -36043,7 +36192,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyrkx_64_rank_0,&
-      hipblasDsyrkx_64_rank_1
+      hipblasDsyrkx_64_rank_1,&
+      hipblasDsyrkx_64_full_rank
 #endif
 #endif
   end interface
@@ -36083,7 +36233,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyrkx_64_rank_0,&
-      hipblasCsyrkx_64_rank_1
+      hipblasCsyrkx_64_rank_1,&
+      hipblasCsyrkx_64_full_rank
 #endif
 #endif
   end interface
@@ -36123,7 +36274,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyrkx_64_rank_0,&
-      hipblasZsyrkx_64_rank_1
+      hipblasZsyrkx_64_rank_1,&
+      hipblasZsyrkx_64_full_rank
 #endif
 #endif
   end interface
@@ -36721,7 +36873,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSsyrkxStridedBatched_64_rank_0,&
-      hipblasSsyrkxStridedBatched_64_rank_1
+      hipblasSsyrkxStridedBatched_64_rank_1,&
+      hipblasSsyrkxStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -36763,7 +36916,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDsyrkxStridedBatched_64_rank_0,&
-      hipblasDsyrkxStridedBatched_64_rank_1
+      hipblasDsyrkxStridedBatched_64_rank_1,&
+      hipblasDsyrkxStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -36805,7 +36959,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCsyrkxStridedBatched_64_rank_0,&
-      hipblasCsyrkxStridedBatched_64_rank_1
+      hipblasCsyrkxStridedBatched_64_rank_1,&
+      hipblasCsyrkxStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -36847,7 +37002,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZsyrkxStridedBatched_64_rank_0,&
-      hipblasZsyrkxStridedBatched_64_rank_1
+      hipblasZsyrkxStridedBatched_64_rank_1,&
+      hipblasZsyrkxStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -37093,7 +37249,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgeam_64_rank_0,&
-      hipblasSgeam_64_rank_1
+      hipblasSgeam_64_rank_1,&
+      hipblasSgeam_64_full_rank
 #endif
 #endif
   end interface
@@ -37133,7 +37290,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgeam_64_rank_0,&
-      hipblasDgeam_64_rank_1
+      hipblasDgeam_64_rank_1,&
+      hipblasDgeam_64_full_rank
 #endif
 #endif
   end interface
@@ -37173,7 +37331,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgeam_64_rank_0,&
-      hipblasCgeam_64_rank_1
+      hipblasCgeam_64_rank_1,&
+      hipblasCgeam_64_full_rank
 #endif
 #endif
   end interface
@@ -37213,7 +37372,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgeam_64_rank_0,&
-      hipblasZgeam_64_rank_1
+      hipblasZgeam_64_rank_1,&
+      hipblasZgeam_64_full_rank
 #endif
 #endif
   end interface
@@ -37776,7 +37936,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSgeamStridedBatched_64_rank_0,&
-      hipblasSgeamStridedBatched_64_rank_1
+      hipblasSgeamStridedBatched_64_rank_1,&
+      hipblasSgeamStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -37818,7 +37979,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDgeamStridedBatched_64_rank_0,&
-      hipblasDgeamStridedBatched_64_rank_1
+      hipblasDgeamStridedBatched_64_rank_1,&
+      hipblasDgeamStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -37860,7 +38022,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCgeamStridedBatched_64_rank_0,&
-      hipblasCgeamStridedBatched_64_rank_1
+      hipblasCgeamStridedBatched_64_rank_1,&
+      hipblasCgeamStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -37902,7 +38065,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZgeamStridedBatched_64_rank_0,&
-      hipblasZgeamStridedBatched_64_rank_1
+      hipblasZgeamStridedBatched_64_rank_1,&
+      hipblasZgeamStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -38087,7 +38251,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChemm_64_rank_0,&
-      hipblasChemm_64_rank_1
+      hipblasChemm_64_rank_1,&
+      hipblasChemm_64_full_rank
 #endif
 #endif
   end interface
@@ -38127,7 +38292,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhemm_64_rank_0,&
-      hipblasZhemm_64_rank_1
+      hipblasZhemm_64_rank_1,&
+      hipblasZhemm_64_full_rank
 #endif
 #endif
   end interface
@@ -38509,7 +38675,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasChemmStridedBatched_64_rank_0,&
-      hipblasChemmStridedBatched_64_rank_1
+      hipblasChemmStridedBatched_64_rank_1,&
+      hipblasChemmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -38551,7 +38718,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZhemmStridedBatched_64_rank_0,&
-      hipblasZhemmStridedBatched_64_rank_1
+      hipblasZhemmStridedBatched_64_rank_1,&
+      hipblasZhemmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -38846,7 +39014,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrmm_64_rank_0,&
-      hipblasStrmm_64_rank_1
+      hipblasStrmm_64_rank_1,&
+      hipblasStrmm_64_full_rank
 #endif
 #endif
   end interface
@@ -38887,7 +39056,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrmm_64_rank_0,&
-      hipblasDtrmm_64_rank_1
+      hipblasDtrmm_64_rank_1,&
+      hipblasDtrmm_64_full_rank
 #endif
 #endif
   end interface
@@ -38928,7 +39098,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrmm_64_rank_0,&
-      hipblasCtrmm_64_rank_1
+      hipblasCtrmm_64_rank_1,&
+      hipblasCtrmm_64_full_rank
 #endif
 #endif
   end interface
@@ -38969,7 +39140,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrmm_64_rank_0,&
-      hipblasZtrmm_64_rank_1
+      hipblasZtrmm_64_rank_1,&
+      hipblasZtrmm_64_full_rank
 #endif
 #endif
   end interface
@@ -39619,7 +39791,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrmmStridedBatched_64_rank_0,&
-      hipblasStrmmStridedBatched_64_rank_1
+      hipblasStrmmStridedBatched_64_rank_1,&
+      hipblasStrmmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -39662,7 +39835,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrmmStridedBatched_64_rank_0,&
-      hipblasDtrmmStridedBatched_64_rank_1
+      hipblasDtrmmStridedBatched_64_rank_1,&
+      hipblasDtrmmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -39705,7 +39879,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrmmStridedBatched_64_rank_0,&
-      hipblasCtrmmStridedBatched_64_rank_1
+      hipblasCtrmmStridedBatched_64_rank_1,&
+      hipblasCtrmmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -39748,7 +39923,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrmmStridedBatched_64_rank_0,&
-      hipblasZtrmmStridedBatched_64_rank_1
+      hipblasZtrmmStridedBatched_64_rank_1,&
+      hipblasZtrmmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -40020,7 +40196,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrsm_64_rank_0,&
-      hipblasStrsm_64_rank_1
+      hipblasStrsm_64_rank_1,&
+      hipblasStrsm_64_full_rank
 #endif
 #endif
   end interface
@@ -40059,7 +40236,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrsm_64_rank_0,&
-      hipblasDtrsm_64_rank_1
+      hipblasDtrsm_64_rank_1,&
+      hipblasDtrsm_64_full_rank
 #endif
 #endif
   end interface
@@ -40098,7 +40276,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrsm_64_rank_0,&
-      hipblasCtrsm_64_rank_1
+      hipblasCtrsm_64_rank_1,&
+      hipblasCtrsm_64_full_rank
 #endif
 #endif
   end interface
@@ -40137,7 +40316,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrsm_64_rank_0,&
-      hipblasZtrsm_64_rank_1
+      hipblasZtrsm_64_rank_1,&
+      hipblasZtrsm_64_full_rank
 #endif
 #endif
   end interface
@@ -40715,7 +40895,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasStrsmStridedBatched_64_rank_0,&
-      hipblasStrsmStridedBatched_64_rank_1
+      hipblasStrsmStridedBatched_64_rank_1,&
+      hipblasStrsmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -40755,7 +40936,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDtrsmStridedBatched_64_rank_0,&
-      hipblasDtrsmStridedBatched_64_rank_1
+      hipblasDtrsmStridedBatched_64_rank_1,&
+      hipblasDtrsmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -40795,7 +40977,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCtrsmStridedBatched_64_rank_0,&
-      hipblasCtrsmStridedBatched_64_rank_1
+      hipblasCtrsmStridedBatched_64_rank_1,&
+      hipblasCtrsmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -40835,7 +41018,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZtrsmStridedBatched_64_rank_0,&
-      hipblasZtrsmStridedBatched_64_rank_1
+      hipblasZtrsmStridedBatched_64_rank_1,&
+      hipblasZtrsmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -41487,7 +41671,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSdgmm_64_rank_0,&
-      hipblasSdgmm_64_rank_1
+      hipblasSdgmm_64_rank_1,&
+      hipblasSdgmm_64_full_rank
 #endif
 #endif
   end interface
@@ -41520,7 +41705,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDdgmm_64_rank_0,&
-      hipblasDdgmm_64_rank_1
+      hipblasDdgmm_64_rank_1,&
+      hipblasDdgmm_64_full_rank
 #endif
 #endif
   end interface
@@ -41553,7 +41739,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCdgmm_64_rank_0,&
-      hipblasCdgmm_64_rank_1
+      hipblasCdgmm_64_rank_1,&
+      hipblasCdgmm_64_full_rank
 #endif
 #endif
   end interface
@@ -41586,7 +41773,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdgmm_64_rank_0,&
-      hipblasZdgmm_64_rank_1
+      hipblasZdgmm_64_rank_1,&
+      hipblasZdgmm_64_full_rank
 #endif
 #endif
   end interface
@@ -42044,7 +42232,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasSdgmmStridedBatched_64_rank_0,&
-      hipblasSdgmmStridedBatched_64_rank_1
+      hipblasSdgmmStridedBatched_64_rank_1,&
+      hipblasSdgmmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -42081,7 +42270,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasDdgmmStridedBatched_64_rank_0,&
-      hipblasDdgmmStridedBatched_64_rank_1
+      hipblasDdgmmStridedBatched_64_rank_1,&
+      hipblasDdgmmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -42118,7 +42308,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasCdgmmStridedBatched_64_rank_0,&
-      hipblasCdgmmStridedBatched_64_rank_1
+      hipblasCdgmmStridedBatched_64_rank_1,&
+      hipblasCdgmmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -42155,7 +42346,8 @@ module hipfort_hipblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipblasZdgmmStridedBatched_64_rank_0,&
-      hipblasZdgmmStridedBatched_64_rank_1
+      hipblasZdgmmStridedBatched_64_rank_1,&
+      hipblasZdgmmStridedBatched_64_full_rank
 #endif
 #endif
   end interface
@@ -63748,7 +63940,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int),target :: myResult
       !
@@ -63762,7 +63954,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -63835,7 +64027,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int),target :: myResult
       !
@@ -63849,7 +64041,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -63922,7 +64114,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int),target :: myResult
       !
@@ -63936,7 +64128,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -64009,7 +64201,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int),target :: myResult
       !
@@ -64023,7 +64215,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -64096,7 +64288,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t),target :: myResult
       !
@@ -64110,7 +64302,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -64183,7 +64375,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t),target :: myResult
       !
@@ -64197,7 +64389,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -64270,7 +64462,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t),target :: myResult
       !
@@ -64284,7 +64476,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -64357,7 +64549,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t),target :: myResult
       !
@@ -64371,7 +64563,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -64445,7 +64637,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamaxStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -64501,7 +64693,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamaxStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -64557,7 +64749,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamaxStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -64613,7 +64805,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamaxStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -64670,7 +64862,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamaxStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -64727,7 +64919,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamaxStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -64784,7 +64976,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamaxStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -64841,7 +65033,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamaxStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -64896,7 +65088,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int),target :: myResult
       !
@@ -64910,7 +65102,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -64983,7 +65175,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int),target :: myResult
       !
@@ -64997,7 +65189,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -65070,7 +65262,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int),target :: myResult
       !
@@ -65084,7 +65276,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -65157,7 +65349,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int),target :: myResult
       !
@@ -65171,7 +65363,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -65244,7 +65436,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t),target :: myResult
       !
@@ -65258,7 +65450,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -65331,7 +65523,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t),target :: myResult
       !
@@ -65345,7 +65537,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -65418,7 +65610,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t),target :: myResult
       !
@@ -65432,7 +65624,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -65505,7 +65697,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t),target :: myResult
       !
@@ -65519,7 +65711,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -65593,7 +65785,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsaminStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -65649,7 +65841,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdaminStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -65705,7 +65897,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcaminStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -65761,7 +65953,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzaminStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -65818,7 +66010,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsaminStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -65875,7 +66067,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdaminStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -65932,7 +66124,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcaminStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -65989,7 +66181,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzaminStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -66044,7 +66236,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: myResult
       !
@@ -66058,7 +66250,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66131,7 +66323,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: myResult
       !
@@ -66145,7 +66337,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66218,7 +66410,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: myResult
       !
@@ -66232,7 +66424,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66305,7 +66497,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: myResult
       !
@@ -66319,7 +66511,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66392,7 +66584,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: myResult
       !
@@ -66406,7 +66598,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66479,7 +66671,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: myResult
       !
@@ -66493,7 +66685,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66566,7 +66758,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: myResult
       !
@@ -66580,7 +66772,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66653,7 +66845,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: myResult
       !
@@ -66667,7 +66859,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -66741,7 +66933,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasumStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -66797,7 +66989,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasumStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -66853,7 +67045,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasumStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -66909,7 +67101,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasumStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -66965,7 +67157,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasumStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -67021,7 +67213,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasumStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -67078,7 +67270,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasumStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -67135,7 +67327,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasumStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -67191,9 +67383,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasSaxpy_assumed_rank = hipblasSaxpy_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(y),incy)
@@ -67242,9 +67434,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasDaxpy_assumed_rank = hipblasDaxpy_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(y),incy)
@@ -67293,9 +67485,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasCaxpy_assumed_rank = hipblasCaxpy_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(y),incy)
@@ -67344,9 +67536,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasZaxpy_assumed_rank = hipblasZaxpy_(handle,n,c_loc(alpha),c_loc(x),incx,c_loc(y),incy)
@@ -67395,9 +67587,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasSaxpy_64_assumed_rank = hipblasSaxpy_64_(handle,n,c_loc(alpha),c_loc(x),incx, &
@@ -67447,9 +67639,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasDaxpy_64_assumed_rank = hipblasDaxpy_64_(handle,n,c_loc(alpha),c_loc(x),incx, &
@@ -67499,9 +67691,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasCaxpy_64_assumed_rank = hipblasCaxpy_64_(handle,n,c_loc(alpha),c_loc(x),incx, &
@@ -67551,9 +67743,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasZaxpy_64_assumed_rank = hipblasZaxpy_64_(handle,n,c_loc(alpha),c_loc(x),incx, &
@@ -67605,10 +67797,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -67673,10 +67865,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -67741,10 +67933,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -67809,10 +68001,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -67877,10 +68069,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -67945,10 +68137,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -68013,10 +68205,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -68081,10 +68273,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -68146,9 +68338,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopy_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasScopy_assumed_rank = hipblasScopy_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -68194,9 +68386,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopy_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasDcopy_assumed_rank = hipblasDcopy_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -68242,9 +68434,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopy_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasCcopy_assumed_rank = hipblasCcopy_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -68290,9 +68482,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopy_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasZcopy_assumed_rank = hipblasZcopy_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -68338,9 +68530,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopy_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasScopy_64_assumed_rank = hipblasScopy_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -68386,9 +68578,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopy_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasDcopy_64_assumed_rank = hipblasDcopy_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -68434,9 +68626,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopy_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasCcopy_64_assumed_rank = hipblasCcopy_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -68482,9 +68674,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopy_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasZcopy_64_assumed_rank = hipblasZcopy_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -68532,10 +68724,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopyStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -68595,10 +68787,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopyStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -68658,10 +68850,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopyStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -68721,10 +68913,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopyStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -68784,10 +68976,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopyStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -68847,10 +69039,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopyStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -68910,10 +69102,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopyStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -68973,10 +69165,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopyStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -69034,9 +69226,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_float),target :: myResult
       !
@@ -69050,9 +69242,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: myResult
       !
@@ -69133,9 +69325,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_double),target :: myResult
       !
@@ -69149,9 +69341,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: myResult
       !
@@ -69232,9 +69424,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       complex(c_float_complex),target :: myResult
       !
@@ -69249,9 +69441,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: myResult
       !
@@ -69333,9 +69525,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       complex(c_float_complex),target :: myResult
       !
@@ -69350,9 +69542,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: myResult
       !
@@ -69434,9 +69626,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       complex(c_double_complex),target :: myResult
       !
@@ -69451,9 +69643,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: myResult
       !
@@ -69535,9 +69727,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       complex(c_double_complex),target :: myResult
       !
@@ -69552,9 +69744,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: myResult
       !
@@ -69636,9 +69828,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_float),target :: myResult
       !
@@ -69653,9 +69845,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: myResult
       !
@@ -69737,9 +69929,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_double),target :: myResult
       !
@@ -69754,9 +69946,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: myResult
       !
@@ -69838,9 +70030,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       complex(c_float_complex),target :: myResult
       !
@@ -69855,9 +70047,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: myResult
       !
@@ -69943,9 +70135,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       complex(c_float_complex),target :: myResult
       !
@@ -69960,9 +70152,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: myResult
       !
@@ -70048,9 +70240,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       complex(c_double_complex),target :: myResult
       !
@@ -70065,9 +70257,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: myResult
       !
@@ -70153,9 +70345,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       complex(c_double_complex),target :: myResult
       !
@@ -70170,9 +70362,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: myResult
       !
@@ -70260,10 +70452,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdotStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -70328,10 +70520,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdotStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -70396,10 +70588,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotcStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -70464,10 +70656,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotuStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -70532,10 +70724,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotcStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -70600,10 +70792,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotuStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -70668,10 +70860,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdotStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -70736,10 +70928,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdotStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -70804,10 +70996,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotcStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -70872,10 +71064,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotuStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -70940,10 +71132,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotcStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -71008,10 +71200,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotuStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -71074,7 +71266,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: myResult
       !
@@ -71088,7 +71280,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -71161,7 +71353,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: myResult
       !
@@ -71175,7 +71367,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -71248,7 +71440,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: myResult
       !
@@ -71262,7 +71454,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -71335,7 +71527,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: myResult
       !
@@ -71349,7 +71541,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       type(c_ptr),value :: myResult
       !
@@ -71422,7 +71614,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: myResult
       !
@@ -71436,7 +71628,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -71509,7 +71701,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: myResult
       !
@@ -71523,7 +71715,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -71596,7 +71788,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: myResult
       !
@@ -71610,7 +71802,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -71683,7 +71875,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: myResult
       !
@@ -71697,7 +71889,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       type(c_ptr),value :: myResult
       !
@@ -71771,7 +71963,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2StridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -71827,7 +72019,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2StridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -71883,7 +72075,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2StridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -71939,7 +72131,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2StridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -71995,7 +72187,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2StridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -72051,7 +72243,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2StridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -72108,7 +72300,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2StridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -72165,7 +72357,7 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2StridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -72220,9 +72412,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_float),target :: c
       real(c_float),target :: s
@@ -72238,9 +72430,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -72326,9 +72518,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_double),target :: c
       real(c_double),target :: s
@@ -72344,9 +72536,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -72432,9 +72624,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_float),target :: c
       complex(c_float_complex),target :: s
@@ -72450,9 +72642,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -72538,9 +72730,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_float),target :: c
       real(c_float),target :: s
@@ -72556,9 +72748,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -72644,9 +72836,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_double),target :: c
       complex(c_double_complex),target :: s
@@ -72662,9 +72854,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -72750,9 +72942,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       real(c_double),target :: c
       real(c_double),target :: s
@@ -72768,9 +72960,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -72856,9 +73048,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_float),target :: c
       real(c_float),target :: s
@@ -72874,9 +73066,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -72964,9 +73156,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_double),target :: c
       real(c_double),target :: s
@@ -72982,9 +73174,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -73072,9 +73264,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_float),target :: c
       complex(c_float_complex),target :: s
@@ -73090,9 +73282,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -73180,9 +73372,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_float),target :: c
       real(c_float),target :: s
@@ -73198,9 +73390,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -73289,9 +73481,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_double),target :: c
       complex(c_double_complex),target :: s
@@ -73307,9 +73499,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -73397,9 +73589,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       real(c_double),target :: c
       real(c_double),target :: s
@@ -73415,9 +73607,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_64_assumed_rank_devptr
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr),value :: c
       type(c_ptr),value :: s
@@ -73508,10 +73700,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: c
@@ -73577,10 +73769,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: c
@@ -73646,10 +73838,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: c
@@ -73715,10 +73907,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrotStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: c
@@ -73786,10 +73978,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: c
@@ -73855,10 +74047,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrotStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: c
@@ -73926,10 +74118,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: c
@@ -73997,10 +74189,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: c
@@ -74068,10 +74260,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: c
@@ -74139,10 +74331,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrotStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: c
@@ -74210,10 +74402,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: c
@@ -74281,10 +74473,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrotStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: c
@@ -74350,9 +74542,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotm_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr) :: param
       !
@@ -74401,9 +74593,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotm_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       type(c_ptr) :: param
       !
@@ -74452,9 +74644,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotm_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr) :: param
       !
@@ -74503,9 +74695,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotm_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       type(c_ptr) :: param
       !
@@ -74556,10 +74748,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: param
@@ -74627,10 +74819,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: param
@@ -74698,10 +74890,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: param
@@ -74769,10 +74961,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       type(c_ptr) :: param
@@ -74839,7 +75031,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasSscal_assumed_rank = hipblasSscal_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -74884,7 +75076,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasDscal_assumed_rank = hipblasDscal_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -74929,7 +75121,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasCscal_assumed_rank = hipblasCscal_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -74974,7 +75166,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasCsscal_assumed_rank = hipblasCsscal_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -75019,7 +75211,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasZscal_assumed_rank = hipblasZscal_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -75064,7 +75256,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasZdscal_assumed_rank = hipblasZdscal_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -75109,7 +75301,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasSscal_64_assumed_rank = hipblasSscal_64_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -75154,7 +75346,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasDscal_64_assumed_rank = hipblasDscal_64_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -75199,7 +75391,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasCscal_64_assumed_rank = hipblasCscal_64_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -75244,7 +75436,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasCsscal_64_assumed_rank = hipblasCsscal_64_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -75289,7 +75481,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasZscal_64_assumed_rank = hipblasZscal_64_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -75334,7 +75526,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasZdscal_64_assumed_rank = hipblasZdscal_64_(handle,n,c_loc(alpha),c_loc(x),incx)
@@ -75380,7 +75572,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -75436,7 +75628,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -75492,7 +75684,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -75548,7 +75740,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -75604,7 +75796,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -75660,7 +75852,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -75716,7 +75908,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -75772,7 +75964,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -75828,7 +76020,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -75884,7 +76076,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -75940,7 +76132,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -75996,7 +76188,7 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -76050,9 +76242,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswap_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasSswap_assumed_rank = hipblasSswap_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -76098,9 +76290,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswap_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasDswap_assumed_rank = hipblasDswap_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -76146,9 +76338,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswap_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasCswap_assumed_rank = hipblasCswap_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -76194,9 +76386,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswap_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasZswap_assumed_rank = hipblasZswap_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -76242,9 +76434,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswap_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasSswap_64_assumed_rank = hipblasSswap_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -76290,9 +76482,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswap_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasDswap_64_assumed_rank = hipblasDswap_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -76338,9 +76530,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswap_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasCswap_64_assumed_rank = hipblasCswap_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -76386,9 +76578,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswap_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasZswap_64_assumed_rank = hipblasZswap_64_(handle,n,c_loc(x),incx,c_loc(y),incy)
@@ -76436,10 +76628,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswapStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -76499,10 +76691,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswapStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -76562,10 +76754,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswapStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -76625,10 +76817,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswapStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -76688,10 +76880,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswapStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -76751,10 +76943,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswapStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -76814,10 +77006,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswapStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -76877,10 +77069,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswapStridedBatched_64_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -76943,12 +77135,12 @@ module hipfort_hipblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasSgbmv_assumed_rank = hipblasSgbmv_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(AP),lda, &
@@ -77042,12 +77234,12 @@ module hipfort_hipblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasDgbmv_assumed_rank = hipblasDgbmv_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(AP),lda, &
@@ -77141,12 +77333,12 @@ module hipfort_hipblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasCgbmv_assumed_rank = hipblasCgbmv_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(AP),lda, &
@@ -77240,12 +77432,12 @@ module hipfort_hipblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasZgbmv_assumed_rank = hipblasZgbmv_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(AP),lda, &
@@ -77339,12 +77531,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasSgbmv_64_assumed_rank = hipblasSgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha), &
@@ -77400,6 +77592,30 @@ module hipfort_hipblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasSgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasSgbmv_64_full_rank = hipblasSgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDgbmv_64_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
@@ -77414,12 +77630,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasDgbmv_64_assumed_rank = hipblasDgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha), &
@@ -77475,6 +77691,30 @@ module hipfort_hipblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasDgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasDgbmv_64_full_rank = hipblasDgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCgbmv_64_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
@@ -77489,12 +77729,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasCgbmv_64_assumed_rank = hipblasCgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha), &
@@ -77550,6 +77790,30 @@ module hipfort_hipblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasCgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasCgbmv_64_full_rank = hipblasCgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZgbmv_64_assumed_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
@@ -77564,12 +77828,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasZgbmv_64_assumed_rank = hipblasZgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha), &
@@ -77625,6 +77889,30 @@ module hipfort_hipblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasZgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasZgbmv_64_full_rank = hipblasZgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -77641,14 +77929,14 @@ module hipfort_hipblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -77766,14 +78054,14 @@ module hipfort_hipblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -77891,14 +78179,14 @@ module hipfort_hipblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -78016,14 +78304,14 @@ module hipfort_hipblas
       integer(c_int) :: kl
       integer(c_int) :: ku
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -78141,14 +78429,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -78219,6 +78507,36 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasSgbmvStridedBatched_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA, &
+        x,incx,stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSgbmvStridedBatched_64_full_rank = hipblasSgbmvStridedBatched_64_(handle,trans,m,n, &
+        kl,ku,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -78236,14 +78554,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -78314,6 +78632,36 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasDgbmvStridedBatched_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA, &
+        x,incx,stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDgbmvStridedBatched_64_full_rank = hipblasDgbmvStridedBatched_64_(handle,trans,m,n, &
+        kl,ku,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -78331,14 +78679,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -78409,6 +78757,36 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasCgbmvStridedBatched_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA, &
+        x,incx,stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCgbmvStridedBatched_64_full_rank = hipblasCgbmvStridedBatched_64_(handle,trans,m,n, &
+        kl,ku,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -78426,14 +78804,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: kl
       integer(c_int64_t) :: ku
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -78504,6 +78882,36 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasZgbmvStridedBatched_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA, &
+        x,incx,stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZgbmvStridedBatched_64_full_rank = hipblasZgbmvStridedBatched_64_(handle,trans,m,n, &
+        kl,ku,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -78517,12 +78925,12 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasSgemv_assumed_rank = hipblasSgemv_(handle,trans,m,n,c_loc(alpha),c_loc(AP),lda, &
@@ -78608,12 +79016,12 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasDgemv_assumed_rank = hipblasDgemv_(handle,trans,m,n,c_loc(alpha),c_loc(AP),lda, &
@@ -78699,12 +79107,12 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasCgemv_assumed_rank = hipblasCgemv_(handle,trans,m,n,c_loc(alpha),c_loc(AP),lda, &
@@ -78790,12 +79198,12 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasZgemv_assumed_rank = hipblasZgemv_(handle,trans,m,n,c_loc(alpha),c_loc(AP),lda, &
@@ -78881,12 +79289,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasSgemv_64_assumed_rank = hipblasSgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(AP),lda, &
@@ -78938,6 +79346,28 @@ module hipfort_hipblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasSgemv_64_full_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasSgemv_64_full_rank = hipblasSgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDgemv_64_assumed_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
@@ -78950,12 +79380,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasDgemv_64_assumed_rank = hipblasDgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(AP),lda, &
@@ -79007,6 +79437,28 @@ module hipfort_hipblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasDgemv_64_full_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasDgemv_64_full_rank = hipblasDgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCgemv_64_assumed_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
@@ -79019,12 +79471,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasCgemv_64_assumed_rank = hipblasCgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(AP),lda, &
@@ -79076,6 +79528,28 @@ module hipfort_hipblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasCgemv_64_full_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasCgemv_64_full_rank = hipblasCgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZgemv_64_assumed_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
@@ -79088,12 +79562,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasZgemv_64_assumed_rank = hipblasZgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(AP),lda, &
@@ -79145,6 +79619,28 @@ module hipfort_hipblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasZgemv_64_full_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasZgemv_64_full_rank = hipblasZgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasSgemvStridedBatched_assumed_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
@@ -79158,14 +79654,14 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -79273,14 +79769,14 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -79388,14 +79884,14 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -79503,14 +79999,14 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -79618,14 +80114,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -79692,6 +80188,34 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasSgemvStridedBatched_64_full_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
+        incx,stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSgemvStridedBatched_64_full_rank = hipblasSgemvStridedBatched_64_(handle,transA,m,n, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDgemvStridedBatched_64_assumed_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
@@ -79705,14 +80229,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -79779,6 +80303,34 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasDgemvStridedBatched_64_full_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
+        incx,stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDgemvStridedBatched_64_full_rank = hipblasDgemvStridedBatched_64_(handle,transA,m,n, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCgemvStridedBatched_64_assumed_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
@@ -79792,14 +80344,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -79866,6 +80418,34 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasCgemvStridedBatched_64_full_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
+        incx,stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCgemvStridedBatched_64_full_rank = hipblasCgemvStridedBatched_64_(handle,transA,m,n, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZgemvStridedBatched_64_assumed_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
@@ -79879,14 +80459,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -79953,6 +80533,34 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasZgemvStridedBatched_64_full_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
+        incx,stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZgemvStridedBatched_64_full_rank = hipblasZgemvStridedBatched_64_(handle,transA,m,n, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasSger_assumed_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
@@ -79964,11 +80572,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasSger_assumed_rank = hipblasSger_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y),incy, &
@@ -80047,11 +80655,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasDger_assumed_rank = hipblasDger_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y),incy, &
@@ -80130,11 +80738,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasCgeru_assumed_rank = hipblasCgeru_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -80213,11 +80821,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasCgerc_assumed_rank = hipblasCgerc_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -80296,11 +80904,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasZgeru_assumed_rank = hipblasZgeru_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -80379,11 +80987,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasZgerc_assumed_rank = hipblasZgerc_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -80462,11 +81070,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasSger_64_assumed_rank = hipblasSger_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
@@ -80514,6 +81122,26 @@ module hipfort_hipblas
         c_loc(AP),lda)
     end function
 
+    function hipblasSger_64_full_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSger_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasSger_64_full_rank = hipblasSger_64_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
+        incy,c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDger_64_assumed_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
@@ -80525,11 +81153,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasDger_64_assumed_rank = hipblasDger_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
@@ -80577,6 +81205,26 @@ module hipfort_hipblas
         c_loc(AP),lda)
     end function
 
+    function hipblasDger_64_full_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDger_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasDger_64_full_rank = hipblasDger_64_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
+        incy,c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCgeru_64_assumed_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
@@ -80588,11 +81236,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasCgeru_64_assumed_rank = hipblasCgeru_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
@@ -80640,6 +81288,26 @@ module hipfort_hipblas
         incy,c_loc(AP),lda)
     end function
 
+    function hipblasCgeru_64_full_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeru_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasCgeru_64_full_rank = hipblasCgeru_64_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
+        incy,c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCgerc_64_assumed_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
@@ -80651,11 +81319,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasCgerc_64_assumed_rank = hipblasCgerc_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
@@ -80703,6 +81371,26 @@ module hipfort_hipblas
         incy,c_loc(AP),lda)
     end function
 
+    function hipblasCgerc_64_full_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgerc_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasCgerc_64_full_rank = hipblasCgerc_64_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
+        incy,c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZgeru_64_assumed_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
@@ -80714,11 +81402,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasZgeru_64_assumed_rank = hipblasZgeru_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
@@ -80766,6 +81454,26 @@ module hipfort_hipblas
         incy,c_loc(AP),lda)
     end function
 
+    function hipblasZgeru_64_full_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeru_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasZgeru_64_full_rank = hipblasZgeru_64_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
+        incy,c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZgerc_64_assumed_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
@@ -80777,11 +81485,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasZgerc_64_assumed_rank = hipblasZgerc_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
@@ -80829,6 +81537,26 @@ module hipfort_hipblas
         incy,c_loc(AP),lda)
     end function
 
+    function hipblasZgerc_64_full_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgerc_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasZgerc_64_full_rank = hipblasZgerc_64_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
+        incy,c_loc(AP),lda)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -80842,13 +81570,13 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -80947,13 +81675,13 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -81052,13 +81780,13 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -81157,13 +81885,13 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -81262,13 +81990,13 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -81367,13 +82095,13 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -81472,13 +82200,13 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -81538,6 +82266,31 @@ module hipfort_hipblas
         c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasSgerStridedBatched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,AP,lda,strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgerStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSgerStridedBatched_64_full_rank = hipblasSgerStridedBatched_64_(handle,m,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -81552,13 +82305,13 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -81618,6 +82371,31 @@ module hipfort_hipblas
         c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasDgerStridedBatched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,AP,lda,strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgerStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDgerStridedBatched_64_full_rank = hipblasDgerStridedBatched_64_(handle,m,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -81632,13 +82410,13 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -81698,6 +82476,31 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasCgeruStridedBatched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,AP,lda,strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeruStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCgeruStridedBatched_64_full_rank = hipblasCgeruStridedBatched_64_(handle,m,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -81712,13 +82515,13 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -81778,6 +82581,31 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasCgercStridedBatched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,AP,lda,strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgercStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCgercStridedBatched_64_full_rank = hipblasCgercStridedBatched_64_(handle,m,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -81792,13 +82620,13 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -81858,6 +82686,31 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasZgeruStridedBatched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,AP,lda,strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeruStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZgeruStridedBatched_64_full_rank = hipblasZgeruStridedBatched_64_(handle,m,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -81872,13 +82725,13 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -81938,6 +82791,31 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasZgercStridedBatched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,AP,lda,strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgercStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZgercStridedBatched_64_full_rank = hipblasZgercStridedBatched_64_(handle,m,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -81951,12 +82829,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasChbmv_assumed_rank = hipblasChbmv_(handle,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -82042,12 +82920,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasZhbmv_assumed_rank = hipblasZhbmv_(handle,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -82133,12 +83011,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasChbmv_64_assumed_rank = hipblasChbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -82190,6 +83068,28 @@ module hipfort_hipblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasChbmv_64_full_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasChbmv_64_full_rank = hipblasChbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZhbmv_64_assumed_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
@@ -82202,12 +83102,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasZhbmv_64_assumed_rank = hipblasZhbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -82259,6 +83159,28 @@ module hipfort_hipblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasZhbmv_64_full_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasZhbmv_64_full_rank = hipblasZhbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -82273,14 +83195,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -82390,14 +83312,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -82507,14 +83429,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -82581,6 +83503,34 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasChbmvStridedBatched_64_full_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasChbmvStridedBatched_64_full_rank = hipblasChbmvStridedBatched_64_(handle,uplo,n,k, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -82596,14 +83546,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -82670,6 +83620,34 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasZhbmvStridedBatched_64_full_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZhbmvStridedBatched_64_full_rank = hipblasZhbmvStridedBatched_64_(handle,uplo,n,k, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -82682,12 +83660,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasChemv_assumed_rank = hipblasChemv_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda,c_loc(x), &
@@ -82769,12 +83747,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasZhemv_assumed_rank = hipblasZhemv_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda,c_loc(x), &
@@ -82856,12 +83834,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasChemv_64_assumed_rank = hipblasChemv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda, &
@@ -82911,6 +83889,27 @@ module hipfort_hipblas
         incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasChemv_64_full_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasChemv_64_full_rank = hipblasChemv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZhemv_64_assumed_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
@@ -82922,12 +83921,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasZhemv_64_assumed_rank = hipblasZhemv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda, &
@@ -82977,6 +83976,27 @@ module hipfort_hipblas
         incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasZhemv_64_full_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasZhemv_64_full_rank = hipblasZhemv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -82990,14 +84010,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -83101,14 +84121,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -83212,14 +84232,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -83284,6 +84304,33 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasChemvStridedBatched_64_full_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasChemvStridedBatched_64_full_rank = hipblasChemvStridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -83298,14 +84345,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -83370,6 +84417,33 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasZhemvStridedBatched_64_full_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZhemvStridedBatched_64_full_rank = hipblasZhemvStridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -83382,9 +84456,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasCher_assumed_rank = hipblasCher_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP), &
@@ -83454,9 +84528,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasZher_assumed_rank = hipblasZher_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP), &
@@ -83526,9 +84600,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasCher_64_assumed_rank = hipblasCher_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -83572,6 +84646,24 @@ module hipfort_hipblas
         lda)
     end function
 
+    function hipblasCher_64_full_rank(handle,uplo,n,alpha,x,incx,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasCher_64_full_rank = hipblasCher_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZher_64_assumed_rank(handle,uplo,n,alpha,x,incx,AP,lda)
@@ -83583,9 +84675,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasZher_64_assumed_rank = hipblasZher_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -83629,6 +84721,24 @@ module hipfort_hipblas
         lda)
     end function
 
+    function hipblasZher_64_full_rank(handle,uplo,n,alpha,x,incx,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasZher_64_full_rank = hipblasZher_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(AP),lda)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -83642,10 +84752,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -83735,10 +84845,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -83828,10 +84938,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -83885,6 +84995,28 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasCherStridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
+        strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCherStridedBatched_64_full_rank = hipblasCherStridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -83899,10 +85031,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -83956,6 +85088,28 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasZherStridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
+        strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZherStridedBatched_64_full_rank = hipblasZherStridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -83968,11 +85122,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasCher2_assumed_rank = hipblasCher2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -84051,11 +85205,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasZher2_assumed_rank = hipblasZher2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -84134,11 +85288,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasCher2_64_assumed_rank = hipblasCher2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -84186,6 +85340,26 @@ module hipfort_hipblas
         incy,c_loc(AP),lda)
     end function
 
+    function hipblasCher2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasCher2_64_full_rank = hipblasCher2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZher2_64_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
@@ -84197,11 +85371,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasZher2_64_assumed_rank = hipblasZher2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -84249,6 +85423,26 @@ module hipfort_hipblas
         incy,c_loc(AP),lda)
     end function
 
+    function hipblasZher2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasZher2_64_full_rank = hipblasZher2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(AP),lda)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -84262,13 +85456,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -84367,13 +85561,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -84472,13 +85666,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -84538,6 +85732,31 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasCher2StridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,AP,lda,strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2StridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCher2StridedBatched_64_full_rank = hipblasCher2StridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -84552,13 +85771,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -84618,6 +85837,31 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasZher2StridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,AP,lda,strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2StridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZher2StridedBatched_64_full_rank = hipblasZher2StridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -84630,11 +85874,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasChpmv_assumed_rank = hipblasChpmv_(handle,uplo,n,c_loc(alpha),c_loc(AP),c_loc(x), &
@@ -84693,11 +85937,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasZhpmv_assumed_rank = hipblasZhpmv_(handle,uplo,n,c_loc(alpha),c_loc(AP),c_loc(x), &
@@ -84756,11 +86000,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasChpmv_64_assumed_rank = hipblasChpmv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP), &
@@ -84819,11 +86063,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasZhpmv_64_assumed_rank = hipblasZhpmv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP), &
@@ -84884,13 +86128,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -84965,13 +86209,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -85046,13 +86290,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -85129,13 +86373,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -85210,9 +86454,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       !
       hipblasChpr_assumed_rank = hipblasChpr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP))
     end function
@@ -85261,9 +86505,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       !
       hipblasZhpr_assumed_rank = hipblasZhpr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP))
     end function
@@ -85312,9 +86556,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       !
       hipblasChpr_64_assumed_rank = hipblasChpr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(AP))
@@ -85364,9 +86608,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       !
       hipblasZhpr_64_assumed_rank = hipblasZhpr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(AP))
@@ -85418,10 +86662,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
@@ -85486,10 +86730,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
@@ -85554,10 +86798,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
       !
@@ -85622,10 +86866,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
       !
@@ -85688,11 +86932,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       !
       hipblasChpr2_assumed_rank = hipblasChpr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
         incy,c_loc(AP))
@@ -85748,11 +86992,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       !
       hipblasZhpr2_assumed_rank = hipblasZhpr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
         incy,c_loc(AP))
@@ -85808,11 +87052,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       !
       hipblasChpr2_64_assumed_rank = hipblasChpr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(AP))
@@ -85868,11 +87112,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       !
       hipblasZhpr2_64_assumed_rank = hipblasZhpr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(AP))
@@ -85930,13 +87174,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
@@ -86007,13 +87251,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
@@ -86084,13 +87328,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
       !
@@ -86161,13 +87405,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
       !
@@ -86237,12 +87481,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasSsbmv_assumed_rank = hipblasSsbmv_(handle,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -86328,12 +87572,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasDsbmv_assumed_rank = hipblasDsbmv_(handle,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -86419,12 +87663,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasSsbmv_64_assumed_rank = hipblasSsbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -86476,6 +87720,28 @@ module hipfort_hipblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasSsbmv_64_full_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasSsbmv_64_full_rank = hipblasSsbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDsbmv_64_assumed_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
@@ -86488,12 +87754,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasDsbmv_64_assumed_rank = hipblasDsbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -86545,6 +87811,28 @@ module hipfort_hipblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasDsbmv_64_full_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasDsbmv_64_full_rank = hipblasDsbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -86559,14 +87847,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -86676,14 +87964,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -86793,14 +88081,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -86867,6 +88155,34 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasSsbmvStridedBatched_64_full_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSsbmvStridedBatched_64_full_rank = hipblasSsbmvStridedBatched_64_(handle,uplo,n,k, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -86882,14 +88198,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -86956,6 +88272,34 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasDsbmvStridedBatched_64_full_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDsbmvStridedBatched_64_full_rank = hipblasDsbmvStridedBatched_64_(handle,uplo,n,k, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -86968,11 +88312,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasSspmv_assumed_rank = hipblasSspmv_(handle,uplo,n,c_loc(alpha),c_loc(AP),c_loc(x), &
@@ -87031,11 +88375,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasDspmv_assumed_rank = hipblasDspmv_(handle,uplo,n,c_loc(alpha),c_loc(AP),c_loc(x), &
@@ -87094,11 +88438,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasSspmv_64_assumed_rank = hipblasSspmv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP), &
@@ -87157,11 +88501,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasDspmv_64_assumed_rank = hipblasDspmv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP), &
@@ -87222,13 +88566,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -87303,13 +88647,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -87384,13 +88728,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -87467,13 +88811,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -87548,9 +88892,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       !
       hipblasSspr_assumed_rank = hipblasSspr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP))
     end function
@@ -87599,9 +88943,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       !
       hipblasDspr_assumed_rank = hipblasDspr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP))
     end function
@@ -87651,9 +88995,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       !
       hipblasCspr_assumed_rank = hipblasCspr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP))
     end function
@@ -87704,9 +89048,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       !
       hipblasZspr_assumed_rank = hipblasZspr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP))
     end function
@@ -87756,9 +89100,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       !
       hipblasSspr_64_assumed_rank = hipblasSspr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(AP))
@@ -87808,9 +89152,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       !
       hipblasDspr_64_assumed_rank = hipblasDspr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(AP))
@@ -87861,9 +89205,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       !
       hipblasCspr_64_assumed_rank = hipblasCspr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(AP))
@@ -87915,9 +89259,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       !
       hipblasZspr_64_assumed_rank = hipblasZspr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(AP))
@@ -87970,10 +89314,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
@@ -88038,10 +89382,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
@@ -88106,10 +89450,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
@@ -88174,10 +89518,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
@@ -88242,10 +89586,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
       !
@@ -88310,10 +89654,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
       !
@@ -88378,10 +89722,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
       !
@@ -88446,10 +89790,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
       !
@@ -88512,11 +89856,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       !
       hipblasSspr2_assumed_rank = hipblasSspr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
         incy,c_loc(AP))
@@ -88572,11 +89916,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       !
       hipblasDspr2_assumed_rank = hipblasDspr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
         incy,c_loc(AP))
@@ -88632,11 +89976,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       !
       hipblasSspr2_64_assumed_rank = hipblasSspr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(AP))
@@ -88692,11 +90036,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       !
       hipblasDspr2_64_assumed_rank = hipblasDspr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(AP))
@@ -88754,13 +90098,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
@@ -88831,13 +90175,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
       !
@@ -88908,13 +90252,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
       !
@@ -88985,13 +90329,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
       !
@@ -89060,12 +90404,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasSsymv_assumed_rank = hipblasSsymv_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda,c_loc(x), &
@@ -89147,12 +90491,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasDsymv_assumed_rank = hipblasDsymv_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda,c_loc(x), &
@@ -89234,12 +90578,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasCsymv_assumed_rank = hipblasCsymv_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda,c_loc(x), &
@@ -89321,12 +90665,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       !
       hipblasZsymv_assumed_rank = hipblasZsymv_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda,c_loc(x), &
@@ -89408,12 +90752,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasSsymv_64_assumed_rank = hipblasSsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda, &
@@ -89463,6 +90807,27 @@ module hipfort_hipblas
         incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasSsymv_64_full_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasSsymv_64_full_rank = hipblasSsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDsymv_64_assumed_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
@@ -89474,12 +90839,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasDsymv_64_assumed_rank = hipblasDsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda, &
@@ -89529,6 +90894,27 @@ module hipfort_hipblas
         incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasDsymv_64_full_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasDsymv_64_full_rank = hipblasDsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCsymv_64_assumed_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
@@ -89540,12 +90926,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasCsymv_64_assumed_rank = hipblasCsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda, &
@@ -89595,6 +90981,27 @@ module hipfort_hipblas
         incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasCsymv_64_full_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasCsymv_64_full_rank = hipblasCsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZsymv_64_assumed_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
@@ -89606,12 +91013,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       !
       hipblasZsymv_64_assumed_rank = hipblasZsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda, &
@@ -89661,6 +91068,27 @@ module hipfort_hipblas
         incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function hipblasZsymv_64_full_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      hipblasZsymv_64_full_rank = hipblasZsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(AP),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -89674,14 +91102,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -89785,14 +91213,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -89896,14 +91324,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -90007,14 +91435,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int) :: batchCount
@@ -90118,14 +91546,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -90190,6 +91618,33 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasSsymvStridedBatched_64_full_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSsymvStridedBatched_64_full_rank = hipblasSsymvStridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -90204,14 +91659,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -90276,6 +91731,33 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasDsymvStridedBatched_64_full_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDsymvStridedBatched_64_full_rank = hipblasDsymvStridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -90290,14 +91772,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -90362,6 +91844,33 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasCsymvStridedBatched_64_full_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCsymvStridedBatched_64_full_rank = hipblasCsymvStridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -90376,14 +91885,14 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
       integer(c_int64_t) :: batchCount
@@ -90448,6 +91957,33 @@ module hipfort_hipblas
         stridey,batchCount)
     end function
 
+    function hipblasZsymvStridedBatched_64_full_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZsymvStridedBatched_64_full_rank = hipblasZsymvStridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -90460,9 +91996,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasSsyr_assumed_rank = hipblasSsyr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP), &
@@ -90532,9 +92068,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasDsyr_assumed_rank = hipblasDsyr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP), &
@@ -90604,9 +92140,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasCsyr_assumed_rank = hipblasCsyr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP), &
@@ -90676,9 +92212,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasZsyr_assumed_rank = hipblasZsyr_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(AP), &
@@ -90748,9 +92284,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasSsyr_64_assumed_rank = hipblasSsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -90794,6 +92330,24 @@ module hipfort_hipblas
         lda)
     end function
 
+    function hipblasSsyr_64_full_rank(handle,uplo,n,alpha,x,incx,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasSsyr_64_full_rank = hipblasSsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDsyr_64_assumed_rank(handle,uplo,n,alpha,x,incx,AP,lda)
@@ -90805,9 +92359,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasDsyr_64_assumed_rank = hipblasDsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -90851,6 +92405,24 @@ module hipfort_hipblas
         lda)
     end function
 
+    function hipblasDsyr_64_full_rank(handle,uplo,n,alpha,x,incx,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasDsyr_64_full_rank = hipblasDsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCsyr_64_assumed_rank(handle,uplo,n,alpha,x,incx,AP,lda)
@@ -90862,9 +92434,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasCsyr_64_assumed_rank = hipblasCsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -90908,6 +92480,24 @@ module hipfort_hipblas
         lda)
     end function
 
+    function hipblasCsyr_64_full_rank(handle,uplo,n,alpha,x,incx,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasCsyr_64_full_rank = hipblasCsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZsyr_64_assumed_rank(handle,uplo,n,alpha,x,incx,AP,lda)
@@ -90919,9 +92509,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasZsyr_64_assumed_rank = hipblasZsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -90965,6 +92555,24 @@ module hipfort_hipblas
         lda)
     end function
 
+    function hipblasZsyr_64_full_rank(handle,uplo,n,alpha,x,incx,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasZsyr_64_full_rank = hipblasZsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(AP),lda)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -90978,10 +92586,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -91071,10 +92679,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -91164,10 +92772,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -91257,10 +92865,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -91350,10 +92958,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -91407,6 +93015,28 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasSsyrStridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
+        strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSsyrStridedBatched_64_full_rank = hipblasSsyrStridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -91421,10 +93051,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -91478,6 +93108,28 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasDsyrStridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
+        strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDsyrStridedBatched_64_full_rank = hipblasDsyrStridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -91492,10 +93144,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -91549,6 +93201,28 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasCsyrStridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
+        strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCsyrStridedBatched_64_full_rank = hipblasCsyrStridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -91563,10 +93237,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -91620,6 +93294,28 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasZsyrStridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
+        strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZsyrStridedBatched_64_full_rank = hipblasZsyrStridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -91632,11 +93328,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasSsyr2_assumed_rank = hipblasSsyr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -91715,11 +93411,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasDsyr2_assumed_rank = hipblasDsyr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -91798,11 +93494,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasCsyr2_assumed_rank = hipblasCsyr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -91881,11 +93577,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       !
       hipblasZsyr2_assumed_rank = hipblasZsyr2_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
@@ -91964,11 +93660,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasSsyr2_64_assumed_rank = hipblasSsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -92016,6 +93712,26 @@ module hipfort_hipblas
         incy,c_loc(AP),lda)
     end function
 
+    function hipblasSsyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasSsyr2_64_full_rank = hipblasSsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDsyr2_64_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
@@ -92027,11 +93743,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasDsyr2_64_assumed_rank = hipblasDsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -92079,6 +93795,26 @@ module hipfort_hipblas
         incy,c_loc(AP),lda)
     end function
 
+    function hipblasDsyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasDsyr2_64_full_rank = hipblasDsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCsyr2_64_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
@@ -92090,11 +93826,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasCsyr2_64_assumed_rank = hipblasCsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -92142,6 +93878,26 @@ module hipfort_hipblas
         incy,c_loc(AP),lda)
     end function
 
+    function hipblasCsyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasCsyr2_64_full_rank = hipblasCsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(AP),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZsyr2_64_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
@@ -92153,11 +93909,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       !
       hipblasZsyr2_64_assumed_rank = hipblasZsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
@@ -92205,6 +93961,26 @@ module hipfort_hipblas
         incy,c_loc(AP),lda)
     end function
 
+    function hipblasZsyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      !
+      hipblasZsyr2_64_full_rank = hipblasZsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(AP),lda)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -92218,13 +93994,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -92323,13 +94099,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -92428,13 +94204,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -92533,13 +94309,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int) :: batchCount
@@ -92638,13 +94414,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -92704,6 +94480,31 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasSsyr2StridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,AP,lda,strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2StridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSsyr2StridedBatched_64_full_rank = hipblasSsyr2StridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -92718,13 +94519,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -92784,6 +94585,31 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasDsyr2StridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,AP,lda,strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2StridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDsyr2StridedBatched_64_full_rank = hipblasDsyr2StridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -92798,13 +94624,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -92864,6 +94690,31 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasCsyr2StridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,AP,lda,strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2StridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCsyr2StridedBatched_64_full_rank = hipblasCsyr2StridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -92878,13 +94729,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int64_t) :: incy
       integer(c_int64_t) :: stridey
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       integer(c_int64_t) :: batchCount
@@ -92944,6 +94795,31 @@ module hipfort_hipblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
     end function
 
+    function hipblasZsyr2StridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,AP,lda,strideA,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2StridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZsyr2StridedBatched_64_full_rank = hipblasZsyr2StridedBatched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(AP),lda,strideA,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -92958,9 +94834,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasStbmv_assumed_rank = hipblasStbmv_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -93039,9 +94915,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasDtbmv_assumed_rank = hipblasDtbmv_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -93120,9 +94996,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasCtbmv_assumed_rank = hipblasCtbmv_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -93201,9 +95077,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasZtbmv_assumed_rank = hipblasZtbmv_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -93282,9 +95158,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasStbmv_64_assumed_rank = hipblasStbmv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -93332,6 +95208,26 @@ module hipfort_hipblas
         c_loc(x),incx)
     end function
 
+    function hipblasStbmv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasStbmv_64_full_rank = hipblasStbmv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDtbmv_64_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
@@ -93345,9 +95241,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasDtbmv_64_assumed_rank = hipblasDtbmv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -93395,6 +95291,26 @@ module hipfort_hipblas
         c_loc(x),incx)
     end function
 
+    function hipblasDtbmv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasDtbmv_64_full_rank = hipblasDtbmv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCtbmv_64_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
@@ -93408,9 +95324,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasCtbmv_64_assumed_rank = hipblasCtbmv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -93458,6 +95374,26 @@ module hipfort_hipblas
         c_loc(x),incx)
     end function
 
+    function hipblasCtbmv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasCtbmv_64_full_rank = hipblasCtbmv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZtbmv_64_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
@@ -93471,9 +95407,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasZtbmv_64_assumed_rank = hipblasZtbmv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -93521,6 +95457,26 @@ module hipfort_hipblas
         c_loc(x),incx)
     end function
 
+    function hipblasZtbmv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasZtbmv_64_full_rank = hipblasZtbmv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -93536,10 +95492,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -93637,10 +95593,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -93738,10 +95694,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -93839,10 +95795,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -93940,10 +95896,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -94001,6 +95957,30 @@ module hipfort_hipblas
         diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasStbmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasStbmvStridedBatched_64_full_rank = hipblasStbmvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -94017,10 +95997,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -94078,6 +96058,30 @@ module hipfort_hipblas
         diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasDtbmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDtbmvStridedBatched_64_full_rank = hipblasDtbmvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -94094,10 +96098,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -94155,6 +96159,30 @@ module hipfort_hipblas
         diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasCtbmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCtbmvStridedBatched_64_full_rank = hipblasCtbmvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -94171,10 +96199,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -94232,6 +96260,30 @@ module hipfort_hipblas
         diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasZtbmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZtbmvStridedBatched_64_full_rank = hipblasZtbmvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -94246,9 +96298,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasStbsv_assumed_rank = hipblasStbsv_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -94327,9 +96379,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasDtbsv_assumed_rank = hipblasDtbsv_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -94408,9 +96460,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasCtbsv_assumed_rank = hipblasCtbsv_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -94489,9 +96541,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasZtbsv_assumed_rank = hipblasZtbsv_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -94570,9 +96622,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasStbsv_64_assumed_rank = hipblasStbsv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -94620,6 +96672,26 @@ module hipfort_hipblas
         c_loc(x),incx)
     end function
 
+    function hipblasStbsv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasStbsv_64_full_rank = hipblasStbsv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDtbsv_64_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
@@ -94633,9 +96705,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasDtbsv_64_assumed_rank = hipblasDtbsv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -94683,6 +96755,26 @@ module hipfort_hipblas
         c_loc(x),incx)
     end function
 
+    function hipblasDtbsv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasDtbsv_64_full_rank = hipblasDtbsv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCtbsv_64_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
@@ -94696,9 +96788,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasCtbsv_64_assumed_rank = hipblasCtbsv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -94746,6 +96838,26 @@ module hipfort_hipblas
         c_loc(x),incx)
     end function
 
+    function hipblasCtbsv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasCtbsv_64_full_rank = hipblasCtbsv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZtbsv_64_assumed_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
@@ -94759,9 +96871,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasZtbsv_64_assumed_rank = hipblasZtbsv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
@@ -94809,6 +96921,26 @@ module hipfort_hipblas
         c_loc(x),incx)
     end function
 
+    function hipblasZtbsv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasZtbsv_64_full_rank = hipblasZtbsv_64_(handle,uplo,transA,diag,n,k,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -94824,10 +96956,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -94925,10 +97057,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -95026,10 +97158,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -95127,10 +97259,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -95228,10 +97360,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -95289,6 +97421,30 @@ module hipfort_hipblas
         diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasStbsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasStbsvStridedBatched_64_full_rank = hipblasStbsvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -95305,10 +97461,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -95366,6 +97522,30 @@ module hipfort_hipblas
         diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasDtbsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDtbsvStridedBatched_64_full_rank = hipblasDtbsvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -95382,10 +97562,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -95443,6 +97623,30 @@ module hipfort_hipblas
         diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasCtbsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCtbsvStridedBatched_64_full_rank = hipblasCtbsvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -95459,10 +97663,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -95520,6 +97724,30 @@ module hipfort_hipblas
         diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasZtbsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZtbsvStridedBatched_64_full_rank = hipblasZtbsvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,k,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -95533,8 +97761,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasStpmv_assumed_rank = hipblasStpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
@@ -95587,8 +97815,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasDtpmv_assumed_rank = hipblasDtpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
@@ -95641,8 +97869,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasCtpmv_assumed_rank = hipblasCtpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
@@ -95695,8 +97923,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasZtpmv_assumed_rank = hipblasZtpmv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
@@ -95749,8 +97977,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasStpmv_64_assumed_rank = hipblasStpmv_64_(handle,uplo,transA,diag,n,c_loc(AP), &
@@ -95804,8 +98032,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasDtpmv_64_assumed_rank = hipblasDtpmv_64_(handle,uplo,transA,diag,n,c_loc(AP), &
@@ -95859,8 +98087,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasCtpmv_64_assumed_rank = hipblasCtpmv_64_(handle,uplo,transA,diag,n,c_loc(AP), &
@@ -95914,8 +98142,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasZtpmv_64_assumed_rank = hipblasZtpmv_64_(handle,uplo,transA,diag,n,c_loc(AP), &
@@ -95971,9 +98199,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -96042,9 +98270,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -96113,9 +98341,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -96184,9 +98412,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -96255,9 +98483,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -96326,9 +98554,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -96397,9 +98625,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -96468,9 +98696,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -96537,8 +98765,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasStpsv_assumed_rank = hipblasStpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
@@ -96591,8 +98819,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasDtpsv_assumed_rank = hipblasDtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
@@ -96645,8 +98873,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasCtpsv_assumed_rank = hipblasCtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
@@ -96699,8 +98927,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasZtpsv_assumed_rank = hipblasZtpsv_(handle,uplo,transA,diag,n,c_loc(AP),c_loc(x),incx)
@@ -96753,8 +98981,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasStpsv_64_assumed_rank = hipblasStpsv_64_(handle,uplo,transA,diag,n,c_loc(AP), &
@@ -96808,8 +99036,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasDtpsv_64_assumed_rank = hipblasDtpsv_64_(handle,uplo,transA,diag,n,c_loc(AP), &
@@ -96863,8 +99091,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasCtpsv_64_assumed_rank = hipblasCtpsv_64_(handle,uplo,transA,diag,n,c_loc(AP), &
@@ -96918,8 +99146,8 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasZtpsv_64_assumed_rank = hipblasZtpsv_64_(handle,uplo,transA,diag,n,c_loc(AP), &
@@ -96975,9 +99203,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -97046,9 +99274,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -97117,9 +99345,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -97188,9 +99416,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -97259,9 +99487,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -97330,9 +99558,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -97401,9 +99629,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -97472,9 +99700,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -97541,9 +99769,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasStrmv_assumed_rank = hipblasStrmv_(handle,uplo,transA,diag,n,c_loc(AP),lda,c_loc(x), &
@@ -97617,9 +99845,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasDtrmv_assumed_rank = hipblasDtrmv_(handle,uplo,transA,diag,n,c_loc(AP),lda,c_loc(x), &
@@ -97693,9 +99921,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasCtrmv_assumed_rank = hipblasCtrmv_(handle,uplo,transA,diag,n,c_loc(AP),lda,c_loc(x), &
@@ -97769,9 +99997,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasZtrmv_assumed_rank = hipblasZtrmv_(handle,uplo,transA,diag,n,c_loc(AP),lda,c_loc(x), &
@@ -97845,9 +100073,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasStrmv_64_assumed_rank = hipblasStrmv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
@@ -97893,6 +100121,25 @@ module hipfort_hipblas
         incx)
     end function
 
+    function hipblasStrmv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasStrmv_64_full_rank = hipblasStrmv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDtrmv_64_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
@@ -97905,9 +100152,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasDtrmv_64_assumed_rank = hipblasDtrmv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
@@ -97953,6 +100200,25 @@ module hipfort_hipblas
         incx)
     end function
 
+    function hipblasDtrmv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasDtrmv_64_full_rank = hipblasDtrmv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCtrmv_64_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
@@ -97965,9 +100231,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasCtrmv_64_assumed_rank = hipblasCtrmv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
@@ -98013,6 +100279,25 @@ module hipfort_hipblas
         incx)
     end function
 
+    function hipblasCtrmv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasCtrmv_64_full_rank = hipblasCtrmv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZtrmv_64_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
@@ -98025,9 +100310,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasZtrmv_64_assumed_rank = hipblasZtrmv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
@@ -98073,6 +100358,25 @@ module hipfort_hipblas
         incx)
     end function
 
+    function hipblasZtrmv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasZtrmv_64_full_rank = hipblasZtrmv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -98087,10 +100391,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -98184,10 +100488,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -98281,10 +100585,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -98378,10 +100682,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -98475,10 +100779,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -98534,6 +100838,29 @@ module hipfort_hipblas
         diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasStrmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasStrmvStridedBatched_64_full_rank = hipblasStrmvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -98549,10 +100876,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -98608,6 +100935,29 @@ module hipfort_hipblas
         diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasDtrmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDtrmvStridedBatched_64_full_rank = hipblasDtrmvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -98623,10 +100973,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -98682,6 +101032,29 @@ module hipfort_hipblas
         diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasCtrmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCtrmvStridedBatched_64_full_rank = hipblasCtrmvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -98697,10 +101070,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -98756,6 +101129,29 @@ module hipfort_hipblas
         diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasZtrmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZtrmvStridedBatched_64_full_rank = hipblasZtrmvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -98769,9 +101165,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasStrsv_assumed_rank = hipblasStrsv_(handle,uplo,transA,diag,n,c_loc(AP),lda,c_loc(x), &
@@ -98845,9 +101241,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasDtrsv_assumed_rank = hipblasDtrsv_(handle,uplo,transA,diag,n,c_loc(AP),lda,c_loc(x), &
@@ -98921,9 +101317,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasCtrsv_assumed_rank = hipblasCtrsv_(handle,uplo,transA,diag,n,c_loc(AP),lda,c_loc(x), &
@@ -98997,9 +101393,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       !
       hipblasZtrsv_assumed_rank = hipblasZtrsv_(handle,uplo,transA,diag,n,c_loc(AP),lda,c_loc(x), &
@@ -99073,9 +101469,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasStrsv_64_assumed_rank = hipblasStrsv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
@@ -99121,6 +101517,25 @@ module hipfort_hipblas
         incx)
     end function
 
+    function hipblasStrsv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasStrsv_64_full_rank = hipblasStrsv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDtrsv_64_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
@@ -99133,9 +101548,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasDtrsv_64_assumed_rank = hipblasDtrsv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
@@ -99181,6 +101596,25 @@ module hipfort_hipblas
         incx)
     end function
 
+    function hipblasDtrsv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasDtrsv_64_full_rank = hipblasDtrsv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCtrsv_64_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
@@ -99193,9 +101627,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasCtrsv_64_assumed_rank = hipblasCtrsv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
@@ -99241,6 +101675,25 @@ module hipfort_hipblas
         incx)
     end function
 
+    function hipblasCtrsv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasCtrsv_64_full_rank = hipblasCtrsv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZtrsv_64_assumed_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
@@ -99253,9 +101706,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       !
       hipblasZtrsv_64_assumed_rank = hipblasZtrsv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
@@ -99301,6 +101754,25 @@ module hipfort_hipblas
         incx)
     end function
 
+    function hipblasZtrsv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      hipblasZtrsv_64_full_rank = hipblasZtrsv_64_(handle,uplo,transA,diag,n,c_loc(AP),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -99315,10 +101787,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -99412,10 +101884,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -99509,10 +101981,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -99606,10 +102078,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int) :: batchCount
@@ -99703,10 +102175,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -99762,6 +102234,29 @@ module hipfort_hipblas
         diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasStrsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasStrsvStridedBatched_64_full_rank = hipblasStrsvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -99777,10 +102272,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -99836,6 +102331,29 @@ module hipfort_hipblas
         diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasDtrsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDtrsvStridedBatched_64_full_rank = hipblasDtrsvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -99851,10 +102369,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -99910,6 +102428,29 @@ module hipfort_hipblas
         diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasCtrsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCtrsvStridedBatched_64_full_rank = hipblasCtrsvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -99925,10 +102466,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: transA
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
       integer(c_int64_t) :: batchCount
@@ -99984,6 +102525,29 @@ module hipfort_hipblas
         diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
     end function
 
+    function hipblasZtrsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
+        incx,stridex,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsvStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZtrsvStridedBatched_64_full_rank = hipblasZtrsvStridedBatched_64_(handle,uplo,transA, &
+        diag,n,c_loc(AP),lda,strideA,c_loc(x),incx,stridex,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -99999,12 +102563,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasSgemm_assumed_rank = hipblasSgemm_(handle,transA,transB,m,n,k,c_loc(alpha),c_loc(AP), &
@@ -100098,12 +102662,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasDgemm_assumed_rank = hipblasDgemm_(handle,transA,transB,m,n,k,c_loc(alpha),c_loc(AP), &
@@ -100197,12 +102761,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasCgemm_assumed_rank = hipblasCgemm_(handle,transA,transB,m,n,k,c_loc(alpha),c_loc(AP), &
@@ -100296,12 +102860,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasZgemm_assumed_rank = hipblasZgemm_(handle,transA,transB,m,n,k,c_loc(alpha),c_loc(AP), &
@@ -100396,12 +102960,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasSgemm_64_assumed_rank = hipblasSgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
@@ -100457,6 +103021,30 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasSgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasSgemm_64_full_rank = hipblasSgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDgemm_64_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP, &
@@ -100472,12 +103060,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasDgemm_64_assumed_rank = hipblasDgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
@@ -100533,6 +103121,30 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasDgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasDgemm_64_full_rank = hipblasDgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCgemm_64_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP, &
@@ -100548,12 +103160,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasCgemm_64_assumed_rank = hipblasCgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
@@ -100609,6 +103221,30 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasCgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasCgemm_64_full_rank = hipblasCgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZgemm_64_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP, &
@@ -100624,12 +103260,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasZgemm_64_assumed_rank = hipblasZgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
@@ -100685,6 +103321,30 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasZgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasZgemm_64_full_rank = hipblasZgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasSgemmStridedBatched_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
@@ -100700,14 +103360,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -100823,14 +103483,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -100946,14 +103606,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -101069,14 +103729,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -101192,14 +103852,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -101270,6 +103930,36 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasSgemmStridedBatched_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
+        strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSgemmStridedBatched_64_full_rank = hipblasSgemmStridedBatched_64_(handle,transA, &
+        transB,m,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta), &
+        c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDgemmStridedBatched_64_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
@@ -101285,14 +103975,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -101363,6 +104053,36 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasDgemmStridedBatched_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
+        strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDgemmStridedBatched_64_full_rank = hipblasDgemmStridedBatched_64_(handle,transA, &
+        transB,m,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta), &
+        c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCgemmStridedBatched_64_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
@@ -101378,14 +104098,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -101456,6 +104176,36 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasCgemmStridedBatched_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
+        strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCgemmStridedBatched_64_full_rank = hipblasCgemmStridedBatched_64_(handle,transA, &
+        transB,m,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta), &
+        c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZgemmStridedBatched_64_assumed_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
@@ -101471,14 +104221,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -101549,6 +104299,36 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasZgemmStridedBatched_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
+        strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZgemmStridedBatched_64_full_rank = hipblasZgemmStridedBatched_64_(handle,transA, &
+        transB,m,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta), &
+        c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCherk_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
@@ -101562,10 +104342,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasCherk_assumed_rank = hipblasCherk_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -101649,10 +104429,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasZherk_assumed_rank = hipblasZherk_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -101736,10 +104516,10 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasCherk_64_assumed_rank = hipblasCherk_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -101789,6 +104569,27 @@ module hipfort_hipblas
         c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasCherk_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherk_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasCherk_64_full_rank = hipblasCherk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZherk_64_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
@@ -101802,10 +104603,10 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasZherk_64_assumed_rank = hipblasZherk_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -101855,6 +104656,27 @@ module hipfort_hipblas
         c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasZherk_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherk_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasZherk_64_full_rank = hipblasZherk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -101870,11 +104692,11 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -101975,11 +104797,11 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -102080,11 +104902,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -102144,6 +104966,31 @@ module hipfort_hipblas
         k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(CP),ldc,strideC,batchCount)
     end function
 
+    function hipblasCherkStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCherkStridedBatched_64_full_rank = hipblasCherkStridedBatched_64_(handle,uplo,transA, &
+        n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -102160,11 +105007,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -102224,6 +105071,31 @@ module hipfort_hipblas
         k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(CP),ldc,strideC,batchCount)
     end function
 
+    function hipblasZherkStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZherkStridedBatched_64_full_rank = hipblasZherkStridedBatched_64_(handle,uplo,transA, &
+        n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -102238,12 +105110,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasCherkx_assumed_rank = hipblasCherkx_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
@@ -102333,12 +105205,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasZherkx_assumed_rank = hipblasZherkx_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
@@ -102428,12 +105300,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasCherkx_64_assumed_rank = hipblasCherkx_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -102487,6 +105359,29 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasCherkx_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkx_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_float),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasCherkx_64_full_rank = hipblasCherkx_64_(handle,uplo,transA,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZherkx_64_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
@@ -102500,12 +105395,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasZherkx_64_assumed_rank = hipblasZherkx_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -102559,6 +105454,29 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasZherkx_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkx_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_double),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasZherkx_64_full_rank = hipblasZherkx_64_(handle,uplo,transA,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -102574,14 +105492,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -102695,14 +105613,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -102816,14 +105734,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -102892,6 +105810,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasCherkxStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkxStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_float),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCherkxStridedBatched_64_full_rank = hipblasCherkxStridedBatched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -102908,14 +105855,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -102984,6 +105931,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasZherkxStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkxStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_double),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZherkxStridedBatched_64_full_rank = hipblasZherkxStridedBatched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -102998,12 +105974,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasCher2k_assumed_rank = hipblasCher2k_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
@@ -103093,12 +106069,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasZher2k_assumed_rank = hipblasZher2k_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
@@ -103188,12 +106164,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasCher2k_64_assumed_rank = hipblasCher2k_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -103247,6 +106223,29 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasCher2k_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2k_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_float),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasCher2k_64_full_rank = hipblasCher2k_64_(handle,uplo,transA,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZher2k_64_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
@@ -103260,12 +106259,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasZher2k_64_assumed_rank = hipblasZher2k_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -103319,6 +106318,29 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasZher2k_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2k_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_double),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasZher2k_64_full_rank = hipblasZher2k_64_(handle,uplo,transA,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -103334,14 +106356,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -103455,14 +106477,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -103576,14 +106598,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -103652,6 +106674,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasCher2kStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2kStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_float),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCher2kStridedBatched_64_full_rank = hipblasCher2kStridedBatched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -103668,14 +106719,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -103744,6 +106795,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasZher2kStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2kStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_double),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZher2kStridedBatched_64_full_rank = hipblasZher2kStridedBatched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -103758,12 +106838,12 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasSsymm_assumed_rank = hipblasSsymm_(handle,side,uplo,m,n,c_loc(alpha),c_loc(AP),lda, &
@@ -103853,12 +106933,12 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasDsymm_assumed_rank = hipblasDsymm_(handle,side,uplo,m,n,c_loc(alpha),c_loc(AP),lda, &
@@ -103948,12 +107028,12 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasCsymm_assumed_rank = hipblasCsymm_(handle,side,uplo,m,n,c_loc(alpha),c_loc(AP),lda, &
@@ -104043,12 +107123,12 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasZsymm_assumed_rank = hipblasZsymm_(handle,side,uplo,m,n,c_loc(alpha),c_loc(AP),lda, &
@@ -104138,12 +107218,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasSsymm_64_assumed_rank = hipblasSsymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(AP), &
@@ -104197,6 +107277,29 @@ module hipfort_hipblas
         c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasSsymm_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasSsymm_64_full_rank = hipblasSsymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDsymm_64_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
@@ -104210,12 +107313,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasDsymm_64_assumed_rank = hipblasDsymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(AP), &
@@ -104269,6 +107372,29 @@ module hipfort_hipblas
         c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasDsymm_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasDsymm_64_full_rank = hipblasDsymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCsymm_64_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
@@ -104282,12 +107408,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasCsymm_64_assumed_rank = hipblasCsymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(AP), &
@@ -104341,6 +107467,29 @@ module hipfort_hipblas
         c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasCsymm_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasCsymm_64_full_rank = hipblasCsymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZsymm_64_assumed_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
@@ -104354,12 +107503,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasZsymm_64_assumed_rank = hipblasZsymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(AP), &
@@ -104413,6 +107562,29 @@ module hipfort_hipblas
         c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasZsymm_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasZsymm_64_full_rank = hipblasZsymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -104428,14 +107600,14 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -104549,14 +107721,14 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -104670,14 +107842,14 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -104791,14 +107963,14 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -104912,14 +108084,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -104988,6 +108160,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasSsymmStridedBatched_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP, &
+        ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSsymmStridedBatched_64_full_rank = hipblasSsymmStridedBatched_64_(handle,side,uplo,m, &
+        n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP),ldc, &
+        strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -105004,14 +108205,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -105080,6 +108281,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasDsymmStridedBatched_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP, &
+        ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDsymmStridedBatched_64_full_rank = hipblasDsymmStridedBatched_64_(handle,side,uplo,m, &
+        n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP),ldc, &
+        strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -105096,14 +108326,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -105172,6 +108402,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasCsymmStridedBatched_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP, &
+        ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCsymmStridedBatched_64_full_rank = hipblasCsymmStridedBatched_64_(handle,side,uplo,m, &
+        n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP),ldc, &
+        strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -105188,14 +108447,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -105264,6 +108523,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasZsymmStridedBatched_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP, &
+        ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZsymmStridedBatched_64_full_rank = hipblasZsymmStridedBatched_64_(handle,side,uplo,m, &
+        n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP),ldc, &
+        strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -105278,10 +108566,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasSsyrk_assumed_rank = hipblasSsyrk_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -105365,10 +108653,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasDsyrk_assumed_rank = hipblasDsyrk_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -105452,10 +108740,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasCsyrk_assumed_rank = hipblasCsyrk_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -105539,10 +108827,10 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasZsyrk_assumed_rank = hipblasZsyrk_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -105626,10 +108914,10 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasSsyrk_64_assumed_rank = hipblasSsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -105679,6 +108967,27 @@ module hipfort_hipblas
         c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasSsyrk_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrk_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasSsyrk_64_full_rank = hipblasSsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDsyrk_64_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
@@ -105692,10 +109001,10 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasDsyrk_64_assumed_rank = hipblasDsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -105745,6 +109054,27 @@ module hipfort_hipblas
         c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasDsyrk_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrk_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasDsyrk_64_full_rank = hipblasDsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCsyrk_64_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
@@ -105758,10 +109088,10 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasCsyrk_64_assumed_rank = hipblasCsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -105811,6 +109141,27 @@ module hipfort_hipblas
         c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasCsyrk_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrk_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasCsyrk_64_full_rank = hipblasCsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZsyrk_64_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
@@ -105824,10 +109175,10 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasZsyrk_64_assumed_rank = hipblasZsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -105877,6 +109228,27 @@ module hipfort_hipblas
         c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasZsyrk_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrk_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasZsyrk_64_full_rank = hipblasZsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -105892,11 +109264,11 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -105997,11 +109369,11 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -106102,11 +109474,11 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -106207,11 +109579,11 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -106312,11 +109684,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -106376,6 +109748,31 @@ module hipfort_hipblas
         k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(CP),ldc,strideC,batchCount)
     end function
 
+    function hipblasSsyrkStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSsyrkStridedBatched_64_full_rank = hipblasSsyrkStridedBatched_64_(handle,uplo,transA, &
+        n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -106392,11 +109789,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -106456,6 +109853,31 @@ module hipfort_hipblas
         k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(CP),ldc,strideC,batchCount)
     end function
 
+    function hipblasDsyrkStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDsyrkStridedBatched_64_full_rank = hipblasDsyrkStridedBatched_64_(handle,uplo,transA, &
+        n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -106472,11 +109894,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -106536,6 +109958,31 @@ module hipfort_hipblas
         k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(CP),ldc,strideC,batchCount)
     end function
 
+    function hipblasCsyrkStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCsyrkStridedBatched_64_full_rank = hipblasCsyrkStridedBatched_64_(handle,uplo,transA, &
+        n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -106552,11 +109999,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -106616,6 +110063,31 @@ module hipfort_hipblas
         k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(CP),ldc,strideC,batchCount)
     end function
 
+    function hipblasZsyrkStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZsyrkStridedBatched_64_full_rank = hipblasZsyrkStridedBatched_64_(handle,uplo,transA, &
+        n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -106630,12 +110102,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasSsyr2k_assumed_rank = hipblasSsyr2k_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
@@ -106725,12 +110197,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasDsyr2k_assumed_rank = hipblasDsyr2k_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
@@ -106820,12 +110292,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasCsyr2k_assumed_rank = hipblasCsyr2k_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
@@ -106915,12 +110387,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasZsyr2k_assumed_rank = hipblasZsyr2k_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
@@ -107010,12 +110482,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasSsyr2k_64_assumed_rank = hipblasSsyr2k_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -107069,6 +110541,29 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasSsyr2k_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2k_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasSsyr2k_64_full_rank = hipblasSsyr2k_64_(handle,uplo,transA,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDsyr2k_64_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
@@ -107082,12 +110577,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasDsyr2k_64_assumed_rank = hipblasDsyr2k_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -107141,6 +110636,29 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasDsyr2k_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2k_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasDsyr2k_64_full_rank = hipblasDsyr2k_64_(handle,uplo,transA,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCsyr2k_64_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
@@ -107154,12 +110672,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasCsyr2k_64_assumed_rank = hipblasCsyr2k_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -107213,6 +110731,29 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasCsyr2k_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2k_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasCsyr2k_64_full_rank = hipblasCsyr2k_64_(handle,uplo,transA,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZsyr2k_64_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
@@ -107226,12 +110767,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasZsyr2k_64_assumed_rank = hipblasZsyr2k_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -107285,6 +110826,29 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasZsyr2k_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2k_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasZsyr2k_64_full_rank = hipblasZsyr2k_64_(handle,uplo,transA,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -107300,14 +110864,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -107421,14 +110985,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -107542,14 +111106,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -107663,14 +111227,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -107784,14 +111348,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -107860,6 +111424,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasSsyr2kStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSsyr2kStridedBatched_64_full_rank = hipblasSsyr2kStridedBatched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -107876,14 +111469,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -107952,6 +111545,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasDsyr2kStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDsyr2kStridedBatched_64_full_rank = hipblasDsyr2kStridedBatched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -107968,14 +111590,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -108044,6 +111666,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasCsyr2kStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCsyr2kStridedBatched_64_full_rank = hipblasCsyr2kStridedBatched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -108060,14 +111711,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -108136,6 +111787,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasZsyr2kStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZsyr2kStridedBatched_64_full_rank = hipblasZsyr2kStridedBatched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -108150,12 +111830,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasSsyrkx_assumed_rank = hipblasSsyrkx_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
@@ -108245,12 +111925,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasDsyrkx_assumed_rank = hipblasDsyrkx_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
@@ -108340,12 +112020,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasCsyrkx_assumed_rank = hipblasCsyrkx_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
@@ -108435,12 +112115,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasZsyrkx_assumed_rank = hipblasZsyrkx_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(AP), &
@@ -108530,12 +112210,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasSsyrkx_64_assumed_rank = hipblasSsyrkx_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -108589,6 +112269,29 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasSsyrkx_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkx_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasSsyrkx_64_full_rank = hipblasSsyrkx_64_(handle,uplo,transA,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDsyrkx_64_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
@@ -108602,12 +112305,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasDsyrkx_64_assumed_rank = hipblasDsyrkx_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -108661,6 +112364,29 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasDsyrkx_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkx_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasDsyrkx_64_full_rank = hipblasDsyrkx_64_(handle,uplo,transA,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCsyrkx_64_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
@@ -108674,12 +112400,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasCsyrkx_64_assumed_rank = hipblasCsyrkx_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -108733,6 +112459,29 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasCsyrkx_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkx_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasCsyrkx_64_full_rank = hipblasCsyrkx_64_(handle,uplo,transA,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZsyrkx_64_assumed_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
@@ -108746,12 +112495,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasZsyrkx_64_assumed_rank = hipblasZsyrkx_64_(handle,uplo,transA,n,k,c_loc(alpha), &
@@ -108805,6 +112554,29 @@ module hipfort_hipblas
         lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasZsyrkx_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkx_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasZsyrkx_64_full_rank = hipblasZsyrkx_64_(handle,uplo,transA,n,k,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -108820,14 +112592,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -108941,14 +112713,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -109062,14 +112834,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -109183,14 +112955,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -109304,14 +113076,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -109380,6 +113152,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasSsyrkxStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSsyrkxStridedBatched_64_full_rank = hipblasSsyrkxStridedBatched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -109396,14 +113197,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -109472,6 +113273,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasDsyrkxStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDsyrkxStridedBatched_64_full_rank = hipblasDsyrkxStridedBatched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -109488,14 +113318,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -109564,6 +113394,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasCsyrkxStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCsyrkxStridedBatched_64_full_rank = hipblasCsyrkxStridedBatched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -109580,14 +113439,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -109656,6 +113515,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasZsyrkxStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
+        BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZsyrkxStridedBatched_64_full_rank = hipblasZsyrkxStridedBatched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -109670,12 +113558,12 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int) :: ldb
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasSgeam_assumed_rank = hipblasSgeam_(handle,transA,transB,m,n,c_loc(alpha),c_loc(AP), &
@@ -109765,12 +113653,12 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int) :: ldb
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasDgeam_assumed_rank = hipblasDgeam_(handle,transA,transB,m,n,c_loc(alpha),c_loc(AP), &
@@ -109860,12 +113748,12 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasCgeam_assumed_rank = hipblasCgeam_(handle,transA,transB,m,n,c_loc(alpha),c_loc(AP), &
@@ -109955,12 +113843,12 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasZgeam_assumed_rank = hipblasZgeam_(handle,transA,transB,m,n,c_loc(alpha),c_loc(AP), &
@@ -110050,12 +113938,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasSgeam_64_assumed_rank = hipblasSgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
@@ -110109,6 +113997,29 @@ module hipfort_hipblas
         lda,c_loc(beta),c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
+    function hipblasSgeam_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasSgeam_64_full_rank = hipblasSgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(beta),c_loc(BP),ldb,c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDgeam_64_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
@@ -110122,12 +114033,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasDgeam_64_assumed_rank = hipblasDgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
@@ -110181,6 +114092,29 @@ module hipfort_hipblas
         lda,c_loc(beta),c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
+    function hipblasDgeam_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasDgeam_64_full_rank = hipblasDgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(beta),c_loc(BP),ldb,c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCgeam_64_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
@@ -110194,12 +114128,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasCgeam_64_assumed_rank = hipblasCgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
@@ -110253,6 +114187,29 @@ module hipfort_hipblas
         lda,c_loc(beta),c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
+    function hipblasCgeam_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasCgeam_64_full_rank = hipblasCgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(beta),c_loc(BP),ldb,c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZgeam_64_assumed_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
@@ -110266,12 +114223,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasZgeam_64_assumed_rank = hipblasZgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
@@ -110325,6 +114282,29 @@ module hipfort_hipblas
         lda,c_loc(beta),c_loc(BP),ldb,c_loc(CP),ldc)
     end function
 
+    function hipblasZgeam_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasZgeam_64_full_rank = hipblasZgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(beta),c_loc(BP),ldb,c_loc(CP),ldc)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -110340,14 +114320,14 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -110461,14 +114441,14 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -110582,14 +114562,14 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -110703,14 +114683,14 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -110824,14 +114804,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       real(c_float),target :: beta
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -110900,6 +114880,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasSgeamStridedBatched_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda, &
+        strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSgeamStridedBatched_64_full_rank = hipblasSgeamStridedBatched_64_(handle,transA, &
+        transB,m,n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(BP),ldb,strideB,c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -110916,14 +114925,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       real(c_double),target :: beta
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -110992,6 +115001,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasDgeamStridedBatched_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda, &
+        strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDgeamStridedBatched_64_full_rank = hipblasDgeamStridedBatched_64_(handle,transA, &
+        transB,m,n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(BP),ldb,strideB,c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -111008,14 +115046,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -111084,6 +115122,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasCgeamStridedBatched_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda, &
+        strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCgeamStridedBatched_64_full_rank = hipblasCgeamStridedBatched_64_(handle,transA, &
+        transB,m,n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(BP),ldb,strideB,c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -111100,14 +115167,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -111176,6 +115243,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasZgeamStridedBatched_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda, &
+        strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_OP_N)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZgeamStridedBatched_64_full_rank = hipblasZgeamStridedBatched_64_(handle,transA, &
+        transB,m,n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(beta),c_loc(BP),ldb,strideB,c_loc(CP), &
+        ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -111190,12 +115286,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasChemm_assumed_rank = hipblasChemm_(handle,side,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -111285,12 +115381,12 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasZhemm_assumed_rank = hipblasZhemm_(handle,side,uplo,n,k,c_loc(alpha),c_loc(AP),lda, &
@@ -111380,12 +115476,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasChemm_64_assumed_rank = hipblasChemm_64_(handle,side,uplo,n,k,c_loc(alpha),c_loc(AP), &
@@ -111439,6 +115535,29 @@ module hipfort_hipblas
         c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasChemm_64_full_rank(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasChemm_64_full_rank = hipblasChemm_64_(handle,side,uplo,n,k,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZhemm_64_assumed_rank(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
@@ -111452,12 +115571,12 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasZhemm_64_assumed_rank = hipblasZhemm_64_(handle,side,uplo,n,k,c_loc(alpha),c_loc(AP), &
@@ -111511,6 +115630,29 @@ module hipfort_hipblas
         c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
     end function
 
+    function hipblasZhemm_64_full_rank(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasZhemm_64_full_rank = hipblasZhemm_64_(handle,side,uplo,n,k,c_loc(alpha),c_loc(AP), &
+        lda,c_loc(BP),ldb,c_loc(beta),c_loc(CP),ldc)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -111526,14 +115668,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -111647,14 +115789,14 @@ module hipfort_hipblas
       integer(c_int) :: n
       integer(c_int) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -111768,14 +115910,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_float_complex),target :: beta
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -111844,6 +115986,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasChemmStridedBatched_64_full_rank(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP, &
+        ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasChemmStridedBatched_64_full_rank = hipblasChemmStridedBatched_64_(handle,side,uplo,n, &
+        k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP),ldc, &
+        strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -111860,14 +116031,14 @@ module hipfort_hipblas
       integer(c_int64_t) :: n
       integer(c_int64_t) :: k
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       complex(c_double_complex),target :: beta
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -111936,6 +116107,35 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasZhemmStridedBatched_64_full_rank(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP, &
+        ldb,strideB,beta,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZhemmStridedBatched_64_full_rank = hipblasZhemmStridedBatched_64_(handle,side,uplo,n, &
+        k,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,c_loc(beta),c_loc(CP),ldc, &
+        strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -111952,11 +116152,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       hipblasStrmm_assumed_rank = hipblasStrmm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -112051,11 +116251,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       hipblasDtrmm_assumed_rank = hipblasDtrmm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -112150,11 +116350,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       hipblasCtrmm_assumed_rank = hipblasCtrmm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -112249,11 +116449,11 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       !
       hipblasZtrmm_assumed_rank = hipblasZtrmm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -112348,11 +116548,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       hipblasStrmm_64_assumed_rank = hipblasStrmm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -112408,6 +116608,30 @@ module hipfort_hipblas
         c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
+    function hipblasStrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      hipblasStrmm_64_full_rank = hipblasStrmm_64_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDtrmm_64_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -112423,11 +116647,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       hipblasDtrmm_64_assumed_rank = hipblasDtrmm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -112483,6 +116707,30 @@ module hipfort_hipblas
         c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
+    function hipblasDtrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      hipblasDtrmm_64_full_rank = hipblasDtrmm_64_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCtrmm_64_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -112498,11 +116746,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       hipblasCtrmm_64_assumed_rank = hipblasCtrmm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -112558,6 +116806,30 @@ module hipfort_hipblas
         c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
+    function hipblasCtrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      hipblasCtrmm_64_full_rank = hipblasCtrmm_64_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZtrmm_64_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -112573,11 +116845,11 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       !
       hipblasZtrmm_64_assumed_rank = hipblasZtrmm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -112633,6 +116905,30 @@ module hipfort_hipblas
         c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
+    function hipblasZtrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      hipblasZtrmm_64_full_rank = hipblasZtrmm_64_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -112650,13 +116946,13 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -112775,13 +117071,13 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -112900,13 +117196,13 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -113025,13 +117321,13 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -113150,13 +117446,13 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_float),target,contiguous,dimension(..) :: C
+      real(c_float),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -113227,6 +117523,36 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasStrmmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasStrmmStridedBatched_64_full_rank = hipblasStrmmStridedBatched_64_(handle,side,uplo, &
+        transA,diag,m,n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(C),ldc, &
+        strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -113245,13 +117571,13 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
-      real(c_double),target,contiguous,dimension(..) :: C
+      real(c_double),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -113322,6 +117648,36 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasDtrmmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDtrmmStridedBatched_64_full_rank = hipblasDtrmmStridedBatched_64_(handle,side,uplo, &
+        transA,diag,m,n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(C),ldc, &
+        strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -113340,13 +117696,13 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_float_complex),target,contiguous,dimension(..) :: C
+      complex(c_float_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -113417,6 +117773,36 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasCtrmmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCtrmmStridedBatched_64_full_rank = hipblasCtrmmStridedBatched_64_(handle,side,uplo, &
+        transA,diag,m,n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(C),ldc, &
+        strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -113435,13 +117821,13 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
-      complex(c_double_complex),target,contiguous,dimension(..) :: C
+      complex(c_double_complex),target,dimension(..) :: C
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -113512,6 +117898,36 @@ module hipfort_hipblas
         strideC,batchCount)
     end function
 
+    function hipblasZtrmmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
+        strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZtrmmStridedBatched_64_full_rank = hipblasZtrmmStridedBatched_64_(handle,side,uplo, &
+        transA,diag,m,n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(C),ldc, &
+        strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifdef USE_ASSUMED_RANK
@@ -113528,9 +117944,9 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int) :: ldb
       !
       hipblasStrsm_assumed_rank = hipblasStrsm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -113619,9 +118035,9 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int) :: ldb
       !
       hipblasDtrsm_assumed_rank = hipblasDtrsm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -113710,9 +118126,9 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       !
       hipblasCtrsm_assumed_rank = hipblasCtrsm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -113801,9 +118217,9 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       !
       hipblasZtrsm_assumed_rank = hipblasZtrsm_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
@@ -113892,9 +118308,9 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       !
       hipblasStrsm_64_assumed_rank = hipblasStrsm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -113946,6 +118362,28 @@ module hipfort_hipblas
         c_loc(AP),lda,c_loc(BP),ldb)
     end function
 
+    function hipblasStrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      !
+      hipblasStrsm_64_full_rank = hipblasStrsm_64_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDtrsm_64_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
@@ -113961,9 +118399,9 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       !
       hipblasDtrsm_64_assumed_rank = hipblasDtrsm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -114015,6 +118453,28 @@ module hipfort_hipblas
         c_loc(AP),lda,c_loc(BP),ldb)
     end function
 
+    function hipblasDtrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      !
+      hipblasDtrsm_64_full_rank = hipblasDtrsm_64_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCtrsm_64_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
@@ -114030,9 +118490,9 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       !
       hipblasCtrsm_64_assumed_rank = hipblasCtrsm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -114084,6 +118544,28 @@ module hipfort_hipblas
         c_loc(AP),lda,c_loc(BP),ldb)
     end function
 
+    function hipblasCtrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      !
+      hipblasCtrsm_64_full_rank = hipblasCtrsm_64_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZtrsm_64_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
@@ -114099,9 +118581,9 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       !
       hipblasZtrsm_64_assumed_rank = hipblasZtrsm_64_(handle,side,uplo,transA,diag,m,n, &
@@ -114153,6 +118635,28 @@ module hipfort_hipblas
         c_loc(AP),lda,c_loc(BP),ldb)
     end function
 
+    function hipblasZtrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      !
+      hipblasZtrsm_64_full_rank = hipblasZtrsm_64_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
+        c_loc(AP),lda,c_loc(BP),ldb)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -114170,10 +118674,10 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       integer(c_int) :: batchCount
@@ -114279,10 +118783,10 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       integer(c_int) :: batchCount
@@ -114388,10 +118892,10 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       integer(c_int) :: batchCount
@@ -114497,10 +119001,10 @@ module hipfort_hipblas
       integer(c_int) :: m
       integer(c_int) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       integer(c_int) :: batchCount
@@ -114606,10 +119110,10 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_float),target :: alpha
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: BP
+      real(c_float),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       integer(c_int64_t) :: batchCount
@@ -114671,6 +119175,32 @@ module hipfort_hipblas
         transA,diag,m,n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,batchCount)
     end function
 
+    function hipblasStrsmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP, &
+        lda,strideA,BP,ldb,strideB,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasStrsmStridedBatched_64_full_rank = hipblasStrsmStridedBatched_64_(handle,side,uplo, &
+        transA,diag,m,n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -114689,10 +119219,10 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       real(c_double),target :: alpha
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: BP
+      real(c_double),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       integer(c_int64_t) :: batchCount
@@ -114754,6 +119284,32 @@ module hipfort_hipblas
         transA,diag,m,n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,batchCount)
     end function
 
+    function hipblasDtrsmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP, &
+        lda,strideA,BP,ldb,strideB,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDtrsmStridedBatched_64_full_rank = hipblasDtrsmStridedBatched_64_(handle,side,uplo, &
+        transA,diag,m,n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -114772,10 +119328,10 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_float_complex),target :: alpha
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: BP
+      complex(c_float_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       integer(c_int64_t) :: batchCount
@@ -114837,6 +119393,32 @@ module hipfort_hipblas
         transA,diag,m,n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,batchCount)
     end function
 
+    function hipblasCtrsmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP, &
+        lda,strideA,BP,ldb,strideB,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCtrsmStridedBatched_64_full_rank = hipblasCtrsmStridedBatched_64_(handle,side,uplo, &
+        transA,diag,m,n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -114855,10 +119437,10 @@ module hipfort_hipblas
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
       complex(c_double_complex),target :: alpha
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: BP
+      complex(c_double_complex),target,dimension(..) :: BP
       integer(c_int64_t) :: ldb
       integer(c_int64_t) :: strideB
       integer(c_int64_t) :: batchCount
@@ -114920,6 +119502,32 @@ module hipfort_hipblas
         transA,diag,m,n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,batchCount)
     end function
 
+    function hipblasZtrsmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP, &
+        lda,strideA,BP,ldb,strideB,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
+      integer(kind(HIPBLAS_OP_N)) :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: BP
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZtrsmStridedBatched_64_full_rank = hipblasZtrsmStridedBatched_64_(handle,side,uplo, &
+        transA,diag,m,n,c_loc(alpha),c_loc(AP),lda,strideA,c_loc(BP),ldb,strideB,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -114933,9 +119541,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: invA
+      real(c_float),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       !
       hipblasStrtri_assumed_rank = hipblasStrtri_(handle,uplo,diag,n,c_loc(AP),lda,c_loc(invA), &
@@ -115007,9 +119615,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: invA
+      real(c_double),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       !
       hipblasDtrtri_assumed_rank = hipblasDtrtri_(handle,uplo,diag,n,c_loc(AP),lda,c_loc(invA), &
@@ -115081,9 +119689,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: invA
+      complex(c_float_complex),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       !
       hipblasCtrtri_assumed_rank = hipblasCtrtri_(handle,uplo,diag,n,c_loc(AP),lda,c_loc(invA), &
@@ -115155,9 +119763,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: invA
+      complex(c_double_complex),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       !
       hipblasZtrtri_assumed_rank = hipblasZtrtri_(handle,uplo,diag,n,c_loc(AP),lda,c_loc(invA), &
@@ -115230,10 +119838,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: invA
+      real(c_float),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batchCount
@@ -115323,10 +119931,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: invA
+      real(c_double),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batchCount
@@ -115416,10 +120024,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: invA
+      complex(c_float_complex),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batchCount
@@ -115509,10 +120117,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_FILL_MODE_UPPER)) :: uplo
       integer(kind(HIPBLAS_DIAG_NON_UNIT)) :: diag
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: invA
+      complex(c_double_complex),target,dimension(..) :: invA
       integer(c_int) :: ldinvA
       integer(c_int64_t) :: stride_invA
       integer(c_int) :: batchCount
@@ -115600,11 +120208,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasSdgmm_assumed_rank = hipblasSdgmm_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx, &
@@ -115681,11 +120289,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasDdgmm_assumed_rank = hipblasDdgmm_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx, &
@@ -115762,11 +120370,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasCdgmm_assumed_rank = hipblasCdgmm_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx, &
@@ -115843,11 +120451,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       !
       hipblasZdgmm_assumed_rank = hipblasZdgmm_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx, &
@@ -115924,11 +120532,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasSdgmm_64_assumed_rank = hipblasSdgmm_64_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx, &
@@ -115976,6 +120584,26 @@ module hipfort_hipblas
         c_loc(CP),ldc)
     end function
 
+    function hipblasSdgmm_64_full_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasSdgmm_64_full_rank = hipblasSdgmm_64_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx, &
+        c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasDdgmm_64_assumed_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
@@ -115987,11 +120615,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasDdgmm_64_assumed_rank = hipblasDdgmm_64_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx, &
@@ -116039,6 +120667,26 @@ module hipfort_hipblas
         c_loc(CP),ldc)
     end function
 
+    function hipblasDdgmm_64_full_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasDdgmm_64_full_rank = hipblasDdgmm_64_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx, &
+        c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasCdgmm_64_assumed_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
@@ -116050,11 +120698,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasCdgmm_64_assumed_rank = hipblasCdgmm_64_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx, &
@@ -116102,6 +120750,26 @@ module hipfort_hipblas
         c_loc(CP),ldc)
     end function
 
+    function hipblasCdgmm_64_full_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasCdgmm_64_full_rank = hipblasCdgmm_64_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx, &
+        c_loc(CP),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipblasZdgmm_64_assumed_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
@@ -116113,11 +120781,11 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       !
       hipblasZdgmm_64_assumed_rank = hipblasZdgmm_64_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx, &
@@ -116165,6 +120833,26 @@ module hipfort_hipblas
         c_loc(CP),ldc)
     end function
 
+    function hipblasZdgmm_64_full_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      !
+      hipblasZdgmm_64_full_rank = hipblasZdgmm_64_(handle,side,m,n,c_loc(AP),lda,c_loc(x),incx, &
+        c_loc(CP),ldc)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -116178,13 +120866,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -116283,13 +120971,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -116388,13 +121076,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -116493,13 +121181,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int) :: batchCount
@@ -116598,13 +121286,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      real(c_float),target,contiguous,dimension(..) :: AP
+      real(c_float),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_float),target,contiguous,dimension(..) :: CP
+      real(c_float),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -116664,6 +121352,31 @@ module hipfort_hipblas
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(CP),ldc,strideC,batchCount)
     end function
 
+    function hipblasSdgmmStridedBatched_64_full_rank(handle,side,m,n,AP,lda,strideA,x,incx, &
+        stridex,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasSdgmmStridedBatched_64_full_rank = hipblasSdgmmStridedBatched_64_(handle,side,m,n, &
+        c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -116678,13 +121391,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      real(c_double),target,contiguous,dimension(..) :: AP
+      real(c_double),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      real(c_double),target,contiguous,dimension(..) :: CP
+      real(c_double),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -116744,6 +121457,31 @@ module hipfort_hipblas
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(CP),ldc,strideC,batchCount)
     end function
 
+    function hipblasDdgmmStridedBatched_64_full_rank(handle,side,m,n,AP,lda,strideA,x,incx, &
+        stridex,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasDdgmmStridedBatched_64_full_rank = hipblasDdgmmStridedBatched_64_(handle,side,m,n, &
+        c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -116758,13 +121496,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: AP
+      complex(c_float_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_float_complex),target,contiguous,dimension(..) :: CP
+      complex(c_float_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -116824,6 +121562,31 @@ module hipfort_hipblas
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(CP),ldc,strideC,batchCount)
     end function
 
+    function hipblasCdgmmStridedBatched_64_full_rank(handle,side,m,n,AP,lda,strideA,x,incx, &
+        stridex,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasCdgmmStridedBatched_64_full_rank = hipblasCdgmmStridedBatched_64_(handle,side,m,n, &
+        c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -116838,13 +121601,13 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_SIDE_LEFT)) :: side
       integer(c_int64_t) :: m
       integer(c_int64_t) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: AP
+      complex(c_double_complex),target,dimension(..) :: AP
       integer(c_int64_t) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int64_t) :: incx
       integer(c_int64_t) :: stridex
-      complex(c_double_complex),target,contiguous,dimension(..) :: CP
+      complex(c_double_complex),target,dimension(..) :: CP
       integer(c_int64_t) :: ldc
       integer(c_int64_t) :: strideC
       integer(c_int64_t) :: batchCount
@@ -116904,6 +121667,31 @@ module hipfort_hipblas
         c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(CP),ldc,strideC,batchCount)
     end function
 
+    function hipblasZdgmmStridedBatched_64_full_rank(handle,side,m,n,AP,lda,strideA,x,incx, &
+        stridex,CP,ldc,strideC,batchCount)
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmmStridedBatched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: AP
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target,dimension(:,:) :: CP
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: strideC
+      integer(c_int64_t) :: batchCount
+      !
+      hipblasZdgmmStridedBatched_64_full_rank = hipblasZdgmmStridedBatched_64_(handle,side,m,n, &
+        c_loc(AP),lda,strideA,c_loc(x),incx,stridex,c_loc(CP),ldc,strideC,batchCount)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -116915,9 +121703,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrf_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       type(c_ptr) :: myInfo
       !
       hipblasSgetrf_assumed_rank = hipblasSgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
@@ -116980,9 +121768,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrf_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       type(c_ptr) :: myInfo
       !
       hipblasDgetrf_assumed_rank = hipblasDgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
@@ -117045,9 +121833,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrf_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       type(c_ptr) :: myInfo
       !
       hipblasCgetrf_assumed_rank = hipblasCgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
@@ -117110,9 +121898,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrf_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       type(c_ptr) :: myInfo
       !
       hipblasZgetrf_assumed_rank = hipblasZgetrf_(handle,n,c_loc(A),lda,c_loc(ipiv),myInfo)
@@ -117176,10 +121964,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgetrfStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
@@ -117261,10 +122049,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgetrfStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
@@ -117346,10 +122134,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgetrfStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
@@ -117431,10 +122219,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgetrfStridedBatched_assumed_rank
       type(c_ptr), value :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr) :: myInfo
       integer(c_int) :: batchCount
@@ -117517,10 +122305,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
-      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: ipiv
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int),target :: myInfo
       !
@@ -117537,10 +122325,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
-      real(c_float),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: ipiv
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       type(c_ptr),value :: myInfo
       !
@@ -117682,10 +122470,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
-      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: ipiv
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int),target :: myInfo
       !
@@ -117702,10 +122490,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
-      real(c_double),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: ipiv
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       type(c_ptr),value :: myInfo
       !
@@ -117847,10 +122635,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: ipiv
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int),target :: myInfo
       !
@@ -117867,10 +122655,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: ipiv
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       type(c_ptr),value :: myInfo
       !
@@ -118012,10 +122800,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: ipiv
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int),target :: myInfo
       !
@@ -118032,10 +122820,10 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: ipiv
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       type(c_ptr),value :: myInfo
       !
@@ -118178,12 +122966,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       integer(c_int),target :: myInfo
@@ -118203,12 +122991,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       type(c_ptr),value :: myInfo
@@ -118383,12 +123171,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       integer(c_int),target :: myInfo
@@ -118408,12 +123196,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       type(c_ptr),value :: myInfo
@@ -118588,12 +123376,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       integer(c_int),target :: myInfo
@@ -118613,12 +123401,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       type(c_ptr),value :: myInfo
@@ -118793,12 +123581,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       integer(c_int),target :: myInfo
@@ -118818,12 +123606,12 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_OP_N)) :: trans
       integer(c_int) :: n
       integer(c_int) :: nrhs
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,contiguous,dimension(..) :: ipiv
+      integer(c_int),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int) :: ldb
       integer(c_int64_t) :: strideB
       type(c_ptr),value :: myInfo
@@ -118996,9 +123784,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: ipiv
+      real(c_float),target,dimension(..) :: ipiv
       integer(c_int),target :: myInfo
       !
       hipblasSgeqrf_assumed_rank = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
@@ -119012,9 +123800,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,contiguous,dimension(..) :: ipiv
+      real(c_float),target,dimension(..) :: ipiv
       type(c_ptr),value :: myInfo
       !
       hipblasSgeqrf_assumed_rank_devptr = hipblasSgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
@@ -119129,9 +123917,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: ipiv
+      real(c_double),target,dimension(..) :: ipiv
       integer(c_int),target :: myInfo
       !
       hipblasDgeqrf_assumed_rank = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
@@ -119145,9 +123933,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,contiguous,dimension(..) :: ipiv
+      real(c_double),target,dimension(..) :: ipiv
       type(c_ptr),value :: myInfo
       !
       hipblasDgeqrf_assumed_rank_devptr = hipblasDgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
@@ -119262,9 +124050,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: ipiv
+      complex(c_float_complex),target,dimension(..) :: ipiv
       integer(c_int),target :: myInfo
       !
       hipblasCgeqrf_assumed_rank = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
@@ -119278,9 +124066,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: ipiv
+      complex(c_float_complex),target,dimension(..) :: ipiv
       type(c_ptr),value :: myInfo
       !
       hipblasCgeqrf_assumed_rank_devptr = hipblasCgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
@@ -119395,9 +124183,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: ipiv
+      complex(c_double_complex),target,dimension(..) :: ipiv
       integer(c_int),target :: myInfo
       !
       hipblasZgeqrf_assumed_rank = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
@@ -119411,9 +124199,9 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: ipiv
+      complex(c_double_complex),target,dimension(..) :: ipiv
       type(c_ptr),value :: myInfo
       !
       hipblasZgeqrf_assumed_rank_devptr = hipblasZgeqrf_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
@@ -119529,10 +124317,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: ipiv
+      real(c_float),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
       integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
@@ -119550,10 +124338,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_float),target,contiguous,dimension(..) :: ipiv
+      real(c_float),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr),value :: myInfo
       integer(c_int) :: batchCount
@@ -119702,10 +124490,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: ipiv
+      real(c_double),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
       integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
@@ -119723,10 +124511,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      real(c_double),target,contiguous,dimension(..) :: ipiv
+      real(c_double),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr),value :: myInfo
       integer(c_int) :: batchCount
@@ -119875,10 +124663,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: ipiv
+      complex(c_float_complex),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
       integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
@@ -119896,10 +124684,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_float_complex),target,contiguous,dimension(..) :: ipiv
+      complex(c_float_complex),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr),value :: myInfo
       integer(c_int) :: batchCount
@@ -120048,10 +124836,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: ipiv
+      complex(c_double_complex),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
       integer(c_int),target :: myInfo
       integer(c_int) :: batchCount
@@ -120069,10 +124857,10 @@ module hipfort_hipblas
       type(c_ptr), value :: handle
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      complex(c_double_complex),target,contiguous,dimension(..) :: ipiv
+      complex(c_double_complex),target,dimension(..) :: ipiv
       integer(c_int64_t) :: strideP
       type(c_ptr),value :: myInfo
       integer(c_int) :: batchCount
@@ -120217,9 +125005,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
+      logical(c_bool),target,dimension(..) :: x
       integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
+      logical(c_bool),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasSetVector_(n,1,c_loc(x),incx,c_loc(y),incy)
@@ -120231,9 +125019,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasSetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -120245,9 +125033,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -120259,9 +125047,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasSetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -120273,9 +125061,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasSetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -120287,9 +125075,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasSetVector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
@@ -120301,9 +125089,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasSetVector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
@@ -120315,9 +125103,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
+      logical(c_bool),target,dimension(..) :: x
       integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
+      logical(c_bool),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasGetVector_(n,1,c_loc(x),incx,c_loc(y),incy)
@@ -120329,9 +125117,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasGetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -120343,9 +125131,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -120357,9 +125145,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasGetVector_(n,4,c_loc(x),incx,c_loc(y),incy)
@@ -120371,9 +125159,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasGetVector_(n,8,c_loc(x),incx,c_loc(y),incy)
@@ -120385,9 +125173,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasGetVector_(n,2*4,c_loc(x),incx,c_loc(y),incy)
@@ -120399,9 +125187,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       !
       ret = hipblasGetVector_(n,2*8,c_loc(x),incx,c_loc(y),incy)
@@ -120414,9 +125202,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
+      logical(c_bool),target,dimension(..) :: A
       integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
+      logical(c_bool),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasSetMatrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
@@ -120429,9 +125217,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -120444,9 +125232,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -120459,9 +125247,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasSetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -120474,9 +125262,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasSetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -120489,9 +125277,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasSetMatrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
@@ -120504,9 +125292,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasSetMatrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
@@ -120519,9 +125307,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
+      logical(c_bool),target,dimension(..) :: A
       integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
+      logical(c_bool),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasGetMatrix_(rows,cols,1,c_loc(A),lda,c_loc(B),ldb)
@@ -120534,9 +125322,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -120549,9 +125337,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -120564,9 +125352,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasGetMatrix_(rows,cols,4,c_loc(A),lda,c_loc(B),ldb)
@@ -120579,9 +125367,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasGetMatrix_(rows,cols,8,c_loc(A),lda,c_loc(B),ldb)
@@ -120594,9 +125382,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasGetMatrix_(rows,cols,2*4,c_loc(A),lda,c_loc(B),ldb)
@@ -120609,9 +125397,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       !
       ret = hipblasGetMatrix_(rows,cols,2*8,c_loc(A),lda,c_loc(B),ldb)
@@ -120623,9 +125411,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
+      logical(c_bool),target,dimension(..) :: x
       integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
+      logical(c_bool),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120638,9 +125426,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120653,9 +125441,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120668,9 +125456,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120683,9 +125471,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120698,9 +125486,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120713,9 +125501,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120728,9 +125516,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      logical(c_bool),target,contiguous,dimension(..) :: x
+      logical(c_bool),target,dimension(..) :: x
       integer(c_int),value :: incx
-      logical(c_bool),target,contiguous,dimension(..) :: y
+      logical(c_bool),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120743,9 +125531,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_int),target,contiguous,dimension(..) :: x
+      integer(c_int),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int),target,contiguous,dimension(..) :: y
+      integer(c_int),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120758,9 +125546,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      integer(c_int64_t),target,contiguous,dimension(..) :: x
+      integer(c_int64_t),target,dimension(..) :: x
       integer(c_int),value :: incx
-      integer(c_int64_t),target,contiguous,dimension(..) :: y
+      integer(c_int64_t),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120773,9 +125561,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      real(c_float),target,contiguous,dimension(..) :: x
+      real(c_float),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_float),target,contiguous,dimension(..) :: y
+      real(c_float),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120788,9 +125576,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      real(c_double),target,contiguous,dimension(..) :: x
+      real(c_double),target,dimension(..) :: x
       integer(c_int),value :: incx
-      real(c_double),target,contiguous,dimension(..) :: y
+      real(c_double),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120803,9 +125591,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      complex(c_float_complex),target,contiguous,dimension(..) :: x
+      complex(c_float_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_float_complex),target,contiguous,dimension(..) :: y
+      complex(c_float_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120818,9 +125606,9 @@ module hipfort_hipblas
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: n
-      complex(c_double_complex),target,contiguous,dimension(..) :: x
+      complex(c_double_complex),target,dimension(..) :: x
       integer(c_int),value :: incx
-      complex(c_double_complex),target,contiguous,dimension(..) :: y
+      complex(c_double_complex),target,dimension(..) :: y
       integer(c_int),value :: incy
       type(c_ptr),value :: stream
       !
@@ -120834,9 +125622,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
+      logical(c_bool),target,dimension(..) :: A
       integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
+      logical(c_bool),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -120850,9 +125638,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -120866,9 +125654,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -120882,9 +125670,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -120898,9 +125686,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -120914,9 +125702,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -120930,9 +125718,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -120946,9 +125734,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      logical(c_bool),target,contiguous,dimension(..) :: A
+      logical(c_bool),target,dimension(..) :: A
       integer(c_int),value :: lda
-      logical(c_bool),target,contiguous,dimension(..) :: B
+      logical(c_bool),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -120962,9 +125750,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int),target,contiguous,dimension(..) :: A
+      integer(c_int),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int),target,contiguous,dimension(..) :: B
+      integer(c_int),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -120978,9 +125766,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      integer(c_int64_t),target,contiguous,dimension(..) :: A
+      integer(c_int64_t),target,dimension(..) :: A
       integer(c_int),value :: lda
-      integer(c_int64_t),target,contiguous,dimension(..) :: B
+      integer(c_int64_t),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -120994,9 +125782,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_float),target,contiguous,dimension(..) :: A
+      real(c_float),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_float),target,contiguous,dimension(..) :: B
+      real(c_float),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -121010,9 +125798,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      real(c_double),target,contiguous,dimension(..) :: A
+      real(c_double),target,dimension(..) :: A
       integer(c_int),value :: lda
-      real(c_double),target,contiguous,dimension(..) :: B
+      real(c_double),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -121026,9 +125814,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_float_complex),target,contiguous,dimension(..) :: A
+      complex(c_float_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_float_complex),target,contiguous,dimension(..) :: B
+      complex(c_float_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
@@ -121042,9 +125830,9 @@ module hipfort_hipblas
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: ret
       integer(c_int),value :: rows
       integer(c_int),value :: cols
-      complex(c_double_complex),target,contiguous,dimension(..) :: A
+      complex(c_double_complex),target,dimension(..) :: A
       integer(c_int),value :: lda
-      complex(c_double_complex),target,contiguous,dimension(..) :: B
+      complex(c_double_complex),target,dimension(..) :: B
       integer(c_int),value :: ldb
       type(c_ptr),value :: stream
       !
