@@ -62116,7 +62116,6 @@ module hipblas
 
     function hipblasSgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -62212,7 +62211,6 @@ module hipblas
 
     function hipblasDgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -62308,7 +62306,6 @@ module hipblas
 
     function hipblasCgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -62404,7 +62401,6 @@ module hipblas
 
     function hipblasZgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -62995,7 +62991,6 @@ module hipblas
     function hipblasSgbmvStridedBatched_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA, &
         x,incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -63115,7 +63110,6 @@ module hipblas
     function hipblasDgbmvStridedBatched_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA, &
         x,incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -63235,7 +63229,6 @@ module hipblas
     function hipblasCgbmvStridedBatched_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA, &
         x,incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -63355,7 +63348,6 @@ module hipblas
     function hipblasZgbmvStridedBatched_64_full_rank(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA, &
         x,incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -63798,7 +63790,6 @@ module hipblas
 
     function hipblasSgemv_64_full_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemv_64_full_rank
       type(c_ptr), value :: handle
@@ -63886,7 +63877,6 @@ module hipblas
 
     function hipblasDgemv_64_full_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemv_64_full_rank
       type(c_ptr), value :: handle
@@ -63974,7 +63964,6 @@ module hipblas
 
     function hipblasCgemv_64_full_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemv_64_full_rank
       type(c_ptr), value :: handle
@@ -64062,7 +64051,6 @@ module hipblas
 
     function hipblasZgemv_64_full_rank(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemv_64_full_rank
       type(c_ptr), value :: handle
@@ -64613,7 +64601,6 @@ module hipblas
     function hipblasSgemvStridedBatched_64_full_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -64725,7 +64712,6 @@ module hipblas
     function hipblasDgemvStridedBatched_64_full_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -64837,7 +64823,6 @@ module hipblas
     function hipblasCgemvStridedBatched_64_full_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -64949,7 +64934,6 @@ module hipblas
     function hipblasZgemvStridedBatched_64_full_rank(handle,transA,m,n,alpha,AP,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -65510,7 +65494,6 @@ module hipblas
 
     function hipblasSger_64_full_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSger_64_full_rank
       type(c_ptr), value :: handle
@@ -65590,7 +65573,6 @@ module hipblas
 
     function hipblasDger_64_full_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDger_64_full_rank
       type(c_ptr), value :: handle
@@ -65670,7 +65652,6 @@ module hipblas
 
     function hipblasCgeru_64_full_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeru_64_full_rank
       type(c_ptr), value :: handle
@@ -65750,7 +65731,6 @@ module hipblas
 
     function hipblasCgerc_64_full_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgerc_64_full_rank
       type(c_ptr), value :: handle
@@ -65830,7 +65810,6 @@ module hipblas
 
     function hipblasZgeru_64_full_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeru_64_full_rank
       type(c_ptr), value :: handle
@@ -65910,7 +65889,6 @@ module hipblas
 
     function hipblasZgerc_64_full_rank(handle,m,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgerc_64_full_rank
       type(c_ptr), value :: handle
@@ -66600,7 +66578,6 @@ module hipblas
     function hipblasSgerStridedBatched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgerStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -66700,7 +66677,6 @@ module hipblas
     function hipblasDgerStridedBatched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgerStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -66800,7 +66776,6 @@ module hipblas
     function hipblasCgeruStridedBatched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeruStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -66900,7 +66875,6 @@ module hipblas
     function hipblasCgercStridedBatched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgercStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -67000,7 +66974,6 @@ module hipblas
     function hipblasZgeruStridedBatched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeruStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -67100,7 +67073,6 @@ module hipblas
     function hipblasZgercStridedBatched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgercStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -67364,7 +67336,6 @@ module hipblas
 
     function hipblasChbmv_64_full_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -67452,7 +67423,6 @@ module hipblas
 
     function hipblasZhbmv_64_full_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -67781,7 +67751,6 @@ module hipblas
     function hipblasChbmvStridedBatched_64_full_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -67893,7 +67862,6 @@ module hipblas
     function hipblasZhbmvStridedBatched_64_full_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -68149,7 +68117,6 @@ module hipblas
 
     function hipblasChemv_64_full_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemv_64_full_rank
       type(c_ptr), value :: handle
@@ -68233,7 +68200,6 @@ module hipblas
 
     function hipblasZhemv_64_full_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemv_64_full_rank
       type(c_ptr), value :: handle
@@ -68546,7 +68512,6 @@ module hipblas
     function hipblasChemvStridedBatched_64_full_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -68654,7 +68619,6 @@ module hipblas
     function hipblasZhemvStridedBatched_64_full_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -68870,7 +68834,6 @@ module hipblas
 
     function hipblasCher_64_full_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher_64_full_rank
       type(c_ptr), value :: handle
@@ -68942,7 +68905,6 @@ module hipblas
 
     function hipblasZher_64_full_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher_64_full_rank
       type(c_ptr), value :: handle
@@ -69201,7 +69163,6 @@ module hipblas
     function hipblasCherStridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
         strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -69289,7 +69250,6 @@ module hipblas
     function hipblasZherStridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
         strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -69528,7 +69488,6 @@ module hipblas
 
     function hipblasCher2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2_64_full_rank
       type(c_ptr), value :: handle
@@ -69608,7 +69567,6 @@ module hipblas
 
     function hipblasZher2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2_64_full_rank
       type(c_ptr), value :: handle
@@ -69902,7 +69860,6 @@ module hipblas
     function hipblasCher2StridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2StridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -70002,7 +69959,6 @@ module hipblas
     function hipblasZher2StridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2StridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -71776,7 +71732,6 @@ module hipblas
 
     function hipblasSsbmv_64_full_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -71864,7 +71819,6 @@ module hipblas
 
     function hipblasDsbmv_64_full_rank(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -72193,7 +72147,6 @@ module hipblas
     function hipblasSsbmvStridedBatched_64_full_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -72305,7 +72258,6 @@ module hipblas
     function hipblasDsbmvStridedBatched_64_full_rank(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -74683,7 +74635,6 @@ module hipblas
 
     function hipblasSsymv_64_full_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymv_64_full_rank
       type(c_ptr), value :: handle
@@ -74767,7 +74718,6 @@ module hipblas
 
     function hipblasDsymv_64_full_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymv_64_full_rank
       type(c_ptr), value :: handle
@@ -74851,7 +74801,6 @@ module hipblas
 
     function hipblasCsymv_64_full_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymv_64_full_rank
       type(c_ptr), value :: handle
@@ -74935,7 +74884,6 @@ module hipblas
 
     function hipblasZsymv_64_full_rank(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymv_64_full_rank
       type(c_ptr), value :: handle
@@ -75458,7 +75406,6 @@ module hipblas
     function hipblasSsymvStridedBatched_64_full_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -75566,7 +75513,6 @@ module hipblas
     function hipblasDsymvStridedBatched_64_full_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -75674,7 +75620,6 @@ module hipblas
     function hipblasCsymvStridedBatched_64_full_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -75782,7 +75727,6 @@ module hipblas
     function hipblasZsymvStridedBatched_64_full_rank(handle,uplo,n,alpha,AP,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -76134,7 +76078,6 @@ module hipblas
 
     function hipblasSsyr_64_full_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr_64_full_rank
       type(c_ptr), value :: handle
@@ -76206,7 +76149,6 @@ module hipblas
 
     function hipblasDsyr_64_full_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr_64_full_rank
       type(c_ptr), value :: handle
@@ -76278,7 +76220,6 @@ module hipblas
 
     function hipblasCsyr_64_full_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr_64_full_rank
       type(c_ptr), value :: handle
@@ -76350,7 +76291,6 @@ module hipblas
 
     function hipblasZsyr_64_full_rank(handle,uplo,n,alpha,x,incx,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr_64_full_rank
       type(c_ptr), value :: handle
@@ -76783,7 +76723,6 @@ module hipblas
     function hipblasSsyrStridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
         strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -76871,7 +76810,6 @@ module hipblas
     function hipblasDsyrStridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
         strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -76959,7 +76897,6 @@ module hipblas
     function hipblasCsyrStridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
         strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -77047,7 +76984,6 @@ module hipblas
     function hipblasZsyrStridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,AP,lda, &
         strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -77444,7 +77380,6 @@ module hipblas
 
     function hipblasSsyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2_64_full_rank
       type(c_ptr), value :: handle
@@ -77524,7 +77459,6 @@ module hipblas
 
     function hipblasDsyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2_64_full_rank
       type(c_ptr), value :: handle
@@ -77604,7 +77538,6 @@ module hipblas
 
     function hipblasCsyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2_64_full_rank
       type(c_ptr), value :: handle
@@ -77684,7 +77617,6 @@ module hipblas
 
     function hipblasZsyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,AP,lda)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2_64_full_rank
       type(c_ptr), value :: handle
@@ -78176,7 +78108,6 @@ module hipblas
     function hipblasSsyr2StridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2StridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -78276,7 +78207,6 @@ module hipblas
     function hipblasDsyr2StridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2StridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -78376,7 +78306,6 @@ module hipblas
     function hipblasCsyr2StridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2StridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -78476,7 +78405,6 @@ module hipblas
     function hipblasZsyr2StridedBatched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,AP,lda,strideA,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2StridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -78868,7 +78796,6 @@ module hipblas
 
     function hipblasStbmv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -78948,7 +78875,6 @@ module hipblas
 
     function hipblasDtbmv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -79028,7 +78954,6 @@ module hipblas
 
     function hipblasCtbmv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -79108,7 +79033,6 @@ module hipblas
 
     function hipblasZtbmv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -79581,7 +79505,6 @@ module hipblas
     function hipblasStbmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -79677,7 +79600,6 @@ module hipblas
     function hipblasDtbmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -79773,7 +79695,6 @@ module hipblas
     function hipblasCtbmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -79869,7 +79790,6 @@ module hipblas
     function hipblasZtbmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -80260,7 +80180,6 @@ module hipblas
 
     function hipblasStbsv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsv_64_full_rank
       type(c_ptr), value :: handle
@@ -80340,7 +80259,6 @@ module hipblas
 
     function hipblasDtbsv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsv_64_full_rank
       type(c_ptr), value :: handle
@@ -80420,7 +80338,6 @@ module hipblas
 
     function hipblasCtbsv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsv_64_full_rank
       type(c_ptr), value :: handle
@@ -80500,7 +80417,6 @@ module hipblas
 
     function hipblasZtbsv_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsv_64_full_rank
       type(c_ptr), value :: handle
@@ -80973,7 +80889,6 @@ module hipblas
     function hipblasStbsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -81069,7 +80984,6 @@ module hipblas
     function hipblasDtbsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -81165,7 +81079,6 @@ module hipblas
     function hipblasCtbsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -81261,7 +81174,6 @@ module hipblas
     function hipblasZtbsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,k,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -83509,7 +83421,6 @@ module hipblas
 
     function hipblasStrmv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmv_64_full_rank
       type(c_ptr), value :: handle
@@ -83585,7 +83496,6 @@ module hipblas
 
     function hipblasDtrmv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmv_64_full_rank
       type(c_ptr), value :: handle
@@ -83661,7 +83571,6 @@ module hipblas
 
     function hipblasCtrmv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmv_64_full_rank
       type(c_ptr), value :: handle
@@ -83737,7 +83646,6 @@ module hipblas
 
     function hipblasZtrmv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmv_64_full_rank
       type(c_ptr), value :: handle
@@ -84190,7 +84098,6 @@ module hipblas
     function hipblasStrmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -84282,7 +84189,6 @@ module hipblas
     function hipblasDtrmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -84374,7 +84280,6 @@ module hipblas
     function hipblasCtrmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -84466,7 +84371,6 @@ module hipblas
     function hipblasZtrmvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -84833,7 +84737,6 @@ module hipblas
 
     function hipblasStrsv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsv_64_full_rank
       type(c_ptr), value :: handle
@@ -84909,7 +84812,6 @@ module hipblas
 
     function hipblasDtrsv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsv_64_full_rank
       type(c_ptr), value :: handle
@@ -84985,7 +84887,6 @@ module hipblas
 
     function hipblasCtrsv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsv_64_full_rank
       type(c_ptr), value :: handle
@@ -85061,7 +84962,6 @@ module hipblas
 
     function hipblasZtrsv_64_full_rank(handle,uplo,transA,diag,n,AP,lda,x,incx)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsv_64_full_rank
       type(c_ptr), value :: handle
@@ -85514,7 +85414,6 @@ module hipblas
     function hipblasStrsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -85606,7 +85505,6 @@ module hipblas
     function hipblasDtrsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -85698,7 +85596,6 @@ module hipblas
     function hipblasCtrsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -85790,7 +85687,6 @@ module hipblas
     function hipblasZtrsvStridedBatched_64_full_rank(handle,uplo,transA,diag,n,AP,lda,strideA,x, &
         incx,stridex,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsvStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -86265,7 +86161,6 @@ module hipblas
 
     function hipblasSgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemm_64_full_rank
       type(c_ptr), value :: handle
@@ -86362,7 +86257,6 @@ module hipblas
 
     function hipblasDgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemm_64_full_rank
       type(c_ptr), value :: handle
@@ -86459,7 +86353,6 @@ module hipblas
 
     function hipblasCgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemm_64_full_rank
       type(c_ptr), value :: handle
@@ -86556,7 +86449,6 @@ module hipblas
 
     function hipblasZgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemm_64_full_rank
       type(c_ptr), value :: handle
@@ -87147,7 +87039,6 @@ module hipblas
     function hipblasSgemmStridedBatched_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
         strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -87267,7 +87158,6 @@ module hipblas
     function hipblasDgemmStridedBatched_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
         strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -87387,7 +87277,6 @@ module hipblas
     function hipblasCgemmStridedBatched_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
         strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -87507,7 +87396,6 @@ module hipblas
     function hipblasZgemmStridedBatched_64_full_rank(handle,transA,transB,m,n,k,alpha,AP,lda, &
         strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -87765,7 +87653,6 @@ module hipblas
 
     function hipblasCherk_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherk_64_full_rank
       type(c_ptr), value :: handle
@@ -87849,7 +87736,6 @@ module hipblas
 
     function hipblasZherk_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherk_64_full_rank
       type(c_ptr), value :: handle
@@ -88144,7 +88030,6 @@ module hipblas
     function hipblasCherkStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -88244,7 +88129,6 @@ module hipblas
     function hipblasZherkStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -88519,7 +88403,6 @@ module hipblas
 
     function hipblasCherkx_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkx_64_full_rank
       type(c_ptr), value :: handle
@@ -88611,7 +88494,6 @@ module hipblas
 
     function hipblasZherkx_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkx_64_full_rank
       type(c_ptr), value :: handle
@@ -88952,7 +88834,6 @@ module hipblas
     function hipblasCherkxStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkxStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -89068,7 +88949,6 @@ module hipblas
     function hipblasZherkxStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkxStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -89347,7 +89227,6 @@ module hipblas
 
     function hipblasCher2k_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2k_64_full_rank
       type(c_ptr), value :: handle
@@ -89439,7 +89318,6 @@ module hipblas
 
     function hipblasZher2k_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2k_64_full_rank
       type(c_ptr), value :: handle
@@ -89780,7 +89658,6 @@ module hipblas
     function hipblasCher2kStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2kStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -89896,7 +89773,6 @@ module hipblas
     function hipblasZher2kStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2kStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -90357,7 +90233,6 @@ module hipblas
 
     function hipblasSsymm_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymm_64_full_rank
       type(c_ptr), value :: handle
@@ -90449,7 +90324,6 @@ module hipblas
 
     function hipblasDsymm_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymm_64_full_rank
       type(c_ptr), value :: handle
@@ -90541,7 +90415,6 @@ module hipblas
 
     function hipblasCsymm_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymm_64_full_rank
       type(c_ptr), value :: handle
@@ -90633,7 +90506,6 @@ module hipblas
 
     function hipblasZsymm_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymm_64_full_rank
       type(c_ptr), value :: handle
@@ -91204,7 +91076,6 @@ module hipblas
     function hipblasSsymmStridedBatched_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -91320,7 +91191,6 @@ module hipblas
     function hipblasDsymmStridedBatched_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -91436,7 +91306,6 @@ module hipblas
     function hipblasCsymmStridedBatched_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -91552,7 +91421,6 @@ module hipblas
     function hipblasZsymmStridedBatched_64_full_rank(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -91975,7 +91843,6 @@ module hipblas
 
     function hipblasSsyrk_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrk_64_full_rank
       type(c_ptr), value :: handle
@@ -92059,7 +91926,6 @@ module hipblas
 
     function hipblasDsyrk_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrk_64_full_rank
       type(c_ptr), value :: handle
@@ -92143,7 +92009,6 @@ module hipblas
 
     function hipblasCsyrk_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrk_64_full_rank
       type(c_ptr), value :: handle
@@ -92227,7 +92092,6 @@ module hipblas
 
     function hipblasZsyrk_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrk_64_full_rank
       type(c_ptr), value :: handle
@@ -92720,7 +92584,6 @@ module hipblas
     function hipblasSsyrkStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -92820,7 +92683,6 @@ module hipblas
     function hipblasDsyrkStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -92920,7 +92782,6 @@ module hipblas
     function hipblasCsyrkStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -93020,7 +92881,6 @@ module hipblas
     function hipblasZsyrkStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -93477,7 +93337,6 @@ module hipblas
 
     function hipblasSsyr2k_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2k_64_full_rank
       type(c_ptr), value :: handle
@@ -93569,7 +93428,6 @@ module hipblas
 
     function hipblasDsyr2k_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2k_64_full_rank
       type(c_ptr), value :: handle
@@ -93661,7 +93519,6 @@ module hipblas
 
     function hipblasCsyr2k_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2k_64_full_rank
       type(c_ptr), value :: handle
@@ -93753,7 +93610,6 @@ module hipblas
 
     function hipblasZsyr2k_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2k_64_full_rank
       type(c_ptr), value :: handle
@@ -94324,7 +94180,6 @@ module hipblas
     function hipblasSsyr2kStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -94440,7 +94295,6 @@ module hipblas
     function hipblasDsyr2kStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -94556,7 +94410,6 @@ module hipblas
     function hipblasCsyr2kStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -94672,7 +94525,6 @@ module hipblas
     function hipblasZsyr2kStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -95133,7 +94985,6 @@ module hipblas
 
     function hipblasSsyrkx_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkx_64_full_rank
       type(c_ptr), value :: handle
@@ -95225,7 +95076,6 @@ module hipblas
 
     function hipblasDsyrkx_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkx_64_full_rank
       type(c_ptr), value :: handle
@@ -95317,7 +95167,6 @@ module hipblas
 
     function hipblasCsyrkx_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkx_64_full_rank
       type(c_ptr), value :: handle
@@ -95409,7 +95258,6 @@ module hipblas
 
     function hipblasZsyrkx_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkx_64_full_rank
       type(c_ptr), value :: handle
@@ -95980,7 +95828,6 @@ module hipblas
     function hipblasSsyrkxStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -96096,7 +95943,6 @@ module hipblas
     function hipblasDsyrkxStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -96212,7 +96058,6 @@ module hipblas
     function hipblasCsyrkxStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -96328,7 +96173,6 @@ module hipblas
     function hipblasZsyrkxStridedBatched_64_full_rank(handle,uplo,transA,n,k,alpha,AP,lda,strideA, &
         BP,ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -96789,7 +96633,6 @@ module hipblas
 
     function hipblasSgeam_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_64_full_rank
       type(c_ptr), value :: handle
@@ -96881,7 +96724,6 @@ module hipblas
 
     function hipblasDgeam_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_64_full_rank
       type(c_ptr), value :: handle
@@ -96973,7 +96815,6 @@ module hipblas
 
     function hipblasCgeam_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_64_full_rank
       type(c_ptr), value :: handle
@@ -97065,7 +96906,6 @@ module hipblas
 
     function hipblasZgeam_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_64_full_rank
       type(c_ptr), value :: handle
@@ -97636,7 +97476,6 @@ module hipblas
     function hipblasSgeamStridedBatched_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda, &
         strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -97752,7 +97591,6 @@ module hipblas
     function hipblasDgeamStridedBatched_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda, &
         strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -97868,7 +97706,6 @@ module hipblas
     function hipblasCgeamStridedBatched_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda, &
         strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -97984,7 +97821,6 @@ module hipblas
     function hipblasZgeamStridedBatched_64_full_rank(handle,transA,transB,m,n,alpha,AP,lda, &
         strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -98263,7 +98099,6 @@ module hipblas
 
     function hipblasChemm_64_full_rank(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemm_64_full_rank
       type(c_ptr), value :: handle
@@ -98355,7 +98190,6 @@ module hipblas
 
     function hipblasZhemm_64_full_rank(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemm_64_full_rank
       type(c_ptr), value :: handle
@@ -98696,7 +98530,6 @@ module hipblas
     function hipblasChemmStridedBatched_64_full_rank(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -98812,7 +98645,6 @@ module hipblas
     function hipblasZhemmStridedBatched_64_full_rank(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP, &
         ldb,strideB,beta,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -99292,7 +99124,6 @@ module hipblas
 
     function hipblasStrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmm_64_full_rank
       type(c_ptr), value :: handle
@@ -99388,7 +99219,6 @@ module hipblas
 
     function hipblasDtrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmm_64_full_rank
       type(c_ptr), value :: handle
@@ -99484,7 +99314,6 @@ module hipblas
 
     function hipblasCtrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmm_64_full_rank
       type(c_ptr), value :: handle
@@ -99580,7 +99409,6 @@ module hipblas
 
     function hipblasZtrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmm_64_full_rank
       type(c_ptr), value :: handle
@@ -100171,7 +99999,6 @@ module hipblas
     function hipblasStrmmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
         strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -100291,7 +100118,6 @@ module hipblas
     function hipblasDtrmmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
         strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -100411,7 +100237,6 @@ module hipblas
     function hipblasCtrmmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
         strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -100531,7 +100356,6 @@ module hipblas
     function hipblasZtrmmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda, &
         strideA,B,ldb,strideB,C,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -100974,7 +100798,6 @@ module hipblas
 
     function hipblasStrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsm_64_full_rank
       type(c_ptr), value :: handle
@@ -101062,7 +100885,6 @@ module hipblas
 
     function hipblasDtrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsm_64_full_rank
       type(c_ptr), value :: handle
@@ -101150,7 +100972,6 @@ module hipblas
 
     function hipblasCtrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsm_64_full_rank
       type(c_ptr), value :: handle
@@ -101238,7 +101059,6 @@ module hipblas
 
     function hipblasZtrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsm_64_full_rank
       type(c_ptr), value :: handle
@@ -101751,7 +101571,6 @@ module hipblas
     function hipblasStrsmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP, &
         lda,strideA,BP,ldb,strideB,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -101855,7 +101674,6 @@ module hipblas
     function hipblasDtrsmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP, &
         lda,strideA,BP,ldb,strideB,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -101959,7 +101777,6 @@ module hipblas
     function hipblasCtrsmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP, &
         lda,strideA,BP,ldb,strideB,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -102063,7 +101880,6 @@ module hipblas
     function hipblasZtrsmStridedBatched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,AP, &
         lda,strideA,BP,ldb,strideB,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -103076,7 +102892,6 @@ module hipblas
 
     function hipblasSdgmm_64_full_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmm_64_full_rank
       type(c_ptr), value :: handle
@@ -103156,7 +102971,6 @@ module hipblas
 
     function hipblasDdgmm_64_full_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmm_64_full_rank
       type(c_ptr), value :: handle
@@ -103236,7 +103050,6 @@ module hipblas
 
     function hipblasCdgmm_64_full_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmm_64_full_rank
       type(c_ptr), value :: handle
@@ -103316,7 +103129,6 @@ module hipblas
 
     function hipblasZdgmm_64_full_rank(handle,side,m,n,AP,lda,x,incx,CP,ldc)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmm_64_full_rank
       type(c_ptr), value :: handle
@@ -103808,7 +103620,6 @@ module hipblas
     function hipblasSdgmmStridedBatched_64_full_rank(handle,side,m,n,AP,lda,strideA,x,incx, &
         stridex,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -103908,7 +103719,6 @@ module hipblas
     function hipblasDdgmmStridedBatched_64_full_rank(handle,side,m,n,AP,lda,strideA,x,incx, &
         stridex,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -104008,7 +103818,6 @@ module hipblas
     function hipblasCdgmmStridedBatched_64_full_rank(handle,side,m,n,AP,lda,strideA,x,incx, &
         stridex,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmmStridedBatched_64_full_rank
       type(c_ptr), value :: handle
@@ -104108,7 +103917,6 @@ module hipblas
     function hipblasZdgmmStridedBatched_64_full_rank(handle,side,m,n,AP,lda,strideA,x,incx, &
         stridex,CP,ldc,strideC,batchCount)
       use iso_c_binding
-      use hipfort_hipblas_enums
       implicit none
       integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmmStridedBatched_64_full_rank
       type(c_ptr), value :: handle

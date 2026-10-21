@@ -11913,8 +11913,8 @@ module hip
   function hipMemcpy_i4_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int), target, contiguous, dimension(..), intent(inout) :: dest
-    integer(c_int), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int), target, dimension(..), intent(inout) :: dest
+    integer(c_int), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -11926,8 +11926,8 @@ module hip
   function hipMemcpy_i4_assumed_rank_c_int(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int), target, contiguous, dimension(..), intent(inout) :: dest
-    integer(c_int), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int), target, dimension(..), intent(inout) :: dest
+    integer(c_int), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -11939,8 +11939,8 @@ module hip
   function hipMemcpy_i4_assumed_rank(dest, src, myKind) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int), target, contiguous, dimension(..), intent(inout) :: dest
-    integer(c_int), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int), target, dimension(..), intent(inout) :: dest
+    integer(c_int), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
@@ -11951,8 +11951,8 @@ module hip
   function hipMemcpy_i8_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int64_t), target, contiguous, dimension(..), intent(inout) :: dest
-    integer(c_int64_t), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int64_t), target, dimension(..), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -11964,8 +11964,8 @@ module hip
   function hipMemcpy_i8_assumed_rank_c_int(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int64_t), target, contiguous, dimension(..), intent(inout) :: dest
-    integer(c_int64_t), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int64_t), target, dimension(..), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -11977,8 +11977,8 @@ module hip
   function hipMemcpy_i8_assumed_rank(dest, src, myKind) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int64_t), target, contiguous, dimension(..), intent(inout) :: dest
-    integer(c_int64_t), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int64_t), target, dimension(..), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
@@ -11989,8 +11989,8 @@ module hip
   function hipMemcpy_r4_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    real(c_float), target, contiguous, dimension(..), intent(inout) :: dest
-    real(c_float), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_float), target, dimension(..), intent(inout) :: dest
+    real(c_float), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -12002,8 +12002,8 @@ module hip
   function hipMemcpy_r4_assumed_rank_c_int(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    real(c_float), target, contiguous, dimension(..), intent(inout) :: dest
-    real(c_float), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_float), target, dimension(..), intent(inout) :: dest
+    real(c_float), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -12015,8 +12015,8 @@ module hip
   function hipMemcpy_r4_assumed_rank(dest, src, myKind) result(res)
     use iso_c_binding
     implicit none
-    real(c_float), target, contiguous, dimension(..), intent(inout) :: dest
-    real(c_float), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_float), target, dimension(..), intent(inout) :: dest
+    real(c_float), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
@@ -12027,8 +12027,8 @@ module hip
   function hipMemcpy_r8_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    real(c_double), target, contiguous, dimension(..), intent(inout) :: dest
-    real(c_double), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_double), target, dimension(..), intent(inout) :: dest
+    real(c_double), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -12040,8 +12040,8 @@ module hip
   function hipMemcpy_r8_assumed_rank_c_int(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    real(c_double), target, contiguous, dimension(..), intent(inout) :: dest
-    real(c_double), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_double), target, dimension(..), intent(inout) :: dest
+    real(c_double), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -12053,8 +12053,8 @@ module hip
   function hipMemcpy_r8_assumed_rank(dest, src, myKind) result(res)
     use iso_c_binding
     implicit none
-    real(c_double), target, contiguous, dimension(..), intent(inout) :: dest
-    real(c_double), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_double), target, dimension(..), intent(inout) :: dest
+    real(c_double), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
@@ -12065,8 +12065,8 @@ module hip
   function hipMemcpy_c4_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    complex(c_float_complex), target, contiguous, dimension(..), intent(inout) :: dest
-    complex(c_float_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_float_complex), target, dimension(..), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -12078,8 +12078,8 @@ module hip
   function hipMemcpy_c4_assumed_rank_c_int(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    complex(c_float_complex), target, contiguous, dimension(..), intent(inout) :: dest
-    complex(c_float_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_float_complex), target, dimension(..), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -12091,8 +12091,8 @@ module hip
   function hipMemcpy_c4_assumed_rank(dest, src, myKind) result(res)
     use iso_c_binding
     implicit none
-    complex(c_float_complex), target, contiguous, dimension(..), intent(inout) :: dest
-    complex(c_float_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_float_complex), target, dimension(..), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
@@ -12103,8 +12103,8 @@ module hip
   function hipMemcpy_c8_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    complex(c_double_complex), target, contiguous, dimension(..), intent(inout) :: dest
-    complex(c_double_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_double_complex), target, dimension(..), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -12116,8 +12116,8 @@ module hip
   function hipMemcpy_c8_assumed_rank_c_int(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    complex(c_double_complex), target, contiguous, dimension(..), intent(inout) :: dest
-    complex(c_double_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_double_complex), target, dimension(..), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -12129,8 +12129,8 @@ module hip
   function hipMemcpy_c8_assumed_rank(dest, src, myKind) result(res)
     use iso_c_binding
     implicit none
-    complex(c_double_complex), target, contiguous, dimension(..), intent(inout) :: dest
-    complex(c_double_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_double_complex), target, dimension(..), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
@@ -12141,8 +12141,8 @@ module hip
   function hipMemcpy_l_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    logical(c_bool), target, contiguous, dimension(..), intent(inout) :: dest
-    logical(c_bool), target, contiguous, dimension(..), intent(in)    :: src
+    logical(c_bool), target, dimension(..), intent(inout) :: dest
+    logical(c_bool), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -12154,8 +12154,8 @@ module hip
   function hipMemcpy_l_assumed_rank_c_int(dest, src, length, myKind) result(res)
     use iso_c_binding
     implicit none
-    logical(c_bool), target, contiguous, dimension(..), intent(inout) :: dest
-    logical(c_bool), target, contiguous, dimension(..), intent(in)    :: src
+    logical(c_bool), target, dimension(..), intent(inout) :: dest
+    logical(c_bool), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     integer(c_int) :: res
@@ -12167,8 +12167,8 @@ module hip
   function hipMemcpy_l_assumed_rank(dest, src, myKind) result(res)
     use iso_c_binding
     implicit none
-    logical(c_bool), target, contiguous, dimension(..), intent(inout) :: dest
-    logical(c_bool), target, contiguous, dimension(..), intent(in)    :: src
+    logical(c_bool), target, dimension(..), intent(inout) :: dest
+    logical(c_bool), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
@@ -12179,8 +12179,8 @@ module hip
   function hipMemcpyAsync_i4_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int), target, contiguous, dimension(..), intent(inout) :: dest
-    integer(c_int), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int), target, dimension(..), intent(inout) :: dest
+    integer(c_int), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12193,8 +12193,8 @@ module hip
   function hipMemcpyAsync_i4_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int), target, contiguous, dimension(..), intent(inout) :: dest
-    integer(c_int), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int), target, dimension(..), intent(inout) :: dest
+    integer(c_int), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12207,8 +12207,8 @@ module hip
   function hipMemcpyAsync_i4_assumed_rank(dest, src, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int), target, contiguous, dimension(..), intent(inout) :: dest
-    integer(c_int), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int), target, dimension(..), intent(inout) :: dest
+    integer(c_int), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12220,8 +12220,8 @@ module hip
   function hipMemcpyAsync_i8_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int64_t), target, contiguous, dimension(..), intent(inout) :: dest
-    integer(c_int64_t), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int64_t), target, dimension(..), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12234,8 +12234,8 @@ module hip
   function hipMemcpyAsync_i8_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int64_t), target, contiguous, dimension(..), intent(inout) :: dest
-    integer(c_int64_t), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int64_t), target, dimension(..), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12248,8 +12248,8 @@ module hip
   function hipMemcpyAsync_i8_assumed_rank(dest, src, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int64_t), target, contiguous, dimension(..), intent(inout) :: dest
-    integer(c_int64_t), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int64_t), target, dimension(..), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12261,8 +12261,8 @@ module hip
   function hipMemcpyAsync_r4_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    real(c_float), target, contiguous, dimension(..), intent(inout) :: dest
-    real(c_float), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_float), target, dimension(..), intent(inout) :: dest
+    real(c_float), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12275,8 +12275,8 @@ module hip
   function hipMemcpyAsync_r4_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    real(c_float), target, contiguous, dimension(..), intent(inout) :: dest
-    real(c_float), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_float), target, dimension(..), intent(inout) :: dest
+    real(c_float), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12289,8 +12289,8 @@ module hip
   function hipMemcpyAsync_r4_assumed_rank(dest, src, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    real(c_float), target, contiguous, dimension(..), intent(inout) :: dest
-    real(c_float), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_float), target, dimension(..), intent(inout) :: dest
+    real(c_float), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12302,8 +12302,8 @@ module hip
   function hipMemcpyAsync_r8_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    real(c_double), target, contiguous, dimension(..), intent(inout) :: dest
-    real(c_double), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_double), target, dimension(..), intent(inout) :: dest
+    real(c_double), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12316,8 +12316,8 @@ module hip
   function hipMemcpyAsync_r8_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    real(c_double), target, contiguous, dimension(..), intent(inout) :: dest
-    real(c_double), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_double), target, dimension(..), intent(inout) :: dest
+    real(c_double), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12330,8 +12330,8 @@ module hip
   function hipMemcpyAsync_r8_assumed_rank(dest, src, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    real(c_double), target, contiguous, dimension(..), intent(inout) :: dest
-    real(c_double), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_double), target, dimension(..), intent(inout) :: dest
+    real(c_double), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12343,8 +12343,8 @@ module hip
   function hipMemcpyAsync_c4_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    complex(c_float_complex), target, contiguous, dimension(..), intent(inout) :: dest
-    complex(c_float_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_float_complex), target, dimension(..), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12357,8 +12357,8 @@ module hip
   function hipMemcpyAsync_c4_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    complex(c_float_complex), target, contiguous, dimension(..), intent(inout) :: dest
-    complex(c_float_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_float_complex), target, dimension(..), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12371,8 +12371,8 @@ module hip
   function hipMemcpyAsync_c4_assumed_rank(dest, src, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    complex(c_float_complex), target, contiguous, dimension(..), intent(inout) :: dest
-    complex(c_float_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_float_complex), target, dimension(..), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12384,8 +12384,8 @@ module hip
   function hipMemcpyAsync_c8_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    complex(c_double_complex), target, contiguous, dimension(..), intent(inout) :: dest
-    complex(c_double_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_double_complex), target, dimension(..), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12398,8 +12398,8 @@ module hip
   function hipMemcpyAsync_c8_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    complex(c_double_complex), target, contiguous, dimension(..), intent(inout) :: dest
-    complex(c_double_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_double_complex), target, dimension(..), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12412,8 +12412,8 @@ module hip
   function hipMemcpyAsync_c8_assumed_rank(dest, src, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    complex(c_double_complex), target, contiguous, dimension(..), intent(inout) :: dest
-    complex(c_double_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_double_complex), target, dimension(..), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12425,8 +12425,8 @@ module hip
   function hipMemcpyAsync_l_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    logical(c_bool), target, contiguous, dimension(..), intent(inout) :: dest
-    logical(c_bool), target, contiguous, dimension(..), intent(in)    :: src
+    logical(c_bool), target, dimension(..), intent(inout) :: dest
+    logical(c_bool), target, dimension(..), intent(in)    :: src
     integer(c_size_t), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12439,8 +12439,8 @@ module hip
   function hipMemcpyAsync_l_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    logical(c_bool), target, contiguous, dimension(..), intent(inout) :: dest
-    logical(c_bool), target, contiguous, dimension(..), intent(in)    :: src
+    logical(c_bool), target, dimension(..), intent(inout) :: dest
+    logical(c_bool), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: length
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
@@ -12453,8 +12453,8 @@ module hip
   function hipMemcpyAsync_l_assumed_rank(dest, src, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    logical(c_bool), target, contiguous, dimension(..), intent(inout) :: dest
-    logical(c_bool), target, contiguous, dimension(..), intent(in)    :: src
+    logical(c_bool), target, dimension(..), intent(inout) :: dest
+    logical(c_bool), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12466,9 +12466,9 @@ module hip
   function hipMemcpy2D_i4_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int), target, contiguous, dimension(..), intent(inout) :: dest
+    integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    integer(c_int), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12481,9 +12481,9 @@ module hip
   function hipMemcpy2D_i4_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int), target, contiguous, dimension(..), intent(inout) :: dest
+    integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    integer(c_int), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12496,9 +12496,9 @@ module hip
   function hipMemcpy2D_i8_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int64_t), target, contiguous, dimension(..), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    integer(c_int64_t), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int64_t), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12511,9 +12511,9 @@ module hip
   function hipMemcpy2D_i8_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int64_t), target, contiguous, dimension(..), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    integer(c_int64_t), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int64_t), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12526,9 +12526,9 @@ module hip
   function hipMemcpy2D_r4_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    real(c_float), target, contiguous, dimension(..), intent(inout) :: dest
+    real(c_float), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    real(c_float), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_float), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12541,9 +12541,9 @@ module hip
   function hipMemcpy2D_r4_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    real(c_float), target, contiguous, dimension(..), intent(inout) :: dest
+    real(c_float), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    real(c_float), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_float), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12556,9 +12556,9 @@ module hip
   function hipMemcpy2D_r8_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    real(c_double), target, contiguous, dimension(..), intent(inout) :: dest
+    real(c_double), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    real(c_double), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_double), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12571,9 +12571,9 @@ module hip
   function hipMemcpy2D_r8_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    real(c_double), target, contiguous, dimension(..), intent(inout) :: dest
+    real(c_double), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    real(c_double), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_double), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12586,9 +12586,9 @@ module hip
   function hipMemcpy2D_c4_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    complex(c_float_complex), target, contiguous, dimension(..), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    complex(c_float_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_float_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12601,9 +12601,9 @@ module hip
   function hipMemcpy2D_c4_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    complex(c_float_complex), target, contiguous, dimension(..), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    complex(c_float_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_float_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12616,9 +12616,9 @@ module hip
   function hipMemcpy2D_c8_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    complex(c_double_complex), target, contiguous, dimension(..), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    complex(c_double_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_double_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12631,9 +12631,9 @@ module hip
   function hipMemcpy2D_c8_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    complex(c_double_complex), target, contiguous, dimension(..), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    complex(c_double_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_double_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12646,9 +12646,9 @@ module hip
   function hipMemcpy2D_l_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    logical(c_bool), target, contiguous, dimension(..), intent(inout) :: dest
+    logical(c_bool), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    logical(c_bool), target, contiguous, dimension(..), intent(in)    :: src
+    logical(c_bool), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12661,9 +12661,9 @@ module hip
   function hipMemcpy2D_l_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
     use iso_c_binding
     implicit none
-    logical(c_bool), target, contiguous, dimension(..), intent(inout) :: dest
+    logical(c_bool), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    logical(c_bool), target, contiguous, dimension(..), intent(in)    :: src
+    logical(c_bool), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: b
@@ -12676,9 +12676,9 @@ module hip
   function hipMemcpy2DAsync_i4_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int), target, contiguous, dimension(..), intent(inout) :: dest
+    integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    integer(c_int), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12692,9 +12692,9 @@ module hip
   function hipMemcpy2DAsync_i4_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int), target, contiguous, dimension(..), intent(inout) :: dest
+    integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    integer(c_int), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12708,9 +12708,9 @@ module hip
   function hipMemcpy2DAsync_i8_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int64_t), target, contiguous, dimension(..), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    integer(c_int64_t), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int64_t), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12724,9 +12724,9 @@ module hip
   function hipMemcpy2DAsync_i8_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    integer(c_int64_t), target, contiguous, dimension(..), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    integer(c_int64_t), target, contiguous, dimension(..), intent(in)    :: src
+    integer(c_int64_t), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12740,9 +12740,9 @@ module hip
   function hipMemcpy2DAsync_r4_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    real(c_float), target, contiguous, dimension(..), intent(inout) :: dest
+    real(c_float), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    real(c_float), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_float), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12756,9 +12756,9 @@ module hip
   function hipMemcpy2DAsync_r4_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    real(c_float), target, contiguous, dimension(..), intent(inout) :: dest
+    real(c_float), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    real(c_float), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_float), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12772,9 +12772,9 @@ module hip
   function hipMemcpy2DAsync_r8_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    real(c_double), target, contiguous, dimension(..), intent(inout) :: dest
+    real(c_double), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    real(c_double), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_double), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12788,9 +12788,9 @@ module hip
   function hipMemcpy2DAsync_r8_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    real(c_double), target, contiguous, dimension(..), intent(inout) :: dest
+    real(c_double), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    real(c_double), target, contiguous, dimension(..), intent(in)    :: src
+    real(c_double), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12804,9 +12804,9 @@ module hip
   function hipMemcpy2DAsync_c4_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    complex(c_float_complex), target, contiguous, dimension(..), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    complex(c_float_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_float_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12820,9 +12820,9 @@ module hip
   function hipMemcpy2DAsync_c4_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    complex(c_float_complex), target, contiguous, dimension(..), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    complex(c_float_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_float_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12836,9 +12836,9 @@ module hip
   function hipMemcpy2DAsync_c8_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    complex(c_double_complex), target, contiguous, dimension(..), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    complex(c_double_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_double_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12852,9 +12852,9 @@ module hip
   function hipMemcpy2DAsync_c8_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    complex(c_double_complex), target, contiguous, dimension(..), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    complex(c_double_complex), target, contiguous, dimension(..), intent(in)    :: src
+    complex(c_double_complex), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12868,9 +12868,9 @@ module hip
   function hipMemcpy2DAsync_l_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    logical(c_bool), target, contiguous, dimension(..), intent(inout) :: dest
+    logical(c_bool), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
-    logical(c_bool), target, contiguous, dimension(..), intent(in)    :: src
+    logical(c_bool), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res
@@ -12884,9 +12884,9 @@ module hip
   function hipMemcpy2DAsync_l_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
     use iso_c_binding
     implicit none
-    logical(c_bool), target, contiguous, dimension(..), intent(inout) :: dest
+    logical(c_bool), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
-    logical(c_bool), target, contiguous, dimension(..), intent(in)    :: src
+    logical(c_bool), target, dimension(..), intent(in)    :: src
     integer(c_int), value :: myKind
     type(c_ptr), value :: stream
     integer(c_int) :: res

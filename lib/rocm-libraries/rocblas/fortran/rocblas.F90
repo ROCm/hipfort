@@ -62226,7 +62226,6 @@ module rocblas
 
     function rocblas_sgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -62322,7 +62321,6 @@ module rocblas
 
     function rocblas_dgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -62418,7 +62416,6 @@ module rocblas
 
     function rocblas_cgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -62514,7 +62511,6 @@ module rocblas
 
     function rocblas_zgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -63105,7 +63101,6 @@ module rocblas
     function rocblas_sgbmv_strided_batched_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
         stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgbmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -63225,7 +63220,6 @@ module rocblas
     function rocblas_dgbmv_strided_batched_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
         stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgbmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -63345,7 +63339,6 @@ module rocblas
     function rocblas_cgbmv_strided_batched_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
         stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgbmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -63465,7 +63458,6 @@ module rocblas
     function rocblas_zgbmv_strided_batched_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
         stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgbmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -63908,7 +63900,6 @@ module rocblas
 
     function rocblas_sgemv_64_full_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_64_full_rank
       type(c_ptr), value :: handle
@@ -63996,7 +63987,6 @@ module rocblas
 
     function rocblas_dgemv_64_full_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_64_full_rank
       type(c_ptr), value :: handle
@@ -64084,7 +64074,6 @@ module rocblas
 
     function rocblas_cgemv_64_full_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_64_full_rank
       type(c_ptr), value :: handle
@@ -64172,7 +64161,6 @@ module rocblas
 
     function rocblas_zgemv_64_full_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_64_full_rank
       type(c_ptr), value :: handle
@@ -64723,7 +64711,6 @@ module rocblas
     function rocblas_sgemv_strided_batched_64_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -64835,7 +64822,6 @@ module rocblas
     function rocblas_dgemv_strided_batched_64_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -64947,7 +64933,6 @@ module rocblas
     function rocblas_cgemv_strided_batched_64_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -65059,7 +65044,6 @@ module rocblas
     function rocblas_zgemv_strided_batched_64_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -65326,7 +65310,6 @@ module rocblas
 
     function rocblas_chbmv_64_full_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -65414,7 +65397,6 @@ module rocblas
 
     function rocblas_zhbmv_64_full_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -65743,7 +65725,6 @@ module rocblas
     function rocblas_chbmv_strided_batched_64_full_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x, &
         incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chbmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -65855,7 +65836,6 @@ module rocblas
     function rocblas_zhbmv_strided_batched_64_full_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x, &
         incx,stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhbmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -66111,7 +66091,6 @@ module rocblas
 
     function rocblas_chemv_64_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_64_full_rank
       type(c_ptr), value :: handle
@@ -66195,7 +66174,6 @@ module rocblas
 
     function rocblas_zhemv_64_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_64_full_rank
       type(c_ptr), value :: handle
@@ -66512,7 +66490,6 @@ module rocblas
     function rocblas_chemv_strided_batched_64_full_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx, &
         stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -66620,7 +66597,6 @@ module rocblas
     function rocblas_zhemv_strided_batched_64_full_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx, &
         stride_x,beta,y,incy,stride_y,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -66836,7 +66812,6 @@ module rocblas
 
     function rocblas_cher_64_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_64_full_rank
       type(c_ptr), value :: handle
@@ -66908,7 +66883,6 @@ module rocblas
 
     function rocblas_zher_64_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_64_full_rank
       type(c_ptr), value :: handle
@@ -67167,7 +67141,6 @@ module rocblas
     function rocblas_cher_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda, &
         stride_A,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -67255,7 +67228,6 @@ module rocblas
     function rocblas_zher_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda, &
         stride_A,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -67494,7 +67466,6 @@ module rocblas
 
     function rocblas_cher2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_64_full_rank
       type(c_ptr), value :: handle
@@ -67574,7 +67545,6 @@ module rocblas
 
     function rocblas_zher2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_64_full_rank
       type(c_ptr), value :: handle
@@ -67879,7 +67849,6 @@ module rocblas
     function rocblas_cher2_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stride_x,y, &
         incy,stride_y,A,lda,stride_A,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -67983,7 +67952,6 @@ module rocblas
     function rocblas_zher2_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stride_x,y, &
         incy,stride_y,A,lda,stride_A,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -69869,7 +69837,6 @@ module rocblas
 
     function rocblas_strmv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmv_64_full_rank
       type(c_ptr), value :: handle
@@ -69945,7 +69912,6 @@ module rocblas
 
     function rocblas_dtrmv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmv_64_full_rank
       type(c_ptr), value :: handle
@@ -70021,7 +69987,6 @@ module rocblas
 
     function rocblas_ctrmv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmv_64_full_rank
       type(c_ptr), value :: handle
@@ -70097,7 +70062,6 @@ module rocblas
 
     function rocblas_ztrmv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmv_64_full_rank
       type(c_ptr), value :: handle
@@ -70550,7 +70514,6 @@ module rocblas
     function rocblas_strmv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -70642,7 +70605,6 @@ module rocblas
     function rocblas_dtrmv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -70734,7 +70696,6 @@ module rocblas
     function rocblas_ctrmv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -70826,7 +70787,6 @@ module rocblas
     function rocblas_ztrmv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -72156,7 +72116,6 @@ module rocblas
 
     function rocblas_stbmv_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -72236,7 +72195,6 @@ module rocblas
 
     function rocblas_dtbmv_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -72316,7 +72274,6 @@ module rocblas
 
     function rocblas_ctbmv_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -72396,7 +72353,6 @@ module rocblas
 
     function rocblas_ztbmv_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -72869,7 +72825,6 @@ module rocblas
     function rocblas_stbmv_strided_batched_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -72965,7 +72920,6 @@ module rocblas
     function rocblas_dtbmv_strided_batched_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -73061,7 +73015,6 @@ module rocblas
     function rocblas_ctbmv_strided_batched_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -73157,7 +73110,6 @@ module rocblas
     function rocblas_ztbmv_strided_batched_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -73548,7 +73500,6 @@ module rocblas
 
     function rocblas_stbsv_64_full_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbsv_64_full_rank
       type(c_ptr), value :: handle
@@ -73628,7 +73579,6 @@ module rocblas
 
     function rocblas_dtbsv_64_full_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbsv_64_full_rank
       type(c_ptr), value :: handle
@@ -73708,7 +73658,6 @@ module rocblas
 
     function rocblas_ctbsv_64_full_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbsv_64_full_rank
       type(c_ptr), value :: handle
@@ -73788,7 +73737,6 @@ module rocblas
 
     function rocblas_ztbsv_64_full_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbsv_64_full_rank
       type(c_ptr), value :: handle
@@ -74261,7 +74209,6 @@ module rocblas
     function rocblas_stbsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,k,A,lda, &
         stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_stbsv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -74357,7 +74304,6 @@ module rocblas
     function rocblas_dtbsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,k,A,lda, &
         stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtbsv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -74453,7 +74399,6 @@ module rocblas
     function rocblas_ctbsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,k,A,lda, &
         stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctbsv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -74549,7 +74494,6 @@ module rocblas
     function rocblas_ztbsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,k,A,lda, &
         stride_A,x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztbsv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -74917,7 +74861,6 @@ module rocblas
 
     function rocblas_strsv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsv_64_full_rank
       type(c_ptr), value :: handle
@@ -74993,7 +74936,6 @@ module rocblas
 
     function rocblas_dtrsv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsv_64_full_rank
       type(c_ptr), value :: handle
@@ -75069,7 +75011,6 @@ module rocblas
 
     function rocblas_ctrsv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsv_64_full_rank
       type(c_ptr), value :: handle
@@ -75145,7 +75086,6 @@ module rocblas
 
     function rocblas_ztrsv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsv_64_full_rank
       type(c_ptr), value :: handle
@@ -75598,7 +75538,6 @@ module rocblas
     function rocblas_strsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -75690,7 +75629,6 @@ module rocblas
     function rocblas_dtrsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -75782,7 +75720,6 @@ module rocblas
     function rocblas_ctrsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -75874,7 +75811,6 @@ module rocblas
     function rocblas_ztrsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
         x,incx,stride_x,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -77231,7 +77167,6 @@ module rocblas
 
     function rocblas_ssymv_64_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_64_full_rank
       type(c_ptr), value :: handle
@@ -77315,7 +77250,6 @@ module rocblas
 
     function rocblas_dsymv_64_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_64_full_rank
       type(c_ptr), value :: handle
@@ -77399,7 +77333,6 @@ module rocblas
 
     function rocblas_csymv_64_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_64_full_rank
       type(c_ptr), value :: handle
@@ -77483,7 +77416,6 @@ module rocblas
 
     function rocblas_zsymv_64_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_64_full_rank
       type(c_ptr), value :: handle
@@ -78014,7 +77946,6 @@ module rocblas
     function rocblas_ssymv_strided_batched_64_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -78122,7 +78053,6 @@ module rocblas
     function rocblas_dsymv_strided_batched_64_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -78230,7 +78160,6 @@ module rocblas
     function rocblas_csymv_strided_batched_64_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -78338,7 +78267,6 @@ module rocblas
     function rocblas_zsymv_strided_batched_64_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
         stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -79156,7 +79084,6 @@ module rocblas
 
     function rocblas_ssbmv_64_full_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -79244,7 +79171,6 @@ module rocblas
 
     function rocblas_dsbmv_64_full_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_64_full_rank
       type(c_ptr), value :: handle
@@ -79573,7 +79499,6 @@ module rocblas
     function rocblas_ssbmv_strided_batched_64_full_rank(handle,uplo,n,k,alpha,A,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssbmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -79685,7 +79610,6 @@ module rocblas
     function rocblas_dsbmv_strided_batched_64_full_rank(handle,uplo,n,k,alpha,A,lda,strideA,x, &
         incx,stridex,beta,y,incy,stridey,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsbmv_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -80246,7 +80170,6 @@ module rocblas
 
     function rocblas_sger_64_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_64_full_rank
       type(c_ptr), value :: handle
@@ -80326,7 +80249,6 @@ module rocblas
 
     function rocblas_dger_64_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_64_full_rank
       type(c_ptr), value :: handle
@@ -80406,7 +80328,6 @@ module rocblas
 
     function rocblas_cgeru_64_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_64_full_rank
       type(c_ptr), value :: handle
@@ -80486,7 +80407,6 @@ module rocblas
 
     function rocblas_zgeru_64_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_64_full_rank
       type(c_ptr), value :: handle
@@ -80566,7 +80486,6 @@ module rocblas
 
     function rocblas_cgerc_64_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_64_full_rank
       type(c_ptr), value :: handle
@@ -80646,7 +80565,6 @@ module rocblas
 
     function rocblas_zgerc_64_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_64_full_rank
       type(c_ptr), value :: handle
@@ -81336,7 +81254,6 @@ module rocblas
     function rocblas_sger_strided_batched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sger_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -81436,7 +81353,6 @@ module rocblas
     function rocblas_dger_strided_batched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dger_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -81536,7 +81452,6 @@ module rocblas
     function rocblas_cgeru_strided_batched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeru_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -81636,7 +81551,6 @@ module rocblas
     function rocblas_zgeru_strided_batched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeru_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -81736,7 +81650,6 @@ module rocblas
     function rocblas_cgerc_strided_batched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgerc_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -81836,7 +81749,6 @@ module rocblas
     function rocblas_zgerc_strided_batched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgerc_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -83596,7 +83508,6 @@ module rocblas
 
     function rocblas_ssyr_64_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_64_full_rank
       type(c_ptr), value :: handle
@@ -83668,7 +83579,6 @@ module rocblas
 
     function rocblas_dsyr_64_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_64_full_rank
       type(c_ptr), value :: handle
@@ -83740,7 +83650,6 @@ module rocblas
 
     function rocblas_csyr_64_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_64_full_rank
       type(c_ptr), value :: handle
@@ -83812,7 +83721,6 @@ module rocblas
 
     function rocblas_zsyr_64_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_64_full_rank
       type(c_ptr), value :: handle
@@ -84245,7 +84153,6 @@ module rocblas
     function rocblas_ssyr_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
         strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -84333,7 +84240,6 @@ module rocblas
     function rocblas_dsyr_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
         strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -84421,7 +84327,6 @@ module rocblas
     function rocblas_csyr_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
         strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -84509,7 +84414,6 @@ module rocblas
     function rocblas_zsyr_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
         strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -84906,7 +84810,6 @@ module rocblas
 
     function rocblas_ssyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_64_full_rank
       type(c_ptr), value :: handle
@@ -84986,7 +84889,6 @@ module rocblas
 
     function rocblas_dsyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_64_full_rank
       type(c_ptr), value :: handle
@@ -85066,7 +84968,6 @@ module rocblas
 
     function rocblas_csyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_64_full_rank
       type(c_ptr), value :: handle
@@ -85146,7 +85047,6 @@ module rocblas
 
     function rocblas_zsyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_64_full_rank
       type(c_ptr), value :: handle
@@ -85639,7 +85539,6 @@ module rocblas
     function rocblas_ssyr2_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -85740,7 +85639,6 @@ module rocblas
     function rocblas_dsyr2_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -85841,7 +85739,6 @@ module rocblas
     function rocblas_csyr2_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -85942,7 +85839,6 @@ module rocblas
     function rocblas_zsyr2_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
         stridey,A,lda,strideA,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -86217,7 +86113,6 @@ module rocblas
 
     function rocblas_chemm_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_64_full_rank
       type(c_ptr), value :: handle
@@ -86309,7 +86204,6 @@ module rocblas
 
     function rocblas_zhemm_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_64_full_rank
       type(c_ptr), value :: handle
@@ -86650,7 +86544,6 @@ module rocblas
     function rocblas_chemm_strided_batched_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
         B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_chemm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -86766,7 +86659,6 @@ module rocblas
     function rocblas_zhemm_strided_batched_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
         B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zhemm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -87023,7 +86915,6 @@ module rocblas
 
     function rocblas_cherk_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_64_full_rank
       type(c_ptr), value :: handle
@@ -87107,7 +86998,6 @@ module rocblas
 
     function rocblas_zherk_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_64_full_rank
       type(c_ptr), value :: handle
@@ -87403,7 +87293,6 @@ module rocblas
     function rocblas_cherk_strided_batched_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda, &
         stride_A,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherk_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -87504,7 +87393,6 @@ module rocblas
     function rocblas_zherk_strided_batched_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda, &
         stride_A,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherk_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -87779,7 +87667,6 @@ module rocblas
 
     function rocblas_cher2k_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_64_full_rank
       type(c_ptr), value :: handle
@@ -87871,7 +87758,6 @@ module rocblas
 
     function rocblas_zher2k_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_64_full_rank
       type(c_ptr), value :: handle
@@ -88212,7 +88098,6 @@ module rocblas
     function rocblas_cher2k_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cher2k_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -88328,7 +88213,6 @@ module rocblas
     function rocblas_zher2k_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zher2k_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -88607,7 +88491,6 @@ module rocblas
 
     function rocblas_cherkx_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_64_full_rank
       type(c_ptr), value :: handle
@@ -88699,7 +88582,6 @@ module rocblas
 
     function rocblas_zherkx_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_64_full_rank
       type(c_ptr), value :: handle
@@ -89040,7 +88922,6 @@ module rocblas
     function rocblas_cherkx_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cherkx_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -89156,7 +89037,6 @@ module rocblas
     function rocblas_zherkx_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zherkx_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -89617,7 +89497,6 @@ module rocblas
 
     function rocblas_ssymm_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_64_full_rank
       type(c_ptr), value :: handle
@@ -89709,7 +89588,6 @@ module rocblas
 
     function rocblas_dsymm_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_64_full_rank
       type(c_ptr), value :: handle
@@ -89801,7 +89679,6 @@ module rocblas
 
     function rocblas_csymm_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_64_full_rank
       type(c_ptr), value :: handle
@@ -89893,7 +89770,6 @@ module rocblas
 
     function rocblas_zsymm_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_64_full_rank
       type(c_ptr), value :: handle
@@ -90464,7 +90340,6 @@ module rocblas
     function rocblas_ssymm_strided_batched_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
         B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssymm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -90580,7 +90455,6 @@ module rocblas
     function rocblas_dsymm_strided_batched_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
         B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsymm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -90696,7 +90570,6 @@ module rocblas
     function rocblas_csymm_strided_batched_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
         B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csymm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -90812,7 +90685,6 @@ module rocblas
     function rocblas_zsymm_strided_batched_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
         B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsymm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -91235,7 +91107,6 @@ module rocblas
 
     function rocblas_ssyrk_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_64_full_rank
       type(c_ptr), value :: handle
@@ -91319,7 +91190,6 @@ module rocblas
 
     function rocblas_dsyrk_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_64_full_rank
       type(c_ptr), value :: handle
@@ -91403,7 +91273,6 @@ module rocblas
 
     function rocblas_csyrk_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_64_full_rank
       type(c_ptr), value :: handle
@@ -91487,7 +91356,6 @@ module rocblas
 
     function rocblas_zsyrk_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_64_full_rank
       type(c_ptr), value :: handle
@@ -91981,7 +91849,6 @@ module rocblas
     function rocblas_ssyrk_strided_batched_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda, &
         stride_A,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrk_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -92082,7 +91949,6 @@ module rocblas
     function rocblas_dsyrk_strided_batched_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda, &
         stride_A,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrk_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -92183,7 +92049,6 @@ module rocblas
     function rocblas_csyrk_strided_batched_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda, &
         stride_A,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrk_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -92284,7 +92149,6 @@ module rocblas
     function rocblas_zsyrk_strided_batched_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda, &
         stride_A,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrk_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -92741,7 +92605,6 @@ module rocblas
 
     function rocblas_ssyr2k_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_64_full_rank
       type(c_ptr), value :: handle
@@ -92833,7 +92696,6 @@ module rocblas
 
     function rocblas_dsyr2k_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_64_full_rank
       type(c_ptr), value :: handle
@@ -92925,7 +92787,6 @@ module rocblas
 
     function rocblas_csyr2k_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_64_full_rank
       type(c_ptr), value :: handle
@@ -93017,7 +92878,6 @@ module rocblas
 
     function rocblas_zsyr2k_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_64_full_rank
       type(c_ptr), value :: handle
@@ -93588,7 +93448,6 @@ module rocblas
     function rocblas_ssyr2k_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -93704,7 +93563,6 @@ module rocblas
     function rocblas_dsyr2k_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -93820,7 +93678,6 @@ module rocblas
     function rocblas_csyr2k_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyr2k_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -93936,7 +93793,6 @@ module rocblas
     function rocblas_zsyr2k_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -94397,7 +94253,6 @@ module rocblas
 
     function rocblas_ssyrkx_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_64_full_rank
       type(c_ptr), value :: handle
@@ -94489,7 +94344,6 @@ module rocblas
 
     function rocblas_dsyrkx_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_64_full_rank
       type(c_ptr), value :: handle
@@ -94581,7 +94435,6 @@ module rocblas
 
     function rocblas_csyrkx_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_64_full_rank
       type(c_ptr), value :: handle
@@ -94673,7 +94526,6 @@ module rocblas
 
     function rocblas_zsyrkx_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_64_full_rank
       type(c_ptr), value :: handle
@@ -95244,7 +95096,6 @@ module rocblas
     function rocblas_ssyrkx_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -95360,7 +95211,6 @@ module rocblas
     function rocblas_dsyrkx_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -95476,7 +95326,6 @@ module rocblas
     function rocblas_csyrkx_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_csyrkx_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -95592,7 +95441,6 @@ module rocblas
     function rocblas_zsyrkx_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
         stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -96072,7 +95920,6 @@ module rocblas
 
     function rocblas_strmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strmm_64_full_rank
       type(c_ptr), value :: handle
@@ -96168,7 +96015,6 @@ module rocblas
 
     function rocblas_dtrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrmm_64_full_rank
       type(c_ptr), value :: handle
@@ -96264,7 +96110,6 @@ module rocblas
 
     function rocblas_ctrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrmm_64_full_rank
       type(c_ptr), value :: handle
@@ -96360,7 +96205,6 @@ module rocblas
 
     function rocblas_ztrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrmm_64_full_rank
       type(c_ptr), value :: handle
@@ -97418,7 +97262,6 @@ module rocblas
 
     function rocblas_strsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_64_full_rank
       type(c_ptr), value :: handle
@@ -97506,7 +97349,6 @@ module rocblas
 
     function rocblas_dtrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_64_full_rank
       type(c_ptr), value :: handle
@@ -97594,7 +97436,6 @@ module rocblas
 
     function rocblas_ctrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_64_full_rank
       type(c_ptr), value :: handle
@@ -97682,7 +97523,6 @@ module rocblas
 
     function rocblas_ztrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_64_full_rank
       type(c_ptr), value :: handle
@@ -98196,7 +98036,6 @@ module rocblas
     function rocblas_strsm_strided_batched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A, &
         lda,stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_strsm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -98301,7 +98140,6 @@ module rocblas
     function rocblas_dtrsm_strided_batched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A, &
         lda,stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dtrsm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -98406,7 +98244,6 @@ module rocblas
     function rocblas_ctrsm_strided_batched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A, &
         lda,stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ctrsm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -98511,7 +98348,6 @@ module rocblas
     function rocblas_ztrsm_strided_batched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A, &
         lda,stride_a,B,ldb,stride_b,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ztrsm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -98988,7 +98824,6 @@ module rocblas
 
     function rocblas_sgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_64_full_rank
       type(c_ptr), value :: handle
@@ -99084,7 +98919,6 @@ module rocblas
 
     function rocblas_dgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_64_full_rank
       type(c_ptr), value :: handle
@@ -99180,7 +99014,6 @@ module rocblas
 
     function rocblas_cgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_64_full_rank
       type(c_ptr), value :: handle
@@ -99276,7 +99109,6 @@ module rocblas
 
     function rocblas_zgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_64_full_rank
       type(c_ptr), value :: handle
@@ -99867,7 +99699,6 @@ module rocblas
     function rocblas_sgemm_strided_batched_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
         stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgemm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -99987,7 +99818,6 @@ module rocblas
     function rocblas_dgemm_strided_batched_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
         stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgemm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -100107,7 +99937,6 @@ module rocblas
     function rocblas_cgemm_strided_batched_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
         stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgemm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -100227,7 +100056,6 @@ module rocblas
     function rocblas_zgemm_strided_batched_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
         stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgemm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -100624,7 +100452,6 @@ module rocblas
 
     function rocblas_sdgmm_64_full_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdgmm_64_full_rank
       type(c_ptr), value :: handle
@@ -100704,7 +100531,6 @@ module rocblas
 
     function rocblas_ddgmm_64_full_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddgmm_64_full_rank
       type(c_ptr), value :: handle
@@ -100784,7 +100610,6 @@ module rocblas
 
     function rocblas_cdgmm_64_full_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdgmm_64_full_rank
       type(c_ptr), value :: handle
@@ -100864,7 +100689,6 @@ module rocblas
 
     function rocblas_zdgmm_64_full_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdgmm_64_full_rank
       type(c_ptr), value :: handle
@@ -101356,7 +101180,6 @@ module rocblas
     function rocblas_sdgmm_strided_batched_64_full_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
         stride_x,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sdgmm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -101456,7 +101279,6 @@ module rocblas
     function rocblas_ddgmm_strided_batched_64_full_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
         stride_x,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_ddgmm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -101556,7 +101378,6 @@ module rocblas
     function rocblas_cdgmm_strided_batched_64_full_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
         stride_x,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cdgmm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -101656,7 +101477,6 @@ module rocblas
     function rocblas_zdgmm_strided_batched_64_full_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
         stride_x,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zdgmm_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -102113,7 +101933,6 @@ module rocblas
 
     function rocblas_sgeam_64_full_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_64_full_rank
       type(c_ptr), value :: handle
@@ -102205,7 +102024,6 @@ module rocblas
 
     function rocblas_dgeam_64_full_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_64_full_rank
       type(c_ptr), value :: handle
@@ -102297,7 +102115,6 @@ module rocblas
 
     function rocblas_cgeam_64_full_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_64_full_rank
       type(c_ptr), value :: handle
@@ -102389,7 +102206,6 @@ module rocblas
 
     function rocblas_zgeam_64_full_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_64_full_rank
       type(c_ptr), value :: handle
@@ -102960,7 +102776,6 @@ module rocblas
     function rocblas_sgeam_strided_batched_64_full_rank(handle,transA,transB,m,n,alpha,A,lda, &
         stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_sgeam_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -103076,7 +102891,6 @@ module rocblas
     function rocblas_dgeam_strided_batched_64_full_rank(handle,transA,transB,m,n,alpha,A,lda, &
         stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_dgeam_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -103192,7 +103006,6 @@ module rocblas
     function rocblas_cgeam_strided_batched_64_full_rank(handle,transA,transB,m,n,alpha,A,lda, &
         stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_cgeam_strided_batched_64_full_rank
       type(c_ptr), value :: handle
@@ -103308,7 +103121,6 @@ module rocblas
     function rocblas_zgeam_strided_batched_64_full_rank(handle,transA,transB,m,n,alpha,A,lda, &
         stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
       use iso_c_binding
-      use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_zgeam_strided_batched_64_full_rank
       type(c_ptr), value :: handle

@@ -29071,7 +29071,7 @@ module hipsolver
       integer(c_int) :: lda
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       integer(c_int),target :: devInfo
       integer(c_int) :: batch_count
@@ -29092,7 +29092,7 @@ module hipsolver
       integer(c_int) :: lda
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr),value :: devInfo
       integer(c_int) :: batch_count
@@ -29200,7 +29200,7 @@ module hipsolver
       integer(c_int) :: lda
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       integer(c_int),target :: devInfo
       integer(c_int) :: batch_count
@@ -29221,7 +29221,7 @@ module hipsolver
       integer(c_int) :: lda
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr),value :: devInfo
       integer(c_int) :: batch_count
@@ -29329,7 +29329,7 @@ module hipsolver
       integer(c_int) :: lda
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       integer(c_int),target :: devInfo
       integer(c_int) :: batch_count
@@ -29350,7 +29350,7 @@ module hipsolver
       integer(c_int) :: lda
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr),value :: devInfo
       integer(c_int) :: batch_count
@@ -29458,7 +29458,7 @@ module hipsolver
       integer(c_int) :: lda
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       integer(c_int),target :: devInfo
       integer(c_int) :: batch_count
@@ -29479,7 +29479,7 @@ module hipsolver
       integer(c_int) :: lda
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr),value :: devInfo
       integer(c_int) :: batch_count
@@ -29584,7 +29584,7 @@ module hipsolver
       integer(c_int) :: n
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: C
       integer(c_int) :: ldc
@@ -29647,7 +29647,7 @@ module hipsolver
       integer(c_int) :: n
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: C
       integer(c_int) :: ldc
@@ -29710,7 +29710,7 @@ module hipsolver
       integer(c_int) :: n
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: C
       integer(c_int) :: ldc
@@ -29773,7 +29773,7 @@ module hipsolver
       integer(c_int) :: n
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: C
       integer(c_int) :: ldc
@@ -29836,7 +29836,7 @@ module hipsolver
       integer(c_int) :: n
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: C
       integer(c_int) :: ldc
@@ -29858,7 +29858,7 @@ module hipsolver
       integer(c_int) :: n
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: C
       integer(c_int) :: ldc
@@ -29971,7 +29971,7 @@ module hipsolver
       integer(c_int) :: n
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: C
       integer(c_int) :: ldc
@@ -29993,7 +29993,7 @@ module hipsolver
       integer(c_int) :: n
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: C
       integer(c_int) :: ldc
@@ -30106,7 +30106,7 @@ module hipsolver
       integer(c_int) :: n
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: C
       integer(c_int) :: ldc
@@ -30128,7 +30128,7 @@ module hipsolver
       integer(c_int) :: n
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: C
       integer(c_int) :: ldc
@@ -30241,7 +30241,7 @@ module hipsolver
       integer(c_int) :: n
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: C
       integer(c_int) :: ldc
@@ -30263,7 +30263,7 @@ module hipsolver
       integer(c_int) :: n
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: C
       integer(c_int) :: ldc
@@ -31398,7 +31398,7 @@ module hipsolver
       integer(c_int) :: nrhs
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: B
       integer(c_int) :: ldb
@@ -31467,7 +31467,7 @@ module hipsolver
       integer(c_int) :: nrhs
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: B
       integer(c_int) :: ldb
@@ -31536,7 +31536,7 @@ module hipsolver
       integer(c_int) :: nrhs
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: B
       integer(c_int) :: ldb
@@ -31605,7 +31605,7 @@ module hipsolver
       integer(c_int) :: nrhs
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: B
       integer(c_int) :: ldb
@@ -31674,7 +31674,7 @@ module hipsolver
       integer(c_int) :: nrhs
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: B
       integer(c_int) :: ldb
@@ -31749,7 +31749,7 @@ module hipsolver
       integer(c_int) :: nrhs
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: B
       integer(c_int) :: ldb
@@ -31824,7 +31824,7 @@ module hipsolver
       integer(c_int) :: nrhs
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: B
       integer(c_int) :: ldb
@@ -31899,7 +31899,7 @@ module hipsolver
       integer(c_int) :: nrhs
       type(c_ptr), value :: A
       integer(c_int) :: lda
-      integer(c_int),target,contiguous,dimension(..) :: devIpiv
+      integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
       type(c_ptr), value :: B
       integer(c_int) :: ldb
