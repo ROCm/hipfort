@@ -49,6 +49,14 @@ program test_hipblas
     if (never) v1 = hipblasSetMathMode_(v0, v1)
     if (never) v1 = hipblasGetMathMode_(v0, v0)
     if (never) v1 = hipblasSetWorkspace_(v0, v0, v2)
+    if (never) v1 = hipblasSetVector_(v1, v1, v0, v1, v0, v1)
+    if (never) v1 = hipblasGetVector_(v1, v1, v0, v1, v0, v1)
+    if (never) v1 = hipblasSetMatrix_(v1, v1, v1, v0, v1, v0, v1)
+    if (never) v1 = hipblasGetMatrix_(v1, v1, v1, v0, v1, v0, v1)
+    if (never) v1 = hipblasSetVectorAsync_(v1, v1, v0, v1, v0, v1, v0)
+    if (never) v1 = hipblasGetVectorAsync_(v1, v1, v0, v1, v0, v1, v0)
+    if (never) v1 = hipblasSetMatrixAsync_(v1, v1, v1, v0, v1, v0, v1, v0)
+    if (never) v1 = hipblasGetMatrixAsync_(v1, v1, v1, v0, v1, v0, v1, v0)
     if (never) v1 = hipblasSetAtomicsMode_(v0, v1)
     if (never) v1 = hipblasGetAtomicsMode_(v0, v0)
 #ifndef USE_CUDA_NAMES
@@ -1399,14 +1407,6 @@ program test_hipblas
     if (never) v1 = hipblasScalStridedBatchedEx_64_(v0, v3, v0, v1, v0, v1, v3, v3, v3, v1)
     if (never) v0 = hipblasStatusToString_(v1)
 #endif
-    if (never) v1 = hipblasSetVector_(v1, v1, v0, v1, v0, v1)
-    if (never) v1 = hipblasGetVector_(v1, v1, v0, v1, v0, v1)
-    if (never) v1 = hipblasSetMatrix_(v1, v1, v1, v0, v1, v0, v1)
-    if (never) v1 = hipblasGetMatrix_(v1, v1, v1, v0, v1, v0, v1)
-    if (never) v1 = hipblasSetVectorAsync_(v1, v1, v0, v1, v0, v1, v0)
-    if (never) v1 = hipblasGetVectorAsync_(v1, v1, v0, v1, v0, v1, v0)
-    if (never) v1 = hipblasSetMatrixAsync_(v1, v1, v1, v0, v1, v0, v1, v0)
-    if (never) v1 = hipblasGetMatrixAsync_(v1, v1, v1, v0, v1, v0, v1, v0)
 
   write(*,"(a)") "-- test_hipblas (bind(C) symbols): PASSED (compile+link only)!"
 end program test_hipblas

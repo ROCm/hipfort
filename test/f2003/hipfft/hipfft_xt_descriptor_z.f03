@@ -40,7 +40,7 @@ program hipfft_xt_descriptor_z
   type(c_ptr) :: d = c_null_ptr
   type(hipLibXtDesc), pointer :: desc
   type(hipXtDesc), pointer :: xt
-  integer(c_size_t) :: work(2)
+  integer(c_size_t), target :: work(2)   ! one work size per GPU
   integer(c_int) :: ndev
   integer :: i, j
   double precision :: error
@@ -65,9 +65,9 @@ program hipfft_xt_descriptor_z
   gpus = [0, 1]
   call hipfftCheck(hipfftCreate(plan))
   call hipfftCheck(hipfftXtSetGPUs(plan, 2, c_loc(gpus)))
-  ! A multi-GPU plan writes one work size per GPU: pass the first element of an
-  ! array with one slot per GPU.
-  call hipfftCheck(hipfftMakePlan2d(plan, NY, NX, HIPFFT_Z2Z, work(1)))
+  ! A multi-GPU plan writes one work size per GPU: pass c_loc of an array with
+  ! one slot per GPU to the type(c_ptr) form.
+  call hipfftCheck(hipfftMakePlan2d(plan, NY, NX, HIPFFT_Z2Z, c_loc(work)))
 
   ! hipFFT allocates and owns the descriptor: keep its address, and pass the
   ! pointer that c_f_pointer associates with it, never a copy of the type.

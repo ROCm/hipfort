@@ -191,8 +191,9 @@ of yours:
    ``hipfftXtSetGPUs`` **before** making it.
 #. Make the plan with ``hipfftMakePlan2d``, ``hipfftMakePlan3d`` or
    ``hipfftMakePlanMany``. A multi-GPU plan writes one work area size per GPU,
-   so pass the first element of an ``integer(c_size_t)`` array with one slot
-   per GPU.
+   so pass ``c_loc`` of an ``integer(c_size_t), target`` array with one slot
+   per GPU, through the ``type(c_ptr)`` form. The form that takes an
+   ``integer(c_size_t)`` variable is for a plan on one GPU.
 #. Allocate the data with ``hipfftXtMalloc``. It returns the address of a
    ``hipLibXtDesc`` in a ``type(c_ptr)``.
 #. Copy the host data in and out with ``hipfftXtMemcpy``, passing that

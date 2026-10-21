@@ -17,16 +17,25 @@
   with MPI support, which the ROCm packages are not. On the CUDA backend the Xt
   and multi-process routines are not available. The hipFFT examples document
   the multi-GPU and MPI workflows.
+* Array overloads for the ILP64 (`_64`) routines of rocBLAS, hipBLAS and
+  rocSOLVER (`rocblas_sscal_64`, ...), which only had their `bind(C)` and
+  `_typed` forms.
 
 ### Changed
 
+* The `bind(C)` specifics of `hipblasSetVector`, `hipblasGetVector`,
+  `hipblasSetMatrix`, `hipblasGetMatrix` and their `Async` forms spell their
+  arguments as the hipBLAS headers do: `elemSize`, `AP` and `BP` instead of
+  `elem_size`, `A` and `B`. Only calls by keyword are affected; the typed
+  overloads are unchanged.
 * Each backend archive (`libhipfort-amdgcn.a`, `libhipfort-nvptx.a`) is
   compiled with one section per procedure (`-ffunction-sections
   -fdata-sections`). A program linked with `-Wl,--gc-sections` keeps only the
   wrappers it calls, instead of all of a library's wrappers, and still links
   when another wrapper names a C function that the installed library does not
   export. The tests link that way. A shared library that links an archive also
-  needs `-Wl,--exclude-libs,ALL`.
+  needs `-Wl,--exclude-libs` naming it, for example
+  `-Wl,--exclude-libs,libhipfort-amdgcn.a`.
 * **Breaking.** The array overloads of `hipMalloc`, `hipMallocManaged`,
   `hipHostMalloc`, `hipFree`, `hipHostFree`, the `hipMemcpy` families and the
   `hipHostRegister` family are now part of the Fortran 2008 array overloads, like
