@@ -40,10 +40,9 @@ program hipfft_estimate_getsize_d
   integer(c_size_t), parameter :: Nbytes_r = int(N1d, c_size_t) * 8
   integer(c_size_t), parameter :: Nbytes_c = int(Nout, c_size_t) * 16
 
-  integer(c_size_t) :: workEst1d, workGS1d
-  integer(c_size_t) :: workEst2d, workGS2d
-  integer(c_size_t) :: workEst3d, workGS3d
-  integer(c_size_t) :: workTmp
+  integer(c_size_t) :: workEst1d, workEst2d, workEst3d
+  ! One work size per GPU of the plan, written through a pointer.
+  integer(c_size_t), target :: workGS1d, workGS2d, workGS3d, workTmp
 
   type(c_ptr) :: plan1d = c_null_ptr
   type(c_ptr) :: plan2d = c_null_ptr
@@ -64,10 +63,10 @@ program hipfft_estimate_getsize_d
   call hipfftCheck(hipfftEstimate1d(N1d, HIPFFT_D2Z, one_i, workEst1d))
 
   call hipfftCheck(hipfftCreate(plan1d))
-  call hipfftCheck(hipfftMakePlan1d(plan1d, N1d, HIPFFT_D2Z, one_i, workGS1d))
+  call hipfftCheck(hipfftMakePlan1d(plan1d, N1d, HIPFFT_D2Z, one_i, c_loc(workGS1d)))
   ! GetSize1d and GetSize provide alternative query paths on the same configured plan.
-  call hipfftCheck(hipfftGetSize1d(plan1d, N1d, HIPFFT_D2Z, one_i, workTmp))
-  call hipfftCheck(hipfftGetSize(plan1d, workTmp))
+  call hipfftCheck(hipfftGetSize1d(plan1d, N1d, HIPFFT_D2Z, one_i, c_loc(workTmp)))
+  call hipfftCheck(hipfftGetSize(plan1d, c_loc(workTmp)))
 
   ! hipfftEstimate* is a pre-plan upper bound; hipfftGetSize* is the accurate post-config value.
   if (workEst1d < workGS1d) then
@@ -79,8 +78,8 @@ program hipfft_estimate_getsize_d
   call hipfftCheck(hipfftEstimate2d(Nx2, Ny2, HIPFFT_Z2Z, workEst2d))
 
   call hipfftCheck(hipfftCreate(plan2d))
-  call hipfftCheck(hipfftMakePlan2d(plan2d, Nx2, Ny2, HIPFFT_Z2Z, workGS2d))
-  call hipfftCheck(hipfftGetSize2d(plan2d, Nx2, Ny2, HIPFFT_Z2Z, workTmp))
+  call hipfftCheck(hipfftMakePlan2d(plan2d, Nx2, Ny2, HIPFFT_Z2Z, c_loc(workGS2d)))
+  call hipfftCheck(hipfftGetSize2d(plan2d, Nx2, Ny2, HIPFFT_Z2Z, c_loc(workTmp)))
 
   if (workEst2d < workGS2d) then
     write(*,*) "FAILED! Estimate2d returned less than GetSize2d"
@@ -91,8 +90,8 @@ program hipfft_estimate_getsize_d
   call hipfftCheck(hipfftEstimate3d(Nx3, Ny3, Nz3, HIPFFT_Z2Z, workEst3d))
 
   call hipfftCheck(hipfftCreate(plan3d))
-  call hipfftCheck(hipfftMakePlan3d(plan3d, Nx3, Ny3, Nz3, HIPFFT_Z2Z, workGS3d))
-  call hipfftCheck(hipfftGetSize3d(plan3d, Nx3, Ny3, Nz3, HIPFFT_Z2Z, workTmp))
+  call hipfftCheck(hipfftMakePlan3d(plan3d, Nx3, Ny3, Nz3, HIPFFT_Z2Z, c_loc(workGS3d)))
+  call hipfftCheck(hipfftGetSize3d(plan3d, Nx3, Ny3, Nz3, HIPFFT_Z2Z, c_loc(workTmp)))
 
   if (workEst3d < workGS3d) then
     write(*,*) "FAILED! Estimate3d returned less than GetSize3d"

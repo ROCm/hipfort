@@ -53,7 +53,7 @@ program hipfft_makeplanmany_z
   type(c_ptr) :: plan    = c_null_ptr
   type(c_ptr) :: workBuf = c_null_ptr
 
-  integer(c_size_t)        :: workSize, workSize2
+  integer(c_size_t), target :: workSize, workSize2   ! one work size per GPU of the plan
   double precision         :: max_error, error
   complex(c_double_complex) :: expected
   integer :: b, j, pos, kb
@@ -85,12 +85,12 @@ program hipfft_makeplanmany_z
   call hipfftCheck(hipfftSetAutoAllocation(plan, zero_i))
   call hipfftCheck(hipfftMakePlanMany(plan, rank_i, c_loc(nlen), &
        c_loc(in_emb), one_i, N, c_loc(out_emb), one_i, N, &
-       HIPFFT_Z2Z, Nbatch, workSize))
+       HIPFFT_Z2Z, Nbatch, c_loc(workSize)))
 
   ! GetSizeMany on the same configured plan must agree with MakePlanMany.
   call hipfftCheck(hipfftGetSizeMany(plan, rank_i, c_loc(nlen), &
        c_loc(in_emb), one_i, N, c_loc(out_emb), one_i, N, &
-       HIPFFT_Z2Z, Nbatch, workSize2))
+       HIPFFT_Z2Z, Nbatch, c_loc(workSize2)))
 
   if (workSize2 /= workSize) then
     write(*,*) "FAILED! workSize mismatch: MakePlanMany=", workSize, &

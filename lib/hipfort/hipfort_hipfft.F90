@@ -257,7 +257,15 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
-    module procedure hipfftMakePlan1d_typed
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftMakePlan1d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipfftMakePlan1d_rank_0,&
+      hipfftMakePlan1d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Initialize a new two-dimensional FFT plan.
@@ -290,7 +298,15 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
-    module procedure hipfftMakePlan2d_typed
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftMakePlan2d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipfftMakePlan2d_rank_0,&
+      hipfftMakePlan2d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Initialize a new three-dimensional FFT plan.
@@ -325,7 +341,15 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
-    module procedure hipfftMakePlan3d_typed
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftMakePlan3d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipfftMakePlan3d_rank_0,&
+      hipfftMakePlan3d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Initialize a new batched rank-dimensional FFT plan with advanced data layout.
@@ -392,8 +416,6 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
-    module procedure hipfftMakePlanMany_typed
-
 #ifdef USE_ASSUMED_RANK
     module procedure hipfftMakePlanMany_assumed_rank
 #else
@@ -432,8 +454,6 @@ module hipfort_hipfft
       integer(c_int64_t),value :: batch
       type(c_ptr),value :: workSize
     end function
-
-    module procedure hipfftMakePlanMany64_typed
 
 #ifdef USE_ASSUMED_RANK
     module procedure hipfftMakePlanMany64_assumed_rank
@@ -600,7 +620,15 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
-    module procedure hipfftGetSize1d_typed
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftGetSize1d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipfftGetSize1d_rank_0,&
+      hipfftGetSize1d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Return size of the work area size required for a 2D plan.
@@ -627,7 +655,15 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
-    module procedure hipfftGetSize2d_typed
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftGetSize2d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipfftGetSize2d_rank_0,&
+      hipfftGetSize2d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Return size of the work area size required for a 3D plan.
@@ -656,7 +692,15 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
-    module procedure hipfftGetSize3d_typed
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftGetSize3d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipfftGetSize3d_rank_0,&
+      hipfftGetSize3d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Return size of the work area size required for a rank-dimensional plan.
@@ -701,8 +745,6 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
-    module procedure hipfftGetSizeMany_typed
-
 #ifdef USE_ASSUMED_RANK
     module procedure hipfftGetSizeMany_assumed_rank
 #else
@@ -742,8 +784,6 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
-    module procedure hipfftGetSizeMany64_typed
-
 #ifdef USE_ASSUMED_RANK
     module procedure hipfftGetSizeMany64_assumed_rank
 #else
@@ -775,7 +815,15 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
     end function
 
-    module procedure hipfftGetSize_typed
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftGetSize_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipfftGetSize_rank_0,&
+      hipfftGetSize_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Set the plan's auto-allocation flag.  The plan will allocate its own workarea(s).
@@ -1317,8 +1365,6 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
       integer(c_int),value :: executionType
     end function
-
-    module procedure hipfftXtMakePlanMany_typed
   end interface
 #endif
 
@@ -1367,8 +1413,6 @@ module hipfort_hipfft
       type(c_ptr),value :: workSize
       integer(c_int),value :: executionType
     end function
-
-    module procedure hipfftXtGetSizeMany_typed
   end interface
 #endif
 
@@ -1812,95 +1856,6 @@ module hipfort_hipfft
 
   contains
 
-    function hipfftMakePlan1d_typed(plan,nx,myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan1d_typed
-      type(c_ptr), value :: plan
-      integer(c_int) :: nx
-      integer(kind(HIPFFT_R2C)) :: myType
-      integer(c_int) :: batch
-      integer(c_size_t),target :: workSize
-      !
-      hipfftMakePlan1d_typed = hipfftMakePlan1d_(plan,nx,myType,batch,c_loc(workSize))
-    end function
-
-    function hipfftMakePlan2d_typed(plan,nx,ny,myType,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan2d_typed
-      type(c_ptr), value :: plan
-      integer(c_int) :: nx
-      integer(c_int) :: ny
-      integer(kind(HIPFFT_R2C)) :: myType
-      integer(c_size_t),target :: workSize
-      !
-      hipfftMakePlan2d_typed = hipfftMakePlan2d_(plan,nx,ny,myType,c_loc(workSize))
-    end function
-
-    function hipfftMakePlan3d_typed(plan,nx,ny,nz,myType,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan3d_typed
-      type(c_ptr), value :: plan
-      integer(c_int) :: nx
-      integer(c_int) :: ny
-      integer(c_int) :: nz
-      integer(kind(HIPFFT_R2C)) :: myType
-      integer(c_size_t),target :: workSize
-      !
-      hipfftMakePlan3d_typed = hipfftMakePlan3d_(plan,nx,ny,nz,myType,c_loc(workSize))
-    end function
-
-    function hipfftMakePlanMany_typed(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
-        myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_typed
-      type(c_ptr), value :: plan
-      integer(c_int) :: rank
-      type(c_ptr) :: n
-      type(c_ptr) :: inembed
-      integer(c_int) :: istride
-      integer(c_int) :: idist
-      type(c_ptr) :: onembed
-      integer(c_int) :: ostride
-      integer(c_int) :: odist
-      integer(kind(HIPFFT_R2C)) :: myType
-      integer(c_int) :: batch
-      integer(c_size_t),target :: workSize
-      !
-      hipfftMakePlanMany_typed = hipfftMakePlanMany_(plan,rank,n,inembed,istride,idist,onembed, &
-        ostride,odist,myType,batch,c_loc(workSize))
-    end function
-
-    function hipfftMakePlanMany64_typed(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
-        myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_typed
-      type(c_ptr), value :: plan
-      integer(c_int) :: rank
-      type(c_ptr) :: n
-      type(c_ptr) :: inembed
-      integer(c_int64_t) :: istride
-      integer(c_int64_t) :: idist
-      type(c_ptr) :: onembed
-      integer(c_int64_t) :: ostride
-      integer(c_int64_t) :: odist
-      integer(kind(HIPFFT_R2C)) :: myType
-      integer(c_int64_t) :: batch
-      integer(c_size_t),target :: workSize
-      !
-      hipfftMakePlanMany64_typed = hipfftMakePlanMany64_(plan,rank,n,inembed,istride,idist, &
-        onembed,ostride,odist,myType,batch,c_loc(workSize))
-    end function
-
     function hipfftEstimate1d_typed(nx,myType,batch,workSize)
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -1963,106 +1918,6 @@ module hipfort_hipfft
         odist,myType,batch,c_loc(workSize))
     end function
 
-    function hipfftGetSize1d_typed(plan,nx,myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize1d_typed
-      type(c_ptr), value :: plan
-      integer(c_int) :: nx
-      integer(kind(HIPFFT_R2C)) :: myType
-      integer(c_int) :: batch
-      integer(c_size_t),target :: workSize
-      !
-      hipfftGetSize1d_typed = hipfftGetSize1d_(plan,nx,myType,batch,c_loc(workSize))
-    end function
-
-    function hipfftGetSize2d_typed(plan,nx,ny,myType,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize2d_typed
-      type(c_ptr), value :: plan
-      integer(c_int) :: nx
-      integer(c_int) :: ny
-      integer(kind(HIPFFT_R2C)) :: myType
-      integer(c_size_t),target :: workSize
-      !
-      hipfftGetSize2d_typed = hipfftGetSize2d_(plan,nx,ny,myType,c_loc(workSize))
-    end function
-
-    function hipfftGetSize3d_typed(plan,nx,ny,nz,myType,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize3d_typed
-      type(c_ptr), value :: plan
-      integer(c_int) :: nx
-      integer(c_int) :: ny
-      integer(c_int) :: nz
-      integer(kind(HIPFFT_R2C)) :: myType
-      integer(c_size_t),target :: workSize
-      !
-      hipfftGetSize3d_typed = hipfftGetSize3d_(plan,nx,ny,nz,myType,c_loc(workSize))
-    end function
-
-    function hipfftGetSizeMany_typed(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
-        myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_typed
-      type(c_ptr), value :: plan
-      integer(c_int) :: rank
-      type(c_ptr) :: n
-      type(c_ptr) :: inembed
-      integer(c_int) :: istride
-      integer(c_int) :: idist
-      type(c_ptr) :: onembed
-      integer(c_int) :: ostride
-      integer(c_int) :: odist
-      integer(kind(HIPFFT_R2C)) :: myType
-      integer(c_int) :: batch
-      integer(c_size_t),target :: workSize
-      !
-      hipfftGetSizeMany_typed = hipfftGetSizeMany_(plan,rank,n,inembed,istride,idist,onembed, &
-        ostride,odist,myType,batch,c_loc(workSize))
-    end function
-
-    function hipfftGetSizeMany64_typed(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
-        myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_typed
-      type(c_ptr), value :: plan
-      integer(c_int) :: rank
-      type(c_ptr) :: n
-      type(c_ptr) :: inembed
-      integer(c_int64_t) :: istride
-      integer(c_int64_t) :: idist
-      type(c_ptr) :: onembed
-      integer(c_int64_t) :: ostride
-      integer(c_int64_t) :: odist
-      integer(kind(HIPFFT_R2C)) :: myType
-      integer(c_int64_t) :: batch
-      integer(c_size_t),target :: workSize
-      !
-      hipfftGetSizeMany64_typed = hipfftGetSizeMany64_(plan,rank,n,inembed,istride,idist,onembed, &
-        ostride,odist,myType,batch,c_loc(workSize))
-    end function
-
-    function hipfftGetSize_typed(plan,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize_typed
-      type(c_ptr), value :: plan
-      integer(c_size_t),target :: workSize
-      !
-      hipfftGetSize_typed = hipfftGetSize_(plan,c_loc(workSize))
-    end function
-
     function hipfftGetVersion_typed(version)
       use iso_c_binding
       use hipfort_hipfft_enums
@@ -2084,60 +1939,6 @@ module hipfort_hipfft
       hipfftGetProperty_typed = hipfftGetProperty_(myType,c_loc(myValue))
     end function
 
-#ifndef USE_CUDA_NAMES
-    function hipfftXtMakePlanMany_typed(plan,rank,n,inembed,istride,idist,inputType,onembed, &
-        ostride,odist,outputType,batch,workSize,executionType)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtMakePlanMany_typed
-      type(c_ptr), value :: plan
-      integer(c_int) :: rank
-      type(c_ptr) :: n
-      type(c_ptr) :: inembed
-      integer(c_int64_t) :: istride
-      integer(c_int64_t) :: idist
-      integer(c_int) :: inputType
-      type(c_ptr) :: onembed
-      integer(c_int64_t) :: ostride
-      integer(c_int64_t) :: odist
-      integer(c_int) :: outputType
-      integer(c_int64_t) :: batch
-      integer(c_size_t),target :: workSize
-      integer(c_int) :: executionType
-      !
-      hipfftXtMakePlanMany_typed = hipfftXtMakePlanMany_(plan,rank,n,inembed,istride,idist, &
-        inputType,onembed,ostride,odist,outputType,batch,c_loc(workSize),executionType)
-    end function
-
-#endif
-#ifndef USE_CUDA_NAMES
-    function hipfftXtGetSizeMany_typed(plan,rank,n,inembed,istride,idist,inputType,onembed, &
-        ostride,odist,outputType,batch,workSize,executionType)
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtGetSizeMany_typed
-      type(c_ptr), value :: plan
-      integer(c_int) :: rank
-      type(c_ptr) :: n
-      type(c_ptr) :: inembed
-      integer(c_int64_t) :: istride
-      integer(c_int64_t) :: idist
-      integer(c_int) :: inputType
-      type(c_ptr) :: onembed
-      integer(c_int64_t) :: ostride
-      integer(c_int64_t) :: odist
-      integer(c_int) :: outputType
-      integer(c_int64_t) :: batch
-      integer(c_size_t),target :: workSize
-      integer(c_int) :: executionType
-      !
-      hipfftXtGetSizeMany_typed = hipfftXtGetSizeMany_(plan,rank,n,inembed,istride,idist, &
-        inputType,onembed,ostride,odist,outputType,batch,c_loc(workSize),executionType)
-    end function
-
-#endif
 
 #if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
@@ -2211,6 +2012,144 @@ module hipfort_hipfft
 
 #endif
 #ifdef USE_ASSUMED_RANK
+    function hipfftMakePlan1d_assumed_rank(plan,nx,myType,batch,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan1d_assumed_rank
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
+      integer(c_size_t),target,contiguous,dimension(..) :: workSize
+      !
+      hipfftMakePlan1d_assumed_rank = hipfftMakePlan1d_(plan,nx,myType,batch,c_loc(workSize))
+    end function
+
+#else
+    function hipfftMakePlan1d_rank_0(plan,nx,myType,batch,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan1d_rank_0
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
+      integer(c_size_t),target :: workSize
+      !
+      hipfftMakePlan1d_rank_0 = hipfftMakePlan1d_(plan,nx,myType,batch,c_loc(workSize))
+    end function
+
+    function hipfftMakePlan1d_rank_1(plan,nx,myType,batch,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan1d_rank_1
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
+      integer(c_size_t),target,dimension(:) :: workSize
+      !
+      hipfftMakePlan1d_rank_1 = hipfftMakePlan1d_(plan,nx,myType,batch,c_loc(workSize))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipfftMakePlan2d_assumed_rank(plan,nx,ny,myType,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan2d_assumed_rank
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_size_t),target,contiguous,dimension(..) :: workSize
+      !
+      hipfftMakePlan2d_assumed_rank = hipfftMakePlan2d_(plan,nx,ny,myType,c_loc(workSize))
+    end function
+
+#else
+    function hipfftMakePlan2d_rank_0(plan,nx,ny,myType,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan2d_rank_0
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_size_t),target :: workSize
+      !
+      hipfftMakePlan2d_rank_0 = hipfftMakePlan2d_(plan,nx,ny,myType,c_loc(workSize))
+    end function
+
+    function hipfftMakePlan2d_rank_1(plan,nx,ny,myType,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan2d_rank_1
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_size_t),target,dimension(:) :: workSize
+      !
+      hipfftMakePlan2d_rank_1 = hipfftMakePlan2d_(plan,nx,ny,myType,c_loc(workSize))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipfftMakePlan3d_assumed_rank(plan,nx,ny,nz,myType,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan3d_assumed_rank
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(c_int) :: nz
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_size_t),target,contiguous,dimension(..) :: workSize
+      !
+      hipfftMakePlan3d_assumed_rank = hipfftMakePlan3d_(plan,nx,ny,nz,myType,c_loc(workSize))
+    end function
+
+#else
+    function hipfftMakePlan3d_rank_0(plan,nx,ny,nz,myType,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan3d_rank_0
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(c_int) :: nz
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_size_t),target :: workSize
+      !
+      hipfftMakePlan3d_rank_0 = hipfftMakePlan3d_(plan,nx,ny,nz,myType,c_loc(workSize))
+    end function
+
+    function hipfftMakePlan3d_rank_1(plan,nx,ny,nz,myType,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan3d_rank_1
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(c_int) :: nz
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_size_t),target,dimension(:) :: workSize
+      !
+      hipfftMakePlan3d_rank_1 = hipfftMakePlan3d_(plan,nx,ny,nz,myType,c_loc(workSize))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
     function hipfftMakePlanMany_assumed_rank(plan,rank,n,inembed,istride,idist,onembed,ostride, &
         odist,myType,batch,workSize)
       use iso_c_binding
@@ -2228,7 +2167,7 @@ module hipfort_hipfft
       integer(c_int) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
       integer(c_int) :: batch
-      integer(c_size_t),target :: workSize
+      integer(c_size_t),target,contiguous,dimension(..) :: workSize
       !
       hipfftMakePlanMany_assumed_rank = hipfftMakePlanMany_(plan,rank,c_loc(n),c_loc(inembed), &
         istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -2275,7 +2214,7 @@ module hipfort_hipfft
       integer(c_int) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
       integer(c_int) :: batch
-      integer(c_size_t),target :: workSize
+      integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftMakePlanMany_rank_1 = hipfftMakePlanMany_(plan,rank,c_loc(n),c_loc(inembed),istride, &
         idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -2300,7 +2239,7 @@ module hipfort_hipfft
       integer(c_int64_t) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
       integer(c_int64_t) :: batch
-      integer(c_size_t),target :: workSize
+      integer(c_size_t),target,contiguous,dimension(..) :: workSize
       !
       hipfftMakePlanMany64_assumed_rank = hipfftMakePlanMany64_(plan,rank,c_loc(n),c_loc(inembed), &
         istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -2347,7 +2286,7 @@ module hipfort_hipfft
       integer(c_int64_t) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
       integer(c_int64_t) :: batch
-      integer(c_size_t),target :: workSize
+      integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftMakePlanMany64_rank_1 = hipfftMakePlanMany64_(plan,rank,c_loc(n),c_loc(inembed), &
         istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -2424,6 +2363,144 @@ module hipfort_hipfft
 
 #endif
 #ifdef USE_ASSUMED_RANK
+    function hipfftGetSize1d_assumed_rank(plan,nx,myType,batch,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize1d_assumed_rank
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
+      integer(c_size_t),target,contiguous,dimension(..) :: workSize
+      !
+      hipfftGetSize1d_assumed_rank = hipfftGetSize1d_(plan,nx,myType,batch,c_loc(workSize))
+    end function
+
+#else
+    function hipfftGetSize1d_rank_0(plan,nx,myType,batch,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize1d_rank_0
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
+      integer(c_size_t),target :: workSize
+      !
+      hipfftGetSize1d_rank_0 = hipfftGetSize1d_(plan,nx,myType,batch,c_loc(workSize))
+    end function
+
+    function hipfftGetSize1d_rank_1(plan,nx,myType,batch,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize1d_rank_1
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_int) :: batch
+      integer(c_size_t),target,dimension(:) :: workSize
+      !
+      hipfftGetSize1d_rank_1 = hipfftGetSize1d_(plan,nx,myType,batch,c_loc(workSize))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipfftGetSize2d_assumed_rank(plan,nx,ny,myType,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize2d_assumed_rank
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_size_t),target,contiguous,dimension(..) :: workSize
+      !
+      hipfftGetSize2d_assumed_rank = hipfftGetSize2d_(plan,nx,ny,myType,c_loc(workSize))
+    end function
+
+#else
+    function hipfftGetSize2d_rank_0(plan,nx,ny,myType,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize2d_rank_0
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_size_t),target :: workSize
+      !
+      hipfftGetSize2d_rank_0 = hipfftGetSize2d_(plan,nx,ny,myType,c_loc(workSize))
+    end function
+
+    function hipfftGetSize2d_rank_1(plan,nx,ny,myType,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize2d_rank_1
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_size_t),target,dimension(:) :: workSize
+      !
+      hipfftGetSize2d_rank_1 = hipfftGetSize2d_(plan,nx,ny,myType,c_loc(workSize))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipfftGetSize3d_assumed_rank(plan,nx,ny,nz,myType,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize3d_assumed_rank
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(c_int) :: nz
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_size_t),target,contiguous,dimension(..) :: workSize
+      !
+      hipfftGetSize3d_assumed_rank = hipfftGetSize3d_(plan,nx,ny,nz,myType,c_loc(workSize))
+    end function
+
+#else
+    function hipfftGetSize3d_rank_0(plan,nx,ny,nz,myType,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize3d_rank_0
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(c_int) :: nz
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_size_t),target :: workSize
+      !
+      hipfftGetSize3d_rank_0 = hipfftGetSize3d_(plan,nx,ny,nz,myType,c_loc(workSize))
+    end function
+
+    function hipfftGetSize3d_rank_1(plan,nx,ny,nz,myType,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize3d_rank_1
+      type(c_ptr), value :: plan
+      integer(c_int) :: nx
+      integer(c_int) :: ny
+      integer(c_int) :: nz
+      integer(kind(HIPFFT_R2C)) :: myType
+      integer(c_size_t),target,dimension(:) :: workSize
+      !
+      hipfftGetSize3d_rank_1 = hipfftGetSize3d_(plan,nx,ny,nz,myType,c_loc(workSize))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
     function hipfftGetSizeMany_assumed_rank(plan,rank,n,inembed,istride,idist,onembed,ostride, &
         odist,myType,batch,workSize)
       use iso_c_binding
@@ -2441,7 +2518,7 @@ module hipfort_hipfft
       integer(c_int) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
       integer(c_int) :: batch
-      integer(c_size_t),target :: workSize
+      integer(c_size_t),target,contiguous,dimension(..) :: workSize
       !
       hipfftGetSizeMany_assumed_rank = hipfftGetSizeMany_(plan,rank,c_loc(n),c_loc(inembed), &
         istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -2488,7 +2565,7 @@ module hipfort_hipfft
       integer(c_int) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
       integer(c_int) :: batch
-      integer(c_size_t),target :: workSize
+      integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftGetSizeMany_rank_1 = hipfftGetSizeMany_(plan,rank,c_loc(n),c_loc(inembed),istride, &
         idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -2513,7 +2590,7 @@ module hipfort_hipfft
       integer(c_int64_t) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
       integer(c_int64_t) :: batch
-      integer(c_size_t),target :: workSize
+      integer(c_size_t),target,contiguous,dimension(..) :: workSize
       !
       hipfftGetSizeMany64_assumed_rank = hipfftGetSizeMany64_(plan,rank,c_loc(n),c_loc(inembed), &
         istride,idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
@@ -2560,10 +2637,46 @@ module hipfort_hipfft
       integer(c_int64_t) :: odist
       integer(kind(HIPFFT_R2C)) :: myType
       integer(c_int64_t) :: batch
-      integer(c_size_t),target :: workSize
+      integer(c_size_t),target,dimension(:) :: workSize
       !
       hipfftGetSizeMany64_rank_1 = hipfftGetSizeMany64_(plan,rank,c_loc(n),c_loc(inembed),istride, &
         idist,c_loc(onembed),ostride,odist,myType,batch,c_loc(workSize))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipfftGetSize_assumed_rank(plan,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize_assumed_rank
+      type(c_ptr), value :: plan
+      integer(c_size_t),target,contiguous,dimension(..) :: workSize
+      !
+      hipfftGetSize_assumed_rank = hipfftGetSize_(plan,c_loc(workSize))
+    end function
+
+#else
+    function hipfftGetSize_rank_0(plan,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize_rank_0
+      type(c_ptr), value :: plan
+      integer(c_size_t),target :: workSize
+      !
+      hipfftGetSize_rank_0 = hipfftGetSize_(plan,c_loc(workSize))
+    end function
+
+    function hipfftGetSize_rank_1(plan,workSize)
+      use iso_c_binding
+      use hipfort_hipfft_enums
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize_rank_1
+      type(c_ptr), value :: plan
+      integer(c_size_t),target,dimension(:) :: workSize
+      !
+      hipfftGetSize_rank_1 = hipfftGetSize_(plan,c_loc(workSize))
     end function
 
 #endif
