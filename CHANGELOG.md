@@ -4,29 +4,34 @@
 
 ### Added
 
-* The hipFFT Xt API in `hipfort_hipfft`, as `bind(C)` interfaces: the multi-GPU
+* The hipFFT Xt API in `hipfort_hipfft`, as `bind(C)` interfaces (with `_typed`
+  forms for `hipfftXtMakePlanMany` and `hipfftXtGetSizeMany`): the multi-GPU
   routines (`hipfftXtSetGPUs`, `hipfftXtMalloc`, `hipfftXtMemcpy`, `hipfftXtFree`,
   the `hipfftXtExecDescriptor*` family), `hipfftXtMakePlanMany`,
   `hipfftXtGetSizeMany` and `hipfftXtExec` on `hipDataType`, and the callback
   routines. The `hipXtDesc` and `hipLibXtDesc` types are in the new
   `hipfort_hipfft_types` module, and the Xt enums in `hipfort_hipfft_enums`.
   On AMD GPUs the descriptor routines need a plan spread over two or more GPUs,
-  and a multi-GPU plan writes one work size per GPU. The multi-process routines
+  and a multi-GPU plan writes one work size per GPU: pass `c_loc` of an
+  `integer(c_size_t)` array as `workSize`. The multi-process routines
   of `hipfftMp.h` (`hipfftMpAttachComm`, `hipfftXtSetDistribution`,
   `hipfftXtSetSubformatDefault`) are bound too, but exist only in a hipFFT built
   with MPI support, which the ROCm packages are not. On the CUDA backend the Xt
-  and multi-process routines are not available. The hipFFT examples document
+  and multi-process routines added here are not available. The hipFFT examples document
   the multi-GPU and MPI workflows.
 * Array overloads for the ILP64 (`_64`) routines of rocBLAS, hipBLAS and
-  rocSOLVER (`rocblas_sscal_64`, ...), which only had their `bind(C)` and
-  `_typed` forms.
+  rocSOLVER (`rocblas_sscal_64`, ...), the same as their 32-bit counterparts'
+  (`rank_N`, `full_rank`, assumed-rank). They only had their `bind(C)` and, for
+  some, `_typed` forms. rocBLAS's `rocblas_{set,get}_{vector,matrix}*_64`
+  transfer helpers still have only their `bind(C)` form.
 
 ### Changed
 
-* The `bind(C)` specifics of `hipblasSetVector`, `hipblasGetVector`,
+* **Breaking for calls by keyword.** The `bind(C)` specifics of
+  `hipblasSetVector`, `hipblasGetVector`,
   `hipblasSetMatrix`, `hipblasGetMatrix` and their `Async` forms spell their
   arguments as the hipBLAS headers do: `elemSize`, `AP` and `BP` instead of
-  `elem_size`, `A` and `B`. Only calls by keyword are affected; the typed
+  `elem_size`, `A` and `B`. Only calls by keyword are affected; the array
   overloads are unchanged.
 * Each backend archive (`libhipfort-amdgcn.a`, `libhipfort-nvptx.a`) is
   compiled with one section per procedure (`-ffunction-sections
@@ -42,7 +47,8 @@
   those of the math libraries. A build with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`
   no longer has them: pass a `type(c_ptr)` and a byte count.
 * `fftw_iodim64` declares its fields `integer(c_intptr_t)` instead of
-  `integer(c_ptrdiff_t)`, which is Fortran 2008. Both kinds are equal on every
+  `integer(c_ptrdiff_t)`, a Fortran 2008 kind, so `hipfort_hipfftw_types`
+  compiles with a Fortran 2003 compiler. Both kinds are equal on every
   platform ROCm supports, so existing code is unaffected.
 * The `_typed` forms of hipSOLVER and hipSPARSE declare their `hipDataType`
   arguments `integer(c_int)`, like their `bind(C)` interfaces, instead of
@@ -51,10 +57,10 @@
 
 ### Fixed
 
-* A typed `hipMalloc`, `hipMallocManaged` or `hipHostMalloc` that fails now
-  leaves its pointer unassociated. It used to associate it with whatever the
-  uninitialized C pointer held (NULL, or an arbitrary address if HIP returned
-  before writing it), so `associated(ptr)` was true and
+* An array overload of `hipMalloc`, `hipMallocManaged` or `hipHostMalloc` that
+  fails now leaves its pointer unassociated. It used to associate it with
+  whatever the uninitialized C pointer held (NULL, or an arbitrary address if HIP
+  returned before writing it), so `associated(ptr)` was true and
   `hipFree(ptr, only_if_allocated=.true.)` freed that address. `hipFree` and
   `hipHostFree` no longer take `c_loc` of an unassociated pointer: without
   `only_if_allocated` they free NULL, as the C call does.
