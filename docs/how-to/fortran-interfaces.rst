@@ -37,6 +37,106 @@ Independently of these variants, a routine that takes a scalar through a pointer
 accepts either the Fortran variable or its address; see
 `Scalar arguments passed by pointer`_.
 
+How a variant is selected
+-------------------------
+
+Each C routine ``X`` becomes a generic interface ``X``. You always call ``X``;
+the compiler picks the specific procedure that matches your arguments. The
+Fortran 2008 and Fortran 2018 specifics are compiled in or out by the
+preprocessor, which is why the binding sources are ``.F90`` files:
+
+.. code-block:: fortran
+
+   interface rocblas_dscal
+     function rocblas_dscal_(handle, n, alpha, x, incx) bind(c, name="rocblas_dscal")
+       ...
+     end function
+     module procedure rocblas_dscal_typed
+   #ifdef USE_ASSUMED_RANK
+     module procedure rocblas_dscal_assumed_rank
+   #else
+   #ifdef USE_ASSUMED_SHAPE
+     module procedure rocblas_dscal_rank_0, rocblas_dscal_rank_1
+   #endif
+   #endif
+   end interface
+
+``-DHIPFORT_USE_FPOINTER_INTERFACES=ON`` (the default when the compiler supports
+Fortran 2008) defines ``USE_ASSUMED_SHAPE``, and ``-DHIPFORT_ASSUMED_RANK=ON``
+defines ``USE_ASSUMED_RANK`` instead. If you compile the binding sources yourself,
+define the same macro.
+
+Specific procedure names
+------------------------
+
+The specific procedures appear under these names in the API reference and in the
+supported-API tables. Call them through the generic name ``X``.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 22 12 66
+
+   * - Specific
+     - Standard
+     - What it takes
+   * - ``X_``
+     - Fortran 2003
+     - The ``bind(C)`` interface of the C routine: every pointer is a
+       ``type(c_ptr), value``, and buffer sizes are in bytes.
+   * - ``X_typed``
+     - Fortran 2003
+     - A scalar the C routine takes through a pointer (``alpha``, an output
+       size, ...) as a Fortran variable; buffers stay ``type(c_ptr)``. See
+       `Scalar arguments passed by pointer`_.
+   * - ``X_devptr``
+     - Fortran 2003
+     - For routines that mix scalars read per the pointer mode and host-only
+       scalars: the former as ``type(c_ptr)``, the latter as variables. See
+       `Device pointer mode`_.
+   * - ``X_opt``
+     - Fortran 2003
+     - An argument the C API allows to be ``NULL`` as an ``optional`` argument,
+       passed as ``c_null_ptr`` when absent. It takes the place of ``X_`` in the
+       generic.
+   * - ``X_rank_N``
+     - Fortran 2008
+     - Buffers as Fortran arrays of rank ``N``, ``dimension(:,...)``, and their
+       sizes in elements. ``N`` goes from 0 (a scalar) up to the highest rank
+       the routine supports.
+   * - ``X_full_rank``
+     - Fortran 2008
+     - A buffer followed by its leading dimension (``A``, ``lda``) as a 2-D
+       array, ``dimension(:,:)``; you still pass the leading dimension.
+   * - ``X_rank_N_devptr``, ``X_full_rank_devptr``
+     - Fortran 2008
+     - As above, with a scalar that ``X_rank_N`` takes as a variable passed as a
+       ``type(c_ptr)`` instead: a scalar the GPU writes (hipSOLVER's
+       ``devInfo``), or a result in device pointer mode (``rocblas_sdot``'s
+       ``result``). See `Device-only scalars`_.
+   * - ``X_assumed_rank``, ``X_assumed_rank_devptr``
+     - Fortran 2018
+     - Buffers as ``contiguous, dimension(..)`` arrays of any rank, replacing the
+       ``X_rank_N`` and ``X_full_rank`` specifics. See
+       `Assumed-rank interfaces (Fortran 2018)`_.
+
+Passing arrays to the array overloads
+-------------------------------------
+
+The array overloads hand the address of the array to the C library, which reads
+it as one contiguous block. Pass **contiguous** arrays: a whole array, or a
+section such as ``a(:, j)`` or ``a(i:j)``. A strided section such as
+``a(1:n:2)`` is not rejected by the Fortran 2008 overloads, but the library then
+reads the wrong elements. The Fortran 2018 overloads declare their arrays
+``contiguous``, so the compiler passes a contiguous copy of such a section,
+which is fatal for an array in device memory on GPUs without XNACK enabled.
+
+The address is that of your array, valid as long as the array is. For an
+asynchronous routine, such as ``hipMemcpyAsync`` from a host array, keep the
+array alive and unchanged until the stream has completed, and give it the
+``target`` attribute: if the compiler has to pass a temporary copy (an
+expression, a non-contiguous section), the copy disappears when the call
+returns, while the transfer may still be running.
+
 Allocating and copying device memory
 ====================================
 
@@ -82,6 +182,43 @@ of another array without copying anything, while ``source`` takes its shape
 
 Use ``dsource`` instead of ``source`` when the source array already lives on the
 device.
+
+The other allocation forms:
+
+* ``hipMalloc(a_d, n1, n2, ...)`` takes one length per dimension, as
+  ``integer(c_int)`` or ``integer(c_size_t)``.
+* ``hipMalloc(a_d, dims=[n1, n2], lbounds=[0, 0])`` sets the lower bounds of the
+  pointer; ``dims8`` and ``lbounds8`` are their ``integer(c_int64_t)`` spelling.
+  Pass exactly one of ``dims``, ``dims8``, ``mold``, ``source`` and ``dsource``.
+* ``hipMallocManaged`` and ``hipHostMalloc`` take the same forms, followed by the
+  HIP ``flags``. In the forms with lengths, ``flags`` is optional and defaults to
+  ``hipMemAttachGlobal`` and ``hipHostMallocDefault``.
+* ``hipFree(a_d)`` and ``hipHostFree(a_d)`` free the memory and nullify the
+  pointer. ``hipFree(a_d, only_if_allocated=.true.)`` does nothing when ``a_d``
+  is not associated.
+
+When an allocation fails, the pointer is left unassociated, so
+``associated(a_d)`` tells whether the memory exists, and ``hipFree(a_d,
+only_if_allocated=.true.)`` is safe in a cleanup path.
+
+The copy routines count elements, not bytes: the ``length`` of ``hipMemcpy`` and
+``hipMemcpyAsync``, and the pitches, ``width`` and ``height`` of ``hipMemcpy2D``
+and ``hipMemcpy2DAsync``, for arrays of the same element type on both sides.
+``hipHostRegister(a, flags)`` registers a whole host array; a form with lengths
+registers its first elements. ``hipHostGetDevicePointer`` and
+``hipHostGetFlags`` take the host array itself.
+
+These typed families exist for ``logical(c_bool)``, ``integer(c_int)``,
+``integer(c_int64_t)``, ``real(c_float)``, ``real(c_double)``,
+``complex(c_float_complex)`` and ``complex(c_double_complex)`` arrays of rank 0
+to 7.
+
+The vector and matrix transfer helpers of rocBLAS and hipBLAS
+(``rocblas_set_vector``, ``hipblasGetMatrix``, their asynchronous forms, ...)
+have the same element types: a vector as a scalar or a rank-1 array, and a
+matrix as a scalar, a rank-2 array, whose leading dimension is then ``size(A, 1)``, or as
+a rank-1 array with an explicit leading dimension. The element size the C
+routine takes is derived from the array type.
 
 Like the array interfaces of the math libraries, these ``hipMalloc`` and
 ``hipMemcpy`` overloads exist only when the Fortran 2008 interfaces are enabled: a
@@ -167,12 +304,8 @@ hipSOLVER's ``devInfo`` is written by the GPU, so it is always device memory.
 
 .. note::
 
-   In the API reference and the supported-API tables, the Fortran-variable form
-   of a routine ``X`` appears as the module procedure ``X_typed``, and the
-   forms that take a device scalar as a ``type(c_ptr)`` where another form of
-   the same routine takes it as a variable (the routines that mix both kinds of
-   scalar, and the array overloads of routines such as ``rocblas_sdot``) as
-   ``X_devptr``. Call them through the generic name ``X``.
+   These forms appear as the ``X_typed`` and ``X_devptr`` specifics in the API
+   reference; see `Specific procedure names`_.
 
 Assumed-rank interfaces (Fortran 2018)
 ======================================
