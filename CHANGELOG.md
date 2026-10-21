@@ -19,10 +19,10 @@
   with MPI support, which the ROCm packages are not. On the CUDA backend the Xt
   and multi-process routines added here are not available. The hipFFT examples document
   the multi-GPU and MPI workflows.
-* Array overloads for the ILP64 (`_64`) routines of rocBLAS, hipBLAS and
-  rocSOLVER (`rocblas_sscal_64`, ...), the same as their 32-bit counterparts'
-  (`rank_N`, `full_rank`, assumed-rank). They only had their `bind(C)` and, for
-  some, `_typed` forms. rocBLAS's `rocblas_{set,get}_{vector,matrix}*_64`
+* Array overloads (`rank_N`, `full_rank`, assumed-rank) for the ILP64 (`_64`)
+  routines of rocBLAS, hipBLAS and rocSOLVER (`rocblas_sscal_64`, ...), the same
+  as for their 32-bit counterparts. They only had their `bind(C)` and, for some,
+  `_typed` forms. rocBLAS's `rocblas_{set,get}_{vector,matrix}*_64`
   transfer helpers still have only their `bind(C)` form.
 
 ### Changed

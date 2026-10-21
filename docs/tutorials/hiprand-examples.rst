@@ -59,8 +59,9 @@ Keep the following conventions in mind:
 
 * The programs generate **directly into device memory**. The C binding takes
   ``type(c_ptr)``; the programs pass ``c_loc(dx(1))`` to it explicitly, although
-  an array overload that accepts ``dx`` directly also exists. (hipRAND also provides host generators via
-  ``hiprandCreateGeneratorHost``, which are not covered here.)
+  an array overload that accepts ``dx`` directly also exists. (hipRAND also
+  provides host generators via ``hiprandCreateGeneratorHost``, which are not covered
+  here.)
 * The count argument is the number of *elements*, typed
   ``integer(c_size_t)``, not a byte count.
 * A fixed seed makes a pseudo-random sequence reproducible, which is what lets

@@ -68,8 +68,6 @@ or by setting the CMake cache variables:
 *  ``HIPFORT_ASSUMED_RANK``: Use the experimental Fortran 2018 assumed-rank array interfaces instead of the per-rank overloads (``OFF`` by default)
 *  ``HIPFORT_MULTITOOLCHAIN_LAYOUT``: Install the modules and the library into compiler-specific subdirectories (``ON`` by default)
 *  ``BUILD_TESTING``: Build the CTest suite (``OFF`` by default)
-*  ``HIPFORT_EXTENDED_TESTS``: Also link each backend archive into a shared library and fail on undefined symbols (``OFF`` by default)
-*  ``HIPFORT_CODE_COVERAGE``: Instrument the bindings for a gcov coverage report of the tests (``OFF`` by default)
 
 .. _hipfort-toolchain-files:
 

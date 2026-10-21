@@ -224,7 +224,7 @@ The other allocation forms:
   ``integer(c_int)`` or ``integer(c_size_t)``.
 * ``hipMalloc(a_d, dims=[n1, n2], lbounds=[0, 0])`` sets the lower bounds of the
   pointer; ``dims8`` and ``lbounds8`` are their ``integer(c_int64_t)`` spelling.
-  Pass exactly one of ``dims``, ``dims8``, ``mold``, ``source`` and ``dsource``.
+  Pass exactly one of ``dims``, ``dims8``, ``mold``, ``source`` or ``dsource``.
 * ``hipMallocManaged`` and ``hipHostMalloc`` take the same forms, followed by the
   HIP ``flags``. In the forms with lengths, ``flags`` is optional and defaults to
   ``hipMemAttachGlobal`` and ``hipHostMallocDefault``.

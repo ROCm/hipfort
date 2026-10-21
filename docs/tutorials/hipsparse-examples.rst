@@ -44,7 +44,7 @@ hipSPARSE follows a small number of conventions that recur in every program:
   wraps the operands in matrix/vector descriptors (``hipsparseCreateCsr``,
   ``hipsparseCreateDnMat``, ``hipsparseCreateDnVec``) and runs in stages: query
   a workspace size, optionally preprocess/analyze, then compute. The older
-  info-handle API (``csrsv2``, ``csrilu02``) uses an info handle and a
+  API (``csrsv2``, ``csrilu02``) uses an info handle and a
   matrix descriptor (``hipsparseCreateMatDescr``), while ``gemvi`` only needs a
   plain workspace buffer.
 * **Zero-size buffers.** For SpMV, SpMM and SDDMM, when the workspace query
