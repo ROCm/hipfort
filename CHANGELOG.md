@@ -42,6 +42,13 @@
 
 ### Fixed
 
+* A typed `hipMalloc`, `hipMallocManaged` or `hipHostMalloc` that fails now
+  leaves its pointer unassociated. It used to associate it with whatever the
+  uninitialized C pointer held (NULL, or an arbitrary address if HIP returned
+  before writing it), so `associated(ptr)` was true and
+  `hipFree(ptr, only_if_allocated=.true.)` freed that address. `hipFree` and
+  `hipHostFree` no longer take `c_loc` of an unassociated pointer: without
+  `only_if_allocated` they free NULL, as the C call does.
 * Fixed `-DHIPFORT_ASSUMED_RANK=ON` with nvfortran, whose `c_loc` of an
   assumed-rank argument returns a wrong address for a scalar or an array of rank
   2 or more: the assumed-rank overloads passed a wrong pointer to the C library.
