@@ -105,6 +105,11 @@ is only defined when that component is requested. The Fortran language must be e
 before ``find_package(hipfort)``. See :doc:`../how-to/using-hipfort` for the full
 component list.
 
+On Linux, link your executable with ``-Wl,--gc-sections``. It keeps only the
+hipFORT wrappers your program calls, and lets the program link against a ROCm
+release older than hipFORT as long as it does not call the newer routines. See
+:ref:`hipfort-gc-sections`.
+
 The installed CMake package follows the backend the components were exported for.
 On ROCm, ``hipfort-config.cmake`` pulls in ``libhipfort-amdgcn`` and resolves each
 component against its ROCm package. On a host where HIP does not target

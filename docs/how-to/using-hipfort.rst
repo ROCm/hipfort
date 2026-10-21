@@ -95,6 +95,46 @@ If hipFORT is not in a default location,
 point CMake at it with ``-Dhipfort_ROOT=/path/to/hipfort`` (or
 ``CMAKE_PREFIX_PATH``).
 
+.. _hipfort-gc-sections:
+
+Linking only the routines you call
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Each hipFORT module compiles to one object file, and a linker takes whole object
+files from an archive, so a program that calls one rocBLAS routine links every
+rocBLAS wrapper of hipFORT. hipFORT compiles each procedure into its own section,
+so linking with ``-Wl,--gc-sections`` keeps only the wrappers your program calls,
+and the program is smaller.
+
+It also matters when hipFORT is newer than the installed ROCm, for example when
+you build hipFORT from its ``develop`` branch against an older ROCm release. A
+wrapper can then call a routine the installed library does not export. Without
+``-Wl,--gc-sections``, that wrapper makes every link against the library fail,
+even if your program never calls the routine. With it, your program links as
+long as it only calls routines the installed library exports.
+
+On Linux, add the option to your executable:
+
+.. code-block:: cmake
+
+   if(NOT APPLE AND NOT WIN32)
+     target_link_options(my_app PRIVATE -Wl,--gc-sections)
+   endif()
+
+Write ``-Wl,--gc-sections`` rather than ``LINKER:--gc-sections``: CMake 3.27
+passes the latter to ``amdflang`` without the ``-Wl,`` prefix, and the link fails.
+Without CMake, add ``-Wl,--gc-sections`` to the command that links your program.
+
+.. note::
+
+   If you build a shared library rather than an executable, also link it with
+   ``-Wl,--exclude-libs,libhipfort-amdgcn.a``. A shared library exports its
+   global symbols by default, including the hipFORT wrappers it links, and the
+   linker never removes an exported symbol, so ``-Wl,--gc-sections`` alone keeps
+   them all. ``--exclude-libs`` keeps the wrappers in your library, where your
+   code calls them as before, but stops exporting them, so the unused ones can
+   be removed.
+
 Multiple Fortran toolchains
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -132,7 +172,10 @@ For the FFTW3-compatible interface, see the
 Supported HIP and ROCm APIs
 ---------------------------
 
-The current set of hipFORT interfaces is derived from ROCm 10.1.0. The following tables list the supported APIs:
+The current set of hipFORT interfaces is derived from ROCm 10.1.0. With an older
+ROCm, some of these routines are missing from the installed libraries: link with
+``-Wl,--gc-sections`` (see :ref:`hipfort-gc-sections`) so that your program still
+links as long as it does not call them. The following tables list the supported APIs:
 
 * :doc:`HIP API <../doxygen/html/md_input_2supported__api__hip>`
 * :doc:`hipBLAS API <../doxygen/html/md_input_2supported__api__hipblas>`
