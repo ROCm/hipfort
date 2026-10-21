@@ -242,6 +242,61 @@ module hipfort_rocblas
     end function
   end interface
 
+  !>  \brief Copy vector from host to device.
+  !>     @param[in] n - [rocblas_int]
+  !>                 number of elements in the vector
+  !>     @param[in] elem_size - [rocblas_int]
+  !>                 number of bytes per element in the matrix
+  !>     @param[in] x - pointer to vector on the host
+  !>     @param[in] incx - [rocblas_int]
+  !>                 specifies the increment for the elements of the vector
+  !>     @param[out] y - pointer to vector on the device
+  !>     @param[in] incy - [rocblas_int]
+  !>                 specifies the increment for the elements of the vector
+  interface rocblas_set_vector
+    function rocblas_set_vector_(n,elem_size,x,incx,y,incy) bind(c, name="rocblas_set_vector")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(c_int) :: rocblas_set_vector_
+      integer(c_int),value :: n
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      rocblas_set_vector_l_assumed_rank,&
+      rocblas_set_vector_i4_assumed_rank,&
+      rocblas_set_vector_i8_assumed_rank,&
+      rocblas_set_vector_r4_assumed_rank,&
+      rocblas_set_vector_r8_assumed_rank,&
+      rocblas_set_vector_c4_assumed_rank,&
+      rocblas_set_vector_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      rocblas_set_vector_l_rank_0,&
+      rocblas_set_vector_l_full_rank,&
+      rocblas_set_vector_i4_rank_0,&
+      rocblas_set_vector_i4_full_rank,&
+      rocblas_set_vector_i8_rank_0,&
+      rocblas_set_vector_i8_full_rank,&
+      rocblas_set_vector_r4_rank_0,&
+      rocblas_set_vector_r4_full_rank,&
+      rocblas_set_vector_r8_rank_0,&
+      rocblas_set_vector_r8_full_rank,&
+      rocblas_set_vector_c4_rank_0,&
+      rocblas_set_vector_c4_full_rank,&
+      rocblas_set_vector_c8_rank_0,&
+      rocblas_set_vector_c8_full_rank
+#endif
+#endif
+  end interface
+
   interface rocblas_set_vector_64
     function rocblas_set_vector_64_(n,elem_size,x,incx,y,incy) bind(c, name="rocblas_set_vector_64")
       use iso_c_binding
@@ -257,6 +312,61 @@ module hipfort_rocblas
     end function
   end interface
 
+  !>  \brief Copy vector from device to host.
+  !>     @param[in] n - [rocblas_int]
+  !>                 number of elements in the vector
+  !>     @param[in] elem_size - [rocblas_int]
+  !>                 number of bytes per element in the matrix
+  !>     @param[in] x - pointer to vector on the device
+  !>     @param[in] incx - [rocblas_int]
+  !>                 specifies the increment for the elements of the vector
+  !>     @param[out] y - pointer to vector on the host
+  !>     @param[in] incy - [rocblas_int]
+  !>                 specifies the increment for the elements of the vector
+  interface rocblas_get_vector
+    function rocblas_get_vector_(n,elem_size,x,incx,y,incy) bind(c, name="rocblas_get_vector")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(c_int) :: rocblas_get_vector_
+      integer(c_int),value :: n
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      rocblas_get_vector_l_assumed_rank,&
+      rocblas_get_vector_i4_assumed_rank,&
+      rocblas_get_vector_i8_assumed_rank,&
+      rocblas_get_vector_r4_assumed_rank,&
+      rocblas_get_vector_r8_assumed_rank,&
+      rocblas_get_vector_c4_assumed_rank,&
+      rocblas_get_vector_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      rocblas_get_vector_l_rank_0,&
+      rocblas_get_vector_l_full_rank,&
+      rocblas_get_vector_i4_rank_0,&
+      rocblas_get_vector_i4_full_rank,&
+      rocblas_get_vector_i8_rank_0,&
+      rocblas_get_vector_i8_full_rank,&
+      rocblas_get_vector_r4_rank_0,&
+      rocblas_get_vector_r4_full_rank,&
+      rocblas_get_vector_r8_rank_0,&
+      rocblas_get_vector_r8_full_rank,&
+      rocblas_get_vector_c4_rank_0,&
+      rocblas_get_vector_c4_full_rank,&
+      rocblas_get_vector_c8_rank_0,&
+      rocblas_get_vector_c8_full_rank
+#endif
+#endif
+  end interface
+
   interface rocblas_get_vector_64
     function rocblas_get_vector_64_(n,elem_size,x,incx,y,incy) bind(c, name="rocblas_get_vector_64")
       use iso_c_binding
@@ -270,6 +380,71 @@ module hipfort_rocblas
       type(c_ptr),value :: y
       integer(c_int64_t),value :: incy
     end function
+  end interface
+
+  !>  \brief Copy matrix from host to device.
+  !>     @param[in] rows - [rocblas_int]
+  !>                 number of rows in matrices
+  !>     @param[in] cols - [rocblas_int]
+  !>                 number of columns in matrices
+  !>     @param[in] elem_size - [rocblas_int]
+  !>                 number of bytes per element in the matrix
+  !>     @param[in] a - pointer to matrix on the host
+  !>     @param[in] lda - [rocblas_int]
+  !>                 specifies the leading dimension of A, lda >= rows
+  !>     @param[out] b - pointer to matrix on the GPU
+  !>     @param[in] ldb - [rocblas_int]
+  !>                 specifies the leading dimension of B, ldb >= rows
+  interface rocblas_set_matrix
+    function rocblas_set_matrix_(rows,cols,elem_size,a,lda,b,ldb) bind(c, name="rocblas_set_matrix")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(c_int) :: rocblas_set_matrix_
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: a
+      integer(c_int),value :: lda
+      type(c_ptr),value :: b
+      integer(c_int),value :: ldb
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      rocblas_set_matrix_l_assumed_rank,&
+      rocblas_set_matrix_i4_assumed_rank,&
+      rocblas_set_matrix_i8_assumed_rank,&
+      rocblas_set_matrix_r4_assumed_rank,&
+      rocblas_set_matrix_r8_assumed_rank,&
+      rocblas_set_matrix_c4_assumed_rank,&
+      rocblas_set_matrix_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      rocblas_set_matrix_l_full_rank,&
+      rocblas_set_matrix_l_rank_0,&
+      rocblas_set_matrix_l_rank_1,&
+      rocblas_set_matrix_i4_full_rank,&
+      rocblas_set_matrix_i4_rank_0,&
+      rocblas_set_matrix_i4_rank_1,&
+      rocblas_set_matrix_i8_full_rank,&
+      rocblas_set_matrix_i8_rank_0,&
+      rocblas_set_matrix_i8_rank_1,&
+      rocblas_set_matrix_r4_full_rank,&
+      rocblas_set_matrix_r4_rank_0,&
+      rocblas_set_matrix_r4_rank_1,&
+      rocblas_set_matrix_r8_full_rank,&
+      rocblas_set_matrix_r8_rank_0,&
+      rocblas_set_matrix_r8_rank_1,&
+      rocblas_set_matrix_c4_full_rank,&
+      rocblas_set_matrix_c4_rank_0,&
+      rocblas_set_matrix_c4_rank_1,&
+      rocblas_set_matrix_c8_full_rank,&
+      rocblas_set_matrix_c8_rank_0,&
+      rocblas_set_matrix_c8_rank_1
+#endif
+#endif
   end interface
 
   interface rocblas_set_matrix_64
@@ -289,6 +464,71 @@ module hipfort_rocblas
     end function
   end interface
 
+  !>  \brief Copy matrix from device to host.
+  !>     @param[in] rows - [rocblas_int]
+  !>                 number of rows in matrices
+  !>     @param[in] cols - [rocblas_int]
+  !>                 number of columns in matrices
+  !>     @param[in] elem_size - [rocblas_int]
+  !>                 number of bytes per element in the matrix
+  !>     @param[in] a - pointer to matrix on the GPU
+  !>     @param[in] lda - [rocblas_int]
+  !>                 specifies the leading dimension of A, lda >= rows
+  !>     @param[out] b - pointer to matrix on the host
+  !>     @param[in] ldb - [rocblas_int]
+  !>                 specifies the leading dimension of B, ldb >= rows
+  interface rocblas_get_matrix
+    function rocblas_get_matrix_(rows,cols,elem_size,a,lda,b,ldb) bind(c, name="rocblas_get_matrix")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(c_int) :: rocblas_get_matrix_
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: a
+      integer(c_int),value :: lda
+      type(c_ptr),value :: b
+      integer(c_int),value :: ldb
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      rocblas_get_matrix_l_assumed_rank,&
+      rocblas_get_matrix_i4_assumed_rank,&
+      rocblas_get_matrix_i8_assumed_rank,&
+      rocblas_get_matrix_r4_assumed_rank,&
+      rocblas_get_matrix_r8_assumed_rank,&
+      rocblas_get_matrix_c4_assumed_rank,&
+      rocblas_get_matrix_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      rocblas_get_matrix_l_full_rank,&
+      rocblas_get_matrix_l_rank_0,&
+      rocblas_get_matrix_l_rank_1,&
+      rocblas_get_matrix_i4_full_rank,&
+      rocblas_get_matrix_i4_rank_0,&
+      rocblas_get_matrix_i4_rank_1,&
+      rocblas_get_matrix_i8_full_rank,&
+      rocblas_get_matrix_i8_rank_0,&
+      rocblas_get_matrix_i8_rank_1,&
+      rocblas_get_matrix_r4_full_rank,&
+      rocblas_get_matrix_r4_rank_0,&
+      rocblas_get_matrix_r4_rank_1,&
+      rocblas_get_matrix_r8_full_rank,&
+      rocblas_get_matrix_r8_rank_0,&
+      rocblas_get_matrix_r8_rank_1,&
+      rocblas_get_matrix_c4_full_rank,&
+      rocblas_get_matrix_c4_rank_0,&
+      rocblas_get_matrix_c4_rank_1,&
+      rocblas_get_matrix_c8_full_rank,&
+      rocblas_get_matrix_c8_rank_0,&
+      rocblas_get_matrix_c8_rank_1
+#endif
+#endif
+  end interface
+
   interface rocblas_get_matrix_64
     function rocblas_get_matrix_64_(rows,cols,elem_size,a,lda,b,ldb) &
         bind(c, name="rocblas_get_matrix_64")
@@ -304,6 +544,69 @@ module hipfort_rocblas
       type(c_ptr),value :: b
       integer(c_int64_t),value :: ldb
     end function
+  end interface
+
+  !>  \brief Asynchronously copy vector from host to device.
+  !>      \details
+  !>     ``rocblas_set_vector_async`` copies a vector from pinned host memory to device memory
+  !>     asynchronously.
+  !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
+  !>     synchronous.
+  !>     @param[in] n - [rocblas_int]
+  !>                 number of elements in the vector
+  !>     @param[in] elem_size - [rocblas_int]
+  !>                 number of bytes per element in the matrix
+  !>     @param[in] x - pointer to vector on the host
+  !>     @param[in] incx - [rocblas_int]
+  !>                 specifies the increment for the elements of the vector
+  !>     @param[out] y - pointer to vector on the device
+  !>     @param[in] incy - [rocblas_int]
+  !>                 specifies the increment for the elements of the vector
+  !>     @param[in] stream - specifies the stream into which this transfer request is queued
+  interface rocblas_set_vector_async
+    function rocblas_set_vector_async_(n,elem_size,x,incx,y,incy,stream) &
+        bind(c, name="rocblas_set_vector_async")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(c_int) :: rocblas_set_vector_async_
+      integer(c_int),value :: n
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      rocblas_set_vector_async_l_assumed_rank,&
+      rocblas_set_vector_async_i4_assumed_rank,&
+      rocblas_set_vector_async_i8_assumed_rank,&
+      rocblas_set_vector_async_r4_assumed_rank,&
+      rocblas_set_vector_async_r8_assumed_rank,&
+      rocblas_set_vector_async_c4_assumed_rank,&
+      rocblas_set_vector_async_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      rocblas_set_vector_async_l_rank_0,&
+      rocblas_set_vector_async_l_full_rank,&
+      rocblas_set_vector_async_i4_rank_0,&
+      rocblas_set_vector_async_i4_full_rank,&
+      rocblas_set_vector_async_i8_rank_0,&
+      rocblas_set_vector_async_i8_full_rank,&
+      rocblas_set_vector_async_r4_rank_0,&
+      rocblas_set_vector_async_r4_full_rank,&
+      rocblas_set_vector_async_r8_rank_0,&
+      rocblas_set_vector_async_r8_full_rank,&
+      rocblas_set_vector_async_c4_rank_0,&
+      rocblas_set_vector_async_c4_full_rank,&
+      rocblas_set_vector_async_c8_rank_0,&
+      rocblas_set_vector_async_c8_full_rank
+#endif
+#endif
   end interface
 
   interface rocblas_set_vector_async_64
@@ -323,6 +626,69 @@ module hipfort_rocblas
     end function
   end interface
 
+  !>  \brief Asynchronously copy vector from device to host.
+  !>      \details
+  !>     ``rocblas_get_vector_async`` copies a vector from device memory to pinned host memory
+  !>     asynchronously.
+  !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
+  !>     synchronous.
+  !>     @param[in] n - [rocblas_int]
+  !>                 number of elements in the vector
+  !>     @param[in] elem_size - [rocblas_int]
+  !>                 number of bytes per element in the matrix
+  !>     @param[in] x - pointer to vector on the device
+  !>     @param[in] incx - [rocblas_int]
+  !>                 specifies the increment for the elements of the vector
+  !>     @param[out] y - pointer to vector on the host
+  !>     @param[in] incy - [rocblas_int]
+  !>                 specifies the increment for the elements of the vector
+  !>     @param[in] stream - specifies the stream into which this transfer request is queued
+  interface rocblas_get_vector_async
+    function rocblas_get_vector_async_(n,elem_size,x,incx,y,incy,stream) &
+        bind(c, name="rocblas_get_vector_async")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(c_int) :: rocblas_get_vector_async_
+      integer(c_int),value :: n
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      rocblas_get_vector_async_l_assumed_rank,&
+      rocblas_get_vector_async_i4_assumed_rank,&
+      rocblas_get_vector_async_i8_assumed_rank,&
+      rocblas_get_vector_async_r4_assumed_rank,&
+      rocblas_get_vector_async_r8_assumed_rank,&
+      rocblas_get_vector_async_c4_assumed_rank,&
+      rocblas_get_vector_async_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      rocblas_get_vector_async_l_rank_0,&
+      rocblas_get_vector_async_l_full_rank,&
+      rocblas_get_vector_async_i4_rank_0,&
+      rocblas_get_vector_async_i4_full_rank,&
+      rocblas_get_vector_async_i8_rank_0,&
+      rocblas_get_vector_async_i8_full_rank,&
+      rocblas_get_vector_async_r4_rank_0,&
+      rocblas_get_vector_async_r4_full_rank,&
+      rocblas_get_vector_async_r8_rank_0,&
+      rocblas_get_vector_async_r8_full_rank,&
+      rocblas_get_vector_async_c4_rank_0,&
+      rocblas_get_vector_async_c4_full_rank,&
+      rocblas_get_vector_async_c8_rank_0,&
+      rocblas_get_vector_async_c8_full_rank
+#endif
+#endif
+  end interface
+
   interface rocblas_get_vector_async_64
     function rocblas_get_vector_async_64_(n,elem_size,x,incx,y,incy,stream) &
         bind(c, name="rocblas_get_vector_async_64")
@@ -338,6 +704,79 @@ module hipfort_rocblas
       integer(c_int64_t),value :: incy
       type(c_ptr),value :: stream
     end function
+  end interface
+
+  !>  \brief Asynchronously copy matrix from host to device.
+  !>      \details
+  !>     ``rocblas_set_matrix_async`` copies a matrix from pinned host memory to device memory
+  !>     asynchronously.
+  !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
+  !>     synchronous.
+  !>     @param[in] rows - [rocblas_int]
+  !>                 number of rows in matrices
+  !>     @param[in] cols - [rocblas_int]
+  !>                 number of columns in matrices
+  !>     @param[in] elem_size - [rocblas_int]
+  !>                 number of bytes per element in the matrix
+  !>     @param[in] a - pointer to matrix on the host
+  !>     @param[in] lda - [rocblas_int]
+  !>                 specifies the leading dimension of A, lda >= rows
+  !>     @param[out] b - pointer to matrix on the GPU
+  !>     @param[in] ldb - [rocblas_int]
+  !>                 specifies the leading dimension of B, ldb >= rows
+  !>     @param[in] stream - specifies the stream into which this transfer request is queued
+  interface rocblas_set_matrix_async
+    function rocblas_set_matrix_async_(rows,cols,elem_size,a,lda,b,ldb,stream) &
+        bind(c, name="rocblas_set_matrix_async")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(c_int) :: rocblas_set_matrix_async_
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: a
+      integer(c_int),value :: lda
+      type(c_ptr),value :: b
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      rocblas_set_matrix_async_l_assumed_rank,&
+      rocblas_set_matrix_async_i4_assumed_rank,&
+      rocblas_set_matrix_async_i8_assumed_rank,&
+      rocblas_set_matrix_async_r4_assumed_rank,&
+      rocblas_set_matrix_async_r8_assumed_rank,&
+      rocblas_set_matrix_async_c4_assumed_rank,&
+      rocblas_set_matrix_async_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      rocblas_set_matrix_async_l_full_rank,&
+      rocblas_set_matrix_async_l_rank_0,&
+      rocblas_set_matrix_async_l_rank_1,&
+      rocblas_set_matrix_async_i4_full_rank,&
+      rocblas_set_matrix_async_i4_rank_0,&
+      rocblas_set_matrix_async_i4_rank_1,&
+      rocblas_set_matrix_async_i8_full_rank,&
+      rocblas_set_matrix_async_i8_rank_0,&
+      rocblas_set_matrix_async_i8_rank_1,&
+      rocblas_set_matrix_async_r4_full_rank,&
+      rocblas_set_matrix_async_r4_rank_0,&
+      rocblas_set_matrix_async_r4_rank_1,&
+      rocblas_set_matrix_async_r8_full_rank,&
+      rocblas_set_matrix_async_r8_rank_0,&
+      rocblas_set_matrix_async_r8_rank_1,&
+      rocblas_set_matrix_async_c4_full_rank,&
+      rocblas_set_matrix_async_c4_rank_0,&
+      rocblas_set_matrix_async_c4_rank_1,&
+      rocblas_set_matrix_async_c8_full_rank,&
+      rocblas_set_matrix_async_c8_rank_0,&
+      rocblas_set_matrix_async_c8_rank_1
+#endif
+#endif
   end interface
 
   interface rocblas_set_matrix_async_64
@@ -356,6 +795,79 @@ module hipfort_rocblas
       integer(c_int64_t),value :: ldb
       type(c_ptr),value :: stream
     end function
+  end interface
+
+  !>  \brief Asynchronously copy matrix from device to host.
+  !>      \details
+  !>     ``rocblas_get_matrix_async`` copies a matrix from device memory to pinned host memory
+  !>     asynchronously.
+  !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
+  !>     synchronous.
+  !>     @param[in] rows - [rocblas_int]
+  !>                 number of rows in matrices
+  !>     @param[in] cols - [rocblas_int]
+  !>                 number of columns in matrices
+  !>     @param[in] elem_size - [rocblas_int]
+  !>                 number of bytes per element in the matrix
+  !>     @param[in] a - pointer to matrix on the GPU
+  !>     @param[in] lda - [rocblas_int]
+  !>                 specifies the leading dimension of A, lda >= rows
+  !>     @param[out] b - pointer to matrix on the host
+  !>     @param[in] ldb - [rocblas_int]
+  !>                 specifies the leading dimension of B, ldb >= rows
+  !>     @param[in] stream - specifies the stream into which this transfer request is queued
+  interface rocblas_get_matrix_async
+    function rocblas_get_matrix_async_(rows,cols,elem_size,a,lda,b,ldb,stream) &
+        bind(c, name="rocblas_get_matrix_async")
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(c_int) :: rocblas_get_matrix_async_
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elem_size
+      type(c_ptr),value :: a
+      integer(c_int),value :: lda
+      type(c_ptr),value :: b
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      rocblas_get_matrix_async_l_assumed_rank,&
+      rocblas_get_matrix_async_i4_assumed_rank,&
+      rocblas_get_matrix_async_i8_assumed_rank,&
+      rocblas_get_matrix_async_r4_assumed_rank,&
+      rocblas_get_matrix_async_r8_assumed_rank,&
+      rocblas_get_matrix_async_c4_assumed_rank,&
+      rocblas_get_matrix_async_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      rocblas_get_matrix_async_l_full_rank,&
+      rocblas_get_matrix_async_l_rank_0,&
+      rocblas_get_matrix_async_l_rank_1,&
+      rocblas_get_matrix_async_i4_full_rank,&
+      rocblas_get_matrix_async_i4_rank_0,&
+      rocblas_get_matrix_async_i4_rank_1,&
+      rocblas_get_matrix_async_i8_full_rank,&
+      rocblas_get_matrix_async_i8_rank_0,&
+      rocblas_get_matrix_async_i8_rank_1,&
+      rocblas_get_matrix_async_r4_full_rank,&
+      rocblas_get_matrix_async_r4_rank_0,&
+      rocblas_get_matrix_async_r4_rank_1,&
+      rocblas_get_matrix_async_r8_full_rank,&
+      rocblas_get_matrix_async_r8_rank_0,&
+      rocblas_get_matrix_async_r8_rank_1,&
+      rocblas_get_matrix_async_c4_full_rank,&
+      rocblas_get_matrix_async_c4_rank_0,&
+      rocblas_get_matrix_async_c4_rank_1,&
+      rocblas_get_matrix_async_c8_full_rank,&
+      rocblas_get_matrix_async_c8_rank_0,&
+      rocblas_get_matrix_async_c8_rank_1
+#endif
+#endif
   end interface
 
   interface rocblas_get_matrix_async_64
@@ -42772,278 +43284,6 @@ module hipfort_rocblas
       use hipfort_rocblas_enums
       implicit none
     end subroutine
-  end interface
-
-  interface rocblas_set_vector
-    function rocblas_set_vector_(n,elem_size,x,incx,y,incy) bind(c, &
-        name="rocblas_set_vector") result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: n
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-      type(c_ptr),value :: y
-      integer(c_int),value :: incy
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure rocblas_set_vector_l_assumed_rank,rocblas_set_vector_i4_assumed_rank,&
-      rocblas_set_vector_i8_assumed_rank,rocblas_set_vector_r4_assumed_rank,&
-      rocblas_set_vector_r8_assumed_rank,rocblas_set_vector_c4_assumed_rank,&
-      rocblas_set_vector_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure rocblas_set_vector_l_rank_0,rocblas_set_vector_l_full_rank,&
-      rocblas_set_vector_i4_rank_0,rocblas_set_vector_i4_full_rank,&
-      rocblas_set_vector_i8_rank_0,rocblas_set_vector_i8_full_rank,&
-      rocblas_set_vector_r4_rank_0,rocblas_set_vector_r4_full_rank,&
-      rocblas_set_vector_r8_rank_0,rocblas_set_vector_r8_full_rank,&
-      rocblas_set_vector_c4_rank_0,rocblas_set_vector_c4_full_rank,&
-      rocblas_set_vector_c8_rank_0,rocblas_set_vector_c8_full_rank
-#endif
-#endif
-  end interface
-
-  interface rocblas_get_vector
-    function rocblas_get_vector_(n,elem_size,x,incx,y,incy) bind(c, &
-        name="rocblas_get_vector") result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: n
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-      type(c_ptr),value :: y
-      integer(c_int),value :: incy
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure rocblas_get_vector_l_assumed_rank,rocblas_get_vector_i4_assumed_rank,&
-      rocblas_get_vector_i8_assumed_rank,rocblas_get_vector_r4_assumed_rank,&
-      rocblas_get_vector_r8_assumed_rank,rocblas_get_vector_c4_assumed_rank,&
-      rocblas_get_vector_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure rocblas_get_vector_l_rank_0,rocblas_get_vector_l_full_rank,&
-      rocblas_get_vector_i4_rank_0,rocblas_get_vector_i4_full_rank,&
-      rocblas_get_vector_i8_rank_0,rocblas_get_vector_i8_full_rank,&
-      rocblas_get_vector_r4_rank_0,rocblas_get_vector_r4_full_rank,&
-      rocblas_get_vector_r8_rank_0,rocblas_get_vector_r8_full_rank,&
-      rocblas_get_vector_c4_rank_0,rocblas_get_vector_c4_full_rank,&
-      rocblas_get_vector_c8_rank_0,rocblas_get_vector_c8_full_rank
-#endif
-#endif
-  end interface
-
-  interface rocblas_set_matrix
-    function rocblas_set_matrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, &
-        name="rocblas_set_matrix") result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure rocblas_set_matrix_l_assumed_rank,rocblas_set_matrix_i4_assumed_rank,&
-      rocblas_set_matrix_i8_assumed_rank,rocblas_set_matrix_r4_assumed_rank,&
-      rocblas_set_matrix_r8_assumed_rank,rocblas_set_matrix_c4_assumed_rank,&
-      rocblas_set_matrix_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure rocblas_set_matrix_l_full_rank,rocblas_set_matrix_l_rank_0,rocblas_set_matrix_l_rank_1,&
-      rocblas_set_matrix_i4_full_rank,rocblas_set_matrix_i4_rank_0,rocblas_set_matrix_i4_rank_1,&
-      rocblas_set_matrix_i8_full_rank,rocblas_set_matrix_i8_rank_0,rocblas_set_matrix_i8_rank_1,&
-      rocblas_set_matrix_r4_full_rank,rocblas_set_matrix_r4_rank_0,rocblas_set_matrix_r4_rank_1,&
-      rocblas_set_matrix_r8_full_rank,rocblas_set_matrix_r8_rank_0,rocblas_set_matrix_r8_rank_1,&
-      rocblas_set_matrix_c4_full_rank,rocblas_set_matrix_c4_rank_0,rocblas_set_matrix_c4_rank_1,&
-      rocblas_set_matrix_c8_full_rank,rocblas_set_matrix_c8_rank_0,rocblas_set_matrix_c8_rank_1
-#endif
-#endif
-  end interface
-
-  interface rocblas_get_matrix
-    function rocblas_get_matrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, &
-        name="rocblas_get_matrix") result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure rocblas_get_matrix_l_assumed_rank,rocblas_get_matrix_i4_assumed_rank,&
-      rocblas_get_matrix_i8_assumed_rank,rocblas_get_matrix_r4_assumed_rank,&
-      rocblas_get_matrix_r8_assumed_rank,rocblas_get_matrix_c4_assumed_rank,&
-      rocblas_get_matrix_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure rocblas_get_matrix_l_full_rank,rocblas_get_matrix_l_rank_0,rocblas_get_matrix_l_rank_1,&
-      rocblas_get_matrix_i4_full_rank,rocblas_get_matrix_i4_rank_0,rocblas_get_matrix_i4_rank_1,&
-      rocblas_get_matrix_i8_full_rank,rocblas_get_matrix_i8_rank_0,rocblas_get_matrix_i8_rank_1,&
-      rocblas_get_matrix_r4_full_rank,rocblas_get_matrix_r4_rank_0,rocblas_get_matrix_r4_rank_1,&
-      rocblas_get_matrix_r8_full_rank,rocblas_get_matrix_r8_rank_0,rocblas_get_matrix_r8_rank_1,&
-      rocblas_get_matrix_c4_full_rank,rocblas_get_matrix_c4_rank_0,rocblas_get_matrix_c4_rank_1,&
-      rocblas_get_matrix_c8_full_rank,rocblas_get_matrix_c8_rank_0,rocblas_get_matrix_c8_rank_1
-#endif
-#endif
-  end interface
-
-  interface rocblas_set_vector_async
-    function rocblas_set_vector_async_(n,elem_size,x,incx,y,incy,stream) bind(c, &
-        name="rocblas_set_vector_async") result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: n
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-      type(c_ptr),value :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure rocblas_set_vector_async_l_assumed_rank,rocblas_set_vector_async_i4_assumed_rank,&
-      rocblas_set_vector_async_i8_assumed_rank,rocblas_set_vector_async_r4_assumed_rank,&
-      rocblas_set_vector_async_r8_assumed_rank,rocblas_set_vector_async_c4_assumed_rank,&
-      rocblas_set_vector_async_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure rocblas_set_vector_async_l_rank_0,rocblas_set_vector_async_l_full_rank,&
-      rocblas_set_vector_async_i4_rank_0,rocblas_set_vector_async_i4_full_rank,&
-      rocblas_set_vector_async_i8_rank_0,rocblas_set_vector_async_i8_full_rank,&
-      rocblas_set_vector_async_r4_rank_0,rocblas_set_vector_async_r4_full_rank,&
-      rocblas_set_vector_async_r8_rank_0,rocblas_set_vector_async_r8_full_rank,&
-      rocblas_set_vector_async_c4_rank_0,rocblas_set_vector_async_c4_full_rank,&
-      rocblas_set_vector_async_c8_rank_0,rocblas_set_vector_async_c8_full_rank
-#endif
-#endif
-  end interface
-
-  interface rocblas_get_vector_async
-    function rocblas_get_vector_async_(n,elem_size,x,incx,y,incy,stream) bind(c, &
-        name="rocblas_get_vector_async") result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: n
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-      type(c_ptr),value :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure rocblas_get_vector_async_l_assumed_rank,rocblas_get_vector_async_i4_assumed_rank,&
-      rocblas_get_vector_async_i8_assumed_rank,rocblas_get_vector_async_r4_assumed_rank,&
-      rocblas_get_vector_async_r8_assumed_rank,rocblas_get_vector_async_c4_assumed_rank,&
-      rocblas_get_vector_async_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure rocblas_get_vector_async_l_rank_0,rocblas_get_vector_async_l_full_rank,&
-      rocblas_get_vector_async_i4_rank_0,rocblas_get_vector_async_i4_full_rank,&
-      rocblas_get_vector_async_i8_rank_0,rocblas_get_vector_async_i8_full_rank,&
-      rocblas_get_vector_async_r4_rank_0,rocblas_get_vector_async_r4_full_rank,&
-      rocblas_get_vector_async_r8_rank_0,rocblas_get_vector_async_r8_full_rank,&
-      rocblas_get_vector_async_c4_rank_0,rocblas_get_vector_async_c4_full_rank,&
-      rocblas_get_vector_async_c8_rank_0,rocblas_get_vector_async_c8_full_rank
-#endif
-#endif
-  end interface
-
-  interface rocblas_set_matrix_async
-    function rocblas_set_matrix_async_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, &
-        name="rocblas_set_matrix_async") result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure rocblas_set_matrix_async_l_assumed_rank,rocblas_set_matrix_async_i4_assumed_rank,&
-      rocblas_set_matrix_async_i8_assumed_rank,rocblas_set_matrix_async_r4_assumed_rank,&
-      rocblas_set_matrix_async_r8_assumed_rank,rocblas_set_matrix_async_c4_assumed_rank,&
-      rocblas_set_matrix_async_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure rocblas_set_matrix_async_l_full_rank,rocblas_set_matrix_async_l_rank_0,rocblas_set_matrix_async_l_rank_1,&
-      rocblas_set_matrix_async_i4_full_rank,rocblas_set_matrix_async_i4_rank_0,rocblas_set_matrix_async_i4_rank_1,&
-      rocblas_set_matrix_async_i8_full_rank,rocblas_set_matrix_async_i8_rank_0,rocblas_set_matrix_async_i8_rank_1,&
-      rocblas_set_matrix_async_r4_full_rank,rocblas_set_matrix_async_r4_rank_0,rocblas_set_matrix_async_r4_rank_1,&
-      rocblas_set_matrix_async_r8_full_rank,rocblas_set_matrix_async_r8_rank_0,rocblas_set_matrix_async_r8_rank_1,&
-      rocblas_set_matrix_async_c4_full_rank,rocblas_set_matrix_async_c4_rank_0,rocblas_set_matrix_async_c4_rank_1,&
-      rocblas_set_matrix_async_c8_full_rank,rocblas_set_matrix_async_c8_rank_0,rocblas_set_matrix_async_c8_rank_1
-#endif
-#endif
-  end interface
-
-  interface rocblas_get_matrix_async
-    function rocblas_get_matrix_async_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, &
-        name="rocblas_get_matrix_async") result(ret)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure rocblas_get_matrix_async_l_assumed_rank,rocblas_get_matrix_async_i4_assumed_rank,&
-      rocblas_get_matrix_async_i8_assumed_rank,rocblas_get_matrix_async_r4_assumed_rank,&
-      rocblas_get_matrix_async_r8_assumed_rank,rocblas_get_matrix_async_c4_assumed_rank,&
-      rocblas_get_matrix_async_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure rocblas_get_matrix_async_l_full_rank,rocblas_get_matrix_async_l_rank_0,rocblas_get_matrix_async_l_rank_1,&
-      rocblas_get_matrix_async_i4_full_rank,rocblas_get_matrix_async_i4_rank_0,rocblas_get_matrix_async_i4_rank_1,&
-      rocblas_get_matrix_async_i8_full_rank,rocblas_get_matrix_async_i8_rank_0,rocblas_get_matrix_async_i8_rank_1,&
-      rocblas_get_matrix_async_r4_full_rank,rocblas_get_matrix_async_r4_rank_0,rocblas_get_matrix_async_r4_rank_1,&
-      rocblas_get_matrix_async_r8_full_rank,rocblas_get_matrix_async_r8_rank_0,rocblas_get_matrix_async_r8_rank_1,&
-      rocblas_get_matrix_async_c4_full_rank,rocblas_get_matrix_async_c4_rank_0,rocblas_get_matrix_async_c4_rank_1,&
-      rocblas_get_matrix_async_c8_full_rank,rocblas_get_matrix_async_c8_rank_0,rocblas_get_matrix_async_c8_rank_1
-#endif
-#endif
   end interface
 
 

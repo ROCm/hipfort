@@ -230,6 +230,554 @@ module hipfort_hipblas
     end function
   end interface
 
+  !>  \brief Copy vector from host to device.
+  !>     @param[in] n - [int]
+  !>                 number of elements in the vector.
+  !>     @param[in] elemSize - [int]
+  !>                 Size of both vectors in bytes.
+  !>     @param[in] x - pointer to vector on the host.
+  !>     @param[in] incx - [int]
+  !>                 specifies the increment for the elements of the vector.
+  !>     @param[out] y - pointer to vector on the device.
+  !>     @param[in] incy - [int]
+  !>                 specifies the increment for the elements of the vector.
+  interface hipblasSetVector
+#ifdef USE_CUDA_NAMES
+    function hipblasSetVector_(n,elemSize,x,incx,y,incy) bind(c, name="cublasSetVector")
+#else
+    function hipblasSetVector_(n,elemSize,x,incx,y,incy) bind(c, name="hipblasSetVector")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(c_int) :: hipblasSetVector_
+      integer(c_int),value :: n
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      hipblasSetVector_l_assumed_rank,&
+      hipblasSetVector_i4_assumed_rank,&
+      hipblasSetVector_i8_assumed_rank,&
+      hipblasSetVector_r4_assumed_rank,&
+      hipblasSetVector_r8_assumed_rank,&
+      hipblasSetVector_c4_assumed_rank,&
+      hipblasSetVector_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipblasSetVector_l_rank_0,&
+      hipblasSetVector_l_full_rank,&
+      hipblasSetVector_i4_rank_0,&
+      hipblasSetVector_i4_full_rank,&
+      hipblasSetVector_i8_rank_0,&
+      hipblasSetVector_i8_full_rank,&
+      hipblasSetVector_r4_rank_0,&
+      hipblasSetVector_r4_full_rank,&
+      hipblasSetVector_r8_rank_0,&
+      hipblasSetVector_r8_full_rank,&
+      hipblasSetVector_c4_rank_0,&
+      hipblasSetVector_c4_full_rank,&
+      hipblasSetVector_c8_rank_0,&
+      hipblasSetVector_c8_full_rank
+#endif
+#endif
+  end interface
+
+  !>  \brief Copy vector from device to host.
+  !>     @param[in] n - [int]
+  !>                 number of elements in the vector.
+  !>     @param[in] elemSize - [int]
+  !>                 Size of both vectors in bytes.
+  !>     @param[in] x - pointer to vector on the device.
+  !>     @param[in] incx - [int]
+  !>                 specifies the increment for the elements of the vector.
+  !>     @param[out] y - pointer to vector on the host.
+  !>     @param[in] incy - [int]
+  !>                 specifies the increment for the elements of the vector.
+  interface hipblasGetVector
+#ifdef USE_CUDA_NAMES
+    function hipblasGetVector_(n,elemSize,x,incx,y,incy) bind(c, name="cublasGetVector")
+#else
+    function hipblasGetVector_(n,elemSize,x,incx,y,incy) bind(c, name="hipblasGetVector")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(c_int) :: hipblasGetVector_
+      integer(c_int),value :: n
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      hipblasGetVector_l_assumed_rank,&
+      hipblasGetVector_i4_assumed_rank,&
+      hipblasGetVector_i8_assumed_rank,&
+      hipblasGetVector_r4_assumed_rank,&
+      hipblasGetVector_r8_assumed_rank,&
+      hipblasGetVector_c4_assumed_rank,&
+      hipblasGetVector_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipblasGetVector_l_rank_0,&
+      hipblasGetVector_l_full_rank,&
+      hipblasGetVector_i4_rank_0,&
+      hipblasGetVector_i4_full_rank,&
+      hipblasGetVector_i8_rank_0,&
+      hipblasGetVector_i8_full_rank,&
+      hipblasGetVector_r4_rank_0,&
+      hipblasGetVector_r4_full_rank,&
+      hipblasGetVector_r8_rank_0,&
+      hipblasGetVector_r8_full_rank,&
+      hipblasGetVector_c4_rank_0,&
+      hipblasGetVector_c4_full_rank,&
+      hipblasGetVector_c8_rank_0,&
+      hipblasGetVector_c8_full_rank
+#endif
+#endif
+  end interface
+
+  !>  \brief Copy matrix from host to device.
+  !>     @param[in] rows - [int]
+  !>                 number of rows in the matrix.
+  !>     @param[in] cols - [int]
+  !>                 number of columns in the matrix.
+  !>     @param[in] elemSize - [int]
+  !>                 number of bytes per element in the matrix.
+  !>     @param[in] AP - pointer to matrix on the host.
+  !>     @param[in] lda - [int]
+  !>                 specifies the leading dimension of A. lda >= rows.
+  !>     @param[out] BP - pointer to matrix on the GPU.
+  !>     @param[in] ldb - [int]
+  !>                 specifies the leading dimension of B. ldb >= rows.
+  interface hipblasSetMatrix
+#ifdef USE_CUDA_NAMES
+    function hipblasSetMatrix_(rows,cols,elemSize,AP,lda,BP,ldb) bind(c, name="cublasSetMatrix")
+#else
+    function hipblasSetMatrix_(rows,cols,elemSize,AP,lda,BP,ldb) bind(c, name="hipblasSetMatrix")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(c_int) :: hipblasSetMatrix_
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: AP
+      integer(c_int),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int),value :: ldb
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      hipblasSetMatrix_l_assumed_rank,&
+      hipblasSetMatrix_i4_assumed_rank,&
+      hipblasSetMatrix_i8_assumed_rank,&
+      hipblasSetMatrix_r4_assumed_rank,&
+      hipblasSetMatrix_r8_assumed_rank,&
+      hipblasSetMatrix_c4_assumed_rank,&
+      hipblasSetMatrix_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipblasSetMatrix_l_full_rank,&
+      hipblasSetMatrix_l_rank_0,&
+      hipblasSetMatrix_l_rank_1,&
+      hipblasSetMatrix_i4_full_rank,&
+      hipblasSetMatrix_i4_rank_0,&
+      hipblasSetMatrix_i4_rank_1,&
+      hipblasSetMatrix_i8_full_rank,&
+      hipblasSetMatrix_i8_rank_0,&
+      hipblasSetMatrix_i8_rank_1,&
+      hipblasSetMatrix_r4_full_rank,&
+      hipblasSetMatrix_r4_rank_0,&
+      hipblasSetMatrix_r4_rank_1,&
+      hipblasSetMatrix_r8_full_rank,&
+      hipblasSetMatrix_r8_rank_0,&
+      hipblasSetMatrix_r8_rank_1,&
+      hipblasSetMatrix_c4_full_rank,&
+      hipblasSetMatrix_c4_rank_0,&
+      hipblasSetMatrix_c4_rank_1,&
+      hipblasSetMatrix_c8_full_rank,&
+      hipblasSetMatrix_c8_rank_0,&
+      hipblasSetMatrix_c8_rank_1
+#endif
+#endif
+  end interface
+
+  !>  \brief Copy matrix from device to host.
+  !>     @param[in] rows - [int]
+  !>                 number of rows in the matrix.
+  !>     @param[in] cols - [int]
+  !>                 number of columns in the matrix.
+  !>     @param[in] elemSize - [int]
+  !>                 number of bytes per element in the matrix.
+  !>     @param[in] AP - pointer to matrix on the GPU.
+  !>     @param[in] lda - [int]
+  !>                 specifies the leading dimension of A. lda >= rows.
+  !>     @param[out] BP - pointer to matrix on the host.
+  !>     @param[in] ldb - [int]
+  !>                 specifies the leading dimension of B. ldb >= rows.
+  interface hipblasGetMatrix
+#ifdef USE_CUDA_NAMES
+    function hipblasGetMatrix_(rows,cols,elemSize,AP,lda,BP,ldb) bind(c, name="cublasGetMatrix")
+#else
+    function hipblasGetMatrix_(rows,cols,elemSize,AP,lda,BP,ldb) bind(c, name="hipblasGetMatrix")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(c_int) :: hipblasGetMatrix_
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: AP
+      integer(c_int),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int),value :: ldb
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      hipblasGetMatrix_l_assumed_rank,&
+      hipblasGetMatrix_i4_assumed_rank,&
+      hipblasGetMatrix_i8_assumed_rank,&
+      hipblasGetMatrix_r4_assumed_rank,&
+      hipblasGetMatrix_r8_assumed_rank,&
+      hipblasGetMatrix_c4_assumed_rank,&
+      hipblasGetMatrix_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipblasGetMatrix_l_full_rank,&
+      hipblasGetMatrix_l_rank_0,&
+      hipblasGetMatrix_l_rank_1,&
+      hipblasGetMatrix_i4_full_rank,&
+      hipblasGetMatrix_i4_rank_0,&
+      hipblasGetMatrix_i4_rank_1,&
+      hipblasGetMatrix_i8_full_rank,&
+      hipblasGetMatrix_i8_rank_0,&
+      hipblasGetMatrix_i8_rank_1,&
+      hipblasGetMatrix_r4_full_rank,&
+      hipblasGetMatrix_r4_rank_0,&
+      hipblasGetMatrix_r4_rank_1,&
+      hipblasGetMatrix_r8_full_rank,&
+      hipblasGetMatrix_r8_rank_0,&
+      hipblasGetMatrix_r8_rank_1,&
+      hipblasGetMatrix_c4_full_rank,&
+      hipblasGetMatrix_c4_rank_0,&
+      hipblasGetMatrix_c4_rank_1,&
+      hipblasGetMatrix_c8_full_rank,&
+      hipblasGetMatrix_c8_rank_0,&
+      hipblasGetMatrix_c8_rank_1
+#endif
+#endif
+  end interface
+
+  !>  \brief Asynchronously copy vector from host to device.
+  !>     \details
+  !>     ``hipblasSetVectorAsync`` copies a vector from pinned host memory to device memory
+  !>     asynchronously.
+  !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
+  !>     synchronous.
+  !>     @param[in] n - [int]
+  !>                 number of elements in the vector.
+  !>     @param[in] elemSize - [int]
+  !>                 number of bytes per element in the matrix.
+  !>     @param[in] x - pointer to vector on the host.
+  !>     @param[in] incx - [int]
+  !>                 specifies the increment for the elements of the vector.
+  !>     @param[out] y - pointer to vector on the device.
+  !>     @param[in] incy - [int]
+  !>                 specifies the increment for the elements of the vector.
+  !>     @param[in] stream - specifies the stream into which this transfer request is queued.
+  interface hipblasSetVectorAsync
+#ifdef USE_CUDA_NAMES
+    function hipblasSetVectorAsync_(n,elemSize,x,incx,y,incy,stream) &
+        bind(c, name="cublasSetVectorAsync")
+#else
+    function hipblasSetVectorAsync_(n,elemSize,x,incx,y,incy,stream) &
+        bind(c, name="hipblasSetVectorAsync")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(c_int) :: hipblasSetVectorAsync_
+      integer(c_int),value :: n
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      hipblasSetVectorAsync_l_assumed_rank,&
+      hipblasSetVectorAsync_i4_assumed_rank,&
+      hipblasSetVectorAsync_i8_assumed_rank,&
+      hipblasSetVectorAsync_r4_assumed_rank,&
+      hipblasSetVectorAsync_r8_assumed_rank,&
+      hipblasSetVectorAsync_c4_assumed_rank,&
+      hipblasSetVectorAsync_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipblasSetVectorAsync_l_rank_0,&
+      hipblasSetVectorAsync_l_full_rank,&
+      hipblasSetVectorAsync_i4_rank_0,&
+      hipblasSetVectorAsync_i4_full_rank,&
+      hipblasSetVectorAsync_i8_rank_0,&
+      hipblasSetVectorAsync_i8_full_rank,&
+      hipblasSetVectorAsync_r4_rank_0,&
+      hipblasSetVectorAsync_r4_full_rank,&
+      hipblasSetVectorAsync_r8_rank_0,&
+      hipblasSetVectorAsync_r8_full_rank,&
+      hipblasSetVectorAsync_c4_rank_0,&
+      hipblasSetVectorAsync_c4_full_rank,&
+      hipblasSetVectorAsync_c8_rank_0,&
+      hipblasSetVectorAsync_c8_full_rank
+#endif
+#endif
+  end interface
+
+  !>  \brief Asynchronously copy vector from device to host.
+  !>     \details
+  !>     ``hipblasGetVectorAsync`` copies a vector from pinned host memory to device memory
+  !>     asynchronously.
+  !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
+  !>     synchronous.
+  !>     @param[in] n - [int]
+  !>                 number of elements in the vector.
+  !>     @param[in] elemSize - [int]
+  !>                 number of bytes per element in the matrix.
+  !>     @param[in] x - pointer to vector on the device.
+  !>     @param[in] incx - [int]
+  !>                 specifies the increment for the elements of the vector.
+  !>     @param[out] y - pointer to vector on the host.
+  !>     @param[in] incy - [int]
+  !>                 specifies the increment for the elements of the vector.
+  !>     @param[in] stream - specifies the stream into which this transfer request is queued.
+  interface hipblasGetVectorAsync
+#ifdef USE_CUDA_NAMES
+    function hipblasGetVectorAsync_(n,elemSize,x,incx,y,incy,stream) &
+        bind(c, name="cublasGetVectorAsync")
+#else
+    function hipblasGetVectorAsync_(n,elemSize,x,incx,y,incy,stream) &
+        bind(c, name="hipblasGetVectorAsync")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(c_int) :: hipblasGetVectorAsync_
+      integer(c_int),value :: n
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: stream
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      hipblasGetVectorAsync_l_assumed_rank,&
+      hipblasGetVectorAsync_i4_assumed_rank,&
+      hipblasGetVectorAsync_i8_assumed_rank,&
+      hipblasGetVectorAsync_r4_assumed_rank,&
+      hipblasGetVectorAsync_r8_assumed_rank,&
+      hipblasGetVectorAsync_c4_assumed_rank,&
+      hipblasGetVectorAsync_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipblasGetVectorAsync_l_rank_0,&
+      hipblasGetVectorAsync_l_full_rank,&
+      hipblasGetVectorAsync_i4_rank_0,&
+      hipblasGetVectorAsync_i4_full_rank,&
+      hipblasGetVectorAsync_i8_rank_0,&
+      hipblasGetVectorAsync_i8_full_rank,&
+      hipblasGetVectorAsync_r4_rank_0,&
+      hipblasGetVectorAsync_r4_full_rank,&
+      hipblasGetVectorAsync_r8_rank_0,&
+      hipblasGetVectorAsync_r8_full_rank,&
+      hipblasGetVectorAsync_c4_rank_0,&
+      hipblasGetVectorAsync_c4_full_rank,&
+      hipblasGetVectorAsync_c8_rank_0,&
+      hipblasGetVectorAsync_c8_full_rank
+#endif
+#endif
+  end interface
+
+  !>  \brief Asynchronously copy matrix from host to device.
+  !>     \details
+  !>     ``hipblasSetMatrixAsync`` copies a matrix from pinned host memory to device memory
+  !>     asynchronously.
+  !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
+  !>     synchronous.
+  !>     @param[in] rows - [int]
+  !>                 number of rows in matrices.
+  !>     @param[in] cols - [int]
+  !>                 number of columns in matrices.
+  !>     @param[in] elemSize - [int]
+  !>                 number of bytes per element in the matrix.
+  !>     @param[in] AP - pointer to matrix on the host.
+  !>     @param[in] lda - [int]
+  !>                 specifies the leading dimension of A. lda >= rows.
+  !>     @param[out] BP - pointer to matrix on the GPU.
+  !>     @param[in] ldb - [int]
+  !>                 specifies the leading dimension of B. ldb >= rows.
+  !>     @param[in] stream - specifies the stream into which this transfer request is queued.
+  interface hipblasSetMatrixAsync
+#ifdef USE_CUDA_NAMES
+    function hipblasSetMatrixAsync_(rows,cols,elemSize,AP,lda,BP,ldb,stream) &
+        bind(c, name="cublasSetMatrixAsync")
+#else
+    function hipblasSetMatrixAsync_(rows,cols,elemSize,AP,lda,BP,ldb,stream) &
+        bind(c, name="hipblasSetMatrixAsync")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(c_int) :: hipblasSetMatrixAsync_
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: AP
+      integer(c_int),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      hipblasSetMatrixAsync_l_assumed_rank,&
+      hipblasSetMatrixAsync_i4_assumed_rank,&
+      hipblasSetMatrixAsync_i8_assumed_rank,&
+      hipblasSetMatrixAsync_r4_assumed_rank,&
+      hipblasSetMatrixAsync_r8_assumed_rank,&
+      hipblasSetMatrixAsync_c4_assumed_rank,&
+      hipblasSetMatrixAsync_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipblasSetMatrixAsync_l_full_rank,&
+      hipblasSetMatrixAsync_l_rank_0,&
+      hipblasSetMatrixAsync_l_rank_1,&
+      hipblasSetMatrixAsync_i4_full_rank,&
+      hipblasSetMatrixAsync_i4_rank_0,&
+      hipblasSetMatrixAsync_i4_rank_1,&
+      hipblasSetMatrixAsync_i8_full_rank,&
+      hipblasSetMatrixAsync_i8_rank_0,&
+      hipblasSetMatrixAsync_i8_rank_1,&
+      hipblasSetMatrixAsync_r4_full_rank,&
+      hipblasSetMatrixAsync_r4_rank_0,&
+      hipblasSetMatrixAsync_r4_rank_1,&
+      hipblasSetMatrixAsync_r8_full_rank,&
+      hipblasSetMatrixAsync_r8_rank_0,&
+      hipblasSetMatrixAsync_r8_rank_1,&
+      hipblasSetMatrixAsync_c4_full_rank,&
+      hipblasSetMatrixAsync_c4_rank_0,&
+      hipblasSetMatrixAsync_c4_rank_1,&
+      hipblasSetMatrixAsync_c8_full_rank,&
+      hipblasSetMatrixAsync_c8_rank_0,&
+      hipblasSetMatrixAsync_c8_rank_1
+#endif
+#endif
+  end interface
+
+  !>  \brief Asynchronously copy matrix from device to host.
+  !>     \details
+  !>     ``hipblasGetMatrixAsync`` copies a matrix from device memory to pinned host memory
+  !>     asynchronously.
+  !>     Memory on the host must be allocated with ``hipHostMalloc`` or the transfer will be
+  !>     synchronous.
+  !>     @param[in] rows - [int]
+  !>                 number of rows in matrices.
+  !>     @param[in] cols - [int]
+  !>                 number of columns in matrices.
+  !>     @param[in] elemSize - [int]
+  !>                 number of bytes per element in the matrix.
+  !>     @param[in] AP - pointer to matrix on the GPU.
+  !>     @param[in] lda - [int]
+  !>                 specifies the leading dimension of A. lda >= rows.
+  !>     @param[out] BP - pointer to matrix on the host.
+  !>     @param[in] ldb - [int]
+  !>                 specifies the leading dimension of B. ldb >= rows.
+  !>     @param[in] stream - specifies the stream into which this transfer request is queued.
+  interface hipblasGetMatrixAsync
+#ifdef USE_CUDA_NAMES
+    function hipblasGetMatrixAsync_(rows,cols,elemSize,AP,lda,BP,ldb,stream) &
+        bind(c, name="cublasGetMatrixAsync")
+#else
+    function hipblasGetMatrixAsync_(rows,cols,elemSize,AP,lda,BP,ldb,stream) &
+        bind(c, name="hipblasGetMatrixAsync")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(c_int) :: hipblasGetMatrixAsync_
+      integer(c_int),value :: rows
+      integer(c_int),value :: cols
+      integer(c_int),value :: elemSize
+      type(c_ptr),value :: AP
+      integer(c_int),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: stream
+    end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure &
+      hipblasGetMatrixAsync_l_assumed_rank,&
+      hipblasGetMatrixAsync_i4_assumed_rank,&
+      hipblasGetMatrixAsync_i8_assumed_rank,&
+      hipblasGetMatrixAsync_r4_assumed_rank,&
+      hipblasGetMatrixAsync_r8_assumed_rank,&
+      hipblasGetMatrixAsync_c4_assumed_rank,&
+      hipblasGetMatrixAsync_c8_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipblasGetMatrixAsync_l_full_rank,&
+      hipblasGetMatrixAsync_l_rank_0,&
+      hipblasGetMatrixAsync_l_rank_1,&
+      hipblasGetMatrixAsync_i4_full_rank,&
+      hipblasGetMatrixAsync_i4_rank_0,&
+      hipblasGetMatrixAsync_i4_rank_1,&
+      hipblasGetMatrixAsync_i8_full_rank,&
+      hipblasGetMatrixAsync_i8_rank_0,&
+      hipblasGetMatrixAsync_i8_rank_1,&
+      hipblasGetMatrixAsync_r4_full_rank,&
+      hipblasGetMatrixAsync_r4_rank_0,&
+      hipblasGetMatrixAsync_r4_rank_1,&
+      hipblasGetMatrixAsync_r8_full_rank,&
+      hipblasGetMatrixAsync_r8_rank_0,&
+      hipblasGetMatrixAsync_r8_rank_1,&
+      hipblasGetMatrixAsync_c4_full_rank,&
+      hipblasGetMatrixAsync_c4_rank_0,&
+      hipblasGetMatrixAsync_c4_rank_1,&
+      hipblasGetMatrixAsync_c8_full_rank,&
+      hipblasGetMatrixAsync_c8_rank_0,&
+      hipblasGetMatrixAsync_c8_rank_1
+#endif
+#endif
+  end interface
+
   !>  \brief Sets hipblasSetAtomicsMode
   interface hipblasSetAtomicsMode
 #ifdef USE_CUDA_NAMES
@@ -46986,318 +47534,6 @@ module hipfort_hipblas
     end function
   end interface
 #endif
-
-  interface hipblasSetVector
-#ifdef USE_CUDA_NAMES
-    function hipblasSetVector_(n,elem_size,x,incx,y,incy) bind(c, &
-        name="cublasSetVector") result(ret)
-#else
-    function hipblasSetVector_(n,elem_size,x,incx,y,incy) bind(c, &
-        name="hipblasSetVector") result(ret)
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: n
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-      type(c_ptr),value :: y
-      integer(c_int),value :: incy
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure hipblasSetVector_l_assumed_rank,hipblasSetVector_i4_assumed_rank,&
-      hipblasSetVector_i8_assumed_rank,hipblasSetVector_r4_assumed_rank,&
-      hipblasSetVector_r8_assumed_rank,hipblasSetVector_c4_assumed_rank,&
-      hipblasSetVector_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure hipblasSetVector_l_rank_0,hipblasSetVector_l_full_rank,&
-      hipblasSetVector_i4_rank_0,hipblasSetVector_i4_full_rank,&
-      hipblasSetVector_i8_rank_0,hipblasSetVector_i8_full_rank,&
-      hipblasSetVector_r4_rank_0,hipblasSetVector_r4_full_rank,&
-      hipblasSetVector_r8_rank_0,hipblasSetVector_r8_full_rank,&
-      hipblasSetVector_c4_rank_0,hipblasSetVector_c4_full_rank,&
-      hipblasSetVector_c8_rank_0,hipblasSetVector_c8_full_rank
-#endif
-#endif
-  end interface
-
-  interface hipblasGetVector
-#ifdef USE_CUDA_NAMES
-    function hipblasGetVector_(n,elem_size,x,incx,y,incy) bind(c, &
-        name="cublasGetVector") result(ret)
-#else
-    function hipblasGetVector_(n,elem_size,x,incx,y,incy) bind(c, &
-        name="hipblasGetVector") result(ret)
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: n
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-      type(c_ptr),value :: y
-      integer(c_int),value :: incy
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure hipblasGetVector_l_assumed_rank,hipblasGetVector_i4_assumed_rank,&
-      hipblasGetVector_i8_assumed_rank,hipblasGetVector_r4_assumed_rank,&
-      hipblasGetVector_r8_assumed_rank,hipblasGetVector_c4_assumed_rank,&
-      hipblasGetVector_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure hipblasGetVector_l_rank_0,hipblasGetVector_l_full_rank,&
-      hipblasGetVector_i4_rank_0,hipblasGetVector_i4_full_rank,&
-      hipblasGetVector_i8_rank_0,hipblasGetVector_i8_full_rank,&
-      hipblasGetVector_r4_rank_0,hipblasGetVector_r4_full_rank,&
-      hipblasGetVector_r8_rank_0,hipblasGetVector_r8_full_rank,&
-      hipblasGetVector_c4_rank_0,hipblasGetVector_c4_full_rank,&
-      hipblasGetVector_c8_rank_0,hipblasGetVector_c8_full_rank
-#endif
-#endif
-  end interface
-
-  interface hipblasSetMatrix
-#ifdef USE_CUDA_NAMES
-    function hipblasSetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, &
-        name="cublasSetMatrix") result(ret)
-#else
-    function hipblasSetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, &
-        name="hipblasSetMatrix") result(ret)
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure hipblasSetMatrix_l_assumed_rank,hipblasSetMatrix_i4_assumed_rank,&
-      hipblasSetMatrix_i8_assumed_rank,hipblasSetMatrix_r4_assumed_rank,&
-      hipblasSetMatrix_r8_assumed_rank,hipblasSetMatrix_c4_assumed_rank,&
-      hipblasSetMatrix_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure hipblasSetMatrix_l_full_rank,hipblasSetMatrix_l_rank_0,hipblasSetMatrix_l_rank_1,&
-      hipblasSetMatrix_i4_full_rank,hipblasSetMatrix_i4_rank_0,hipblasSetMatrix_i4_rank_1,&
-      hipblasSetMatrix_i8_full_rank,hipblasSetMatrix_i8_rank_0,hipblasSetMatrix_i8_rank_1,&
-      hipblasSetMatrix_r4_full_rank,hipblasSetMatrix_r4_rank_0,hipblasSetMatrix_r4_rank_1,&
-      hipblasSetMatrix_r8_full_rank,hipblasSetMatrix_r8_rank_0,hipblasSetMatrix_r8_rank_1,&
-      hipblasSetMatrix_c4_full_rank,hipblasSetMatrix_c4_rank_0,hipblasSetMatrix_c4_rank_1,&
-      hipblasSetMatrix_c8_full_rank,hipblasSetMatrix_c8_rank_0,hipblasSetMatrix_c8_rank_1
-#endif
-#endif
-  end interface
-
-  interface hipblasGetMatrix
-#ifdef USE_CUDA_NAMES
-    function hipblasGetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, &
-        name="cublasGetMatrix") result(ret)
-#else
-    function hipblasGetMatrix_(rows,cols,elem_size,A,lda,B,ldb) bind(c, &
-        name="hipblasGetMatrix") result(ret)
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure hipblasGetMatrix_l_assumed_rank,hipblasGetMatrix_i4_assumed_rank,&
-      hipblasGetMatrix_i8_assumed_rank,hipblasGetMatrix_r4_assumed_rank,&
-      hipblasGetMatrix_r8_assumed_rank,hipblasGetMatrix_c4_assumed_rank,&
-      hipblasGetMatrix_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure hipblasGetMatrix_l_full_rank,hipblasGetMatrix_l_rank_0,hipblasGetMatrix_l_rank_1,&
-      hipblasGetMatrix_i4_full_rank,hipblasGetMatrix_i4_rank_0,hipblasGetMatrix_i4_rank_1,&
-      hipblasGetMatrix_i8_full_rank,hipblasGetMatrix_i8_rank_0,hipblasGetMatrix_i8_rank_1,&
-      hipblasGetMatrix_r4_full_rank,hipblasGetMatrix_r4_rank_0,hipblasGetMatrix_r4_rank_1,&
-      hipblasGetMatrix_r8_full_rank,hipblasGetMatrix_r8_rank_0,hipblasGetMatrix_r8_rank_1,&
-      hipblasGetMatrix_c4_full_rank,hipblasGetMatrix_c4_rank_0,hipblasGetMatrix_c4_rank_1,&
-      hipblasGetMatrix_c8_full_rank,hipblasGetMatrix_c8_rank_0,hipblasGetMatrix_c8_rank_1
-#endif
-#endif
-  end interface
-
-  interface hipblasSetVectorAsync
-#ifdef USE_CUDA_NAMES
-    function hipblasSetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, &
-        name="cublasSetVectorAsync") result(ret)
-#else
-    function hipblasSetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, &
-        name="hipblasSetVectorAsync") result(ret)
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: n
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-      type(c_ptr),value :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure hipblasSetVectorAsync_l_assumed_rank,hipblasSetVectorAsync_i4_assumed_rank,&
-      hipblasSetVectorAsync_i8_assumed_rank,hipblasSetVectorAsync_r4_assumed_rank,&
-      hipblasSetVectorAsync_r8_assumed_rank,hipblasSetVectorAsync_c4_assumed_rank,&
-      hipblasSetVectorAsync_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure hipblasSetVectorAsync_l_rank_0,hipblasSetVectorAsync_l_full_rank,&
-      hipblasSetVectorAsync_i4_rank_0,hipblasSetVectorAsync_i4_full_rank,&
-      hipblasSetVectorAsync_i8_rank_0,hipblasSetVectorAsync_i8_full_rank,&
-      hipblasSetVectorAsync_r4_rank_0,hipblasSetVectorAsync_r4_full_rank,&
-      hipblasSetVectorAsync_r8_rank_0,hipblasSetVectorAsync_r8_full_rank,&
-      hipblasSetVectorAsync_c4_rank_0,hipblasSetVectorAsync_c4_full_rank,&
-      hipblasSetVectorAsync_c8_rank_0,hipblasSetVectorAsync_c8_full_rank
-#endif
-#endif
-  end interface
-
-  interface hipblasGetVectorAsync
-#ifdef USE_CUDA_NAMES
-    function hipblasGetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, &
-        name="cublasGetVectorAsync") result(ret)
-#else
-    function hipblasGetVectorAsync_(n,elem_size,x,incx,y,incy,stream) bind(c, &
-        name="hipblasGetVectorAsync") result(ret)
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: n
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: x
-      integer(c_int),value :: incx
-      type(c_ptr),value :: y
-      integer(c_int),value :: incy
-      type(c_ptr),value :: stream
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure hipblasGetVectorAsync_l_assumed_rank,hipblasGetVectorAsync_i4_assumed_rank,&
-      hipblasGetVectorAsync_i8_assumed_rank,hipblasGetVectorAsync_r4_assumed_rank,&
-      hipblasGetVectorAsync_r8_assumed_rank,hipblasGetVectorAsync_c4_assumed_rank,&
-      hipblasGetVectorAsync_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure hipblasGetVectorAsync_l_rank_0,hipblasGetVectorAsync_l_full_rank,&
-      hipblasGetVectorAsync_i4_rank_0,hipblasGetVectorAsync_i4_full_rank,&
-      hipblasGetVectorAsync_i8_rank_0,hipblasGetVectorAsync_i8_full_rank,&
-      hipblasGetVectorAsync_r4_rank_0,hipblasGetVectorAsync_r4_full_rank,&
-      hipblasGetVectorAsync_r8_rank_0,hipblasGetVectorAsync_r8_full_rank,&
-      hipblasGetVectorAsync_c4_rank_0,hipblasGetVectorAsync_c4_full_rank,&
-      hipblasGetVectorAsync_c8_rank_0,hipblasGetVectorAsync_c8_full_rank
-#endif
-#endif
-  end interface
-
-  interface hipblasSetMatrixAsync
-#ifdef USE_CUDA_NAMES
-    function hipblasSetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, &
-        name="cublasSetMatrixAsync") result(ret)
-#else
-    function hipblasSetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, &
-        name="hipblasSetMatrixAsync") result(ret)
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure hipblasSetMatrixAsync_l_assumed_rank,hipblasSetMatrixAsync_i4_assumed_rank,&
-      hipblasSetMatrixAsync_i8_assumed_rank,hipblasSetMatrixAsync_r4_assumed_rank,&
-      hipblasSetMatrixAsync_r8_assumed_rank,hipblasSetMatrixAsync_c4_assumed_rank,&
-      hipblasSetMatrixAsync_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure hipblasSetMatrixAsync_l_full_rank,hipblasSetMatrixAsync_l_rank_0,hipblasSetMatrixAsync_l_rank_1,&
-      hipblasSetMatrixAsync_i4_full_rank,hipblasSetMatrixAsync_i4_rank_0,hipblasSetMatrixAsync_i4_rank_1,&
-      hipblasSetMatrixAsync_i8_full_rank,hipblasSetMatrixAsync_i8_rank_0,hipblasSetMatrixAsync_i8_rank_1,&
-      hipblasSetMatrixAsync_r4_full_rank,hipblasSetMatrixAsync_r4_rank_0,hipblasSetMatrixAsync_r4_rank_1,&
-      hipblasSetMatrixAsync_r8_full_rank,hipblasSetMatrixAsync_r8_rank_0,hipblasSetMatrixAsync_r8_rank_1,&
-      hipblasSetMatrixAsync_c4_full_rank,hipblasSetMatrixAsync_c4_rank_0,hipblasSetMatrixAsync_c4_rank_1,&
-      hipblasSetMatrixAsync_c8_full_rank,hipblasSetMatrixAsync_c8_rank_0,hipblasSetMatrixAsync_c8_rank_1
-#endif
-#endif
-  end interface
-
-  interface hipblasGetMatrixAsync
-#ifdef USE_CUDA_NAMES
-    function hipblasGetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, &
-        name="cublasGetMatrixAsync") result(ret)
-#else
-    function hipblasGetMatrixAsync_(rows,cols,elem_size,A,lda,B,ldb,stream) bind(c, &
-        name="hipblasGetMatrixAsync") result(ret)
-#endif
-      use iso_c_binding
-      use hipfort_hipblas_enums
-      implicit none
-      integer(c_int) :: ret
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: A
-      integer(c_int),value :: lda
-      type(c_ptr),value :: B
-      integer(c_int),value :: ldb
-      type(c_ptr),value :: stream
-    end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure hipblasGetMatrixAsync_l_assumed_rank,hipblasGetMatrixAsync_i4_assumed_rank,&
-      hipblasGetMatrixAsync_i8_assumed_rank,hipblasGetMatrixAsync_r4_assumed_rank,&
-      hipblasGetMatrixAsync_r8_assumed_rank,hipblasGetMatrixAsync_c4_assumed_rank,&
-      hipblasGetMatrixAsync_c8_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure hipblasGetMatrixAsync_l_full_rank,hipblasGetMatrixAsync_l_rank_0,hipblasGetMatrixAsync_l_rank_1,&
-      hipblasGetMatrixAsync_i4_full_rank,hipblasGetMatrixAsync_i4_rank_0,hipblasGetMatrixAsync_i4_rank_1,&
-      hipblasGetMatrixAsync_i8_full_rank,hipblasGetMatrixAsync_i8_rank_0,hipblasGetMatrixAsync_i8_rank_1,&
-      hipblasGetMatrixAsync_r4_full_rank,hipblasGetMatrixAsync_r4_rank_0,hipblasGetMatrixAsync_r4_rank_1,&
-      hipblasGetMatrixAsync_r8_full_rank,hipblasGetMatrixAsync_r8_rank_0,hipblasGetMatrixAsync_r8_rank_1,&
-      hipblasGetMatrixAsync_c4_full_rank,hipblasGetMatrixAsync_c4_rank_0,hipblasGetMatrixAsync_c4_rank_1,&
-      hipblasGetMatrixAsync_c8_full_rank,hipblasGetMatrixAsync_c8_rank_0,hipblasGetMatrixAsync_c8_rank_1
-#endif
-#endif
-  end interface
 
 
   contains

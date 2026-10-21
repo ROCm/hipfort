@@ -23,6 +23,11 @@
 
 ### Changed
 
+* The `bind(C)` specifics of `hipblasSetVector`, `hipblasGetVector`,
+  `hipblasSetMatrix`, `hipblasGetMatrix` and their `Async` forms spell their
+  arguments as the hipBLAS headers do: `elemSize`, `AP` and `BP` instead of
+  `elem_size`, `A` and `B`. Only calls by keyword are affected; the typed
+  overloads are unchanged.
 * Each backend archive (`libhipfort-amdgcn.a`, `libhipfort-nvptx.a`) is
   compiled with one section per procedure (`-ffunction-sections
   -fdata-sections`). A program linked with `-Wl,--gc-sections` keeps only the
