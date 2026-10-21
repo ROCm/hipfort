@@ -13,7 +13,7 @@ code moves across with little change. hipFORT exposes it through the
 ``hipfort_hipfftw`` module.
 
 The one difference that matters: the ``in`` and ``out`` arguments must point to
-**GPU-accessible** memory. FFTW declares them ``void*``, so a pointer from
+**GPU-accessible** memory. hipFORT declares them ``type(c_ptr)``, so a pointer from
 ``hipMalloc`` — or from ``fftw_alloc_real``/``fftw_alloc_complex`` — passes
 straight through, but a plain Fortran host array does not work.
 

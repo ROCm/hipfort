@@ -68,6 +68,8 @@ or by setting the CMake cache variables:
 *  ``HIPFORT_ASSUMED_RANK``: Use the experimental Fortran 2018 assumed-rank array interfaces instead of the per-rank overloads (``OFF`` by default)
 *  ``HIPFORT_MULTITOOLCHAIN_LAYOUT``: Install the modules and the library into compiler-specific subdirectories (``ON`` by default)
 *  ``BUILD_TESTING``: Build the CTest suite (``OFF`` by default)
+*  ``HIPFORT_EXTENDED_TESTS``: Also link each backend archive into a shared library and fail on undefined symbols (``OFF`` by default)
+*  ``HIPFORT_CODE_COVERAGE``: Instrument the bindings for a gcov coverage report of the tests (``OFF`` by default)
 
 .. _hipfort-toolchain-files:
 
@@ -79,7 +81,7 @@ ready-made CMake toolchain file from ``cmake/toolchains/`` with ``-DCMAKE_TOOLCH
 
 .. code-block:: shell
 
-   cmake -S . -Bbuild -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
+   cmake -S . -Bbuild -DHIPFORT_BUILD_NVPTX=OFF -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
 
 Each file only sets the Fortran and C compilers, so they compose with the other build
 options above. hipFORT is pure Fortran, so no C++ compiler is required.

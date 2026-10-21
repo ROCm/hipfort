@@ -43,9 +43,10 @@ rocSOLVER follows a small number of conventions that recur in every program:
   pass ``c_loc(dInfo)``; passing a host scalar faults on the GPU. For the
   batched routines ``info`` is an array of ``batch_count`` integers on the
   device.
-* **Pivots and scalar factors are device arrays.** Arguments such as ``ipiv``
-  (pivot indices) and ``tau`` (Householder scalars) are outputs written on the
-  device and are passed as device buffers.
+* **Pivots and scalar factors are device arrays.** Arguments such as ``ipiv``,
+  which holds the pivot indices or, for the QR routines, the Householder scalars
+  that LAPACK calls ``tau``, are outputs written on the device and are passed as
+  device buffers.
 * **Enumerators select variants.** ``rocblas_operation_none`` /
   ``rocblas_operation_transpose`` choose whether a routine works on ``A`` or
   ``A**T``, and ``rocblas_fill_upper`` / ``rocblas_fill_lower`` choose the
@@ -120,7 +121,7 @@ problems that exceed the 32-bit range. ``getrf_64`` performs the same
 factorization as ``getrf`` with ``integer(c_int64_t)`` dimensions. The ``_64``
 routines have the same Fortran array overloads as the 32-bit ones; this example
 passes its device buffers, including the int64 ``ipiv`` and ``info``, as
-``type(c_ptr)``.
+``type(c_ptr)``, which every form accepts.
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dgetrf_64.f08
    :language: fortran

@@ -1279,7 +1279,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_slarft_64_rank_0,&
-      rocsolver_slarft_64_rank_1
+      rocsolver_slarft_64_rank_1,&
+      rocsolver_slarft_64_full_rank
 #endif
 #endif
   end interface
@@ -1309,7 +1310,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dlarft_64_rank_0,&
-      rocsolver_dlarft_64_rank_1
+      rocsolver_dlarft_64_rank_1,&
+      rocsolver_dlarft_64_full_rank
 #endif
 #endif
   end interface
@@ -1339,7 +1341,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_clarft_64_rank_0,&
-      rocsolver_clarft_64_rank_1
+      rocsolver_clarft_64_rank_1,&
+      rocsolver_clarft_64_full_rank
 #endif
 #endif
   end interface
@@ -1369,7 +1372,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zlarft_64_rank_0,&
-      rocsolver_zlarft_64_rank_1
+      rocsolver_zlarft_64_rank_1,&
+      rocsolver_zlarft_64_full_rank
 #endif
 #endif
   end interface
@@ -1574,7 +1578,9 @@ module hipfort_rocsolver
       rocsolver_slarf_64_rank_0,&
       rocsolver_slarf_64_rank_0_devptr,&
       rocsolver_slarf_64_rank_1,&
-      rocsolver_slarf_64_rank_1_devptr
+      rocsolver_slarf_64_rank_1_devptr,&
+      rocsolver_slarf_64_full_rank,&
+      rocsolver_slarf_64_full_rank_devptr
 #endif
 #endif
   end interface
@@ -1607,7 +1613,9 @@ module hipfort_rocsolver
       rocsolver_dlarf_64_rank_0,&
       rocsolver_dlarf_64_rank_0_devptr,&
       rocsolver_dlarf_64_rank_1,&
-      rocsolver_dlarf_64_rank_1_devptr
+      rocsolver_dlarf_64_rank_1_devptr,&
+      rocsolver_dlarf_64_full_rank,&
+      rocsolver_dlarf_64_full_rank_devptr
 #endif
 #endif
   end interface
@@ -1640,7 +1648,9 @@ module hipfort_rocsolver
       rocsolver_clarf_64_rank_0,&
       rocsolver_clarf_64_rank_0_devptr,&
       rocsolver_clarf_64_rank_1,&
-      rocsolver_clarf_64_rank_1_devptr
+      rocsolver_clarf_64_rank_1_devptr,&
+      rocsolver_clarf_64_full_rank,&
+      rocsolver_clarf_64_full_rank_devptr
 #endif
 #endif
   end interface
@@ -1673,7 +1683,9 @@ module hipfort_rocsolver
       rocsolver_zlarf_64_rank_0,&
       rocsolver_zlarf_64_rank_0_devptr,&
       rocsolver_zlarf_64_rank_1,&
-      rocsolver_zlarf_64_rank_1_devptr
+      rocsolver_zlarf_64_rank_1_devptr,&
+      rocsolver_zlarf_64_full_rank,&
+      rocsolver_zlarf_64_full_rank_devptr
 #endif
 #endif
   end interface
@@ -7318,7 +7330,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgetf2_npvt_64_rank_0,&
-      rocsolver_sgetf2_npvt_64_rank_1
+      rocsolver_sgetf2_npvt_64_rank_1,&
+      rocsolver_sgetf2_npvt_64_full_rank
 #endif
 #endif
   end interface
@@ -7344,7 +7357,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgetf2_npvt_64_rank_0,&
-      rocsolver_dgetf2_npvt_64_rank_1
+      rocsolver_dgetf2_npvt_64_rank_1,&
+      rocsolver_dgetf2_npvt_64_full_rank
 #endif
 #endif
   end interface
@@ -7370,7 +7384,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgetf2_npvt_64_rank_0,&
-      rocsolver_cgetf2_npvt_64_rank_1
+      rocsolver_cgetf2_npvt_64_rank_1,&
+      rocsolver_cgetf2_npvt_64_full_rank
 #endif
 #endif
   end interface
@@ -7396,7 +7411,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgetf2_npvt_64_rank_0,&
-      rocsolver_zgetf2_npvt_64_rank_1
+      rocsolver_zgetf2_npvt_64_rank_1,&
+      rocsolver_zgetf2_npvt_64_full_rank
 #endif
 #endif
   end interface
@@ -7771,7 +7787,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgetf2_npvt_strided_batched_64_rank_0,&
-      rocsolver_sgetf2_npvt_strided_batched_64_rank_1
+      rocsolver_sgetf2_npvt_strided_batched_64_rank_1,&
+      rocsolver_sgetf2_npvt_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -7800,7 +7817,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgetf2_npvt_strided_batched_64_rank_0,&
-      rocsolver_dgetf2_npvt_strided_batched_64_rank_1
+      rocsolver_dgetf2_npvt_strided_batched_64_rank_1,&
+      rocsolver_dgetf2_npvt_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -7829,7 +7847,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgetf2_npvt_strided_batched_64_rank_0,&
-      rocsolver_cgetf2_npvt_strided_batched_64_rank_1
+      rocsolver_cgetf2_npvt_strided_batched_64_rank_1,&
+      rocsolver_cgetf2_npvt_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -7858,7 +7877,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgetf2_npvt_strided_batched_64_rank_0,&
-      rocsolver_zgetf2_npvt_strided_batched_64_rank_1
+      rocsolver_zgetf2_npvt_strided_batched_64_rank_1,&
+      rocsolver_zgetf2_npvt_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -8030,7 +8050,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgetrf_npvt_64_rank_0,&
-      rocsolver_sgetrf_npvt_64_rank_1
+      rocsolver_sgetrf_npvt_64_rank_1,&
+      rocsolver_sgetrf_npvt_64_full_rank
 #endif
 #endif
   end interface
@@ -8056,7 +8077,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgetrf_npvt_64_rank_0,&
-      rocsolver_dgetrf_npvt_64_rank_1
+      rocsolver_dgetrf_npvt_64_rank_1,&
+      rocsolver_dgetrf_npvt_64_full_rank
 #endif
 #endif
   end interface
@@ -8082,7 +8104,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgetrf_npvt_64_rank_0,&
-      rocsolver_cgetrf_npvt_64_rank_1
+      rocsolver_cgetrf_npvt_64_rank_1,&
+      rocsolver_cgetrf_npvt_64_full_rank
 #endif
 #endif
   end interface
@@ -8108,7 +8131,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgetrf_npvt_64_rank_0,&
-      rocsolver_zgetrf_npvt_64_rank_1
+      rocsolver_zgetrf_npvt_64_rank_1,&
+      rocsolver_zgetrf_npvt_64_full_rank
 #endif
 #endif
   end interface
@@ -8483,7 +8507,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgetrf_npvt_strided_batched_64_rank_0,&
-      rocsolver_sgetrf_npvt_strided_batched_64_rank_1
+      rocsolver_sgetrf_npvt_strided_batched_64_rank_1,&
+      rocsolver_sgetrf_npvt_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -8512,7 +8537,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgetrf_npvt_strided_batched_64_rank_0,&
-      rocsolver_dgetrf_npvt_strided_batched_64_rank_1
+      rocsolver_dgetrf_npvt_strided_batched_64_rank_1,&
+      rocsolver_dgetrf_npvt_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -8541,7 +8567,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgetrf_npvt_strided_batched_64_rank_0,&
-      rocsolver_cgetrf_npvt_strided_batched_64_rank_1
+      rocsolver_cgetrf_npvt_strided_batched_64_rank_1,&
+      rocsolver_cgetrf_npvt_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -8570,7 +8597,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgetrf_npvt_strided_batched_64_rank_0,&
-      rocsolver_zgetrf_npvt_strided_batched_64_rank_1
+      rocsolver_zgetrf_npvt_strided_batched_64_rank_1,&
+      rocsolver_zgetrf_npvt_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -8744,7 +8772,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgetf2_64_rank_0,&
-      rocsolver_sgetf2_64_rank_1
+      rocsolver_sgetf2_64_rank_1,&
+      rocsolver_sgetf2_64_full_rank
 #endif
 #endif
   end interface
@@ -8770,7 +8799,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgetf2_64_rank_0,&
-      rocsolver_dgetf2_64_rank_1
+      rocsolver_dgetf2_64_rank_1,&
+      rocsolver_dgetf2_64_full_rank
 #endif
 #endif
   end interface
@@ -8796,7 +8826,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgetf2_64_rank_0,&
-      rocsolver_cgetf2_64_rank_1
+      rocsolver_cgetf2_64_rank_1,&
+      rocsolver_cgetf2_64_full_rank
 #endif
 #endif
   end interface
@@ -8822,7 +8853,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgetf2_64_rank_0,&
-      rocsolver_zgetf2_64_rank_1
+      rocsolver_zgetf2_64_rank_1,&
+      rocsolver_zgetf2_64_full_rank
 #endif
 #endif
   end interface
@@ -9315,7 +9347,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgetf2_strided_batched_64_rank_0,&
-      rocsolver_sgetf2_strided_batched_64_rank_1
+      rocsolver_sgetf2_strided_batched_64_rank_1,&
+      rocsolver_sgetf2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -9346,7 +9379,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgetf2_strided_batched_64_rank_0,&
-      rocsolver_dgetf2_strided_batched_64_rank_1
+      rocsolver_dgetf2_strided_batched_64_rank_1,&
+      rocsolver_dgetf2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -9377,7 +9411,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgetf2_strided_batched_64_rank_0,&
-      rocsolver_cgetf2_strided_batched_64_rank_1
+      rocsolver_cgetf2_strided_batched_64_rank_1,&
+      rocsolver_cgetf2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -9408,7 +9443,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgetf2_strided_batched_64_rank_0,&
-      rocsolver_zgetf2_strided_batched_64_rank_1
+      rocsolver_zgetf2_strided_batched_64_rank_1,&
+      rocsolver_zgetf2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -9582,7 +9618,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgetrf_64_rank_0,&
-      rocsolver_sgetrf_64_rank_1
+      rocsolver_sgetrf_64_rank_1,&
+      rocsolver_sgetrf_64_full_rank
 #endif
 #endif
   end interface
@@ -9608,7 +9645,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgetrf_64_rank_0,&
-      rocsolver_dgetrf_64_rank_1
+      rocsolver_dgetrf_64_rank_1,&
+      rocsolver_dgetrf_64_full_rank
 #endif
 #endif
   end interface
@@ -9634,7 +9672,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgetrf_64_rank_0,&
-      rocsolver_cgetrf_64_rank_1
+      rocsolver_cgetrf_64_rank_1,&
+      rocsolver_cgetrf_64_full_rank
 #endif
 #endif
   end interface
@@ -9660,7 +9699,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgetrf_64_rank_0,&
-      rocsolver_zgetrf_64_rank_1
+      rocsolver_zgetrf_64_rank_1,&
+      rocsolver_zgetrf_64_full_rank
 #endif
 #endif
   end interface
@@ -10153,7 +10193,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgetrf_strided_batched_64_rank_0,&
-      rocsolver_sgetrf_strided_batched_64_rank_1
+      rocsolver_sgetrf_strided_batched_64_rank_1,&
+      rocsolver_sgetrf_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -10184,7 +10225,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgetrf_strided_batched_64_rank_0,&
-      rocsolver_dgetrf_strided_batched_64_rank_1
+      rocsolver_dgetrf_strided_batched_64_rank_1,&
+      rocsolver_dgetrf_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -10215,7 +10257,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgetrf_strided_batched_64_rank_0,&
-      rocsolver_cgetrf_strided_batched_64_rank_1
+      rocsolver_cgetrf_strided_batched_64_rank_1,&
+      rocsolver_cgetrf_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -10246,7 +10289,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgetrf_strided_batched_64_rank_0,&
-      rocsolver_zgetrf_strided_batched_64_rank_1
+      rocsolver_zgetrf_strided_batched_64_rank_1,&
+      rocsolver_zgetrf_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -10421,7 +10465,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgeqr2_64_rank_0,&
-      rocsolver_sgeqr2_64_rank_1
+      rocsolver_sgeqr2_64_rank_1,&
+      rocsolver_sgeqr2_64_full_rank
 #endif
 #endif
   end interface
@@ -10446,7 +10491,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgeqr2_64_rank_0,&
-      rocsolver_dgeqr2_64_rank_1
+      rocsolver_dgeqr2_64_rank_1,&
+      rocsolver_dgeqr2_64_full_rank
 #endif
 #endif
   end interface
@@ -10471,7 +10517,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgeqr2_64_rank_0,&
-      rocsolver_cgeqr2_64_rank_1
+      rocsolver_cgeqr2_64_rank_1,&
+      rocsolver_cgeqr2_64_full_rank
 #endif
 #endif
   end interface
@@ -10496,7 +10543,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgeqr2_64_rank_0,&
-      rocsolver_zgeqr2_64_rank_1
+      rocsolver_zgeqr2_64_rank_1,&
+      rocsolver_zgeqr2_64_full_rank
 #endif
 #endif
   end interface
@@ -10982,7 +11030,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgeqr2_strided_batched_64_rank_0,&
-      rocsolver_sgeqr2_strided_batched_64_rank_1
+      rocsolver_sgeqr2_strided_batched_64_rank_1,&
+      rocsolver_sgeqr2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -11012,7 +11061,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgeqr2_strided_batched_64_rank_0,&
-      rocsolver_dgeqr2_strided_batched_64_rank_1
+      rocsolver_dgeqr2_strided_batched_64_rank_1,&
+      rocsolver_dgeqr2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -11042,7 +11092,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgeqr2_strided_batched_64_rank_0,&
-      rocsolver_cgeqr2_strided_batched_64_rank_1
+      rocsolver_cgeqr2_strided_batched_64_rank_1,&
+      rocsolver_cgeqr2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -11072,7 +11123,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgeqr2_strided_batched_64_rank_0,&
-      rocsolver_zgeqr2_strided_batched_64_rank_1
+      rocsolver_zgeqr2_strided_batched_64_rank_1,&
+      rocsolver_zgeqr2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -12729,7 +12781,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgeqrf_64_rank_0,&
-      rocsolver_sgeqrf_64_rank_1
+      rocsolver_sgeqrf_64_rank_1,&
+      rocsolver_sgeqrf_64_full_rank
 #endif
 #endif
   end interface
@@ -12754,7 +12807,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgeqrf_64_rank_0,&
-      rocsolver_dgeqrf_64_rank_1
+      rocsolver_dgeqrf_64_rank_1,&
+      rocsolver_dgeqrf_64_full_rank
 #endif
 #endif
   end interface
@@ -12779,7 +12833,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgeqrf_64_rank_0,&
-      rocsolver_cgeqrf_64_rank_1
+      rocsolver_cgeqrf_64_rank_1,&
+      rocsolver_cgeqrf_64_full_rank
 #endif
 #endif
   end interface
@@ -12804,7 +12859,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgeqrf_64_rank_0,&
-      rocsolver_zgeqrf_64_rank_1
+      rocsolver_zgeqrf_64_rank_1,&
+      rocsolver_zgeqrf_64_full_rank
 #endif
 #endif
   end interface
@@ -13290,7 +13346,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgeqrf_strided_batched_64_rank_0,&
-      rocsolver_sgeqrf_strided_batched_64_rank_1
+      rocsolver_sgeqrf_strided_batched_64_rank_1,&
+      rocsolver_sgeqrf_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -13320,7 +13377,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgeqrf_strided_batched_64_rank_0,&
-      rocsolver_dgeqrf_strided_batched_64_rank_1
+      rocsolver_dgeqrf_strided_batched_64_rank_1,&
+      rocsolver_dgeqrf_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -13350,7 +13408,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgeqrf_strided_batched_64_rank_0,&
-      rocsolver_cgeqrf_strided_batched_64_rank_1
+      rocsolver_cgeqrf_strided_batched_64_rank_1,&
+      rocsolver_cgeqrf_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -13380,7 +13439,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgeqrf_strided_batched_64_rank_0,&
-      rocsolver_zgeqrf_strided_batched_64_rank_1
+      rocsolver_zgeqrf_strided_batched_64_rank_1,&
+      rocsolver_zgeqrf_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -16376,7 +16436,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgetrs_64_rank_0,&
-      rocsolver_sgetrs_64_rank_1
+      rocsolver_sgetrs_64_rank_1,&
+      rocsolver_sgetrs_64_full_rank
 #endif
 #endif
   end interface
@@ -16405,7 +16466,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgetrs_64_rank_0,&
-      rocsolver_dgetrs_64_rank_1
+      rocsolver_dgetrs_64_rank_1,&
+      rocsolver_dgetrs_64_full_rank
 #endif
 #endif
   end interface
@@ -16434,7 +16496,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgetrs_64_rank_0,&
-      rocsolver_cgetrs_64_rank_1
+      rocsolver_cgetrs_64_rank_1,&
+      rocsolver_cgetrs_64_full_rank
 #endif
 #endif
   end interface
@@ -16463,7 +16526,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgetrs_64_rank_0,&
-      rocsolver_zgetrs_64_rank_1
+      rocsolver_zgetrs_64_rank_1,&
+      rocsolver_zgetrs_64_full_rank
 #endif
 #endif
   end interface
@@ -16996,7 +17060,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_sgetrs_strided_batched_64_rank_0,&
-      rocsolver_sgetrs_strided_batched_64_rank_1
+      rocsolver_sgetrs_strided_batched_64_rank_1,&
+      rocsolver_sgetrs_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -17030,7 +17095,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dgetrs_strided_batched_64_rank_0,&
-      rocsolver_dgetrs_strided_batched_64_rank_1
+      rocsolver_dgetrs_strided_batched_64_rank_1,&
+      rocsolver_dgetrs_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -17064,7 +17130,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cgetrs_strided_batched_64_rank_0,&
-      rocsolver_cgetrs_strided_batched_64_rank_1
+      rocsolver_cgetrs_strided_batched_64_rank_1,&
+      rocsolver_cgetrs_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -17098,7 +17165,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zgetrs_strided_batched_64_rank_0,&
-      rocsolver_zgetrs_strided_batched_64_rank_1
+      rocsolver_zgetrs_strided_batched_64_rank_1,&
+      rocsolver_zgetrs_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -20415,7 +20483,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_spotf2_64_rank_0,&
-      rocsolver_spotf2_64_rank_1
+      rocsolver_spotf2_64_rank_1,&
+      rocsolver_spotf2_64_full_rank
 #endif
 #endif
   end interface
@@ -20440,7 +20509,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dpotf2_64_rank_0,&
-      rocsolver_dpotf2_64_rank_1
+      rocsolver_dpotf2_64_rank_1,&
+      rocsolver_dpotf2_64_full_rank
 #endif
 #endif
   end interface
@@ -20465,7 +20535,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cpotf2_64_rank_0,&
-      rocsolver_cpotf2_64_rank_1
+      rocsolver_cpotf2_64_rank_1,&
+      rocsolver_cpotf2_64_full_rank
 #endif
 #endif
   end interface
@@ -20490,7 +20561,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zpotf2_64_rank_0,&
-      rocsolver_zpotf2_64_rank_1
+      rocsolver_zpotf2_64_rank_1,&
+      rocsolver_zpotf2_64_full_rank
 #endif
 #endif
   end interface
@@ -20848,7 +20920,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_spotf2_strided_batched_64_rank_0,&
-      rocsolver_spotf2_strided_batched_64_rank_1
+      rocsolver_spotf2_strided_batched_64_rank_1,&
+      rocsolver_spotf2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -20876,7 +20949,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dpotf2_strided_batched_64_rank_0,&
-      rocsolver_dpotf2_strided_batched_64_rank_1
+      rocsolver_dpotf2_strided_batched_64_rank_1,&
+      rocsolver_dpotf2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -20904,7 +20978,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cpotf2_strided_batched_64_rank_0,&
-      rocsolver_cpotf2_strided_batched_64_rank_1
+      rocsolver_cpotf2_strided_batched_64_rank_1,&
+      rocsolver_cpotf2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -20932,7 +21007,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zpotf2_strided_batched_64_rank_0,&
-      rocsolver_zpotf2_strided_batched_64_rank_1
+      rocsolver_zpotf2_strided_batched_64_rank_1,&
+      rocsolver_zpotf2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -21094,7 +21170,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_spotrf_64_rank_0,&
-      rocsolver_spotrf_64_rank_1
+      rocsolver_spotrf_64_rank_1,&
+      rocsolver_spotrf_64_full_rank
 #endif
 #endif
   end interface
@@ -21119,7 +21196,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dpotrf_64_rank_0,&
-      rocsolver_dpotrf_64_rank_1
+      rocsolver_dpotrf_64_rank_1,&
+      rocsolver_dpotrf_64_full_rank
 #endif
 #endif
   end interface
@@ -21144,7 +21222,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cpotrf_64_rank_0,&
-      rocsolver_cpotrf_64_rank_1
+      rocsolver_cpotrf_64_rank_1,&
+      rocsolver_cpotrf_64_full_rank
 #endif
 #endif
   end interface
@@ -21169,7 +21248,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zpotrf_64_rank_0,&
-      rocsolver_zpotrf_64_rank_1
+      rocsolver_zpotrf_64_rank_1,&
+      rocsolver_zpotrf_64_full_rank
 #endif
 #endif
   end interface
@@ -21527,7 +21607,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_spotrf_strided_batched_64_rank_0,&
-      rocsolver_spotrf_strided_batched_64_rank_1
+      rocsolver_spotrf_strided_batched_64_rank_1,&
+      rocsolver_spotrf_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -21555,7 +21636,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dpotrf_strided_batched_64_rank_0,&
-      rocsolver_dpotrf_strided_batched_64_rank_1
+      rocsolver_dpotrf_strided_batched_64_rank_1,&
+      rocsolver_dpotrf_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -21583,7 +21665,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cpotrf_strided_batched_64_rank_0,&
-      rocsolver_cpotrf_strided_batched_64_rank_1
+      rocsolver_cpotrf_strided_batched_64_rank_1,&
+      rocsolver_cpotrf_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -21611,7 +21694,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zpotrf_strided_batched_64_rank_0,&
-      rocsolver_zpotrf_strided_batched_64_rank_1
+      rocsolver_zpotrf_strided_batched_64_rank_1,&
+      rocsolver_zpotrf_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -21793,7 +21877,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_spotrs_64_rank_0,&
-      rocsolver_spotrs_64_rank_1
+      rocsolver_spotrs_64_rank_1,&
+      rocsolver_spotrs_64_full_rank
 #endif
 #endif
   end interface
@@ -21821,7 +21906,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dpotrs_64_rank_0,&
-      rocsolver_dpotrs_64_rank_1
+      rocsolver_dpotrs_64_rank_1,&
+      rocsolver_dpotrs_64_full_rank
 #endif
 #endif
   end interface
@@ -21849,7 +21935,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cpotrs_64_rank_0,&
-      rocsolver_cpotrs_64_rank_1
+      rocsolver_cpotrs_64_rank_1,&
+      rocsolver_cpotrs_64_full_rank
 #endif
 #endif
   end interface
@@ -21877,7 +21964,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zpotrs_64_rank_0,&
-      rocsolver_zpotrs_64_rank_1
+      rocsolver_zpotrs_64_rank_1,&
+      rocsolver_zpotrs_64_full_rank
 #endif
 #endif
   end interface
@@ -22298,7 +22386,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_spotrs_strided_batched_64_rank_0,&
-      rocsolver_spotrs_strided_batched_64_rank_1
+      rocsolver_spotrs_strided_batched_64_rank_1,&
+      rocsolver_spotrs_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -22330,7 +22419,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dpotrs_strided_batched_64_rank_0,&
-      rocsolver_dpotrs_strided_batched_64_rank_1
+      rocsolver_dpotrs_strided_batched_64_rank_1,&
+      rocsolver_dpotrs_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -22362,7 +22452,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cpotrs_strided_batched_64_rank_0,&
-      rocsolver_cpotrs_strided_batched_64_rank_1
+      rocsolver_cpotrs_strided_batched_64_rank_1,&
+      rocsolver_cpotrs_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -22394,7 +22485,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zpotrs_strided_batched_64_rank_0,&
-      rocsolver_zpotrs_strided_batched_64_rank_1
+      rocsolver_zpotrs_strided_batched_64_rank_1,&
+      rocsolver_zpotrs_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -29459,7 +29551,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_ssyev_64_rank_0,&
-      rocsolver_ssyev_64_rank_1
+      rocsolver_ssyev_64_rank_1,&
+      rocsolver_ssyev_64_full_rank
 #endif
 #endif
   end interface
@@ -29488,7 +29581,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dsyev_64_rank_0,&
-      rocsolver_dsyev_64_rank_1
+      rocsolver_dsyev_64_rank_1,&
+      rocsolver_dsyev_64_full_rank
 #endif
 #endif
   end interface
@@ -29617,7 +29711,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cheev_64_rank_0,&
-      rocsolver_cheev_64_rank_1
+      rocsolver_cheev_64_rank_1,&
+      rocsolver_cheev_64_full_rank
 #endif
 #endif
   end interface
@@ -29646,7 +29741,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zheev_64_rank_0,&
-      rocsolver_zheev_64_rank_1
+      rocsolver_zheev_64_rank_1,&
+      rocsolver_zheev_64_full_rank
 #endif
 #endif
   end interface
@@ -30195,7 +30291,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_ssyev_strided_batched_64_rank_0,&
-      rocsolver_ssyev_strided_batched_64_rank_1
+      rocsolver_ssyev_strided_batched_64_rank_1,&
+      rocsolver_ssyev_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -30229,7 +30326,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dsyev_strided_batched_64_rank_0,&
-      rocsolver_dsyev_strided_batched_64_rank_1
+      rocsolver_dsyev_strided_batched_64_rank_1,&
+      rocsolver_dsyev_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -30396,7 +30494,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cheev_strided_batched_64_rank_0,&
-      rocsolver_cheev_strided_batched_64_rank_1
+      rocsolver_cheev_strided_batched_64_rank_1,&
+      rocsolver_cheev_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -30430,7 +30529,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zheev_strided_batched_64_rank_0,&
-      rocsolver_zheev_strided_batched_64_rank_1
+      rocsolver_zheev_strided_batched_64_rank_1,&
+      rocsolver_zheev_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -30585,7 +30685,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_ssyevd_64_rank_0,&
-      rocsolver_ssyevd_64_rank_1
+      rocsolver_ssyevd_64_rank_1,&
+      rocsolver_ssyevd_64_full_rank
 #endif
 #endif
   end interface
@@ -30614,7 +30715,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dsyevd_64_rank_0,&
-      rocsolver_dsyevd_64_rank_1
+      rocsolver_dsyevd_64_rank_1,&
+      rocsolver_dsyevd_64_full_rank
 #endif
 #endif
   end interface
@@ -30768,7 +30870,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cheevd_64_rank_0,&
-      rocsolver_cheevd_64_rank_1
+      rocsolver_cheevd_64_rank_1,&
+      rocsolver_cheevd_64_full_rank
 #endif
 #endif
   end interface
@@ -30797,7 +30900,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zheevd_64_rank_0,&
-      rocsolver_zheevd_64_rank_1
+      rocsolver_zheevd_64_rank_1,&
+      rocsolver_zheevd_64_full_rank
 #endif
 #endif
   end interface
@@ -31364,7 +31468,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_ssyevd_strided_batched_64_rank_0,&
-      rocsolver_ssyevd_strided_batched_64_rank_1
+      rocsolver_ssyevd_strided_batched_64_rank_1,&
+      rocsolver_ssyevd_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -31398,7 +31503,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_dsyevd_strided_batched_64_rank_0,&
-      rocsolver_dsyevd_strided_batched_64_rank_1
+      rocsolver_dsyevd_strided_batched_64_rank_1,&
+      rocsolver_dsyevd_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -31571,7 +31677,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_cheevd_strided_batched_64_rank_0,&
-      rocsolver_cheevd_strided_batched_64_rank_1
+      rocsolver_cheevd_strided_batched_64_rank_1,&
+      rocsolver_cheevd_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -31605,7 +31712,8 @@ module hipfort_rocsolver
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsolver_zheevd_strided_batched_64_rank_0,&
-      rocsolver_zheevd_strided_batched_64_rank_1
+      rocsolver_zheevd_strided_batched_64_rank_1,&
+      rocsolver_zheevd_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -47957,6 +48065,27 @@ module hipfort_rocsolver
         c_loc(tau),c_loc(T),ldt)
     end function
 
+    function rocsolver_slarft_64_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarft_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_forward_direction)) :: myDirect
+      integer(kind(rocblas_column_wise)) :: storev
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target,dimension(:,:) :: V
+      integer(c_int64_t) :: ldv
+      real(c_float),target,dimension(:) :: tau
+      real(c_float),target,dimension(:,:) :: T
+      integer(c_int64_t) :: ldt
+      !
+      rocsolver_slarft_64_full_rank = rocsolver_slarft_64_(handle,myDirect,storev,n,k,c_loc(V), &
+        ldv,c_loc(tau),c_loc(T),ldt)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dlarft_64_assumed_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -48021,6 +48150,27 @@ module hipfort_rocsolver
       !
       rocsolver_dlarft_64_rank_1 = rocsolver_dlarft_64_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
         c_loc(tau),c_loc(T),ldt)
+    end function
+
+    function rocsolver_dlarft_64_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarft_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_forward_direction)) :: myDirect
+      integer(kind(rocblas_column_wise)) :: storev
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target,dimension(:,:) :: V
+      integer(c_int64_t) :: ldv
+      real(c_double),target,dimension(:) :: tau
+      real(c_double),target,dimension(:,:) :: T
+      integer(c_int64_t) :: ldt
+      !
+      rocsolver_dlarft_64_full_rank = rocsolver_dlarft_64_(handle,myDirect,storev,n,k,c_loc(V), &
+        ldv,c_loc(tau),c_loc(T),ldt)
     end function
 
 #endif
@@ -48089,6 +48239,27 @@ module hipfort_rocsolver
         c_loc(tau),c_loc(T),ldt)
     end function
 
+    function rocsolver_clarft_64_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarft_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_forward_direction)) :: myDirect
+      integer(kind(rocblas_column_wise)) :: storev
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target,dimension(:,:) :: V
+      integer(c_int64_t) :: ldv
+      complex(c_float_complex),target,dimension(:) :: tau
+      complex(c_float_complex),target,dimension(:,:) :: T
+      integer(c_int64_t) :: ldt
+      !
+      rocsolver_clarft_64_full_rank = rocsolver_clarft_64_(handle,myDirect,storev,n,k,c_loc(V), &
+        ldv,c_loc(tau),c_loc(T),ldt)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zlarft_64_assumed_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -48153,6 +48324,27 @@ module hipfort_rocsolver
       !
       rocsolver_zlarft_64_rank_1 = rocsolver_zlarft_64_(handle,myDirect,storev,n,k,c_loc(V),ldv, &
         c_loc(tau),c_loc(T),ldt)
+    end function
+
+    function rocsolver_zlarft_64_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarft_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_forward_direction)) :: myDirect
+      integer(kind(rocblas_column_wise)) :: storev
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target,dimension(:,:) :: V
+      integer(c_int64_t) :: ldv
+      complex(c_double_complex),target,dimension(:) :: tau
+      complex(c_double_complex),target,dimension(:,:) :: T
+      integer(c_int64_t) :: ldt
+      !
+      rocsolver_zlarft_64_full_rank = rocsolver_zlarft_64_(handle,myDirect,storev,n,k,c_loc(V), &
+        ldv,c_loc(tau),c_loc(T),ldt)
     end function
 
 #endif
@@ -48930,6 +49122,46 @@ module hipfort_rocsolver
         c_loc(A),lda)
     end function
 
+    function rocsolver_slarf_64_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocsolver_slarf_64_full_rank = rocsolver_slarf_64_(handle,side,m,n,c_loc(x),incx, &
+        c_loc(alpha),c_loc(A),lda)
+    end function
+
+    function rocsolver_slarf_64_full_rank_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_slarf_64_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr),value :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocsolver_slarf_64_full_rank_devptr = rocsolver_slarf_64_(handle,side,m,n,c_loc(x),incx, &
+        alpha,c_loc(A),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dlarf_64_assumed_rank(handle,side,m,n,x,incx,alpha,A,lda)
@@ -49051,6 +49283,46 @@ module hipfort_rocsolver
       !
       rocsolver_dlarf_64_rank_1_devptr = rocsolver_dlarf_64_(handle,side,m,n,c_loc(x),incx,alpha, &
         c_loc(A),lda)
+    end function
+
+    function rocsolver_dlarf_64_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocsolver_dlarf_64_full_rank = rocsolver_dlarf_64_(handle,side,m,n,c_loc(x),incx, &
+        c_loc(alpha),c_loc(A),lda)
+    end function
+
+    function rocsolver_dlarf_64_full_rank_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_64_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr),value :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocsolver_dlarf_64_full_rank_devptr = rocsolver_dlarf_64_(handle,side,m,n,c_loc(x),incx, &
+        alpha,c_loc(A),lda)
     end function
 
 #endif
@@ -49176,6 +49448,46 @@ module hipfort_rocsolver
         c_loc(A),lda)
     end function
 
+    function rocsolver_clarf_64_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocsolver_clarf_64_full_rank = rocsolver_clarf_64_(handle,side,m,n,c_loc(x),incx, &
+        c_loc(alpha),c_loc(A),lda)
+    end function
+
+    function rocsolver_clarf_64_full_rank_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_clarf_64_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocsolver_clarf_64_full_rank_devptr = rocsolver_clarf_64_(handle,side,m,n,c_loc(x),incx, &
+        alpha,c_loc(A),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zlarf_64_assumed_rank(handle,side,m,n,x,incx,alpha,A,lda)
@@ -49297,6 +49609,46 @@ module hipfort_rocsolver
       !
       rocsolver_zlarf_64_rank_1_devptr = rocsolver_zlarf_64_(handle,side,m,n,c_loc(x),incx,alpha, &
         c_loc(A),lda)
+    end function
+
+    function rocsolver_zlarf_64_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocsolver_zlarf_64_full_rank = rocsolver_zlarf_64_(handle,side,m,n,c_loc(x),incx, &
+        c_loc(alpha),c_loc(A),lda)
+    end function
+
+    function rocsolver_zlarf_64_full_rank_devptr(handle,side,m,n,x,incx,alpha,A,lda)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_64_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocsolver_zlarf_64_full_rank_devptr = rocsolver_zlarf_64_(handle,side,m,n,c_loc(x),incx, &
+        alpha,c_loc(A),lda)
     end function
 
 #endif
@@ -57487,6 +57839,22 @@ module hipfort_rocsolver
       rocsolver_sgetf2_npvt_64_rank_1 = rocsolver_sgetf2_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
     end function
 
+    function rocsolver_sgetf2_npvt_64_full_rank(handle,m,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2_npvt_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_sgetf2_npvt_64_full_rank = rocsolver_sgetf2_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgetf2_npvt_64_assumed_rank(handle,m,n,A,lda,myInfo)
@@ -57537,6 +57905,22 @@ module hipfort_rocsolver
       type(c_ptr) :: myInfo
       !
       rocsolver_dgetf2_npvt_64_rank_1 = rocsolver_dgetf2_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
+    end function
+
+    function rocsolver_dgetf2_npvt_64_full_rank(handle,m,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2_npvt_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_dgetf2_npvt_64_full_rank = rocsolver_dgetf2_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
     end function
 
 #endif
@@ -57591,6 +57975,22 @@ module hipfort_rocsolver
       rocsolver_cgetf2_npvt_64_rank_1 = rocsolver_cgetf2_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
     end function
 
+    function rocsolver_cgetf2_npvt_64_full_rank(handle,m,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2_npvt_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_cgetf2_npvt_64_full_rank = rocsolver_cgetf2_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgetf2_npvt_64_assumed_rank(handle,m,n,A,lda,myInfo)
@@ -57641,6 +58041,22 @@ module hipfort_rocsolver
       type(c_ptr) :: myInfo
       !
       rocsolver_zgetf2_npvt_64_rank_1 = rocsolver_zgetf2_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
+    end function
+
+    function rocsolver_zgetf2_npvt_64_full_rank(handle,m,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2_npvt_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_zgetf2_npvt_64_full_rank = rocsolver_zgetf2_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
     end function
 
 #endif
@@ -58039,6 +58455,27 @@ module hipfort_rocsolver
         handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
     end function
 
+    function rocsolver_sgetf2_npvt_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2_npvt_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_sgetf2_npvt_strided_batched_64_full_rank = &
+        rocsolver_sgetf2_npvt_strided_batched_64_(handle,m,n,c_loc(A),lda,strideA,myInfo, &
+        batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgetf2_npvt_strided_batched_64_assumed_rank(handle,m,n,A,lda,strideA, &
@@ -58101,6 +58538,27 @@ module hipfort_rocsolver
       !
       rocsolver_dgetf2_npvt_strided_batched_64_rank_1 = rocsolver_dgetf2_npvt_strided_batched_64_( &
         handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
+    end function
+
+    function rocsolver_dgetf2_npvt_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2_npvt_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_dgetf2_npvt_strided_batched_64_full_rank = &
+        rocsolver_dgetf2_npvt_strided_batched_64_(handle,m,n,c_loc(A),lda,strideA,myInfo, &
+        batch_count)
     end function
 
 #endif
@@ -58167,6 +58625,27 @@ module hipfort_rocsolver
         handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
     end function
 
+    function rocsolver_cgetf2_npvt_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2_npvt_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_cgetf2_npvt_strided_batched_64_full_rank = &
+        rocsolver_cgetf2_npvt_strided_batched_64_(handle,m,n,c_loc(A),lda,strideA,myInfo, &
+        batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgetf2_npvt_strided_batched_64_assumed_rank(handle,m,n,A,lda,strideA, &
@@ -58229,6 +58708,27 @@ module hipfort_rocsolver
       !
       rocsolver_zgetf2_npvt_strided_batched_64_rank_1 = rocsolver_zgetf2_npvt_strided_batched_64_( &
         handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
+    end function
+
+    function rocsolver_zgetf2_npvt_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2_npvt_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_zgetf2_npvt_strided_batched_64_full_rank = &
+        rocsolver_zgetf2_npvt_strided_batched_64_(handle,m,n,c_loc(A),lda,strideA,myInfo, &
+        batch_count)
     end function
 
 #endif
@@ -58551,6 +59051,22 @@ module hipfort_rocsolver
       rocsolver_sgetrf_npvt_64_rank_1 = rocsolver_sgetrf_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
     end function
 
+    function rocsolver_sgetrf_npvt_64_full_rank(handle,m,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrf_npvt_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_sgetrf_npvt_64_full_rank = rocsolver_sgetrf_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgetrf_npvt_64_assumed_rank(handle,m,n,A,lda,myInfo)
@@ -58601,6 +59117,22 @@ module hipfort_rocsolver
       type(c_ptr) :: myInfo
       !
       rocsolver_dgetrf_npvt_64_rank_1 = rocsolver_dgetrf_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
+    end function
+
+    function rocsolver_dgetrf_npvt_64_full_rank(handle,m,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrf_npvt_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_dgetrf_npvt_64_full_rank = rocsolver_dgetrf_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
     end function
 
 #endif
@@ -58655,6 +59187,22 @@ module hipfort_rocsolver
       rocsolver_cgetrf_npvt_64_rank_1 = rocsolver_cgetrf_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
     end function
 
+    function rocsolver_cgetrf_npvt_64_full_rank(handle,m,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrf_npvt_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_cgetrf_npvt_64_full_rank = rocsolver_cgetrf_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgetrf_npvt_64_assumed_rank(handle,m,n,A,lda,myInfo)
@@ -58705,6 +59253,22 @@ module hipfort_rocsolver
       type(c_ptr) :: myInfo
       !
       rocsolver_zgetrf_npvt_64_rank_1 = rocsolver_zgetrf_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
+    end function
+
+    function rocsolver_zgetrf_npvt_64_full_rank(handle,m,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrf_npvt_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_zgetrf_npvt_64_full_rank = rocsolver_zgetrf_npvt_64_(handle,m,n,c_loc(A),lda,myInfo)
     end function
 
 #endif
@@ -59103,6 +59667,27 @@ module hipfort_rocsolver
         handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
     end function
 
+    function rocsolver_sgetrf_npvt_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrf_npvt_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_sgetrf_npvt_strided_batched_64_full_rank = &
+        rocsolver_sgetrf_npvt_strided_batched_64_(handle,m,n,c_loc(A),lda,strideA,myInfo, &
+        batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgetrf_npvt_strided_batched_64_assumed_rank(handle,m,n,A,lda,strideA, &
@@ -59165,6 +59750,27 @@ module hipfort_rocsolver
       !
       rocsolver_dgetrf_npvt_strided_batched_64_rank_1 = rocsolver_dgetrf_npvt_strided_batched_64_( &
         handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
+    end function
+
+    function rocsolver_dgetrf_npvt_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrf_npvt_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_dgetrf_npvt_strided_batched_64_full_rank = &
+        rocsolver_dgetrf_npvt_strided_batched_64_(handle,m,n,c_loc(A),lda,strideA,myInfo, &
+        batch_count)
     end function
 
 #endif
@@ -59231,6 +59837,27 @@ module hipfort_rocsolver
         handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
     end function
 
+    function rocsolver_cgetrf_npvt_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrf_npvt_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_cgetrf_npvt_strided_batched_64_full_rank = &
+        rocsolver_cgetrf_npvt_strided_batched_64_(handle,m,n,c_loc(A),lda,strideA,myInfo, &
+        batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgetrf_npvt_strided_batched_64_assumed_rank(handle,m,n,A,lda,strideA, &
@@ -59293,6 +59920,27 @@ module hipfort_rocsolver
       !
       rocsolver_zgetrf_npvt_strided_batched_64_rank_1 = rocsolver_zgetrf_npvt_strided_batched_64_( &
         handle,m,n,c_loc(A),lda,strideA,myInfo,batch_count)
+    end function
+
+    function rocsolver_zgetrf_npvt_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrf_npvt_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_zgetrf_npvt_strided_batched_64_full_rank = &
+        rocsolver_zgetrf_npvt_strided_batched_64_(handle,m,n,c_loc(A),lda,strideA,myInfo, &
+        batch_count)
     end function
 
 #endif
@@ -59634,6 +60282,24 @@ module hipfort_rocsolver
       rocsolver_sgetf2_64_rank_1 = rocsolver_sgetf2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
+    function rocsolver_sgetf2_64_full_rank(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_sgetf2_64_full_rank = rocsolver_sgetf2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv), &
+        myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgetf2_64_assumed_rank(handle,m,n,A,lda,ipiv,myInfo)
@@ -59687,6 +60353,24 @@ module hipfort_rocsolver
       type(c_ptr) :: myInfo
       !
       rocsolver_dgetf2_64_rank_1 = rocsolver_dgetf2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+    end function
+
+    function rocsolver_dgetf2_64_full_rank(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_dgetf2_64_full_rank = rocsolver_dgetf2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv), &
+        myInfo)
     end function
 
 #endif
@@ -59744,6 +60428,24 @@ module hipfort_rocsolver
       rocsolver_cgetf2_64_rank_1 = rocsolver_cgetf2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
+    function rocsolver_cgetf2_64_full_rank(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_cgetf2_64_full_rank = rocsolver_cgetf2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv), &
+        myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgetf2_64_assumed_rank(handle,m,n,A,lda,ipiv,myInfo)
@@ -59797,6 +60499,24 @@ module hipfort_rocsolver
       type(c_ptr) :: myInfo
       !
       rocsolver_zgetf2_64_rank_1 = rocsolver_zgetf2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+    end function
+
+    function rocsolver_zgetf2_64_full_rank(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_zgetf2_64_full_rank = rocsolver_zgetf2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv), &
+        myInfo)
     end function
 
 #endif
@@ -60740,6 +61460,28 @@ module hipfort_rocsolver
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
     end function
 
+    function rocsolver_sgetf2_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetf2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_sgetf2_strided_batched_64_full_rank = rocsolver_sgetf2_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgetf2_strided_batched_64_assumed_rank(handle,m,n,A,lda,strideA,ipiv, &
@@ -60807,6 +61549,28 @@ module hipfort_rocsolver
       !
       rocsolver_dgetf2_strided_batched_64_rank_1 = rocsolver_dgetf2_strided_batched_64_(handle,m, &
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+    end function
+
+    function rocsolver_dgetf2_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetf2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_dgetf2_strided_batched_64_full_rank = rocsolver_dgetf2_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
     end function
 
 #endif
@@ -60878,6 +61642,28 @@ module hipfort_rocsolver
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
     end function
 
+    function rocsolver_cgetf2_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetf2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_cgetf2_strided_batched_64_full_rank = rocsolver_cgetf2_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgetf2_strided_batched_64_assumed_rank(handle,m,n,A,lda,strideA,ipiv, &
@@ -60945,6 +61731,28 @@ module hipfort_rocsolver
       !
       rocsolver_zgetf2_strided_batched_64_rank_1 = rocsolver_zgetf2_strided_batched_64_(handle,m, &
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+    end function
+
+    function rocsolver_zgetf2_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetf2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_zgetf2_strided_batched_64_full_rank = rocsolver_zgetf2_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
     end function
 
 #endif
@@ -61286,6 +62094,24 @@ module hipfort_rocsolver
       rocsolver_sgetrf_64_rank_1 = rocsolver_sgetrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
+    function rocsolver_sgetrf_64_full_rank(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_sgetrf_64_full_rank = rocsolver_sgetrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv), &
+        myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgetrf_64_assumed_rank(handle,m,n,A,lda,ipiv,myInfo)
@@ -61339,6 +62165,24 @@ module hipfort_rocsolver
       type(c_ptr) :: myInfo
       !
       rocsolver_dgetrf_64_rank_1 = rocsolver_dgetrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+    end function
+
+    function rocsolver_dgetrf_64_full_rank(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_dgetrf_64_full_rank = rocsolver_dgetrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv), &
+        myInfo)
     end function
 
 #endif
@@ -61396,6 +62240,24 @@ module hipfort_rocsolver
       rocsolver_cgetrf_64_rank_1 = rocsolver_cgetrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
     end function
 
+    function rocsolver_cgetrf_64_full_rank(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_cgetrf_64_full_rank = rocsolver_cgetrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv), &
+        myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgetrf_64_assumed_rank(handle,m,n,A,lda,ipiv,myInfo)
@@ -61449,6 +62311,24 @@ module hipfort_rocsolver
       type(c_ptr) :: myInfo
       !
       rocsolver_zgetrf_64_rank_1 = rocsolver_zgetrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+    end function
+
+    function rocsolver_zgetrf_64_full_rank(handle,m,n,A,lda,ipiv,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_zgetrf_64_full_rank = rocsolver_zgetrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv), &
+        myInfo)
     end function
 
 #endif
@@ -62392,6 +63272,28 @@ module hipfort_rocsolver
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
     end function
 
+    function rocsolver_sgetrf_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrf_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_sgetrf_strided_batched_64_full_rank = rocsolver_sgetrf_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgetrf_strided_batched_64_assumed_rank(handle,m,n,A,lda,strideA,ipiv, &
@@ -62459,6 +63361,28 @@ module hipfort_rocsolver
       !
       rocsolver_dgetrf_strided_batched_64_rank_1 = rocsolver_dgetrf_strided_batched_64_(handle,m, &
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+    end function
+
+    function rocsolver_dgetrf_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrf_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_dgetrf_strided_batched_64_full_rank = rocsolver_dgetrf_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
     end function
 
 #endif
@@ -62530,6 +63454,28 @@ module hipfort_rocsolver
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
     end function
 
+    function rocsolver_cgetrf_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrf_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_cgetrf_strided_batched_64_full_rank = rocsolver_cgetrf_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgetrf_strided_batched_64_assumed_rank(handle,m,n,A,lda,strideA,ipiv, &
@@ -62597,6 +63543,28 @@ module hipfort_rocsolver
       !
       rocsolver_zgetrf_strided_batched_64_rank_1 = rocsolver_zgetrf_strided_batched_64_(handle,m, &
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+    end function
+
+    function rocsolver_zgetrf_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrf_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_zgetrf_strided_batched_64_full_rank = rocsolver_zgetrf_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
     end function
 
 #endif
@@ -62918,6 +63886,22 @@ module hipfort_rocsolver
       rocsolver_sgeqr2_64_rank_1 = rocsolver_sgeqr2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
+    function rocsolver_sgeqr2_64_full_rank(handle,m,n,A,lda,ipiv)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeqr2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: ipiv
+      !
+      rocsolver_sgeqr2_64_full_rank = rocsolver_sgeqr2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgeqr2_64_assumed_rank(handle,m,n,A,lda,ipiv)
@@ -62967,6 +63951,22 @@ module hipfort_rocsolver
       real(c_double),target,dimension(:) :: ipiv
       !
       rocsolver_dgeqr2_64_rank_1 = rocsolver_dgeqr2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
+    end function
+
+    function rocsolver_dgeqr2_64_full_rank(handle,m,n,A,lda,ipiv)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeqr2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: ipiv
+      !
+      rocsolver_dgeqr2_64_full_rank = rocsolver_dgeqr2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
 #endif
@@ -63020,6 +64020,22 @@ module hipfort_rocsolver
       rocsolver_cgeqr2_64_rank_1 = rocsolver_cgeqr2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
+    function rocsolver_cgeqr2_64_full_rank(handle,m,n,A,lda,ipiv)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeqr2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: ipiv
+      !
+      rocsolver_cgeqr2_64_full_rank = rocsolver_cgeqr2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgeqr2_64_assumed_rank(handle,m,n,A,lda,ipiv)
@@ -63069,6 +64085,22 @@ module hipfort_rocsolver
       complex(c_double_complex),target,dimension(:) :: ipiv
       !
       rocsolver_zgeqr2_64_rank_1 = rocsolver_zgeqr2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
+    end function
+
+    function rocsolver_zgeqr2_64_full_rank(handle,m,n,A,lda,ipiv)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeqr2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: ipiv
+      !
+      rocsolver_zgeqr2_64_full_rank = rocsolver_zgeqr2_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
 #endif
@@ -63965,6 +64997,27 @@ module hipfort_rocsolver
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
     end function
 
+    function rocsolver_sgeqr2_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeqr2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_sgeqr2_strided_batched_64_full_rank = rocsolver_sgeqr2_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgeqr2_strided_batched_64_assumed_rank(handle,m,n,A,lda,strideA,ipiv, &
@@ -64029,6 +65082,27 @@ module hipfort_rocsolver
       !
       rocsolver_dgeqr2_strided_batched_64_rank_1 = rocsolver_dgeqr2_strided_batched_64_(handle,m, &
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
+    end function
+
+    function rocsolver_dgeqr2_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeqr2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_dgeqr2_strided_batched_64_full_rank = rocsolver_dgeqr2_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
     end function
 
 #endif
@@ -64097,6 +65171,27 @@ module hipfort_rocsolver
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
     end function
 
+    function rocsolver_cgeqr2_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeqr2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_cgeqr2_strided_batched_64_full_rank = rocsolver_cgeqr2_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgeqr2_strided_batched_64_assumed_rank(handle,m,n,A,lda,strideA,ipiv, &
@@ -64161,6 +65256,27 @@ module hipfort_rocsolver
       !
       rocsolver_zgeqr2_strided_batched_64_rank_1 = rocsolver_zgeqr2_strided_batched_64_(handle,m, &
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
+    end function
+
+    function rocsolver_zgeqr2_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeqr2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_zgeqr2_strided_batched_64_full_rank = rocsolver_zgeqr2_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
     end function
 
 #endif
@@ -67050,6 +68166,22 @@ module hipfort_rocsolver
       rocsolver_sgeqrf_64_rank_1 = rocsolver_sgeqrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
+    function rocsolver_sgeqrf_64_full_rank(handle,m,n,A,lda,ipiv)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeqrf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: ipiv
+      !
+      rocsolver_sgeqrf_64_full_rank = rocsolver_sgeqrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgeqrf_64_assumed_rank(handle,m,n,A,lda,ipiv)
@@ -67099,6 +68231,22 @@ module hipfort_rocsolver
       real(c_double),target,dimension(:) :: ipiv
       !
       rocsolver_dgeqrf_64_rank_1 = rocsolver_dgeqrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
+    end function
+
+    function rocsolver_dgeqrf_64_full_rank(handle,m,n,A,lda,ipiv)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeqrf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: ipiv
+      !
+      rocsolver_dgeqrf_64_full_rank = rocsolver_dgeqrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
 #endif
@@ -67152,6 +68300,22 @@ module hipfort_rocsolver
       rocsolver_cgeqrf_64_rank_1 = rocsolver_cgeqrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
+    function rocsolver_cgeqrf_64_full_rank(handle,m,n,A,lda,ipiv)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeqrf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: ipiv
+      !
+      rocsolver_cgeqrf_64_full_rank = rocsolver_cgeqrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgeqrf_64_assumed_rank(handle,m,n,A,lda,ipiv)
@@ -67201,6 +68365,22 @@ module hipfort_rocsolver
       complex(c_double_complex),target,dimension(:) :: ipiv
       !
       rocsolver_zgeqrf_64_rank_1 = rocsolver_zgeqrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
+    end function
+
+    function rocsolver_zgeqrf_64_full_rank(handle,m,n,A,lda,ipiv)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeqrf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: ipiv
+      !
+      rocsolver_zgeqrf_64_full_rank = rocsolver_zgeqrf_64_(handle,m,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
 #endif
@@ -68097,6 +69277,27 @@ module hipfort_rocsolver
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
     end function
 
+    function rocsolver_sgeqrf_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgeqrf_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_sgeqrf_strided_batched_64_full_rank = rocsolver_sgeqrf_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgeqrf_strided_batched_64_assumed_rank(handle,m,n,A,lda,strideA,ipiv, &
@@ -68161,6 +69362,27 @@ module hipfort_rocsolver
       !
       rocsolver_dgeqrf_strided_batched_64_rank_1 = rocsolver_dgeqrf_strided_batched_64_(handle,m, &
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
+    end function
+
+    function rocsolver_dgeqrf_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgeqrf_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_dgeqrf_strided_batched_64_full_rank = rocsolver_dgeqrf_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
     end function
 
 #endif
@@ -68229,6 +69451,27 @@ module hipfort_rocsolver
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
     end function
 
+    function rocsolver_cgeqrf_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgeqrf_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_cgeqrf_strided_batched_64_full_rank = rocsolver_cgeqrf_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgeqrf_strided_batched_64_assumed_rank(handle,m,n,A,lda,strideA,ipiv, &
@@ -68293,6 +69536,27 @@ module hipfort_rocsolver
       !
       rocsolver_zgeqrf_strided_batched_64_rank_1 = rocsolver_zgeqrf_strided_batched_64_(handle,m, &
         n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
+    end function
+
+    function rocsolver_zgeqrf_strided_batched_64_full_rank(handle,m,n,A,lda,strideA,ipiv,strideP, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgeqrf_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_zgeqrf_strided_batched_64_full_rank = rocsolver_zgeqrf_strided_batched_64_(handle, &
+        m,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,batch_count)
     end function
 
 #endif
@@ -73490,6 +74754,26 @@ module hipfort_rocsolver
         c_loc(ipiv),c_loc(B),ldb)
     end function
 
+    function rocsolver_sgetrs_64_full_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      !
+      rocsolver_sgetrs_64_full_rank = rocsolver_sgetrs_64_(handle,trans,n,nrhs,c_loc(A),lda, &
+        c_loc(ipiv),c_loc(B),ldb)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgetrs_64_assumed_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb)
@@ -73550,6 +74834,26 @@ module hipfort_rocsolver
       integer(c_int64_t) :: ldb
       !
       rocsolver_dgetrs_64_rank_1 = rocsolver_dgetrs_64_(handle,trans,n,nrhs,c_loc(A),lda, &
+        c_loc(ipiv),c_loc(B),ldb)
+    end function
+
+    function rocsolver_dgetrs_64_full_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      !
+      rocsolver_dgetrs_64_full_rank = rocsolver_dgetrs_64_(handle,trans,n,nrhs,c_loc(A),lda, &
         c_loc(ipiv),c_loc(B),ldb)
     end function
 
@@ -73616,6 +74920,26 @@ module hipfort_rocsolver
         c_loc(ipiv),c_loc(B),ldb)
     end function
 
+    function rocsolver_cgetrs_64_full_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      !
+      rocsolver_cgetrs_64_full_rank = rocsolver_cgetrs_64_(handle,trans,n,nrhs,c_loc(A),lda, &
+        c_loc(ipiv),c_loc(B),ldb)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgetrs_64_assumed_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb)
@@ -73676,6 +75000,26 @@ module hipfort_rocsolver
       integer(c_int64_t) :: ldb
       !
       rocsolver_zgetrs_64_rank_1 = rocsolver_zgetrs_64_(handle,trans,n,nrhs,c_loc(A),lda, &
+        c_loc(ipiv),c_loc(B),ldb)
+    end function
+
+    function rocsolver_zgetrs_64_full_rank(handle,trans,n,nrhs,A,lda,ipiv,B,ldb)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      !
+      rocsolver_zgetrs_64_full_rank = rocsolver_zgetrs_64_(handle,trans,n,nrhs,c_loc(A),lda, &
         c_loc(ipiv),c_loc(B),ldb)
     end function
 
@@ -74746,6 +76090,31 @@ module hipfort_rocsolver
         trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,batch_count)
     end function
 
+    function rocsolver_sgetrs_strided_batched_64_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_sgetrs_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_sgetrs_strided_batched_64_full_rank = rocsolver_sgetrs_strided_batched_64_(handle, &
+        trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dgetrs_strided_batched_64_assumed_rank(handle,trans,n,nrhs,A,lda,strideA, &
@@ -74822,6 +76191,31 @@ module hipfort_rocsolver
       integer(c_int64_t) :: batch_count
       !
       rocsolver_dgetrs_strided_batched_64_rank_1 = rocsolver_dgetrs_strided_batched_64_(handle, &
+        trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,batch_count)
+    end function
+
+    function rocsolver_dgetrs_strided_batched_64_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dgetrs_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_dgetrs_strided_batched_64_full_rank = rocsolver_dgetrs_strided_batched_64_(handle, &
         trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,batch_count)
     end function
 
@@ -74904,6 +76298,31 @@ module hipfort_rocsolver
         trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,batch_count)
     end function
 
+    function rocsolver_cgetrs_strided_batched_64_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cgetrs_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_cgetrs_strided_batched_64_full_rank = rocsolver_cgetrs_strided_batched_64_(handle, &
+        trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zgetrs_strided_batched_64_assumed_rank(handle,trans,n,nrhs,A,lda,strideA, &
@@ -74980,6 +76399,31 @@ module hipfort_rocsolver
       integer(c_int64_t) :: batch_count
       !
       rocsolver_zgetrs_strided_batched_64_rank_1 = rocsolver_zgetrs_strided_batched_64_(handle, &
+        trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,batch_count)
+    end function
+
+    function rocsolver_zgetrs_strided_batched_64_full_rank(handle,trans,n,nrhs,A,lda,strideA,ipiv, &
+        strideP,B,ldb,strideB,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zgetrs_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t),target,dimension(:) :: ipiv
+      integer(c_int64_t) :: strideP
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_zgetrs_strided_batched_64_full_rank = rocsolver_zgetrs_strided_batched_64_(handle, &
         trans,n,nrhs,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(B),ldb,strideB,batch_count)
     end function
 
@@ -78510,6 +79954,22 @@ module hipfort_rocsolver
       rocsolver_spotf2_64_rank_1 = rocsolver_spotf2_64_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
 
+    function rocsolver_spotf2_64_full_rank(handle,uplo,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotf2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_spotf2_64_full_rank = rocsolver_spotf2_64_(handle,uplo,n,c_loc(A),lda,myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dpotf2_64_assumed_rank(handle,uplo,n,A,lda,myInfo)
@@ -78559,6 +80019,22 @@ module hipfort_rocsolver
       type(c_ptr) :: myInfo
       !
       rocsolver_dpotf2_64_rank_1 = rocsolver_dpotf2_64_(handle,uplo,n,c_loc(A),lda,myInfo)
+    end function
+
+    function rocsolver_dpotf2_64_full_rank(handle,uplo,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotf2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_dpotf2_64_full_rank = rocsolver_dpotf2_64_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
 
 #endif
@@ -78612,6 +80088,22 @@ module hipfort_rocsolver
       rocsolver_cpotf2_64_rank_1 = rocsolver_cpotf2_64_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
 
+    function rocsolver_cpotf2_64_full_rank(handle,uplo,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotf2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_cpotf2_64_full_rank = rocsolver_cpotf2_64_(handle,uplo,n,c_loc(A),lda,myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zpotf2_64_assumed_rank(handle,uplo,n,A,lda,myInfo)
@@ -78661,6 +80153,22 @@ module hipfort_rocsolver
       type(c_ptr) :: myInfo
       !
       rocsolver_zpotf2_64_rank_1 = rocsolver_zpotf2_64_(handle,uplo,n,c_loc(A),lda,myInfo)
+    end function
+
+    function rocsolver_zpotf2_64_full_rank(handle,uplo,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotf2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_zpotf2_64_full_rank = rocsolver_zpotf2_64_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
 
 #endif
@@ -79050,6 +80558,26 @@ module hipfort_rocsolver
         uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
     end function
 
+    function rocsolver_spotf2_strided_batched_64_full_rank(handle,uplo,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotf2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_spotf2_strided_batched_64_full_rank = rocsolver_spotf2_strided_batched_64_(handle, &
+        uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dpotf2_strided_batched_64_assumed_rank(handle,uplo,n,A,lda,strideA,myInfo, &
@@ -79110,6 +80638,26 @@ module hipfort_rocsolver
       integer(c_int64_t) :: batch_count
       !
       rocsolver_dpotf2_strided_batched_64_rank_1 = rocsolver_dpotf2_strided_batched_64_(handle, &
+        uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
+    end function
+
+    function rocsolver_dpotf2_strided_batched_64_full_rank(handle,uplo,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotf2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_dpotf2_strided_batched_64_full_rank = rocsolver_dpotf2_strided_batched_64_(handle, &
         uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
     end function
 
@@ -79176,6 +80724,26 @@ module hipfort_rocsolver
         uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
     end function
 
+    function rocsolver_cpotf2_strided_batched_64_full_rank(handle,uplo,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotf2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_cpotf2_strided_batched_64_full_rank = rocsolver_cpotf2_strided_batched_64_(handle, &
+        uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zpotf2_strided_batched_64_assumed_rank(handle,uplo,n,A,lda,strideA,myInfo, &
@@ -79236,6 +80804,26 @@ module hipfort_rocsolver
       integer(c_int64_t) :: batch_count
       !
       rocsolver_zpotf2_strided_batched_64_rank_1 = rocsolver_zpotf2_strided_batched_64_(handle, &
+        uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
+    end function
+
+    function rocsolver_zpotf2_strided_batched_64_full_rank(handle,uplo,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotf2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_zpotf2_strided_batched_64_full_rank = rocsolver_zpotf2_strided_batched_64_(handle, &
         uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
     end function
 
@@ -79558,6 +81146,22 @@ module hipfort_rocsolver
       rocsolver_spotrf_64_rank_1 = rocsolver_spotrf_64_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
 
+    function rocsolver_spotrf_64_full_rank(handle,uplo,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotrf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_spotrf_64_full_rank = rocsolver_spotrf_64_(handle,uplo,n,c_loc(A),lda,myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dpotrf_64_assumed_rank(handle,uplo,n,A,lda,myInfo)
@@ -79607,6 +81211,22 @@ module hipfort_rocsolver
       type(c_ptr) :: myInfo
       !
       rocsolver_dpotrf_64_rank_1 = rocsolver_dpotrf_64_(handle,uplo,n,c_loc(A),lda,myInfo)
+    end function
+
+    function rocsolver_dpotrf_64_full_rank(handle,uplo,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotrf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_dpotrf_64_full_rank = rocsolver_dpotrf_64_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
 
 #endif
@@ -79660,6 +81280,22 @@ module hipfort_rocsolver
       rocsolver_cpotrf_64_rank_1 = rocsolver_cpotrf_64_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
 
+    function rocsolver_cpotrf_64_full_rank(handle,uplo,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_cpotrf_64_full_rank = rocsolver_cpotrf_64_(handle,uplo,n,c_loc(A),lda,myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zpotrf_64_assumed_rank(handle,uplo,n,A,lda,myInfo)
@@ -79709,6 +81345,22 @@ module hipfort_rocsolver
       type(c_ptr) :: myInfo
       !
       rocsolver_zpotrf_64_rank_1 = rocsolver_zpotrf_64_(handle,uplo,n,c_loc(A),lda,myInfo)
+    end function
+
+    function rocsolver_zpotrf_64_full_rank(handle,uplo,n,A,lda,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrf_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_zpotrf_64_full_rank = rocsolver_zpotrf_64_(handle,uplo,n,c_loc(A),lda,myInfo)
     end function
 
 #endif
@@ -80098,6 +81750,26 @@ module hipfort_rocsolver
         uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
     end function
 
+    function rocsolver_spotrf_strided_batched_64_full_rank(handle,uplo,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotrf_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_spotrf_strided_batched_64_full_rank = rocsolver_spotrf_strided_batched_64_(handle, &
+        uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dpotrf_strided_batched_64_assumed_rank(handle,uplo,n,A,lda,strideA,myInfo, &
@@ -80158,6 +81830,26 @@ module hipfort_rocsolver
       integer(c_int64_t) :: batch_count
       !
       rocsolver_dpotrf_strided_batched_64_rank_1 = rocsolver_dpotrf_strided_batched_64_(handle, &
+        uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
+    end function
+
+    function rocsolver_dpotrf_strided_batched_64_full_rank(handle,uplo,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotrf_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_dpotrf_strided_batched_64_full_rank = rocsolver_dpotrf_strided_batched_64_(handle, &
         uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
     end function
 
@@ -80224,6 +81916,26 @@ module hipfort_rocsolver
         uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
     end function
 
+    function rocsolver_cpotrf_strided_batched_64_full_rank(handle,uplo,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrf_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_cpotrf_strided_batched_64_full_rank = rocsolver_cpotrf_strided_batched_64_(handle, &
+        uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zpotrf_strided_batched_64_assumed_rank(handle,uplo,n,A,lda,strideA,myInfo, &
@@ -80284,6 +81996,26 @@ module hipfort_rocsolver
       integer(c_int64_t) :: batch_count
       !
       rocsolver_zpotrf_strided_batched_64_rank_1 = rocsolver_zpotrf_strided_batched_64_(handle, &
+        uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
+    end function
+
+    function rocsolver_zpotrf_strided_batched_64_full_rank(handle,uplo,n,A,lda,strideA,myInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrf_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_zpotrf_strided_batched_64_full_rank = rocsolver_zpotrf_strided_batched_64_(handle, &
         uplo,n,c_loc(A),lda,strideA,myInfo,batch_count)
     end function
 
@@ -80651,6 +82383,25 @@ module hipfort_rocsolver
         ldb)
     end function
 
+    function rocsolver_spotrs_64_full_rank(handle,uplo,n,nrhs,A,lda,B,ldb)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotrs_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      !
+      rocsolver_spotrs_64_full_rank = rocsolver_spotrs_64_(handle,uplo,n,nrhs,c_loc(A),lda, &
+        c_loc(B),ldb)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dpotrs_64_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb)
@@ -80709,6 +82460,25 @@ module hipfort_rocsolver
       !
       rocsolver_dpotrs_64_rank_1 = rocsolver_dpotrs_64_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B), &
         ldb)
+    end function
+
+    function rocsolver_dpotrs_64_full_rank(handle,uplo,n,nrhs,A,lda,B,ldb)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotrs_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      !
+      rocsolver_dpotrs_64_full_rank = rocsolver_dpotrs_64_(handle,uplo,n,nrhs,c_loc(A),lda, &
+        c_loc(B),ldb)
     end function
 
 #endif
@@ -80771,6 +82541,25 @@ module hipfort_rocsolver
         ldb)
     end function
 
+    function rocsolver_cpotrs_64_full_rank(handle,uplo,n,nrhs,A,lda,B,ldb)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrs_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      !
+      rocsolver_cpotrs_64_full_rank = rocsolver_cpotrs_64_(handle,uplo,n,nrhs,c_loc(A),lda, &
+        c_loc(B),ldb)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zpotrs_64_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb)
@@ -80829,6 +82618,25 @@ module hipfort_rocsolver
       !
       rocsolver_zpotrs_64_rank_1 = rocsolver_zpotrs_64_(handle,uplo,n,nrhs,c_loc(A),lda,c_loc(B), &
         ldb)
+    end function
+
+    function rocsolver_zpotrs_64_full_rank(handle,uplo,n,nrhs,A,lda,B,ldb)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrs_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      !
+      rocsolver_zpotrs_64_full_rank = rocsolver_zpotrs_64_(handle,uplo,n,nrhs,c_loc(A),lda, &
+        c_loc(B),ldb)
     end function
 
 #endif
@@ -81283,6 +83091,29 @@ module hipfort_rocsolver
         uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,batch_count)
     end function
 
+    function rocsolver_spotrs_strided_batched_64_full_rank(handle,uplo,n,nrhs,A,lda,strideA,B,ldb, &
+        strideB,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_spotrs_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_spotrs_strided_batched_64_full_rank = rocsolver_spotrs_strided_batched_64_(handle, &
+        uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dpotrs_strided_batched_64_assumed_rank(handle,uplo,n,nrhs,A,lda,strideA,B, &
@@ -81352,6 +83183,29 @@ module hipfort_rocsolver
       integer(c_int64_t) :: batch_count
       !
       rocsolver_dpotrs_strided_batched_64_rank_1 = rocsolver_dpotrs_strided_batched_64_(handle, &
+        uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,batch_count)
+    end function
+
+    function rocsolver_dpotrs_strided_batched_64_full_rank(handle,uplo,n,nrhs,A,lda,strideA,B,ldb, &
+        strideB,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dpotrs_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_dpotrs_strided_batched_64_full_rank = rocsolver_dpotrs_strided_batched_64_(handle, &
         uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,batch_count)
     end function
 
@@ -81427,6 +83281,29 @@ module hipfort_rocsolver
         uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,batch_count)
     end function
 
+    function rocsolver_cpotrs_strided_batched_64_full_rank(handle,uplo,n,nrhs,A,lda,strideA,B,ldb, &
+        strideB,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cpotrs_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_cpotrs_strided_batched_64_full_rank = rocsolver_cpotrs_strided_batched_64_(handle, &
+        uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zpotrs_strided_batched_64_assumed_rank(handle,uplo,n,nrhs,A,lda,strideA,B, &
@@ -81496,6 +83373,29 @@ module hipfort_rocsolver
       integer(c_int64_t) :: batch_count
       !
       rocsolver_zpotrs_strided_batched_64_rank_1 = rocsolver_zpotrs_strided_batched_64_(handle, &
+        uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,batch_count)
+    end function
+
+    function rocsolver_zpotrs_strided_batched_64_full_rank(handle,uplo,n,nrhs,A,lda,strideA,B,ldb, &
+        strideB,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zpotrs_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: nrhs
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: strideB
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_zpotrs_strided_batched_64_full_rank = rocsolver_zpotrs_strided_batched_64_(handle, &
         uplo,n,nrhs,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,batch_count)
     end function
 
@@ -88012,6 +89912,26 @@ module hipfort_rocsolver
         c_loc(E),myInfo)
     end function
 
+    function rocsolver_ssyev_64_full_rank(handle,evect,uplo,n,A,lda,D,E,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyev_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: D
+      real(c_float),target,dimension(:) :: E
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_ssyev_64_full_rank = rocsolver_ssyev_64_(handle,evect,uplo,n,c_loc(A),lda, &
+        c_loc(D),c_loc(E),myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dsyev_64_assumed_rank(handle,evect,uplo,n,A,lda,D,E,myInfo)
@@ -88073,6 +89993,26 @@ module hipfort_rocsolver
       !
       rocsolver_dsyev_64_rank_1 = rocsolver_dsyev_64_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D), &
         c_loc(E),myInfo)
+    end function
+
+    function rocsolver_dsyev_64_full_rank(handle,evect,uplo,n,A,lda,D,E,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyev_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: D
+      real(c_double),target,dimension(:) :: E
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_dsyev_64_full_rank = rocsolver_dsyev_64_(handle,evect,uplo,n,c_loc(A),lda, &
+        c_loc(D),c_loc(E),myInfo)
     end function
 
 #endif
@@ -88304,6 +90244,26 @@ module hipfort_rocsolver
         c_loc(E),myInfo)
     end function
 
+    function rocsolver_cheev_64_full_rank(handle,evect,uplo,n,A,lda,D,E,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheev_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: D
+      real(c_float),target,dimension(:) :: E
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_cheev_64_full_rank = rocsolver_cheev_64_(handle,evect,uplo,n,c_loc(A),lda, &
+        c_loc(D),c_loc(E),myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zheev_64_assumed_rank(handle,evect,uplo,n,A,lda,D,E,myInfo)
@@ -88365,6 +90325,26 @@ module hipfort_rocsolver
       !
       rocsolver_zheev_64_rank_1 = rocsolver_zheev_64_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D), &
         c_loc(E),myInfo)
+    end function
+
+    function rocsolver_zheev_64_full_rank(handle,evect,uplo,n,A,lda,D,E,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheev_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: D
+      real(c_double),target,dimension(:) :: E
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_zheev_64_full_rank = rocsolver_zheev_64_(handle,evect,uplo,n,c_loc(A),lda, &
+        c_loc(D),c_loc(E),myInfo)
     end function
 
 #endif
@@ -89252,6 +91232,31 @@ module hipfort_rocsolver
         evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
     end function
 
+    function rocsolver_ssyev_strided_batched_64_full_rank(handle,evect,uplo,n,A,lda,strideA,D, &
+        strideD,E,strideE,myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyev_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: D
+      integer(c_int64_t) :: strideD
+      real(c_float),target,dimension(:) :: E
+      integer(c_int64_t) :: strideE
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_ssyev_strided_batched_64_full_rank = rocsolver_ssyev_strided_batched_64_(handle, &
+        evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dsyev_strided_batched_64_assumed_rank(handle,evect,uplo,n,A,lda,strideA,D, &
@@ -89328,6 +91333,31 @@ module hipfort_rocsolver
       integer(c_int64_t) :: batch_count
       !
       rocsolver_dsyev_strided_batched_64_rank_1 = rocsolver_dsyev_strided_batched_64_(handle, &
+        evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
+    end function
+
+    function rocsolver_dsyev_strided_batched_64_full_rank(handle,evect,uplo,n,A,lda,strideA,D, &
+        strideD,E,strideE,myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyev_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: D
+      integer(c_int64_t) :: strideD
+      real(c_double),target,dimension(:) :: E
+      integer(c_int64_t) :: strideE
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_dsyev_strided_batched_64_full_rank = rocsolver_dsyev_strided_batched_64_(handle, &
         evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
     end function
 
@@ -89616,6 +91646,31 @@ module hipfort_rocsolver
         evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
     end function
 
+    function rocsolver_cheev_strided_batched_64_full_rank(handle,evect,uplo,n,A,lda,strideA,D, &
+        strideD,E,strideE,myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheev_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: D
+      integer(c_int64_t) :: strideD
+      real(c_float),target,dimension(:) :: E
+      integer(c_int64_t) :: strideE
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_cheev_strided_batched_64_full_rank = rocsolver_cheev_strided_batched_64_(handle, &
+        evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zheev_strided_batched_64_assumed_rank(handle,evect,uplo,n,A,lda,strideA,D, &
@@ -89692,6 +91747,31 @@ module hipfort_rocsolver
       integer(c_int64_t) :: batch_count
       !
       rocsolver_zheev_strided_batched_64_rank_1 = rocsolver_zheev_strided_batched_64_(handle, &
+        evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
+    end function
+
+    function rocsolver_zheev_strided_batched_64_full_rank(handle,evect,uplo,n,A,lda,strideA,D, &
+        strideD,E,strideE,myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheev_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: D
+      integer(c_int64_t) :: strideD
+      real(c_double),target,dimension(:) :: E
+      integer(c_int64_t) :: strideE
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_zheev_strided_batched_64_full_rank = rocsolver_zheev_strided_batched_64_(handle, &
         evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
     end function
 
@@ -89924,6 +92004,26 @@ module hipfort_rocsolver
         c_loc(E),myInfo)
     end function
 
+    function rocsolver_ssyevd_64_full_rank(handle,evect,uplo,n,A,lda,D,E,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevd_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: D
+      real(c_float),target,dimension(:) :: E
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_ssyevd_64_full_rank = rocsolver_ssyevd_64_(handle,evect,uplo,n,c_loc(A),lda, &
+        c_loc(D),c_loc(E),myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dsyevd_64_assumed_rank(handle,evect,uplo,n,A,lda,D,E,myInfo)
@@ -89985,6 +92085,26 @@ module hipfort_rocsolver
       !
       rocsolver_dsyevd_64_rank_1 = rocsolver_dsyevd_64_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D), &
         c_loc(E),myInfo)
+    end function
+
+    function rocsolver_dsyevd_64_full_rank(handle,evect,uplo,n,A,lda,D,E,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevd_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: D
+      real(c_double),target,dimension(:) :: E
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_dsyevd_64_full_rank = rocsolver_dsyevd_64_(handle,evect,uplo,n,c_loc(A),lda, &
+        c_loc(D),c_loc(E),myInfo)
     end function
 
 #endif
@@ -90216,6 +92336,26 @@ module hipfort_rocsolver
         c_loc(E),myInfo)
     end function
 
+    function rocsolver_cheevd_64_full_rank(handle,evect,uplo,n,A,lda,D,E,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevd_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: D
+      real(c_float),target,dimension(:) :: E
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_cheevd_64_full_rank = rocsolver_cheevd_64_(handle,evect,uplo,n,c_loc(A),lda, &
+        c_loc(D),c_loc(E),myInfo)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zheevd_64_assumed_rank(handle,evect,uplo,n,A,lda,D,E,myInfo)
@@ -90277,6 +92417,26 @@ module hipfort_rocsolver
       !
       rocsolver_zheevd_64_rank_1 = rocsolver_zheevd_64_(handle,evect,uplo,n,c_loc(A),lda,c_loc(D), &
         c_loc(E),myInfo)
+    end function
+
+    function rocsolver_zheevd_64_full_rank(handle,evect,uplo,n,A,lda,D,E,myInfo)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevd_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: D
+      real(c_double),target,dimension(:) :: E
+      type(c_ptr) :: myInfo
+      !
+      rocsolver_zheevd_64_full_rank = rocsolver_zheevd_64_(handle,evect,uplo,n,c_loc(A),lda, &
+        c_loc(D),c_loc(E),myInfo)
     end function
 
 #endif
@@ -91164,6 +93324,31 @@ module hipfort_rocsolver
         evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
     end function
 
+    function rocsolver_ssyevd_strided_batched_64_full_rank(handle,evect,uplo,n,A,lda,strideA,D, &
+        strideD,E,strideE,myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_ssyevd_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: D
+      integer(c_int64_t) :: strideD
+      real(c_float),target,dimension(:) :: E
+      integer(c_int64_t) :: strideE
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_ssyevd_strided_batched_64_full_rank = rocsolver_ssyevd_strided_batched_64_(handle, &
+        evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_dsyevd_strided_batched_64_assumed_rank(handle,evect,uplo,n,A,lda,strideA,D, &
@@ -91240,6 +93425,31 @@ module hipfort_rocsolver
       integer(c_int64_t) :: batch_count
       !
       rocsolver_dsyevd_strided_batched_64_rank_1 = rocsolver_dsyevd_strided_batched_64_(handle, &
+        evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
+    end function
+
+    function rocsolver_dsyevd_strided_batched_64_full_rank(handle,evect,uplo,n,A,lda,strideA,D, &
+        strideD,E,strideE,myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_dsyevd_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: D
+      integer(c_int64_t) :: strideD
+      real(c_double),target,dimension(:) :: E
+      integer(c_int64_t) :: strideE
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_dsyevd_strided_batched_64_full_rank = rocsolver_dsyevd_strided_batched_64_(handle, &
         evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
     end function
 
@@ -91528,6 +93738,31 @@ module hipfort_rocsolver
         evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
     end function
 
+    function rocsolver_cheevd_strided_batched_64_full_rank(handle,evect,uplo,n,A,lda,strideA,D, &
+        strideD,E,strideE,myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_cheevd_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: D
+      integer(c_int64_t) :: strideD
+      real(c_float),target,dimension(:) :: E
+      integer(c_int64_t) :: strideE
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_cheevd_strided_batched_64_full_rank = rocsolver_cheevd_strided_batched_64_(handle, &
+        evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocsolver_zheevd_strided_batched_64_assumed_rank(handle,evect,uplo,n,A,lda,strideA,D, &
@@ -91604,6 +93839,31 @@ module hipfort_rocsolver
       integer(c_int64_t) :: batch_count
       !
       rocsolver_zheevd_strided_batched_64_rank_1 = rocsolver_zheevd_strided_batched_64_(handle, &
+        evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
+    end function
+
+    function rocsolver_zheevd_strided_batched_64_full_rank(handle,evect,uplo,n,A,lda,strideA,D, &
+        strideD,E,strideE,myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zheevd_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_evect_original)) :: evect
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: D
+      integer(c_int64_t) :: strideD
+      real(c_double),target,dimension(:) :: E
+      integer(c_int64_t) :: strideE
+      type(c_ptr) :: myInfo
+      integer(c_int64_t) :: batch_count
+      !
+      rocsolver_zheevd_strided_batched_64_full_rank = rocsolver_zheevd_strided_batched_64_(handle, &
         evect,uplo,n,c_loc(A),lda,strideA,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
     end function
 

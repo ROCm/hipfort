@@ -69,8 +69,10 @@ define the same macro.
 Specific procedure names
 ------------------------
 
-The specific procedures appear under these names in the API reference and in the
-supported-API tables. Call them through the generic name ``X``.
+The specific procedures appear under these names in the API reference, which
+documents the Fortran 2008 build and so has no ``X_assumed_rank`` specifics. The
+supported-API tables list them by suffix, with ``X_`` shown as "C binding". Call
+them through the generic name ``X``.
 
 .. list-table::
    :header-rows: 1
@@ -106,13 +108,16 @@ supported-API tables. Call them through the generic name ``X``.
    * - ``X_full_rank``
      - Fortran 2008
      - A buffer followed by its leading dimension (``A``, ``lda``) as a 2-D
-       array, ``dimension(:,:)``; you still pass the leading dimension.
+       array, ``dimension(:,:)``; you still pass the leading dimension, except
+       to the rocBLAS and hipBLAS matrix transfer helpers, which use
+       ``size(A, 1)``.
    * - ``X_rank_N_devptr``, ``X_full_rank_devptr``
      - Fortran 2008
      - As above, with a scalar that ``X_rank_N`` takes as a variable passed as a
        ``type(c_ptr)`` instead: a scalar the GPU writes (hipSOLVER's
-       ``devInfo``), or a result in device pointer mode (``rocblas_sdot``'s
-       ``result``). See `Device-only scalars`_.
+       ``devInfo``), or a scalar read or written per the pointer mode
+       (``rocblas_sdot``'s ``result``, ``rocblas_drot``'s ``c`` and ``s``). See
+       `Device-only scalars`_.
    * - ``X_assumed_rank``, ``X_assumed_rank_devptr``
      - Fortran 2018
      - Buffers as ``contiguous, dimension(..)`` arrays of any rank, replacing the
@@ -132,7 +137,7 @@ Other kinds of arguments
 * **Character strings:** a ``const char*`` input is a ``type(c_ptr)`` in ``X_``,
   and a ``character(kind=c_char, len=*)`` in ``X_typed`` where the library takes
   a name or a message (ROCTx). Terminate the string with ``c_null_char``, as C
-  expects: ``roctxRangePush("solve"//c_null_char)``.
+  expects: ``ierr = roctxRangePush("solve"//c_null_char)``.
 * **Callbacks** (``hipStreamAddCallback``, ``hipLaunchHostFunc``, ...) are
   ``type(c_funptr)``: pass ``c_funloc`` of a ``bind(c)`` procedure.
 * **Batched routines** (``*_batched``) take ``A`` as a device array of device
@@ -141,7 +146,9 @@ Other kinds of arguments
   take one array and a stride instead.
 * **64-bit routines** (``*_64`` in rocBLAS, hipBLAS and rocSOLVER) take their
   sizes, increments and leading dimensions as ``integer(c_int64_t)``, and have
-  the same variants as the 32-bit ones.
+  the same variants as the 32-bit ones. The exception is rocBLAS's
+  ``rocblas_set_vector_64``, ``rocblas_get_matrix_64`` and the other transfer
+  helpers, which only have the ``type(c_ptr)`` form.
 
 Every routine returns its library's status. The ``hipfort_check`` module has a
 helper per library (``hipCheck``, ``rocblasCheck``, ``hipsolverCheck``, ...) that
@@ -200,8 +207,8 @@ elements rather than bytes:
 
 ``hipMalloc`` is also overloaded with ``mold``, ``source`` and ``dsource``
 arguments, in the spirit of the ``ALLOCATE`` intrinsic. ``mold`` takes the shape
-of another array without copying anything, while ``source`` takes its shape
-(including bounds) and performs a blocking copy to the device:
+of another array, including its bounds, without copying anything, while
+``source`` also performs a blocking copy to the device:
 
 .. code-block:: fortran
 
@@ -227,33 +234,37 @@ The other allocation forms:
 
 When an allocation fails, the pointer is left unassociated, so
 ``associated(a_d)`` tells whether the memory exists, and ``hipFree(a_d,
-only_if_allocated=.true.)`` is safe in a cleanup path.
+only_if_allocated=.true.)`` is safe in a cleanup path. A zero-size allocation
+succeeds without allocating memory; do not rely on ``associated`` for it.
 
 The copy routines count elements, not bytes: the ``length`` of ``hipMemcpy`` and
-``hipMemcpyAsync``, and the pitches, ``width`` and ``height`` of ``hipMemcpy2D``
-and ``hipMemcpy2DAsync``, for arrays of the same element type on both sides.
+``hipMemcpyAsync``, and the pitches and ``width`` of ``hipMemcpy2D`` and
+``hipMemcpy2DAsync`` (``height`` stays a number of rows), for arrays of the same
+element type on both sides. Without ``length``, ``hipMemcpy`` and
+``hipMemcpyAsync`` copy ``size(dest)`` elements.
 ``hipHostRegister(a, flags)`` registers a whole host array; a form with lengths
 registers its first elements. ``hipHostGetDevicePointer`` and
 ``hipHostGetFlags`` take the host array itself.
 
-These typed families exist for ``logical(c_bool)``, ``integer(c_int)``,
+These array overloads exist for ``logical(c_bool)``, ``integer(c_int)``,
 ``integer(c_int64_t)``, ``real(c_float)``, ``real(c_double)``,
 ``complex(c_float_complex)`` and ``complex(c_double_complex)`` arrays of rank 0
 to 7.
 
 The vector and matrix transfer helpers of rocBLAS and hipBLAS
 (``rocblas_set_vector``, ``hipblasGetMatrix``, their asynchronous forms, ...)
-have the same element types: a vector as a scalar or a rank-1 array, and a
-matrix as a scalar, a rank-2 array, whose leading dimension is then ``size(A, 1)``, or as
-a rank-1 array with an explicit leading dimension. The element size the C
-routine takes is derived from the array type.
+have the same element types. A vector is a scalar or a rank-1 array. A matrix
+is a scalar or a rank-1 array, each with an explicit leading dimension, or a
+rank-2 array, whose leading dimension is then ``size(A, 1)``. The element size
+the C routine takes is derived from the array type.
 
 Like the array interfaces of the math libraries, these ``hipMalloc`` and
-``hipMemcpy`` overloads exist only when the Fortran 2008 interfaces are enabled: a
-build with
-``-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`` has only the ``type(c_ptr)`` forms.
-The allocation routines (``hipMalloc``, ``hipMallocManaged``, ``hipHostMalloc``,
-``hipFree``, ``hipHostFree``) and ``hipHostRegister`` have no assumed-rank form, so
+``hipMemcpy`` overloads exist only when the Fortran 2008 interfaces are enabled:
+a build with ``-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`` has only the
+``type(c_ptr)`` forms. The allocation routines (``hipMalloc``,
+``hipMallocManaged``, ``hipHostMalloc``, ``hipFree``, ``hipHostFree``) and the
+``hipHostRegister`` family (``hipHostUnregister``, ``hipHostGetDevicePointer``,
+``hipHostGetFlags``) have no assumed-rank form, so
 their per-rank overloads stay available with ``-DHIPFORT_ASSUMED_RANK=ON``.
 
 Scalar arguments passed by pointer
@@ -288,6 +299,9 @@ compiler picks one from the type of the argument:
                           dA, lda, dB, ldb, c_loc(beta), dC, ldc)
 
 An output the C API lets you skip is an ``optional`` argument of the first form.
+For a routine that has such an argument (an ``X_opt`` specific), ``X_`` is not
+part of the generic: omit the argument to skip it rather than passing
+``c_null_ptr``, and do not pass ``c_loc`` of it.
 
 Device pointer mode
 -------------------
@@ -322,6 +336,7 @@ Device-only scalars
 -------------------
 
 hipSOLVER's ``devInfo`` is written by the GPU, so it is always device memory.
+So is rocSOLVER's ``info``, which every form takes as a ``type(c_ptr)``.
 
 * With ``type(c_ptr)`` buffers, pass it as a ``type(c_ptr)``, for example the
   one ``hipMalloc`` returned. There is no Fortran-variable form here: a host
@@ -359,6 +374,8 @@ The option is experimental and ``OFF`` by default. Note the following:
   ``hipMemcpyAsync``, ``hipMemcpy2D`` and ``hipMemcpy2DAsync`` gain assumed-rank
   forms.
 
-``test/f2018/rocblas/saxpy.f90`` is the one program that exercises this mode; it
-is skipped unless the option is enabled. See the
+``test/f2018/rocblas/saxpy.f90`` is the one test written for this mode (it
+passes a rank-3 array); it is only registered when the option is enabled, in
+which case the ``test/f2008`` programs also go through the assumed-rank
+specifics. See the
 :doc:`rocBLAS examples <../tutorials/rocblas-examples>` for a walkthrough.

@@ -57,10 +57,9 @@ A hipRAND program always follows the same sequence:
 
 Keep the following conventions in mind:
 
-* The programs generate **directly into device memory**. The C-binding
-  overload takes ``type(c_ptr)``, and the programs call it explicitly with
-  ``c_loc(dx(1))`` so the same source compiles whether or not the Fortran
-  2008 array overloads are enabled. (hipRAND also provides host generators via
+* The programs generate **directly into device memory**. The C binding takes
+  ``type(c_ptr)``; the programs pass ``c_loc(dx(1))`` to it explicitly, although
+  an array overload that accepts ``dx`` directly also exists. (hipRAND also provides host generators via
   ``hiprandCreateGeneratorHost``, which are not covered here.)
 * The count argument is the number of *elements*, typed
   ``integer(c_size_t)``, not a byte count.

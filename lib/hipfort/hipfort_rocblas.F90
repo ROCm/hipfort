@@ -10285,7 +10285,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgbmv_64_rank_0,&
-      rocblas_sgbmv_64_rank_1
+      rocblas_sgbmv_64_rank_1,&
+      rocblas_sgbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -10321,7 +10322,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgbmv_64_rank_0,&
-      rocblas_dgbmv_64_rank_1
+      rocblas_dgbmv_64_rank_1,&
+      rocblas_dgbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -10357,7 +10359,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgbmv_64_rank_0,&
-      rocblas_cgbmv_64_rank_1
+      rocblas_cgbmv_64_rank_1,&
+      rocblas_cgbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -10393,7 +10396,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgbmv_64_rank_0,&
-      rocblas_zgbmv_64_rank_1
+      rocblas_zgbmv_64_rank_1,&
+      rocblas_zgbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -10944,7 +10948,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgbmv_strided_batched_64_rank_0,&
-      rocblas_sgbmv_strided_batched_64_rank_1
+      rocblas_sgbmv_strided_batched_64_rank_1,&
+      rocblas_sgbmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -10985,7 +10990,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgbmv_strided_batched_64_rank_0,&
-      rocblas_dgbmv_strided_batched_64_rank_1
+      rocblas_dgbmv_strided_batched_64_rank_1,&
+      rocblas_dgbmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -11026,7 +11032,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgbmv_strided_batched_64_rank_0,&
-      rocblas_cgbmv_strided_batched_64_rank_1
+      rocblas_cgbmv_strided_batched_64_rank_1,&
+      rocblas_cgbmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -11067,7 +11074,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgbmv_strided_batched_64_rank_0,&
-      rocblas_zgbmv_strided_batched_64_rank_1
+      rocblas_zgbmv_strided_batched_64_rank_1,&
+      rocblas_zgbmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -11272,7 +11280,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgemv_64_rank_0,&
-      rocblas_sgemv_64_rank_1
+      rocblas_sgemv_64_rank_1,&
+      rocblas_sgemv_64_full_rank
 #endif
 #endif
   end interface
@@ -11306,7 +11315,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgemv_64_rank_0,&
-      rocblas_dgemv_64_rank_1
+      rocblas_dgemv_64_rank_1,&
+      rocblas_dgemv_64_full_rank
 #endif
 #endif
   end interface
@@ -11340,7 +11350,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgemv_64_rank_0,&
-      rocblas_cgemv_64_rank_1
+      rocblas_cgemv_64_rank_1,&
+      rocblas_cgemv_64_full_rank
 #endif
 #endif
   end interface
@@ -11374,7 +11385,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgemv_64_rank_0,&
-      rocblas_zgemv_64_rank_1
+      rocblas_zgemv_64_rank_1,&
+      rocblas_zgemv_64_full_rank
 #endif
 #endif
   end interface
@@ -12178,7 +12190,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgemv_strided_batched_64_rank_0,&
-      rocblas_sgemv_strided_batched_64_rank_1
+      rocblas_sgemv_strided_batched_64_rank_1,&
+      rocblas_sgemv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -12217,7 +12230,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgemv_strided_batched_64_rank_0,&
-      rocblas_dgemv_strided_batched_64_rank_1
+      rocblas_dgemv_strided_batched_64_rank_1,&
+      rocblas_dgemv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -12256,7 +12270,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgemv_strided_batched_64_rank_0,&
-      rocblas_cgemv_strided_batched_64_rank_1
+      rocblas_cgemv_strided_batched_64_rank_1,&
+      rocblas_cgemv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -12295,7 +12310,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgemv_strided_batched_64_rank_0,&
-      rocblas_zgemv_strided_batched_64_rank_1
+      rocblas_zgemv_strided_batched_64_rank_1,&
+      rocblas_zgemv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -12575,7 +12591,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chbmv_64_rank_0,&
-      rocblas_chbmv_64_rank_1
+      rocblas_chbmv_64_rank_1,&
+      rocblas_chbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -12609,7 +12626,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhbmv_64_rank_0,&
-      rocblas_zhbmv_64_rank_1
+      rocblas_zhbmv_64_rank_1,&
+      rocblas_zhbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -12962,7 +12980,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chbmv_strided_batched_64_rank_0,&
-      rocblas_chbmv_strided_batched_64_rank_1
+      rocblas_chbmv_strided_batched_64_rank_1,&
+      rocblas_chbmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -13001,7 +13020,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhbmv_strided_batched_64_rank_0,&
-      rocblas_zhbmv_strided_batched_64_rank_1
+      rocblas_zhbmv_strided_batched_64_rank_1,&
+      rocblas_zhbmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -13145,7 +13165,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chemv_64_rank_0,&
-      rocblas_chemv_64_rank_1
+      rocblas_chemv_64_rank_1,&
+      rocblas_chemv_64_full_rank
 #endif
 #endif
   end interface
@@ -13178,7 +13199,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhemv_64_rank_0,&
-      rocblas_zhemv_64_rank_1
+      rocblas_zhemv_64_rank_1,&
+      rocblas_zhemv_64_full_rank
 #endif
 #endif
   end interface
@@ -13488,7 +13510,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chemv_strided_batched_64_rank_0,&
-      rocblas_chemv_strided_batched_64_rank_1
+      rocblas_chemv_strided_batched_64_rank_1,&
+      rocblas_chemv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -13526,7 +13549,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhemv_strided_batched_64_rank_0,&
-      rocblas_zhemv_strided_batched_64_rank_1
+      rocblas_zhemv_strided_batched_64_rank_1,&
+      rocblas_zhemv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -13654,7 +13678,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cher_64_rank_0,&
-      rocblas_cher_64_rank_1
+      rocblas_cher_64_rank_1,&
+      rocblas_cher_64_full_rank
 #endif
 #endif
   end interface
@@ -13683,7 +13708,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zher_64_rank_0,&
-      rocblas_zher_64_rank_1
+      rocblas_zher_64_rank_1,&
+      rocblas_zher_64_full_rank
 #endif
 #endif
   end interface
@@ -13957,7 +13983,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cher_strided_batched_64_rank_0,&
-      rocblas_cher_strided_batched_64_rank_1
+      rocblas_cher_strided_batched_64_rank_1,&
+      rocblas_cher_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -13991,7 +14018,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zher_strided_batched_64_rank_0,&
-      rocblas_zher_strided_batched_64_rank_1
+      rocblas_zher_strided_batched_64_rank_1,&
+      rocblas_zher_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -14127,7 +14155,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cher2_64_rank_0,&
-      rocblas_cher2_64_rank_1
+      rocblas_cher2_64_rank_1,&
+      rocblas_cher2_64_full_rank
 #endif
 #endif
   end interface
@@ -14159,7 +14188,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zher2_64_rank_0,&
-      rocblas_zher2_64_rank_1
+      rocblas_zher2_64_rank_1,&
+      rocblas_zher2_64_full_rank
 #endif
 #endif
   end interface
@@ -14459,7 +14489,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cher2_strided_batched_64_rank_0,&
-      rocblas_cher2_strided_batched_64_rank_1
+      rocblas_cher2_strided_batched_64_rank_1,&
+      rocblas_cher2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -14496,7 +14527,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zher2_strided_batched_64_rank_0,&
-      rocblas_zher2_strided_batched_64_rank_1
+      rocblas_zher2_strided_batched_64_rank_1,&
+      rocblas_zher2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -16283,7 +16315,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strmv_64_rank_0,&
-      rocblas_strmv_64_rank_1
+      rocblas_strmv_64_rank_1,&
+      rocblas_strmv_64_full_rank
 #endif
 #endif
   end interface
@@ -16312,7 +16345,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrmv_64_rank_0,&
-      rocblas_dtrmv_64_rank_1
+      rocblas_dtrmv_64_rank_1,&
+      rocblas_dtrmv_64_full_rank
 #endif
 #endif
   end interface
@@ -16341,7 +16375,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrmv_64_rank_0,&
-      rocblas_ctrmv_64_rank_1
+      rocblas_ctrmv_64_rank_1,&
+      rocblas_ctrmv_64_full_rank
 #endif
 #endif
   end interface
@@ -16370,7 +16405,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrmv_64_rank_0,&
-      rocblas_ztrmv_64_rank_1
+      rocblas_ztrmv_64_rank_1,&
+      rocblas_ztrmv_64_full_rank
 #endif
 #endif
   end interface
@@ -16804,7 +16840,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strmv_strided_batched_64_rank_0,&
-      rocblas_strmv_strided_batched_64_rank_1
+      rocblas_strmv_strided_batched_64_rank_1,&
+      rocblas_strmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -16837,7 +16874,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrmv_strided_batched_64_rank_0,&
-      rocblas_dtrmv_strided_batched_64_rank_1
+      rocblas_dtrmv_strided_batched_64_rank_1,&
+      rocblas_dtrmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -16870,7 +16908,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrmv_strided_batched_64_rank_0,&
-      rocblas_ctrmv_strided_batched_64_rank_1
+      rocblas_ctrmv_strided_batched_64_rank_1,&
+      rocblas_ctrmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -16903,7 +16942,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrmv_strided_batched_64_rank_0,&
-      rocblas_ztrmv_strided_batched_64_rank_1
+      rocblas_ztrmv_strided_batched_64_rank_1,&
+      rocblas_ztrmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -17895,7 +17935,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_stbmv_64_rank_0,&
-      rocblas_stbmv_64_rank_1
+      rocblas_stbmv_64_rank_1,&
+      rocblas_stbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -17925,7 +17966,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtbmv_64_rank_0,&
-      rocblas_dtbmv_64_rank_1
+      rocblas_dtbmv_64_rank_1,&
+      rocblas_dtbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -17955,7 +17997,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctbmv_64_rank_0,&
-      rocblas_ctbmv_64_rank_1
+      rocblas_ctbmv_64_rank_1,&
+      rocblas_ctbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -17985,7 +18028,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztbmv_64_rank_0,&
-      rocblas_ztbmv_64_rank_1
+      rocblas_ztbmv_64_rank_1,&
+      rocblas_ztbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -18476,7 +18520,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_stbmv_strided_batched_64_rank_0,&
-      rocblas_stbmv_strided_batched_64_rank_1
+      rocblas_stbmv_strided_batched_64_rank_1,&
+      rocblas_stbmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -18510,7 +18555,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtbmv_strided_batched_64_rank_0,&
-      rocblas_dtbmv_strided_batched_64_rank_1
+      rocblas_dtbmv_strided_batched_64_rank_1,&
+      rocblas_dtbmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -18544,7 +18590,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctbmv_strided_batched_64_rank_0,&
-      rocblas_ctbmv_strided_batched_64_rank_1
+      rocblas_ctbmv_strided_batched_64_rank_1,&
+      rocblas_ctbmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -18578,7 +18625,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztbmv_strided_batched_64_rank_0,&
-      rocblas_ztbmv_strided_batched_64_rank_1
+      rocblas_ztbmv_strided_batched_64_rank_1,&
+      rocblas_ztbmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -18777,7 +18825,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_stbsv_64_rank_0,&
-      rocblas_stbsv_64_rank_1
+      rocblas_stbsv_64_rank_1,&
+      rocblas_stbsv_64_full_rank
 #endif
 #endif
   end interface
@@ -18807,7 +18856,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtbsv_64_rank_0,&
-      rocblas_dtbsv_64_rank_1
+      rocblas_dtbsv_64_rank_1,&
+      rocblas_dtbsv_64_full_rank
 #endif
 #endif
   end interface
@@ -18837,7 +18887,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctbsv_64_rank_0,&
-      rocblas_ctbsv_64_rank_1
+      rocblas_ctbsv_64_rank_1,&
+      rocblas_ctbsv_64_full_rank
 #endif
 #endif
   end interface
@@ -18867,7 +18918,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztbsv_64_rank_0,&
-      rocblas_ztbsv_64_rank_1
+      rocblas_ztbsv_64_rank_1,&
+      rocblas_ztbsv_64_full_rank
 #endif
 #endif
   end interface
@@ -19324,7 +19376,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_stbsv_strided_batched_64_rank_0,&
-      rocblas_stbsv_strided_batched_64_rank_1
+      rocblas_stbsv_strided_batched_64_rank_1,&
+      rocblas_stbsv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -19358,7 +19411,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtbsv_strided_batched_64_rank_0,&
-      rocblas_dtbsv_strided_batched_64_rank_1
+      rocblas_dtbsv_strided_batched_64_rank_1,&
+      rocblas_dtbsv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -19392,7 +19446,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctbsv_strided_batched_64_rank_0,&
-      rocblas_ctbsv_strided_batched_64_rank_1
+      rocblas_ctbsv_strided_batched_64_rank_1,&
+      rocblas_ctbsv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -19426,7 +19481,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztbsv_strided_batched_64_rank_0,&
-      rocblas_ztbsv_strided_batched_64_rank_1
+      rocblas_ztbsv_strided_batched_64_rank_1,&
+      rocblas_ztbsv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -19618,7 +19674,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strsv_64_rank_0,&
-      rocblas_strsv_64_rank_1
+      rocblas_strsv_64_rank_1,&
+      rocblas_strsv_64_full_rank
 #endif
 #endif
   end interface
@@ -19647,7 +19704,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrsv_64_rank_0,&
-      rocblas_dtrsv_64_rank_1
+      rocblas_dtrsv_64_rank_1,&
+      rocblas_dtrsv_64_full_rank
 #endif
 #endif
   end interface
@@ -19676,7 +19734,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrsv_64_rank_0,&
-      rocblas_ctrsv_64_rank_1
+      rocblas_ctrsv_64_rank_1,&
+      rocblas_ctrsv_64_full_rank
 #endif
 #endif
   end interface
@@ -19705,7 +19764,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrsv_64_rank_0,&
-      rocblas_ztrsv_64_rank_1
+      rocblas_ztrsv_64_rank_1,&
+      rocblas_ztrsv_64_full_rank
 #endif
 #endif
   end interface
@@ -20140,7 +20200,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strsv_strided_batched_64_rank_0,&
-      rocblas_strsv_strided_batched_64_rank_1
+      rocblas_strsv_strided_batched_64_rank_1,&
+      rocblas_strsv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -20173,7 +20234,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrsv_strided_batched_64_rank_0,&
-      rocblas_dtrsv_strided_batched_64_rank_1
+      rocblas_dtrsv_strided_batched_64_rank_1,&
+      rocblas_dtrsv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -20206,7 +20268,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrsv_strided_batched_64_rank_0,&
-      rocblas_ctrsv_strided_batched_64_rank_1
+      rocblas_ctrsv_strided_batched_64_rank_1,&
+      rocblas_ctrsv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -20239,7 +20302,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrsv_strided_batched_64_rank_0,&
-      rocblas_ztrsv_strided_batched_64_rank_1
+      rocblas_ztrsv_strided_batched_64_rank_1,&
+      rocblas_ztrsv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -21203,7 +21267,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssymv_64_rank_0,&
-      rocblas_ssymv_64_rank_1
+      rocblas_ssymv_64_rank_1,&
+      rocblas_ssymv_64_full_rank
 #endif
 #endif
   end interface
@@ -21236,7 +21301,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsymv_64_rank_0,&
-      rocblas_dsymv_64_rank_1
+      rocblas_dsymv_64_rank_1,&
+      rocblas_dsymv_64_full_rank
 #endif
 #endif
   end interface
@@ -21269,7 +21335,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csymv_64_rank_0,&
-      rocblas_csymv_64_rank_1
+      rocblas_csymv_64_rank_1,&
+      rocblas_csymv_64_full_rank
 #endif
 #endif
   end interface
@@ -21302,7 +21369,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsymv_64_rank_0,&
-      rocblas_zsymv_64_rank_1
+      rocblas_zsymv_64_rank_1,&
+      rocblas_zsymv_64_full_rank
 #endif
 #endif
   end interface
@@ -21770,7 +21838,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssymv_strided_batched_64_rank_0,&
-      rocblas_ssymv_strided_batched_64_rank_1
+      rocblas_ssymv_strided_batched_64_rank_1,&
+      rocblas_ssymv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -21808,7 +21877,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsymv_strided_batched_64_rank_0,&
-      rocblas_dsymv_strided_batched_64_rank_1
+      rocblas_dsymv_strided_batched_64_rank_1,&
+      rocblas_dsymv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -21846,7 +21916,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csymv_strided_batched_64_rank_0,&
-      rocblas_csymv_strided_batched_64_rank_1
+      rocblas_csymv_strided_batched_64_rank_1,&
+      rocblas_csymv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -21884,7 +21955,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsymv_strided_batched_64_rank_0,&
-      rocblas_zsymv_strided_batched_64_rank_1
+      rocblas_zsymv_strided_batched_64_rank_1,&
+      rocblas_zsymv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -22488,7 +22560,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssbmv_64_rank_0,&
-      rocblas_ssbmv_64_rank_1
+      rocblas_ssbmv_64_rank_1,&
+      rocblas_ssbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -22522,7 +22595,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsbmv_64_rank_0,&
-      rocblas_dsbmv_64_rank_1
+      rocblas_dsbmv_64_rank_1,&
+      rocblas_dsbmv_64_full_rank
 #endif
 #endif
   end interface
@@ -22825,7 +22899,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssbmv_strided_batched_64_rank_0,&
-      rocblas_ssbmv_strided_batched_64_rank_1
+      rocblas_ssbmv_strided_batched_64_rank_1,&
+      rocblas_ssbmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -22864,7 +22939,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsbmv_strided_batched_64_rank_0,&
-      rocblas_dsbmv_strided_batched_64_rank_1
+      rocblas_dsbmv_strided_batched_64_rank_1,&
+      rocblas_dsbmv_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -23115,7 +23191,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sger_64_rank_0,&
-      rocblas_sger_64_rank_1
+      rocblas_sger_64_rank_1,&
+      rocblas_sger_64_full_rank
 #endif
 #endif
   end interface
@@ -23146,7 +23223,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dger_64_rank_0,&
-      rocblas_dger_64_rank_1
+      rocblas_dger_64_rank_1,&
+      rocblas_dger_64_full_rank
 #endif
 #endif
   end interface
@@ -23178,7 +23256,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgeru_64_rank_0,&
-      rocblas_cgeru_64_rank_1
+      rocblas_cgeru_64_rank_1,&
+      rocblas_cgeru_64_full_rank
 #endif
 #endif
   end interface
@@ -23210,7 +23289,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgeru_64_rank_0,&
-      rocblas_zgeru_64_rank_1
+      rocblas_zgeru_64_rank_1,&
+      rocblas_zgeru_64_full_rank
 #endif
 #endif
   end interface
@@ -23242,7 +23322,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgerc_64_rank_0,&
-      rocblas_cgerc_64_rank_1
+      rocblas_cgerc_64_rank_1,&
+      rocblas_cgerc_64_full_rank
 #endif
 #endif
   end interface
@@ -23274,7 +23355,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgerc_64_rank_0,&
-      rocblas_zgerc_64_rank_1
+      rocblas_zgerc_64_rank_1,&
+      rocblas_zgerc_64_full_rank
 #endif
 #endif
   end interface
@@ -23891,7 +23973,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sger_strided_batched_64_rank_0,&
-      rocblas_sger_strided_batched_64_rank_1
+      rocblas_sger_strided_batched_64_rank_1,&
+      rocblas_sger_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -23928,7 +24011,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dger_strided_batched_64_rank_0,&
-      rocblas_dger_strided_batched_64_rank_1
+      rocblas_dger_strided_batched_64_rank_1,&
+      rocblas_dger_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -23965,7 +24049,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgeru_strided_batched_64_rank_0,&
-      rocblas_cgeru_strided_batched_64_rank_1
+      rocblas_cgeru_strided_batched_64_rank_1,&
+      rocblas_cgeru_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -24002,7 +24087,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgeru_strided_batched_64_rank_0,&
-      rocblas_zgeru_strided_batched_64_rank_1
+      rocblas_zgeru_strided_batched_64_rank_1,&
+      rocblas_zgeru_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -24039,7 +24125,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgerc_strided_batched_64_rank_0,&
-      rocblas_cgerc_strided_batched_64_rank_1
+      rocblas_cgerc_strided_batched_64_rank_1,&
+      rocblas_cgerc_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -24076,7 +24163,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgerc_strided_batched_64_rank_0,&
-      rocblas_zgerc_strided_batched_64_rank_1
+      rocblas_zgerc_strided_batched_64_rank_1,&
+      rocblas_zgerc_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -25611,7 +25699,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyr_64_rank_0,&
-      rocblas_ssyr_64_rank_1
+      rocblas_ssyr_64_rank_1,&
+      rocblas_ssyr_64_full_rank
 #endif
 #endif
   end interface
@@ -25640,7 +25729,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyr_64_rank_0,&
-      rocblas_dsyr_64_rank_1
+      rocblas_dsyr_64_rank_1,&
+      rocblas_dsyr_64_full_rank
 #endif
 #endif
   end interface
@@ -25669,7 +25759,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyr_64_rank_0,&
-      rocblas_csyr_64_rank_1
+      rocblas_csyr_64_rank_1,&
+      rocblas_csyr_64_full_rank
 #endif
 #endif
   end interface
@@ -25698,7 +25789,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyr_64_rank_0,&
-      rocblas_zsyr_64_rank_1
+      rocblas_zsyr_64_rank_1,&
+      rocblas_zsyr_64_full_rank
 #endif
 #endif
   end interface
@@ -26100,7 +26192,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyr_strided_batched_64_rank_0,&
-      rocblas_ssyr_strided_batched_64_rank_1
+      rocblas_ssyr_strided_batched_64_rank_1,&
+      rocblas_ssyr_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -26134,7 +26227,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyr_strided_batched_64_rank_0,&
-      rocblas_dsyr_strided_batched_64_rank_1
+      rocblas_dsyr_strided_batched_64_rank_1,&
+      rocblas_dsyr_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -26168,7 +26262,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyr_strided_batched_64_rank_0,&
-      rocblas_csyr_strided_batched_64_rank_1
+      rocblas_csyr_strided_batched_64_rank_1,&
+      rocblas_csyr_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -26202,7 +26297,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyr_strided_batched_64_rank_0,&
-      rocblas_zsyr_strided_batched_64_rank_1
+      rocblas_zsyr_strided_batched_64_rank_1,&
+      rocblas_zsyr_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -26392,7 +26488,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyr2_64_rank_0,&
-      rocblas_ssyr2_64_rank_1
+      rocblas_ssyr2_64_rank_1,&
+      rocblas_ssyr2_64_full_rank
 #endif
 #endif
   end interface
@@ -26424,7 +26521,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyr2_64_rank_0,&
-      rocblas_dsyr2_64_rank_1
+      rocblas_dsyr2_64_rank_1,&
+      rocblas_dsyr2_64_full_rank
 #endif
 #endif
   end interface
@@ -26456,7 +26554,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyr2_64_rank_0,&
-      rocblas_csyr2_64_rank_1
+      rocblas_csyr2_64_rank_1,&
+      rocblas_csyr2_64_full_rank
 #endif
 #endif
   end interface
@@ -26488,7 +26587,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyr2_64_rank_0,&
-      rocblas_zsyr2_64_rank_1
+      rocblas_zsyr2_64_rank_1,&
+      rocblas_zsyr2_64_full_rank
 #endif
 #endif
   end interface
@@ -26929,7 +27029,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyr2_strided_batched_64_rank_0,&
-      rocblas_ssyr2_strided_batched_64_rank_1
+      rocblas_ssyr2_strided_batched_64_rank_1,&
+      rocblas_ssyr2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -26966,7 +27067,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyr2_strided_batched_64_rank_0,&
-      rocblas_dsyr2_strided_batched_64_rank_1
+      rocblas_dsyr2_strided_batched_64_rank_1,&
+      rocblas_dsyr2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -27003,7 +27105,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyr2_strided_batched_64_rank_0,&
-      rocblas_csyr2_strided_batched_64_rank_1
+      rocblas_csyr2_strided_batched_64_rank_1,&
+      rocblas_csyr2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -27040,7 +27143,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyr2_strided_batched_64_rank_0,&
-      rocblas_zsyr2_strided_batched_64_rank_1
+      rocblas_zsyr2_strided_batched_64_rank_1,&
+      rocblas_zsyr2_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -27205,7 +27309,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chemm_64_rank_0,&
-      rocblas_chemm_64_rank_1
+      rocblas_chemm_64_rank_1,&
+      rocblas_chemm_64_full_rank
 #endif
 #endif
   end interface
@@ -27240,7 +27345,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhemm_64_rank_0,&
-      rocblas_zhemm_64_rank_1
+      rocblas_zhemm_64_rank_1,&
+      rocblas_zhemm_64_full_rank
 #endif
 #endif
   end interface
@@ -27601,7 +27707,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_chemm_strided_batched_64_rank_0,&
-      rocblas_chemm_strided_batched_64_rank_1
+      rocblas_chemm_strided_batched_64_rank_1,&
+      rocblas_chemm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -27641,7 +27748,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zhemm_strided_batched_64_rank_0,&
-      rocblas_zhemm_strided_batched_64_rank_1
+      rocblas_zhemm_strided_batched_64_rank_1,&
+      rocblas_zhemm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -27798,7 +27906,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cherk_64_rank_0,&
-      rocblas_cherk_64_rank_1
+      rocblas_cherk_64_rank_1,&
+      rocblas_cherk_64_full_rank
 #endif
 #endif
   end interface
@@ -27831,7 +27940,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zherk_64_rank_0,&
-      rocblas_zherk_64_rank_1
+      rocblas_zherk_64_rank_1,&
+      rocblas_zherk_64_full_rank
 #endif
 #endif
   end interface
@@ -28163,7 +28273,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cherk_strided_batched_64_rank_0,&
-      rocblas_cherk_strided_batched_64_rank_1
+      rocblas_cherk_strided_batched_64_rank_1,&
+      rocblas_cherk_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -28200,7 +28311,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zherk_strided_batched_64_rank_0,&
-      rocblas_zherk_strided_batched_64_rank_1
+      rocblas_zherk_strided_batched_64_rank_1,&
+      rocblas_zherk_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -28374,7 +28486,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cher2k_64_rank_0,&
-      rocblas_cher2k_64_rank_1
+      rocblas_cher2k_64_rank_1,&
+      rocblas_cher2k_64_full_rank
 #endif
 #endif
   end interface
@@ -28409,7 +28522,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zher2k_64_rank_0,&
-      rocblas_zher2k_64_rank_1
+      rocblas_zher2k_64_rank_1,&
+      rocblas_zher2k_64_full_rank
 #endif
 #endif
   end interface
@@ -28785,7 +28899,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cher2k_strided_batched_64_rank_0,&
-      rocblas_cher2k_strided_batched_64_rank_1
+      rocblas_cher2k_strided_batched_64_rank_1,&
+      rocblas_cher2k_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -28825,7 +28940,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zher2k_strided_batched_64_rank_0,&
-      rocblas_zher2k_strided_batched_64_rank_1
+      rocblas_zher2k_strided_batched_64_rank_1,&
+      rocblas_zher2k_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -29001,7 +29117,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cherkx_64_rank_0,&
-      rocblas_cherkx_64_rank_1
+      rocblas_cherkx_64_rank_1,&
+      rocblas_cherkx_64_full_rank
 #endif
 #endif
   end interface
@@ -29036,7 +29153,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zherkx_64_rank_0,&
-      rocblas_zherkx_64_rank_1
+      rocblas_zherkx_64_rank_1,&
+      rocblas_zherkx_64_full_rank
 #endif
 #endif
   end interface
@@ -29421,7 +29539,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cherkx_strided_batched_64_rank_0,&
-      rocblas_cherkx_strided_batched_64_rank_1
+      rocblas_cherkx_strided_batched_64_rank_1,&
+      rocblas_cherkx_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -29461,7 +29580,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zherkx_strided_batched_64_rank_0,&
-      rocblas_zherkx_strided_batched_64_rank_1
+      rocblas_zherkx_strided_batched_64_rank_1,&
+      rocblas_zherkx_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -29697,7 +29817,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssymm_64_rank_0,&
-      rocblas_ssymm_64_rank_1
+      rocblas_ssymm_64_rank_1,&
+      rocblas_ssymm_64_full_rank
 #endif
 #endif
   end interface
@@ -29732,7 +29853,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsymm_64_rank_0,&
-      rocblas_dsymm_64_rank_1
+      rocblas_dsymm_64_rank_1,&
+      rocblas_dsymm_64_full_rank
 #endif
 #endif
   end interface
@@ -29767,7 +29889,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csymm_64_rank_0,&
-      rocblas_csymm_64_rank_1
+      rocblas_csymm_64_rank_1,&
+      rocblas_csymm_64_full_rank
 #endif
 #endif
   end interface
@@ -29802,7 +29925,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsymm_64_rank_0,&
-      rocblas_zsymm_64_rank_1
+      rocblas_zsymm_64_rank_1,&
+      rocblas_zsymm_64_full_rank
 #endif
 #endif
   end interface
@@ -30346,7 +30470,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssymm_strided_batched_64_rank_0,&
-      rocblas_ssymm_strided_batched_64_rank_1
+      rocblas_ssymm_strided_batched_64_rank_1,&
+      rocblas_ssymm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -30386,7 +30511,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsymm_strided_batched_64_rank_0,&
-      rocblas_dsymm_strided_batched_64_rank_1
+      rocblas_dsymm_strided_batched_64_rank_1,&
+      rocblas_dsymm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -30426,7 +30552,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csymm_strided_batched_64_rank_0,&
-      rocblas_csymm_strided_batched_64_rank_1
+      rocblas_csymm_strided_batched_64_rank_1,&
+      rocblas_csymm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -30466,7 +30593,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsymm_strided_batched_64_rank_0,&
-      rocblas_zsymm_strided_batched_64_rank_1
+      rocblas_zsymm_strided_batched_64_rank_1,&
+      rocblas_zsymm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -30693,7 +30821,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyrk_64_rank_0,&
-      rocblas_ssyrk_64_rank_1
+      rocblas_ssyrk_64_rank_1,&
+      rocblas_ssyrk_64_full_rank
 #endif
 #endif
   end interface
@@ -30726,7 +30855,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyrk_64_rank_0,&
-      rocblas_dsyrk_64_rank_1
+      rocblas_dsyrk_64_rank_1,&
+      rocblas_dsyrk_64_full_rank
 #endif
 #endif
   end interface
@@ -30759,7 +30889,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyrk_64_rank_0,&
-      rocblas_csyrk_64_rank_1
+      rocblas_csyrk_64_rank_1,&
+      rocblas_csyrk_64_full_rank
 #endif
 #endif
   end interface
@@ -30792,7 +30923,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyrk_64_rank_0,&
-      rocblas_zsyrk_64_rank_1
+      rocblas_zsyrk_64_rank_1,&
+      rocblas_zsyrk_64_full_rank
 #endif
 #endif
   end interface
@@ -31299,7 +31431,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyrk_strided_batched_64_rank_0,&
-      rocblas_ssyrk_strided_batched_64_rank_1
+      rocblas_ssyrk_strided_batched_64_rank_1,&
+      rocblas_ssyrk_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -31336,7 +31469,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyrk_strided_batched_64_rank_0,&
-      rocblas_dsyrk_strided_batched_64_rank_1
+      rocblas_dsyrk_strided_batched_64_rank_1,&
+      rocblas_dsyrk_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -31373,7 +31507,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyrk_strided_batched_64_rank_0,&
-      rocblas_csyrk_strided_batched_64_rank_1
+      rocblas_csyrk_strided_batched_64_rank_1,&
+      rocblas_csyrk_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -31410,7 +31545,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyrk_strided_batched_64_rank_0,&
-      rocblas_zsyrk_strided_batched_64_rank_1
+      rocblas_zsyrk_strided_batched_64_rank_1,&
+      rocblas_zsyrk_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -31658,7 +31794,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyr2k_64_rank_0,&
-      rocblas_ssyr2k_64_rank_1
+      rocblas_ssyr2k_64_rank_1,&
+      rocblas_ssyr2k_64_full_rank
 #endif
 #endif
   end interface
@@ -31693,7 +31830,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyr2k_64_rank_0,&
-      rocblas_dsyr2k_64_rank_1
+      rocblas_dsyr2k_64_rank_1,&
+      rocblas_dsyr2k_64_full_rank
 #endif
 #endif
   end interface
@@ -31728,7 +31866,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyr2k_64_rank_0,&
-      rocblas_csyr2k_64_rank_1
+      rocblas_csyr2k_64_rank_1,&
+      rocblas_csyr2k_64_full_rank
 #endif
 #endif
   end interface
@@ -31763,7 +31902,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyr2k_64_rank_0,&
-      rocblas_zsyr2k_64_rank_1
+      rocblas_zsyr2k_64_rank_1,&
+      rocblas_zsyr2k_64_full_rank
 #endif
 #endif
   end interface
@@ -32332,7 +32472,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyr2k_strided_batched_64_rank_0,&
-      rocblas_ssyr2k_strided_batched_64_rank_1
+      rocblas_ssyr2k_strided_batched_64_rank_1,&
+      rocblas_ssyr2k_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -32372,7 +32513,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyr2k_strided_batched_64_rank_0,&
-      rocblas_dsyr2k_strided_batched_64_rank_1
+      rocblas_dsyr2k_strided_batched_64_rank_1,&
+      rocblas_dsyr2k_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -32412,7 +32554,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyr2k_strided_batched_64_rank_0,&
-      rocblas_csyr2k_strided_batched_64_rank_1
+      rocblas_csyr2k_strided_batched_64_rank_1,&
+      rocblas_csyr2k_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -32452,7 +32595,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyr2k_strided_batched_64_rank_0,&
-      rocblas_zsyr2k_strided_batched_64_rank_1
+      rocblas_zsyr2k_strided_batched_64_rank_1,&
+      rocblas_zsyr2k_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -32703,7 +32847,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyrkx_64_rank_0,&
-      rocblas_ssyrkx_64_rank_1
+      rocblas_ssyrkx_64_rank_1,&
+      rocblas_ssyrkx_64_full_rank
 #endif
 #endif
   end interface
@@ -32738,7 +32883,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyrkx_64_rank_0,&
-      rocblas_dsyrkx_64_rank_1
+      rocblas_dsyrkx_64_rank_1,&
+      rocblas_dsyrkx_64_full_rank
 #endif
 #endif
   end interface
@@ -32773,7 +32919,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyrkx_64_rank_0,&
-      rocblas_csyrkx_64_rank_1
+      rocblas_csyrkx_64_rank_1,&
+      rocblas_csyrkx_64_full_rank
 #endif
 #endif
   end interface
@@ -32808,7 +32955,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyrkx_64_rank_0,&
-      rocblas_zsyrkx_64_rank_1
+      rocblas_zsyrkx_64_rank_1,&
+      rocblas_zsyrkx_64_full_rank
 #endif
 #endif
   end interface
@@ -33389,7 +33537,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ssyrkx_strided_batched_64_rank_0,&
-      rocblas_ssyrkx_strided_batched_64_rank_1
+      rocblas_ssyrkx_strided_batched_64_rank_1,&
+      rocblas_ssyrkx_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -33429,7 +33578,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dsyrkx_strided_batched_64_rank_0,&
-      rocblas_dsyrkx_strided_batched_64_rank_1
+      rocblas_dsyrkx_strided_batched_64_rank_1,&
+      rocblas_dsyrkx_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -33469,7 +33619,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_csyrkx_strided_batched_64_rank_0,&
-      rocblas_csyrkx_strided_batched_64_rank_1
+      rocblas_csyrkx_strided_batched_64_rank_1,&
+      rocblas_csyrkx_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -33509,7 +33660,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zsyrkx_strided_batched_64_rank_0,&
-      rocblas_zsyrkx_strided_batched_64_rank_1
+      rocblas_zsyrkx_strided_batched_64_rank_1,&
+      rocblas_zsyrkx_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -33797,7 +33949,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strmm_64_rank_0,&
-      rocblas_strmm_64_rank_1
+      rocblas_strmm_64_rank_1,&
+      rocblas_strmm_64_full_rank
 #endif
 #endif
   end interface
@@ -33833,7 +33986,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrmm_64_rank_0,&
-      rocblas_dtrmm_64_rank_1
+      rocblas_dtrmm_64_rank_1,&
+      rocblas_dtrmm_64_full_rank
 #endif
 #endif
   end interface
@@ -33869,7 +34023,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrmm_64_rank_0,&
-      rocblas_ctrmm_64_rank_1
+      rocblas_ctrmm_64_rank_1,&
+      rocblas_ctrmm_64_full_rank
 #endif
 #endif
   end interface
@@ -33905,7 +34060,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrmm_64_rank_0,&
-      rocblas_ztrmm_64_rank_1
+      rocblas_ztrmm_64_rank_1,&
+      rocblas_ztrmm_64_full_rank
 #endif
 #endif
   end interface
@@ -35262,7 +35418,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strsm_64_rank_0,&
-      rocblas_strsm_64_rank_1
+      rocblas_strsm_64_rank_1,&
+      rocblas_strsm_64_full_rank
 #endif
 #endif
   end interface
@@ -35296,7 +35453,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrsm_64_rank_0,&
-      rocblas_dtrsm_64_rank_1
+      rocblas_dtrsm_64_rank_1,&
+      rocblas_dtrsm_64_full_rank
 #endif
 #endif
   end interface
@@ -35330,7 +35488,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrsm_64_rank_0,&
-      rocblas_ctrsm_64_rank_1
+      rocblas_ctrsm_64_rank_1,&
+      rocblas_ctrsm_64_full_rank
 #endif
 #endif
   end interface
@@ -35364,7 +35523,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrsm_64_rank_0,&
-      rocblas_ztrsm_64_rank_1
+      rocblas_ztrsm_64_rank_1,&
+      rocblas_ztrsm_64_full_rank
 #endif
 #endif
   end interface
@@ -35889,7 +36049,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_strsm_strided_batched_64_rank_0,&
-      rocblas_strsm_strided_batched_64_rank_1
+      rocblas_strsm_strided_batched_64_rank_1,&
+      rocblas_strsm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -35927,7 +36088,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dtrsm_strided_batched_64_rank_0,&
-      rocblas_dtrsm_strided_batched_64_rank_1
+      rocblas_dtrsm_strided_batched_64_rank_1,&
+      rocblas_dtrsm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -35965,7 +36127,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ctrsm_strided_batched_64_rank_0,&
-      rocblas_ctrsm_strided_batched_64_rank_1
+      rocblas_ctrsm_strided_batched_64_rank_1,&
+      rocblas_ctrsm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -36003,7 +36166,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ztrsm_strided_batched_64_rank_0,&
-      rocblas_ztrsm_strided_batched_64_rank_1
+      rocblas_ztrsm_strided_batched_64_rank_1,&
+      rocblas_ztrsm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -36257,7 +36421,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgemm_64_rank_0,&
-      rocblas_sgemm_64_rank_1
+      rocblas_sgemm_64_rank_1,&
+      rocblas_sgemm_64_full_rank
 #endif
 #endif
   end interface
@@ -36293,7 +36458,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgemm_64_rank_0,&
-      rocblas_dgemm_64_rank_1
+      rocblas_dgemm_64_rank_1,&
+      rocblas_dgemm_64_full_rank
 #endif
 #endif
   end interface
@@ -36355,7 +36521,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgemm_64_rank_0,&
-      rocblas_cgemm_64_rank_1
+      rocblas_cgemm_64_rank_1,&
+      rocblas_cgemm_64_full_rank
 #endif
 #endif
   end interface
@@ -36391,7 +36558,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgemm_64_rank_0,&
-      rocblas_zgemm_64_rank_1
+      rocblas_zgemm_64_rank_1,&
+      rocblas_zgemm_64_full_rank
 #endif
 #endif
   end interface
@@ -37008,7 +37176,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgemm_strided_batched_64_rank_0,&
-      rocblas_sgemm_strided_batched_64_rank_1
+      rocblas_sgemm_strided_batched_64_rank_1,&
+      rocblas_sgemm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -37049,7 +37218,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgemm_strided_batched_64_rank_0,&
-      rocblas_dgemm_strided_batched_64_rank_1
+      rocblas_dgemm_strided_batched_64_rank_1,&
+      rocblas_dgemm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -37121,7 +37291,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgemm_strided_batched_64_rank_0,&
-      rocblas_cgemm_strided_batched_64_rank_1
+      rocblas_cgemm_strided_batched_64_rank_1,&
+      rocblas_cgemm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -37162,7 +37333,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgemm_strided_batched_64_rank_0,&
-      rocblas_zgemm_strided_batched_64_rank_1
+      rocblas_zgemm_strided_batched_64_rank_1,&
+      rocblas_zgemm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -37508,7 +37680,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sdgmm_64_rank_0,&
-      rocblas_sdgmm_64_rank_1
+      rocblas_sdgmm_64_rank_1,&
+      rocblas_sdgmm_64_full_rank
 #endif
 #endif
   end interface
@@ -37537,7 +37710,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ddgmm_64_rank_0,&
-      rocblas_ddgmm_64_rank_1
+      rocblas_ddgmm_64_rank_1,&
+      rocblas_ddgmm_64_full_rank
 #endif
 #endif
   end interface
@@ -37566,7 +37740,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cdgmm_64_rank_0,&
-      rocblas_cdgmm_64_rank_1
+      rocblas_cdgmm_64_rank_1,&
+      rocblas_cdgmm_64_full_rank
 #endif
 #endif
   end interface
@@ -37595,7 +37770,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdgmm_64_rank_0,&
-      rocblas_zdgmm_64_rank_1
+      rocblas_zdgmm_64_rank_1,&
+      rocblas_zdgmm_64_full_rank
 #endif
 #endif
   end interface
@@ -38022,7 +38198,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sdgmm_strided_batched_64_rank_0,&
-      rocblas_sdgmm_strided_batched_64_rank_1
+      rocblas_sdgmm_strided_batched_64_rank_1,&
+      rocblas_sdgmm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -38057,7 +38234,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_ddgmm_strided_batched_64_rank_0,&
-      rocblas_ddgmm_strided_batched_64_rank_1
+      rocblas_ddgmm_strided_batched_64_rank_1,&
+      rocblas_ddgmm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -38092,7 +38270,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cdgmm_strided_batched_64_rank_0,&
-      rocblas_cdgmm_strided_batched_64_rank_1
+      rocblas_cdgmm_strided_batched_64_rank_1,&
+      rocblas_cdgmm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -38127,7 +38306,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zdgmm_strided_batched_64_rank_0,&
-      rocblas_zdgmm_strided_batched_64_rank_1
+      rocblas_zdgmm_strided_batched_64_rank_1,&
+      rocblas_zdgmm_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -38344,7 +38524,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgeam_64_rank_0,&
-      rocblas_sgeam_64_rank_1
+      rocblas_sgeam_64_rank_1,&
+      rocblas_sgeam_64_full_rank
 #endif
 #endif
   end interface
@@ -38379,7 +38560,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgeam_64_rank_0,&
-      rocblas_dgeam_64_rank_1
+      rocblas_dgeam_64_rank_1,&
+      rocblas_dgeam_64_full_rank
 #endif
 #endif
   end interface
@@ -38414,7 +38596,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgeam_64_rank_0,&
-      rocblas_cgeam_64_rank_1
+      rocblas_cgeam_64_rank_1,&
+      rocblas_cgeam_64_full_rank
 #endif
 #endif
   end interface
@@ -38449,7 +38632,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgeam_64_rank_0,&
-      rocblas_zgeam_64_rank_1
+      rocblas_zgeam_64_rank_1,&
+      rocblas_zgeam_64_full_rank
 #endif
 #endif
   end interface
@@ -38980,7 +39164,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_sgeam_strided_batched_64_rank_0,&
-      rocblas_sgeam_strided_batched_64_rank_1
+      rocblas_sgeam_strided_batched_64_rank_1,&
+      rocblas_sgeam_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -39020,7 +39205,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_dgeam_strided_batched_64_rank_0,&
-      rocblas_dgeam_strided_batched_64_rank_1
+      rocblas_dgeam_strided_batched_64_rank_1,&
+      rocblas_dgeam_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -39060,7 +39246,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_cgeam_strided_batched_64_rank_0,&
-      rocblas_cgeam_strided_batched_64_rank_1
+      rocblas_cgeam_strided_batched_64_rank_1,&
+      rocblas_cgeam_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -39100,7 +39287,8 @@ module hipfort_rocblas
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocblas_zgeam_strided_batched_64_rank_0,&
-      rocblas_zgeam_strided_batched_64_rank_1
+      rocblas_zgeam_strided_batched_64_rank_1,&
+      rocblas_zgeam_strided_batched_64_full_rank
 #endif
 #endif
   end interface
@@ -72564,6 +72752,30 @@ module hipfort_rocblas
         lda,c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function rocblas_sgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sgbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_sgbmv_64_full_rank = rocblas_sgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(A), &
+        lda,c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dgbmv_64_assumed_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -72636,6 +72848,30 @@ module hipfort_rocblas
       integer(c_int64_t) :: incy
       !
       rocblas_dgbmv_64_rank_1 = rocblas_dgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(A), &
+        lda,c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
+    function rocblas_dgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dgbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_dgbmv_64_full_rank = rocblas_dgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(A), &
         lda,c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
@@ -72714,6 +72950,30 @@ module hipfort_rocblas
         lda,c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function rocblas_cgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cgbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_cgbmv_64_full_rank = rocblas_cgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(A), &
+        lda,c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zgbmv_64_assumed_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
@@ -72786,6 +73046,30 @@ module hipfort_rocblas
       integer(c_int64_t) :: incy
       !
       rocblas_zgbmv_64_rank_1 = rocblas_zgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(A), &
+        lda,c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
+    function rocblas_zgbmv_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zgbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_zgbmv_64_full_rank = rocblas_zgbmv_64_(handle,trans,m,n,kl,ku,c_loc(alpha),c_loc(A), &
         lda,c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
@@ -73374,6 +73658,36 @@ module hipfort_rocblas
         incy,stride_y,batch_count)
     end function
 
+    function rocblas_sgbmv_strided_batched_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
+        stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sgbmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stride_y
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_sgbmv_strided_batched_64_full_rank = rocblas_sgbmv_strided_batched_64_(handle,trans, &
+        m,n,kl,ku,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(beta),c_loc(y), &
+        incy,stride_y,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dgbmv_strided_batched_64_assumed_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
@@ -73464,6 +73778,36 @@ module hipfort_rocblas
       !
       rocblas_dgbmv_strided_batched_64_rank_1 = rocblas_dgbmv_strided_batched_64_(handle,trans,m, &
         n,kl,ku,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(beta),c_loc(y), &
+        incy,stride_y,batch_count)
+    end function
+
+    function rocblas_dgbmv_strided_batched_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
+        stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dgbmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stride_y
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dgbmv_strided_batched_64_full_rank = rocblas_dgbmv_strided_batched_64_(handle,trans, &
+        m,n,kl,ku,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(beta),c_loc(y), &
         incy,stride_y,batch_count)
     end function
 
@@ -73560,6 +73904,36 @@ module hipfort_rocblas
         incy,stride_y,batch_count)
     end function
 
+    function rocblas_cgbmv_strided_batched_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
+        stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cgbmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stride_y
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_cgbmv_strided_batched_64_full_rank = rocblas_cgbmv_strided_batched_64_(handle,trans, &
+        m,n,kl,ku,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(beta),c_loc(y), &
+        incy,stride_y,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zgbmv_strided_batched_64_assumed_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
@@ -73650,6 +74024,36 @@ module hipfort_rocblas
       !
       rocblas_zgbmv_strided_batched_64_rank_1 = rocblas_zgbmv_strided_batched_64_(handle,trans,m, &
         n,kl,ku,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(beta),c_loc(y), &
+        incy,stride_y,batch_count)
+    end function
+
+    function rocblas_zgbmv_strided_batched_64_full_rank(handle,trans,m,n,kl,ku,alpha,A,lda, &
+        stride_A,x,incx,stride_x,beta,y,incy,stride_y,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zgbmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: kl
+      integer(c_int64_t) :: ku
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stride_y
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zgbmv_strided_batched_64_full_rank = rocblas_zgbmv_strided_batched_64_(handle,trans, &
+        m,n,kl,ku,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(beta),c_loc(y), &
         incy,stride_y,batch_count)
     end function
 
@@ -74086,6 +74490,28 @@ module hipfort_rocblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function rocblas_sgemv_64_full_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sgemv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_sgemv_64_full_rank = rocblas_sgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dgemv_64_assumed_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -74152,6 +74578,28 @@ module hipfort_rocblas
       integer(c_int64_t) :: incy
       !
       rocblas_dgemv_64_rank_1 = rocblas_dgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
+    function rocblas_dgemv_64_full_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dgemv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_dgemv_64_full_rank = rocblas_dgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(A),lda, &
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
@@ -74224,6 +74672,28 @@ module hipfort_rocblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function rocblas_cgemv_64_full_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cgemv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_cgemv_64_full_rank = rocblas_cgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zgemv_64_assumed_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -74290,6 +74760,28 @@ module hipfort_rocblas
       integer(c_int64_t) :: incy
       !
       rocblas_zgemv_64_rank_1 = rocblas_zgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
+    function rocblas_zgemv_64_full_rank(handle,trans,m,n,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zgemv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_zgemv_64_full_rank = rocblas_zgemv_64_(handle,trans,m,n,c_loc(alpha),c_loc(A),lda, &
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
@@ -74840,6 +75332,34 @@ module hipfort_rocblas
         stridey,batch_count)
     end function
 
+    function rocblas_sgemv_strided_batched_64_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x, &
+        incx,stridex,beta,y,incy,stridey,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sgemv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_sgemv_strided_batched_64_full_rank = rocblas_sgemv_strided_batched_64_(handle, &
+        transA,m,n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y), &
+        incy,stridey,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dgemv_strided_batched_64_assumed_rank(handle,transA,m,n,alpha,A,lda,strideA, &
@@ -74925,6 +75445,34 @@ module hipfort_rocblas
       rocblas_dgemv_strided_batched_64_rank_1 = rocblas_dgemv_strided_batched_64_(handle,transA,m, &
         n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
         stridey,batch_count)
+    end function
+
+    function rocblas_dgemv_strided_batched_64_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x, &
+        incx,stridex,beta,y,incy,stridey,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dgemv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dgemv_strided_batched_64_full_rank = rocblas_dgemv_strided_batched_64_(handle, &
+        transA,m,n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y), &
+        incy,stridey,batch_count)
     end function
 
 #endif
@@ -75014,6 +75562,34 @@ module hipfort_rocblas
         stridey,batch_count)
     end function
 
+    function rocblas_cgemv_strided_batched_64_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x, &
+        incx,stridex,beta,y,incy,stridey,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cgemv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_cgemv_strided_batched_64_full_rank = rocblas_cgemv_strided_batched_64_(handle, &
+        transA,m,n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y), &
+        incy,stridey,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zgemv_strided_batched_64_assumed_rank(handle,transA,m,n,alpha,A,lda,strideA, &
@@ -75099,6 +75675,34 @@ module hipfort_rocblas
       rocblas_zgemv_strided_batched_64_rank_1 = rocblas_zgemv_strided_batched_64_(handle,transA,m, &
         n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
         stridey,batch_count)
+    end function
+
+    function rocblas_zgemv_strided_batched_64_full_rank(handle,transA,m,n,alpha,A,lda,strideA,x, &
+        incx,stridex,beta,y,incy,stridey,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zgemv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zgemv_strided_batched_64_full_rank = rocblas_zgemv_strided_batched_64_(handle, &
+        transA,m,n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y), &
+        incy,stridey,batch_count)
     end function
 
 #endif
@@ -75352,6 +75956,28 @@ module hipfort_rocblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function rocblas_chbmv_64_full_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_chbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_chbmv_64_full_rank = rocblas_chbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zhbmv_64_assumed_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -75418,6 +76044,28 @@ module hipfort_rocblas
       integer(c_int64_t) :: incy
       !
       rocblas_zhbmv_64_rank_1 = rocblas_zhbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
+    function rocblas_zhbmv_64_full_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zhbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_zhbmv_64_full_rank = rocblas_zhbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
@@ -75738,6 +76386,34 @@ module hipfort_rocblas
         stride_y,batch_count)
     end function
 
+    function rocblas_chbmv_strided_batched_64_full_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x, &
+        incx,stride_x,beta,y,incy,stride_y,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_chbmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stride_y
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_chbmv_strided_batched_64_full_rank = rocblas_chbmv_strided_batched_64_(handle,uplo, &
+        n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(beta),c_loc(y),incy, &
+        stride_y,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zhbmv_strided_batched_64_assumed_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x, &
@@ -75822,6 +76498,34 @@ module hipfort_rocblas
       !
       rocblas_zhbmv_strided_batched_64_rank_1 = rocblas_zhbmv_strided_batched_64_(handle,uplo,n,k, &
         c_loc(alpha),c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(beta),c_loc(y),incy, &
+        stride_y,batch_count)
+    end function
+
+    function rocblas_zhbmv_strided_batched_64_full_rank(handle,uplo,n,k,alpha,A,lda,stride_A,x, &
+        incx,stride_x,beta,y,incy,stride_y,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zhbmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stride_y
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zhbmv_strided_batched_64_full_rank = rocblas_zhbmv_strided_batched_64_(handle,uplo, &
+        n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(beta),c_loc(y),incy, &
         stride_y,batch_count)
     end function
 
@@ -76065,6 +76769,27 @@ module hipfort_rocblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function rocblas_chemv_64_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_chemv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_chemv_64_full_rank = rocblas_chemv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zhemv_64_assumed_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -76128,6 +76853,27 @@ module hipfort_rocblas
       integer(c_int64_t) :: incy
       !
       rocblas_zhemv_64_rank_1 = rocblas_zhemv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
+    function rocblas_zhemv_64_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zhemv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_zhemv_64_full_rank = rocblas_zhemv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
@@ -76437,6 +77183,33 @@ module hipfort_rocblas
         stride_y,batch_count)
     end function
 
+    function rocblas_chemv_strided_batched_64_full_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_chemv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stride_y
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_chemv_strided_batched_64_full_rank = rocblas_chemv_strided_batched_64_(handle,uplo, &
+        n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(beta),c_loc(y),incy, &
+        stride_y,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zhemv_strided_batched_64_assumed_rank(handle,uplo,n,alpha,A,lda,stride_A,x, &
@@ -76518,6 +77291,33 @@ module hipfort_rocblas
       !
       rocblas_zhemv_strided_batched_64_rank_1 = rocblas_zhemv_strided_batched_64_(handle,uplo,n, &
         c_loc(alpha),c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(beta),c_loc(y),incy, &
+        stride_y,batch_count)
+    end function
+
+    function rocblas_zhemv_strided_batched_64_full_rank(handle,uplo,n,alpha,A,lda,stride_A,x,incx, &
+        stride_x,beta,y,incy,stride_y,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zhemv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stride_y
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zhemv_strided_batched_64_full_rank = rocblas_zhemv_strided_batched_64_(handle,uplo, &
+        n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(beta),c_loc(y),incy, &
         stride_y,batch_count)
     end function
 
@@ -76722,6 +77522,24 @@ module hipfort_rocblas
         lda)
     end function
 
+    function rocblas_cher_64_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cher_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_cher_64_full_rank = rocblas_cher_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(A),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zher_64_assumed_rank(handle,uplo,n,alpha,x,incx,A,lda)
@@ -76777,6 +77595,24 @@ module hipfort_rocblas
       !
       rocblas_zher_64_rank_1 = rocblas_zher_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(A), &
         lda)
+    end function
+
+    function rocblas_zher_64_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zher_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_zher_64_full_rank = rocblas_zher_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(A),lda)
     end function
 
 #endif
@@ -77030,6 +77866,28 @@ module hipfort_rocblas
         c_loc(alpha),c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
     end function
 
+    function rocblas_cher_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda, &
+        stride_A,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cher_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_cher_strided_batched_64_full_rank = rocblas_cher_strided_batched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zher_strided_batched_64_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,A, &
@@ -77096,6 +77954,28 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_zher_strided_batched_64_rank_1 = rocblas_zher_strided_batched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
+    end function
+
+    function rocblas_zher_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stride_x,A,lda, &
+        stride_A,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zher_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zher_strided_batched_64_full_rank = rocblas_zher_strided_batched_64_(handle,uplo,n, &
         c_loc(alpha),c_loc(x),incx,stride_x,c_loc(A),lda,stride_A,batch_count)
     end function
 
@@ -77328,6 +78208,26 @@ module hipfort_rocblas
         c_loc(y),incy,c_loc(A),lda)
     end function
 
+    function rocblas_cher2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cher2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_cher2_64_full_rank = rocblas_cher2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(A),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zher2_64_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -77388,6 +78288,26 @@ module hipfort_rocblas
       integer(c_int64_t) :: lda
       !
       rocblas_zher2_64_rank_1 = rocblas_zher2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(A),lda)
+    end function
+
+    function rocblas_zher2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zher2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_zher2_64_full_rank = rocblas_zher2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(A),lda)
     end function
 
@@ -77686,6 +78606,32 @@ module hipfort_rocblas
         batch_count)
     end function
 
+    function rocblas_cher2_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stride_x,y, &
+        incy,stride_y,A,lda,stride_A,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cher2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stride_y
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_cher2_strided_batched_64_full_rank = rocblas_cher2_strided_batched_64_(handle,uplo, &
+        n,c_loc(alpha),c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A, &
+        batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zher2_strided_batched_64_assumed_rank(handle,uplo,n,alpha,x,incx,stride_x,y, &
@@ -77764,6 +78710,32 @@ module hipfort_rocblas
       !
       rocblas_zher2_strided_batched_64_rank_1 = rocblas_zher2_strided_batched_64_(handle,uplo,n, &
         c_loc(alpha),c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A, &
+        batch_count)
+    end function
+
+    function rocblas_zher2_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stride_x,y, &
+        incy,stride_y,A,lda,stride_A,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zher2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stride_y
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zher2_strided_batched_64_full_rank = rocblas_zher2_strided_batched_64_(handle,uplo, &
+        n,c_loc(alpha),c_loc(x),incx,stride_x,c_loc(y),incy,stride_y,c_loc(A),lda,stride_A, &
         batch_count)
     end function
 
@@ -79719,6 +80691,25 @@ module hipfort_rocblas
         incx)
     end function
 
+    function rocblas_strmv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_strmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_strmv_64_full_rank = rocblas_strmv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dtrmv_64_assumed_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
@@ -79777,6 +80768,25 @@ module hipfort_rocblas
       !
       rocblas_dtrmv_64_rank_1 = rocblas_dtrmv_64_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x), &
         incx)
+    end function
+
+    function rocblas_dtrmv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtrmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_dtrmv_64_full_rank = rocblas_dtrmv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
+        c_loc(x),incx)
     end function
 
 #endif
@@ -79839,6 +80849,25 @@ module hipfort_rocblas
         incx)
     end function
 
+    function rocblas_ctrmv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctrmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_ctrmv_64_full_rank = rocblas_ctrmv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ztrmv_64_assumed_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
@@ -79897,6 +80926,25 @@ module hipfort_rocblas
       !
       rocblas_ztrmv_64_rank_1 = rocblas_ztrmv_64_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x), &
         incx)
+    end function
+
+    function rocblas_ztrmv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ztrmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_ztrmv_64_full_rank = rocblas_ztrmv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
+        c_loc(x),incx)
     end function
 
 #endif
@@ -80351,6 +81399,29 @@ module hipfort_rocblas
         transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
+    function rocblas_strmv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
+        x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_strmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_strmv_strided_batched_64_full_rank = rocblas_strmv_strided_batched_64_(handle,uplo, &
+        transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dtrmv_strided_batched_64_assumed_rank(handle,uplo,transA,diag,n,A,lda, &
@@ -80420,6 +81491,29 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_dtrmv_strided_batched_64_rank_1 = rocblas_dtrmv_strided_batched_64_(handle,uplo, &
+        transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
+    function rocblas_dtrmv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
+        x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtrmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dtrmv_strided_batched_64_full_rank = rocblas_dtrmv_strided_batched_64_(handle,uplo, &
         transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
@@ -80495,6 +81589,29 @@ module hipfort_rocblas
         transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
+    function rocblas_ctrmv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
+        x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctrmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ctrmv_strided_batched_64_full_rank = rocblas_ctrmv_strided_batched_64_(handle,uplo, &
+        transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ztrmv_strided_batched_64_assumed_rank(handle,uplo,transA,diag,n,A,lda, &
@@ -80564,6 +81681,29 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_ztrmv_strided_batched_64_rank_1 = rocblas_ztrmv_strided_batched_64_(handle,uplo, &
+        transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
+    function rocblas_ztrmv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
+        x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ztrmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ztrmv_strided_batched_64_full_rank = rocblas_ztrmv_strided_batched_64_(handle,uplo, &
         transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
@@ -81942,6 +83082,26 @@ module hipfort_rocblas
         c_loc(x),incx)
     end function
 
+    function rocblas_stbmv_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_stbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_stbmv_64_full_rank = rocblas_stbmv_64_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dtbmv_64_assumed_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
@@ -82002,6 +83162,26 @@ module hipfort_rocblas
       integer(c_int64_t) :: incx
       !
       rocblas_dtbmv_64_rank_1 = rocblas_dtbmv_64_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
+        c_loc(x),incx)
+    end function
+
+    function rocblas_dtbmv_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_dtbmv_64_full_rank = rocblas_dtbmv_64_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
         c_loc(x),incx)
     end function
 
@@ -82068,6 +83248,26 @@ module hipfort_rocblas
         c_loc(x),incx)
     end function
 
+    function rocblas_ctbmv_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_ctbmv_64_full_rank = rocblas_ctbmv_64_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ztbmv_64_assumed_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
@@ -82128,6 +83328,26 @@ module hipfort_rocblas
       integer(c_int64_t) :: incx
       !
       rocblas_ztbmv_64_rank_1 = rocblas_ztbmv_64_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
+        c_loc(x),incx)
+    end function
+
+    function rocblas_ztbmv_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ztbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_ztbmv_64_full_rank = rocblas_ztbmv_64_(handle,uplo,trans,diag,n,k,c_loc(A),lda, &
         c_loc(x),incx)
     end function
 
@@ -82602,6 +83822,30 @@ module hipfort_rocblas
         trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
+    function rocblas_stbmv_strided_batched_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A, &
+        x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_stbmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_stbmv_strided_batched_64_full_rank = rocblas_stbmv_strided_batched_64_(handle,uplo, &
+        trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dtbmv_strided_batched_64_assumed_rank(handle,uplo,trans,diag,n,k,A,lda, &
@@ -82674,6 +83918,30 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_dtbmv_strided_batched_64_rank_1 = rocblas_dtbmv_strided_batched_64_(handle,uplo, &
+        trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
+    function rocblas_dtbmv_strided_batched_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A, &
+        x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtbmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dtbmv_strided_batched_64_full_rank = rocblas_dtbmv_strided_batched_64_(handle,uplo, &
         trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
@@ -82752,6 +84020,30 @@ module hipfort_rocblas
         trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
+    function rocblas_ctbmv_strided_batched_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A, &
+        x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctbmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ctbmv_strided_batched_64_full_rank = rocblas_ctbmv_strided_batched_64_(handle,uplo, &
+        trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ztbmv_strided_batched_64_assumed_rank(handle,uplo,trans,diag,n,k,A,lda, &
@@ -82824,6 +84116,30 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_ztbmv_strided_batched_64_rank_1 = rocblas_ztbmv_strided_batched_64_(handle,uplo, &
+        trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
+    function rocblas_ztbmv_strided_batched_64_full_rank(handle,uplo,trans,diag,n,k,A,lda,stride_A, &
+        x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ztbmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ztbmv_strided_batched_64_full_rank = rocblas_ztbmv_strided_batched_64_(handle,uplo, &
         trans,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
@@ -83214,6 +84530,26 @@ module hipfort_rocblas
         c_loc(x),incx)
     end function
 
+    function rocblas_stbsv_64_full_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_stbsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_stbsv_64_full_rank = rocblas_stbsv_64_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dtbsv_64_assumed_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
@@ -83274,6 +84610,26 @@ module hipfort_rocblas
       integer(c_int64_t) :: incx
       !
       rocblas_dtbsv_64_rank_1 = rocblas_dtbsv_64_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
+        c_loc(x),incx)
+    end function
+
+    function rocblas_dtbsv_64_full_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtbsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_dtbsv_64_full_rank = rocblas_dtbsv_64_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
         c_loc(x),incx)
     end function
 
@@ -83340,6 +84696,26 @@ module hipfort_rocblas
         c_loc(x),incx)
     end function
 
+    function rocblas_ctbsv_64_full_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctbsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_ctbsv_64_full_rank = rocblas_ctbsv_64_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ztbsv_64_assumed_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
@@ -83400,6 +84776,26 @@ module hipfort_rocblas
       integer(c_int64_t) :: incx
       !
       rocblas_ztbsv_64_rank_1 = rocblas_ztbsv_64_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
+        c_loc(x),incx)
+    end function
+
+    function rocblas_ztbsv_64_full_rank(handle,uplo,transA,diag,n,k,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ztbsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_ztbsv_64_full_rank = rocblas_ztbsv_64_(handle,uplo,transA,diag,n,k,c_loc(A),lda, &
         c_loc(x),incx)
     end function
 
@@ -83874,6 +85270,30 @@ module hipfort_rocblas
         transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
+    function rocblas_stbsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,k,A,lda, &
+        stride_A,x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_stbsv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_stbsv_strided_batched_64_full_rank = rocblas_stbsv_strided_batched_64_(handle,uplo, &
+        transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dtbsv_strided_batched_64_assumed_rank(handle,uplo,transA,diag,n,k,A,lda, &
@@ -83946,6 +85366,30 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_dtbsv_strided_batched_64_rank_1 = rocblas_dtbsv_strided_batched_64_(handle,uplo, &
+        transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
+    function rocblas_dtbsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,k,A,lda, &
+        stride_A,x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtbsv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dtbsv_strided_batched_64_full_rank = rocblas_dtbsv_strided_batched_64_(handle,uplo, &
         transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
@@ -84024,6 +85468,30 @@ module hipfort_rocblas
         transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
+    function rocblas_ctbsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,k,A,lda, &
+        stride_A,x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctbsv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ctbsv_strided_batched_64_full_rank = rocblas_ctbsv_strided_batched_64_(handle,uplo, &
+        transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ztbsv_strided_batched_64_assumed_rank(handle,uplo,transA,diag,n,k,A,lda, &
@@ -84096,6 +85564,30 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_ztbsv_strided_batched_64_rank_1 = rocblas_ztbsv_strided_batched_64_(handle,uplo, &
+        transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
+    function rocblas_ztbsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,k,A,lda, &
+        stride_A,x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ztbsv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ztbsv_strided_batched_64_full_rank = rocblas_ztbsv_strided_batched_64_(handle,uplo, &
         transA,diag,n,k,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
@@ -84463,6 +85955,25 @@ module hipfort_rocblas
         incx)
     end function
 
+    function rocblas_strsv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_strsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_strsv_64_full_rank = rocblas_strsv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dtrsv_64_assumed_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
@@ -84521,6 +86032,25 @@ module hipfort_rocblas
       !
       rocblas_dtrsv_64_rank_1 = rocblas_dtrsv_64_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x), &
         incx)
+    end function
+
+    function rocblas_dtrsv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtrsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_dtrsv_64_full_rank = rocblas_dtrsv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
+        c_loc(x),incx)
     end function
 
 #endif
@@ -84583,6 +86113,25 @@ module hipfort_rocblas
         incx)
     end function
 
+    function rocblas_ctrsv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctrsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_ctrsv_64_full_rank = rocblas_ctrsv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
+        c_loc(x),incx)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ztrsv_64_assumed_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
@@ -84641,6 +86190,25 @@ module hipfort_rocblas
       !
       rocblas_ztrsv_64_rank_1 = rocblas_ztrsv_64_(handle,uplo,transA,diag,n,c_loc(A),lda,c_loc(x), &
         incx)
+    end function
+
+    function rocblas_ztrsv_64_full_rank(handle,uplo,transA,diag,n,A,lda,x,incx)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ztrsv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      !
+      rocblas_ztrsv_64_full_rank = rocblas_ztrsv_64_(handle,uplo,transA,diag,n,c_loc(A),lda, &
+        c_loc(x),incx)
     end function
 
 #endif
@@ -85095,6 +86663,29 @@ module hipfort_rocblas
         transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
+    function rocblas_strsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
+        x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_strsv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_strsv_strided_batched_64_full_rank = rocblas_strsv_strided_batched_64_(handle,uplo, &
+        transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dtrsv_strided_batched_64_assumed_rank(handle,uplo,transA,diag,n,A,lda, &
@@ -85164,6 +86755,29 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_dtrsv_strided_batched_64_rank_1 = rocblas_dtrsv_strided_batched_64_(handle,uplo, &
+        transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
+    function rocblas_dtrsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
+        x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtrsv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dtrsv_strided_batched_64_full_rank = rocblas_dtrsv_strided_batched_64_(handle,uplo, &
         transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
@@ -85239,6 +86853,29 @@ module hipfort_rocblas
         transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
+    function rocblas_ctrsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
+        x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctrsv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ctrsv_strided_batched_64_full_rank = rocblas_ctrsv_strided_batched_64_(handle,uplo, &
+        transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ztrsv_strided_batched_64_assumed_rank(handle,uplo,transA,diag,n,A,lda, &
@@ -85308,6 +86945,29 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_ztrsv_strided_batched_64_rank_1 = rocblas_ztrsv_strided_batched_64_(handle,uplo, &
+        transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
+    end function
+
+    function rocblas_ztrsv_strided_batched_64_full_rank(handle,uplo,transA,diag,n,A,lda,stride_A, &
+        x,incx,stride_x,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ztrsv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ztrsv_strided_batched_64_full_rank = rocblas_ztrsv_strided_batched_64_(handle,uplo, &
         transA,diag,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,batch_count)
     end function
 
@@ -86713,6 +88373,27 @@ module hipfort_rocblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function rocblas_ssymv_64_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssymv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_ssymv_64_full_rank = rocblas_ssymv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsymv_64_assumed_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -86776,6 +88457,27 @@ module hipfort_rocblas
       integer(c_int64_t) :: incy
       !
       rocblas_dsymv_64_rank_1 = rocblas_dsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
+    function rocblas_dsymv_64_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsymv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_dsymv_64_full_rank = rocblas_dsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
@@ -86845,6 +88547,27 @@ module hipfort_rocblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function rocblas_csymv_64_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csymv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_csymv_64_full_rank = rocblas_csymv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsymv_64_assumed_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
@@ -86908,6 +88631,27 @@ module hipfort_rocblas
       integer(c_int64_t) :: incy
       !
       rocblas_zsymv_64_rank_1 = rocblas_zsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
+    function rocblas_zsymv_64_full_rank(handle,uplo,n,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsymv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_zsymv_64_full_rank = rocblas_zsymv_64_(handle,uplo,n,c_loc(alpha),c_loc(A),lda, &
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
@@ -87439,6 +89183,33 @@ module hipfort_rocblas
         batch_count)
     end function
 
+    function rocblas_ssymv_strided_batched_64_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssymv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ssymv_strided_batched_64_full_rank = rocblas_ssymv_strided_batched_64_(handle,uplo, &
+        n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsymv_strided_batched_64_assumed_rank(handle,uplo,n,alpha,A,lda,strideA,x, &
@@ -87521,6 +89292,33 @@ module hipfort_rocblas
       rocblas_dsymv_strided_batched_64_rank_1 = rocblas_dsymv_strided_batched_64_(handle,uplo,n, &
         c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy,stridey, &
         batch_count)
+    end function
+
+    function rocblas_dsymv_strided_batched_64_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsymv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dsymv_strided_batched_64_full_rank = rocblas_dsymv_strided_batched_64_(handle,uplo, &
+        n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batch_count)
     end function
 
 #endif
@@ -87607,6 +89405,33 @@ module hipfort_rocblas
         batch_count)
     end function
 
+    function rocblas_csymv_strided_batched_64_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csymv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_csymv_strided_batched_64_full_rank = rocblas_csymv_strided_batched_64_(handle,uplo, &
+        n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsymv_strided_batched_64_assumed_rank(handle,uplo,n,alpha,A,lda,strideA,x, &
@@ -87689,6 +89514,33 @@ module hipfort_rocblas
       rocblas_zsymv_strided_batched_64_rank_1 = rocblas_zsymv_strided_batched_64_(handle,uplo,n, &
         c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy,stridey, &
         batch_count)
+    end function
+
+    function rocblas_zsymv_strided_batched_64_full_rank(handle,uplo,n,alpha,A,lda,strideA,x,incx, &
+        stridex,beta,y,incy,stridey,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsymv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zsymv_strided_batched_64_full_rank = rocblas_zsymv_strided_batched_64_(handle,uplo, &
+        n,c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batch_count)
     end function
 
 #endif
@@ -88518,6 +90370,28 @@ module hipfort_rocblas
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
+    function rocblas_ssbmv_64_full_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_ssbmv_64_full_rank = rocblas_ssbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsbmv_64_assumed_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
@@ -88584,6 +90458,28 @@ module hipfort_rocblas
       integer(c_int64_t) :: incy
       !
       rocblas_dsbmv_64_rank_1 = rocblas_dsbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
+        c_loc(x),incx,c_loc(beta),c_loc(y),incy)
+    end function
+
+    function rocblas_dsbmv_64_full_rank(handle,uplo,n,k,alpha,A,lda,x,incx,beta,y,incy)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsbmv_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      !
+      rocblas_dsbmv_64_full_rank = rocblas_dsbmv_64_(handle,uplo,n,k,c_loc(alpha),c_loc(A),lda, &
         c_loc(x),incx,c_loc(beta),c_loc(y),incy)
     end function
 
@@ -88904,6 +90800,34 @@ module hipfort_rocblas
         batch_count)
     end function
 
+    function rocblas_ssbmv_strided_batched_64_full_rank(handle,uplo,n,k,alpha,A,lda,strideA,x, &
+        incx,stridex,beta,y,incy,stridey,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssbmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ssbmv_strided_batched_64_full_rank = rocblas_ssbmv_strided_batched_64_(handle,uplo, &
+        n,k,c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsbmv_strided_batched_64_assumed_rank(handle,uplo,n,k,alpha,A,lda,strideA,x, &
@@ -88989,6 +90913,34 @@ module hipfort_rocblas
       rocblas_dsbmv_strided_batched_64_rank_1 = rocblas_dsbmv_strided_batched_64_(handle,uplo,n,k, &
         c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy,stridey, &
         batch_count)
+    end function
+
+    function rocblas_dsbmv_strided_batched_64_full_rank(handle,uplo,n,k,alpha,A,lda,strideA,x, &
+        incx,stridex,beta,y,incy,stridey,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsbmv_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dsbmv_strided_batched_64_full_rank = rocblas_dsbmv_strided_batched_64_(handle,uplo, &
+        n,k,c_loc(alpha),c_loc(A),lda,strideA,c_loc(x),incx,stridex,c_loc(beta),c_loc(y),incy, &
+        stridey,batch_count)
     end function
 
 #endif
@@ -89552,6 +91504,26 @@ module hipfort_rocblas
         incy,c_loc(A),lda)
     end function
 
+    function rocblas_sger_64_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sger_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_sger_64_full_rank = rocblas_sger_64_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
+        incy,c_loc(A),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dger_64_assumed_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -89612,6 +91584,26 @@ module hipfort_rocblas
       integer(c_int64_t) :: lda
       !
       rocblas_dger_64_rank_1 = rocblas_dger_64_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
+        incy,c_loc(A),lda)
+    end function
+
+    function rocblas_dger_64_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dger_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_dger_64_full_rank = rocblas_dger_64_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
         incy,c_loc(A),lda)
     end function
 
@@ -89678,6 +91670,26 @@ module hipfort_rocblas
         incy,c_loc(A),lda)
     end function
 
+    function rocblas_cgeru_64_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cgeru_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_cgeru_64_full_rank = rocblas_cgeru_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(A),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zgeru_64_assumed_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -89739,6 +91751,26 @@ module hipfort_rocblas
       !
       rocblas_zgeru_64_rank_1 = rocblas_zgeru_64_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
         incy,c_loc(A),lda)
+    end function
+
+    function rocblas_zgeru_64_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zgeru_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_zgeru_64_full_rank = rocblas_zgeru_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(A),lda)
     end function
 
 #endif
@@ -89804,6 +91836,26 @@ module hipfort_rocblas
         incy,c_loc(A),lda)
     end function
 
+    function rocblas_cgerc_64_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cgerc_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_cgerc_64_full_rank = rocblas_cgerc_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(A),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zgerc_64_assumed_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
@@ -89865,6 +91917,26 @@ module hipfort_rocblas
       !
       rocblas_zgerc_64_rank_1 = rocblas_zgerc_64_(handle,m,n,c_loc(alpha),c_loc(x),incx,c_loc(y), &
         incy,c_loc(A),lda)
+    end function
+
+    function rocblas_zgerc_64_full_rank(handle,m,n,alpha,x,incx,y,incy,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zgerc_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_zgerc_64_full_rank = rocblas_zgerc_64_(handle,m,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(A),lda)
     end function
 
 #endif
@@ -90563,6 +92635,31 @@ module hipfort_rocblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
+    function rocblas_sger_strided_batched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sger_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_sger_strided_batched_64_full_rank = rocblas_sger_strided_batched_64_(handle,m,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dger_strided_batched_64_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
@@ -90638,6 +92735,31 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_dger_strided_batched_64_rank_1 = rocblas_dger_strided_batched_64_(handle,m,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+    end function
+
+    function rocblas_dger_strided_batched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dger_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dger_strided_batched_64_full_rank = rocblas_dger_strided_batched_64_(handle,m,n, &
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
@@ -90719,6 +92841,31 @@ module hipfort_rocblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
+    function rocblas_cgeru_strided_batched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cgeru_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_cgeru_strided_batched_64_full_rank = rocblas_cgeru_strided_batched_64_(handle,m,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zgeru_strided_batched_64_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
@@ -90794,6 +92941,31 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_zgeru_strided_batched_64_rank_1 = rocblas_zgeru_strided_batched_64_(handle,m,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+    end function
+
+    function rocblas_zgeru_strided_batched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zgeru_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zgeru_strided_batched_64_full_rank = rocblas_zgeru_strided_batched_64_(handle,m,n, &
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
@@ -90875,6 +93047,31 @@ module hipfort_rocblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
+    function rocblas_cgerc_strided_batched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cgerc_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_cgerc_strided_batched_64_full_rank = rocblas_cgerc_strided_batched_64_(handle,m,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zgerc_strided_batched_64_assumed_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
@@ -90950,6 +93147,31 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_zgerc_strided_batched_64_rank_1 = rocblas_zgerc_strided_batched_64_(handle,m,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+    end function
+
+    function rocblas_zgerc_strided_batched_64_full_rank(handle,m,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zgerc_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zgerc_strided_batched_64_full_rank = rocblas_zgerc_strided_batched_64_(handle,m,n, &
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
@@ -92780,6 +95002,24 @@ module hipfort_rocblas
         lda)
     end function
 
+    function rocblas_ssyr_64_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssyr_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_ssyr_64_full_rank = rocblas_ssyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(A),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsyr_64_assumed_rank(handle,uplo,n,alpha,x,incx,A,lda)
@@ -92835,6 +95075,24 @@ module hipfort_rocblas
       !
       rocblas_dsyr_64_rank_1 = rocblas_dsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(A), &
         lda)
+    end function
+
+    function rocblas_dsyr_64_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsyr_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_dsyr_64_full_rank = rocblas_dsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(A),lda)
     end function
 
 #endif
@@ -92894,6 +95152,24 @@ module hipfort_rocblas
         lda)
     end function
 
+    function rocblas_csyr_64_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csyr_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_csyr_64_full_rank = rocblas_csyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(A),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsyr_64_assumed_rank(handle,uplo,n,alpha,x,incx,A,lda)
@@ -92949,6 +95225,24 @@ module hipfort_rocblas
       !
       rocblas_zsyr_64_rank_1 = rocblas_zsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx,c_loc(A), &
         lda)
+    end function
+
+    function rocblas_zsyr_64_full_rank(handle,uplo,n,alpha,x,incx,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsyr_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_zsyr_64_full_rank = rocblas_zsyr_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(A),lda)
     end function
 
 #endif
@@ -93384,6 +95678,28 @@ module hipfort_rocblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
+    function rocblas_ssyr_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
+        strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssyr_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ssyr_strided_batched_64_full_rank = rocblas_ssyr_strided_batched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsyr_strided_batched_64_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,A, &
@@ -93450,6 +95766,28 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_dsyr_strided_batched_64_rank_1 = rocblas_dsyr_strided_batched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+    end function
+
+    function rocblas_dsyr_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
+        strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsyr_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dsyr_strided_batched_64_full_rank = rocblas_dsyr_strided_batched_64_(handle,uplo,n, &
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
@@ -93522,6 +95860,28 @@ module hipfort_rocblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
+    function rocblas_csyr_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
+        strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csyr_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_csyr_strided_batched_64_full_rank = rocblas_csyr_strided_batched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsyr_strided_batched_64_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,A, &
@@ -93588,6 +95948,28 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_zsyr_strided_batched_64_rank_1 = rocblas_zsyr_strided_batched_64_(handle,uplo,n, &
+        c_loc(alpha),c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
+    end function
+
+    function rocblas_zsyr_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,A,lda, &
+        strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsyr_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zsyr_strided_batched_64_full_rank = rocblas_zsyr_strided_batched_64_(handle,uplo,n, &
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(A),lda,strideA,batch_count)
     end function
 
@@ -93986,6 +96368,26 @@ module hipfort_rocblas
         c_loc(y),incy,c_loc(A),lda)
     end function
 
+    function rocblas_ssyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssyr2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_ssyr2_64_full_rank = rocblas_ssyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(A),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsyr2_64_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -94046,6 +96448,26 @@ module hipfort_rocblas
       integer(c_int64_t) :: lda
       !
       rocblas_dsyr2_64_rank_1 = rocblas_dsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(A),lda)
+    end function
+
+    function rocblas_dsyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsyr2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_dsyr2_64_full_rank = rocblas_dsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(A),lda)
     end function
 
@@ -94112,6 +96534,26 @@ module hipfort_rocblas
         c_loc(y),incy,c_loc(A),lda)
     end function
 
+    function rocblas_csyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csyr2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_csyr2_64_full_rank = rocblas_csyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(A),lda)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsyr2_64_assumed_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
@@ -94172,6 +96614,26 @@ module hipfort_rocblas
       integer(c_int64_t) :: lda
       !
       rocblas_zsyr2_64_rank_1 = rocblas_zsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
+        c_loc(y),incy,c_loc(A),lda)
+    end function
+
+    function rocblas_zsyr2_64_full_rank(handle,uplo,n,alpha,x,incx,y,incy,A,lda)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsyr2_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      !
+      rocblas_zsyr2_64_full_rank = rocblas_zsyr2_64_(handle,uplo,n,c_loc(alpha),c_loc(x),incx, &
         c_loc(y),incy,c_loc(A),lda)
     end function
 
@@ -94666,6 +97128,31 @@ module hipfort_rocblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
+    function rocblas_ssyr2_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssyr2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_float),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ssyr2_strided_batched_64_full_rank = rocblas_ssyr2_strided_batched_64_(handle,uplo, &
+        n,c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsyr2_strided_batched_64_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y, &
@@ -94743,6 +97230,31 @@ module hipfort_rocblas
       !
       rocblas_dsyr2_strided_batched_64_rank_1 = rocblas_dsyr2_strided_batched_64_(handle,uplo,n, &
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+    end function
+
+    function rocblas_dsyr2_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsyr2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      real(c_double),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dsyr2_strided_batched_64_full_rank = rocblas_dsyr2_strided_batched_64_(handle,uplo, &
+        n,c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
 #endif
@@ -94824,6 +97336,31 @@ module hipfort_rocblas
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
+    function rocblas_csyr2_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csyr2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_csyr2_strided_batched_64_full_rank = rocblas_csyr2_strided_batched_64_(handle,uplo, &
+        n,c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsyr2_strided_batched_64_assumed_rank(handle,uplo,n,alpha,x,incx,stridex,y, &
@@ -94901,6 +97438,31 @@ module hipfort_rocblas
       !
       rocblas_zsyr2_strided_batched_64_rank_1 = rocblas_zsyr2_strided_batched_64_(handle,uplo,n, &
         c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
+    end function
+
+    function rocblas_zsyr2_strided_batched_64_full_rank(handle,uplo,n,alpha,x,incx,stridex,y,incy, &
+        stridey,A,lda,strideA,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsyr2_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stridex
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(c_int64_t) :: incy
+      integer(c_int64_t) :: stridey
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zsyr2_strided_batched_64_full_rank = rocblas_zsyr2_strided_batched_64_(handle,uplo, &
+        n,c_loc(alpha),c_loc(x),incx,stridex,c_loc(y),incy,stridey,c_loc(A),lda,strideA,batch_count)
     end function
 
 #endif
@@ -95165,6 +97727,29 @@ module hipfort_rocblas
         c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_chemm_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_chemm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_chemm_64_full_rank = rocblas_chemm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A), &
+        lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zhemm_64_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -95235,6 +97820,29 @@ module hipfort_rocblas
       !
       rocblas_zhemm_64_rank_1 = rocblas_zhemm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A),lda, &
         c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_zhemm_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zhemm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_zhemm_64_full_rank = rocblas_zhemm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A), &
+        lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
 #endif
@@ -95565,6 +98173,35 @@ module hipfort_rocblas
         ldc,stride_C,batch_count)
     end function
 
+    function rocblas_chemm_strided_batched_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_chemm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_chemm_strided_batched_64_full_rank = rocblas_chemm_strided_batched_64_(handle,side, &
+        uplo,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
+        ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zhemm_strided_batched_64_assumed_rank(handle,side,uplo,m,n,alpha,A,lda, &
@@ -95651,6 +98288,35 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_zhemm_strided_batched_64_rank_1 = rocblas_zhemm_strided_batched_64_(handle,side, &
+        uplo,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
+        ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_zhemm_strided_batched_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zhemm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zhemm_strided_batched_64_full_rank = rocblas_zhemm_strided_batched_64_(handle,side, &
         uplo,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
         ldc,stride_C,batch_count)
     end function
@@ -95895,6 +98561,27 @@ module hipfort_rocblas
         lda,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_cherk_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cherk_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_cherk_64_full_rank = rocblas_cherk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
+        lda,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zherk_64_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -95958,6 +98645,27 @@ module hipfort_rocblas
       integer(c_int64_t) :: ldc
       !
       rocblas_zherk_64_rank_1 = rocblas_zherk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
+        lda,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_zherk_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zherk_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_zherk_64_full_rank = rocblas_zherk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
         lda,c_loc(beta),c_loc(C),ldc)
     end function
 
@@ -96246,6 +98954,31 @@ module hipfort_rocblas
         transA,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(C),ldc,stride_C,batch_count)
     end function
 
+    function rocblas_cherk_strided_batched_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda, &
+        stride_A,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cherk_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_cherk_strided_batched_64_full_rank = rocblas_cherk_strided_batched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zherk_strided_batched_64_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda, &
@@ -96322,6 +99055,31 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_zherk_strided_batched_64_rank_1 = rocblas_zherk_strided_batched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(C),ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_zherk_strided_batched_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda, &
+        stride_A,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zherk_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_double),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zherk_strided_batched_64_full_rank = rocblas_zherk_strided_batched_64_(handle,uplo, &
         transA,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(C),ldc,stride_C,batch_count)
     end function
 
@@ -96587,6 +99345,29 @@ module hipfort_rocblas
         lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_cher2k_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cher2k_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_float),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_cher2k_64_full_rank = rocblas_cher2k_64_(handle,uplo,trans,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zher2k_64_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -96657,6 +99438,29 @@ module hipfort_rocblas
       !
       rocblas_zher2k_64_rank_1 = rocblas_zher2k_64_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
         lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_zher2k_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zher2k_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_double),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_zher2k_64_full_rank = rocblas_zher2k_64_(handle,uplo,trans,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
 #endif
@@ -96987,6 +99791,35 @@ module hipfort_rocblas
         ldc,stride_C,batch_count)
     end function
 
+    function rocblas_cher2k_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cher2k_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      real(c_float),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_cher2k_strided_batched_64_full_rank = rocblas_cher2k_strided_batched_64_(handle, &
+        uplo,trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta), &
+        c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zher2k_strided_batched_64_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
@@ -97075,6 +99908,35 @@ module hipfort_rocblas
       rocblas_zher2k_strided_batched_64_rank_1 = rocblas_zher2k_strided_batched_64_(handle,uplo, &
         trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
         ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_zher2k_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zher2k_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      real(c_double),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zher2k_strided_batched_64_full_rank = rocblas_zher2k_strided_batched_64_(handle, &
+        uplo,trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta), &
+        c_loc(C),ldc,stride_C,batch_count)
     end function
 
 #endif
@@ -97339,6 +100201,29 @@ module hipfort_rocblas
         lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_cherkx_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cherkx_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_float),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_cherkx_64_full_rank = rocblas_cherkx_64_(handle,uplo,trans,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zherkx_64_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -97409,6 +100294,29 @@ module hipfort_rocblas
       !
       rocblas_zherkx_64_rank_1 = rocblas_zherkx_64_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
         lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_zherkx_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zherkx_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_double),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_zherkx_64_full_rank = rocblas_zherkx_64_(handle,uplo,trans,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
 #endif
@@ -97739,6 +100647,35 @@ module hipfort_rocblas
         ldc,stride_C,batch_count)
     end function
 
+    function rocblas_cherkx_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cherkx_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      real(c_float),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_cherkx_strided_batched_64_full_rank = rocblas_cherkx_strided_batched_64_(handle, &
+        uplo,trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta), &
+        c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zherkx_strided_batched_64_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
@@ -97827,6 +100764,35 @@ module hipfort_rocblas
       rocblas_zherkx_strided_batched_64_rank_1 = rocblas_zherkx_strided_batched_64_(handle,uplo, &
         trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
         ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_zherkx_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zherkx_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      real(c_double),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zherkx_strided_batched_64_full_rank = rocblas_zherkx_strided_batched_64_(handle, &
+        uplo,trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta), &
+        c_loc(C),ldc,stride_C,batch_count)
     end function
 
 #endif
@@ -98281,6 +101247,29 @@ module hipfort_rocblas
         c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_ssymm_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssymm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_ssymm_64_full_rank = rocblas_ssymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A), &
+        lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsymm_64_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -98351,6 +101340,29 @@ module hipfort_rocblas
       !
       rocblas_dsymm_64_rank_1 = rocblas_dsymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A),lda, &
         c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_dsymm_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsymm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_dsymm_64_full_rank = rocblas_dsymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A), &
+        lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
 #endif
@@ -98425,6 +101437,29 @@ module hipfort_rocblas
         c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_csymm_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csymm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_csymm_64_full_rank = rocblas_csymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A), &
+        lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsymm_64_assumed_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -98495,6 +101530,29 @@ module hipfort_rocblas
       !
       rocblas_zsymm_64_rank_1 = rocblas_zsymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A),lda, &
         c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_zsymm_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsymm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_zsymm_64_full_rank = rocblas_zsymm_64_(handle,side,uplo,m,n,c_loc(alpha),c_loc(A), &
+        lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
 #endif
@@ -99063,6 +102121,35 @@ module hipfort_rocblas
         ldc,stride_C,batch_count)
     end function
 
+    function rocblas_ssymm_strided_batched_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssymm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ssymm_strided_batched_64_full_rank = rocblas_ssymm_strided_batched_64_(handle,side, &
+        uplo,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
+        ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsymm_strided_batched_64_assumed_rank(handle,side,uplo,m,n,alpha,A,lda, &
@@ -99149,6 +102236,35 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_dsymm_strided_batched_64_rank_1 = rocblas_dsymm_strided_batched_64_(handle,side, &
+        uplo,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
+        ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_dsymm_strided_batched_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsymm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dsymm_strided_batched_64_full_rank = rocblas_dsymm_strided_batched_64_(handle,side, &
         uplo,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
         ldc,stride_C,batch_count)
     end function
@@ -99243,6 +102359,35 @@ module hipfort_rocblas
         ldc,stride_C,batch_count)
     end function
 
+    function rocblas_csymm_strided_batched_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csymm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_csymm_strided_batched_64_full_rank = rocblas_csymm_strided_batched_64_(handle,side, &
+        uplo,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
+        ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsymm_strided_batched_64_assumed_rank(handle,side,uplo,m,n,alpha,A,lda, &
@@ -99329,6 +102474,35 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_zsymm_strided_batched_64_rank_1 = rocblas_zsymm_strided_batched_64_(handle,side, &
+        uplo,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
+        ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_zsymm_strided_batched_64_full_rank(handle,side,uplo,m,n,alpha,A,lda,stride_A, &
+        B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsymm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zsymm_strided_batched_64_full_rank = rocblas_zsymm_strided_batched_64_(handle,side, &
         uplo,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
         ldc,stride_C,batch_count)
     end function
@@ -99747,6 +102921,27 @@ module hipfort_rocblas
         lda,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_ssyrk_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssyrk_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_ssyrk_64_full_rank = rocblas_ssyrk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
+        lda,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsyrk_64_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -99810,6 +103005,27 @@ module hipfort_rocblas
       integer(c_int64_t) :: ldc
       !
       rocblas_dsyrk_64_rank_1 = rocblas_dsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
+        lda,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_dsyrk_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsyrk_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_dsyrk_64_full_rank = rocblas_dsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
         lda,c_loc(beta),c_loc(C),ldc)
     end function
 
@@ -99879,6 +103095,27 @@ module hipfort_rocblas
         lda,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_csyrk_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csyrk_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_csyrk_64_full_rank = rocblas_csyrk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
+        lda,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsyrk_64_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
@@ -99942,6 +103179,27 @@ module hipfort_rocblas
       integer(c_int64_t) :: ldc
       !
       rocblas_zsyrk_64_rank_1 = rocblas_zsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
+        lda,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_zsyrk_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsyrk_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_zsyrk_64_full_rank = rocblas_zsyrk_64_(handle,uplo,transA,n,k,c_loc(alpha),c_loc(A), &
         lda,c_loc(beta),c_loc(C),ldc)
     end function
 
@@ -100436,6 +103694,31 @@ module hipfort_rocblas
         transA,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(C),ldc,stride_C,batch_count)
     end function
 
+    function rocblas_ssyrk_strided_batched_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda, &
+        stride_A,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssyrk_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ssyrk_strided_batched_64_full_rank = rocblas_ssyrk_strided_batched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsyrk_strided_batched_64_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda, &
@@ -100512,6 +103795,31 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_dsyrk_strided_batched_64_rank_1 = rocblas_dsyrk_strided_batched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(C),ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_dsyrk_strided_batched_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda, &
+        stride_A,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsyrk_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dsyrk_strided_batched_64_full_rank = rocblas_dsyrk_strided_batched_64_(handle,uplo, &
         transA,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(C),ldc,stride_C,batch_count)
     end function
 
@@ -100594,6 +103902,31 @@ module hipfort_rocblas
         transA,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(C),ldc,stride_C,batch_count)
     end function
 
+    function rocblas_csyrk_strided_batched_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda, &
+        stride_A,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csyrk_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_csyrk_strided_batched_64_full_rank = rocblas_csyrk_strided_batched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsyrk_strided_batched_64_assumed_rank(handle,uplo,transA,n,k,alpha,A,lda, &
@@ -100670,6 +104003,31 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_zsyrk_strided_batched_64_rank_1 = rocblas_zsyrk_strided_batched_64_(handle,uplo, &
+        transA,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(C),ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_zsyrk_strided_batched_64_full_rank(handle,uplo,transA,n,k,alpha,A,lda, &
+        stride_A,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsyrk_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zsyrk_strided_batched_64_full_rank = rocblas_zsyrk_strided_batched_64_(handle,uplo, &
         transA,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(C),ldc,stride_C,batch_count)
     end function
 
@@ -101125,6 +104483,29 @@ module hipfort_rocblas
         lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_ssyr2k_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_ssyr2k_64_full_rank = rocblas_ssyr2k_64_(handle,uplo,trans,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsyr2k_64_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -101195,6 +104576,29 @@ module hipfort_rocblas
       !
       rocblas_dsyr2k_64_rank_1 = rocblas_dsyr2k_64_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
         lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_dsyr2k_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_dsyr2k_64_full_rank = rocblas_dsyr2k_64_(handle,uplo,trans,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
 #endif
@@ -101269,6 +104673,29 @@ module hipfort_rocblas
         lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_csyr2k_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csyr2k_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_csyr2k_64_full_rank = rocblas_csyr2k_64_(handle,uplo,trans,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsyr2k_64_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -101339,6 +104766,29 @@ module hipfort_rocblas
       !
       rocblas_zsyr2k_64_rank_1 = rocblas_zsyr2k_64_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
         lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_zsyr2k_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_zsyr2k_64_full_rank = rocblas_zsyr2k_64_(handle,uplo,trans,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
 #endif
@@ -101907,6 +105357,35 @@ module hipfort_rocblas
         ldc,stride_C,batch_count)
     end function
 
+    function rocblas_ssyr2k_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssyr2k_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ssyr2k_strided_batched_64_full_rank = rocblas_ssyr2k_strided_batched_64_(handle, &
+        uplo,trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta), &
+        c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsyr2k_strided_batched_64_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
@@ -101995,6 +105474,35 @@ module hipfort_rocblas
       rocblas_dsyr2k_strided_batched_64_rank_1 = rocblas_dsyr2k_strided_batched_64_(handle,uplo, &
         trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
         ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_dsyr2k_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsyr2k_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dsyr2k_strided_batched_64_full_rank = rocblas_dsyr2k_strided_batched_64_(handle, &
+        uplo,trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta), &
+        c_loc(C),ldc,stride_C,batch_count)
     end function
 
 #endif
@@ -102087,6 +105595,35 @@ module hipfort_rocblas
         ldc,stride_C,batch_count)
     end function
 
+    function rocblas_csyr2k_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csyr2k_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_csyr2k_strided_batched_64_full_rank = rocblas_csyr2k_strided_batched_64_(handle, &
+        uplo,trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta), &
+        c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsyr2k_strided_batched_64_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
@@ -102175,6 +105712,35 @@ module hipfort_rocblas
       rocblas_zsyr2k_strided_batched_64_rank_1 = rocblas_zsyr2k_strided_batched_64_(handle,uplo, &
         trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
         ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_zsyr2k_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsyr2k_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zsyr2k_strided_batched_64_full_rank = rocblas_zsyr2k_strided_batched_64_(handle, &
+        uplo,trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta), &
+        c_loc(C),ldc,stride_C,batch_count)
     end function
 
 #endif
@@ -102629,6 +106195,29 @@ module hipfort_rocblas
         lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_ssyrkx_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_ssyrkx_64_full_rank = rocblas_ssyrkx_64_(handle,uplo,trans,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsyrkx_64_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -102699,6 +106288,29 @@ module hipfort_rocblas
       !
       rocblas_dsyrkx_64_rank_1 = rocblas_dsyrkx_64_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
         lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_dsyrkx_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_dsyrkx_64_full_rank = rocblas_dsyrkx_64_(handle,uplo,trans,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
 #endif
@@ -102773,6 +106385,29 @@ module hipfort_rocblas
         lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_csyrkx_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csyrkx_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_csyrkx_64_full_rank = rocblas_csyrkx_64_(handle,uplo,trans,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsyrkx_64_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -102843,6 +106478,29 @@ module hipfort_rocblas
       !
       rocblas_zsyrkx_64_rank_1 = rocblas_zsyrkx_64_(handle,uplo,trans,n,k,c_loc(alpha),c_loc(A), &
         lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_zsyrkx_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_zsyrkx_64_full_rank = rocblas_zsyrkx_64_(handle,uplo,trans,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
 #endif
@@ -103411,6 +107069,35 @@ module hipfort_rocblas
         ldc,stride_C,batch_count)
     end function
 
+    function rocblas_ssyrkx_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ssyrkx_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ssyrkx_strided_batched_64_full_rank = rocblas_ssyrkx_strided_batched_64_(handle, &
+        uplo,trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta), &
+        c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dsyrkx_strided_batched_64_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
@@ -103499,6 +107186,35 @@ module hipfort_rocblas
       rocblas_dsyrkx_strided_batched_64_rank_1 = rocblas_dsyrkx_strided_batched_64_(handle,uplo, &
         trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
         ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_dsyrkx_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dsyrkx_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dsyrkx_strided_batched_64_full_rank = rocblas_dsyrkx_strided_batched_64_(handle, &
+        uplo,trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta), &
+        c_loc(C),ldc,stride_C,batch_count)
     end function
 
 #endif
@@ -103591,6 +107307,35 @@ module hipfort_rocblas
         ldc,stride_C,batch_count)
     end function
 
+    function rocblas_csyrkx_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_csyrkx_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_csyrkx_strided_batched_64_full_rank = rocblas_csyrkx_strided_batched_64_(handle, &
+        uplo,trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta), &
+        c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zsyrkx_strided_batched_64_assumed_rank(handle,uplo,trans,n,k,alpha,A,lda, &
@@ -103679,6 +107424,35 @@ module hipfort_rocblas
       rocblas_zsyrkx_strided_batched_64_rank_1 = rocblas_zsyrkx_strided_batched_64_(handle,uplo, &
         trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta),c_loc(C), &
         ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_zsyrkx_strided_batched_64_full_rank(handle,uplo,trans,n,k,alpha,A,lda, &
+        stride_A,B,ldb,stride_B,beta,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zsyrkx_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zsyrkx_strided_batched_64_full_rank = rocblas_zsyrkx_strided_batched_64_(handle, &
+        uplo,trans,n,k,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,c_loc(beta), &
+        c_loc(C),ldc,stride_C,batch_count)
     end function
 
 #endif
@@ -104152,6 +107926,30 @@ module hipfort_rocblas
         c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
+    function rocblas_strmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_strmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_strmm_64_full_rank = rocblas_strmm_64_(handle,side,uplo,transA,diag,m,n, &
+        c_loc(alpha),c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dtrmm_64_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -104225,6 +108023,30 @@ module hipfort_rocblas
       !
       rocblas_dtrmm_64_rank_1 = rocblas_dtrmm_64_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
         c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+    end function
+
+    function rocblas_dtrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtrmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_dtrmm_64_full_rank = rocblas_dtrmm_64_(handle,side,uplo,transA,diag,m,n, &
+        c_loc(alpha),c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
 #endif
@@ -104302,6 +108124,30 @@ module hipfort_rocblas
         c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
+    function rocblas_ctrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctrmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_ctrmm_64_full_rank = rocblas_ctrmm_64_(handle,side,uplo,transA,diag,m,n, &
+        c_loc(alpha),c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ztrmm_64_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
@@ -104375,6 +108221,30 @@ module hipfort_rocblas
       !
       rocblas_ztrmm_64_rank_1 = rocblas_ztrmm_64_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
         c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
+    end function
+
+    function rocblas_ztrmm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ztrmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_ztrmm_64_full_rank = rocblas_ztrmm_64_(handle,side,uplo,transA,diag,m,n, &
+        c_loc(alpha),c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
 #endif
@@ -105462,6 +109332,28 @@ module hipfort_rocblas
         c_loc(A),lda,c_loc(B),ldb)
     end function
 
+    function rocblas_strsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_strsm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      !
+      rocblas_strsm_64_full_rank = rocblas_strsm_64_(handle,side,uplo,transA,diag,m,n, &
+        c_loc(alpha),c_loc(A),lda,c_loc(B),ldb)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dtrsm_64_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -105529,6 +109421,28 @@ module hipfort_rocblas
       !
       rocblas_dtrsm_64_rank_1 = rocblas_dtrsm_64_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
         c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_dtrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtrsm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      !
+      rocblas_dtrsm_64_full_rank = rocblas_dtrsm_64_(handle,side,uplo,transA,diag,m,n, &
+        c_loc(alpha),c_loc(A),lda,c_loc(B),ldb)
     end function
 
 #endif
@@ -105600,6 +109514,28 @@ module hipfort_rocblas
         c_loc(A),lda,c_loc(B),ldb)
     end function
 
+    function rocblas_ctrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctrsm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      !
+      rocblas_ctrsm_64_full_rank = rocblas_ctrsm_64_(handle,side,uplo,transA,diag,m,n, &
+        c_loc(alpha),c_loc(A),lda,c_loc(B),ldb)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ztrsm_64_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
@@ -105667,6 +109603,28 @@ module hipfort_rocblas
       !
       rocblas_ztrsm_64_rank_1 = rocblas_ztrsm_64_(handle,side,uplo,transA,diag,m,n,c_loc(alpha), &
         c_loc(A),lda,c_loc(B),ldb)
+    end function
+
+    function rocblas_ztrsm_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ztrsm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      !
+      rocblas_ztrsm_64_full_rank = rocblas_ztrsm_64_(handle,side,uplo,transA,diag,m,n, &
+        c_loc(alpha),c_loc(A),lda,c_loc(B),ldb)
     end function
 
 #endif
@@ -106179,6 +110137,32 @@ module hipfort_rocblas
         uplo,transA,diag,m,n,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
+    function rocblas_strsm_strided_batched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A, &
+        lda,stride_a,B,ldb,stride_b,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_strsm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_a
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_b
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_strsm_strided_batched_64_full_rank = rocblas_strsm_strided_batched_64_(handle,side, &
+        uplo,transA,diag,m,n,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dtrsm_strided_batched_64_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha, &
@@ -106258,6 +110242,32 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_dtrsm_strided_batched_64_rank_1 = rocblas_dtrsm_strided_batched_64_(handle,side, &
+        uplo,transA,diag,m,n,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+    end function
+
+    function rocblas_dtrsm_strided_batched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A, &
+        lda,stride_a,B,ldb,stride_b,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dtrsm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_a
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_b
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dtrsm_strided_batched_64_full_rank = rocblas_dtrsm_strided_batched_64_(handle,side, &
         uplo,transA,diag,m,n,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
@@ -106343,6 +110353,32 @@ module hipfort_rocblas
         uplo,transA,diag,m,n,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
+    function rocblas_ctrsm_strided_batched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A, &
+        lda,stride_a,B,ldb,stride_b,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ctrsm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_a
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_b
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ctrsm_strided_batched_64_full_rank = rocblas_ctrsm_strided_batched_64_(handle,side, &
+        uplo,transA,diag,m,n,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ztrsm_strided_batched_64_assumed_rank(handle,side,uplo,transA,diag,m,n,alpha, &
@@ -106422,6 +110458,32 @@ module hipfort_rocblas
       integer(c_int64_t) :: batch_count
       !
       rocblas_ztrsm_strided_batched_64_rank_1 = rocblas_ztrsm_strided_batched_64_(handle,side, &
+        uplo,transA,diag,m,n,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
+    end function
+
+    function rocblas_ztrsm_strided_batched_64_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A, &
+        lda,stride_a,B,ldb,stride_b,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ztrsm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_diagonal_non_unit)) :: diag
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_a
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_b
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ztrsm_strided_batched_64_full_rank = rocblas_ztrsm_strided_batched_64_(handle,side, &
         uplo,transA,diag,m,n,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,batch_count)
     end function
 
@@ -106896,6 +110958,30 @@ module hipfort_rocblas
         c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_sgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sgemm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_sgemm_64_full_rank = rocblas_sgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dgemm_64_assumed_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -106968,6 +111054,30 @@ module hipfort_rocblas
       integer(c_int64_t) :: ldc
       !
       rocblas_dgemm_64_rank_1 = rocblas_dgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_dgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dgemm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_dgemm_64_full_rank = rocblas_dgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
         c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
@@ -107046,6 +111156,30 @@ module hipfort_rocblas
         c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function rocblas_cgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cgemm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_cgemm_64_full_rank = rocblas_cgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zgemm_64_assumed_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
@@ -107118,6 +111252,30 @@ module hipfort_rocblas
       integer(c_int64_t) :: ldc
       !
       rocblas_zgemm_64_rank_1 = rocblas_zgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
+        c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function rocblas_zgemm_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda,B,ldb,beta,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zgemm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_zgemm_64_full_rank = rocblas_zgemm_64_(handle,transA,transB,m,n,k,c_loc(alpha), &
         c_loc(A),lda,c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
@@ -107706,6 +111864,36 @@ module hipfort_rocblas
         c_loc(C),ldc,stride_c,batch_count)
     end function
 
+    function rocblas_sgemm_strided_batched_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sgemm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_a
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_b
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_c
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_sgemm_strided_batched_64_full_rank = rocblas_sgemm_strided_batched_64_(handle, &
+        transA,transB,m,n,k,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,c_loc(beta), &
+        c_loc(C),ldc,stride_c,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dgemm_strided_batched_64_assumed_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
@@ -107796,6 +111984,36 @@ module hipfort_rocblas
       !
       rocblas_dgemm_strided_batched_64_rank_1 = rocblas_dgemm_strided_batched_64_(handle,transA, &
         transB,m,n,k,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,c_loc(beta), &
+        c_loc(C),ldc,stride_c,batch_count)
+    end function
+
+    function rocblas_dgemm_strided_batched_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dgemm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_a
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_b
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_c
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dgemm_strided_batched_64_full_rank = rocblas_dgemm_strided_batched_64_(handle, &
+        transA,transB,m,n,k,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,c_loc(beta), &
         c_loc(C),ldc,stride_c,batch_count)
     end function
 
@@ -107892,6 +112110,36 @@ module hipfort_rocblas
         c_loc(C),ldc,stride_c,batch_count)
     end function
 
+    function rocblas_cgemm_strided_batched_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cgemm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_a
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_b
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_c
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_cgemm_strided_batched_64_full_rank = rocblas_cgemm_strided_batched_64_(handle, &
+        transA,transB,m,n,k,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,c_loc(beta), &
+        c_loc(C),ldc,stride_c,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zgemm_strided_batched_64_assumed_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
@@ -107982,6 +112230,36 @@ module hipfort_rocblas
       !
       rocblas_zgemm_strided_batched_64_rank_1 = rocblas_zgemm_strided_batched_64_(handle,transA, &
         transB,m,n,k,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,c_loc(beta), &
+        c_loc(C),ldc,stride_c,batch_count)
+    end function
+
+    function rocblas_zgemm_strided_batched_64_full_rank(handle,transA,transB,m,n,k,alpha,A,lda, &
+        stride_a,B,ldb,stride_b,beta,C,ldc,stride_c,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zgemm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      integer(c_int64_t) :: k
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_a
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_b
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_c
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zgemm_strided_batched_64_full_rank = rocblas_zgemm_strided_batched_64_(handle, &
+        transA,transB,m,n,k,c_loc(alpha),c_loc(A),lda,stride_a,c_loc(B),ldb,stride_b,c_loc(beta), &
         c_loc(C),ldc,stride_c,batch_count)
     end function
 
@@ -108372,6 +112650,26 @@ module hipfort_rocblas
         c_loc(C),ldc)
     end function
 
+    function rocblas_sdgmm_64_full_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sdgmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_sdgmm_64_full_rank = rocblas_sdgmm_64_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
+        c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ddgmm_64_assumed_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
@@ -108432,6 +112730,26 @@ module hipfort_rocblas
       integer(c_int64_t) :: ldc
       !
       rocblas_ddgmm_64_rank_1 = rocblas_ddgmm_64_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
+        c_loc(C),ldc)
+    end function
+
+    function rocblas_ddgmm_64_full_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ddgmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_ddgmm_64_full_rank = rocblas_ddgmm_64_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
         c_loc(C),ldc)
     end function
 
@@ -108498,6 +112816,26 @@ module hipfort_rocblas
         c_loc(C),ldc)
     end function
 
+    function rocblas_cdgmm_64_full_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cdgmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_cdgmm_64_full_rank = rocblas_cdgmm_64_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
+        c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zdgmm_64_assumed_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
@@ -108558,6 +112896,26 @@ module hipfort_rocblas
       integer(c_int64_t) :: ldc
       !
       rocblas_zdgmm_64_rank_1 = rocblas_zdgmm_64_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
+        c_loc(C),ldc)
+    end function
+
+    function rocblas_zdgmm_64_full_rank(handle,side,m,n,A,lda,x,incx,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdgmm_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_zdgmm_64_full_rank = rocblas_zdgmm_64_(handle,side,m,n,c_loc(A),lda,c_loc(x),incx, &
         c_loc(C),ldc)
     end function
 
@@ -109051,6 +113409,31 @@ module hipfort_rocblas
         c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
+    function rocblas_sdgmm_strided_batched_64_full_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
+        stride_x,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sdgmm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_sdgmm_strided_batched_64_full_rank = rocblas_sdgmm_strided_batched_64_(handle,side, &
+        m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_ddgmm_strided_batched_64_assumed_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
@@ -109127,6 +113510,31 @@ module hipfort_rocblas
       !
       rocblas_ddgmm_strided_batched_64_rank_1 = rocblas_ddgmm_strided_batched_64_(handle,side,m,n, &
         c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_ddgmm_strided_batched_64_full_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
+        stride_x,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_ddgmm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_double),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_ddgmm_strided_batched_64_full_rank = rocblas_ddgmm_strided_batched_64_(handle,side, &
+        m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
 #endif
@@ -109207,6 +113615,31 @@ module hipfort_rocblas
         c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
+    function rocblas_cdgmm_strided_batched_64_full_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
+        stride_x,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cdgmm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_cdgmm_strided_batched_64_full_rank = rocblas_cdgmm_strided_batched_64_(handle,side, &
+        m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zdgmm_strided_batched_64_assumed_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
@@ -109283,6 +113716,31 @@ module hipfort_rocblas
       !
       rocblas_zdgmm_strided_batched_64_rank_1 = rocblas_zdgmm_strided_batched_64_(handle,side,m,n, &
         c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_zdgmm_strided_batched_64_full_rank(handle,side,m,n,A,lda,stride_A,x,incx, &
+        stride_x,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zdgmm_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int64_t) :: incx
+      integer(c_int64_t) :: stride_x
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zdgmm_strided_batched_64_full_rank = rocblas_zdgmm_strided_batched_64_(handle,side, &
+        m,n,c_loc(A),lda,stride_A,c_loc(x),incx,stride_x,c_loc(C),ldc,stride_C,batch_count)
     end function
 
 #endif
@@ -109737,6 +114195,29 @@ module hipfort_rocblas
         lda,c_loc(beta),c_loc(B),ldb,c_loc(C),ldc)
     end function
 
+    function rocblas_sgeam_64_full_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sgeam_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_sgeam_64_full_rank = rocblas_sgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
+        c_loc(A),lda,c_loc(beta),c_loc(B),ldb,c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dgeam_64_assumed_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -109807,6 +114288,29 @@ module hipfort_rocblas
       !
       rocblas_dgeam_64_rank_1 = rocblas_dgeam_64_(handle,transA,transB,m,n,c_loc(alpha),c_loc(A), &
         lda,c_loc(beta),c_loc(B),ldb,c_loc(C),ldc)
+    end function
+
+    function rocblas_dgeam_64_full_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dgeam_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_dgeam_64_full_rank = rocblas_dgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
+        c_loc(A),lda,c_loc(beta),c_loc(B),ldb,c_loc(C),ldc)
     end function
 
 #endif
@@ -109881,6 +114385,29 @@ module hipfort_rocblas
         lda,c_loc(beta),c_loc(B),ldb,c_loc(C),ldc)
     end function
 
+    function rocblas_cgeam_64_full_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cgeam_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_cgeam_64_full_rank = rocblas_cgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
+        c_loc(A),lda,c_loc(beta),c_loc(B),ldb,c_loc(C),ldc)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zgeam_64_assumed_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
@@ -109951,6 +114478,29 @@ module hipfort_rocblas
       !
       rocblas_zgeam_64_rank_1 = rocblas_zgeam_64_(handle,transA,transB,m,n,c_loc(alpha),c_loc(A), &
         lda,c_loc(beta),c_loc(B),ldb,c_loc(C),ldc)
+    end function
+
+    function rocblas_zgeam_64_full_rank(handle,transA,transB,m,n,alpha,A,lda,beta,B,ldb,C,ldc)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zgeam_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      !
+      rocblas_zgeam_64_full_rank = rocblas_zgeam_64_(handle,transA,transB,m,n,c_loc(alpha), &
+        c_loc(A),lda,c_loc(beta),c_loc(B),ldb,c_loc(C),ldc)
     end function
 
 #endif
@@ -110519,6 +115069,35 @@ module hipfort_rocblas
         ldc,stride_C,batch_count)
     end function
 
+    function rocblas_sgeam_strided_batched_64_full_rank(handle,transA,transB,m,n,alpha,A,lda, &
+        stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_sgeam_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_float),target :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_float),target :: beta
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_sgeam_strided_batched_64_full_rank = rocblas_sgeam_strided_batched_64_(handle, &
+        transA,transB,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(B),ldb,stride_B, &
+        c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_dgeam_strided_batched_64_assumed_rank(handle,transA,transB,m,n,alpha,A,lda, &
@@ -110607,6 +115186,35 @@ module hipfort_rocblas
       rocblas_dgeam_strided_batched_64_rank_1 = rocblas_dgeam_strided_batched_64_(handle,transA, &
         transB,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(B),ldb,stride_B,c_loc(C), &
         ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_dgeam_strided_batched_64_full_rank(handle,transA,transB,m,n,alpha,A,lda, &
+        stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_dgeam_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      real(c_double),target :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      real(c_double),target :: beta
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_dgeam_strided_batched_64_full_rank = rocblas_dgeam_strided_batched_64_(handle, &
+        transA,transB,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(B),ldb,stride_B, &
+        c_loc(C),ldc,stride_C,batch_count)
     end function
 
 #endif
@@ -110699,6 +115307,35 @@ module hipfort_rocblas
         ldc,stride_C,batch_count)
     end function
 
+    function rocblas_cgeam_strided_batched_64_full_rank(handle,transA,transB,m,n,alpha,A,lda, &
+        stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_cgeam_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_float_complex),target :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_float_complex),target :: beta
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_cgeam_strided_batched_64_full_rank = rocblas_cgeam_strided_batched_64_(handle, &
+        transA,transB,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(B),ldb,stride_B, &
+        c_loc(C),ldc,stride_C,batch_count)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function rocblas_zgeam_strided_batched_64_assumed_rank(handle,transA,transB,m,n,alpha,A,lda, &
@@ -110787,6 +115424,35 @@ module hipfort_rocblas
       rocblas_zgeam_strided_batched_64_rank_1 = rocblas_zgeam_strided_batched_64_(handle,transA, &
         transB,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(B),ldb,stride_B,c_loc(C), &
         ldc,stride_C,batch_count)
+    end function
+
+    function rocblas_zgeam_strided_batched_64_full_rank(handle,transA,transB,m,n,alpha,A,lda, &
+        stride_A,beta,B,ldb,stride_B,C,ldc,stride_C,batch_count)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocblas_zgeam_strided_batched_64_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_operation_none)) :: transA
+      integer(kind(rocblas_operation_none)) :: transB
+      integer(c_int64_t) :: m
+      integer(c_int64_t) :: n
+      complex(c_double_complex),target :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int64_t) :: lda
+      integer(c_int64_t) :: stride_A
+      complex(c_double_complex),target :: beta
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int64_t) :: ldb
+      integer(c_int64_t) :: stride_B
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int64_t) :: ldc
+      integer(c_int64_t) :: stride_C
+      integer(c_int64_t) :: batch_count
+      !
+      rocblas_zgeam_strided_batched_64_full_rank = rocblas_zgeam_strided_batched_64_(handle, &
+        transA,transB,m,n,c_loc(alpha),c_loc(A),lda,stride_A,c_loc(beta),c_loc(B),ldb,stride_B, &
+        c_loc(C),ldc,stride_C,batch_count)
     end function
 
 #endif
