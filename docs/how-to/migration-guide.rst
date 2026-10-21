@@ -337,7 +337,7 @@ module named after the library.
      - ``use rocfft``
      - ``roc::rocfft_fortran``
      - ``rocfft-fortran``
-   * - ``use hipfort_hipfft`` (plus ``_enums``)
+   * - ``use hipfort_hipfft`` (plus ``_enums``, ``_types``)
      - ``use hipfft``
      - ``hip::hipfft_fortran``
      - ``hipfft-fortran``
