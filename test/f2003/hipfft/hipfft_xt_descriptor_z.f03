@@ -65,8 +65,8 @@ program hipfft_xt_descriptor_z
   gpus = [0, 1]
   call hipfftCheck(hipfftCreate(plan))
   call hipfftCheck(hipfftXtSetGPUs(plan, 2, c_loc(gpus)))
-  ! A multi-GPU plan writes one work size per GPU: pass the first element of an
-  ! array with one slot per GPU.
+  ! A multi-GPU plan writes one work size per GPU: pass c_loc of an array with
+  ! one slot per GPU to the type(c_ptr) form.
   call hipfftCheck(hipfftMakePlan2d(plan, NY, NX, HIPFFT_Z2Z, c_loc(work)))
 
   ! hipFFT allocates and owns the descriptor: keep its address, and pass the

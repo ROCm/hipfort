@@ -23,13 +23,6 @@
 
 ### Changed
 
-* **Breaking, only without the array overloads.** The `workSize` argument of
-  `hipfftMakePlan*`, `hipfftGetSize*`, `hipfftXtMakePlanMany` and
-  `hipfftXtGetSizeMany` is a buffer: hipFFT writes one work size per GPU of the
-  plan, and on a multi-GPU plan it overran the scalar of the former `_typed`
-  form. With the default array overloads a scalar still works (and an array
-  takes one value per GPU); a build with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`
-  must pass `c_loc(workSize)`.
 * Each backend archive (`libhipfort-amdgcn.a`, `libhipfort-nvptx.a`) is
   compiled with one section per procedure (`-ffunction-sections
   -fdata-sections`). A program linked with `-Wl,--gc-sections` keeps only the
