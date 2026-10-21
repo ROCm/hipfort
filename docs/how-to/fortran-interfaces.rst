@@ -61,9 +61,9 @@ preprocessor, which is why the binding sources are ``.F90`` files:
    #endif
    end interface
 
-``-DHIPFORT_USE_FPOINTER_INTERFACES=ON`` (the default when the compiler supports
-Fortran 2008) defines ``USE_ASSUMED_SHAPE``, and ``-DHIPFORT_ASSUMED_RANK=ON``
-defines ``USE_ASSUMED_RANK`` instead. If you compile the binding sources yourself,
+``-DFORTRAN_ARRAY_INTERFACES=assumed-shape`` (the default) defines
+``USE_ASSUMED_SHAPE``, and ``-DFORTRAN_ARRAY_INTERFACES=assumed-rank`` defines
+``USE_ASSUMED_RANK`` instead. If you compile the binding sources yourself,
 define the same macro.
 
 Specific procedure names
@@ -130,10 +130,10 @@ Other kinds of arguments
 * **Handles** (``rocblas_handle``, ``hipStream_t``, plan and descriptor handles)
   are ``type(c_ptr)``, passed by value.
 * **Enumerations** are named constants of ``enum, bind(c)`` blocks, in the
-  ``hipfort_<lib>_enums`` modules (``hipfort_enums`` for HIP). Pass the constants,
+  library's module (``rocblas``, ``hip``, ...). Pass the constants,
   such as ``rocblas_operation_none``; their kind is that of a C ``int``.
 * **Structures** of the C API (``hipDeviceProp_t``, ...) are ``bind(c)`` derived
-  types in ``hipfort_types`` and the ``hipfort_<lib>_types`` modules.
+  types in the library's module.
 * **Character strings:** a ``const char*`` input is a ``type(c_ptr)`` in ``X_``,
   and a ``character(kind=c_char, len=*)`` in ``X_typed`` where the library takes
   a name or a message (ROCTx). Terminate the string with ``c_null_char``, as C
@@ -150,8 +150,8 @@ Other kinds of arguments
   ``rocblas_set_vector_64``, ``rocblas_get_matrix_64`` and the other transfer
   helpers, which only have the ``type(c_ptr)`` form.
 
-Every routine returns its library's status. The ``hipfort_check`` module has a
-helper per library (``hipCheck``, ``rocblasCheck``, ``hipsolverCheck``, ...) that
+Every routine returns its library's status. Each library's module has a check
+helper (``hipCheck`` in ``hip``, ``rocblasCheck`` in ``rocblas``, ...) that
 prints the status by name and stops the program when a call fails.
 
 Passing arrays to the array overloads
@@ -183,7 +183,7 @@ bytes:
 .. code-block:: fortran
 
    use iso_c_binding
-   use hipfort
+   use hip
    integer      :: ierr       ! error code
    real, target :: a_h(5,6)   ! host array ('target' is required by c_loc)
    type(c_ptr)  :: a_d        ! device array pointer
@@ -198,7 +198,7 @@ elements rather than bytes:
 
 .. code-block:: fortran
 
-   use hipfort
+   use hip
    integer       :: ierr      ! error code
    real          :: a_h(5,6)  ! host array
    real, pointer :: a_d(:,:)  ! device array pointer
@@ -262,12 +262,12 @@ the C routine takes is derived from the array type.
 
 Like the array interfaces of the math libraries, these ``hipMalloc`` and
 ``hipMemcpy`` overloads exist only when the Fortran 2008 interfaces are enabled:
-a build with ``-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`` has only the
+a build with ``-DFORTRAN_ARRAY_INTERFACES=none`` has only the
 ``type(c_ptr)`` forms. The allocation routines (``hipMalloc``,
 ``hipMallocManaged``, ``hipHostMalloc``, ``hipFree``, ``hipHostFree``) and the
 ``hipHostRegister`` family (``hipHostUnregister``, ``hipHostGetDevicePointer``,
-``hipHostGetFlags``) have no assumed-rank form, so
-their per-rank overloads stay available with ``-DHIPFORT_ASSUMED_RANK=ON``.
+``hipHostGetFlags``) have no assumed-rank form, so their per-rank overloads stay
+available with ``-DFORTRAN_ARRAY_INTERFACES=assumed-rank``.
 
 Scalar arguments passed by pointer
 ==================================
@@ -356,21 +356,22 @@ Assumed-rank interfaces (Fortran 2018)
 ======================================
 
 The Fortran 2008 array interfaces are generated once per rank, so each generic
-carries a fixed set of ranks. Building hipFORT with
-``-DHIPFORT_ASSUMED_RANK=ON`` replaces those per-rank overloads with a single
+carries a fixed set of ranks. Building the bindings with
+``-DFORTRAN_ARRAY_INTERFACES=assumed-rank`` replaces those per-rank overloads with a single
 Fortran 2018 ``dimension(..)`` overload that accepts an actual argument of any
 rank. This is what lets a rank-3 array be passed to a routine whose per-rank
 overloads stop at rank 1, such as ``rocblas_saxpy``.
 
-The option is experimental and ``OFF`` by default. Note the following:
+The tier is experimental, and ``assumed-shape`` is the default. Note the
+following:
 
 * It is **mutually exclusive** with the classic per-rank interfaces rather than
-  additive: enabling it replaces them.
-* It requires a Fortran 2018 compiler (hipFORT probes for ``c_loc()`` of a
-  ``dimension(..)`` argument) and the Fortran 2008 interfaces. If either is
-  missing, hipFORT warns and falls back to the per-rank interfaces (or to the
-  ``type(c_ptr)`` interfaces only, if the Fortran 2008 interfaces are off)
-  instead of failing the build.
+  additive: selecting it replaces them. That is why the three tiers are one
+  option with three values rather than two booleans, which could express the
+  combination the language forbids.
+* It requires a Fortran 2018 compiler (the build probes for ``c_loc()`` of a
+  ``dimension(..)`` argument). If the compiler is not one, the build warns and
+  falls back to ``assumed-shape`` instead of failing.
 * Only **contiguous** arrays may be passed.
 * ``hipMalloc`` keeps its per-rank overloads either way; ``hipMemcpy``,
   ``hipMemcpyAsync``, ``hipMemcpy2D`` and ``hipMemcpy2DAsync`` gain assumed-rank
